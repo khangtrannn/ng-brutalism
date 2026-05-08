@@ -1,0 +1,38 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 9
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Set Nx base SHA
+        uses: nrwl/nx-set-shas@v4
+
+      - name: Lint affected
+        run: pnpm nx affected --target=lint --parallel=3
+
+      - name: Test affected
+        run: pnpm nx affected --target=test --parallel=3
+
+      - name: Build affected
+        run: pnpm nx affected --target=build --parallel=3

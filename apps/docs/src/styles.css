@@ -1,0 +1,10 @@
+@import '@ng-neo-brutalism/ui/styles.css';
+
+@tailwind utilities;
+
+body {
+  margin: 0;
+  font-family: var(--nb-font-sans);
+  background: var(--nb-background);
+  color: var(--nb-foreground);
+}

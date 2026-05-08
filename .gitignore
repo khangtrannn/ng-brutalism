@@ -8,7 +8,9 @@
 
 # Node
 /node_modules
+**/node_modules
 npm-debug.log
+pnpm-debug.log
 yarn-error.log
 
 # IDEs and editors
@@ -40,3 +42,17 @@ testem.log
 # System files
 .DS_Store
 Thumbs.db
+
+
+
+dist/
+.nx/cache
+.nx/workspace-data
+.angular
+
+vite.config.*.timestamp*
+vitest.config.*.timestamp*
+
+.nx/polygraph
+.claude/worktrees
+.claude/settings.local.json

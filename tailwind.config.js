@@ -1,8 +1,8 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
-    './projects/ng-neo-brutalism/src/**/*.{html,ts}',
-    './projects/ng-neo-brutalism-demo/src/**/*.{html,ts}',
+    './libs/ui/src/**/*.{html,ts}',
+    './apps/docs/src/**/*.{html,ts}',
   ],
   safelist: [
     'border-[var(--nb-border)]',
