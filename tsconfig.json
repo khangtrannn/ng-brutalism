@@ -13,7 +13,7 @@
     "isolatedModules": true,
     "paths": {
       "ng-neo-brutalism": [
-        "./dist/ng-neo-brutalism"
+        "./projects/ng-neo-brutalism/src/public-api.ts"
       ]
     },
     "esModuleInterop": true,

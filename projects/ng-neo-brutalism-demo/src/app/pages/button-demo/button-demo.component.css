@@ -1,0 +1,50 @@
+.page {
+  min-height: 100vh;
+  padding: 48px;
+  background: var(--nb-background);
+  color: var(--nb-foreground);
+}
+
+.hero {
+  max-width: 760px;
+  margin-bottom: 40px;
+}
+
+.eyebrow {
+  margin: 0 0 8px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+h1 {
+  margin: 0;
+  font-size: 56px;
+  line-height: 1;
+}
+
+h2 {
+  margin: 0 0 16px;
+  font-size: 24px;
+}
+
+.demo-section {
+  padding: 24px;
+  margin-bottom: 24px;
+  border: var(--nb-border-width) solid var(--nb-border);
+  box-shadow: var(--nb-shadow-offset-x) var(--nb-shadow-offset-y) 0 0 var(--nb-shadow);
+  background: var(--nb-surface);
+}
+
+.button-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  align-items: center;
+}
+
+.button-stack {
+  display: grid;
+  gap: 16px;
+  max-width: 420px;
+}

@@ -1,1 +1,10 @@
-/* You can add global styles to this file, and also import other style files */
+@import '../../ng-neo-brutalism/src/lib/styles/styles.css';
+
+@tailwind utilities;
+
+body {
+  margin: 0;
+  font-family: var(--nb-font-sans);
+  background: var(--nb-background);
+  color: var(--nb-foreground);
+}

@@ -19,3 +19,7 @@ body {
   outline: var(--nb-focus-ring);
   outline-offset: var(--nb-focus-ring-offset);
 }
+
+.focus-visible\:outline-\[var\(--nb-focus-ring\)\]:focus-visible {
+  outline: var(--nb-focus-ring);
+}
