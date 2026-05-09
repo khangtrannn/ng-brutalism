@@ -19,9 +19,15 @@ import { NbButton } from '@ng-neo-brutalism/ui';
         </p>
       </header>
 
-      <a nbButton variant="secondary" routerLink="/components/button">
-        Button
-      </a>
+      <div class="flex flex-wrap gap-4">
+        <a nbButton variant="neutral" routerLink="/components/accordion">
+          Accordion
+        </a>
+
+        <a nbButton variant="neutral" routerLink="/components/button">
+          Button
+        </a>
+      </div>
     </article>
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,

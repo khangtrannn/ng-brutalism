@@ -54,6 +54,7 @@ type DocsExampleTab = 'preview' | 'code';
   styles: [
     `
       .docs-preview-grid {
+        border: 2px solid;
         background-color: var(--nb-surface);
         background-image: linear-gradient(
             rgba(128, 128, 128, 0.3) 1px,

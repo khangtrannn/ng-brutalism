@@ -1,3 +1,3 @@
-export type NbButtonVariant = 'default' | 'primary' | 'secondary' | 'danger';
+export type NbButtonVariant = 'default' | 'reverse' | 'noShadow' | 'neutral';
 
-export type NbButtonSize = 'sm' | 'md' | 'lg';
+export type NbButtonSize = 'default' | 'sm' | 'lg' | 'icon';

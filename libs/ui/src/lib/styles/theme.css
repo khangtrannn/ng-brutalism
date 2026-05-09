@@ -5,12 +5,15 @@
   --nb-foreground: #000000;
   --nb-border: #000000;
   --nb-shadow: #000000;
+  --nb-main: oklch(90% 0.15 95);
+  --nb-main-foreground: oklch(10% 0 0);
   --nb-surface: #ffffff;
   --nb-surface-foreground: #000000;
+  --nb-secondary-background: oklch(96% 0 0);
 
-  --nb-primary: #ffd84d;
+  --nb-primary: #ff90e8;
   --nb-primary-foreground: #000000;
-  --nb-secondary: #ff90e8;
+  --nb-secondary: #ffd84d;
   --nb-secondary-foreground: #000000;
   --nb-accent: #8ae9ff;
   --nb-accent-foreground: #000000;
@@ -26,6 +29,8 @@
   --nb-border-width: 2px;
   --nb-shadow-offset-x: 4px;
   --nb-shadow-offset-y: 4px;
+  --nb-reverse-shadow-offset-x: -4px;
+  --nb-reverse-shadow-offset-y: -4px;
 
   /* Size scale */
   --nb-size-sm: 2rem;
@@ -58,5 +63,7 @@
   :root {
     --nb-shadow-offset-x: 0px;
     --nb-shadow-offset-y: 0px;
+    --nb-reverse-shadow-offset-x: 0px;
+    --nb-reverse-shadow-offset-y: 0px;
   }
 }

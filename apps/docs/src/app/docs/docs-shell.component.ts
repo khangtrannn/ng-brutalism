@@ -40,7 +40,7 @@ import { docsNavGroups, findDocsNavItem } from './docs.navigation';
               class="hidden items-center gap-10 text-base font-medium lg:flex"
             >
               <a routerLink="/">Docs</a>
-              <a routerLink="/components/button">Components</a>
+              <a routerLink="/components/accordion">Components</a>
               <span>Styling</span>
               <span>Charts</span>
               <span>Stars</span>

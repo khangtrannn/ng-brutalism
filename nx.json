@@ -10,8 +10,7 @@
       "!{projectRoot}/src/test-setup.ts"
     ],
     "sharedGlobals": [
-      "{workspaceRoot}/tsconfig.base.json",
-      "{workspaceRoot}/tailwind.config.js"
+      "{workspaceRoot}/tsconfig.base.json"
     ]
   },
   "targetDefaults": {

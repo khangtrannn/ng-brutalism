@@ -1,102 +1,65 @@
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@500;700&display=swap');
-@import '@ng-neo-brutalism/ui/styles.css';
+@import "tailwindcss";
+@import "tw-animate-css";
 
-@tailwind utilities;
+@source "../../../libs/ui/src";
+@source inline("bg-main text-main-foreground border-border shadow-shadow rounded-base bg-background bg-secondary-background font-heading");
 
-body {
-  margin: 0;
-  font-family: 'DM Sans', var(--nb-font-sans);
-  font-weight: var(--nb-font-weight-normal);
-  background: var(--nb-background);
-  color: var(--nb-foreground);
+@custom-variant dark (&:is(.dark *));
+
+@theme {
+  /* === Neobrutalism Button Tokens === */
+  --nb-main: oklch(90% 0.15 95);
+  --nb-main-foreground: oklch(10% 0 0);
+  --nb-secondary-background: oklch(96% 0 0);
+  --nb-foreground: #000000;
+  --nb-border: #000000;
+  --nb-shadow: #000000;
+  --nb-radius: 5px;
+  --nb-shadow-offset-x: 4px;
+  --nb-shadow-offset-y: 4px;
+  --nb-reverse-shadow-offset-x: -4px;
+  --nb-reverse-shadow-offset-y: -4px;
+  --radius-nb: var(--nb-radius);
+  --shadow-nb: var(--nb-shadow-offset-x) var(--nb-shadow-offset-y) 0 0 var(--nb-shadow);
+
+  --font-sans: 'DM Sans', ui-sans-serif, system-ui, sans-serif;
+  --font-heading: 'DM Sans', ui-sans-serif, system-ui, sans-serif;
+  --font-base: 'DM Sans', ui-sans-serif, system-ui, sans-serif;
+
+  --font-weight-heading: 700;
+  --font-weight-base: 500;
+
+  --color-main: #88aaee;
+  --color-main-foreground: #000000;
+
+  --color-background: #e8e8e8;
+  --color-secondary-background: #ffffff;
+  --color-foreground: #000000;
+
+  --color-border: #000000;
+
+  --shadow-shadow: 4px 4px 0px 0px #000000;
+
+  --radius-base: 5px;
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  font-weight: var(--nb-font-weight-bold);
-}
-
-.docs-prose article {
-  color: var(--nb-foreground);
-}
-
-.docs-prose h1 {
-  margin-bottom: 1rem;
-  font-size: 1.5rem;
-  line-height: 2rem;
-  font-weight: var(--nb-font-weight-bold);
-}
-
-.docs-prose h2 {
-  margin-top: 2.5rem;
-  margin-bottom: 1.5rem;
-  scroll-margin-top: 8rem;
-  font-size: 1.25rem;
-  line-height: 1.75rem;
-  font-weight: var(--nb-font-weight-bold);
-}
-
-.docs-prose h3 {
-  margin-top: 2rem;
-  margin-bottom: 1.5rem;
-  scroll-margin-top: 8rem;
-  font-size: 1.125rem;
-  line-height: 1.75rem;
-  font-weight: var(--nb-font-weight-bold);
-}
-
-.docs-prose p {
-  margin-top: 1.5rem;
-  font-size: 0.875rem;
-  line-height: 1.75rem;
-  font-weight: var(--nb-font-weight-normal);
-}
-
-.docs-prose li {
-  margin-top: 0.5rem;
-  font-size: 0.875rem;
-  line-height: 1.5rem;
-  font-weight: var(--nb-font-weight-normal);
-}
-
-.docs-prose docs-code-block,
-.docs-prose docs-example {
-  display: block;
-  /* margin-top: 1rem; */
-}
-
-.docs-prose :not(pre) > code {
-  margin-inline: 0.125rem;
-  border: 1px solid var(--nb-border);
-  background: var(--nb-secondary);
-  padding: 0.1875rem 0.3125rem;
-  font-size: 0.875rem;
-  font-weight: var(--nb-font-weight-bold);
-  color: var(--nb-secondary-foreground);
-}
-
-@media (min-width: 640px) {
-  .docs-prose h1 {
-    font-size: 1.875rem;
-    line-height: 2.25rem;
+@layer base {
+  * {
+    @apply border-border;
   }
-
-  .docs-prose h2 {
-    font-size: 1.5rem;
-    line-height: 2rem;
+  body {
+    @apply bg-background text-foreground;
+    font-family: var(--font-base);
+    font-weight: var(--font-weight-base);
   }
+}
 
-  .docs-prose h3 {
-    font-size: 1.25rem;
-    line-height: 1.75rem;
-  }
-
-  .docs-prose p,
-  .docs-prose li {
-    font-size: 1rem;
-  }
+.dark {
+  --color-main: #88aaee;
+  --color-main-foreground: #000000;
+  --color-background: #272933;
+  --color-secondary-background: #1e2028;
+  --color-foreground: #e8e8e8;
+  --color-border: #000000;
+  --shadow-shadow: 4px 4px 0px 0px #000000;
 }

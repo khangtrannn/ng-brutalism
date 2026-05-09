@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { NbButton } from '@ng-neo-brutalism/ui';
+import { NbAccordionTrigger, NbButton, NbAccordionItem, NbAccordion } from '@ng-neo-brutalism/ui';
 
 import { DocsCodeBlockComponent } from '../../docs/docs-code-block.component';
 import { DocsExampleComponent } from '../../docs/docs-example.component';
@@ -7,11 +7,19 @@ import { DocsExampleComponent } from '../../docs/docs-example.component';
 @Component({
   selector: 'docs-button-page',
   standalone: true,
-  imports: [DocsCodeBlockComponent, DocsExampleComponent, NbButton],
+  imports: [DocsCodeBlockComponent, DocsExampleComponent, NbButton, NbAccordionTrigger, NbAccordionItem, NbAccordion],
   template: `
     <article>
       <header id="overview" class="mb-8 scroll-mt-32">
         <div>
+          <neo-accordion>
+<neo-accordion-item>
+            <neo-accordion-trigger>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus exercitationem, nihil id illo delectus sint dolor autem enim excepturi vel.
+            </neo-accordion-trigger>
+          </neo-accordion-item>
+          </neo-accordion>
+
           <p class="mb-2 text-sm font-bold uppercase tracking-wide">
             Components
           </p>
@@ -26,7 +34,7 @@ import { DocsExampleComponent } from '../../docs/docs-example.component';
         <a
           nbButton
           size="sm"
-          variant="secondary"
+          variant="neutral"
           href="https://github.com/khangtrannn/ng-neo-brutalism-workspace/tree/main/libs/ui/src/lib/button"
           target="_blank"
           rel="noreferrer"
@@ -38,7 +46,7 @@ import { DocsExampleComponent } from '../../docs/docs-example.component';
       <section id="preview">
         <h2>Preview</h2>
         <docs-example [code]="defaultExampleCode">
-          <button nbButton variant="secondary">Button</button>
+          <button nbButton variant="neutral">Button</button>
         </docs-example>
       </section>
 
@@ -52,7 +60,7 @@ import { DocsExampleComponent } from '../../docs/docs-example.component';
         <h2>Full width</h2>
         <docs-example [code]="fullWidthExampleCode">
           <div class="w-full max-w-md">
-            <button nbButton variant="secondary" [fullWidth]="true">
+            <button nbButton variant="neutral" [fullWidth]="true">
               Full width button
             </button>
           </div>
@@ -63,7 +71,7 @@ import { DocsExampleComponent } from '../../docs/docs-example.component';
         <h2>Disabled</h2>
         <docs-example [code]="disabledExampleCode">
           <div class="flex flex-wrap items-center justify-center gap-4">
-            <button nbButton variant="secondary" disabled>
+            <button nbButton variant="neutral" disabled>
               Disabled button
             </button>
             <a nbButton href="#" aria-disabled="true">Disabled link style</a>
@@ -86,7 +94,7 @@ import { DocsExampleComponent } from '../../docs/docs-example.component';
 
             <a
               nbButton
-              variant="secondary"
+              variant="neutral"
               href="https://github.com/khangtrannn/ng-neo-brutalism-workspace"
               target="_blank"
               rel="noreferrer"
@@ -133,7 +141,7 @@ import { DocsExampleComponent } from '../../docs/docs-example.component';
                 <td
                   class="border-b-4 border-r-4 border-[var(--nb-border)] px-4 py-3 font-mono text-sm"
                 >
-                  'default' | 'primary' | 'secondary' | 'danger'
+                  'default' | 'reverse' | 'noShadow' | 'neutral'
                 </td>
                 <td
                   class="border-b-4 border-[var(--nb-border)] px-4 py-3 font-mono text-sm"
@@ -150,12 +158,12 @@ import { DocsExampleComponent } from '../../docs/docs-example.component';
                 <td
                   class="border-b-4 border-r-4 border-[var(--nb-border)] px-4 py-3 font-mono text-sm"
                 >
-                  'sm' | 'md' | 'lg'
+                  'default' | 'sm' | 'lg' | 'icon'
                 </td>
                 <td
                   class="border-b-4 border-[var(--nb-border)] px-4 py-3 font-mono text-sm"
                 >
-                  'md'
+                  'default'
                 </td>
               </tr>
               <tr>
@@ -178,7 +186,7 @@ import { DocsExampleComponent } from '../../docs/docs-example.component';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export default class ButtonPageComponent {
-  protected readonly defaultExampleCode = `<button nbButton variant="secondary">Button</button>`;
+  protected readonly defaultExampleCode = `<button nbButton variant="neutral">Button</button>`;
 
   protected readonly importCode = `import { NbButton } from '@ng-neo-brutalism/ui';`;
 
@@ -190,19 +198,20 @@ export const appConfig: ApplicationConfig = {
 };`;
 
   protected readonly variantsExampleCode = `<button nbButton>Default</button>
-<button nbButton variant="primary">Primary</button>
-<button nbButton variant="secondary">Secondary</button>
-<button nbButton variant="danger">Danger</button>`;
+<button nbButton variant="reverse">Reverse</button>
+<button nbButton variant="noShadow">No shadow</button>
+<button nbButton variant="neutral">Neutral</button>`;
 
-  protected readonly sizesExampleCode = `<button nbButton size="sm" variant="secondary">Small</button>
-<button nbButton size="md" variant="secondary">Medium</button>
-<button nbButton size="lg" variant="secondary">Large</button>`;
+  protected readonly sizesExampleCode = `<button nbButton size="sm" variant="neutral">Small</button>
+<button nbButton size="default" variant="neutral">Default</button>
+<button nbButton size="lg" variant="neutral">Large</button>
+<button nbButton size="icon" variant="neutral" aria-label="Icon button">+</button>`;
 
-  protected readonly fullWidthExampleCode = `<button nbButton variant="secondary" [fullWidth]="true">
+  protected readonly fullWidthExampleCode = `<button nbButton variant="neutral" [fullWidth]="true">
   Full width button
 </button>`;
 
-  protected readonly disabledExampleCode = `<button nbButton variant="secondary" disabled>Disabled button</button>
+  protected readonly disabledExampleCode = `<button nbButton variant="neutral" disabled>Disabled button</button>
 <a nbButton href="#" aria-disabled="true">Disabled link style</a>`;
 
   protected readonly anchorExampleCode = `<a nbButton href="https://angular.dev" target="_blank" rel="noreferrer">
@@ -211,7 +220,7 @@ export const appConfig: ApplicationConfig = {
 
 <a
   nbButton
-  variant="secondary"
+  variant="neutral"
   href="https://github.com/khangtrannn/ng-neo-brutalism-workspace"
   target="_blank"
   rel="noreferrer"
