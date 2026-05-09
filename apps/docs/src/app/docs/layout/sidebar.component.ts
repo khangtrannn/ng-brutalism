@@ -2,7 +2,6 @@ import {
   ChangeDetectionStrategy,
   Component,
   ElementRef,
-  ViewChild,
   afterNextRender,
   computed,
   inject,
@@ -24,7 +23,7 @@ import { DOC_NAV } from '../nav';
       class="fixed left-0 top-14 hidden h-[calc(100vh-3.5rem)] w-60 overflow-y-auto border-r-2 border-(--nb-border) bg-(--nb-secondary-background) lg:block"
       aria-label="Documentation navigation"
     >
-      <div #container class="relative" (mouseleave)="onNavLeave()">
+      <div #container class="relative">
         <div
           class="pointer-events-none absolute inset-x-4 border-2 border-(--nb-border) bg-(--nb-main) shadow-[4px_4px_0_0_var(--nb-shadow)]"
           [style.top.px]="indicatorTop()"
@@ -44,8 +43,7 @@ import { DOC_NAV } from '../nav';
                 [routerLink]="item.path"
                 routerLinkActive="is-active"
                 [routerLinkActiveOptions]="{ exact: item.path === '/docs' }"
-                class="relative z-10 block px-3 py-1.5 text-sm [&.is-active]:font-bold"
-                (mouseenter)="onLinkEnter($event)"
+                class="relative z-10 block px-3 py-1.5 text-sm hover:font-bold [&.is-active]:font-bold"
               >
                 {{ item.label }}
               </a>
@@ -67,19 +65,16 @@ export class NbDocsSidebarComponent {
   readonly indicatorTop = signal(0);
   readonly indicatorHeight = signal(32);
   readonly indicatorVisible = signal(false);
-  private readonly initialized = signal(false);
+  private readonly transitionEnabled = signal(false);
 
   protected readonly transitionStyle = computed(() =>
-    this.initialized() ? 'top 150ms ease-out, height 150ms ease-out' : 'none',
+    this.transitionEnabled() ? 'top 150ms ease-out, height 150ms ease-out' : 'none',
   );
 
   constructor() {
     afterNextRender(() => {
       this.positionAtActive();
-      requestAnimationFrame(() => {
-        this.initialized.set(true);
-        this.indicatorVisible.set(true);
-      });
+      requestAnimationFrame(() => this.indicatorVisible.set(true));
     });
 
     this.router.events
@@ -87,15 +82,13 @@ export class NbDocsSidebarComponent {
         filter((e): e is NavigationEnd => e instanceof NavigationEnd),
         takeUntilDestroyed(),
       )
-      .subscribe(() => requestAnimationFrame(() => this.positionAtActive()));
-  }
-
-  protected onLinkEnter(event: MouseEvent) {
-    this.moveIndicatorTo(event.currentTarget as HTMLElement);
-  }
-
-  protected onNavLeave() {
-    this.positionAtActive();
+      .subscribe(() => {
+        this.transitionEnabled.set(true);
+        requestAnimationFrame(() => {
+          this.positionAtActive();
+          setTimeout(() => this.transitionEnabled.set(false), 200);
+        });
+      });
   }
 
   private positionAtActive() {
