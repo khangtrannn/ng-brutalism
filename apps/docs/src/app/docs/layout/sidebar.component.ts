@@ -80,8 +80,11 @@ export class NbDocsSidebarComponent {
     }
 
     afterNextRender(() => {
-      this.positionAtActive();
-      requestAnimationFrame(() => this.indicatorVisible.set(true));
+      const active = this.findActiveLink();
+      if (active) {
+        this.moveIndicatorTo(active);
+        requestAnimationFrame(() => this.indicatorVisible.set(true));
+      }
     });
 
     this.router.events
@@ -90,19 +93,26 @@ export class NbDocsSidebarComponent {
         takeUntilDestroyed(),
       )
       .subscribe(() => {
-        this.transitionEnabled.set(true);
+        const wasVisible = this.indicatorVisible();
+        if (wasVisible) {
+          this.transitionEnabled.set(true);
+        }
         requestAnimationFrame(() => {
-          this.positionAtActive();
+          const active = this.findActiveLink();
+          if (active) {
+            this.moveIndicatorTo(active);
+          }
+          if (!wasVisible) {
+            this.indicatorVisible.set(true);
+          }
           setTimeout(() => this.transitionEnabled.set(false), 200);
         });
       });
   }
 
-  private positionAtActive() {
+  private findActiveLink(): HTMLElement | null {
     const container = this.containerRef().nativeElement;
-    if (!container) return;
-    const active = container.querySelector<HTMLElement>('.is-active');
-    if (active) this.moveIndicatorTo(active);
+    return container?.querySelector<HTMLElement>('.is-active') ?? null;
   }
 
   private moveIndicatorTo(link: HTMLElement) {
