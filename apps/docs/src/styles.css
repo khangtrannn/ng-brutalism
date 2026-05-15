@@ -14,7 +14,7 @@
   --docs-main: #b5d6fb;
   --nb-main: var(--docs-main);
   --nb-main-foreground: oklch(10% 0 0);
-  --nb-secondary-background: oklch(96% 0 0);
+  --nb-secondary-background: white;
   --nb-foreground: #000000;
   --nb-border: #000000;
   --nb-shadow: #000000;
@@ -73,6 +73,7 @@ nb-docs-sidebar::-webkit-scrollbar-thumb {
   * {
     @apply border-border;
   }
+
   body {
     @apply bg-background text-foreground;
     font-family: var(--font-base);

@@ -25,6 +25,7 @@ export const DOC_NAV: readonly NavGroup[] = [
     items: [
       { label: 'Accordion', path: '/docs/accordion' },
       { label: 'Button', path: '/docs/button' },
+      { label: 'Card', path: '/docs/card' },
       { label: 'Checkbox', path: '/docs/checkbox' },
       { label: 'Input', path: '/docs/input' },
       { label: 'Label', path: '/docs/label' },

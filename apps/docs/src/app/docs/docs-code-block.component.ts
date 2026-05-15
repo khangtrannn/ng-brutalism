@@ -32,7 +32,7 @@ type DocsCodeBlockVariant = 'standalone' | 'embedded';
         </button>
 
         <pre
-          class="m-0 overflow-x-auto pb-8 pl-5 pr-28 pt-10 text-sm leading-7"
+          class="m-0 overflow-x-auto whitespace-pre-wrap break-words pb-8 pl-5 pr-28 pt-10 text-xs leading-6"
         ><code>{{ code() }}</code></pre>
       </div>
     </div>
