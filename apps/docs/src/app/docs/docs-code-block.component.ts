@@ -18,21 +18,26 @@ type DocsCodeBlockVariant = 'standalone' | 'embedded';
       class="bg-black text-white"
       [class.border-4]="variant() === 'standalone'"
       [class.border-(--nb-border)]="variant() === 'standalone'"
-      [class.shadow-[5px_5px_0_0_var(--nb-shadow)]]="variant() === 'standalone'"
+      [class.shadow-[6px_6px_0_0_var(--nb-shadow)]]="variant() === 'standalone'"
     >
-      <div
-        class="relative bg-black"
-      >
+      <div class="relative bg-black">
+        <div
+          class="flex h-10 items-center gap-2 border-b-2 border-white/15 bg-black px-4 text-xs font-black tracking-[0.12em] text-white/70 uppercase"
+        >
+          <span class="inline-block size-2 bg-white/70"></span>
+          {{ title() }}
+        </div>
+
         <button
           type="button"
-          class="absolute right-3 top-3 z-10 border-2 border-(--nb-border) bg-nb-secondary px-3 py-1 text-sm font-bold text-nb-secondary-fg shadow-[2px_2px_0_0_var(--nb-shadow)] transition-transform focus-visible:outline-(--nb-focus-ring) focus-visible:outline-offset-(--nb-focus-ring-offset) active:translate-x-0.5 active:translate-y-0.5 active:shadow-none"
+          class="absolute top-12 right-3 z-10 border-2 border-white bg-black px-3 py-1 text-xs font-black tracking-wider text-white uppercase transition-colors hover:bg-white hover:text-black focus-visible:outline-(--nb-focus-ring) focus-visible:outline-offset-(--nb-focus-ring-offset)"
           (click)="copy()"
         >
           {{ copied() ? 'Copied' : 'Copy' }}
         </button>
 
         <pre
-          class="m-0 overflow-x-auto whitespace-pre-wrap break-words pb-8 pl-5 pr-28 pt-10 text-xs leading-6"
+          class="m-0 overflow-x-auto whitespace-pre-wrap break-words bg-black pb-8 pl-5 pr-24 pt-6 text-xs leading-6"
         ><code>{{ code() }}</code></pre>
       </div>
     </div>

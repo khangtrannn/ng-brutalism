@@ -17,15 +17,15 @@ import { NbDocsTocComponent } from './toc.component';
     NbDocsPaginationComponent,
   ],
   template: `
-    <div class="min-h-screen bg-(--nb-secondary-background)">
+    <div class="relative min-h-screen overflow-x-clip">
       <nb-docs-navbar />
 
-      <div class="flex pt-14">
+      <div class="flex pt-28">
         <nb-docs-sidebar class="shrink-0" />
 
         <main
           data-docs-content
-          class="docs-grid-bg min-h-[calc(100vh-3.5rem)] flex-1 px-5 py-10 lg:ml-60 lg:mr-44 lg:px-8"
+          class="docs-grid-bg min-h-[calc(100vh-7rem)] flex-1 px-5 py-10 lg:ml-80 lg:mr-48 lg:px-8"
         >
           <div class="mx-auto min-h-full w-full max-w-3xl">
             <router-outlet />
@@ -34,7 +34,7 @@ import { NbDocsTocComponent } from './toc.component';
         </main>
 
         <aside
-          class="fixed right-0 top-14 hidden h-[calc(100vh-3.5rem)] w-44 shrink-0 overflow-y-auto border-l-2 border-(--nb-border) bg-(--nb-secondary-background) pt-10 pr-4 pl-4 lg:block"
+          class="fixed top-28 right-8 hidden h-[calc(100vh-8rem)] w-44 shrink-0 overflow-y-auto border-4 border-(--nb-border) bg-white pt-6 pr-4 pl-4 shadow-[6px_6px_0_0_var(--nb-shadow)] lg:block"
         >
           <nb-docs-toc />
         </aside>

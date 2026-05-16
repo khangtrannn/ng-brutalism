@@ -11,10 +11,10 @@
 @theme {
   /* === Neobrutalism Button Tokens === */
   --full-contrast: #000000;
-  --docs-main: #b5d6fb;
+  --docs-main: #9dd7ff;
   --nb-main: var(--docs-main);
   --nb-main-foreground: oklch(10% 0 0);
-  --nb-secondary-background: white;
+  --nb-secondary-background: #fff7d6;
   --nb-foreground: #000000;
   --nb-border: #000000;
   --nb-shadow: #000000;
@@ -26,18 +26,19 @@
   --radius-nb: var(--nb-radius);
   --shadow-nb: var(--nb-shadow-offset-x) var(--nb-shadow-offset-y) 0 0 var(--nb-shadow);
 
-  --font-sans: 'DM Sans', ui-sans-serif, system-ui, sans-serif;
-  --font-heading: 'DM Sans', ui-sans-serif, system-ui, sans-serif;
-  --font-base: 'DM Sans', ui-sans-serif, system-ui, sans-serif;
+  --font-sans: 'Coming Soon', ui-sans-serif, system-ui, sans-serif;
+  --font-heading: 'Coming Soon', ui-sans-serif, system-ui, sans-serif;
+  --font-base: 'Coming Soon', ui-sans-serif, system-ui, sans-serif;
 
   --font-weight-heading: 700;
-  --font-weight-base: 500;
+  --font-weight-base: 700;
+  --font-weight-medium: 700;
 
   --color-main: var(--docs-main);
   --color-main-foreground: #000000;
 
-  --color-background: #e8e8e8;
-  --color-secondary-background: #ffffff;
+  --color-background: #f4f4f0;
+  --color-secondary-background: #fff7d6;
   --color-foreground: #000000;
 
   --color-border: #000000;
@@ -49,15 +50,30 @@
 
 :root {
   --full-contrast: #000000;
-  --docs-main: #b5d6fb;
+  --docs-main: #9dd7ff;
   --nb-main: var(--docs-main);
+  --nb-secondary-background: #fff7d6;
+  --nb-font-sans: 'Coming Soon', ui-sans-serif, system-ui, sans-serif;
+  --nb-font-weight-normal: 700;
   --color-main: var(--docs-main);
+  --color-secondary-background: #fff7d6;
 }
 
-/* === Docs layout: grid dot background === */
+/* === Docs layout: calm brutalist paper background === */
 .docs-grid-bg {
+  background-color: var(--nb-secondary-background);
+  background-image:
+    linear-gradient(90deg, rgba(0, 0, 0, 0.06) 1px, transparent 1px),
+    linear-gradient(rgba(0, 0, 0, 0.06) 1px, transparent 1px);
+  background-size: 32px 32px, 32px 32px;
+
   background-image: radial-gradient(circle, #c5cfe0 1px, transparent 1px);
   background-size: 24px 24px;
+  background-color: white;
+}
+
+body {
+  /* background-color: var(--nb-secondary-background); */
 }
 
 /* === Docs layout: sidebar scrollbar === */
@@ -81,9 +97,55 @@ nb-docs-sidebar::-webkit-scrollbar-thumb {
   }
 }
 
+[data-docs-content] article {
+  position: relative;
+  border: 4px solid var(--nb-border);
+  background: #ffffff;
+  padding: clamp(1.5rem, 3.5vw, 2.5rem);
+  box-shadow: 8px 8px 0 0 var(--nb-shadow);
+}
+
+[data-docs-content] h1 {
+  display: block;
+  margin-bottom: 1.5rem;
+  color: #000;
+  font-size: clamp(2.25rem, 6vw, 4rem);
+  font-weight: 900;
+  line-height: 1;
+  text-transform: uppercase;
+  letter-spacing: -0.02em;
+}
+
+[data-docs-content] h1::after {
+  content: "";
+  display: block;
+  margin-top: 1rem;
+  width: 4rem;
+  height: 6px;
+  background: var(--nb-main);
+  border: 2px solid var(--nb-border);
+}
+
+[data-docs-content] h2 {
+  display: block;
+  margin-top: 2.5rem;
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 3px solid var(--nb-border);
+  color: #000;
+  font-size: 1.5rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: -0.01em;
+}
+
+[data-docs-content] p {
+  line-height: 1.65;
+}
+
 .dark {
   --full-contrast: #000000;
-  --docs-main: #b5d6fb;
+  --docs-main: #9dd7ff;
   --nb-main: var(--docs-main);
   --color-main: var(--docs-main);
   --color-main-foreground: #000000;
