@@ -16,7 +16,7 @@ import {
 import { nbClass } from '../core/class';
 
 @Component({
-  selector: 'neo-marquee',
+  selector: 'nb-marquee',
   standalone: true,
   template: `
     <div [class]="wrapperClass()" [style]="wrapperStyle()">

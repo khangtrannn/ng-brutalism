@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { NbButton, NbInput, NbLabel } from '@ng-neo-brutalism/ui';
+import { NbButton, NbInput, NbLabel } from '@ng-brutalism/ui';
 
 import { DocsCodeBlockComponent } from '../../docs/docs-code-block.component';
 import { DocsExampleComponent } from '../../docs/docs-example.component';
@@ -154,7 +154,7 @@ import { DocsExampleComponent } from '../../docs/docs-example.component';
 export default class InputPageComponent {
   protected readonly defaultExampleCode = `<input nbInput placeholder="Email" class="w-75" />`;
 
-  protected readonly importCode = `import { NbInput } from '@ng-neo-brutalism/ui';`;
+  protected readonly importCode = `import { NbInput } from '@ng-brutalism/ui';`;
 
   protected readonly sizesExampleCode = `<input nbInput size="sm" placeholder="Small" class="w-75" />
 <input nbInput placeholder="Default" class="w-75" />

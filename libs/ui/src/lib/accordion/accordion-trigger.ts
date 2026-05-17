@@ -9,7 +9,7 @@ import { nbClass } from '../core/class';
 import { NbAccordionItemComponent } from './accordion-item';
 
 @Component({
-  selector: 'neo-accordion-trigger',
+  selector: 'nb-accordion-trigger',
   standalone: true,
   template: `
     <h3 class="flex">

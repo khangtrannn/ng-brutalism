@@ -1,6 +1,6 @@
 // Foundation
 export { nbClass } from './lib/core/class';
-export { provideNgNeoBrutalism } from './lib/core/provide';
+export { provideNgBrutalism } from './lib/core/provide';
 export type { NbConfig } from './lib/core/provide';
 export { NB_THEME_CONFIG } from './lib/tokens/theme.tokens';
 export type { NbThemeConfig } from './lib/tokens/theme.tokens';

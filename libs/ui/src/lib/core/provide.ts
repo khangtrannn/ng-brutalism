@@ -37,7 +37,7 @@ export interface NbConfig {
   theme?: NbThemeConfig;
 }
 
-export function provideNgNeoBrutalism(
+export function provideNgBrutalism(
   config: NbConfig = {}
 ): EnvironmentProviders {
   return makeEnvironmentProviders([

@@ -3,7 +3,7 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { nbClass } from '../core/class';
 
 @Component({
-  selector: 'neo-card',
+  selector: 'nb-card',
   standalone: true,
   template: `<ng-content />`,
   host: {
@@ -22,7 +22,7 @@ export class NbCardComponent {
 }
 
 @Component({
-  selector: 'neo-card-header',
+  selector: 'nb-card-header',
   standalone: true,
   template: `<ng-content />`,
   host: {
@@ -40,7 +40,7 @@ export class NbCardHeaderComponent {
 }
 
 @Component({
-  selector: 'neo-card-title',
+  selector: 'nb-card-title',
   standalone: true,
   template: `<ng-content />`,
   host: {
@@ -54,7 +54,7 @@ export class NbCardTitleComponent {
 }
 
 @Component({
-  selector: 'neo-card-description',
+  selector: 'nb-card-description',
   standalone: true,
   template: `<ng-content />`,
   host: {
@@ -68,7 +68,7 @@ export class NbCardDescriptionComponent {
 }
 
 @Component({
-  selector: 'neo-card-action',
+  selector: 'nb-card-action',
   standalone: true,
   template: `<ng-content />`,
   host: {
@@ -84,7 +84,7 @@ export class NbCardActionComponent {
 }
 
 @Component({
-  selector: 'neo-card-content',
+  selector: 'nb-card-content',
   standalone: true,
   template: `<ng-content />`,
   host: {
@@ -98,7 +98,7 @@ export class NbCardContentComponent {
 }
 
 @Component({
-  selector: 'neo-card-footer',
+  selector: 'nb-card-footer',
   standalone: true,
   template: `<ng-content />`,
   host: {

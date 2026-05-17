@@ -9,7 +9,7 @@ import {
   NbCardTitle,
   NbInput,
   NbLabel,
-} from '@ng-neo-brutalism/ui';
+} from '@ng-brutalism/ui';
 
 import { DocsCodeBlockComponent } from '../../docs/docs-code-block.component';
 import { DocsExampleComponent } from '../../docs/docs-example.component';
@@ -73,14 +73,14 @@ import JobListingCardExampleComponent from './examples/job-listing-card.example'
       <section id="preview">
         <h2 class="mt-10 mb-4 text-2xl font-bold">Preview</h2>
         <docs-example [code]="defaultExampleCode">
-          <neo-card class="w-full max-w-sm">
-            <neo-card-header>
-              <neo-card-title>Login to your account</neo-card-title>
-              <neo-card-description>
+          <nb-card class="w-full max-w-sm">
+            <nb-card-header>
+              <nb-card-title>Login to your account</nb-card-title>
+              <nb-card-description>
                 Enter your email below to login to your account
-              </neo-card-description>
-            </neo-card-header>
-            <neo-card-content>
+              </nb-card-description>
+            </nb-card-header>
+            <nb-card-content>
               <form>
                 <div class="flex flex-col gap-6">
                   <div class="grid gap-2">
@@ -112,8 +112,8 @@ import JobListingCardExampleComponent from './examples/job-listing-card.example'
                   </div>
                 </div>
               </form>
-            </neo-card-content>
-            <neo-card-footer class="flex-col gap-2">
+            </nb-card-content>
+            <nb-card-footer class="flex-col gap-2">
               <button nbButton type="submit" [fullWidth]="true">Login</button>
               <button nbButton variant="neutral" [fullWidth]="true">
                 Login with Google
@@ -122,8 +122,8 @@ import JobListingCardExampleComponent from './examples/job-listing-card.example'
                 Don't have an account?
                 <a href="#" class="underline underline-offset-4">Sign up</a>
               </div>
-            </neo-card-footer>
-          </neo-card>
+            </nb-card-footer>
+          </nb-card>
         </docs-example>
       </section>
 
@@ -143,22 +143,22 @@ import JobListingCardExampleComponent from './examples/job-listing-card.example'
       <section id="simple">
         <h2 class="mt-10 mb-4 text-2xl font-bold">Simple card</h2>
         <docs-example [code]="simpleExampleCode">
-          <neo-card class="w-full max-w-sm">
-            <neo-card-header>
-              <neo-card-title>Notifications</neo-card-title>
-              <neo-card-description>
+          <nb-card class="w-full max-w-sm">
+            <nb-card-header>
+              <nb-card-title>Notifications</nb-card-title>
+              <nb-card-description>
                 You have 3 unread messages.
-              </neo-card-description>
-            </neo-card-header>
-            <neo-card-content>
+              </nb-card-description>
+            </nb-card-header>
+            <nb-card-content>
               <p class="text-sm">
                 Check your inbox for the latest updates and messages from your team.
               </p>
-            </neo-card-content>
-            <neo-card-footer>
+            </nb-card-content>
+            <nb-card-footer>
               <button nbButton size="sm">View all</button>
-            </neo-card-footer>
-          </neo-card>
+            </nb-card-footer>
+          </nb-card>
         </docs-example>
       </section>
 
@@ -288,29 +288,29 @@ export default class CardPageComponent {
   NbCardAction,
   NbCardContent,
   NbCardFooter,
-} from '@ng-neo-brutalism/ui';`;
+} from '@ng-brutalism/ui';`;
 
-  protected readonly templateCode = `<neo-card>
-  <neo-card-header>
-    <neo-card-title>Card Title</neo-card-title>
-    <neo-card-description>Card Description</neo-card-description>
-  </neo-card-header>
-  <neo-card-content>
+  protected readonly templateCode = `<nb-card>
+  <nb-card-header>
+    <nb-card-title>Card Title</nb-card-title>
+    <nb-card-description>Card Description</nb-card-description>
+  </nb-card-header>
+  <nb-card-content>
     <p>Card Content</p>
-  </neo-card-content>
-  <neo-card-footer>
+  </nb-card-content>
+  <nb-card-footer>
     <button nbButton>Action</button>
-  </neo-card-footer>
-</neo-card>`;
+  </nb-card-footer>
+</nb-card>`;
 
-  protected readonly defaultExampleCode = `<neo-card class="w-full max-w-sm">
-  <neo-card-header>
-    <neo-card-title>Login to your account</neo-card-title>
-    <neo-card-description>
+  protected readonly defaultExampleCode = `<nb-card class="w-full max-w-sm">
+  <nb-card-header>
+    <nb-card-title>Login to your account</nb-card-title>
+    <nb-card-description>
       Enter your email below to login to your account
-    </neo-card-description>
-  </neo-card-header>
-  <neo-card-content>
+    </nb-card-description>
+  </nb-card-header>
+  <nb-card-content>
     <form>
       <div class="flex flex-col gap-6">
         <div class="grid gap-2">
@@ -330,8 +330,8 @@ export default class CardPageComponent {
         </div>
       </div>
     </form>
-  </neo-card-content>
-  <neo-card-footer class="flex-col gap-2">
+  </nb-card-content>
+  <nb-card-footer class="flex-col gap-2">
     <button nbButton type="submit" [fullWidth]="true">Login</button>
     <button nbButton variant="neutral" [fullWidth]="true">
       Login with Google
@@ -340,8 +340,8 @@ export default class CardPageComponent {
       Don't have an account?
       <a href="#" class="underline underline-offset-4">Sign up</a>
     </div>
-  </neo-card-footer>
-</neo-card>`;
+  </nb-card-footer>
+</nb-card>`;
 
   protected readonly jobListingExampleCode = `import JobListingCardExampleComponent from './examples/job-listing-card.example';
 
@@ -353,21 +353,21 @@ export default class CardPageComponent {
 })
 export class CardDemoComponent {}`;
 
-  protected readonly simpleExampleCode = `<neo-card class="w-full max-w-sm">
-  <neo-card-header>
-    <neo-card-title>Notifications</neo-card-title>
-    <neo-card-description>
+  protected readonly simpleExampleCode = `<nb-card class="w-full max-w-sm">
+  <nb-card-header>
+    <nb-card-title>Notifications</nb-card-title>
+    <nb-card-description>
       You have 3 unread messages.
-    </neo-card-description>
-  </neo-card-header>
-  <neo-card-content>
+    </nb-card-description>
+  </nb-card-header>
+  <nb-card-content>
     <p class="text-sm">
       Check your inbox for the latest updates
       and messages from your team.
     </p>
-  </neo-card-content>
-  <neo-card-footer>
+  </nb-card-content>
+  <nb-card-footer>
     <button nbButton size="sm">View all</button>
-  </neo-card-footer>
-</neo-card>`;
+  </nb-card-footer>
+</nb-card>`;
 }

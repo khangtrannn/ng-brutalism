@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { NbButton, NbImageCard } from '@ng-neo-brutalism/ui';
+import { NbButton, NbImageCard } from '@ng-brutalism/ui';
 
 import { DocsCodeBlockComponent } from '../../docs/docs-code-block.component';
 import { DocsExampleComponent } from '../../docs/docs-example.component';
@@ -54,7 +54,7 @@ import { DocsExampleComponent } from '../../docs/docs-example.component';
       <section id="preview">
         <h2 class="mt-10 mb-4 text-2xl font-bold">Preview</h2>
         <docs-example [code]="defaultExampleCode">
-          <neo-image-card
+          <nb-image-card
             class="w-full max-w-sm"
             [image]="previewImage"
             alt="Flowers, trees and bushes reaching peak full bloom"
@@ -76,7 +76,7 @@ import { DocsExampleComponent } from '../../docs/docs-example.component';
           strip is not rendered.
         </p>
         <docs-example [code]="imageOnlyExampleCode">
-          <neo-image-card
+          <nb-image-card
             class="w-full max-w-sm"
             [image]="previewImage"
             alt="Flowers, trees and bushes reaching peak full bloom"
@@ -172,22 +172,22 @@ export default class ImageCardPageComponent {
   protected readonly previewImage =
     'https://hips.hearstapps.com/hmg-prod/images/flowers-trees-and-bushes-reach-their-peak-of-full-bloom-in-news-photo-1678292967.jpg?resize=300:*';
 
-  protected readonly importCode = `import { NbImageCard } from '@ng-neo-brutalism/ui';`;
+  protected readonly importCode = `import { NbImageCard } from '@ng-brutalism/ui';`;
 
-  protected readonly templateCode = `<neo-image-card
+  protected readonly templateCode = `<nb-image-card
   [image]="imageUrl"
   alt="A descriptive alt text"
   caption="Image"
 />`;
 
-  protected readonly defaultExampleCode = `<neo-image-card
+  protected readonly defaultExampleCode = `<nb-image-card
   class="w-full max-w-sm"
   image="https://hips.hearstapps.com/.../flowers.jpg"
   alt="Flowers, trees and bushes reaching peak full bloom"
   caption="Image"
 />`;
 
-  protected readonly imageOnlyExampleCode = `<neo-image-card
+  protected readonly imageOnlyExampleCode = `<nb-image-card
   class="w-full max-w-sm"
   image="https://hips.hearstapps.com/.../flowers.jpg"
   alt="Flowers, trees and bushes reaching peak full bloom"

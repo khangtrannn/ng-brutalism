@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { NbButton, NbMarquee, NbMarqueeItem } from '@ng-neo-brutalism/ui';
+import { NbButton, NbMarquee, NbMarqueeItem } from '@ng-brutalism/ui';
 
 import { DocsCodeBlockComponent } from '../../docs/docs-code-block.component';
 import { DocsExampleComponent } from '../../docs/docs-example.component';
@@ -57,13 +57,13 @@ import { DocsExampleComponent } from '../../docs/docs-example.component';
       <section id="preview">
         <h2 class="mt-10 mb-4 text-2xl font-bold">Preview</h2>
         <docs-example [code]="defaultExampleCode">
-          <neo-marquee class="w-full" duration="10s">
-            <neo-marquee-item>Angular</neo-marquee-item>
-            <neo-marquee-item>TypeScript</neo-marquee-item>
-            <neo-marquee-item>Tailwind CSS</neo-marquee-item>
-            <neo-marquee-item>Vite</neo-marquee-item>
-            <neo-marquee-item>Vitest</neo-marquee-item>
-          </neo-marquee>
+          <nb-marquee class="w-full" duration="10s">
+            <nb-marquee-item>Angular</nb-marquee-item>
+            <nb-marquee-item>TypeScript</nb-marquee-item>
+            <nb-marquee-item>Tailwind CSS</nb-marquee-item>
+            <nb-marquee-item>Vite</nb-marquee-item>
+            <nb-marquee-item>Vitest</nb-marquee-item>
+          </nb-marquee>
         </docs-example>
       </section>
 
@@ -80,26 +80,26 @@ import { DocsExampleComponent } from '../../docs/docs-example.component';
       <section id="reverse">
         <h2 class="mt-10 mb-4 text-2xl font-bold">Reverse</h2>
         <docs-example [code]="reverseExampleCode">
-          <neo-marquee class="w-full" duration="10s" [reverse]="true">
-            <neo-marquee-item>Angular</neo-marquee-item>
-            <neo-marquee-item>TypeScript</neo-marquee-item>
-            <neo-marquee-item>Tailwind CSS</neo-marquee-item>
-            <neo-marquee-item>Vite</neo-marquee-item>
-            <neo-marquee-item>Vitest</neo-marquee-item>
-          </neo-marquee>
+          <nb-marquee class="w-full" duration="10s" [reverse]="true">
+            <nb-marquee-item>Angular</nb-marquee-item>
+            <nb-marquee-item>TypeScript</nb-marquee-item>
+            <nb-marquee-item>Tailwind CSS</nb-marquee-item>
+            <nb-marquee-item>Vite</nb-marquee-item>
+            <nb-marquee-item>Vitest</nb-marquee-item>
+          </nb-marquee>
         </docs-example>
       </section>
 
       <section id="custom-speed">
         <h2 class="mt-10 mb-4 text-2xl font-bold">Custom speed</h2>
         <docs-example [code]="customSpeedExampleCode">
-          <neo-marquee class="w-full" duration="18s">
-            <neo-marquee-item>Angular</neo-marquee-item>
-            <neo-marquee-item>TypeScript</neo-marquee-item>
-            <neo-marquee-item>Tailwind CSS</neo-marquee-item>
-            <neo-marquee-item>Vite</neo-marquee-item>
-            <neo-marquee-item>Vitest</neo-marquee-item>
-          </neo-marquee>
+          <nb-marquee class="w-full" duration="18s">
+            <nb-marquee-item>Angular</nb-marquee-item>
+            <nb-marquee-item>TypeScript</nb-marquee-item>
+            <nb-marquee-item>Tailwind CSS</nb-marquee-item>
+            <nb-marquee-item>Vite</nb-marquee-item>
+            <nb-marquee-item>Vitest</nb-marquee-item>
+          </nb-marquee>
         </docs-example>
       </section>
 
@@ -182,29 +182,29 @@ import { DocsExampleComponent } from '../../docs/docs-example.component';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export default class MarqueePageComponent {
-  protected readonly importCode = `import { NbMarquee, NbMarqueeItem } from '@ng-neo-brutalism/ui';`;
+  protected readonly importCode = `import { NbMarquee, NbMarqueeItem } from '@ng-brutalism/ui';`;
 
-  protected readonly defaultExampleCode = `<neo-marquee class="w-full" duration="10s">
-  <neo-marquee-item>Angular</neo-marquee-item>
-  <neo-marquee-item>TypeScript</neo-marquee-item>
-  <neo-marquee-item>Tailwind CSS</neo-marquee-item>
-  <neo-marquee-item>Vite</neo-marquee-item>
-  <neo-marquee-item>Vitest</neo-marquee-item>
-</neo-marquee>`;
+  protected readonly defaultExampleCode = `<nb-marquee class="w-full" duration="10s">
+  <nb-marquee-item>Angular</nb-marquee-item>
+  <nb-marquee-item>TypeScript</nb-marquee-item>
+  <nb-marquee-item>Tailwind CSS</nb-marquee-item>
+  <nb-marquee-item>Vite</nb-marquee-item>
+  <nb-marquee-item>Vitest</nb-marquee-item>
+</nb-marquee>`;
 
-  protected readonly reverseExampleCode = `<neo-marquee class="w-full" duration="10s" [reverse]="true">
-  <neo-marquee-item>Angular</neo-marquee-item>
-  <neo-marquee-item>TypeScript</neo-marquee-item>
-  <neo-marquee-item>Tailwind CSS</neo-marquee-item>
-  <neo-marquee-item>Vite</neo-marquee-item>
-  <neo-marquee-item>Vitest</neo-marquee-item>
-</neo-marquee>`;
+  protected readonly reverseExampleCode = `<nb-marquee class="w-full" duration="10s" [reverse]="true">
+  <nb-marquee-item>Angular</nb-marquee-item>
+  <nb-marquee-item>TypeScript</nb-marquee-item>
+  <nb-marquee-item>Tailwind CSS</nb-marquee-item>
+  <nb-marquee-item>Vite</nb-marquee-item>
+  <nb-marquee-item>Vitest</nb-marquee-item>
+</nb-marquee>`;
 
-  protected readonly customSpeedExampleCode = `<neo-marquee class="w-full" duration="18s">
-  <neo-marquee-item>Angular</neo-marquee-item>
-  <neo-marquee-item>TypeScript</neo-marquee-item>
-  <neo-marquee-item>Tailwind CSS</neo-marquee-item>
-  <neo-marquee-item>Vite</neo-marquee-item>
-  <neo-marquee-item>Vitest</neo-marquee-item>
-</neo-marquee>`;
+  protected readonly customSpeedExampleCode = `<nb-marquee class="w-full" duration="18s">
+  <nb-marquee-item>Angular</nb-marquee-item>
+  <nb-marquee-item>TypeScript</nb-marquee-item>
+  <nb-marquee-item>Tailwind CSS</nb-marquee-item>
+  <nb-marquee-item>Vite</nb-marquee-item>
+  <nb-marquee-item>Vitest</nb-marquee-item>
+</nb-marquee>`;
 }

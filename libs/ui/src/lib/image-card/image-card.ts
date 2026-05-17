@@ -3,7 +3,7 @@ import { ChangeDetectionStrategy, Component, computed, input } from '@angular/co
 import { nbClass } from '../core/class';
 
 @Component({
-  selector: 'neo-image-card',
+  selector: 'nb-image-card',
   standalone: true,
   template: `
     <img

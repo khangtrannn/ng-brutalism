@@ -4,7 +4,7 @@ import {
 } from '@angular/core';
 
 @Component({
-  selector: 'neo-marquee-item',
+  selector: 'nb-marquee-item',
   standalone: true,
   host: {
     class: 'mx-4 text-4xl whitespace-nowrap',

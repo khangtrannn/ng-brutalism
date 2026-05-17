@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { NbButton, NbCheckbox, NbInput, NbLabel } from '@ng-neo-brutalism/ui';
+import { NbButton, NbCheckbox, NbInput, NbLabel } from '@ng-brutalism/ui';
 
 import { DocsCodeBlockComponent } from '../../docs/docs-code-block.component';
 import { DocsExampleComponent } from '../../docs/docs-example.component';
@@ -140,7 +140,7 @@ export default class LabelPageComponent {
   <label nbLabel for="terms">Accept terms and conditions</label>
 </div>`;
 
-  protected readonly importCode = `import { NbCheckbox, NbLabel } from '@ng-neo-brutalism/ui';`;
+  protected readonly importCode = `import { NbCheckbox, NbLabel } from '@ng-brutalism/ui';`;
 
   protected readonly withInputExampleCode = `<div class="flex flex-col gap-2">
   <label nbLabel for="email">Email</label>

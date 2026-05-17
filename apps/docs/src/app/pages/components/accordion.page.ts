@@ -5,7 +5,7 @@ import {
   NbAccordionItem,
   NbAccordionTrigger,
   NbButton,
-} from '@ng-neo-brutalism/ui';
+} from '@ng-brutalism/ui';
 
 import { DocsCodeBlockComponent } from '../../docs/docs-code-block.component';
 import { DocsExampleComponent } from '../../docs/docs-example.component';
@@ -65,24 +65,24 @@ import { DocsExampleComponent } from '../../docs/docs-example.component';
       <section id="preview">
         <h2 class="mt-10 mb-4 text-2xl font-bold">Preview</h2>
         <docs-example [code]="exampleCode">
-          <neo-accordion class="block w-full max-w-xl" collapsible>
-            <neo-accordion-item>
-              <neo-accordion-trigger>Is it accessible?</neo-accordion-trigger>
-              <neo-accordion-content>
+          <nb-accordion class="block w-full max-w-xl" collapsible>
+            <nb-accordion-item>
+              <nb-accordion-trigger>Is it accessible?</nb-accordion-trigger>
+              <nb-accordion-content>
                 Yes. It uses native button semantics and ARIA state.
-              </neo-accordion-content>
-            </neo-accordion-item>
+              </nb-accordion-content>
+            </nb-accordion-item>
 
-            <neo-accordion-item>
-              <neo-accordion-trigger>
+            <nb-accordion-item>
+              <nb-accordion-trigger>
                 Is it styled like neobrutalism.dev?
-              </neo-accordion-trigger>
-              <neo-accordion-content>
+              </nb-accordion-trigger>
+              <nb-accordion-content>
                 Yes. It keeps the heavy border, offset shadow, bright trigger,
                 and rotating chevron from the referenced component.
-              </neo-accordion-content>
-            </neo-accordion-item>
-          </neo-accordion>
+              </nb-accordion-content>
+            </nb-accordion-item>
+          </nb-accordion>
         </docs-example>
       </section>
 
@@ -99,31 +99,31 @@ import { DocsExampleComponent } from '../../docs/docs-example.component';
       <section id="multiple">
         <h2 class="mt-10 mb-4 text-2xl font-bold">Multiple</h2>
         <docs-example [code]="multipleExampleCode">
-          <neo-accordion
+          <nb-accordion
             class="block w-full max-w-xl"
             type="multiple"
             [defaultValue]="['item-1']"
           >
-            <neo-accordion-item value="item-1">
-              <neo-accordion-trigger
-                >Can multiple panels open?</neo-accordion-trigger
+            <nb-accordion-item value="item-1">
+              <nb-accordion-trigger
+                >Can multiple panels open?</nb-accordion-trigger
               >
-              <neo-accordion-content>
+              <nb-accordion-content>
                 Yes. Set <code>type="multiple"</code> to allow independent panel
                 state.
-              </neo-accordion-content>
-            </neo-accordion-item>
+              </nb-accordion-content>
+            </nb-accordion-item>
 
-            <neo-accordion-item value="item-2">
-              <neo-accordion-trigger
-                >Can panels start open?</neo-accordion-trigger
+            <nb-accordion-item value="item-2">
+              <nb-accordion-trigger
+                >Can panels start open?</nb-accordion-trigger
               >
-              <neo-accordion-content>
+              <nb-accordion-content>
                 Yes. Use <code>defaultValue</code> for uncontrolled accordions
                 or bind <code>value</code> for controlled state.
-              </neo-accordion-content>
-            </neo-accordion-item>
-          </neo-accordion>
+              </nb-accordion-content>
+            </nb-accordion-item>
+          </nb-accordion>
         </docs-example>
       </section>
 
@@ -161,23 +161,23 @@ import { DocsExampleComponent } from '../../docs/docs-example.component';
               </button>
             </div>
 
-            <neo-accordion [(value)]="controlledValue">
-              <neo-accordion-item value="overview">
-                <neo-accordion-trigger>Overview</neo-accordion-trigger>
-                <neo-accordion-content>
+            <nb-accordion [(value)]="controlledValue">
+              <nb-accordion-item value="overview">
+                <nb-accordion-trigger>Overview</nb-accordion-trigger>
+                <nb-accordion-content>
                   Bind <code>[(value)]</code> when another control should open
                   or close accordion panels. The trigger can switch panels, but
                   only the external button can collapse the active panel.
-                </neo-accordion-content>
-              </neo-accordion-item>
+                </nb-accordion-content>
+              </nb-accordion-item>
 
-              <neo-accordion-item value="details">
-                <neo-accordion-trigger>Details</neo-accordion-trigger>
-                <neo-accordion-content>
+              <nb-accordion-item value="details">
+                <nb-accordion-trigger>Details</nb-accordion-trigger>
+                <nb-accordion-content>
                   The value matches the active item in single mode.
-                </neo-accordion-content>
-              </neo-accordion-item>
-            </neo-accordion>
+                </nb-accordion-content>
+              </nb-accordion-item>
+            </nb-accordion>
           </div>
         </docs-example>
       </section>
@@ -185,21 +185,21 @@ import { DocsExampleComponent } from '../../docs/docs-example.component';
       <section id="disabled">
         <h2 class="mt-10 mb-4 text-2xl font-bold">Disabled Item</h2>
         <docs-example [code]="disabledExampleCode">
-          <neo-accordion collapsible class="block w-full max-w-xl" defaultValue="enabled">
-            <neo-accordion-item value="enabled">
-              <neo-accordion-trigger>Enabled item</neo-accordion-trigger>
-              <neo-accordion-content>
+          <nb-accordion collapsible class="block w-full max-w-xl" defaultValue="enabled">
+            <nb-accordion-item value="enabled">
+              <nb-accordion-trigger>Enabled item</nb-accordion-trigger>
+              <nb-accordion-content>
                 This panel can be opened and closed normally.
-              </neo-accordion-content>
-            </neo-accordion-item>
+              </nb-accordion-content>
+            </nb-accordion-item>
 
-            <neo-accordion-item value="disabled" disabled>
-              <neo-accordion-trigger>Disabled item</neo-accordion-trigger>
-              <neo-accordion-content>
+            <nb-accordion-item value="disabled" disabled>
+              <nb-accordion-trigger>Disabled item</nb-accordion-trigger>
+              <nb-accordion-content>
                 Disabled triggers cannot be activated.
-              </neo-accordion-content>
-            </neo-accordion-item>
-          </neo-accordion>
+              </nb-accordion-content>
+            </nb-accordion-item>
+          </nb-accordion>
         </docs-example>
       </section>
 
@@ -363,24 +363,24 @@ export default class AccordionPageComponent {
   NbAccordionContent,
   NbAccordionItem,
   NbAccordionTrigger,
-} from '@ng-neo-brutalism/ui';`;
+} from '@ng-brutalism/ui';`;
 
-  protected readonly exampleCode = `<neo-accordion class="block w-full max-w-xl" collapsible>
-  <neo-accordion-item>
-    <neo-accordion-trigger>Is it accessible?</neo-accordion-trigger>
-    <neo-accordion-content>
+  protected readonly exampleCode = `<nb-accordion class="block w-full max-w-xl" collapsible>
+  <nb-accordion-item>
+    <nb-accordion-trigger>Is it accessible?</nb-accordion-trigger>
+    <nb-accordion-content>
       Yes. It uses native button semantics and ARIA state.
-    </neo-accordion-content>
-  </neo-accordion-item>
+    </nb-accordion-content>
+  </nb-accordion-item>
 
-  <neo-accordion-item>
-    <neo-accordion-trigger>Is it styled like neobrutalism.dev?</neo-accordion-trigger>
-    <neo-accordion-content>
+  <nb-accordion-item>
+    <nb-accordion-trigger>Is it styled like neobrutalism.dev?</nb-accordion-trigger>
+    <nb-accordion-content>
       Yes. It keeps the heavy border, offset shadow, bright trigger,
       and rotating chevron from the referenced component.
-    </neo-accordion-content>
-  </neo-accordion-item>
-</neo-accordion>`;
+    </nb-accordion-content>
+  </nb-accordion-item>
+</nb-accordion>`;
 
   protected readonly controlledExampleCode = `// component.ts
 import { signal } from '@angular/core';
@@ -392,57 +392,57 @@ readonly value = signal<string | string[] | null>('overview');
 <button nbButton (click)="value.set('details')">Details</button>
 <button nbButton (click)="value.set(null)">Close</button>
 
-<neo-accordion [(value)]="value">
-  <neo-accordion-item value="overview">
-    <neo-accordion-trigger>Overview</neo-accordion-trigger>
-    <neo-accordion-content>
+<nb-accordion [(value)]="value">
+  <nb-accordion-item value="overview">
+    <nb-accordion-trigger>Overview</nb-accordion-trigger>
+    <nb-accordion-content>
       Bind [(value)] when another control should open or close panels.
       Without collapsible, only the external button can collapse the active panel.
-    </neo-accordion-content>
-  </neo-accordion-item>
+    </nb-accordion-content>
+  </nb-accordion-item>
 
-  <neo-accordion-item value="details">
-    <neo-accordion-trigger>Details</neo-accordion-trigger>
-    <neo-accordion-content>
+  <nb-accordion-item value="details">
+    <nb-accordion-trigger>Details</nb-accordion-trigger>
+    <nb-accordion-content>
       The value matches the active item in single mode.
-    </neo-accordion-content>
-  </neo-accordion-item>
-</neo-accordion>`;
+    </nb-accordion-content>
+  </nb-accordion-item>
+</nb-accordion>`;
 
-  protected readonly multipleExampleCode = `<neo-accordion
+  protected readonly multipleExampleCode = `<nb-accordion
   class="block w-full max-w-xl"
   type="multiple"
   [defaultValue]="['item-1']"
 >
-  <neo-accordion-item value="item-1">
-    <neo-accordion-trigger>Can multiple panels open?</neo-accordion-trigger>
-    <neo-accordion-content>
+  <nb-accordion-item value="item-1">
+    <nb-accordion-trigger>Can multiple panels open?</nb-accordion-trigger>
+    <nb-accordion-content>
       Yes. Set type="multiple" to allow independent panel state.
-    </neo-accordion-content>
-  </neo-accordion-item>
+    </nb-accordion-content>
+  </nb-accordion-item>
 
-  <neo-accordion-item value="item-2">
-    <neo-accordion-trigger>Can panels start open?</neo-accordion-trigger>
-    <neo-accordion-content>
+  <nb-accordion-item value="item-2">
+    <nb-accordion-trigger>Can panels start open?</nb-accordion-trigger>
+    <nb-accordion-content>
       Yes. Use defaultValue for uncontrolled accordions
       or bind value for controlled state.
-    </neo-accordion-content>
-  </neo-accordion-item>
-</neo-accordion>`;
+    </nb-accordion-content>
+  </nb-accordion-item>
+</nb-accordion>`;
 
-  protected readonly disabledExampleCode = `<neo-accordion class="block w-full max-w-xl" defaultValue="enabled">
-  <neo-accordion-item value="enabled">
-    <neo-accordion-trigger>Enabled item</neo-accordion-trigger>
-    <neo-accordion-content>
+  protected readonly disabledExampleCode = `<nb-accordion class="block w-full max-w-xl" defaultValue="enabled">
+  <nb-accordion-item value="enabled">
+    <nb-accordion-trigger>Enabled item</nb-accordion-trigger>
+    <nb-accordion-content>
       This panel can be opened and closed normally.
-    </neo-accordion-content>
-  </neo-accordion-item>
+    </nb-accordion-content>
+  </nb-accordion-item>
 
-  <neo-accordion-item value="disabled" disabled>
-    <neo-accordion-trigger>Disabled item</neo-accordion-trigger>
-    <neo-accordion-content>
+  <nb-accordion-item value="disabled" disabled>
+    <nb-accordion-trigger>Disabled item</nb-accordion-trigger>
+    <nb-accordion-content>
       Disabled triggers cannot be activated.
-    </neo-accordion-content>
-  </neo-accordion-item>
-</neo-accordion>`;
+    </nb-accordion-content>
+  </nb-accordion-item>
+</nb-accordion>`;
 }

@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { NbButton } from '@ng-neo-brutalism/ui';
+import { NbButton } from '@ng-brutalism/ui';
 import JobListingCardExampleComponent from './components/examples/job-listing-card.example';
 
 @Component({

@@ -13,7 +13,7 @@ import { NB_ACCORDION } from './accordion.types';
 let nextAccordionItemId = 0;
 
 @Component({
-  selector: 'neo-accordion-item',
+  selector: 'nb-accordion-item',
   standalone: true,
   template: `
     <div [class]="classes()">

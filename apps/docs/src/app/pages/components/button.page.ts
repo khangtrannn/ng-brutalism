@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { NbAccordionTrigger, NbButton, NbAccordionItem, NbAccordion } from '@ng-neo-brutalism/ui';
+import { NbAccordionTrigger, NbButton, NbAccordionItem, NbAccordion } from '@ng-brutalism/ui';
 
 import { DocsCodeBlockComponent } from '../../docs/docs-code-block.component';
 import { DocsExampleComponent } from '../../docs/docs-example.component';
@@ -193,13 +193,13 @@ import { DocsExampleComponent } from '../../docs/docs-example.component';
 export default class ButtonPageComponent {
   protected readonly defaultExampleCode = `<button nbButton variant="neutral">Button</button>`;
 
-  protected readonly importCode = `import { NbButton } from '@ng-neo-brutalism/ui';`;
+  protected readonly importCode = `import { NbButton } from '@ng-brutalism/ui';`;
 
   protected readonly providerCode = `import { ApplicationConfig } from '@angular/core';
-import { provideNgNeoBrutalism } from '@ng-neo-brutalism/ui';
+import { provideNgBrutalism } from '@ng-brutalism/ui';
 
 export const appConfig: ApplicationConfig = {
-  providers: [provideNgNeoBrutalism()],
+  providers: [provideNgBrutalism()],
 };`;
 
   protected readonly variantsExampleCode = `<button nbButton>Default</button>

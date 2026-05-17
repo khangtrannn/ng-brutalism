@@ -7,7 +7,7 @@ import {
   NbCardFooter,
   NbCardHeader,
   NbCardTitle,
-} from '@ng-neo-brutalism/ui';
+} from '@ng-brutalism/ui';
 
 @Component({
   selector: 'docs-job-listing-card-example',
@@ -23,21 +23,21 @@ import {
   ],
   template: `
     <div style="zoom: 0.9" class="job-card-demo" role="group" aria-label="Job posting">
-      <neo-card class="job-card-shell">
-        <neo-card-header class="job-card-section">
+      <nb-card class="job-card-shell">
+        <nb-card-header class="job-card-section">
           <div class="job-card-header">
             <div class="job-card-logo" aria-hidden="true">
               <span>n.</span>
             </div>
 
             <div class="job-card-title-block">
-              <neo-card-title class="job-card-title">
+              <nb-card-title class="job-card-title">
                 Senior Frontend<br />
                 <span>Engineer</span>
-              </neo-card-title>
-              <neo-card-description class="job-card-subtitle">
+              </nb-card-title>
+              <nb-card-description class="job-card-subtitle">
                 PixelWave Studio
-              </neo-card-description>
+              </nb-card-description>
             </div>
 
             <div class="job-card-action">
@@ -66,9 +66,9 @@ import {
               </button>
             </div>
           </div>
-        </neo-card-header>
+        </nb-card-header>
 
-        <neo-card-content class="job-card-section">
+        <nb-card-content class="job-card-section">
           <div class="job-card-content">
             <div class="job-card-pills">
               <button
@@ -226,9 +226,9 @@ import {
               </div>
             </div>
           </div>
-        </neo-card-content>
+        </nb-card-content>
 
-        <neo-card-footer class="job-card-section">
+        <nb-card-footer class="job-card-section">
           <div class="job-card-footer">
             <div class="job-card-meta">
               <div class="job-card-meta-row">
@@ -294,8 +294,8 @@ import {
               </button>
             </div>
           </div>
-        </neo-card-footer>
-      </neo-card>
+        </nb-card-footer>
+      </nb-card>
     </div>
   `,
   styles: [

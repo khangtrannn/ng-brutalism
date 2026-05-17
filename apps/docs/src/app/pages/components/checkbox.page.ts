@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { NbButton, NbCheckbox, NbLabel } from '@ng-neo-brutalism/ui';
+import { NbButton, NbCheckbox, NbLabel } from '@ng-brutalism/ui';
 
 import { DocsCodeBlockComponent } from '../../docs/docs-code-block.component';
 import { DocsExampleComponent } from '../../docs/docs-example.component';
@@ -140,7 +140,7 @@ import { DocsExampleComponent } from '../../docs/docs-example.component';
 export default class CheckboxPageComponent {
   protected readonly defaultExampleCode = `<input type="checkbox" nbCheckbox />`;
 
-  protected readonly importCode = `import { NbCheckbox } from '@ng-neo-brutalism/ui';`;
+  protected readonly importCode = `import { NbCheckbox } from '@ng-brutalism/ui';`;
 
   protected readonly sizesExampleCode = `<input type="checkbox" nbCheckbox size="sm" />
 <input type="checkbox" nbCheckbox />

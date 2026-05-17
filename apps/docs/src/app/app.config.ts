@@ -6,13 +6,13 @@ import {
 } from '@angular/common/http';
 import { provideClientHydration } from '@angular/platform-browser';
 import { provideFileRouter, requestContextInterceptor } from '@analogjs/router';
-import { provideNgNeoBrutalism } from '@ng-neo-brutalism/ui';
+import { provideNgBrutalism } from '@ng-brutalism/ui';
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideFileRouter(),
-    provideNgNeoBrutalism(),
+    provideNgBrutalism(),
     provideClientHydration(),
     provideHttpClient(
       withFetch(),

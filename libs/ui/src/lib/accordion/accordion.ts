@@ -17,7 +17,7 @@ import {
 } from './accordion.types';
 
 @Component({
-  selector: 'neo-accordion',
+  selector: 'nb-accordion',
   standalone: true,
   template: `
     <div class="flex w-full flex-col gap-3">
