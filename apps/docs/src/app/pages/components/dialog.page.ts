@@ -160,7 +160,7 @@ import { DocsExampleComponent } from '../../docs/docs-example.component';
                       nbInput
                       id="contact-name"
                       placeholder="Your name"
-                      class="h-12! bg-[#fbf1bf]! font-mono"
+                      class="h-12! bg-[#fbf1bf] font-mono"
                     />
                   </div>
                   <div class="grid gap-2">
@@ -170,7 +170,7 @@ import { DocsExampleComponent } from '../../docs/docs-example.component';
                       id="contact-email"
                       type="email"
                       placeholder="you@company.com"
-                      class="h-12! bg-[#fbf1bf]! font-mono"
+                      class="h-12! bg-[#fbf1bf] font-mono"
                     />
                   </div>
                 </div>
@@ -181,7 +181,7 @@ import { DocsExampleComponent } from '../../docs/docs-example.component';
                     nbInput
                     id="contact-subject"
                     placeholder="What is this regarding?"
-                    class="h-12! bg-[#fbf1bf]! font-mono"
+                    class="h-12! bg-[#fbf1bf] font-mono"
                   />
                 </div>
 
@@ -191,7 +191,7 @@ import { DocsExampleComponent } from '../../docs/docs-example.component';
                     nbTextarea
                     id="contact-message"
                     placeholder="Type your message here..."
-                    class="min-h-40! bg-[#fbf1bf]! font-mono"
+                    class="min-h-40! bg-[#fbf1bf] font-mono"
                   ></textarea>
                 </div>
               </form>
@@ -331,22 +331,22 @@ export default class DialogPageComponent {
       <div class="grid gap-5 sm:grid-cols-2">
         <div class="grid gap-2">
           <label nbLabel for="contact-name" class="font-mono text-base!">Name</label>
-          <input nbInput id="contact-name" placeholder="Your name" class="h-12! bg-[#fbf1bf]! font-mono" />
+          <input nbInput id="contact-name" placeholder="Your name" class="h-12! bg-[#fbf1bf] font-mono" />
         </div>
         <div class="grid gap-2">
           <label nbLabel for="contact-email" class="font-mono text-base!">Email</label>
-          <input nbInput id="contact-email" type="email" placeholder="you@company.com" class="h-12! bg-[#fbf1bf]! font-mono" />
+          <input nbInput id="contact-email" type="email" placeholder="you@company.com" class="h-12! bg-[#fbf1bf] font-mono" />
         </div>
       </div>
 
       <div class="grid gap-2">
         <label nbLabel for="contact-subject" class="font-mono text-base!">Subject</label>
-        <input nbInput id="contact-subject" placeholder="What is this regarding?" class="h-12! bg-[#fbf1bf]! font-mono" />
+        <input nbInput id="contact-subject" placeholder="What is this regarding?" class="h-12! bg-[#fbf1bf] font-mono" />
       </div>
 
       <div class="grid gap-2">
         <label nbLabel for="contact-message" class="font-mono text-base!">Message</label>
-        <textarea nbTextarea id="contact-message" placeholder="Type your message here..." class="min-h-40! bg-[#fbf1bf]! font-mono"></textarea>
+        <textarea nbTextarea id="contact-message" placeholder="Type your message here..." class="min-h-40! bg-[#fbf1bf] font-mono"></textarea>
       </div>
     </form>
   </nb-dialog-content>

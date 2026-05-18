@@ -17,7 +17,7 @@ export class NbTextarea {
   protected readonly classes = computed(() =>
     nbClass(
       'flex rounded-nb border-2 border-(--nb-border)',
-      'bg-white text-(--nb-foreground)',
+      'text-(--nb-foreground)',
       'font-medium',
       'shadow-nb',
       'placeholder:text-gray-400',

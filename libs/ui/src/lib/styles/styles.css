@@ -14,6 +14,10 @@ body {
   font-weight: var(--nb-font-weight-normal);
 }
 
+:where(input[nbInput], textarea[nbTextarea]) {
+  background-color: var(--nb-input-background, #fbf1bf);
+}
+
 /* Focus visible utility class */
 .nb-focus-visible:focus-visible {
   outline: var(--nb-focus-ring);
