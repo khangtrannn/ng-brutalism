@@ -1,0 +1,45 @@
+<div
+  class="portfolio-shell relative min-h-screen bg-white p-2 text-black sm:p-4 md:p-6 lg:p-8"
+  [class.dark]="isDark()"
+>
+  <div
+    class="pointer-events-none fixed inset-0 z-0 bg-cover bg-center bg-no-repeat opacity-100"
+    [style.background-image]="'url(' + assetPath + '/landing-dark.svg)'"
+    aria-hidden="true"
+  ></div>
+
+  <div
+    class="relative z-10 mx-auto min-h-[calc(100vh-1rem)] w-[1400px] max-w-full border-2 border-black bg-white shadow-[4px_4px_0px_0px_#000] transition-colors duration-300 dark:bg-black dark:text-[#eeefe9] dark:shadow-[4px_4px_0px_0px_#555] sm:min-h-[calc(100vh-2rem)] md:min-h-[calc(100vh-3rem)] md:border-4 md:shadow-[12px_12px_0px_0px_#000] dark:md:shadow-[12px_12px_0px_0px_#555] lg:min-h-[calc(100vh-4rem)]"
+  >
+    <docs-portfolio-nav
+      [assetPath]="assetPath"
+      [isDark]="isDark()"
+      [menuOpen]="menuOpen()"
+      [navLinks]="navLinks"
+      [sent]="sent()"
+      (themeToggled)="toggleTheme()"
+      (menuToggled)="toggleMenu()"
+      (menuClosed)="closeMenu()"
+      (contactSubmitted)="submitContact()"
+    />
+
+    <main class="flex min-h-full flex-col">
+      <docs-portfolio-hero
+        [assetPath]="assetPath"
+        [greeting]="greeting()"
+        [isDark]="isDark()"
+        [skills]="skills"
+      />
+
+      <docs-portfolio-journey
+        [activeJourney]="activeJourney()"
+        [timeline]="timeline"
+        (activeJourneyChanged)="setActiveJourney($event)"
+      />
+
+      <docs-portfolio-projects [assetPath]="assetPath" [projects]="projects" />
+
+      <docs-portfolio-footer />
+    </main>
+  </div>
+</div>

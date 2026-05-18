@@ -5,13 +5,25 @@ import {
   withInterceptors,
 } from '@angular/common/http';
 import { provideClientHydration } from '@angular/platform-browser';
-import { provideFileRouter, requestContextInterceptor } from '@analogjs/router';
+import {
+  provideFileRouter,
+  requestContextInterceptor,
+  withExtraRoutes,
+} from '@analogjs/router';
 import { provideNgBrutalism } from '@ng-brutalism/ui';
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideZoneChangeDetection({ eventCoalescing: true }),
-    provideFileRouter(),
+    provideFileRouter(
+      withExtraRoutes([
+        {
+          path: 'src/app/pages/showcase/portfolio.page.ts',
+          redirectTo: '/showcase/portfolio',
+          pathMatch: 'full',
+        },
+      ])
+    ),
     provideNgBrutalism(),
     provideClientHydration(),
     provideHttpClient(
