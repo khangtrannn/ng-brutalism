@@ -4,6 +4,12 @@ import { NbButton, NbMarquee, NbMarqueeItem } from '@ng-brutalism/ui';
 import { DocsCodeBlockComponent } from '../../docs/docs-code-block.component';
 import { DocsExampleComponent } from '../../docs/docs-example.component';
 
+interface MarqueeSkill {
+  text: string;
+  iconSlug: string;
+  iconLabel: string;
+}
+
 @Component({
   selector: 'docs-marquee-page',
   standalone: true,
@@ -56,13 +62,25 @@ import { DocsExampleComponent } from '../../docs/docs-example.component';
 
       <section id="preview">
         <h2 class="mt-10 mb-4 text-2xl font-bold">Preview</h2>
-        <docs-example [code]="defaultExampleCode">
+        <docs-example [code]="defaultExampleTemplateCode">
           <nb-marquee class="w-full" duration="10s">
-            <nb-marquee-item>Angular</nb-marquee-item>
-            <nb-marquee-item>TypeScript</nb-marquee-item>
-            <nb-marquee-item>Tailwind CSS</nb-marquee-item>
-            <nb-marquee-item>Vite</nb-marquee-item>
-            <nb-marquee-item>Vitest</nb-marquee-item>
+            @for (skill of portfolioSkills; track skill.text) {
+              <nb-marquee-item>
+                <span class="mx-4 flex items-center sm:mx-6 lg:mx-8">
+                  <img
+                    class="mr-2 h-7 w-7 object-contain sm:mr-3 sm:h-9 sm:w-9"
+                    [src]="
+                      'https://cdn.simpleicons.org/' + skill.iconSlug + '/000000'
+                    "
+                    [alt]="skill.iconLabel + ' logo'"
+                    loading="lazy"
+                  />
+                  <span class="font-heading text-lg sm:text-xl lg:text-2xl">
+                    {{ skill.text }}
+                  </span>
+                </span>
+              </nb-marquee-item>
+            }
           </nb-marquee>
         </docs-example>
       </section>
@@ -74,18 +92,60 @@ import { DocsExampleComponent } from '../../docs/docs-example.component';
           title="Import"
           [code]="importCode"
         />
-        <docs-code-block title="Template" [code]="defaultExampleCode" />
+        <docs-code-block
+          class="block mb-5"
+          title="Component"
+          [code]="defaultExampleComponentCode"
+        />
+        <docs-code-block title="Template" [code]="defaultExampleTemplateCode" />
+      </section>
+
+      <section id="portfolio-skills">
+        <h2 class="mt-10 mb-4 text-2xl font-bold">Portfolio skills</h2>
+        <docs-example [code]="portfolioSkillsExampleCode">
+          <nb-marquee class="w-full" duration="10s">
+            @for (skill of portfolioSkills; track skill.text) {
+              <nb-marquee-item>
+                <span class="mx-4 flex items-center sm:mx-6 lg:mx-8">
+                  <img
+                    class="mr-2 h-7 w-7 object-contain sm:mr-3 sm:h-9 sm:w-9"
+                    [src]="
+                      'https://cdn.simpleicons.org/' + skill.iconSlug + '/000000'
+                    "
+                    [alt]="skill.iconLabel + ' logo'"
+                    loading="lazy"
+                  />
+                  <span class="font-heading text-lg sm:text-xl lg:text-2xl">
+                    {{ skill.text }}
+                  </span>
+                </span>
+              </nb-marquee-item>
+            }
+          </nb-marquee>
+        </docs-example>
       </section>
 
       <section id="reverse">
         <h2 class="mt-10 mb-4 text-2xl font-bold">Reverse</h2>
         <docs-example [code]="reverseExampleCode">
           <nb-marquee class="w-full" duration="10s" [reverse]="true">
-            <nb-marquee-item>Angular</nb-marquee-item>
-            <nb-marquee-item>TypeScript</nb-marquee-item>
-            <nb-marquee-item>Tailwind CSS</nb-marquee-item>
-            <nb-marquee-item>Vite</nb-marquee-item>
-            <nb-marquee-item>Vitest</nb-marquee-item>
+            @for (skill of portfolioSkills; track skill.text) {
+              <nb-marquee-item>
+                <span class="mx-4 flex items-center sm:mx-6 lg:mx-8">
+                  <img
+                    class="mr-2 h-7 w-7 object-contain sm:mr-3 sm:h-9 sm:w-9"
+                    [src]="
+                      'https://cdn.simpleicons.org/' + skill.iconSlug + '/000000'
+                    "
+                    [alt]="skill.iconLabel + ' logo'"
+                    loading="lazy"
+                  />
+                  <span class="font-heading text-lg sm:text-xl lg:text-2xl">
+                    {{ skill.text }}
+                  </span>
+                </span>
+              </nb-marquee-item>
+            }
           </nb-marquee>
         </docs-example>
       </section>
@@ -93,12 +153,24 @@ import { DocsExampleComponent } from '../../docs/docs-example.component';
       <section id="custom-speed">
         <h2 class="mt-10 mb-4 text-2xl font-bold">Custom speed</h2>
         <docs-example [code]="customSpeedExampleCode">
-          <nb-marquee class="w-full" duration="18s">
-            <nb-marquee-item>Angular</nb-marquee-item>
-            <nb-marquee-item>TypeScript</nb-marquee-item>
-            <nb-marquee-item>Tailwind CSS</nb-marquee-item>
-            <nb-marquee-item>Vite</nb-marquee-item>
-            <nb-marquee-item>Vitest</nb-marquee-item>
+          <nb-marquee class="w-full" duration="10s">
+            @for (skill of portfolioSkills; track skill.text) {
+              <nb-marquee-item>
+                <span class="mx-4 flex items-center sm:mx-6 lg:mx-8">
+                  <img
+                    class="mr-2 h-7 w-7 object-contain sm:mr-3 sm:h-9 sm:w-9"
+                    [src]="
+                      'https://cdn.simpleicons.org/' + skill.iconSlug + '/000000'
+                    "
+                    [alt]="skill.iconLabel + ' logo'"
+                    loading="lazy"
+                  />
+                  <span class="font-heading text-lg sm:text-xl lg:text-2xl">
+                    {{ skill.text }}
+                  </span>
+                </span>
+              </nb-marquee-item>
+            }
           </nb-marquee>
         </docs-example>
       </section>
@@ -109,13 +181,25 @@ import { DocsExampleComponent } from '../../docs/docs-example.component';
           <nb-marquee
             class="w-full"
             duration="10s"
-            [pauseOnHover]="false"
+            [pauseOnHover]="true"
           >
-            <nb-marquee-item>Angular</nb-marquee-item>
-            <nb-marquee-item>TypeScript</nb-marquee-item>
-            <nb-marquee-item>Tailwind CSS</nb-marquee-item>
-            <nb-marquee-item>Vite</nb-marquee-item>
-            <nb-marquee-item>Vitest</nb-marquee-item>
+            @for (skill of portfolioSkills; track skill.text) {
+              <nb-marquee-item>
+                <span class="mx-4 flex items-center sm:mx-6 lg:mx-8">
+                  <img
+                    class="mr-2 h-7 w-7 object-contain sm:mr-3 sm:h-9 sm:w-9"
+                    [src]="
+                      'https://cdn.simpleicons.org/' + skill.iconSlug + '/000000'
+                    "
+                    [alt]="skill.iconLabel + ' logo'"
+                    loading="lazy"
+                  />
+                  <span class="font-heading text-lg sm:text-xl lg:text-2xl">
+                    {{ skill.text }}
+                  </span>
+                </span>
+              </nb-marquee-item>
+            }
           </nb-marquee>
         </docs-example>
       </section>
@@ -201,35 +285,85 @@ import { DocsExampleComponent } from '../../docs/docs-example.component';
 export default class MarqueePageComponent {
   protected readonly importCode = `import { NbMarquee, NbMarqueeItem } from '@ng-brutalism/ui';`;
 
-  protected readonly defaultExampleCode = `<nb-marquee class="w-full" duration="10s">
-  <nb-marquee-item>Angular</nb-marquee-item>
-  <nb-marquee-item>TypeScript</nb-marquee-item>
-  <nb-marquee-item>Tailwind CSS</nb-marquee-item>
-  <nb-marquee-item>Vite</nb-marquee-item>
-  <nb-marquee-item>Vitest</nb-marquee-item>
+  protected readonly defaultExampleComponentCode = `interface Skill {
+  text: string;
+  iconSlug: string;
+  iconLabel: string;
+}
+
+protected readonly skills: Skill[] = [
+  { text: 'ArcGIS', iconSlug: 'arcgis', iconLabel: 'ArcGIS' },
+  { text: 'QGIS', iconSlug: 'qgis', iconLabel: 'QGIS' },
+  { text: 'Docker', iconSlug: 'docker', iconLabel: 'Docker' },
+  { text: 'OpenLayers', iconSlug: 'openlayers', iconLabel: 'OpenLayers' },
+  { text: 'Leaflet', iconSlug: 'leaflet', iconLabel: 'Leaflet' },
+  { text: 'Kubernetes', iconSlug: 'kubernetes', iconLabel: 'Kubernetes' },
+  { text: 'Argo CD', iconSlug: 'argo', iconLabel: 'Argo CD' },
+  {
+    text: 'Apache Airflow',
+    iconSlug: 'apacheairflow',
+    iconLabel: 'Apache Airflow',
+  },
+  { text: 'GeoServer', iconSlug: 'osgeo', iconLabel: 'OSGeo' },
+  { text: 'Python', iconSlug: 'python', iconLabel: 'Python' },
+  { text: 'JavaScript', iconSlug: 'javascript', iconLabel: 'JavaScript' },
+  { text: 'TypeScript', iconSlug: 'typescript', iconLabel: 'TypeScript' },
+  { text: 'Angular', iconSlug: 'angular', iconLabel: 'Angular' },
+  { text: 'PostGIS', iconSlug: 'postgresql', iconLabel: 'PostgreSQL' },
+  { text: 'Version Control', iconSlug: 'git', iconLabel: 'Git' },
+];`;
+
+  protected readonly defaultExampleTemplateCode = `<nb-marquee class="w-full" duration="10s">
+  @for (skill of skills; track skill.text) {
+    <nb-marquee-item>
+      <span class="mx-4 flex items-center sm:mx-6 lg:mx-8">
+        <img
+          class="mr-2 h-7 w-7 object-contain sm:mr-3 sm:h-9 sm:w-9"
+          [src]="'https://cdn.simpleicons.org/' + skill.iconSlug + '/000000'"
+          [alt]="skill.iconLabel + ' logo'"
+          loading="lazy"
+        />
+        <span class="font-heading text-lg sm:text-xl lg:text-2xl">
+          {{ skill.text }}
+        </span>
+      </span>
+    </nb-marquee-item>
+  }
 </nb-marquee>`;
 
-  protected readonly reverseExampleCode = `<nb-marquee class="w-full" duration="10s" [reverse]="true">
-  <nb-marquee-item>Angular</nb-marquee-item>
-  <nb-marquee-item>TypeScript</nb-marquee-item>
-  <nb-marquee-item>Tailwind CSS</nb-marquee-item>
-  <nb-marquee-item>Vite</nb-marquee-item>
-  <nb-marquee-item>Vitest</nb-marquee-item>
-</nb-marquee>`;
+  protected readonly portfolioSkills: MarqueeSkill[] = [
+    { text: 'ArcGIS', iconSlug: 'arcgis', iconLabel: 'ArcGIS' },
+    { text: 'QGIS', iconSlug: 'qgis', iconLabel: 'QGIS' },
+    { text: 'Docker', iconSlug: 'docker', iconLabel: 'Docker' },
+    { text: 'OpenLayers', iconSlug: 'openlayers', iconLabel: 'OpenLayers' },
+    { text: 'Leaflet', iconSlug: 'leaflet', iconLabel: 'Leaflet' },
+    { text: 'Kubernetes', iconSlug: 'kubernetes', iconLabel: 'Kubernetes' },
+    { text: 'Argo CD', iconSlug: 'argo', iconLabel: 'Argo CD' },
+    {
+      text: 'Apache Airflow',
+      iconSlug: 'apacheairflow',
+      iconLabel: 'Apache Airflow',
+    },
+    { text: 'GeoServer', iconSlug: 'osgeo', iconLabel: 'OSGeo' },
+    { text: 'Python', iconSlug: 'python', iconLabel: 'Python' },
+    { text: 'JavaScript', iconSlug: 'javascript', iconLabel: 'JavaScript' },
+    { text: 'TypeScript', iconSlug: 'typescript', iconLabel: 'TypeScript' },
+    { text: 'Angular', iconSlug: 'angular', iconLabel: 'Angular' },
+    { text: 'PostGIS', iconSlug: 'postgresql', iconLabel: 'PostgreSQL' },
+    { text: 'Version Control', iconSlug: 'git', iconLabel: 'Git' },
+  ];
 
-  protected readonly customSpeedExampleCode = `<nb-marquee class="w-full" duration="18s">
-  <nb-marquee-item>Angular</nb-marquee-item>
-  <nb-marquee-item>TypeScript</nb-marquee-item>
-  <nb-marquee-item>Tailwind CSS</nb-marquee-item>
-  <nb-marquee-item>Vite</nb-marquee-item>
-  <nb-marquee-item>Vitest</nb-marquee-item>
-</nb-marquee>`;
+  protected readonly portfolioSkillsExampleCode = this.defaultExampleTemplateCode;
 
-  protected readonly pauseOnHoverExampleCode = `<nb-marquee class="w-full" duration="10s" [pauseOnHover]="false">
-  <nb-marquee-item>Angular</nb-marquee-item>
-  <nb-marquee-item>TypeScript</nb-marquee-item>
-  <nb-marquee-item>Tailwind CSS</nb-marquee-item>
-  <nb-marquee-item>Vite</nb-marquee-item>
-  <nb-marquee-item>Vitest</nb-marquee-item>
-</nb-marquee>`;
+  protected readonly reverseExampleCode = this.defaultExampleTemplateCode.replace(
+    'duration="10s"',
+    'duration="10s" [reverse]="true"'
+  );
+
+  protected readonly customSpeedExampleCode = this.defaultExampleTemplateCode;
+
+  protected readonly pauseOnHoverExampleCode = this.defaultExampleTemplateCode.replace(
+    'duration="10s"',
+    'duration="10s" [pauseOnHover]="true"'
+  );
 }

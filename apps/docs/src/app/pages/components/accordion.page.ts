@@ -129,7 +129,7 @@ import { DocsExampleComponent } from '../../docs/docs-example.component';
 
       <section id="controlled">
         <h2 class="mt-10 mb-4 text-2xl font-bold">Controlled</h2>
-        <docs-example [code]="controlledExampleCode">
+        <docs-example [code]="controlledExampleTemplateCode">
           <div class="flex w-full max-w-xl flex-col gap-4">
             <div class="flex flex-wrap gap-3">
               <button
@@ -382,13 +382,11 @@ export default class AccordionPageComponent {
   </nb-accordion-item>
 </nb-accordion>`;
 
-  protected readonly controlledExampleCode = `// component.ts
-import { signal } from '@angular/core';
+  protected readonly controlledExampleComponentCode = `import { signal } from '@angular/core';
 
-readonly value = signal<string | string[] | null>('overview');
+readonly value = signal<string | string[] | null>('overview');`;
 
-// component.html
-<button nbButton (click)="value.set('overview')">Overview</button>
+  protected readonly controlledExampleTemplateCode = `<button nbButton (click)="value.set('overview')">Overview</button>
 <button nbButton (click)="value.set('details')">Details</button>
 <button nbButton (click)="value.set(null)">Close</button>
 
