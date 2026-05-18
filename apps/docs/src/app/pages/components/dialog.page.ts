@@ -77,11 +77,33 @@ import { DocsExampleComponent } from '../../docs/docs-example.component';
         <docs-example [code]="defaultExampleCode">
           <button nbButton (click)="confirmDialog.open()">Open Dialog</button>
           <nb-dialog #confirmDialog>
-            <h2 nbDialogTitle>Confirm Action</h2>
-            <p nbDialogDescription>Are you sure you want to continue? This action cannot be undone.</p>
-            <nb-dialog-actions>
-              <button nbButton variant="neutral" nbDialogClose>Cancel</button>
-              <button nbButton nbDialogClose>Confirm</button>
+            <div class="flex items-start justify-between gap-4 px-8 pt-8 pb-6">
+              <span
+                class="inline-block border-2 border-(--nb-border) bg-[#ff5d8f] px-4 py-1.5 font-mono text-sm font-black uppercase tracking-wider text-black"
+              >
+                Warning
+              </span>
+              <button
+                nbButton
+                nbDialogClose
+                size="icon"
+                variant="neutral"
+                aria-label="Close dialog"
+                class="text-xl leading-none"
+              >
+                &times;
+              </button>
+            </div>
+            <h2 nbDialogTitle class="px-8! pt-0! pb-6! font-mono text-4xl! font-black! leading-none!">Confirm Action</h2>
+            <nb-dialog-content class="px-8! py-6!">
+              <p nbDialogDescription class="block! px-0! pb-0! font-mono text-base! font-medium! text-black!">
+                Are you sure you want to continue?<br />
+                This action cannot be undone.
+              </p>
+            </nb-dialog-content>
+            <nb-dialog-actions class="gap-4! px-8! py-6!">
+              <button nbButton variant="neutral" nbDialogClose class="font-mono min-w-32">Cancel</button>
+              <button nbButton nbDialogClose class="font-mono min-w-32" style="--nb-button-bg: #ff2f68; --nb-button-fg: #000;">Confirm</button>
             </nb-dialog-actions>
           </nb-dialog>
         </docs-example>
@@ -169,11 +191,33 @@ import { DocsExampleComponent } from '../../docs/docs-example.component';
 export default class DialogPageComponent {
   protected readonly defaultExampleCode = `<button nbButton (click)="dialog.open()">Open Dialog</button>
 <nb-dialog #dialog>
-  <h2 nbDialogTitle>Confirm Action</h2>
-  <p nbDialogDescription>Are you sure you want to continue?</p>
-  <nb-dialog-actions>
-    <button nbButton variant="neutral" nbDialogClose>Cancel</button>
-    <button nbButton nbDialogClose>Confirm</button>
+  <div class="flex items-start justify-between gap-4 px-8 pt-8 pb-6">
+    <span
+      class="inline-block border-2 border-(--nb-border) bg-[#ff5d8f] px-4 py-1.5 font-mono text-sm font-black uppercase tracking-wider text-black"
+    >
+      Warning
+    </span>
+    <button
+      nbButton
+      nbDialogClose
+      size="icon"
+      variant="neutral"
+      aria-label="Close dialog"
+      class="text-xl leading-none"
+    >
+      &times;
+    </button>
+  </div>
+  <h2 nbDialogTitle class="px-8! pt-0! pb-6! font-mono text-4xl! font-black! leading-none!">Confirm Action</h2>
+  <nb-dialog-content class="px-8! py-6!">
+    <p nbDialogDescription class="block! px-0! pb-0! font-mono text-base! font-medium! text-black!">
+      Are you sure you want to continue?<br />
+      This action cannot be undone.
+    </p>
+  </nb-dialog-content>
+  <nb-dialog-actions class="gap-4! px-8! py-6!">
+    <button nbButton variant="neutral" nbDialogClose class="font-mono min-w-32">Cancel</button>
+    <button nbButton nbDialogClose class="font-mono min-w-32" style="--nb-button-bg: #ff2f68; --nb-button-fg: #000;">Confirm</button>
   </nb-dialog-actions>
 </nb-dialog>`;
 
