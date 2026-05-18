@@ -20,23 +20,23 @@ Not changing: `Nb*` TypeScript prefix, `--nb-*` CSS variables.
 ## Phase 2 — New components (vertical slice; Dialog first)
 Skeleton all four, wire end-to-end into the Showcase, THEN harden each based on integration findings.
 
-- [ ] **Dialog** — native `<dialog>` ([ADR-0001](./docs/adr/0001-dialog-native-element.md)). `afterNextRender()` SSR guard. Compound API: `NbDialog` / `NbDialogTrigger` / `NbDialogContent` / `NbDialogHeader` / `NbDialogTitle` / `NbDialogDescription` / `NbDialogFooter` / `NbDialogClose`.
-- [ ] **Textarea** — `textarea[nbTextarea]` directive, mirrors `NbInput`'s pattern + size variants.
-- [ ] **Badge** — `span[nbBadge]` directive, variants: default / secondary / success / warning / destructive.
-- [ ] **Avatar** — `nb-avatar` component, `[src]` / `[alt]` inputs, `<ng-content>` fallback slot for initials.
-- [ ] Wire all four into Showcase end-to-end (rough is acceptable here).
+- [x] **Dialog** — native `<dialog>` ([ADR-0001](./docs/adr/0001-dialog-native-element.md)). `isPlatformBrowser` SSR guard. Compound API: `NbDialog` / `NbDialogTrigger` / `NbDialogContent` / `NbDialogHeader` / `NbDialogTitle` / `NbDialogDescription` / `NbDialogFooter` / `NbDialogClose`.
+- [x] **Textarea** — `textarea[nbTextarea]` directive, mirrors `NbInput`'s pattern + size variants.
+- [x] **Badge** — `span[nbBadge]` directive, variants: default / secondary / success / warning / destructive.
+- [x] **Avatar** — `nb-avatar` component, `[src]` / `[alt]` inputs, `<ng-content>` fallback slot for initials.
+- [x] Wire all four into Showcase end-to-end (rough is acceptable here).
 - [ ] Harden each based on what integration exposed (this is where polish lives).
 
 ## Phase 3 — Showcase sections (mounted at /showcase/portfolio inside apps/docs)
 
 In scope:
-- [ ] Hero (Avatar + social icon buttons + skills `Marquee` + CTA `Button` → opens contact `Dialog`)
-- [ ] Navbar (desktop nav + theme toggle; no mobile hamburger)
-- [ ] About (alternating info cards: `Card` + `ImageCard`)
-- [ ] Skills grid (`Card` tiles with icon + label)
-- [ ] Projects (`ImageCard` + `Badge` chips + `Button` links to GitHub/external)
-- [ ] Contact dialog (`Dialog` + `Label` + `Input` + `Textarea` + `Button`, inline success message — no Toast)
-- [ ] Footer (plain markup — no Navbar primitive needed)
+- [x] Hero (Avatar + social icon buttons + skills `Marquee` + CTA `Button` → opens contact `Dialog`)
+- [x] Navbar (desktop nav + theme toggle; no mobile hamburger)
+- [x] About (alternating info cards: `Card` + `ImageCard`)
+- [x] Skills grid (`Card` tiles with icon + label)
+- [x] Projects (`ImageCard` + `Badge` chips + `Button` links to GitHub/external)
+- [x] Contact dialog (`Dialog` + `Label` + `Input` + `Textarea` + `Button`, inline success message — no Toast)
+- [x] Footer (plain markup — no Navbar primitive needed)
 
 Explicitly out of scope: OpenLayers map, AI chatbot, mobile hamburger menu, loading screen. Do NOT build these.
 

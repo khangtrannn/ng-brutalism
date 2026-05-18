@@ -24,6 +24,11 @@ body {
   outline: var(--nb-focus-ring);
 }
 
+/* Dialog backdrop */
+dialog[data-nb-dialog]::backdrop {
+  background: rgba(0, 0, 0, 0.45);
+}
+
 /* Checkbox: check icon shown over the checked background */
 input[nbCheckbox]:checked {
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000000' stroke-width='3.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'/%3E%3C/svg%3E");

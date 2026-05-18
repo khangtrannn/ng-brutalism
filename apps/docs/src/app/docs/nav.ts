@@ -24,13 +24,17 @@ export const DOC_NAV: readonly NavGroup[] = [
     label: 'Components',
     items: [
       { label: 'Accordion', path: '/docs/accordion' },
+      { label: 'Avatar', path: '/docs/avatar' },
+      { label: 'Badge', path: '/docs/badge' },
       { label: 'Button', path: '/docs/button' },
       { label: 'Card', path: '/docs/card' },
       { label: 'Checkbox', path: '/docs/checkbox' },
+      { label: 'Dialog', path: '/docs/dialog' },
       { label: 'Image Card', path: '/docs/image-card' },
       { label: 'Input', path: '/docs/input' },
       { label: 'Label', path: '/docs/label' },
       { label: 'Marquee', path: '/docs/marquee' },
+      { label: 'Textarea', path: '/docs/textarea' },
     ],
   },
   {
