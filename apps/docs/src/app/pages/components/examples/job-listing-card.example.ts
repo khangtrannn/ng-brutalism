@@ -22,7 +22,7 @@ import {
     NbCardTitle,
   ],
   template: `
-    <div style="zoom: 0.9" class="job-card-demo" role="group" aria-label="Job posting">
+    <div class="job-card-demo" role="group" aria-label="Job posting">
       <nb-card class="job-card-shell">
         <nb-card-header class="job-card-section">
           <div class="job-card-header">
@@ -36,7 +36,7 @@ import {
                 <span>Engineer</span>
               </nb-card-title>
               <nb-card-description class="job-card-subtitle">
-                PixelWave Studio
+                Inspectorio
               </nb-card-description>
             </div>
 
@@ -302,8 +302,9 @@ import {
     `
       :host {
         display: block;
-        width: min(100%, 500px);
+        width: min(100%, 480px);
         container-type: inline-size;
+        zoom: 0.9;
       }
 
       .job-card-demo {
