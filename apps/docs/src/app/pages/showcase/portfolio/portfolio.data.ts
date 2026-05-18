@@ -16,25 +16,14 @@ export const NAV_LINKS: NavLink[] = [
 ];
 
 export const SKILLS: Skill[] = [
-  { text: 'ArcGIS', iconSlug: 'arcgis', iconLabel: 'ArcGIS' },
-  { text: 'QGIS', iconSlug: 'qgis', iconLabel: 'QGIS' },
-  { text: 'Docker', iconSlug: 'docker', iconLabel: 'Docker' },
-  { text: 'OpenLayers', iconSlug: 'openlayers', iconLabel: 'OpenLayers' },
-  { text: 'Leaflet', iconSlug: 'leaflet', iconLabel: 'Leaflet' },
-  { text: 'Kubernetes', iconSlug: 'kubernetes', iconLabel: 'Kubernetes' },
-  { text: 'Argo CD', iconSlug: 'argo', iconLabel: 'Argo CD' },
-  {
-    text: 'Apache Airflow',
-    iconSlug: 'apacheairflow',
-    iconLabel: 'Apache Airflow',
-  },
-  { text: 'GeoServer', iconSlug: 'osgeo', iconLabel: 'OSGeo' },
-  { text: 'Python', iconSlug: 'python', iconLabel: 'Python' },
-  { text: 'JavaScript', iconSlug: 'javascript', iconLabel: 'JavaScript' },
-  { text: 'TypeScript', iconSlug: 'typescript', iconLabel: 'TypeScript' },
   { text: 'Angular', iconSlug: 'angular', iconLabel: 'Angular' },
-  { text: 'PostGIS', iconSlug: 'postgresql', iconLabel: 'PostgreSQL' },
-  { text: 'Version Control', iconSlug: 'git', iconLabel: 'Git' },
+  { text: 'TypeScript', iconSlug: 'typescript', iconLabel: 'TypeScript' },
+  { text: 'JavaScript', iconSlug: 'javascript', iconLabel: 'JavaScript' },
+  { text: 'ReactJS', iconSlug: 'react', iconLabel: 'React' },
+  { text: 'Node.js', iconSlug: 'nodedotjs', iconLabel: 'Node.js' },
+  { text: 'Python', iconSlug: 'python', iconLabel: 'Python' },
+  { text: 'Java', iconSlug: 'openjdk', iconLabel: 'Java' },
+  { text: 'Docker', iconSlug: 'docker', iconLabel: 'Docker' },
 ];
 
 export const ABOUT_CARDS: AboutCard[] = [
