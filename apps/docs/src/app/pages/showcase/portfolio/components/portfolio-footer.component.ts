@@ -11,7 +11,7 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
       <div
         class="mx-auto flex max-w-full flex-col gap-4 font-bold sm:flex-row sm:items-center sm:justify-between"
       >
-        <p>Ronit Jadhav | Built with ❤ &amp; ☕</p>
+        <p>Khang Tran | Built with ❤ &amp; ☕</p>
         <p
           class="border-2 border-black bg-yellow-300 px-3 py-1 font-mono text-sm text-black shadow-[4px_4px_0px_0px_#000]"
         >

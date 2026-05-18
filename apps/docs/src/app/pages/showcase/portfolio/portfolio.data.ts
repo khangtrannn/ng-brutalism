@@ -23,7 +23,9 @@ export const SKILLS: Skill[] = [
   { text: 'Node.js', iconSlug: 'nodedotjs', iconLabel: 'Node.js' },
   { text: 'Python', iconSlug: 'python', iconLabel: 'Python' },
   { text: 'Java', iconSlug: 'openjdk', iconLabel: 'Java' },
+  { text: 'Quarkus', iconSlug: 'quarkus', iconLabel: 'Quarkus' },
   { text: 'Docker', iconSlug: 'docker', iconLabel: 'Docker' },
+  { text: 'Claude Code', iconSlug: 'claude', iconLabel: 'Claude' },
 ];
 
 export const ABOUT_CARDS: AboutCard[] = [

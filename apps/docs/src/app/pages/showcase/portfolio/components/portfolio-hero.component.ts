@@ -40,15 +40,15 @@ import type { Skill } from '../portfolio.types';
           <h1
             class="mt-2 text-center font-heading text-xl font-black leading-tight sm:mt-3 sm:text-2xl md:mt-5 md:text-3xl lg:text-left lg:text-5xl"
           >
-            I'm Ronit Jadhav. <span aria-hidden="true">👋</span>
+            I'm Khang Tran. <span aria-hidden="true">👋</span>
           </h1>
 
           <p
             class="my-3 max-w-2xl text-center text-sm font-normal leading-relaxed sm:my-5 sm:text-base md:my-6 md:text-lg lg:my-8 lg:max-w-xl lg:text-left lg:text-xl"
           >
-            Based in Germany, I'm a Geospatial Developer and a Software
-            Engineer. I love to work with maps, data, and code. I'm passionate
-            about open-source, web technologies, and building cool stuff.
+            I'm a Software Engineer based in Vietnam with a deep passion for
+            Angular. I focus on building modern web application, exploring
+            open-source, and turning ideas into polished products.
           </p>
 
           <div
