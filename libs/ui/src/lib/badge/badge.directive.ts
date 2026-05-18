@@ -26,10 +26,10 @@ export class NbBadge {
   private variantClass(): string {
     const map: Record<NbBadgeVariant, string> = {
       default: 'bg-white text-(--nb-foreground)',
-      secondary: 'bg-(--nb-secondary-background) text-(--nb-foreground)',
-      success: 'bg-(--nb-success) text-white',
-      warning: 'bg-(--nb-warning) text-(--nb-foreground)',
-      destructive: 'bg-(--nb-danger) text-white',
+      secondary: 'bg-(--nb-accent) text-(--nb-accent-foreground)',
+      success: 'bg-(--nb-success) text-(--nb-success-foreground)',
+      warning: 'bg-(--nb-warning) text-(--nb-warning-foreground)',
+      destructive: 'bg-(--nb-danger) text-(--nb-danger-foreground)',
     };
 
     return map[this.variant()];
