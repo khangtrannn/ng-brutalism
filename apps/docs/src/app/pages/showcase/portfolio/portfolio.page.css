@@ -5,6 +5,7 @@
 .portfolio-shell {
   --portfolio-dark-bg: #212121;
   --portfolio-dark-text: #eeefe9;
+  --font-heading: 'Space Grotesk', ui-sans-serif, system-ui, sans-serif;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -35,12 +36,19 @@
   color: #1f2937;
   font-family: var(--font-heading);
   font-weight: 900;
-  transition: color 180ms ease, transform 180ms ease;
+  transition: scale 200ms ease;
+}
+
+@keyframes portfolio-social-wiggle {
+  0%, 100% { rotate: 0deg; }
+  25%       { rotate: -10deg; }
+  50%       { rotate: 10deg; }
+  75%       { rotate: -10deg; }
 }
 
 .portfolio-social:hover {
-  color: #2b55ff;
-  transform: scale(1.1) rotate(-8deg);
+  scale: 1.1;
+  animation: portfolio-social-wiggle 0.4s ease;
 }
 
 .dark .portfolio-social {

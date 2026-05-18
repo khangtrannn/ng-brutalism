@@ -54,7 +54,7 @@ import type { Skill } from '../portfolio.types';
           <div
             class="mb-4 flex w-full flex-col items-center lg:items-start sm:mb-5 md:mb-6"
           >
-            <div class="mb-4 flex space-x-4 sm:mb-5 sm:space-x-6 md:mb-6">
+            <div class="mb-4 flex sm:mb-5 md:mb-6">
               <a
                 class="portfolio-social"
                 href="https://github.com/ronitjadhav"
