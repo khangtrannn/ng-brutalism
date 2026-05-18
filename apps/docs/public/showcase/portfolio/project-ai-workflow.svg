@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="720" viewBox="0 0 1200 720" role="img" aria-labelledby="title desc">
+  <title id="title">AI-assisted Development Workflow thumbnail</title>
+  <desc id="desc">Abstract thumbnail with prompt, code, and automation shapes.</desc>
+  <rect width="1200" height="720" fill="#fff7d1"/>
+  <circle cx="964" cy="154" r="96" fill="#79f2c0" stroke="#111" stroke-width="10"/>
+  <rect x="96" y="96" width="514" height="398" fill="#111"/>
+  <rect x="136" y="144" width="264" height="24" fill="#fff7d1"/>
+  <rect x="136" y="210" width="394" height="24" fill="#79f2c0"/>
+  <rect x="136" y="276" width="312" height="24" fill="#ff8fab"/>
+  <rect x="136" y="342" width="354" height="24" fill="#8ec5ff"/>
+  <rect x="136" y="408" width="210" height="24" fill="#fff7d1"/>
+  <path d="M610 292h204" stroke="#111" stroke-width="12"/>
+  <path d="M790 244l72 48-72 48" fill="none" stroke="#111" stroke-width="12" stroke-linejoin="round"/>
+  <rect x="820" y="344" width="270" height="150" fill="#8ec5ff" stroke="#111" stroke-width="10"/>
+  <path d="M874 402h162M874 452h106" stroke="#111" stroke-width="14"/>
+  <rect x="106" y="564" width="584" height="70" fill="#ff8fab" stroke="#111" stroke-width="10"/>
+</svg>

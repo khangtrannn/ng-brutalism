@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="720" viewBox="0 0 1200 720" role="img" aria-labelledby="title desc">
+  <title id="title">Full-stack Service Starter thumbnail</title>
+  <desc id="desc">Abstract thumbnail with service nodes and containers.</desc>
+  <rect width="1200" height="720" fill="#e9efe5"/>
+  <path d="M158 180h884M158 342h884M158 504h884M260 124v438M520 124v438M780 124v438" stroke="#101010" stroke-width="4" opacity=".18"/>
+  <rect x="150" y="138" width="220" height="116" fill="#9be564" stroke="#101010" stroke-width="10"/>
+  <rect x="494" y="138" width="220" height="116" fill="#ff6b57" stroke="#101010" stroke-width="10"/>
+  <rect x="838" y="138" width="220" height="116" fill="#70a7ff" stroke="#101010" stroke-width="10"/>
+  <rect x="316" y="378" width="568" height="120" fill="#ffd166" stroke="#101010" stroke-width="10"/>
+  <path d="M370 254v124M604 254v124M838 254v124" stroke="#101010" stroke-width="12"/>
+  <circle cx="260" cy="196" r="24" fill="#101010"/>
+  <circle cx="604" cy="196" r="24" fill="#101010"/>
+  <circle cx="948" cy="196" r="24" fill="#101010"/>
+</svg>

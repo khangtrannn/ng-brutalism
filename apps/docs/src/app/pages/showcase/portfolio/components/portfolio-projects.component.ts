@@ -60,16 +60,20 @@ import type { Project } from '../portfolio.types';
               <a
                 class="portfolio-project-link bg-blue-400"
                 [href]="project.github"
-                target="_blank"
+                [attr.target]="isPlaceholderLink(project.github) ? null : '_blank'"
                 rel="noreferrer"
+                [attr.aria-disabled]="isPlaceholderLink(project.github)"
+                (click)="onProjectLinkClick($event, project.github)"
               >
                 <span aria-hidden="true">⌘</span> Code
               </a>
               <a
                 class="portfolio-project-link bg-green-400"
                 [href]="project.live"
-                target="_blank"
+                [attr.target]="isPlaceholderLink(project.live) ? null : '_blank'"
                 rel="noreferrer"
+                [attr.aria-disabled]="isPlaceholderLink(project.live)"
+                (click)="onProjectLinkClick($event, project.live)"
               >
                 <span aria-hidden="true">↗</span> Live Demo
               </a>
@@ -85,4 +89,14 @@ import type { Project } from '../portfolio.types';
 export class PortfolioProjectsComponent {
   readonly assetPath = input.required<string>();
   readonly projects = input.required<Project[]>();
+
+  protected isPlaceholderLink(url: string): boolean {
+    return url === '#';
+  }
+
+  protected onProjectLinkClick(event: MouseEvent, url: string): void {
+    if (this.isPlaceholderLink(url)) {
+      event.preventDefault();
+    }
+  }
 }

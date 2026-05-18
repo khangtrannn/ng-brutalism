@@ -128,30 +128,30 @@ export const TIMELINE: TimelineEntry[] = [
 
 export const PORTFOLIO_PROJECTS: Project[] = [
   {
-    title: 'Digipin',
+    title: 'Frontend Component Lab',
     description:
-      'Search for the DIGIPIN for your location. This app demonstrates how to use the Digital Postal Index Number (DIGIPIN) by the Department of Posts in India, aiming to simplify geo-coded addressing for public and private services.',
-    tech: ['Openlayers', 'Next.js', 'TypeScript', 'Tailwind CSS'],
-    github: 'https://github.com/ronitjadhav/digipin-openlayers',
-    live: 'https://digipin.maplabs.tech',
-    image: 'digipin.jpeg',
+      'A placeholder project for polished UI experiments, reusable components, and responsive interaction patterns built around my current frontend stack.',
+    tech: ['Angular', 'TypeScript', 'JavaScript', 'ReactJS'],
+    github: '#',
+    live: '#',
+    image: 'project-frontend-lab.svg',
   },
   {
-    title: 'QGIS Hub Plugin',
+    title: 'Full-Stack Service Starter',
     description:
-      'Developed at Camptocamp with help from Ismail Sunni, this plugin allows QGIS users to easily browse and add resources from the QGIS Hub directly into their projects. It supports grid and list views, search, and filtering by resource type.',
-    tech: ['Python', 'Qt', 'QGIS'],
-    github: 'https://github.com/qgis/QGIS-Hub-Plugin',
-    live: 'https://plugins.qgis.org/plugins/qgis_hub_plugin/',
-    image: 'QGIS-Banner.jpg',
+      'A dummy backend-focused project for API design, service orchestration, and containerized development using the languages and runtimes I work with.',
+    tech: ['Node.js', 'Python', 'Java', 'Quarkus', 'Docker'],
+    github: '#',
+    live: '#',
+    image: 'project-service-starter.svg',
   },
   {
-    title: 'Openlayers Benchmark',
+    title: 'AI-Assisted Dev Workflow',
     description:
-      'Developed at Camptocamp as part of my internship, this project helps to benchmark the performance of WebGL and Canvas rendering in Openlayers. It includes a variety of tests and visualizations to compare the rendering speed of different layers.',
-    tech: ['Openlayers', 'TypeScript'],
-    github: 'https://github.com/openlayers/bench',
-    live: 'https://openlayers.org/bench/',
-    image: 'olBench.png',
+      'A placeholder for tooling, automation, and rapid prototyping workflows that combine strong typing, modern web apps, containers, and AI coding assistance.',
+    tech: ['Claude Code', 'TypeScript', 'Angular', 'Docker'],
+    github: '#',
+    live: '#',
+    image: 'project-ai-workflow.svg',
   },
 ];

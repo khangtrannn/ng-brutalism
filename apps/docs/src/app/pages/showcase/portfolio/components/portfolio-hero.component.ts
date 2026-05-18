@@ -57,7 +57,7 @@ import type { Skill } from '../portfolio.types';
             <div class="mb-4 flex sm:mb-5 md:mb-6">
               <a
                 class="portfolio-social"
-                href="https://github.com/ronitjadhav"
+                href="https://github.com/khangtrannn"
                 target="_blank"
                 rel="noreferrer"
                 aria-label="GitHub"
@@ -76,7 +76,7 @@ import type { Skill } from '../portfolio.types';
               </a>
               <a
                 class="portfolio-social"
-                href="https://www.linkedin.com/in/ronitjadhav/"
+                href="https://www.linkedin.com/in/khangtrann/"
                 target="_blank"
                 rel="noreferrer"
                 aria-label="LinkedIn"
