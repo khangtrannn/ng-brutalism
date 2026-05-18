@@ -12,8 +12,6 @@ module.exports = tseslint.config(
       '@angular-eslint': angular,
     },
     rules: {
-      '@angular-eslint/component-class-suffix': 'error',
-      '@angular-eslint/directive-class-suffix': 'error',
       '@angular-eslint/no-input-rename': 'error',
       '@angular-eslint/no-output-rename': 'error',
       '@angular-eslint/use-lifecycle-interface': 'warn',
@@ -30,12 +28,6 @@ module.exports = tseslint.config(
     rules: {
       '@angular-eslint/template/banana-in-box': 'error',
       '@angular-eslint/template/no-negated-async': 'warn',
-    },
-  },
-  {
-    files: ['libs/ui/src/lib/button/button.directive.ts'],
-    rules: {
-      '@angular-eslint/directive-class-suffix': 'off',
     },
   },
   {

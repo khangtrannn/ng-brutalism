@@ -30,6 +30,8 @@ export { NbLabel } from './lib/label';
 export type { NbInputSize } from './lib/input';
 export { NbTextarea } from './lib/textarea';
 export type { NbTextareaSize } from './lib/textarea';
+export { NbInputGroup, NbInputPrefix, NbInputSuffix } from './lib/input-group';
+export type { NbInputPrefixAlign, NbInputSuffixAlign } from './lib/input-group';
 export { NbBadge } from './lib/badge';
 export type { NbBadgeVariant } from './lib/badge';
 export { NbAvatar } from './lib/avatar';
