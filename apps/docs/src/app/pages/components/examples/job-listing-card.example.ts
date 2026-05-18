@@ -27,7 +27,23 @@ import {
         <nb-card-header class="job-card-section">
           <div class="job-card-header">
             <div class="job-card-logo" aria-hidden="true">
+              <!-- Previous implementation, kept for reference:
               <span>n.</span>
+              -->
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 113.1845 121.4197"
+              >
+                <g fill="currentColor">
+                  <circle cx="56.5904" cy="15.4347" r="15.4347" />
+                  <circle cx="15.4345" cy="37.0428" r="15.4347" />
+                  <circle cx="97.7498" cy="37.0436" r="15.4347" />
+                  <circle cx="56.5904" cy="60.7108" r="15.4347" />
+                  <circle cx="15.4346" cy="84.3761" r="15.4347" />
+                  <circle cx="97.7498" cy="84.3753" r="15.4347" />
+                  <circle cx="56.5904" cy="105.985" r="15.4347" />
+                </g>
+              </svg>
             </div>
 
             <div class="job-card-title-block">
@@ -370,6 +386,16 @@ import {
         background: var(--job-tile-purple);
         box-shadow: 4px 5px 0 0 var(--job-shadow);
         color: var(--job-ink);
+      }
+
+      .job-card-logo svg {
+        width: clamp(24px, 5.6cqw, 28px);
+        height: auto;
+        display: block;
+      }
+
+      /* Previous implementation, kept for reference:
+      .job-card-logo {
         font-family: 'Caveat', 'Patrick Hand', 'Bradley Hand', 'Segoe Print',
           cursive;
         font-size: clamp(28px, 6.4cqw, 32px);
@@ -381,6 +407,7 @@ import {
       .job-card-logo span {
         transform: translateY(-2px);
       }
+      */
 
       .job-card-title-block {
         min-width: 0;
@@ -416,7 +443,7 @@ import {
 
       .job-card-subtitle {
         display: block;
-        margin-top: 8px;
+        margin-top: 12px;
         padding-left: 2px;
         color: var(--job-ink);
         font-family: 'Patrick Hand', 'Comic Sans MS', 'Bradley Hand',
