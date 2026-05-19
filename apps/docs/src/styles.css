@@ -171,7 +171,7 @@ nb-docs-sidebar::-webkit-scrollbar-thumb {
   box-shadow: 3px 3px 0 0 var(--nb-shadow);
 }
 
-[data-docs-content] h2:not([data-slot="dialog-title"]) {
+[data-docs-content] h2:not([data-slot="dialog-title"]):not([data-nb-title]) {
   position: relative;
   display: inline-block;
   margin-top: 2.75rem;
@@ -189,17 +189,17 @@ nb-docs-sidebar::-webkit-scrollbar-thumb {
   transform: rotate(-1deg);
 }
 
-[data-docs-content] section:nth-of-type(2n) h2:not([data-slot="dialog-title"]) {
+[data-docs-content] section:nth-of-type(2n) h2:not([data-slot="dialog-title"]):not([data-nb-title]) {
   background: var(--nb-pink);
   transform: rotate(1deg);
 }
 
-[data-docs-content] section:nth-of-type(3n) h2:not([data-slot="dialog-title"]) {
+[data-docs-content] section:nth-of-type(3n) h2:not([data-slot="dialog-title"]):not([data-nb-title]) {
   background: var(--nb-lavender);
   transform: rotate(-1.5deg);
 }
 
-[data-docs-content] section:nth-of-type(4n) h2:not([data-slot="dialog-title"]) {
+[data-docs-content] section:nth-of-type(4n) h2:not([data-slot="dialog-title"]):not([data-nb-title]) {
   background: var(--nb-yellow);
   transform: rotate(0.5deg);
 }

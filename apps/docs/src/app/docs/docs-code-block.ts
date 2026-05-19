@@ -124,7 +124,7 @@ type DocsCodeBlockVariant = 'standalone' | 'embedded';
         background-color: #000 !important;
         font-family: var(--font-mono);
         font-size: 0.75rem;
-        line-height: 1rem;
+        line-height: 1.25rem;
         overflow: hidden;
         white-space: pre-wrap;
         overflow-wrap: anywhere;

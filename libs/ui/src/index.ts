@@ -27,6 +27,7 @@ export { NbImageCard } from './lib/image-card';
 export { NbMarquee, NbMarqueeItem } from './lib/marquee';
 export { NbInput } from './lib/input';
 export { NbLabel } from './lib/label';
+export { NbTitle } from './lib/title';
 export type { NbInputSize } from './lib/input';
 export { NbTextarea } from './lib/textarea';
 export type { NbTextareaSize } from './lib/textarea';

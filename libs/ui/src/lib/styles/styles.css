@@ -30,6 +30,19 @@ body {
     line-height: 1;
   }
 
+  :where([data-nb-title])::after {
+    content: "";
+    display: block;
+    width: var(--nb-title-wave-width, min(18rem, 100%));
+    height: var(--nb-title-wave-height, 0.625rem);
+    margin-top: var(--nb-title-wave-gap, 0);
+    background-color: var(--nb-title-wave-color, #a78bfa);
+    -webkit-mask: url("data:image/svg+xml,%3Csvg viewBox='0 0 220 12' preserveAspectRatio='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0,6 Q10,0 20,6 T40,6 T60,6 T80,6 T100,6 T120,6 T140,6 T160,6 T180,6 T200,6 T220,6' fill='none' stroke='black' stroke-width='6' stroke-linecap='round'/%3E%3C/svg%3E")
+      center / 100% 100% no-repeat;
+    mask: url("data:image/svg+xml,%3Csvg viewBox='0 0 220 12' preserveAspectRatio='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0,6 Q10,0 20,6 T40,6 T60,6 T80,6 T100,6 T120,6 T140,6 T160,6 T180,6 T200,6 T220,6' fill='none' stroke='black' stroke-width='6' stroke-linecap='round'/%3E%3C/svg%3E")
+      center / 100% 100% no-repeat;
+  }
+
   :where([data-slot="dialog-description"]) {
     display: block;
     padding: 0 1.5rem 1rem;

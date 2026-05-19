@@ -7,6 +7,7 @@ import {
   NbDialogContent,
   NbDialogDescription,
   NbDialogTitle,
+  NbTitle,
 } from '@ng-brutalism/ui';
 
 import { DocsCodeBlock } from '../../docs/docs-code-block';
@@ -28,6 +29,7 @@ import { ContactUsDialog } from './examples/contact-us-dialog';
     NbDialogContent,
     NbDialogDescription,
     NbDialogTitle,
+    NbTitle,
     ContactUsDialog,
   ],
   template: `
@@ -208,6 +210,7 @@ export default class DialogPageComponent {
   NbDialogContent,
   NbDialogActions,
   NbDialogClose,
+  NbTitle,
   NbInput,
   NbInputGroup,
   NbInputPrefix,
@@ -255,12 +258,9 @@ export default class DialogPageComponent {
       Let's Talk
     </span>
 
-    <h2 nbDialogTitle class="mt-4 p-0 font-mono text-3xl font-black leading-tight">
+    <h2 nbDialogTitle nbTitle class="mt-4 p-0 font-mono text-3xl font-black leading-tight">
       Send us a message
     </h2>
-    <svg viewBox="0 0 220 12" preserveAspectRatio="none" width="220" height="10" class="mt-1 block h-2.5 w-72 max-w-full" aria-hidden="true">
-      <path d="M0,6 Q10,0 20,6 T40,6 T60,6 T80,6 T100,6 T120,6 T140,6 T160,6 T180,6 T200,6 T220,6" fill="none" stroke="#a78bfa" stroke-width="4" stroke-linecap="round" />
-    </svg>
 
     <p nbDialogDescription class="mt-3 inline-block p-0 font-mono text-base font-medium text-black">
       Fill in the form below and we'll get back to you as soon as possible.

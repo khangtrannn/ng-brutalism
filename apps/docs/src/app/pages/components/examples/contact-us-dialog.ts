@@ -11,8 +11,10 @@ import {
   NbInputGroup,
   NbInputPrefix,
   NbLabel,
-  NbSelect,
+  NbSelectComponent,
+  NbSelectOption,
   NbTextarea,
+  NbTitle,
 } from '@ng-brutalism/ui';
 
 @Component({
@@ -30,8 +32,10 @@ import {
     NbInputGroup,
     NbInputPrefix,
     NbLabel,
-    NbSelect,
+    NbSelectComponent,
+    NbSelectOption,
     NbTextarea,
+    NbTitle,
   ],
   template: `
     <button nbButton (click)="dialog().open()">Contact Us</button>
@@ -61,27 +65,11 @@ import {
             <div>
               <h2
                 nbDialogTitle
+                nbTitle
                 class="mt-4 p-0 font-mono text-3xl font-black leading-tight"
               >
                 Send us a message
               </h2>
-
-              <svg
-                viewBox="0 0 220 12"
-                preserveAspectRatio="none"
-                width="220"
-                height="10"
-                class="wave-line block h-2.5 w-72 max-w-full"
-                aria-hidden="true"
-              >
-                <path
-                  d="M0,6 Q10,0 20,6 T40,6 T60,6 T80,6 T100,6 T120,6 T140,6 T160,6 T180,6 T200,6 T220,6"
-                  fill="none"
-                  stroke="#a78bfa"
-                  stroke-width="6"
-                  stroke-linecap="round"
-                />
-              </svg>
             </div>
 
             <p
@@ -167,7 +155,7 @@ import {
           </div>
 
           <div class="grid gap-2">
-            <label nbLabel for="contact-subject" class="font-mono text-base"
+            <label nbLabel id="contact-subject-label" class="font-mono text-base"
               >Subject</label
             >
             <nb-input-group>
@@ -183,41 +171,27 @@ import {
                   stroke-linejoin="round"
                   aria-hidden="true"
                 >
-                  <path
-                    d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"
-                  />
-                  <circle
-                    cx="8"
-                    cy="10"
-                    r="1"
-                    fill="currentColor"
-                    stroke="none"
-                  />
-                  <circle
-                    cx="12"
-                    cy="10"
-                    r="1"
-                    fill="currentColor"
-                    stroke="none"
-                  />
-                  <circle
-                    cx="16"
-                    cy="10"
-                    r="1"
-                    fill="currentColor"
-                    stroke="none"
-                  />
+                  <path d="M12 2H2v10l9.29 9.29c.94.94 2.48.94 3.42 0l6.58-6.58c.94-.94.94-2.48 0-3.42L12 2Z" />
+                  <path d="M7 7h.01" />
                 </svg>
               </span>
-              <select nbSelect id="contact-subject" class="h-12 font-mono">
-                <option value="" disabled selected>
-                  What is this regarding?
-                </option>
-                <option value="general">General Inquiry</option>
-                <option value="project">Project Proposal</option>
-                <option value="bug">Bug Report</option>
-                <option value="other">Other</option>
-              </select>
+              <nb-select
+                placeholder="What is this regarding?"
+                aria-labelledby="contact-subject-label"
+              >
+                <nb-select-option value="general" label="General Inquiry">
+                  General Inquiry
+                </nb-select-option>
+                <nb-select-option value="project" label="Project Proposal">
+                  Project Proposal
+                </nb-select-option>
+                <nb-select-option value="bug" label="Bug Report">
+                  Bug Report
+                </nb-select-option>
+                <nb-select-option value="other" label="Other">
+                  Other
+                </nb-select-option>
+              </nb-select>
             </nb-input-group>
           </div>
 

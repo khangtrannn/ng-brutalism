@@ -7,7 +7,7 @@ import {
   effect,
   output,
 } from '@angular/core';
-import { NbMarquee, NbMarqueeItem } from '@ng-brutalism/ui';
+import { NbMarquee, NbMarqueeItem, NbTitle } from '@ng-brutalism/ui';
 import { PortfolioContactDialogComponent } from './portfolio-contact-dialog';
 
 import type { Skill } from '../portfolio.types';
@@ -15,7 +15,7 @@ import type { Skill } from '../portfolio.types';
 @Component({
   selector: 'docs-portfolio-hero',
   standalone: true,
-  imports: [NbMarquee, NbMarqueeItem, PortfolioContactDialogComponent],
+  imports: [NbMarquee, NbMarqueeItem, NbTitle, PortfolioContactDialogComponent],
   template: `
     <section
       id="home"
@@ -46,9 +46,20 @@ import type { Skill } from '../portfolio.types';
           <p
             class="my-3 max-w-2xl text-center text-sm font-normal leading-relaxed sm:my-5 sm:text-base md:my-6 md:text-lg lg:my-8 lg:max-w-xl lg:text-left lg:text-xl"
           >
-            I'm a Software Engineer based in Vietnam with a deep passion for
-            Angular. I focus on building modern web application, exploring
-            open-source, and turning ideas into polished products.
+            I'm a Software Engineer based in
+            <span
+              nbTitle
+              class="inline-block font-bold"
+              style="--nb-title-wave-color: #ff5d8f; --nb-title-wave-width: 100%; --nb-title-wave-height: 0.35rem; --nb-title-wave-gap: -0.5rem;"
+              >Vietnam</span
+            >
+            with a deep passion for
+            <span
+              nbTitle
+              class="inline-block font-bold"
+              style="--nb-title-wave-color: #a78bfa; --nb-title-wave-width: 100%; --nb-title-wave-height: 0.35rem; --nb-title-wave-gap: -0.5rem;"
+              >Angular</span
+            >. I focus on building modern web applications, exploring open-source, and turning ideas into polished products.
           </p>
 
           <div

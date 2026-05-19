@@ -15,6 +15,7 @@ type DocsTokenComponent =
   | 'marquee'
   | 'select'
   | 'theme'
+  | 'title'
   | 'textarea';
 
 interface DocsToken {
@@ -386,6 +387,28 @@ const componentTokens: Record<DocsTokenComponent, DocsToken[]> = {
       name: '--nb-focus-ring-offset',
       defaultValue: '2px',
       usage: 'Focus outline offset',
+    },
+  ],
+  title: [
+    {
+      name: '--nb-title-wave-width',
+      defaultValue: 'min(18rem, 100%)',
+      usage: 'Underline width',
+    },
+    {
+      name: '--nb-title-wave-height',
+      defaultValue: '0.625rem',
+      usage: 'Underline height',
+    },
+    {
+      name: '--nb-title-wave-gap',
+      defaultValue: '0',
+      usage: 'Space between title text and underline',
+    },
+    {
+      name: '--nb-title-wave-color',
+      defaultValue: '#a78bfa',
+      usage: 'Underline color',
     },
   ],
   textarea: [
