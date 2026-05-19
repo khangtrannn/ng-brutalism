@@ -3,10 +3,9 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { NbDocsLayout } from '../docs/layout/docs-layout';
 
 @Component({
-  selector: 'components-layout-page',
-  standalone: true,
-  imports: [NbDocsLayout],
-  template: `<nb-docs-layout />`,
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'components-layout-page',
+    imports: [NbDocsLayout],
+    template: `<nb-docs-layout />`,
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export default class ComponentsLayoutPageComponent {}

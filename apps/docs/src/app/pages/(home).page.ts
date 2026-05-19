@@ -4,10 +4,9 @@ import { NbButton } from '@ng-brutalism/ui';
 import JobListingCardExampleComponent from './components/examples/job-listing-card';
 
 @Component({
-  selector: 'docs-home',
-  standalone: true,
-  imports: [NbButton, RouterLink, JobListingCardExampleComponent],
-  template: `
+    selector: 'docs-home',
+    imports: [NbButton, RouterLink, JobListingCardExampleComponent],
+    template: `
     <article>
       <header class="mb-8">
         <p class="mb-2 text-sm font-bold uppercase tracking-wide">
@@ -41,6 +40,6 @@ import JobListingCardExampleComponent from './components/examples/job-listing-ca
       </div>
     </article>
   `,
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export default class HomeComponent {}

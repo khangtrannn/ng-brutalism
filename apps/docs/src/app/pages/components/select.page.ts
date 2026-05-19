@@ -14,21 +14,20 @@ import { DocsSourceTile } from '../../docs/docs-source-tile';
 import { DocsTokens } from '../../docs/docs-tokens';
 
 @Component({
-  selector: 'docs-select-page',
-  standalone: true,
-  imports: [
-    DocsCodeBlock,
-    DocsExample,
-    DocsSourceTile,
-    DocsTokens,
-    NbInputGroup,
-    NbInputPrefix,
-    NbLabel,
-    NbSelect,
-    NbSelectComponent,
-    NbSelectOption,
-  ],
-  template: `
+    selector: 'docs-select-page',
+    imports: [
+        DocsCodeBlock,
+        DocsExample,
+        DocsSourceTile,
+        DocsTokens,
+        NbInputGroup,
+        NbInputPrefix,
+        NbLabel,
+        NbSelect,
+        NbSelectComponent,
+        NbSelectOption,
+    ],
+    template: `
     <article>
       <header id="overview" class="relative mb-10 scroll-mt-32">
         <div class="mb-5">
@@ -361,7 +360,7 @@ import { DocsTokens } from '../../docs/docs-tokens';
       </section>
     </article>
   `,
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export default class SelectPageComponent {
   protected readonly defaultExampleCode = `<div class="w-80">

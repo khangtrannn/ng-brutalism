@@ -3,10 +3,9 @@ import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import type { Project } from '../portfolio.types';
 
 @Component({
-  selector: 'docs-portfolio-projects',
-  standalone: true,
-  imports: [],
-  template: `
+    selector: 'docs-portfolio-projects',
+    imports: [],
+    template: `
     <section
       id="projects"
       class="portfolio-grid-section relative scroll-mt-6 bg-white p-3 py-8 dark:bg-black sm:p-5 sm:py-12 md:p-8 md:py-16"
@@ -84,7 +83,7 @@ import type { Project } from '../portfolio.types';
       </div>
     </section>
   `,
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class PortfolioProjectsComponent {
   readonly assetPath = input.required<string>();

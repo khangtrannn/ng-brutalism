@@ -49,10 +49,9 @@ const INITIAL_CENTER: [number, number] = [58, 30];
 const INITIAL_ZOOM = 2;
 
 @Component({
-  selector: 'docs-portfolio-journey',
-  standalone: true,
-  imports: [],
-  template: `
+    selector: 'docs-portfolio-journey',
+    imports: [],
+    template: `
     <section
       id="journey"
       class="portfolio-grid-section relative scroll-mt-6 bg-white p-2 py-8 sm:p-4 sm:py-12 md:p-6 md:py-16 lg:p-8"
@@ -204,7 +203,7 @@ const INITIAL_ZOOM = 2;
       </div>
     </section>
   `,
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class PortfolioJourneyComponent {
   readonly activeJourney = input(0);

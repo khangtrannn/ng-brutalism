@@ -7,18 +7,17 @@ import { DocsSourceTile } from '../../docs/docs-source-tile';
 import { DocsTokens } from '../../docs/docs-tokens';
 
 @Component({
-  selector: 'docs-label-page',
-  standalone: true,
-  imports: [
-    DocsCodeBlock,
-    DocsExample,
-    DocsSourceTile,
-    DocsTokens,
-    NbCheckbox,
-    NbInput,
-    NbLabel,
-  ],
-  template: `
+    selector: 'docs-label-page',
+    imports: [
+        DocsCodeBlock,
+        DocsExample,
+        DocsSourceTile,
+        DocsTokens,
+        NbCheckbox,
+        NbInput,
+        NbLabel,
+    ],
+    template: `
     <article>
       <header id="overview" class="relative mb-10 scroll-mt-32">
         <div class="mb-5">
@@ -130,7 +129,7 @@ import { DocsTokens } from '../../docs/docs-tokens';
       </section>
     </article>
   `,
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export default class LabelPageComponent {
   protected readonly defaultExampleCode = `<div class="flex items-center gap-2">

@@ -13,10 +13,9 @@ import { PortfolioContactDialogComponent } from './portfolio-contact-dialog';
 import type { Skill } from '../portfolio.types';
 
 @Component({
-  selector: 'docs-portfolio-hero',
-  standalone: true,
-  imports: [NbMarquee, NbMarqueeItem, NbTitle, PortfolioContactDialogComponent],
-  template: `
+    selector: 'docs-portfolio-hero',
+    imports: [NbMarquee, NbMarqueeItem, NbTitle, PortfolioContactDialogComponent],
+    template: `
     <section
       id="home"
       class="portfolio-grid-section relative flex h-screen max-h-[900px] min-h-[500px] w-full scroll-mt-6 flex-col items-center justify-center overflow-hidden bg-white pb-14 dark:bg-black sm:min-h-[600px] sm:pb-16 md:pb-20"
@@ -152,7 +151,7 @@ import type { Skill } from '../portfolio.types';
       </div>
     </section>
   `,
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class PortfolioHeroComponent {
   readonly assetPath = input.required<string>();

@@ -1,4 +1,7 @@
-export { NbAccordionComponent, NbAccordionComponent as NbAccordion } from './accordion';
+export {
+  NbAccordionComponent,
+  NbAccordionComponent as NbAccordion,
+} from './accordion';
 export {
   NbAccordionContentComponent,
   NbAccordionContentComponent as NbAccordionContent,

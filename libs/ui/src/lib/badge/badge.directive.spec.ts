@@ -14,7 +14,9 @@ class BadgeTestComponent {}
 describe('NbBadge', () => {
   it('uses a badge-specific radius token', async () => {
     const fixture = await createFixture(BadgeTestComponent);
-    const badge = fixture.nativeElement.querySelector('span[nbBadge]') as HTMLSpanElement;
+    const badge = fixture.nativeElement.querySelector(
+      'span[nbBadge]'
+    ) as HTMLSpanElement;
 
     expect(badge.className).toContain('rounded-(--nb-badge-radius)');
     expect(badge.className).toContain('[--nb-badge-radius:9999px]');
@@ -22,7 +24,9 @@ describe('NbBadge', () => {
   });
 });
 
-async function createFixture<T>(component: new () => T): Promise<ComponentFixture<T>> {
+async function createFixture<T>(
+  component: new () => T
+): Promise<ComponentFixture<T>> {
   await TestBed.configureTestingModule({
     imports: [component],
   }).compileComponents();

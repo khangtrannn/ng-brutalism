@@ -1,10 +1,9 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 @Component({
-  selector: 'docs-portfolio-footer',
-  standalone: true,
-  imports: [],
-  template: `
+    selector: 'docs-portfolio-footer',
+    imports: [],
+    template: `
     <footer
       class="border-t-4 border-black bg-white px-5 py-8 dark:bg-[#212121]"
     >
@@ -20,6 +19,6 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
       </div>
     </footer>
   `,
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class PortfolioFooterComponent {}

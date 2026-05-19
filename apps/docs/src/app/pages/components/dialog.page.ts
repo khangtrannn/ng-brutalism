@@ -7,16 +7,15 @@ import { DocsTokens } from '../../docs/docs-tokens';
 import { ContactUsDialog } from './examples/contact-us-dialog';
 
 @Component({
-  selector: 'docs-dialog-page',
-  standalone: true,
-  imports: [
-    DocsCodeBlock,
-    DocsExample,
-    DocsSourceTile,
-    DocsTokens,
-    ContactUsDialog,
-  ],
-  template: `
+    selector: 'docs-dialog-page',
+    imports: [
+        DocsCodeBlock,
+        DocsExample,
+        DocsSourceTile,
+        DocsTokens,
+        ContactUsDialog,
+    ],
+    template: `
     <article>
       <header id="overview" class="relative mb-10 scroll-mt-32">
         <div class="mb-5">
@@ -159,7 +158,7 @@ import { ContactUsDialog } from './examples/contact-us-dialog';
       </section>
     </article>
   `,
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export default class DialogPageComponent {
   protected readonly importCode = `import {

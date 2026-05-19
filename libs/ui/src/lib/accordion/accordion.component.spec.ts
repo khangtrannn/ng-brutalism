@@ -219,7 +219,9 @@ describe('NbAccordion', () => {
   });
 });
 
-async function createFixture<T>(component: new () => T): Promise<ComponentFixture<T>> {
+async function createFixture<T>(
+  component: new () => T
+): Promise<ComponentFixture<T>> {
   await TestBed.configureTestingModule({
     imports: [component],
   }).compileComponents();

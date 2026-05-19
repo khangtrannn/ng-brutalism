@@ -9,10 +9,9 @@ import { DOC_NAV } from '../nav';
 const GROUP_COLORS = ['yellow', 'pink', 'mint', 'lavender'] as const;
 
 @Component({
-  selector: 'nb-docs-sidebar',
-  standalone: true,
-  imports: [RouterLink, RouterLinkActive],
-  template: `
+    selector: 'nb-docs-sidebar',
+    imports: [RouterLink, RouterLinkActive],
+    template: `
     <aside
       class="docs-sidebar fixed top-32 left-8 hidden h-[calc(100vh-9rem)] w-72 overflow-y-auto border-4 border-(--nb-border) bg-(--nb-paper) px-4 py-5 shadow-[8px_8px_0_0_var(--nb-shadow)] lg:block"
       aria-label="Documentation navigation"
@@ -52,7 +51,7 @@ const GROUP_COLORS = ['yellow', 'pink', 'mint', 'lavender'] as const;
       }
     </aside>
   `,
-  styles: `
+    styles: `
     .sidebar-group {
       padding-block: 1.1rem;
     }
@@ -186,7 +185,7 @@ const GROUP_COLORS = ['yellow', 'pink', 'mint', 'lavender'] as const;
       background: var(--nb-border);
     }
   `,
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class NbDocsSidebar {
   protected readonly nav = DOC_NAV;

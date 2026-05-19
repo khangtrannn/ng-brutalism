@@ -10,10 +10,9 @@ import { DocsCodeBlock } from './docs-code-block';
 type DocsExampleTab = 'preview' | 'code';
 
 @Component({
-  selector: 'docs-example',
-  standalone: true,
-  imports: [DocsCodeBlock],
-  template: `
+    selector: 'docs-example',
+    imports: [DocsCodeBlock],
+    template: `
     <div class="docs-example border-4 border-(--nb-border) bg-white shadow-[8px_8px_0_0_var(--nb-shadow)]">
       <div
         class="flex items-center border-b-4 border-(--nb-border) bg-white"
@@ -51,8 +50,8 @@ type DocsExampleTab = 'preview' | 'code';
       </div>
     </div>
   `,
-  styles: [
-    `
+    styles: [
+        `
       .docs-example__tab {
         display: inline-flex;
         flex: 1 1 0;
@@ -103,8 +102,8 @@ type DocsExampleTab = 'preview' | 'code';
         background-size: 24px 24px, 24px 24px;
       }
     `,
-  ],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    ],
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DocsExample {
   readonly code = input.required<string>();

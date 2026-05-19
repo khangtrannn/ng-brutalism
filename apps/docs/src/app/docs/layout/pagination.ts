@@ -6,10 +6,9 @@ import { filter, map, startWith } from 'rxjs';
 import { DOC_NAV } from '../nav';
 
 @Component({
-  selector: 'nb-docs-pagination',
-  standalone: true,
-  imports: [RouterLink],
-  template: `
+    selector: 'nb-docs-pagination',
+    imports: [RouterLink],
+    template: `
     <div class="pagination">
       @if (prev()) {
         <a class="pagination__card pagination__card--prev" [routerLink]="prev()!.path">
@@ -28,7 +27,7 @@ import { DOC_NAV } from '../nav';
       }
     </div>
   `,
-  styles: `
+    styles: `
     .pagination {
       display: flex;
       flex-wrap: wrap;
@@ -93,7 +92,7 @@ import { DOC_NAV } from '../nav';
       color: #fff;
     }
   `,
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class NbDocsPagination {
   private readonly router = inject(Router);

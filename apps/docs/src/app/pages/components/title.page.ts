@@ -7,10 +7,9 @@ import { DocsSourceTile } from '../../docs/docs-source-tile';
 import { DocsTokens } from '../../docs/docs-tokens';
 
 @Component({
-  selector: 'docs-title-page',
-  standalone: true,
-  imports: [DocsCodeBlock, DocsExample, DocsSourceTile, DocsTokens, NbTitle],
-  template: `
+    selector: 'docs-title-page',
+    imports: [DocsCodeBlock, DocsExample, DocsSourceTile, DocsTokens, NbTitle],
+    template: `
     <article>
       <header id="overview" class="relative mb-10 scroll-mt-32">
         <div class="mb-5">
@@ -117,7 +116,7 @@ import { DocsTokens } from '../../docs/docs-tokens';
       </section>
     </article>
   `,
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export default class TitlePageComponent {
   protected readonly defaultExampleCode = `<h2 nbTitle class="font-mono text-4xl font-black leading-tight uppercase">

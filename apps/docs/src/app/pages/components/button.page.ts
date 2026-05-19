@@ -12,19 +12,18 @@ import { DocsSourceTile } from '../../docs/docs-source-tile';
 import { DocsTokens } from '../../docs/docs-tokens';
 
 @Component({
-  selector: 'docs-button-page',
-  standalone: true,
-  imports: [
-    DocsCodeBlock,
-    DocsExample,
-    DocsSourceTile,
-    DocsTokens,
-    NbButton,
-    NbAccordionTrigger,
-    NbAccordionItem,
-    NbAccordion,
-  ],
-  template: `
+    selector: 'docs-button-page',
+    imports: [
+        DocsCodeBlock,
+        DocsExample,
+        DocsSourceTile,
+        DocsTokens,
+        NbButton,
+        NbAccordionTrigger,
+        NbAccordionItem,
+        NbAccordion,
+    ],
+    template: `
     <article>
       <header id="overview" class="relative mb-10 scroll-mt-32">
         <div class="mb-5">
@@ -244,7 +243,7 @@ import { DocsTokens } from '../../docs/docs-tokens';
       </section>
     </article>
   `,
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export default class ButtonPageComponent {
   protected readonly defaultExampleCode = `<button nbButton variant="neutral" style="--nb-button-bg: var(--nb-yellow)">Button</button>`;

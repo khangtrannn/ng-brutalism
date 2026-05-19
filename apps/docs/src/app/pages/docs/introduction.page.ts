@@ -5,10 +5,9 @@ import { NbButton } from '@ng-brutalism/ui';
 import JobListingCardExampleComponent from '../components/examples/job-listing-card';
 
 @Component({
-  selector: 'docs-introduction-page',
-  standalone: true,
-  imports: [NbButton, RouterLink, JobListingCardExampleComponent],
-  template: `
+    selector: 'docs-introduction-page',
+    imports: [NbButton, RouterLink, JobListingCardExampleComponent],
+    template: `
     <article>
       <header id="overview" class="relative mb-10 scroll-mt-32">
         <p>Getting Started</p>
@@ -48,6 +47,6 @@ import JobListingCardExampleComponent from '../components/examples/job-listing-c
       </section>
     </article>
   `,
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export default class IntroductionPageComponent {}

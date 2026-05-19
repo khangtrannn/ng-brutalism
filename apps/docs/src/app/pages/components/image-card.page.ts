@@ -7,16 +7,15 @@ import { DocsSourceTile } from '../../docs/docs-source-tile';
 import { DocsTokens } from '../../docs/docs-tokens';
 
 @Component({
-  selector: 'docs-image-card-page',
-  standalone: true,
-  imports: [
-    DocsCodeBlock,
-    DocsExample,
-    DocsSourceTile,
-    DocsTokens,
-    NbImageCard,
-  ],
-  template: `
+    selector: 'docs-image-card-page',
+    imports: [
+        DocsCodeBlock,
+        DocsExample,
+        DocsSourceTile,
+        DocsTokens,
+        NbImageCard,
+    ],
+    template: `
     <article>
       <header id="overview" class="relative mb-10 scroll-mt-32">
         <div class="mb-5">
@@ -164,7 +163,7 @@ import { DocsTokens } from '../../docs/docs-tokens';
       </section>
     </article>
   `,
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export default class ImageCardPageComponent {
   protected readonly previewImage =
