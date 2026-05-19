@@ -1,14 +1,15 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { NbButton, NbTitle } from '@ng-brutalism/ui';
+import { NbTitle } from '@ng-brutalism/ui';
 
 import { DocsCodeBlock } from '../../docs/docs-code-block';
 import { DocsExample } from '../../docs/docs-example';
+import { DocsSourceTile } from '../../docs/docs-source-tile';
 import { DocsTokens } from '../../docs/docs-tokens';
 
 @Component({
   selector: 'docs-title-page',
   standalone: true,
-  imports: [DocsCodeBlock, DocsExample, DocsTokens, NbButton, NbTitle],
+  imports: [DocsCodeBlock, DocsExample, DocsSourceTile, DocsTokens, NbTitle],
   template: `
     <article>
       <header id="overview" class="relative mb-10 scroll-mt-32">
@@ -35,16 +36,9 @@ import { DocsTokens } from '../../docs/docs-tokens';
             <span class="nb-stat-tile__label">Wave tokens</span>
           </div>
 
-          <a
-            nbButton
-            size="sm"
-            variant="neutral"
+          <docs-source-tile
             href="https://github.com/khangtrannn/ng-brutalism/tree/main/libs/ui/src/lib/title"
-            target="_blank"
-            rel="noreferrer"
-          >
-            Source ↗
-          </a>
+          />
         </div>
       </header>
 

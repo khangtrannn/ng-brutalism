@@ -13,6 +13,7 @@ import {
 
 import { DocsCodeBlock } from '../../docs/docs-code-block';
 import { DocsExample } from '../../docs/docs-example';
+import { DocsSourceTile } from '../../docs/docs-source-tile';
 import { DocsTokens } from '../../docs/docs-tokens';
 import JobListingCardExampleComponent from './examples/job-listing-card';
 
@@ -22,6 +23,7 @@ import JobListingCardExampleComponent from './examples/job-listing-card';
   imports: [
     DocsCodeBlock,
     DocsExample,
+    DocsSourceTile,
     DocsTokens,
     JobListingCardExampleComponent,
     NbButton,
@@ -59,16 +61,9 @@ import JobListingCardExampleComponent from './examples/job-listing-card';
             <span class="nb-stat-tile__label">Layouts</span>
           </div>
 
-          <a
-            nbButton
-            size="sm"
-            variant="neutral"
+          <docs-source-tile
             href="https://github.com/khangtrannn/ng-brutalism/tree/main/libs/ui/src/lib/card"
-            target="_blank"
-            rel="noreferrer"
-          >
-            Source ↗
-          </a>
+          />
         </div>
       </header>
 

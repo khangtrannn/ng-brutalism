@@ -38,6 +38,7 @@ export class NbSelect {
         : [
             'rounded-nb',
             'shadow-nb',
+            'bg-(--nb-input-background,#ffffff)',
             'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--nb-border)',
             'focus-visible:ring-offset-2 focus-visible:shadow-none',
           ]
