@@ -27,11 +27,21 @@ import JobListingCardExampleComponent from '../components/examples/job-listing-c
         </p>
 
         <div class="flex flex-wrap gap-4">
-          <a nbButton variant="neutral" routerLink="/components/accordion">
+          <a
+            nbButton
+            variant="neutral"
+            routerLink="/components/accordion"
+            style="--nb-button-bg: #fff"
+          >
             Accordion
           </a>
 
-          <a nbButton variant="neutral" routerLink="/components/button">
+          <a
+            nbButton
+            variant="neutral"
+            routerLink="/components/button"
+            style="--nb-button-bg: #fff"
+          >
             Button
           </a>
         </div>

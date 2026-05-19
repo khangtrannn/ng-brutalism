@@ -1,5 +1,10 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { NbAccordionTrigger, NbButton, NbAccordionItem, NbAccordion } from '@ng-brutalism/ui';
+import {
+  NbAccordionTrigger,
+  NbButton,
+  NbAccordionItem,
+  NbAccordion,
+} from '@ng-brutalism/ui';
 
 import { DocsCodeBlock } from '../../docs/docs-code-block';
 import { DocsExample } from '../../docs/docs-example';
@@ -34,7 +39,7 @@ import { DocsTokens } from '../../docs/docs-tokens';
 
         <div class="mt-7 flex flex-wrap items-center gap-3">
           <div class="nb-stat-tile nb-stat-tile--yellow">
-            <span class="nb-stat-tile__value">4</span>
+            <span class="nb-stat-tile__value">8</span>
             <span class="nb-stat-tile__label">Variants</span>
           </div>
           <div class="nb-stat-tile nb-stat-tile--mint">
@@ -42,7 +47,7 @@ import { DocsTokens } from '../../docs/docs-tokens';
             <span class="nb-stat-tile__label">Sizes</span>
           </div>
           <div class="nb-stat-tile nb-stat-tile--pink">
-            <span class="nb-stat-tile__value">3</span>
+            <span class="nb-stat-tile__value">4</span>
             <span class="nb-stat-tile__label">Inputs</span>
           </div>
 
@@ -67,7 +72,11 @@ import { DocsTokens } from '../../docs/docs-tokens';
 
       <section id="usage">
         <h2 class="mt-10 mb-4 text-2xl font-bold">Usage</h2>
-        <docs-code-block class="block mb-5" title="Import" [code]="importCode" />
+        <docs-code-block
+          class="block mb-5"
+          title="Import"
+          [code]="importCode"
+        />
         <docs-code-block title="Template" [code]="defaultExampleCode" />
       </section>
 
@@ -160,9 +169,7 @@ import { DocsTokens } from '../../docs/docs-tokens';
                 >
                   Type
                 </th>
-                <th
-                  class="border-b-2 border-(--nb-border) px-4 py-3 font-bold"
-                >
+                <th class="border-b-2 border-(--nb-border) px-4 py-3 font-bold">
                   Default
                 </th>
               </tr>
@@ -177,7 +184,25 @@ import { DocsTokens } from '../../docs/docs-tokens';
                 <td
                   class="border-b-2 border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
                 >
-                  'default' | 'reverse' | 'noShadow' | 'neutral'
+                  'default' | 'neutral' | 'primary' | 'secondary' | 'accent' |
+                  'danger' | 'success' | 'warning'
+                </td>
+                <td
+                  class="border-b-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
+                >
+                  'default'
+                </td>
+              </tr>
+              <tr>
+                <td
+                  class="border-b-2 border-r-2 border-(--nb-border) px-4 py-3"
+                >
+                  shadow
+                </td>
+                <td
+                  class="border-b-2 border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
+                >
+                  'default' | 'none' | 'reverse'
                 </td>
                 <td
                   class="border-b-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
@@ -233,15 +258,15 @@ export const appConfig: ApplicationConfig = {
   providers: [provideNgBrutalism()],
 };`;
 
-  protected readonly variantsExampleCode = `<button nbButton>Default</button>
-<button nbButton variant="reverse">Reverse</button>
-<button nbButton variant="noShadow">No shadow</button>
-<button nbButton variant="neutral">Neutral</button>`;
+  protected readonly variantsExampleCode = `<button nbButton style="--nb-button-bg: #fff">Default</button>
+<button nbButton shadow="reverse" style="--nb-button-bg: #fff">Reverse shadow</button>
+<button nbButton shadow="none" style="--nb-button-bg: #fff">No shadow</button>
+<button nbButton variant="neutral" style="--nb-button-bg: #fff">Neutral</button>`;
 
-  protected readonly sizesExampleCode = `<button nbButton size="sm" variant="neutral">Small</button>
-<button nbButton size="default" variant="neutral">Default</button>
-<button nbButton size="lg" variant="neutral">Large</button>
-<button nbButton size="icon" variant="neutral" aria-label="Icon button">+</button>`;
+  protected readonly sizesExampleCode = `<button nbButton size="sm" variant="neutral" style="--nb-button-bg: #fff">Small</button>
+<button nbButton size="default" variant="neutral" style="--nb-button-bg: #fff">Default</button>
+<button nbButton size="lg" variant="neutral" style="--nb-button-bg: #fff">Large</button>
+<button nbButton size="icon" variant="neutral" aria-label="Icon button" style="--nb-button-bg: #fff">+</button>`;
 
   protected readonly fullWidthExampleCode = `<button nbButton variant="neutral" [fullWidth]="true" style="--nb-button-bg: var(--nb-yellow)">
   Full width button

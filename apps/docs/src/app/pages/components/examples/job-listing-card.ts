@@ -1,5 +1,14 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { NbButton, NbCard, NbCardContent, NbCardDescription, NbCardFooter, NbCardHeader, NbCardTitle, NbTitle } from '@ng-brutalism/ui';
+import {
+  NbButton,
+  NbCard,
+  NbCardContent,
+  NbCardDescription,
+  NbCardFooter,
+  NbCardHeader,
+  NbCardTitle,
+  NbTitle,
+} from '@ng-brutalism/ui';
 
 @Component({
   selector: 'docs-job-listing-card-example',
@@ -12,8 +21,8 @@ import { NbButton, NbCard, NbCardContent, NbCardDescription, NbCardFooter, NbCar
     NbCardFooter,
     NbCardHeader,
     NbCardTitle,
-    NbTitle
-],
+    NbTitle,
+  ],
   template: `
     <div class="job-card-demo" role="group" aria-label="Job posting">
       <nb-card class="job-card-shell">
@@ -54,7 +63,8 @@ import { NbButton, NbCard, NbCardContent, NbCardDescription, NbCardFooter, NbCar
                 nbButton
                 type="button"
                 size="icon"
-                variant="noShadow"
+                shadow="none"
+                style="--nb-button-bg: #fff"
                 aria-label="Save to favorites"
               >
                 <svg
@@ -84,7 +94,7 @@ import { NbButton, NbCard, NbCardContent, NbCardDescription, NbCardFooter, NbCar
                 nbButton
                 type="button"
                 size="sm"
-                variant="noShadow"
+                shadow="none"
                 style="--nb-button-bg: var(--job-pill-green-bg)"
               >
                 <svg
@@ -110,7 +120,7 @@ import { NbButton, NbCard, NbCardContent, NbCardDescription, NbCardFooter, NbCar
                 nbButton
                 type="button"
                 size="sm"
-                variant="noShadow"
+                shadow="none"
                 style="--nb-button-bg: var(--job-pill-purple-bg)"
               >
                 <svg
@@ -133,7 +143,7 @@ import { NbButton, NbCard, NbCardContent, NbCardDescription, NbCardFooter, NbCar
                 nbButton
                 type="button"
                 size="sm"
-                variant="noShadow"
+                shadow="none"
                 style="--nb-button-bg: var(--job-pill-yellow-bg)"
               >
                 <svg
@@ -158,7 +168,7 @@ import { NbButton, NbCard, NbCardContent, NbCardDescription, NbCardFooter, NbCar
                 nbButton
                 type="button"
                 size="sm"
-                variant="noShadow"
+                shadow="none"
                 style="--nb-button-bg: var(--job-pill-blue-bg)"
               >
                 <svg
@@ -182,7 +192,7 @@ import { NbButton, NbCard, NbCardContent, NbCardDescription, NbCardFooter, NbCar
                 nbButton
                 type="button"
                 size="sm"
-                variant="noShadow"
+                shadow="none"
                 style="--nb-button-bg: var(--job-pill-pink-bg)"
               >
                 <svg
@@ -281,11 +291,17 @@ import { NbButton, NbCard, NbCardContent, NbCardDescription, NbCardFooter, NbCar
                 nbButton
                 type="button"
                 variant="neutral"
+                style="--nb-button-bg: #fff"
                 aria-label="Apply"
               >
                 Apply
               </button>
-              <button nbButton type="button" variant="neutral">
+              <button
+                nbButton
+                type="button"
+                variant="neutral"
+                style="--nb-button-bg: #fff"
+              >
                 Save
                 <svg
                   width="20"
@@ -341,7 +357,8 @@ import { NbButton, NbCard, NbCardContent, NbCardDescription, NbCardFooter, NbCar
         background: var(--job-paper);
         box-shadow: 8px 10px 0 0 var(--job-shadow);
         color: var(--job-ink);
-        font-family: 'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Print', cursive;
+        font-family: 'Patrick Hand', 'Comic Sans MS', 'Bradley Hand',
+          'Segoe Print', cursive;
       }
 
       .job-card-shell {

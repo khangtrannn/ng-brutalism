@@ -59,7 +59,11 @@ import { DocsTokens } from '../../docs/docs-tokens';
 
       <section id="usage">
         <h2 class="mt-10 mb-4 text-2xl font-bold">Usage</h2>
-        <docs-code-block class="block mb-5" title="Import" [code]="importCode" />
+        <docs-code-block
+          class="block mb-5"
+          title="Import"
+          [code]="importCode"
+        />
         <docs-code-block title="Template" [code]="defaultExampleCode" />
       </section>
 
@@ -86,7 +90,13 @@ import { DocsTokens } from '../../docs/docs-tokens';
         <docs-example [code]="withLabelExampleCode">
           <div class="flex flex-col gap-2">
             <label nbLabel for="email">Email</label>
-            <input nbInput id="email" type="email" placeholder="m@example.com" class="w-75" />
+            <input
+              nbInput
+              id="email"
+              type="email"
+              placeholder="m@example.com"
+              class="w-75"
+            />
           </div>
         </docs-example>
       </section>
@@ -96,7 +106,13 @@ import { DocsTokens } from '../../docs/docs-tokens';
         <docs-example [code]="withButtonExampleCode">
           <div class="flex gap-2">
             <input nbInput placeholder="Email" class="w-75" />
-            <button style="background: var(--nb-yellow)" nbButton variant="neutral">Subscribe</button>
+            <button
+              nbButton
+              variant="neutral"
+              style="--nb-button-bg: var(--nb-yellow)"
+            >
+              Subscribe
+            </button>
           </div>
         </docs-example>
       </section>
@@ -129,18 +145,14 @@ import { DocsTokens } from '../../docs/docs-tokens';
                 >
                   Type
                 </th>
-                <th
-                  class="border-b-2 border-(--nb-border) px-4 py-3 font-bold"
-                >
+                <th class="border-b-2 border-(--nb-border) px-4 py-3 font-bold">
                   Default
                 </th>
               </tr>
             </thead>
             <tbody class="font-medium">
               <tr>
-                <td class="border-r-2 border-(--nb-border) px-4 py-3">
-                  size
-                </td>
+                <td class="border-r-2 border-(--nb-border) px-4 py-3">size</td>
                 <td
                   class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
                 >
@@ -174,7 +186,7 @@ export default class InputPageComponent {
 
   protected readonly withButtonExampleCode = `<div class="flex gap-2">
   <input nbInput placeholder="Email" class="w-75" />
-  <button nbButton variant="neutral">Subscribe</button>
+  <button nbButton variant="neutral" style="--nb-button-bg: var(--nb-yellow)">Subscribe</button>
 </div>`;
 
   protected readonly fileExampleCode = `<input nbInput type="file" class="w-[250px]" />`;

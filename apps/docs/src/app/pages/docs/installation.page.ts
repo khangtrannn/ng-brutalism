@@ -28,8 +28,8 @@ import { DocsTokens } from '../../docs/docs-tokens';
       <section id="provider">
         <h2 class="mt-10 mb-4 text-2xl font-bold">Provider</h2>
         <p class="mb-5 text-base font-medium">
-          Register the provider once if you want to customize the global
-          theme tokens from Angular configuration.
+          Register the provider once if you want to customize the global theme
+          tokens from Angular configuration.
         </p>
         <docs-code-block title="app.config.ts" [code]="providerCode" />
       </section>
@@ -68,7 +68,7 @@ import { NbButton } from '@ng-brutalism/ui';
   selector: 'app-example',
   standalone: true,
   imports: [NbButton],
-  template: \`<button nbButton variant="neutral">Ship it</button>\`,
+  template: \`<button nbButton variant="neutral" style="--nb-button-bg: #fff">Ship it</button>\`,
 })
 export class ExampleComponent {}`;
 }

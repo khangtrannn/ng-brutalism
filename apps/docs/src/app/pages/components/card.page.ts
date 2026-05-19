@@ -72,7 +72,11 @@ import JobListingCardExampleComponent from './examples/job-listing-card';
 
       <section id="usage">
         <h2 class="mt-10 mb-4 text-2xl font-bold">Usage</h2>
-        <docs-code-block class="block mb-5" title="Import" [code]="importCode" />
+        <docs-code-block
+          class="block mb-5"
+          title="Import"
+          [code]="importCode"
+        />
         <docs-code-block title="Template" [code]="templateCode" />
       </section>
 
@@ -88,11 +92,14 @@ import JobListingCardExampleComponent from './examples/job-listing-card';
             </nb-card-header>
             <nb-card-content>
               <p class="text-sm">
-                Check your inbox for the latest updates and messages from your team.
+                Check your inbox for the latest updates and messages from your
+                team.
               </p>
             </nb-card-content>
             <nb-card-footer>
-              <button nbButton size="sm">View all</button>
+              <button nbButton size="sm" style="--nb-button-bg: #fff">
+                View all
+              </button>
             </nb-card-footer>
           </nb-card>
         </docs-example>
@@ -101,7 +108,8 @@ import JobListingCardExampleComponent from './examples/job-listing-card';
       <section id="parts">
         <h2 class="mt-10 mb-4 text-2xl font-bold">Sub-parts</h2>
         <p class="mb-4 text-sm font-medium">
-          The card component is composed of 7 sub-parts that can be used independently.
+          The card component is composed of 7 sub-parts that can be used
+          independently.
         </p>
 
         <div
@@ -115,9 +123,7 @@ import JobListingCardExampleComponent from './examples/job-listing-card';
                 >
                   Selector
                 </th>
-                <th
-                  class="border-b-2 border-(--nb-border) px-4 py-3 font-bold"
-                >
+                <th class="border-b-2 border-(--nb-border) px-4 py-3 font-bold">
                   Description
                 </th>
               </tr>
@@ -129,9 +135,7 @@ import JobListingCardExampleComponent from './examples/job-listing-card';
                 >
                   neo-card
                 </td>
-                <td
-                  class="border-b-2 border-(--nb-border) px-4 py-3 text-sm"
-                >
+                <td class="border-b-2 border-(--nb-border) px-4 py-3 text-sm">
                   Root container with border, shadow, and background
                 </td>
               </tr>
@@ -141,10 +145,9 @@ import JobListingCardExampleComponent from './examples/job-listing-card';
                 >
                   neo-card-header
                 </td>
-                <td
-                  class="border-b-2 border-(--nb-border) px-4 py-3 text-sm"
-                >
-                  Top section with grid layout for title, description, and action
+                <td class="border-b-2 border-(--nb-border) px-4 py-3 text-sm">
+                  Top section with grid layout for title, description, and
+                  action
                 </td>
               </tr>
               <tr>
@@ -153,9 +156,7 @@ import JobListingCardExampleComponent from './examples/job-listing-card';
                 >
                   neo-card-title
                 </td>
-                <td
-                  class="border-b-2 border-(--nb-border) px-4 py-3 text-sm"
-                >
+                <td class="border-b-2 border-(--nb-border) px-4 py-3 text-sm">
                   Heading text inside the header
                 </td>
               </tr>
@@ -165,9 +166,7 @@ import JobListingCardExampleComponent from './examples/job-listing-card';
                 >
                   neo-card-description
                 </td>
-                <td
-                  class="border-b-2 border-(--nb-border) px-4 py-3 text-sm"
-                >
+                <td class="border-b-2 border-(--nb-border) px-4 py-3 text-sm">
                   Subtitle or description text inside the header
                 </td>
               </tr>
@@ -177,9 +176,7 @@ import JobListingCardExampleComponent from './examples/job-listing-card';
                 >
                   neo-card-action
                 </td>
-                <td
-                  class="border-b-2 border-(--nb-border) px-4 py-3 text-sm"
-                >
+                <td class="border-b-2 border-(--nb-border) px-4 py-3 text-sm">
                   Action slot positioned top-right of the header
                 </td>
               </tr>
@@ -189,9 +186,7 @@ import JobListingCardExampleComponent from './examples/job-listing-card';
                 >
                   neo-card-content
                 </td>
-                <td
-                  class="border-b-2 border-(--nb-border) px-4 py-3 text-sm"
-                >
+                <td class="border-b-2 border-(--nb-border) px-4 py-3 text-sm">
                   Main body area
                 </td>
               </tr>
@@ -213,8 +208,7 @@ import JobListingCardExampleComponent from './examples/job-listing-card';
       <docs-tokens component="card" />
     </article>
   `,
-  styles: [
-  ],
+  styles: [],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export default class CardPageComponent {
@@ -237,7 +231,7 @@ export default class CardPageComponent {
     <p>Card Content</p>
   </nb-card-content>
   <nb-card-footer>
-    <button nbButton>Action</button>
+    <button nbButton style="--nb-button-bg: #fff">Action</button>
   </nb-card-footer>
 </nb-card>`;
 
@@ -265,7 +259,7 @@ export class CardDemoComponent {}`;
     </p>
   </nb-card-content>
   <nb-card-footer>
-    <button nbButton size="sm">View all</button>
+    <button nbButton size="sm" style="--nb-button-bg: #fff">View all</button>
   </nb-card-footer>
 </nb-card>`;
 }

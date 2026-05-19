@@ -38,7 +38,13 @@ import {
     NbTitle,
   ],
   template: `
-    <button nbButton style="--nb-button-bg: var(--nb-yellow)" (click)="dialog().open()">Contact Us</button>
+    <button
+      nbButton
+      style="--nb-button-bg: var(--nb-yellow)"
+      (click)="dialog().open()"
+    >
+      Contact Us
+    </button>
     <nb-dialog #dialogRef>
       <div
         class="relative bg-[#faf3d6] px-6 pt-7 pb-5 sm:px-10 sm:pt-9 sm:pb-6"
@@ -49,6 +55,7 @@ import {
           size="icon"
           variant="neutral"
           aria-label="Close dialog"
+          style="--nb-button-bg: #fff"
           class="absolute right-6 top-6 text-xl leading-none sm:right-10 sm:top-9"
         >
           &times;
@@ -155,7 +162,10 @@ import {
           </div>
 
           <div class="grid gap-2">
-            <label nbLabel id="contact-subject-label" class="font-mono text-base"
+            <label
+              nbLabel
+              id="contact-subject-label"
+              class="font-mono text-base"
               >Subject</label
             >
             <nb-input-group>
@@ -171,7 +181,9 @@ import {
                   stroke-linejoin="round"
                   aria-hidden="true"
                 >
-                  <path d="M12 2H2v10l9.29 9.29c.94.94 2.48.94 3.42 0l6.58-6.58c.94-.94.94-2.48 0-3.42L12 2Z" />
+                  <path
+                    d="M12 2H2v10l9.29 9.29c.94.94 2.48.94 3.42 0l6.58-6.58c.94-.94.94-2.48 0-3.42L12 2Z"
+                  />
                   <path d="M7 7h.01" />
                 </svg>
               </span>
@@ -278,6 +290,7 @@ import {
             nbButton
             variant="neutral"
             nbDialogClose
+            style="--nb-button-bg: #fff"
             class="min-w-28 font-mono"
           >
             Cancel

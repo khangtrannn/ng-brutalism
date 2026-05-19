@@ -52,6 +52,7 @@ import {
           size="icon"
           variant="neutral"
           aria-label="Close dialog"
+          style="--nb-button-bg: #fff"
           class="absolute right-6 top-6 text-xl leading-none sm:right-10 sm:top-9"
         >
           &times;
@@ -174,6 +175,7 @@ import {
           nbButton
           variant="neutral"
           nbDialogClose
+          style="--nb-button-bg: #fff"
           class="min-w-28 font-mono"
         >
           Cancel

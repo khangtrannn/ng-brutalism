@@ -24,8 +24,8 @@ import { ContactUsDialog } from './examples/contact-us-dialog';
           <h1>Dialog</h1>
           <p class="mt-3 max-w-3xl text-base font-medium sm:text-lg">
             A modal dialog built on the native
-            <code class="font-mono">&lt;dialog&gt;</code> element.
-            Compound API with SSR-safe open/close. Click the backdrop to dismiss.
+            <code class="font-mono">&lt;dialog&gt;</code> element. Compound API
+            with SSR-safe open/close. Click the backdrop to dismiss.
           </p>
         </div>
 
@@ -58,7 +58,11 @@ import { ContactUsDialog } from './examples/contact-us-dialog';
 
       <section id="usage">
         <h2 class="mt-10 mb-4 text-2xl font-bold">Usage</h2>
-        <docs-code-block class="block mb-5" title="Import" [code]="importCode" />
+        <docs-code-block
+          class="block mb-5"
+          title="Import"
+          [code]="importCode"
+        />
         <docs-code-block title="Template" [code]="contactUsExampleCode" />
       </section>
 
@@ -73,34 +77,81 @@ import { ContactUsDialog } from './examples/contact-us-dialog';
           <table class="w-full border-collapse text-left">
             <thead class="bg-nb-secondary text-nb-secondary-fg">
               <tr>
-                <th class="border-b-2 border-r-2 border-(--nb-border) px-4 py-3 font-bold">Part</th>
-                <th class="border-b-2 border-(--nb-border) px-4 py-3 font-bold">Description</th>
+                <th
+                  class="border-b-2 border-r-2 border-(--nb-border) px-4 py-3 font-bold"
+                >
+                  Part
+                </th>
+                <th class="border-b-2 border-(--nb-border) px-4 py-3 font-bold">
+                  Description
+                </th>
               </tr>
             </thead>
             <tbody class="font-medium">
               <tr class="border-b-2 border-(--nb-border)">
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">nb-dialog</td>
-                <td class="px-4 py-3">Root component. Renders the native <code class="font-mono">&lt;dialog&gt;</code> modal. Exposes <code class="font-mono">open()</code> and <code class="font-mono">close()</code> for <code class="font-mono">viewChild</code> access.</td>
+                <td
+                  class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
+                >
+                  nb-dialog
+                </td>
+                <td class="px-4 py-3">
+                  Root component. Renders the native
+                  <code class="font-mono">&lt;dialog&gt;</code> modal. Exposes
+                  <code class="font-mono">open()</code> and
+                  <code class="font-mono">close()</code> for
+                  <code class="font-mono">viewChild</code> access.
+                </td>
               </tr>
               <tr class="border-b-2 border-(--nb-border)">
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">[nbDialogTitle]</td>
-                <td class="px-4 py-3">Directive applied to a heading element. Styles the dialog title.</td>
+                <td
+                  class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
+                >
+                  [nbDialogTitle]
+                </td>
+                <td class="px-4 py-3">
+                  Directive applied to a heading element. Styles the dialog
+                  title.
+                </td>
               </tr>
               <tr class="border-b-2 border-(--nb-border)">
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">[nbDialogDescription]</td>
-                <td class="px-4 py-3">Directive for muted supporting text below the title.</td>
+                <td
+                  class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
+                >
+                  [nbDialogDescription]
+                </td>
+                <td class="px-4 py-3">
+                  Directive for muted supporting text below the title.
+                </td>
               </tr>
               <tr class="border-b-2 border-(--nb-border)">
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">nb-dialog-content</td>
-                <td class="px-4 py-3">Scrollable body section with top and bottom borders.</td>
+                <td
+                  class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
+                >
+                  nb-dialog-content
+                </td>
+                <td class="px-4 py-3">
+                  Scrollable body section with top and bottom borders.
+                </td>
               </tr>
               <tr class="border-b-2 border-(--nb-border)">
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">nb-dialog-actions</td>
-                <td class="px-4 py-3">Footer section with right-aligned action buttons.</td>
+                <td
+                  class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
+                >
+                  nb-dialog-actions
+                </td>
+                <td class="px-4 py-3">
+                  Footer section with right-aligned action buttons.
+                </td>
               </tr>
               <tr>
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">[nbDialogClose]</td>
-                <td class="px-4 py-3">Directive that closes the dialog on click.</td>
+                <td
+                  class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
+                >
+                  [nbDialogClose]
+                </td>
+                <td class="px-4 py-3">
+                  Directive that closes the dialog on click.
+                </td>
               </tr>
             </tbody>
           </table>
@@ -128,7 +179,7 @@ export default class DialogPageComponent {
   NbTextarea,
 } from '@ng-brutalism/ui';`;
 
-  protected readonly contactUsExampleCode = `<button nbButton (click)="dialog.open()">Contact Us</button>
+  protected readonly contactUsExampleCode = `<button nbButton style="--nb-button-bg: #fff" (click)="dialog.open()">Contact Us</button>
 <nb-dialog #dialog>
   <div class="relative bg-[#faf3d6] px-6 pt-7 pb-5 sm:px-10 sm:pt-9 sm:pb-6">
     <button
@@ -266,7 +317,7 @@ export default class DialogPageComponent {
       <svg width="36" height="14" viewBox="0 0 36 14" fill="none" stroke="#000" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="hidden sm:block" aria-hidden="true">
         <polyline points="2,11 7,3 13,11 19,3 25,11 31,3 34,11" />
       </svg>
-      <button nbButton variant="neutral" nbDialogClose class="min-w-28 font-mono">Cancel</button>
+      <button nbButton variant="neutral" nbDialogClose class="min-w-28 font-mono" style="--nb-button-bg: #fff">Cancel</button>
       <button nbButton nbDialogClose class="flex min-w-36 items-center justify-center gap-2 font-mono" style="--nb-button-bg: #ffd92e; --nb-button-fg: #000;">
         Send Message
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">

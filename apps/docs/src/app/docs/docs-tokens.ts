@@ -137,28 +137,29 @@ const componentTokens: Record<DocsTokenComponent, DocsToken[]> = {
   button: [
     {
       name: '--nb-button-bg',
-      defaultValue: '#fff',
-      usage: 'Button background on each variant',
+      defaultValue: 'var(--nb-main)',
+      usage: 'Button background, reassigned by variant',
     },
     {
       name: '--nb-button-fg',
       defaultValue: 'var(--nb-main-foreground)',
-      usage: 'Button text and icon color',
+      usage: 'Button text and icon color, reassigned by variant',
     },
     {
-      name: '--nb-main-foreground',
-      defaultValue: 'oklch(10% 0 0)',
-      usage: 'Default, noShadow, and reverse foreground fallback',
+      name: '--nb-button-border',
+      defaultValue: 'var(--nb-border)',
+      usage: 'Button border color',
     },
     {
-      name: '--nb-reverse-shadow-offset-x',
-      defaultValue: '-4px',
-      usage: 'Reverse variant hover offset',
+      name: '--nb-button-radius',
+      defaultValue: 'var(--nb-radius)',
+      usage: 'Button corner radius',
     },
     {
-      name: '--nb-reverse-shadow-offset-y',
-      defaultValue: '-4px',
-      usage: 'Reverse variant hover offset',
+      name: '--nb-button-shadow',
+      defaultValue:
+        'var(--nb-shadow-offset-x) var(--nb-shadow-offset-y) 0 var(--nb-shadow)',
+      usage: 'Button box shadow, reassigned by shadow',
     },
   ],
   card: [],
@@ -453,10 +454,14 @@ const componentTokens: Record<DocsTokenComponent, DocsToken[]> = {
         <table class="w-full border-collapse text-left">
           <thead class="bg-nb-secondary text-nb-secondary-fg">
             <tr>
-              <th class="border-b-2 border-r-2 border-(--nb-border) px-4 py-3 font-bold">
+              <th
+                class="border-b-2 border-r-2 border-(--nb-border) px-4 py-3 font-bold"
+              >
                 Token
               </th>
-              <th class="border-b-2 border-r-2 border-(--nb-border) px-4 py-3 font-bold">
+              <th
+                class="border-b-2 border-r-2 border-(--nb-border) px-4 py-3 font-bold"
+              >
                 Default
               </th>
               <th class="border-b-2 border-(--nb-border) px-4 py-3 font-bold">
@@ -466,17 +471,21 @@ const componentTokens: Record<DocsTokenComponent, DocsToken[]> = {
           </thead>
           <tbody class="font-medium">
             @for (token of tokens(); track token.name) {
-              <tr class="border-b-2 border-(--nb-border) last:border-b-0">
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">
-                  {{ token.name }}
-                </td>
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">
-                  {{ token.defaultValue }}
-                </td>
-                <td class="px-4 py-3">
-                  {{ token.usage }}
-                </td>
-              </tr>
+            <tr class="border-b-2 border-(--nb-border) last:border-b-0">
+              <td
+                class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
+              >
+                {{ token.name }}
+              </td>
+              <td
+                class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
+              >
+                {{ token.defaultValue }}
+              </td>
+              <td class="px-4 py-3">
+                {{ token.usage }}
+              </td>
+            </tr>
             }
           </tbody>
         </table>
