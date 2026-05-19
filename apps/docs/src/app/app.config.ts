@@ -1,4 +1,4 @@
-import { ApplicationConfig, provideZoneChangeDetection } from '@angular/core';
+import { ApplicationConfig, provideZonelessChangeDetection } from '@angular/core';
 import {
   provideHttpClient,
   withFetch,
@@ -17,7 +17,7 @@ import { DocsTitleStrategy } from './docs/docs-title-strategy';
 
 export const appConfig: ApplicationConfig = {
   providers: [
-    provideZoneChangeDetection({ eventCoalescing: true }),
+    provideZonelessChangeDetection(),
     provideFileRouter(
       withExtraRoutes([
         {
