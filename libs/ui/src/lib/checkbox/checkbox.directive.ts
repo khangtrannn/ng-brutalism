@@ -16,10 +16,14 @@ export class NbCheckbox {
 
   protected readonly classes = computed(() =>
     nbClass(
+      '[--nb-checkbox-bg:var(--nb-main)]',
+      '[--nb-checkbox-fg:#fff]',
+      '[--nb-checkbox-border:var(--nb-border)]',
+      '[--nb-checkbox-radius:0]',
       'peer grid shrink-0 cursor-pointer appearance-none place-content-center',
-      'outline-2 outline-(--nb-border) ring-offset-white',
-      'checked:bg-(--nb-main) checked:text-white',
-      'focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-(--nb-border) focus-visible:ring-offset-2',
+      'rounded-(--nb-checkbox-radius) outline-2 outline-(--nb-checkbox-border) ring-offset-white',
+      'checked:bg-(--nb-checkbox-bg) checked:text-(--nb-checkbox-fg)',
+      'focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-(--nb-checkbox-border) focus-visible:ring-offset-2',
       'disabled:opacity-50 disabled:cursor-not-allowed',
       this.sizeClass()
     )

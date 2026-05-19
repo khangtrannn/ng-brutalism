@@ -1,1 +1,1 @@
-export type NbBadgeVariant = 'default' | 'secondary' | 'success' | 'warning' | 'destructive';
+export type NbBadgeVariant = 'default' | 'secondary' | 'success' | 'warning' | 'danger';

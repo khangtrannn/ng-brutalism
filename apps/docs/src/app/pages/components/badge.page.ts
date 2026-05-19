@@ -61,7 +61,7 @@ import { DocsTokens } from '../../docs/docs-tokens';
             <span nbBadge variant="secondary">Secondary</span>
             <span nbBadge variant="success">Success</span>
             <span nbBadge variant="warning">Warning</span>
-            <span nbBadge variant="destructive">Destructive</span>
+            <span nbBadge variant="danger">Danger</span>
           </div>
         </docs-example>
       </section>
@@ -86,7 +86,7 @@ import { DocsTokens } from '../../docs/docs-tokens';
               <tr>
                 <td class="border-r-2 border-(--nb-border) px-4 py-3">variant</td>
                 <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">
-                  'default' | 'secondary' | 'success' | 'warning' | 'destructive'
+                  'default' | 'secondary' | 'success' | 'warning' | 'danger'
                 </td>
                 <td class="px-4 py-3 font-mono text-sm">'default'</td>
               </tr>
@@ -107,5 +107,5 @@ export default class BadgePageComponent {
 <span nbBadge variant="secondary">Secondary</span>
 <span nbBadge variant="success">Success</span>
 <span nbBadge variant="warning">Warning</span>
-<span nbBadge variant="destructive">Destructive</span>`;
+<span nbBadge variant="danger">Danger</span>`;
 }

@@ -19,7 +19,7 @@ export class NbInputPrefix {
 
   protected readonly classes = computed(() =>
     nbClass(
-      '[--nb-input-group-addon-bg:var(--nb-yellow)]',
+      '[--nb-input-group-addon-bg:#ffd24a]',
       '[--nb-input-group-prefix-bg:var(--nb-input-group-addon-bg)]',
       'flex w-12 shrink-0 justify-center',
       'border-r-2 border-(--nb-input-group-border,var(--nb-border))',

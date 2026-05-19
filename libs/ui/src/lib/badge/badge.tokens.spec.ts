@@ -47,7 +47,7 @@ describe('NbBadge token surface', () => {
     ['secondary', 'var(--nb-accent)', 'var(--nb-accent-foreground)'],
     ['success', 'var(--nb-success)', 'var(--nb-success-foreground)'],
     ['warning', 'var(--nb-warning)', 'var(--nb-warning-foreground)'],
-    ['destructive', 'var(--nb-danger)', 'var(--nb-danger-foreground)'],
+    ['danger', 'var(--nb-danger)', 'var(--nb-danger-foreground)'],
   ] satisfies Array<[NbBadgeVariant, string, string]>)(
     'variant="%s" reassigns expected color tokens',
     async (variant, bg, fg) => {

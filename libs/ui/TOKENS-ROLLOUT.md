@@ -768,25 +768,127 @@ Verified:
 
 Manual docs visual check for `/components/dialog` is still outstanding.
 
+### 5.8 Checkbox
+
+Status as of 2026-05-19: checkbox scoped-token rollout is implemented.
+
+- `libs/ui/src/lib/checkbox/checkbox.directive.ts` now declares and reads:
+  - `--nb-checkbox-bg: var(--nb-main)`
+  - `--nb-checkbox-fg: #fff`
+  - `--nb-checkbox-border: var(--nb-border)`
+  - `--nb-checkbox-radius: 0`
+- The checked-state fill now reads `--nb-checkbox-bg` instead of `--nb-main` directly. The outline and focus ring now read `--nb-checkbox-border`.
+- Added `libs/ui/src/lib/checkbox/checkbox.tokens.spec.ts`.
+- Updated `apps/docs/src/app/docs/docs-tokens.ts` so the checkbox table lists the four scoped checkbox tokens instead of the global `--nb-main` row.
+
+Verified:
+
+- `pnpm vitest run --config libs/ui/vitest.config.mts src/lib/checkbox/checkbox.tokens.spec.ts src/lib/avatar/avatar.tokens.spec.ts src/lib/image-card/image-card.tokens.spec.ts --reporter=verbose` — passed.
+
+Known verification gaps:
+
+- Manual docs visual checks are still outstanding for `/components/checkbox`: unchecked, checked, disabled, sizes, light mode, dark mode, and scoped override smoke tests for `--nb-checkbox-bg`, `--nb-checkbox-border`, and `--nb-checkbox-radius`.
+
+### 5.9 Title
+
+Status as of 2026-05-19: title requires no code migration.
+
+- `libs/ui/src/lib/title/title.directive.ts` only marks the host with `data-nb-title`.
+- The existing wave tokens remain on-grammar and are implemented in `libs/ui/src/lib/styles/styles.css`:
+  - `--nb-title-wave-width`
+  - `--nb-title-wave-height`
+  - `--nb-title-wave-gap`
+  - `--nb-title-wave-color`
+- `apps/docs/src/app/docs/docs-tokens.ts` already documents the wave token surface.
+
+Known verification gaps:
+
+- Manual docs visual checks are still outstanding for `/components/title`: default, custom wave, mixed-content examples, light mode, dark mode, and scoped override smoke tests for the wave tokens.
+
+### 5.10 Image-card
+
+Status as of 2026-05-19: image-card scoped-token rollout is implemented.
+
+- `libs/ui/src/lib/image-card/image-card.ts` now declares and reads:
+  - `--nb-image-card-bg: var(--nb-background)`
+  - `--nb-image-card-fg: var(--nb-foreground)`
+  - `--nb-image-card-border: var(--nb-border)`
+  - `--nb-image-card-radius: var(--nb-radius)`
+  - `--nb-image-card-shadow: var(--nb-shadow-offset-x) var(--nb-shadow-offset-y) 0 var(--nb-shadow)`
+- The optional image divider now reads `--nb-image-card-border`.
+- Added `libs/ui/src/lib/image-card/image-card.tokens.spec.ts`.
+- Updated `apps/docs/src/app/docs/docs-tokens.ts` with the five-token image-card surface.
+
+Verified:
+
+- `pnpm vitest run --config libs/ui/vitest.config.mts src/lib/checkbox/checkbox.tokens.spec.ts src/lib/avatar/avatar.tokens.spec.ts src/lib/image-card/image-card.tokens.spec.ts --reporter=verbose` — passed.
+
+Known verification gaps:
+
+- Manual docs visual checks are still outstanding for `/components/image-card`: captioned and image-only examples, light mode, dark mode, and scoped override smoke tests for `--nb-image-card-bg`, `--nb-image-card-border`, `--nb-image-card-radius`, and `--nb-image-card-shadow`.
+
+### 5.11 Avatar
+
+Status as of 2026-05-19: avatar scoped-token rollout is implemented.
+
+- `libs/ui/src/lib/avatar/avatar.ts` now declares and reads:
+  - `--nb-avatar-bg: var(--nb-secondary-background)`
+  - `--nb-avatar-fg: var(--nb-foreground)`
+  - `--nb-avatar-border: var(--nb-border)`
+  - `--nb-avatar-radius: 9999px`
+  - `--nb-avatar-shadow: 2px 2px 0 0 var(--nb-shadow)`
+- Added `libs/ui/src/lib/avatar/avatar.tokens.spec.ts`.
+- Updated `apps/docs/src/app/docs/docs-tokens.ts` with the five-token avatar surface instead of exposing `--nb-secondary-background` directly.
+
+Verified:
+
+- `pnpm vitest run --config libs/ui/vitest.config.mts src/lib/checkbox/checkbox.tokens.spec.ts src/lib/avatar/avatar.tokens.spec.ts src/lib/image-card/image-card.tokens.spec.ts --reporter=verbose` — passed.
+
+Known verification gaps:
+
+- Manual docs visual checks are still outstanding for `/components/avatar`: image, fallback, sizes, light mode, dark mode, and scoped override smoke tests for `--nb-avatar-bg`, `--nb-avatar-border`, `--nb-avatar-radius`, and `--nb-avatar-shadow`.
+
+### 5.12 Label and marquee
+
+Status as of 2026-05-19: no additional scoped-token migration is needed.
+
+- `libs/ui/src/lib/label/label.directive.ts` has no color/border/shadow/radius surface; it only applies structural typography and disabled-state classes. `apps/docs/src/app/docs/docs-tokens.ts` no longer advertises `--nb-font-weight-bold` as a label token because the directive does not read it.
+- `libs/ui/src/lib/marquee/marquee.ts` keeps the existing conforming `--nb-marquee-duration` token. No new component-scoped color/border tokens were added because there is no prop or documented customization driver for them in this rollout.
+
+Known verification gaps:
+
+- Manual docs visual checks are still outstanding for `/components/label` and `/components/marquee`.
+
 ---
 
 ## 6. Phase 3 — Cross-cutting cleanup
 
-After every component is migrated:
+**Status 2026-05-19: all five steps complete.**
 
-1. **`theme.css` audit.** Every variable here should be a _global_ theme token. Component-scoped tokens should not appear in `theme.css`. Remove `--nb-input-addon-bg`, `--nb-input-prefix-bg` once consumers are migrated. Visual parity must hold — verify by inspecting docs pages.
-2. **`styles.css` `@layer base` audit.** Same principle. The `--nb-input-background` fallback in `styles.css` lines 73 / 110 — replace with the new `--nb-input-bg` token sourced from the directive's class string. Watch out for cascade ordering: the `:where(...)` rule must not paint before the directive's class binds.
-3. **Variant naming consistency.** Badge's `destructive` vs button's `danger`. Recommend renaming badge's `destructive` → `danger`. **Breaking change** — separate PR with its own visual + API audit.
-4. **Drop `--nb-yellow`.** Its only consumer is `:where([nbInputPrefix]:has(svg))` in `styles.css`. Replace with `--nb-input-group-prefix-bg` overridden in that scope, then remove from `theme.css`. Or keep, documented as "legacy palette token, not part of the design-token API."
-5. **`docs-tokens.ts` `theme:` entry.** Prune to global tokens only. Every component table matches its real surface.
+1. ~~**`theme.css` audit.**~~ **DONE.** `libs/ui/src/lib/styles/theme.css` contains only global theme tokens. The component-scoped `--nb-input-addon-bg` and `--nb-input-prefix-bg` entries were removed in §5.6. Verified by reading the current file end-to-end.
+2. ~~**`styles.css` `@layer base` audit.**~~ **DONE.** `--nb-input-background` is gone everywhere; the base-layer rule now reads `var(--nb-input-bg, var(--nb-field-bg))`. The select base background reads `var(--nb-select-bg, var(--nb-input-bg, var(--nb-field-bg)))`. Cascade ordering is preserved by keeping the `:where(...)` zero-specificity.
+3. ~~**Variant naming consistency.**~~ **DONE.** Badge `destructive` → `danger` landed alongside the rest of Phase 3:
+   - `libs/ui/src/lib/badge/badge.types.ts` exports the new union.
+   - `libs/ui/src/lib/badge/badge.directive.ts` variant map row renamed.
+   - `libs/ui/src/lib/badge/badge.tokens.spec.ts` `it.each` row renamed.
+   - `apps/docs/src/app/pages/components/badge.page.ts` example markup + API table + snippet code updated.
+   - `rg -n "destructive" apps libs -g '*.ts' -g '*.html'` returns only a usage-description string in `docs-tokens.ts` for `--nb-danger`; no code uses the variant name.
+4. ~~**Drop `--nb-yellow`.**~~ **DONE.** `--nb-yellow` removed from `libs/ui/src/lib/styles/theme.css`. The two lib consumers were swapped to the literal hex `#ffd24a`:
+   - `libs/ui/src/lib/styles/styles.css:101` SVG-prefix background.
+   - `libs/ui/src/lib/input-group/input-group-prefix.ts:22` and `input-group-suffix.ts:22` addon default. `input-group.tokens.spec.ts` updated to match.
+   - `apps/docs/src/styles.css` keeps its own `--nb-yellow` declaration; the docs app continues to use it for chrome (navbar, sidebar, toc, code-block, button overrides). It's a docs-app-only palette token now, not a lib design token.
+   - `rg -n -- "--nb-yellow" libs` returns no matches.
+5. ~~**`docs-tokens.ts` `theme:` entry.**~~ **DONE.** Pruned `--nb-yellow` row. Synced `--nb-danger`/`--nb-success`/`--nb-warning` default values with `theme.css` (they had drifted: `#ff6b6b`/`#a8ff78`/`#ffda6a` → `#ff4f8a`/`#63e6be`/`#ffd24a`). Description of `--nb-danger` no longer mentions "destructive".
 
 ---
 
 ## 7. Phase 4 — Documentation pass
 
-1. Update `TOKENS.md` itself once Phase 1 is real: change "Pilot — button only" to "Pilot complete." Adjust the spec's button variant/default table if §8 open question 1 resolved in favor of preserving `#fff` defaults.
-2. Add a Migration section to `README.md` or CHANGELOG: button variant renames (`reverse`/`noShadow` → `shadow` prop), input-group token renames, badge `destructive` → `danger` if Phase 3 step 3 accepted.
-3. Each component's docs page: verify examples are idiomatic with the new tokens. Replace any leftover leaky `style="--nb-main: ..."` overrides with scoped `style="--nb-<component>-bg: ..."` ones.
+**Status 2026-05-19: complete.**
+
+1. ~~Update `TOKENS.md` itself once Phase 1 is real: change "Pilot — button only" to "Pilot complete."~~ **DONE.** `libs/ui/TOKENS.md` "Pilot: Button" now opens with a status callout flagging pilot complete, and the "Rollout plan" steps 1–3 are struck through with pointers to this file for per-component status.
+2. ~~Add a Migration section to `README.md` or CHANGELOG.~~ **DONE.** `README.md` now has a "Migration notes (pre-1.0)" section covering: button `reverse`/`noShadow` variant removal + `shadow` prop, new button default rendering `var(--nb-main)`, six new button variants, badge `destructive` → `danger`, input-group token renames, `--nb-input-background` → `--nb-input-bg`, `--nb-dialog-description-color` → `--nb-dialog-description-fg`, and `--nb-yellow` removal from the lib.
+3. ~~Each component's docs page: verify examples are idiomatic with the new tokens. Replace any leftover leaky `style="--nb-main: ..."` overrides with scoped `style="--nb-<component>-bg: ..."` ones.~~ **DONE.** `rg -n 'style="--nb-main:' apps` returns no matches. The original motivating leak in `accordion.page.ts` was already swapped to `style="--nb-accordion-trigger-bg: ..."` in §5.1; no other component docs page reassigns a global token in inline `style=`.
 
 ---
 

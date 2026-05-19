@@ -71,7 +71,7 @@ describe('NbInputGroup token surface', () => {
     const suffix = findSuffix(fixture);
 
     expect(prefix.className).toContain(
-      '[--nb-input-group-addon-bg:var(--nb-yellow)]'
+      '[--nb-input-group-addon-bg:#ffd24a]'
     );
     expect(prefix.className).toContain(
       '[--nb-input-group-prefix-bg:var(--nb-input-group-addon-bg)]'
@@ -80,7 +80,7 @@ describe('NbInputGroup token surface', () => {
     expect(prefix.className).not.toContain('--nb-input-prefix-bg');
 
     expect(suffix.className).toContain(
-      '[--nb-input-group-addon-bg:var(--nb-yellow)]'
+      '[--nb-input-group-addon-bg:#ffd24a]'
     );
     expect(suffix.className).toContain(
       '[--nb-input-group-suffix-bg:var(--nb-input-group-addon-bg)]'

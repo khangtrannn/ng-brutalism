@@ -88,7 +88,9 @@ Symmetry is not a reason to expose a token.
 
 ## Pilot: Button
 
-Button is the pilot component for this system. The rest of the library follows the same pattern once the pilot is validated.
+> **Status: pilot complete.** Button shipped first (commit `5168aca`) as the proof-of-pattern, then the same recipe rolled out across the rest of the library (accordion, badge, card, input, textarea, select, input-group, dialog, checkbox, image-card, avatar). See `TOKENS-ROLLOUT.md` for per-component status.
+
+Button is the pilot component for this system. The rest of the library follows the same pattern.
 
 ### Public props
 
@@ -198,13 +200,7 @@ classes = computed(() => nbClass(
 
 ## Rollout plan
 
-1. **Pilot — button only.** Validate the pattern feels right in practice.
-2. **Review checkpoint.** Before applying to other components, check:
-   - Is the directive readable, or did the class string balloon?
-   - Are the variant/shadow class maps short and obvious?
-   - Does devtools show the token chain (`--nb-button-bg: var(--nb-primary)`) cleanly?
-   - Does light + dark mode work for all variants?
-   - Are the foreground colors readable against every bg in the theme?
-   - Does `style="--nb-button-bg: hotpink"` feel natural to write?
-3. **If yes — roll out to:** accordion (the original motivating example), card, input, select, dialog, checkbox, badge, etc.
-4. **If no — adjust the pattern based on what's awkward.**
+1. ~~**Pilot — button only.** Validate the pattern feels right in practice.~~ **Complete** (commit `5168aca`).
+2. ~~**Review checkpoint.**~~ **Complete.** Directive stayed readable, variant/shadow maps fit on one screen, DevTools token chain resolves cleanly, scoped `style="--nb-button-bg: hotpink"` overrides do not leak. Light/dark contrast review tracked separately.
+3. ~~**Roll out to** accordion, card, input/textarea, select, input-group, dialog, checkbox, badge, image-card, avatar, title, label, marquee.~~ **Complete.** See `TOKENS-ROLLOUT.md` for per-component PR history and verification matrix.
+4. **Cleanup (Phase 3) and documentation (Phase 4).** See `TOKENS-ROLLOUT.md` §6–§7.

@@ -113,9 +113,29 @@ const componentTokens: Record<DocsTokenComponent, DocsToken[]> = {
   ],
   avatar: [
     {
-      name: '--nb-secondary-background',
-      defaultValue: 'oklch(96% 0 0)',
+      name: '--nb-avatar-bg',
+      defaultValue: 'var(--nb-secondary-background)',
       usage: 'Fallback background',
+    },
+    {
+      name: '--nb-avatar-fg',
+      defaultValue: 'var(--nb-foreground)',
+      usage: 'Fallback text color',
+    },
+    {
+      name: '--nb-avatar-border',
+      defaultValue: 'var(--nb-border)',
+      usage: 'Avatar border color',
+    },
+    {
+      name: '--nb-avatar-radius',
+      defaultValue: '9999px',
+      usage: 'Avatar corner radius',
+    },
+    {
+      name: '--nb-avatar-shadow',
+      defaultValue: '2px 2px 0 0 var(--nb-shadow)',
+      usage: 'Avatar box shadow',
     },
   ],
   badge: [
@@ -203,9 +223,24 @@ const componentTokens: Record<DocsTokenComponent, DocsToken[]> = {
   ],
   checkbox: [
     {
-      name: '--nb-main',
-      defaultValue: 'oklch(90% 0.15 95)',
+      name: '--nb-checkbox-bg',
+      defaultValue: 'var(--nb-main)',
       usage: 'Checked background',
+    },
+    {
+      name: '--nb-checkbox-fg',
+      defaultValue: '#fff',
+      usage: 'Checked text color',
+    },
+    {
+      name: '--nb-checkbox-border',
+      defaultValue: 'var(--nb-border)',
+      usage: 'Checkbox outline and focus ring color',
+    },
+    {
+      name: '--nb-checkbox-radius',
+      defaultValue: '0',
+      usage: 'Checkbox corner radius',
     },
   ],
   dialog: [
@@ -250,7 +285,34 @@ const componentTokens: Record<DocsTokenComponent, DocsToken[]> = {
       usage: 'Actions area background',
     },
   ],
-  'image-card': [],
+  'image-card': [
+    {
+      name: '--nb-image-card-bg',
+      defaultValue: 'var(--nb-background)',
+      usage: 'Image card background',
+    },
+    {
+      name: '--nb-image-card-fg',
+      defaultValue: 'var(--nb-foreground)',
+      usage: 'Image card text color',
+    },
+    {
+      name: '--nb-image-card-border',
+      defaultValue: 'var(--nb-border)',
+      usage: 'Image card border and image divider color',
+    },
+    {
+      name: '--nb-image-card-radius',
+      defaultValue: 'var(--nb-radius)',
+      usage: 'Image card corner radius',
+    },
+    {
+      name: '--nb-image-card-shadow',
+      defaultValue:
+        'var(--nb-shadow-offset-x) var(--nb-shadow-offset-y) 0 var(--nb-shadow)',
+      usage: 'Image card box shadow',
+    },
+  ],
   input: [
     {
       name: '--nb-input-bg',
@@ -311,13 +373,7 @@ const componentTokens: Record<DocsTokenComponent, DocsToken[]> = {
       usage: 'Suffix background',
     },
   ],
-  label: [
-    {
-      name: '--nb-font-weight-bold',
-      defaultValue: '700',
-      usage: 'Label font weight token',
-    },
-  ],
+  label: [],
   marquee: [
     {
       name: '--nb-marquee-duration',
@@ -379,11 +435,6 @@ const componentTokens: Record<DocsTokenComponent, DocsToken[]> = {
       usage: 'Text on secondary surfaces',
     },
     {
-      name: '--nb-yellow',
-      defaultValue: '#ffd24a',
-      usage: 'Yellow accent and select icons',
-    },
-    {
       name: '--nb-accent',
       defaultValue: '#8ae9ff',
       usage: 'Accent color',
@@ -395,8 +446,8 @@ const componentTokens: Record<DocsTokenComponent, DocsToken[]> = {
     },
     {
       name: '--nb-danger',
-      defaultValue: '#ff6b6b',
-      usage: 'Danger and destructive states',
+      defaultValue: '#ff4f8a',
+      usage: 'Danger states',
     },
     {
       name: '--nb-danger-foreground',
@@ -405,7 +456,7 @@ const componentTokens: Record<DocsTokenComponent, DocsToken[]> = {
     },
     {
       name: '--nb-success',
-      defaultValue: '#a8ff78',
+      defaultValue: '#63e6be',
       usage: 'Success states',
     },
     {
@@ -415,7 +466,7 @@ const componentTokens: Record<DocsTokenComponent, DocsToken[]> = {
     },
     {
       name: '--nb-warning',
-      defaultValue: '#ffda6a',
+      defaultValue: '#ffd24a',
       usage: 'Warning states',
     },
     {

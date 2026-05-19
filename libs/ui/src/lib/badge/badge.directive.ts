@@ -38,7 +38,7 @@ export class NbBadge {
         '[--nb-badge-bg:var(--nb-success)] [--nb-badge-fg:var(--nb-success-foreground)]',
       warning:
         '[--nb-badge-bg:var(--nb-warning)] [--nb-badge-fg:var(--nb-warning-foreground)]',
-      destructive:
+      danger:
         '[--nb-badge-bg:var(--nb-danger)] [--nb-badge-fg:var(--nb-danger-foreground)]',
     };
 
