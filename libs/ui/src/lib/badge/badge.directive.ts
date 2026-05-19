@@ -16,7 +16,8 @@ export class NbBadge {
 
   protected readonly classes = computed(() =>
     nbClass(
-      'inline-flex items-center rounded-nb border-2 border-(--nb-border)',
+      'inline-flex items-center rounded-(--nb-badge-radius) border-2 border-(--nb-border)',
+      '[--nb-badge-radius:9999px]',
       'px-2.5 py-0.5 text-xs font-bold',
       'shadow-[2px_2px_0_0_var(--nb-shadow)]',
       this.variantClass()
