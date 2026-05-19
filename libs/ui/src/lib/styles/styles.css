@@ -48,7 +48,7 @@ body {
     padding: 0 1.5rem 1rem;
     font-size: 0.875rem;
     font-weight: 500;
-    color: var(--nb-dialog-description-color, #4b5563);
+    color: var(--nb-dialog-description-fg);
   }
 
   :where([data-slot="dialog-content"]) {
@@ -57,7 +57,7 @@ body {
     padding: 1rem 1.5rem;
     border-top: 2px solid var(--nb-border);
     border-bottom: 2px solid var(--nb-border);
-    background-color: var(--nb-dialog-content-bg, transparent);
+    background-color: var(--nb-dialog-content-bg);
   }
 
   :where([data-slot="dialog-actions"]) {
@@ -66,7 +66,7 @@ body {
     justify-content: flex-end;
     gap: 0.75rem;
     padding: 1rem 1.5rem;
-    background-color: var(--nb-dialog-actions-bg, transparent);
+    background-color: var(--nb-dialog-actions-bg);
   }
 
   :where(input[nbInput], textarea[nbTextarea]) {

@@ -199,7 +199,32 @@ const componentTokens: Record<DocsTokenComponent, DocsToken[]> = {
   ],
   dialog: [
     {
-      name: '--nb-dialog-description-color',
+      name: '--nb-dialog-bg',
+      defaultValue: '#fff',
+      usage: 'Dialog background',
+    },
+    {
+      name: '--nb-dialog-fg',
+      defaultValue: 'var(--nb-foreground)',
+      usage: 'Dialog text color',
+    },
+    {
+      name: '--nb-dialog-border',
+      defaultValue: 'var(--nb-border)',
+      usage: 'Dialog border color',
+    },
+    {
+      name: '--nb-dialog-radius',
+      defaultValue: '0.5rem',
+      usage: 'Dialog corner radius',
+    },
+    {
+      name: '--nb-dialog-shadow',
+      defaultValue: '8px 8px 0 0 var(--nb-shadow)',
+      usage: 'Dialog box shadow',
+    },
+    {
+      name: '--nb-dialog-description-fg',
       defaultValue: '#4b5563',
       usage: 'Description text color',
     },

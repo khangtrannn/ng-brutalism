@@ -2,10 +2,10 @@ import { Component } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { describe, expect, it } from 'vitest';
 
-import { NbAccordionComponent } from './accordion.component';
-import { NbAccordionContentComponent } from './accordion-content.component';
-import { NbAccordionItemComponent } from './accordion-item.component';
-import { NbAccordionTriggerComponent } from './accordion-trigger.component';
+import { NbAccordionComponent } from './accordion';
+import { NbAccordionContentComponent } from './accordion-content';
+import { NbAccordionItemComponent } from './accordion-item';
+import { NbAccordionTriggerComponent } from './accordion-trigger';
 
 const imports = [
   NbAccordionComponent,
@@ -18,18 +18,24 @@ function buttons<T>(fixture: ComponentFixture<T>): HTMLButtonElement[] {
   return Array.from(fixture.nativeElement.querySelectorAll('button'));
 }
 
+function accordion<T>(fixture: ComponentFixture<T>): HTMLElement {
+  return fixture.nativeElement.querySelector('nb-accordion');
+}
+
 function regions<T>(fixture: ComponentFixture<T>): HTMLElement[] {
   return Array.from(fixture.nativeElement.querySelectorAll('[role="region"]'));
 }
 
-function indicators<T>(fixture: ComponentFixture<T>): HTMLElement[] {
+function indicators<T>(fixture: ComponentFixture<T>): SVGPathElement[] {
   return Array.from(
-    fixture.nativeElement.querySelectorAll('[data-slot="accordion-indicator"]')
+    fixture.nativeElement.querySelectorAll('nb-accordion-trigger svg path')
   );
 }
 
-function expectIndicatorOpen(indicator: HTMLElement, open: boolean): void {
-  expect(indicator.classList.contains('rotate-180')).toBe(open);
+function expectIndicatorOpen(indicator: SVGPathElement, open: boolean): void {
+  expect(indicator.getAttribute('d')).toBe(
+    open ? 'm18 15-6-6-6 6' : 'm6 9 6 6 6-6'
+  );
 }
 
 function expectRegionOpen(region: HTMLElement, open: boolean): void {
@@ -41,16 +47,16 @@ function expectRegionOpen(region: HTMLElement, open: boolean): void {
   standalone: true,
   imports,
   template: `
-    <neo-accordion>
-      <neo-accordion-item value="one">
-        <neo-accordion-trigger>One</neo-accordion-trigger>
-        <neo-accordion-content>First panel</neo-accordion-content>
-      </neo-accordion-item>
-      <neo-accordion-item value="two">
-        <neo-accordion-trigger>Two</neo-accordion-trigger>
-        <neo-accordion-content>Second panel</neo-accordion-content>
-      </neo-accordion-item>
-    </neo-accordion>
+    <nb-accordion>
+      <nb-accordion-item value="one">
+        <nb-accordion-trigger>One</nb-accordion-trigger>
+        <nb-accordion-content>First panel</nb-accordion-content>
+      </nb-accordion-item>
+      <nb-accordion-item value="two">
+        <nb-accordion-trigger>Two</nb-accordion-trigger>
+        <nb-accordion-content>Second panel</nb-accordion-content>
+      </nb-accordion-item>
+    </nb-accordion>
   `,
 })
 class SingleAccordionTestComponent {}
@@ -59,12 +65,12 @@ class SingleAccordionTestComponent {}
   standalone: true,
   imports,
   template: `
-    <neo-accordion collapsible>
-      <neo-accordion-item value="one">
-        <neo-accordion-trigger>One</neo-accordion-trigger>
-        <neo-accordion-content>First panel</neo-accordion-content>
-      </neo-accordion-item>
-    </neo-accordion>
+    <nb-accordion collapsible>
+      <nb-accordion-item value="one">
+        <nb-accordion-trigger>One</nb-accordion-trigger>
+        <nb-accordion-content>First panel</nb-accordion-content>
+      </nb-accordion-item>
+    </nb-accordion>
   `,
 })
 class CollapsibleAccordionTestComponent {}
@@ -73,16 +79,16 @@ class CollapsibleAccordionTestComponent {}
   standalone: true,
   imports,
   template: `
-    <neo-accordion type="multiple">
-      <neo-accordion-item value="one">
-        <neo-accordion-trigger>One</neo-accordion-trigger>
-        <neo-accordion-content>First panel</neo-accordion-content>
-      </neo-accordion-item>
-      <neo-accordion-item value="two">
-        <neo-accordion-trigger>Two</neo-accordion-trigger>
-        <neo-accordion-content>Second panel</neo-accordion-content>
-      </neo-accordion-item>
-    </neo-accordion>
+    <nb-accordion type="multiple">
+      <nb-accordion-item value="one">
+        <nb-accordion-trigger>One</nb-accordion-trigger>
+        <nb-accordion-content>First panel</nb-accordion-content>
+      </nb-accordion-item>
+      <nb-accordion-item value="two">
+        <nb-accordion-trigger>Two</nb-accordion-trigger>
+        <nb-accordion-content>Second panel</nb-accordion-content>
+      </nb-accordion-item>
+    </nb-accordion>
   `,
 })
 class MultipleAccordionTestComponent {}
@@ -91,12 +97,12 @@ class MultipleAccordionTestComponent {}
   standalone: true,
   imports,
   template: `
-    <neo-accordion>
-      <neo-accordion-item value="one" disabled>
-        <neo-accordion-trigger>One</neo-accordion-trigger>
-        <neo-accordion-content>First panel</neo-accordion-content>
-      </neo-accordion-item>
-    </neo-accordion>
+    <nb-accordion>
+      <nb-accordion-item value="one" disabled>
+        <nb-accordion-trigger>One</nb-accordion-trigger>
+        <nb-accordion-content>First panel</nb-accordion-content>
+      </nb-accordion-item>
+    </nb-accordion>
   `,
 })
 class DisabledItemAccordionTestComponent {}
@@ -105,12 +111,12 @@ class DisabledItemAccordionTestComponent {}
   standalone: true,
   imports,
   template: `
-    <neo-accordion [defaultValue]="defaultValue">
-      <neo-accordion-item value="one">
-        <neo-accordion-trigger>One</neo-accordion-trigger>
-        <neo-accordion-content>First panel</neo-accordion-content>
-      </neo-accordion-item>
-    </neo-accordion>
+    <nb-accordion [defaultValue]="defaultValue">
+      <nb-accordion-item value="one">
+        <nb-accordion-trigger>One</nb-accordion-trigger>
+        <nb-accordion-content>First panel</nb-accordion-content>
+      </nb-accordion-item>
+    </nb-accordion>
   `,
 })
 class DefaultValueAccordionTestComponent {
@@ -206,7 +212,9 @@ describe('NbAccordion', () => {
     expectRegionOpen(region, true);
     expect(button.getAttribute('aria-controls')).toBe(region.id);
     expect(region.getAttribute('aria-labelledby')).toBe(button.id);
-    expect(button.getAttribute('data-orientation')).toBe('vertical');
+    expect(accordion(fixture).getAttribute('data-orientation')).toBe(
+      'vertical'
+    );
     expect(region.getAttribute('data-orientation')).toBe('vertical');
   });
 });

@@ -1,10 +1,18 @@
 import { Directive } from '@angular/core';
 
+import { nbClass } from '../core/class';
+
 @Directive({
   selector: '[nbDialogDescription]',
   standalone: true,
   host: {
+    '[class]': 'classes',
     '[attr.data-slot]': '"dialog-description"',
   },
 })
-export class NbDialogDescription {}
+export class NbDialogDescription {
+  protected readonly classes = nbClass(
+    '[--nb-dialog-description-fg:#4b5563]',
+    'text-(--nb-dialog-description-fg)'
+  );
+}

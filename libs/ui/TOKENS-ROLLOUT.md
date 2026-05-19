@@ -443,17 +443,19 @@ Phase 1 landed the button pilot (commit `5168aca`) and confirmed the protocol wo
 **Entry gate** (must hold before opening a Phase 2 PR):
 
 - Manual checks left over from §4.7 (DevTools token chain inspection, light/dark contrast review, scoped override smoke tests, pixel comparison of the button docs page) can land alongside the first Phase 2 PR — they don't gate Phase 2 conceptually, but flag any drift they uncover as it could change the per-component shadow/border defaults you'll mirror.
-- The remaining pre-existing full-suite blocker is `libs/ui/src/lib/accordion/accordion.component.spec.ts` → fix in the **accordion PR (§5.1)**. The file imports paths/class names that never existed on this branch (`./accordion.component` etc., `NbAccordionTriggerComponent` selector `neo-accordion-trigger`); the real files are `accordion-trigger.ts` exporting `NbAccordionTriggerComponent` with selector `nb-accordion-trigger`. Either fix the imports + selectors or rewrite the spec — don't delete coverage.
+- ~~The remaining pre-existing full-suite blocker is `libs/ui/src/lib/accordion/accordion.component.spec.ts`.~~ **RESOLVED 2026-05-19.** The spec now imports the real accordion files (`accordion.ts`, `accordion-content.ts`, `accordion-item.ts`, `accordion-trigger.ts`), uses the real `nb-accordion-*` selectors, and preserves the useful open/close/disabled/default-value coverage.
 - The earlier select spec blocker is resolved in §5.5. `libs/ui/src/lib/select/select.spec.ts` now asserts focus treatment on the `<nb-select>` host and grouped native selects through the `border-0` override.
 
 **Current handoff as of 2026-05-19:**
 
-- Implemented in this working tree: button, card, input, textarea, select, and input-group scoped-token surfaces.
-- `pnpm nx test ui --output-style=stream` still fails because of the accordion spec import blocker above. Direct Vitest confirms the rest of the current suite passes: `46 passed`, `1 failed suite` (`src/lib/accordion/accordion.component.spec.ts` import resolution).
+- Implemented in this working tree: button, card, input, textarea, select, input-group, and dialog scoped-token surfaces.
+- The accordion full-suite blocker is fixed. `pnpm vitest run --config libs/ui/vitest.config.mts src/lib/accordion/accordion.component.spec.ts --reporter=verbose` passes with `6 passed`.
+- Dialog §5.7 is implemented. `pnpm vitest run --config libs/ui/vitest.config.mts src/lib/dialog/dialog.tokens.spec.ts --reporter=verbose` passes with `4 passed`.
+- `pnpm nx test ui --output-style=stream` now passes.
 - Focused input-group/select verification passed: `pnpm vitest run --config libs/ui/vitest.config.mts src/lib/input-group/input-group.tokens.spec.ts src/lib/select/select.spec.ts src/lib/select/select.tokens.spec.ts --reporter=verbose` — `22 passed`.
 - Latest validation also passed: `pnpm nx lint ui --output-style=stream`, `pnpm nx lint docs --output-style=stream`, `pnpm nx build ui --output-style=stream`, and `pnpm nx build docs --output-style=stream`.
-- Manual docs visual checks are still outstanding for `/components/input`, `/components/textarea`, `/components/input-group`, and `/components/select`; do those before claiming those component PRs visually complete.
-- Recommended next step: fix the accordion spec blocker first, then continue Phase 2 with the dialog token rollout (§5.7), unless manual visual checks reveal drift that needs to be corrected first.
+- Manual docs visual checks are still outstanding for `/components/input`, `/components/textarea`, `/components/input-group`, `/components/select`, and `/components/dialog`; do those before claiming those component PRs visually complete.
+- Recommended next step: either run the outstanding manual docs visual checks, or continue implementation with accordion token rollout (§5.1), which is still not migrated even though its test blocker is now fixed. After accordion, continue badge (§5.2) and checkbox (§5.6).
 
 **Per-component PR template** (literal recipe, distilled from button pilot — replicate verbatim):
 
@@ -486,7 +488,7 @@ Phase 1 landed the button pilot (commit `5168aca`) and confirmed the protocol wo
 
 | #   | Component                      | Driving props                               | Anticipated scoped tokens                                                                                                    | Complexity                  |
 | --- | ------------------------------ | ------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------- | --------------------------- |
-| 1   | accordion                      | (none yet — see 5.1)                        | `--nb-accordion-item-bg/fg/border/radius/shadow`, `--nb-accordion-trigger-bg/fg`, `--nb-accordion-content-bg/fg`             | Medium                      |
+| 1   | accordion                      | (none yet — see 5.1)                        | `--nb-accordion-item-bg/fg/border/radius/shadow`, `--nb-accordion-trigger-bg/fg`, `--nb-accordion-content-bg/fg`             | Medium — spec fixed, token rollout still pending |
 | 2   | badge                          | `variant`                                   | `--nb-badge-bg/fg/border/radius/shadow`                                                                                      | Low                         |
 | 3   | card                           | (none yet)                                  | `--nb-card-bg/fg/border/radius/shadow`                                                                                       | Low                         |
 | 4   | input                          | `size` (layout, not color)                  | `--nb-input-bg/fg/border/radius`                                                                                             | Low                         |
@@ -494,7 +496,7 @@ Phase 1 landed the button pilot (commit `5168aca`) and confirmed the protocol wo
 | 6   | select (directive + component) | `size`                                      | `--nb-select-bg/fg/border/radius`, `--nb-select-listbox-bg`                                                                  | Medium — implemented        |
 | 7   | checkbox                       | (none yet)                                  | `--nb-checkbox-bg/fg/border/radius`                                                                                          | Low                         |
 | 8   | input-group + prefix/suffix    | (none yet)                                  | `--nb-input-group-bg/border/radius`, `--nb-input-group-addon-bg`, `--nb-input-group-prefix-bg`, `--nb-input-group-suffix-bg` | Medium — implemented        |
-| 9   | dialog                         | (none yet)                                  | `--nb-dialog-bg/fg/border/radius/shadow`, `--nb-dialog-description-fg`, `--nb-dialog-content-bg`, `--nb-dialog-actions-bg`   | Medium                      |
+| 9   | dialog                         | (none yet)                                  | `--nb-dialog-bg/fg/border/radius/shadow`, `--nb-dialog-description-fg`, `--nb-dialog-content-bg`, `--nb-dialog-actions-bg`   | Medium — implemented       |
 | 10  | title                          | (existing wave tokens conform)              | Keep `--nb-title-wave-*`                                                                                                     | Trivial — rename audit only |
 | 11  | image-card                     | (none yet)                                  | `--nb-image-card-bg/fg/border/radius/shadow`                                                                                 | Low                         |
 | 12  | avatar                         | (none yet)                                  | `--nb-avatar-bg/fg/border/radius`                                                                                            | Low                         |
@@ -719,6 +721,26 @@ Known verification gaps:
 Existing `--nb-dialog-content-bg`, `--nb-dialog-actions-bg` conform — keep. Add the outer-box tokens (`--nb-dialog-bg/fg/border/radius/shadow`) replacing today's hardcoded `bg-white shadow-[8px_8px_0_0_var(--nb-shadow)]`. **Audit watch:** the shadow is `8px 8px` here, not `var(--nb-shadow-offset-x) var(--nb-shadow-offset-y)`. Preserve `8px 8px` in the token default — do not silently re-anchor to the global offset.
 
 Rename `--nb-dialog-description-color` → `--nb-dialog-description-fg` for grammar conformance.
+
+**Status 2026-05-19:** implemented.
+
+- `libs/ui/src/lib/dialog/dialog.ts` now declares and reads `--nb-dialog-bg`, `--nb-dialog-fg`, `--nb-dialog-border`, `--nb-dialog-radius`, and `--nb-dialog-shadow`; the shadow default preserves `8px 8px 0 0 var(--nb-shadow)`.
+- `libs/ui/src/lib/dialog/dialog-description.ts` now declares and reads `--nb-dialog-description-fg`; the old `--nb-dialog-description-color` string has no remaining code/docs references.
+- `libs/ui/src/lib/dialog/dialog-content.ts` and `libs/ui/src/lib/dialog/dialog-actions.ts` declare/read `--nb-dialog-content-bg` and `--nb-dialog-actions-bg`.
+- `libs/ui/src/lib/styles/styles.css` reads the component-scoped tokens without fallback aliases.
+- `apps/docs/src/app/docs/docs-tokens.ts` lists the eight-token dialog surface.
+- Added `libs/ui/src/lib/dialog/dialog.tokens.spec.ts`.
+
+Verified:
+
+- `pnpm vitest run --config libs/ui/vitest.config.mts src/lib/dialog/dialog.tokens.spec.ts --reporter=verbose`
+- `pnpm nx test ui --output-style=stream`
+- `pnpm nx lint ui --output-style=stream`
+- `pnpm nx lint docs --output-style=stream`
+- `pnpm nx build ui --output-style=stream`
+- `pnpm nx build docs --output-style=stream`
+
+Manual docs visual check for `/components/dialog` is still outstanding.
 
 ---
 
