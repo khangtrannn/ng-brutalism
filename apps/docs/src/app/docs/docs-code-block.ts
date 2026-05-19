@@ -42,14 +42,14 @@ function inferLanguage(title: string, code: string): HighlightLanguage {
   },
   template: `
     <div
-      class="bg-black text-white"
+      class="bg-[#2e3440] text-[#eceff4]"
       [class.border-4]="variant() === 'standalone'"
       [class.border-(--nb-border)]="variant() === 'standalone'"
       [class.shadow-[8px_8px_0_0_var(--nb-shadow)]]="variant() === 'standalone'"
     >
-      <div class="relative bg-black">
+      <div class="relative bg-[#2e3440]">
         <div
-          class="flex h-11 items-center gap-2 border-b-2 border-white/20 bg-black px-4 text-xs font-black tracking-[0.12em] text-white/80 uppercase"
+          class="flex h-11 items-center gap-2 border-b-2 border-[#4c566a] bg-[#3b4252] px-4 text-xs font-black tracking-[0.12em] text-[#d8dee9] uppercase"
           style="font-family: var(--font-mono);"
         >
           <span class="inline-block size-2.5 rounded-full bg-(--nb-pink) border border-white/40"></span>
@@ -81,7 +81,7 @@ function inferLanguage(title: string, code: string): HighlightLanguage {
             <div class="docs-code-block-shiki" [innerHTML]="html"></div>
           } @else {
             <pre
-              class="m-0 whitespace-pre-wrap bg-black pl-16 pr-24 pt-6 pb-7 text-xs text-white"
+              class="m-0 whitespace-pre-wrap bg-[#2e3440] pl-16 pr-24 pt-6 pb-7 text-xs text-[#eceff4]"
               style="font-family: var(--font-mono); line-height: 1rem; overflow-wrap: anywhere; word-break: break-word;"
             ><code>{{ code() }}</code></pre>
           }
@@ -89,9 +89,9 @@ function inferLanguage(title: string, code: string): HighlightLanguage {
 
         @if (isCollapsible()) {
           <div
-            class="flex items-center justify-between gap-4 border-t-2 border-white/20 bg-black px-4 py-3"
+            class="flex items-center justify-between gap-4 border-t-2 border-[#4c566a] bg-[#3b4252] px-4 py-3"
           >
-            <div class="flex items-center gap-3 text-xs text-white/75" style="font-family: var(--font-mono);">
+            <div class="flex items-center gap-3 text-xs text-[#d8dee9]" style="font-family: var(--font-mono);">
               <span
                 class="inline-flex size-8 shrink-0 items-center justify-center border-2 border-black bg-(--nb-lavender) text-black"
                 aria-hidden="true"
@@ -141,7 +141,7 @@ function inferLanguage(title: string, code: string): HighlightLanguage {
       .docs-code-block-shiki ::ng-deep pre.shiki {
         margin: 0;
         padding: 1.5rem 6rem 1.75rem 0;
-        background-color: #000 !important;
+        background-color: #2e3440 !important;
         font-family: var(--font-mono);
         font-size: 0.75rem;
         line-height: 1.25rem;
@@ -182,7 +182,7 @@ function inferLanguage(title: string, code: string): HighlightLanguage {
         width: 3rem;
         padding-right: 1rem;
         text-align: right;
-        color: rgba(255, 255, 255, 0.3);
+        color: #4c566a;
       }
     `,
   ],

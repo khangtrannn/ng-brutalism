@@ -12,7 +12,7 @@ export type HighlightLanguage =
   | 'json'
   | 'css';
 
-const THEME = 'vesper';
+const THEME = 'nord';
 const LANGS: HighlightLanguage[] = [
   'html',
   'angular-html',
