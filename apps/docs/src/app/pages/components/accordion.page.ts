@@ -162,14 +162,20 @@ import { DocsTokens } from '../../docs/docs-tokens';
 
             <nb-accordion [(value)]="controlledValue">
               <nb-accordion-item value="overview">
-                <nb-accordion-trigger style="--nb-main: var(--nb-lavender)">Overview</nb-accordion-trigger>
+                <nb-accordion-trigger
+                  style="--nb-accordion-trigger-bg: var(--nb-lavender)"
+                  >Overview</nb-accordion-trigger
+                >
                 <nb-accordion-content>
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                 </nb-accordion-content>
               </nb-accordion-item>
 
               <nb-accordion-item value="details">
-                <nb-accordion-trigger style="--nb-main: var(--nb-lavender)">Details</nb-accordion-trigger>
+                <nb-accordion-trigger
+                  style="--nb-accordion-trigger-bg: var(--nb-lavender)"
+                  >Details</nb-accordion-trigger
+                >
                 <nb-accordion-content>
                   Duis aute irure dolor in reprehenderit in voluptate velit.
                 </nb-accordion-content>
@@ -182,7 +188,11 @@ import { DocsTokens } from '../../docs/docs-tokens';
       <section id="disabled">
         <h2 class="mt-10 mb-4 text-2xl font-bold">Disabled Item</h2>
         <docs-example [code]="disabledExampleCode">
-          <nb-accordion collapsible class="block w-full max-w-xl" defaultValue="enabled">
+          <nb-accordion
+            collapsible
+            class="block w-full max-w-xl"
+            defaultValue="enabled"
+          >
             <nb-accordion-item value="enabled">
               <nb-accordion-trigger>Enabled item</nb-accordion-trigger>
               <nb-accordion-content>
@@ -420,14 +430,14 @@ readonly controlledValue = signal<string | string[] | null>('overview');`;
 
   <nb-accordion [(value)]="controlledValue">
     <nb-accordion-item value="overview">
-      <nb-accordion-trigger style="--nb-main: var(--nb-lavender)">Overview</nb-accordion-trigger>
+      <nb-accordion-trigger style="--nb-accordion-trigger-bg: var(--nb-lavender)">Overview</nb-accordion-trigger>
       <nb-accordion-content>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit.
       </nb-accordion-content>
     </nb-accordion-item>
 
     <nb-accordion-item value="details">
-      <nb-accordion-trigger style="--nb-main: var(--nb-lavender)">Details</nb-accordion-trigger>
+      <nb-accordion-trigger style="--nb-accordion-trigger-bg: var(--nb-lavender)">Details</nb-accordion-trigger>
       <nb-accordion-content>
         Duis aute irure dolor in reprehenderit in voluptate velit.
       </nb-accordion-content>

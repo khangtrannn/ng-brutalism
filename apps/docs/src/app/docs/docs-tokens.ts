@@ -65,24 +65,50 @@ const sharedTokens: DocsToken[] = [
 const componentTokens: Record<DocsTokenComponent, DocsToken[]> = {
   accordion: [
     {
-      name: '--nb-main',
-      defaultValue: 'oklch(90% 0.15 95)',
-      usage: 'Trigger background',
+      name: '--nb-accordion-item-bg',
+      defaultValue: 'var(--nb-surface)',
+      usage: 'Accordion item background',
     },
     {
-      name: '--nb-main-foreground',
-      defaultValue: 'oklch(10% 0 0)',
-      usage: 'Trigger text color',
+      name: '--nb-accordion-item-fg',
+      defaultValue: 'var(--nb-surface-foreground)',
+      usage: 'Accordion item text color',
     },
     {
-      name: '--nb-surface',
-      defaultValue: '#ffffff',
-      usage: 'Item and panel background',
+      name: '--nb-accordion-item-border',
+      defaultValue: 'var(--nb-border)',
+      usage: 'Accordion item border and trigger focus color',
     },
     {
-      name: '--nb-surface-foreground',
-      defaultValue: '#000000',
-      usage: 'Item and panel text color',
+      name: '--nb-accordion-item-radius',
+      defaultValue: 'var(--nb-radius)',
+      usage: 'Accordion item corner radius',
+    },
+    {
+      name: '--nb-accordion-item-shadow',
+      defaultValue:
+        'var(--nb-shadow-offset-x) var(--nb-shadow-offset-y) 0 var(--nb-shadow)',
+      usage: 'Accordion item box shadow',
+    },
+    {
+      name: '--nb-accordion-trigger-bg',
+      defaultValue: 'var(--nb-main)',
+      usage: 'Accordion trigger background',
+    },
+    {
+      name: '--nb-accordion-trigger-fg',
+      defaultValue: 'var(--nb-main-foreground)',
+      usage: 'Accordion trigger text and icon color',
+    },
+    {
+      name: '--nb-accordion-content-bg',
+      defaultValue: 'var(--nb-surface)',
+      usage: 'Accordion content background',
+    },
+    {
+      name: '--nb-accordion-content-fg',
+      defaultValue: 'var(--nb-surface-foreground)',
+      usage: 'Accordion content text color',
     },
   ],
   avatar: [

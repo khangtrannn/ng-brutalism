@@ -29,9 +29,7 @@ import { NbAccordionItemComponent } from './accordion-item';
           viewBox="0 0 24 24"
           aria-hidden="true"
         >
-          <path
-            [attr.d]="item.open() ? 'm18 15-6-6-6 6' : 'm6 9 6 6 6-6'"
-          />
+          <path [attr.d]="item.open() ? 'm18 15-6-6-6 6' : 'm6 9 6 6 6-6'" />
         </svg>
       </button>
     </h3>
@@ -43,13 +41,15 @@ export class NbAccordionTriggerComponent {
 
   protected readonly triggerClasses = computed(() =>
     nbClass(
+      '[--nb-accordion-trigger-bg:var(--nb-main)]',
+      '[--nb-accordion-trigger-fg:var(--nb-main-foreground)]',
       'flex min-h-14 flex-1 items-center justify-between gap-4',
-      'w-full bg-(--nb-main) p-4 text-left text-base font-bold',
-      'text-(--nb-main-foreground) transition-all duration-200',
+      'w-full bg-(--nb-accordion-trigger-bg) p-4 text-left text-base font-bold',
+      'text-(--nb-accordion-trigger-fg) transition-all duration-200',
       'focus-visible:outline-none focus-visible:ring-2',
-      'focus-visible:ring-(--nb-border) focus-visible:ring-offset-2',
+      'focus-visible:ring-(--nb-accordion-item-border) focus-visible:ring-offset-2',
       'disabled:pointer-events-none disabled:opacity-50',
-      this.item.open() && 'border-b-2 border-(--nb-border)'
+      this.item.open() && 'border-b-2 border-(--nb-accordion-item-border)'
     )
   );
 }

@@ -448,14 +448,14 @@ Phase 1 landed the button pilot (commit `5168aca`) and confirmed the protocol wo
 
 **Current handoff as of 2026-05-19:**
 
-- Implemented in this working tree: button, card, input, textarea, select, input-group, and dialog scoped-token surfaces.
-- The accordion full-suite blocker is fixed. `pnpm vitest run --config libs/ui/vitest.config.mts src/lib/accordion/accordion.component.spec.ts --reporter=verbose` passes with `6 passed`.
+- Implemented in this working tree: button, accordion, card, input, textarea, select, input-group, and dialog scoped-token surfaces.
+- The accordion full-suite blocker is fixed and accordion §5.1 is implemented. `pnpm vitest run --config libs/ui/vitest.config.mts src/lib/accordion/accordion.tokens.spec.ts src/lib/accordion/accordion.component.spec.ts --reporter=verbose` passes with `11 passed`.
 - Dialog §5.7 is implemented. `pnpm vitest run --config libs/ui/vitest.config.mts src/lib/dialog/dialog.tokens.spec.ts --reporter=verbose` passes with `4 passed`.
 - `pnpm nx test ui --output-style=stream` now passes.
 - Focused input-group/select verification passed: `pnpm vitest run --config libs/ui/vitest.config.mts src/lib/input-group/input-group.tokens.spec.ts src/lib/select/select.spec.ts src/lib/select/select.tokens.spec.ts --reporter=verbose` — `22 passed`.
 - Latest validation also passed: `pnpm nx lint ui --output-style=stream`, `pnpm nx lint docs --output-style=stream`, `pnpm nx build ui --output-style=stream`, and `pnpm nx build docs --output-style=stream`.
-- Manual docs visual checks are still outstanding for `/components/input`, `/components/textarea`, `/components/input-group`, `/components/select`, and `/components/dialog`; do those before claiming those component PRs visually complete.
-- Recommended next step: either run the outstanding manual docs visual checks, or continue implementation with accordion token rollout (§5.1), which is still not migrated even though its test blocker is now fixed. After accordion, continue badge (§5.2) and checkbox (§5.6).
+- Manual docs visual checks are still outstanding for `/components/accordion`, `/components/input`, `/components/textarea`, `/components/input-group`, `/components/select`, and `/components/dialog`; do those before claiming those component PRs visually complete.
+- Recommended next step: either run the outstanding manual docs visual checks, or continue implementation with badge token rollout (§5.2). After badge, continue checkbox (§5.6).
 
 **Per-component PR template** (literal recipe, distilled from button pilot — replicate verbatim):
 
@@ -488,7 +488,7 @@ Phase 1 landed the button pilot (commit `5168aca`) and confirmed the protocol wo
 
 | #   | Component                      | Driving props                               | Anticipated scoped tokens                                                                                                    | Complexity                  |
 | --- | ------------------------------ | ------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------- | --------------------------- |
-| 1   | accordion                      | (none yet — see 5.1)                        | `--nb-accordion-item-bg/fg/border/radius/shadow`, `--nb-accordion-trigger-bg/fg`, `--nb-accordion-content-bg/fg`             | Medium — spec fixed, token rollout still pending |
+| 1   | accordion                      | (none yet — see 5.1)                        | `--nb-accordion-item-bg/fg/border/radius/shadow`, `--nb-accordion-trigger-bg/fg`, `--nb-accordion-content-bg/fg`             | Medium — implemented        |
 | 2   | badge                          | `variant`                                   | `--nb-badge-bg/fg/border/radius/shadow`                                                                                      | Low                         |
 | 3   | card                           | (none yet)                                  | `--nb-card-bg/fg/border/radius/shadow`                                                                                       | Low                         |
 | 4   | input                          | `size` (layout, not color)                  | `--nb-input-bg/fg/border/radius`                                                                                             | Low                         |
@@ -496,7 +496,7 @@ Phase 1 landed the button pilot (commit `5168aca`) and confirmed the protocol wo
 | 6   | select (directive + component) | `size`                                      | `--nb-select-bg/fg/border/radius`, `--nb-select-listbox-bg`                                                                  | Medium — implemented        |
 | 7   | checkbox                       | (none yet)                                  | `--nb-checkbox-bg/fg/border/radius`                                                                                          | Low                         |
 | 8   | input-group + prefix/suffix    | (none yet)                                  | `--nb-input-group-bg/border/radius`, `--nb-input-group-addon-bg`, `--nb-input-group-prefix-bg`, `--nb-input-group-suffix-bg` | Medium — implemented        |
-| 9   | dialog                         | (none yet)                                  | `--nb-dialog-bg/fg/border/radius/shadow`, `--nb-dialog-description-fg`, `--nb-dialog-content-bg`, `--nb-dialog-actions-bg`   | Medium — implemented       |
+| 9   | dialog                         | (none yet)                                  | `--nb-dialog-bg/fg/border/radius/shadow`, `--nb-dialog-description-fg`, `--nb-dialog-content-bg`, `--nb-dialog-actions-bg`   | Medium — implemented        |
 | 10  | title                          | (existing wave tokens conform)              | Keep `--nb-title-wave-*`                                                                                                     | Trivial — rename audit only |
 | 11  | image-card                     | (none yet)                                  | `--nb-image-card-bg/fg/border/radius/shadow`                                                                                 | Low                         |
 | 12  | avatar                         | (none yet)                                  | `--nb-avatar-bg/fg/border/radius`                                                                                            | Low                         |
@@ -539,11 +539,22 @@ Audit-derived defaults (spec column from `TOKENS.md`, baseline column from curre
 
 Do **not** add `--nb-accordion-trigger-bg-open` — no prop drives it (the `border-b-2` open-state class on `accordion-trigger.ts:52` is structural, not a color reassignment). Post-migration, the motivating override becomes scoped: `<nb-accordion-trigger style="--nb-accordion-trigger-bg: var(--nb-lavender)">`.
 
-**Pre-existing test blocker for this PR:** `libs/ui/src/lib/accordion/accordion.component.spec.ts` is currently red. It imports `./accordion.component`, `./accordion-content.component`, `./accordion-item.component`, `./accordion-trigger.component` — none of those files exist; the actual files are `accordion.ts`, `accordion-content.ts`, etc. The template also uses `neo-accordion-*` selectors but the components use `nb-accordion-*`. Fix the imports + selectors in this PR (the test logic is sound — it asserts open/close/disabled behavior, all worth keeping). Add a new `accordion.tokens.spec.ts` alongside, per the §5.0 recipe.
+**Status 2026-05-19:** implemented.
 
-**Audit watch:** the docs accordion page demonstrates open-state styling. Verify open state preserves identical visuals — `border-b-2 border-(--nb-border)` on the trigger when open is structural and must survive.
+- `libs/ui/src/lib/accordion/accordion-item.ts` now declares and reads `--nb-accordion-item-bg`, `--nb-accordion-item-fg`, `--nb-accordion-item-border`, `--nb-accordion-item-radius`, and `--nb-accordion-item-shadow`.
+- `libs/ui/src/lib/accordion/accordion-trigger.ts` now declares and reads `--nb-accordion-trigger-bg` and `--nb-accordion-trigger-fg`; its focus ring and open-state bottom border read the inherited `--nb-accordion-item-border`.
+- `libs/ui/src/lib/accordion/accordion-content.ts` now declares and reads `--nb-accordion-content-bg` and `--nb-accordion-content-fg`.
+- `apps/docs/src/app/pages/components/accordion.page.ts` replaced the leaky `style="--nb-main: var(--nb-lavender)"` trigger overrides with `style="--nb-accordion-trigger-bg: var(--nb-lavender)"`.
+- `apps/docs/src/app/docs/docs-tokens.ts` now lists the nine-token accordion scoped surface instead of global `--nb-main` / `--nb-surface` rows.
+- Added `libs/ui/src/lib/accordion/accordion.tokens.spec.ts`.
 
-**docs-tokens.ts update:** the current `accordion` entry lists `--nb-main` / `--nb-main-foreground` / `--nb-surface` / `--nb-surface-foreground` as the public surface (`apps/docs/src/app/docs/docs-tokens.ts:66`). Replace those four with the nine scoped tokens above — those globals are no longer the public override surface for accordion.
+Verified:
+
+- `pnpm vitest run --config libs/ui/vitest.config.mts src/lib/accordion/accordion.tokens.spec.ts src/lib/accordion/accordion.component.spec.ts --reporter=verbose` — passed, 11 tests.
+
+Known verification gaps:
+
+- Manual docs visual checks are still outstanding for `/components/accordion`: default, multiple, controlled, disabled, open/closed states, light mode, dark mode, and scoped override smoke tests for `--nb-accordion-item-bg`, `--nb-accordion-trigger-bg`, and `--nb-accordion-content-bg`.
 
 ### 5.2 Badge
 

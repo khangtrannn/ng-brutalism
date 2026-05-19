@@ -39,8 +39,10 @@ export class NbAccordionContentComponent {
 
   protected readonly classes = computed(() =>
     nbClass(
-      'grid overflow-hidden bg-(--nb-surface) text-sm font-medium',
-      'text-(--nb-surface-foreground)',
+      '[--nb-accordion-content-bg:var(--nb-surface)]',
+      '[--nb-accordion-content-fg:var(--nb-surface-foreground)]',
+      'grid overflow-hidden bg-(--nb-accordion-content-bg) text-sm font-medium',
+      'text-(--nb-accordion-content-fg)',
       'transition-[grid-template-rows] duration-200 ease-out',
       this.item.open() ? 'grid-rows-[1fr]' : 'grid-rows-[0fr]'
     )
