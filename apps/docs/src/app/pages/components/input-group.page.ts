@@ -65,7 +65,7 @@ import { DocsTokens } from '../../docs/docs-tokens';
         <docs-example [code]="defaultExampleCode">
           <nb-input-group class="max-w-80">
             <span nbInputPrefix>&#64;</span>
-            <input nbInput placeholder="username" style="background-color: #fff;" />
+            <input nbInput placeholder="username" />
           </nb-input-group>
         </docs-example>
       </section>
@@ -81,7 +81,7 @@ import { DocsTokens } from '../../docs/docs-tokens';
         <docs-example [code]="prefixSuffixExampleCode">
           <nb-input-group class="max-w-96">
             <span nbInputPrefix>$</span>
-            <input nbInput type="number" placeholder="Amount" style="background-color: #fff;" />
+            <input nbInput type="number" placeholder="Amount" />
             <span nbInputSuffix>USD</span>
           </nb-input-group>
         </docs-example>
@@ -94,7 +94,7 @@ import { DocsTokens } from '../../docs/docs-tokens';
             <label nbLabel for="profile-url">Profile URL</label>
             <nb-input-group>
               <span nbInputPrefix class="text-[0.8rem]">https</span>
-              <input nbInput id="profile-url" placeholder="example.com" style="background-color: #fff;" />
+              <input nbInput id="profile-url" placeholder="example.com" />
             </nb-input-group>
           </div>
         </docs-example>
@@ -105,7 +105,7 @@ import { DocsTokens } from '../../docs/docs-tokens';
         <docs-example [code]="textareaExampleCode">
           <nb-input-group class="max-w-96">
             <span nbInputPrefix align="stretch">TXT</span>
-            <textarea nbTextarea placeholder="Write a note..." rows="4" style="background-color: #fff;"></textarea>
+            <textarea nbTextarea placeholder="Write a note..." rows="4"></textarea>
           </nb-input-group>
         </docs-example>
       </section>
@@ -115,7 +115,7 @@ import { DocsTokens } from '../../docs/docs-tokens';
         <docs-example [code]="disabledExampleCode">
           <nb-input-group class="max-w-80">
             <span nbInputPrefix>&#64;</span>
-            <input nbInput placeholder="username" disabled style="background-color: #fff;" />
+            <input nbInput placeholder="username" disabled />
           </nb-input-group>
         </docs-example>
       </section>
@@ -167,14 +167,14 @@ import { DocsTokens } from '../../docs/docs-tokens';
 export default class InputGroupPageComponent {
   protected readonly defaultExampleCode = `<nb-input-group class="max-w-80">
   <span nbInputPrefix>@</span>
-  <input nbInput placeholder="username" style="background-color: #fff;" />
+  <input nbInput placeholder="username" />
 </nb-input-group>`;
 
   protected readonly importCode = `import { NbInput, NbInputGroup, NbInputPrefix, NbInputSuffix } from '@ng-brutalism/ui';`;
 
   protected readonly prefixSuffixExampleCode = `<nb-input-group class="max-w-96">
   <span nbInputPrefix>$</span>
-  <input nbInput type="number" placeholder="Amount" style="background-color: #fff;" />
+  <input nbInput type="number" placeholder="Amount" />
   <span nbInputSuffix>USD</span>
 </nb-input-group>`;
 
@@ -182,17 +182,17 @@ export default class InputGroupPageComponent {
   <label nbLabel for="profile-url">Profile URL</label>
   <nb-input-group>
     <span nbInputPrefix>https</span>
-    <input nbInput id="profile-url" placeholder="example.com" style="background-color: #fff;" />
+    <input nbInput id="profile-url" placeholder="example.com" />
   </nb-input-group>
 </div>`;
 
   protected readonly textareaExampleCode = `<nb-input-group class="max-w-96">
   <span nbInputPrefix align="stretch">TXT</span>
-  <textarea nbTextarea placeholder="Write a note..." rows="4" style="background-color: #fff;"></textarea>
+  <textarea nbTextarea placeholder="Write a note..." rows="4"></textarea>
 </nb-input-group>`;
 
   protected readonly disabledExampleCode = `<nb-input-group class="max-w-80">
   <span nbInputPrefix>@</span>
-  <input nbInput placeholder="username" disabled style="background-color: #fff;" />
+  <input nbInput placeholder="username" disabled />
 </nb-input-group>`;
 }

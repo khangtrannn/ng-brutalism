@@ -21,8 +21,12 @@ export class NbSelect {
     const inGroup = this.group !== null;
 
     return nbClass(
-      'flex border-2 border-(--nb-border)',
-      'text-(--nb-foreground)',
+      '[--nb-select-bg:var(--nb-input-bg,var(--nb-field-bg))]',
+      '[--nb-select-fg:var(--nb-foreground)]',
+      '[--nb-select-border:var(--nb-border)]',
+      '[--nb-select-radius:var(--nb-radius)]',
+      'flex border-2 border-(--nb-select-border)',
+      'bg-(--nb-select-bg) text-(--nb-select-fg)',
       'font-medium',
       'appearance-none',
       'pr-10',
@@ -36,10 +40,9 @@ export class NbSelect {
             'focus-visible:outline-none',
           ]
         : [
-            'rounded-nb',
+            'rounded-(--nb-select-radius)',
             'shadow-nb',
-            'bg-(--nb-input-bg,var(--nb-field-bg))',
-            'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--nb-border)',
+            'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--nb-select-border)',
             'focus-visible:ring-offset-2 focus-visible:shadow-none',
           ]
     );

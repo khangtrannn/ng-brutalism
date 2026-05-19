@@ -636,7 +636,7 @@ Known verification gaps:
 
 Both `select[nbSelect]` and `<nb-select>` share scoped tokens (named `select`, not separated):
 
-- `--nb-select-bg` default `var(--nb-input-bg)` — chained from input scope, matching the visual intent that select and input share field background
+- `--nb-select-bg` default `var(--nb-input-bg, var(--nb-field-bg))` — chained from input scope when present, with the shared field background fallback
 - `--nb-select-fg`, `--nb-select-border`, `--nb-select-radius` standard
 - `--nb-select-listbox-bg` for `<nb-select>` dropdown only
 
@@ -644,9 +644,32 @@ Don't add `--nb-select-option-hover-bg` yet — no driving use case.
 
 **Working-tree status note (resolved):** the in-flight changes flagged in §1.2 were merged ahead of Phase 1 — `select.directive.ts`, `select.ts`, `input-group.ts`, and `input-group-prefix.ts` are committed on `main`. Treat them as the current baseline; re-audit fresh against them.
 
-**Pre-existing test blocker for this PR:** `libs/ui/src/lib/select/select.spec.ts` is currently red on `pnpm nx test ui`. The "uses the same focus treatment as inputs and textareas" test (line ~42) asserts `focus-visible:ring-2` / `focus-visible:ring-(--nb-border)` / `focus-visible:ring-offset-2` / `focus-visible:shadow-none` on `button[aria-haspopup="listbox"]`. But in `select.ts:126`, `triggerClasses()` deliberately omits those — they live on `hostClasses()` (`select.ts:112`) as `focus-within:ring-*` on the `<nb-select>` host. Fix in this PR: change the assertion target from the trigger to the host element, and update the prefix from `focus-visible:` to `focus-within:`. Same expected ring tokens still apply.
+**Pre-existing test blocker for this PR (resolved):** `libs/ui/src/lib/select/select.spec.ts` was red on `pnpm nx test ui`. The "uses the same focus treatment as inputs and textareas" test asserted `focus-visible:ring-2` / `focus-visible:ring-(--nb-border)` / `focus-visible:ring-offset-2` / `focus-visible:shadow-none` on `button[aria-haspopup="listbox"]`. But in `select.ts`, `triggerClasses()` deliberately omits those — they live on `hostClasses()` as `focus-within:ring-*` on the `<nb-select>` host. The assertions now read the host element and the scoped select border token.
 
-**`--nb-input-bg` rename ordering:** resolved by §5.4. Select no longer reads `--nb-input-background`; both native `select[nbSelect]` and custom `<nb-select>` now read `--nb-input-bg` as a transitional background token. The full select PR still needs to introduce the scoped select surface (`--nb-select-bg/fg/border/radius`, `--nb-select-listbox-bg`) and fix the existing focus-treatment spec blocker described above.
+**`--nb-input-bg` rename ordering:** resolved by §5.4. Select no longer reads `--nb-input-background`; both native `select[nbSelect]` and custom `<nb-select>` now expose `--nb-select-bg`, which defaults through `--nb-input-bg` before falling back to `--nb-field-bg`.
+
+Status as of 2026-05-19: select scoped-token rollout is implemented.
+
+- `select[nbSelect]` now declares and reads `--nb-select-bg/fg/border/radius`.
+- `<nb-select>` now declares and reads `--nb-select-bg/fg/border/radius` plus `--nb-select-listbox-bg`; the custom options read the select foreground and border tokens for text and focus rings.
+- `libs/ui/src/lib/styles/styles.css` keeps native select base background aligned with `--nb-select-bg`.
+- `libs/ui/src/lib/select/select.spec.ts` now asserts custom select focus on the host `focus-within` treatment and native grouped selects via the `border-0` override.
+- Added `libs/ui/src/lib/select/select.tokens.spec.ts`.
+- Updated `apps/docs/src/app/docs/docs-tokens.ts` for the select token table.
+
+Verification already run:
+
+- `pnpm vitest run --config libs/ui/vitest.config.mts src/lib/select/select.spec.ts src/lib/select/select.tokens.spec.ts --reporter=verbose` — passed, 18 tests.
+- `pnpm nx lint ui --output-style=stream` — passed.
+- `pnpm nx lint docs --output-style=stream` — passed.
+- `pnpm nx test docs --output-style=stream` — passed.
+- `pnpm nx build ui --output-style=stream` — passed.
+- `pnpm nx build docs --output-style=stream` — passed.
+- `pnpm nx test ui --output-style=stream` — still blocked by the pre-existing `libs/ui/src/lib/accordion/accordion.component.spec.ts` import of missing `./accordion.component`; select specs pass directly.
+
+Known verification gaps:
+
+- Manual docs visual checks are still outstanding for `/components/select`: custom select rest/hover/focus/open/selected/disabled states, native select, grouped select inside forms, light mode, dark mode, and scoped override smoke tests for `--nb-select-bg`, `--nb-select-fg`, `--nb-select-border`, `--nb-select-radius`, and `--nb-select-listbox-bg`.
 
 ### 5.6 Input-group rename
 

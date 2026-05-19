@@ -32,8 +32,9 @@ export class NbInputGroup implements NbInputGroupContext {
 
   protected readonly classes = computed(() =>
     nbClass(
+      '[--nb-input-group-bg:var(--nb-input-bg,var(--nb-field-bg))]',
       'relative inline-flex w-full rounded-nb border-2 border-(--nb-border)',
-      'bg-(--nb-surface) shadow-nb focus-within:outline-none',
+      'bg-(--nb-input-group-bg) shadow-nb focus-within:outline-none',
       'focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-(--nb-border) focus-within:shadow-none'
     )
   );

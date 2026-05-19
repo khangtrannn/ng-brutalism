@@ -19,6 +19,7 @@ export class NbInputSuffix {
 
   protected readonly classes = computed(() =>
     nbClass(
+      '[--nb-input-addon-bg:var(--nb-yellow)]',
       'flex w-12 shrink-0 items-center justify-center',
       'border-l-2 border-(--nb-border)',
       'bg-(--nb-input-addon-bg)',

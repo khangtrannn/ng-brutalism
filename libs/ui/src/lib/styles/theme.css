@@ -26,7 +26,7 @@
   --nb-warning: #ffd24a;
   --nb-warning-foreground: #000000;
 
-  --nb-input-addon-bg: #c4a8ff;
+  --nb-input-addon-bg: var(--nb-yellow);
   --nb-input-prefix-bg: var(--nb-input-addon-bg);
 
   /* Shape */

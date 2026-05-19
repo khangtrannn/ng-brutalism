@@ -42,9 +42,7 @@ let nextSelectId = 0;
       (click)="toggle()"
       (keydown)="onTriggerKeydown($event)"
     >
-      <span
-        class="min-w-0 flex-1 truncate text-left"
-      >
+      <span class="min-w-0 flex-1 truncate text-left">
         {{ selectedLabel() || placeholder() }}
       </span>
 
@@ -58,14 +56,14 @@ let nextSelectId = 0;
     </button>
 
     @if (open()) {
-      <div
-        [id]="listboxId"
-        role="listbox"
-        [attr.aria-labelledby]="triggerId"
-        [class]="listboxClasses"
-      >
-        <ng-content />
-      </div>
+    <div
+      [id]="listboxId"
+      role="listbox"
+      [attr.aria-labelledby]="triggerId"
+      [class]="listboxClasses"
+    >
+      <ng-content />
+    </div>
     }
   `,
   host: {
@@ -111,23 +109,30 @@ export class NbSelectComponent implements NbSelectController, OnInit {
 
   protected readonly hostClasses = computed(() => {
     const inGroup = this.group !== null;
-    return inGroup
-      ? 'block w-full'
-      : nbClass(
-          'relative block w-full',
-          'rounded-nb border-2 border-(--nb-border)',
-          'bg-(--nb-input-bg,var(--nb-field-bg)) shadow-nb',
-          'focus-within:outline-none focus-within:ring-2 focus-within:ring-(--nb-border)',
-          'focus-within:ring-offset-2 focus-within:shadow-none',
-          'data-[disabled]:border-gray-400 data-[disabled]:shadow-[5px_5px_0_0_#a3a3a3]',
-        );
+    return nbClass(
+      '[--nb-select-bg:var(--nb-input-bg,var(--nb-field-bg))]',
+      '[--nb-select-fg:var(--nb-foreground)]',
+      '[--nb-select-border:var(--nb-border)]',
+      '[--nb-select-radius:var(--nb-radius)]',
+      '[--nb-select-listbox-bg:var(--nb-surface,#ffffff)]',
+      inGroup
+        ? 'block w-full'
+        : [
+            'relative block w-full',
+            'rounded-(--nb-select-radius) border-2 border-(--nb-select-border)',
+            'bg-(--nb-select-bg) shadow-nb',
+            'focus-within:outline-none focus-within:ring-2 focus-within:ring-(--nb-select-border)',
+            'focus-within:ring-offset-2 focus-within:shadow-none',
+            'data-[disabled]:border-gray-400 data-[disabled]:shadow-[5px_5px_0_0_#a3a3a3]',
+          ]
+    );
   });
 
   protected readonly triggerClasses = computed(() => {
     const inGroup = this.group !== null;
     return nbClass(
       'flex h-14 w-full items-center gap-4 font-mono text-base font-bold',
-      'text-(--nb-foreground) transition-all duration-150',
+      'text-(--nb-select-fg) transition-all duration-150',
       'disabled:cursor-not-allowed disabled:text-gray-400',
       inGroup
         ? ['flex-1 min-w-0 bg-transparent px-3 focus-visible:outline-none']
@@ -136,11 +141,11 @@ export class NbSelectComponent implements NbSelectController, OnInit {
   });
 
   protected readonly listboxClasses = nbClass(
-      'absolute z-50 top-[calc(100%+8px)]',
-      'left-[-6px] w-[calc(100%+12px)] mt-0.5',
-      'rounded-b-nb border-2 border-(--nb-border) bg-(--nb-surface,#ffffff)',
-      'shadow-nb'
-    );
+    'absolute z-50 top-[calc(100%+8px)]',
+    'left-[-6px] w-[calc(100%+12px)] mt-0.5',
+    'rounded-b-(--nb-select-radius) border-2 border-(--nb-select-border) bg-(--nb-select-listbox-bg)',
+    'shadow-nb'
+  );
 
   ngOnInit(): void {
     if (this.value() === null && this.defaultValue() !== null) {
@@ -194,7 +199,11 @@ export class NbSelectComponent implements NbSelectController, OnInit {
   }
 
   onTriggerKeydown(event: KeyboardEvent): void {
-    if (event.key === 'ArrowDown' || event.key === 'Enter' || event.key === ' ') {
+    if (
+      event.key === 'ArrowDown' ||
+      event.key === 'Enter' ||
+      event.key === ' '
+    ) {
       event.preventDefault();
       this.openAndFocusOption();
     }
@@ -210,7 +219,10 @@ export class NbSelectComponent implements NbSelectController, OnInit {
     return this.options().find((option) => !option.disabled());
   }
 
-  private focusRelativeOption(current: NbSelectOption, direction: 1 | -1): void {
+  private focusRelativeOption(
+    current: NbSelectOption,
+    direction: 1 | -1
+  ): void {
     const options = this.options().filter((option) => !option.disabled());
     const currentIndex = options.indexOf(current);
     const nextIndex =

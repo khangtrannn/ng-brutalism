@@ -245,18 +245,18 @@ const componentTokens: Record<DocsTokenComponent, DocsToken[]> = {
   ],
   'input-group': [
     {
-      name: '--nb-surface',
-      defaultValue: '#ffffff',
+      name: '--nb-input-group-bg',
+      defaultValue: 'var(--nb-input-bg, var(--nb-field-bg))',
       usage: 'Group wrapper background',
     },
     {
       name: '--nb-input-addon-bg',
-      defaultValue: '#c4a8ff',
+      defaultValue: 'var(--nb-yellow)',
       usage: 'Prefix and suffix background',
     },
     {
       name: '--nb-input-prefix-bg',
-      defaultValue: 'var(--nb-input-addon-bg)',
+      defaultValue: 'var(--nb-input-addon-bg, var(--nb-yellow))',
       usage: 'Prefix background',
     },
     {
@@ -286,9 +286,29 @@ const componentTokens: Record<DocsTokenComponent, DocsToken[]> = {
   ],
   select: [
     {
-      name: '--nb-input-bg',
-      defaultValue: 'var(--nb-field-bg)',
+      name: '--nb-select-bg',
+      defaultValue: 'var(--nb-input-bg, var(--nb-field-bg))',
       usage: 'Select background',
+    },
+    {
+      name: '--nb-select-fg',
+      defaultValue: 'var(--nb-foreground)',
+      usage: 'Select text and icon color',
+    },
+    {
+      name: '--nb-select-border',
+      defaultValue: 'var(--nb-border)',
+      usage: 'Select border and focus ring color',
+    },
+    {
+      name: '--nb-select-radius',
+      defaultValue: 'var(--nb-radius)',
+      usage: 'Select corner radius',
+    },
+    {
+      name: '--nb-select-listbox-bg',
+      defaultValue: 'var(--nb-surface, #ffffff)',
+      usage: 'Custom select listbox background',
     },
   ],
   theme: [

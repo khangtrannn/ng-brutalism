@@ -34,13 +34,13 @@ let nextSelectOptionId = 0;
         <ng-content />
       </span>
       @if (showIndicator()) {
-        <svg
-          class="size-6 shrink-0 fill-none stroke-current stroke-[3] stroke-linecap-round stroke-linejoin-round"
-          viewBox="0 0 24 24"
-          aria-hidden="true"
-        >
-          <path d="m20 6-11 11-5-5" />
-        </svg>
+      <svg
+        class="size-6 shrink-0 fill-none stroke-current stroke-[3] stroke-linecap-round stroke-linejoin-round"
+        viewBox="0 0 24 24"
+        aria-hidden="true"
+      >
+        <path d="m20 6-11 11-5-5" />
+      </svg>
       }
     </button>
   `,
@@ -72,9 +72,9 @@ export class NbSelectOption {
   protected readonly classes = computed(() =>
     nbClass(
       'flex h-11 w-full items-center gap-3 px-2',
-      'font-mono text-base font-bold text-(--nb-foreground)',
+      'font-mono text-base font-bold text-(--nb-select-fg)',
       'transition-colors duration-150',
-      'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--nb-border)',
+      'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--nb-select-border)',
       'disabled:pointer-events-none disabled:opacity-50',
       this.selected()
         ? 'bg-(--nb-select-selected-bg,#bdf7c8)'
