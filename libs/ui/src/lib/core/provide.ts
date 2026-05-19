@@ -1,11 +1,12 @@
 import {
-  APP_INITIALIZER,
   EnvironmentProviders,
   inject,
   makeEnvironmentProviders,
   PLATFORM_ID,
+  provideAppInitializer,
+  DOCUMENT,
 } from '@angular/core';
-import { DOCUMENT, isPlatformBrowser } from '@angular/common';
+import { isPlatformBrowser } from '@angular/common';
 import { NB_THEME_CONFIG, NbThemeConfig } from '../tokens/theme.tokens';
 
 function applyThemeVars(doc: Document, config: NbThemeConfig): void {
@@ -45,9 +46,8 @@ export function provideNgBrutalism(
       provide: NB_THEME_CONFIG,
       useValue: config.theme ?? {},
     },
-    {
-      provide: APP_INITIALIZER,
-      useFactory: () => {
+    provideAppInitializer(() => {
+      const initializerFn = (() => {
         const doc = inject(DOCUMENT);
         const platformId = inject(PLATFORM_ID);
         const themeConfig = inject(NB_THEME_CONFIG);
@@ -57,8 +57,8 @@ export function provideNgBrutalism(
             applyThemeVars(doc, themeConfig);
           }
         };
-      },
-      multi: true,
-    },
+      })();
+      return initializerFn();
+    }),
   ]);
 }

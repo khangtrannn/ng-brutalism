@@ -7,16 +7,15 @@ import { NbDocsSidebar } from './sidebar';
 import { NbDocsToc } from './toc';
 
 @Component({
-  selector: 'nb-docs-layout',
-  standalone: true,
-  imports: [
-    RouterOutlet,
-    NbDocsNavbar,
-    NbDocsSidebar,
-    NbDocsToc,
-    NbDocsPagination,
-  ],
-  template: `
+    selector: 'nb-docs-layout',
+    imports: [
+        RouterOutlet,
+        NbDocsNavbar,
+        NbDocsSidebar,
+        NbDocsToc,
+        NbDocsPagination,
+    ],
+    template: `
     <div class="relative min-h-screen overflow-x-clip">
       <!-- Decorative floating shapes -->
       <span
@@ -51,6 +50,6 @@ import { NbDocsToc } from './toc';
       </div>
     </div>
   `,
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class NbDocsLayout {}

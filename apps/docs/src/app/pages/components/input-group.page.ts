@@ -14,21 +14,20 @@ import { DocsSourceTile } from '../../docs/docs-source-tile';
 import { DocsTokens } from '../../docs/docs-tokens';
 
 @Component({
-  selector: 'docs-input-group-page',
-  standalone: true,
-  imports: [
-    DocsCodeBlock,
-    DocsExample,
-    DocsSourceTile,
-    DocsTokens,
-    NbInput,
-    NbInputGroup,
-    NbInputPrefix,
-    NbInputSuffix,
-    NbLabel,
-    NbTextarea,
-  ],
-  template: `
+    selector: 'docs-input-group-page',
+    imports: [
+        DocsCodeBlock,
+        DocsExample,
+        DocsSourceTile,
+        DocsTokens,
+        NbInput,
+        NbInputGroup,
+        NbInputPrefix,
+        NbInputSuffix,
+        NbLabel,
+        NbTextarea,
+    ],
+    template: `
     <article>
       <header id="overview" class="relative mb-10 scroll-mt-32">
         <div class="mb-5">
@@ -162,7 +161,7 @@ import { DocsTokens } from '../../docs/docs-tokens';
       </section>
     </article>
   `,
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export default class InputGroupPageComponent {
   protected readonly defaultExampleCode = `<nb-input-group class="max-w-80">

@@ -18,21 +18,20 @@ import {
 } from '@ng-brutalism/ui';
 
 @Component({
-  selector: 'docs-portfolio-contact-dialog',
-  standalone: true,
-  imports: [
-    NbButton,
-    NbDialog,
-    NbDialogActions,
-    NbDialogClose,
-    NbDialogContent,
-    NbDialogDescription,
-    NbDialogTitle,
-    NbInput,
-    NbLabel,
-    NbTextarea,
-  ],
-  template: `
+    selector: 'docs-portfolio-contact-dialog',
+    imports: [
+        NbButton,
+        NbDialog,
+        NbDialogActions,
+        NbDialogClose,
+        NbDialogContent,
+        NbDialogDescription,
+        NbDialogTitle,
+        NbInput,
+        NbLabel,
+        NbTextarea,
+    ],
+    template: `
     <button
       nbButton
       (click)="contactDialog.open()"
@@ -192,7 +191,7 @@ import {
       </nb-dialog-actions>
     </nb-dialog>
   `,
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class PortfolioContactDialogComponent {
   private static nextId = 0;

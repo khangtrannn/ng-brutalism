@@ -39,9 +39,7 @@ describe('NbDialog token surface', () => {
     expect(cls).toContain('[--nb-dialog-fg:var(--nb-foreground)]');
     expect(cls).toContain('[--nb-dialog-border:var(--nb-border)]');
     expect(cls).toContain('[--nb-dialog-radius:0.5rem]');
-    expect(cls).toContain(
-      '[--nb-dialog-shadow:8px_8px_0_0_var(--nb-shadow)]'
-    );
+    expect(cls).toContain('[--nb-dialog-shadow:8px_8px_0_0_var(--nb-shadow)]');
   });
 
   it('reads its scoped tokens instead of global tokens directly', async () => {
@@ -75,14 +73,10 @@ describe('NbDialog token surface', () => {
       'text-(--nb-dialog-description-fg)'
     );
 
-    expect(content.className).toContain(
-      '[--nb-dialog-content-bg:transparent]'
-    );
+    expect(content.className).toContain('[--nb-dialog-content-bg:transparent]');
     expect(content.className).toContain('bg-(--nb-dialog-content-bg)');
 
-    expect(actions.className).toContain(
-      '[--nb-dialog-actions-bg:transparent]'
-    );
+    expect(actions.className).toContain('[--nb-dialog-actions-bg:transparent]');
     expect(actions.className).toContain('bg-(--nb-dialog-actions-bg)');
   });
 

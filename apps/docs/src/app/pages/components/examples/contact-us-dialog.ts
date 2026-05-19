@@ -18,26 +18,25 @@ import {
 } from '@ng-brutalism/ui';
 
 @Component({
-  selector: 'contact-us-dialog',
-  standalone: true,
-  imports: [
-    NbButton,
-    NbDialog,
-    NbDialogActions,
-    NbDialogClose,
-    NbDialogContent,
-    NbDialogDescription,
-    NbDialogTitle,
-    NbInput,
-    NbInputGroup,
-    NbInputPrefix,
-    NbLabel,
-    NbSelectComponent,
-    NbSelectOption,
-    NbTextarea,
-    NbTitle,
-  ],
-  template: `
+    selector: 'contact-us-dialog',
+    imports: [
+        NbButton,
+        NbDialog,
+        NbDialogActions,
+        NbDialogClose,
+        NbDialogContent,
+        NbDialogDescription,
+        NbDialogTitle,
+        NbInput,
+        NbInputGroup,
+        NbInputPrefix,
+        NbLabel,
+        NbSelectComponent,
+        NbSelectOption,
+        NbTextarea,
+        NbTitle,
+    ],
+    template: `
     <button
       nbButton
       style="--nb-button-bg: var(--nb-yellow)"
@@ -321,7 +320,7 @@ import {
       </nb-dialog-actions>
     </nb-dialog>
   `,
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ContactUsDialog {
   dialog = viewChild.required<NbDialog>('dialogRef');

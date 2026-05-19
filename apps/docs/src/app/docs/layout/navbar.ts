@@ -11,10 +11,9 @@ import { NavigationEnd, Router, RouterLink } from '@angular/router';
 import { filter } from 'rxjs';
 
 @Component({
-  selector: 'nb-docs-navbar',
-  standalone: true,
-  imports: [RouterLink],
-  template: `
+    selector: 'nb-docs-navbar',
+    imports: [RouterLink],
+    template: `
     <nav
       class="fixed top-3 right-3 left-3 z-50 border-4 border-(--nb-border) bg-(--nb-paper) shadow-[8px_8px_0_0_var(--nb-shadow)]"
       aria-label="Main navigation"
@@ -95,7 +94,7 @@ import { filter } from 'rxjs';
       </div>
     </nav>
   `,
-  styles: `
+    styles: `
     .brand-mark {
       font-family: var(--font-display);
       letter-spacing: -0.05em;
@@ -144,7 +143,7 @@ import { filter } from 'rxjs';
       transform: rotate(-1deg) translateY(-1px);
     }
   `,
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class NbDocsNavbar {
   private readonly router = inject(Router);

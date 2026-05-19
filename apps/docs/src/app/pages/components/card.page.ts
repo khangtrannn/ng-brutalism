@@ -16,23 +16,22 @@ import { DocsTokens } from '../../docs/docs-tokens';
 import JobListingCardExampleComponent from './examples/job-listing-card';
 
 @Component({
-  selector: 'docs-card-page',
-  standalone: true,
-  imports: [
-    DocsCodeBlock,
-    DocsExample,
-    DocsSourceTile,
-    DocsTokens,
-    JobListingCardExampleComponent,
-    NbButton,
-    NbCard,
-    NbCardContent,
-    NbCardDescription,
-    NbCardFooter,
-    NbCardHeader,
-    NbCardTitle,
-  ],
-  template: `
+    selector: 'docs-card-page',
+    imports: [
+        DocsCodeBlock,
+        DocsExample,
+        DocsSourceTile,
+        DocsTokens,
+        JobListingCardExampleComponent,
+        NbButton,
+        NbCard,
+        NbCardContent,
+        NbCardDescription,
+        NbCardFooter,
+        NbCardHeader,
+        NbCardTitle,
+    ],
+    template: `
     <article>
       <header id="overview" class="relative mb-10 scroll-mt-32">
         <div class="mb-5">
@@ -183,8 +182,8 @@ import JobListingCardExampleComponent from './examples/job-listing-card';
       <docs-tokens component="card" />
     </article>
   `,
-  styles: [],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    styles: [],
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export default class CardPageComponent {
   protected readonly importCode = `import {

@@ -4,10 +4,9 @@ import { DocsCodeBlock } from '../../docs/docs-code-block';
 import { DocsTokens } from '../../docs/docs-tokens';
 
 @Component({
-  selector: 'docs-installation-page',
-  standalone: true,
-  imports: [DocsCodeBlock, DocsTokens],
-  template: `
+    selector: 'docs-installation-page',
+    imports: [DocsCodeBlock, DocsTokens],
+    template: `
     <article>
       <header id="overview" class="relative mb-10 scroll-mt-32">
         <div class="mb-5">
@@ -42,7 +41,7 @@ import { DocsTokens } from '../../docs/docs-tokens';
       </section>
     </article>
   `,
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export default class InstallationPageComponent {
   protected readonly installCode = `pnpm add @ng-brutalism/ui`;

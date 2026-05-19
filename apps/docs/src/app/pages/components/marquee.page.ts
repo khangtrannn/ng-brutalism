@@ -13,17 +13,16 @@ interface MarqueeSkill {
 }
 
 @Component({
-  selector: 'docs-marquee-page',
-  standalone: true,
-  imports: [
-    DocsCodeBlock,
-    DocsExample,
-    DocsSourceTile,
-    DocsTokens,
-    NbMarquee,
-    NbMarqueeItem,
-  ],
-  template: `
+    selector: 'docs-marquee-page',
+    imports: [
+        DocsCodeBlock,
+        DocsExample,
+        DocsSourceTile,
+        DocsTokens,
+        NbMarquee,
+        NbMarqueeItem,
+    ],
+    template: `
     <article>
       <header id="overview" class="relative mb-10 scroll-mt-32">
         <div class="mb-5">
@@ -253,7 +252,7 @@ interface MarqueeSkill {
       </section>
     </article>
   `,
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export default class MarqueePageComponent {
   protected readonly importCode = `import { NbMarquee, NbMarqueeItem } from '@ng-brutalism/ui';`;

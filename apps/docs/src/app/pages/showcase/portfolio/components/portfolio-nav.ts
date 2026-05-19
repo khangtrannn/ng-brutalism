@@ -10,10 +10,9 @@ import type { NavLink } from '../portfolio.types';
 import { PortfolioContactDialogComponent } from './portfolio-contact-dialog';
 
 @Component({
-  selector: 'docs-portfolio-nav',
-  standalone: true,
-  imports: [PortfolioContactDialogComponent],
-  template: `
+    selector: 'docs-portfolio-nav',
+    imports: [PortfolioContactDialogComponent],
+    template: `
     <header class="sticky top-4 z-50 w-full px-4">
       <nav
         class="mx-auto mt-2 flex h-[60px] w-full max-w-full items-center justify-between border-[3px] border-black bg-yellow-300 px-3 shadow-[8px_8px_0px_0px_#000] transition-transform duration-300 sm:mt-4 sm:h-[70px] sm:px-6 md:h-[80px] {{ showNav() ? 'translate-y-0' : '-translate-y-[calc(100%+40px)]' }}"
@@ -99,8 +98,8 @@ import { PortfolioContactDialogComponent } from './portfolio-contact-dialog';
       }
     </header>
   `,
-  host: { '(window:scroll)': 'onWindowScroll()' },
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    host: { '(window:scroll)': 'onWindowScroll()' },
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class PortfolioNavComponent {
   readonly assetPath = input.required<string>();

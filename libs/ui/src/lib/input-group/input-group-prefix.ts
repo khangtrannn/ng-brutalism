@@ -24,7 +24,9 @@ export class NbInputPrefix {
       'flex w-12 shrink-0 justify-center',
       'border-r-2 border-(--nb-input-group-border,var(--nb-border))',
       'bg-(--nb-input-group-prefix-bg)',
-      this.align() === 'stretch' ? 'self-stretch items-start pt-2' : 'items-center'
+      this.align() === 'stretch'
+        ? 'self-stretch items-start pt-2'
+        : 'items-center'
     )
   );
 }

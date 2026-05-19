@@ -11,19 +11,18 @@ import {
 } from '@ng-brutalism/ui';
 
 @Component({
-  selector: 'docs-job-listing-card-example',
-  standalone: true,
-  imports: [
-    NbButton,
-    NbCard,
-    NbCardContent,
-    NbCardDescription,
-    NbCardFooter,
-    NbCardHeader,
-    NbCardTitle,
-    NbTitle,
-  ],
-  template: `
+    selector: 'docs-job-listing-card-example',
+    imports: [
+        NbButton,
+        NbCard,
+        NbCardContent,
+        NbCardDescription,
+        NbCardFooter,
+        NbCardHeader,
+        NbCardTitle,
+        NbTitle,
+    ],
+    template: `
     <div class="job-card-demo" role="group" aria-label="Job posting">
       <nb-card class="job-card-shell">
         <nb-card-header class="job-card-section">
@@ -323,8 +322,8 @@ import {
       </nb-card>
     </div>
   `,
-  styles: [
-    `
+    styles: [
+        `
       :host {
         display: block;
         width: min(100%, 480px);
@@ -628,7 +627,7 @@ import {
         }
       }
     `,
-  ],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    ],
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export default class JobListingCardExampleComponent {}

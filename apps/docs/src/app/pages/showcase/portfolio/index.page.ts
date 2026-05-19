@@ -25,19 +25,18 @@ import { PortfolioNavComponent } from './components/portfolio-nav';
 import { PortfolioProjectsComponent } from './components/portfolio-projects';
 
 @Component({
-  selector: 'docs-portfolio-showcase-page',
-  standalone: true,
-  imports: [
-    PortfolioFooterComponent,
-    PortfolioHeroComponent,
-    PortfolioJourneyComponent,
-    PortfolioNavComponent,
-    PortfolioProjectsComponent,
-  ],
-  templateUrl: './portfolio.page.html',
-  styleUrl: './portfolio.page.scss',
-  encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'docs-portfolio-showcase-page',
+    imports: [
+        PortfolioFooterComponent,
+        PortfolioHeroComponent,
+        PortfolioJourneyComponent,
+        PortfolioNavComponent,
+        PortfolioProjectsComponent,
+    ],
+    templateUrl: './portfolio.page.html',
+    styleUrl: './portfolio.page.scss',
+    encapsulation: ViewEncapsulation.None,
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export default class PortfolioShowcasePageComponent {
   private readonly destroyRef = inject(DestroyRef);

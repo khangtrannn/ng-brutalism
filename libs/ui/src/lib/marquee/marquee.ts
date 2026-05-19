@@ -33,20 +33,36 @@ import { nbClass } from '../core/class';
   styles: [
     `
       @keyframes nb-marquee-1 {
-        from { transform: translateX(0%); }
-        to   { transform: translateX(-100%); }
+        from {
+          transform: translateX(0%);
+        }
+        to {
+          transform: translateX(-100%);
+        }
       }
       @keyframes nb-marquee-2 {
-        from { transform: translateX(100%); }
-        to   { transform: translateX(0%); }
+        from {
+          transform: translateX(100%);
+        }
+        to {
+          transform: translateX(0%);
+        }
       }
       @keyframes nb-marquee-reverse-1 {
-        from { transform: translateX(0%); }
-        to   { transform: translateX(100%); }
+        from {
+          transform: translateX(0%);
+        }
+        to {
+          transform: translateX(100%);
+        }
       }
       @keyframes nb-marquee-reverse-2 {
-        from { transform: translateX(-100%); }
-        to   { transform: translateX(0%); }
+        from {
+          transform: translateX(-100%);
+        }
+        to {
+          transform: translateX(0%);
+        }
       }
 
       .nb-marquee-strip-1 {
