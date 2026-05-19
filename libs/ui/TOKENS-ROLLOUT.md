@@ -448,14 +448,14 @@ Phase 1 landed the button pilot (commit `5168aca`) and confirmed the protocol wo
 
 **Current handoff as of 2026-05-19:**
 
-- Implemented in this working tree: button, accordion, card, input, textarea, select, input-group, and dialog scoped-token surfaces.
+- Implemented in this working tree: button, accordion, badge, card, input, textarea, select, input-group, and dialog scoped-token surfaces.
 - The accordion full-suite blocker is fixed and accordion §5.1 is implemented. `pnpm vitest run --config libs/ui/vitest.config.mts src/lib/accordion/accordion.tokens.spec.ts src/lib/accordion/accordion.component.spec.ts --reporter=verbose` passes with `11 passed`.
 - Dialog §5.7 is implemented. `pnpm vitest run --config libs/ui/vitest.config.mts src/lib/dialog/dialog.tokens.spec.ts --reporter=verbose` passes with `4 passed`.
 - `pnpm nx test ui --output-style=stream` now passes.
 - Focused input-group/select verification passed: `pnpm vitest run --config libs/ui/vitest.config.mts src/lib/input-group/input-group.tokens.spec.ts src/lib/select/select.spec.ts src/lib/select/select.tokens.spec.ts --reporter=verbose` — `22 passed`.
 - Latest validation also passed: `pnpm nx lint ui --output-style=stream`, `pnpm nx lint docs --output-style=stream`, `pnpm nx build ui --output-style=stream`, and `pnpm nx build docs --output-style=stream`.
-- Manual docs visual checks are still outstanding for `/components/accordion`, `/components/input`, `/components/textarea`, `/components/input-group`, `/components/select`, and `/components/dialog`; do those before claiming those component PRs visually complete.
-- Recommended next step: either run the outstanding manual docs visual checks, or continue implementation with badge token rollout (§5.2). After badge, continue checkbox (§5.6).
+- Manual docs visual checks are still outstanding for `/components/accordion`, `/components/badge`, `/components/input`, `/components/textarea`, `/components/input-group`, `/components/select`, and `/components/dialog`; do those before claiming those component PRs visually complete.
+- Recommended next step: either run the outstanding manual docs visual checks, or continue implementation with checkbox token rollout (§5.6).
 
 **Per-component PR template** (literal recipe, distilled from button pilot — replicate verbatim):
 
@@ -489,7 +489,7 @@ Phase 1 landed the button pilot (commit `5168aca`) and confirmed the protocol wo
 | #   | Component                      | Driving props                               | Anticipated scoped tokens                                                                                                    | Complexity                  |
 | --- | ------------------------------ | ------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------- | --------------------------- |
 | 1   | accordion                      | (none yet — see 5.1)                        | `--nb-accordion-item-bg/fg/border/radius/shadow`, `--nb-accordion-trigger-bg/fg`, `--nb-accordion-content-bg/fg`             | Medium — implemented        |
-| 2   | badge                          | `variant`                                   | `--nb-badge-bg/fg/border/radius/shadow`                                                                                      | Low                         |
+| 2   | badge                          | `variant`                                   | `--nb-badge-bg/fg/border/radius/shadow`                                                                                      | Low — implemented           |
 | 3   | card                           | (none yet)                                  | `--nb-card-bg/fg/border/radius/shadow`                                                                                       | Low                         |
 | 4   | input                          | `size` (layout, not color)                  | `--nb-input-bg/fg/border/radius`                                                                                             | Low                         |
 | 5   | textarea                       | `size`                                      | `--nb-textarea-bg/fg/border/radius` (see 5.4)                                                                                | Low                         |
@@ -562,16 +562,31 @@ Closest analogue to button. Existing variants: `default | secondary | success | 
 
 **Partial migration already on `main`:** commit `698b410` tokenized the radius (`--nb-badge-radius: 9999px` inline default + `rounded-(--nb-badge-radius)` read) and shipped `libs/ui/src/lib/badge/badge.directive.spec.ts` asserting it. The variant map still uses raw utilities (`bg-(--nb-accent) text-(--nb-accent-foreground)`, etc.) — those are the leaky pattern the rest of this PR must convert.
 
-What's left in this PR:
+**Status 2026-05-19:** implemented.
 
-1. Add the rest of the scoped surface inline as defaults:
-   - `--nb-badge-bg` default `#fff` (audit value — today's `default` variant is `bg-white`)
-   - `--nb-badge-fg` default `var(--nb-foreground)`
-   - `--nb-badge-border` default `var(--nb-border)`
-   - `--nb-badge-shadow` default `2px 2px 0 var(--nb-shadow)` (verbatim from `badge.directive.ts:22` — note the `2px 2px` is per-component, not the global `--nb-shadow-offset-x/y`; see §9 question 5)
-2. Replace direct reads (`border-(--nb-border)`, `shadow-[2px_2px_0_0_var(--nb-shadow)]`) with `border-(--nb-badge-border)` and `shadow-[var(--nb-badge-shadow)]`.
-3. Convert the variant map to token reassignments only (no `bg-*`/`text-*` utilities). `default` row becomes `''`.
-4. Roll the existing `badge.directive.spec.ts` into the §5.0 token spec template — current file only tests the radius; expand to cover all defaults, every variant reassignment, and the no-regression class-shape check.
+- `libs/ui/src/lib/badge/badge.directive.ts` now declares and reads:
+  - `--nb-badge-bg: #fff`
+  - `--nb-badge-fg: var(--nb-foreground)`
+  - `--nb-badge-border: var(--nb-border)`
+  - `--nb-badge-radius: 9999px`
+  - `--nb-badge-shadow: 2px 2px 0 var(--nb-shadow)`
+- Badge variants now reassign `--nb-badge-bg` and `--nb-badge-fg` only; the default variant row is empty.
+- `apps/docs/src/app/docs/docs-tokens.ts` now lists the five-token badge scoped surface instead of global accent/success/warning/danger rows.
+- Added `libs/ui/src/lib/badge/badge.tokens.spec.ts`.
+
+Verified:
+
+- `pnpm vitest run --config libs/ui/vitest.config.mts src/lib/badge/badge.tokens.spec.ts src/lib/badge/badge.directive.spec.ts --reporter=verbose` — passed, 8 tests.
+- `pnpm exec prettier --check libs/ui/src/lib/badge/badge.directive.ts libs/ui/src/lib/badge/badge.tokens.spec.ts apps/docs/src/app/docs/docs-tokens.ts libs/ui/TOKENS-ROLLOUT.md` — passed.
+- `pnpm nx lint ui --output-style=stream` — passed.
+- `pnpm nx lint docs --output-style=stream` — passed.
+- `pnpm nx build ui --output-style=stream` — passed.
+- `pnpm nx build docs --output-style=stream` — passed.
+- `pnpm nx test ui --output-style=stream` — passed.
+
+Known verification gaps:
+
+- Manual docs visual checks are still outstanding for `/components/badge`: default and all variant examples in light mode and dark mode, plus scoped override smoke tests for `--nb-badge-bg`, `--nb-badge-border`, and `--nb-badge-shadow`.
 
 **Naming wart:** badge calls it `destructive`; button calls it `danger`. Don't rename in this phase — it's a separate visual+API concern. Flagged in §6 cleanup.
 
