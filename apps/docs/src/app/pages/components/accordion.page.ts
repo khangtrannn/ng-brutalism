@@ -66,17 +66,17 @@ import { DocsTokens } from '../../docs/docs-tokens';
             <nb-accordion-item>
               <nb-accordion-trigger>Is it accessible?</nb-accordion-trigger>
               <nb-accordion-content>
-                Yes. It uses native button semantics and ARIA state.
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
               </nb-accordion-content>
             </nb-accordion-item>
 
             <nb-accordion-item>
               <nb-accordion-trigger>
-                Is it styled like neobrutalism.dev?
+                Lorem ipsum dolor sit amet consectetur.
               </nb-accordion-trigger>
               <nb-accordion-content>
-                Yes. It keeps the heavy border, offset shadow, bright trigger,
-                and rotating chevron from the referenced component.
+                Sed do eiusmod tempor incididunt ut labore et dolore magna
+                aliqua.
               </nb-accordion-content>
             </nb-accordion-item>
           </nb-accordion>
@@ -106,8 +106,7 @@ import { DocsTokens } from '../../docs/docs-tokens';
                 >Can multiple panels open?</nb-accordion-trigger
               >
               <nb-accordion-content>
-                Yes. Set <code>type="multiple"</code> to allow independent panel
-                state.
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
               </nb-accordion-content>
             </nb-accordion-item>
 
@@ -116,8 +115,8 @@ import { DocsTokens } from '../../docs/docs-tokens';
                 >Can panels start open?</nb-accordion-trigger
               >
               <nb-accordion-content>
-                Yes. Use <code>defaultValue</code> for uncontrolled accordions
-                or bind <code>value</code> for controlled state.
+                Ut enim ad minim veniam, quis nostrud exercitation ullamco
+                laboris.
               </nb-accordion-content>
             </nb-accordion-item>
           </nb-accordion>
@@ -134,6 +133,7 @@ import { DocsTokens } from '../../docs/docs-tokens';
                 size="sm"
                 variant="neutral"
                 type="button"
+                style="--nb-button-bg: var(--nb-yellow)"
                 (click)="controlledValue.set('overview')"
               >
                 Overview
@@ -143,6 +143,7 @@ import { DocsTokens } from '../../docs/docs-tokens';
                 size="sm"
                 variant="neutral"
                 type="button"
+                style="--nb-button-bg: var(--nb-mint)"
                 (click)="controlledValue.set('details')"
               >
                 Details
@@ -152,6 +153,7 @@ import { DocsTokens } from '../../docs/docs-tokens';
                 size="sm"
                 variant="neutral"
                 type="button"
+                style="--nb-button-bg: var(--nb-pink)"
                 (click)="controlledValue.set(null)"
               >
                 Collapse All
@@ -160,18 +162,16 @@ import { DocsTokens } from '../../docs/docs-tokens';
 
             <nb-accordion [(value)]="controlledValue">
               <nb-accordion-item value="overview">
-                <nb-accordion-trigger>Overview</nb-accordion-trigger>
+                <nb-accordion-trigger style="--nb-main: var(--nb-lavender)">Overview</nb-accordion-trigger>
                 <nb-accordion-content>
-                  Bind <code>[(value)]</code> when another control should open
-                  or close accordion panels. The trigger can switch panels, but
-                  only the external button can collapse the active panel.
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                 </nb-accordion-content>
               </nb-accordion-item>
 
               <nb-accordion-item value="details">
-                <nb-accordion-trigger>Details</nb-accordion-trigger>
+                <nb-accordion-trigger style="--nb-main: var(--nb-lavender)">Details</nb-accordion-trigger>
                 <nb-accordion-content>
-                  The value matches the active item in single mode.
+                  Duis aute irure dolor in reprehenderit in voluptate velit.
                 </nb-accordion-content>
               </nb-accordion-item>
             </nb-accordion>
@@ -186,14 +186,14 @@ import { DocsTokens } from '../../docs/docs-tokens';
             <nb-accordion-item value="enabled">
               <nb-accordion-trigger>Enabled item</nb-accordion-trigger>
               <nb-accordion-content>
-                This panel can be opened and closed normally.
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
               </nb-accordion-content>
             </nb-accordion-item>
 
             <nb-accordion-item value="disabled" disabled>
               <nb-accordion-trigger>Disabled item</nb-accordion-trigger>
               <nb-accordion-content>
-                Disabled triggers cannot be activated.
+                Excepteur sint occaecat cupidatat non proident.
               </nb-accordion-content>
             </nb-accordion-item>
           </nb-accordion>
@@ -368,43 +368,72 @@ export default class AccordionPageComponent {
   <nb-accordion-item>
     <nb-accordion-trigger>Is it accessible?</nb-accordion-trigger>
     <nb-accordion-content>
-      Yes. It uses native button semantics and ARIA state.
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit.
     </nb-accordion-content>
   </nb-accordion-item>
 
   <nb-accordion-item>
-    <nb-accordion-trigger>Is it styled like neobrutalism.dev?</nb-accordion-trigger>
+    <nb-accordion-trigger>Lorem ipsum dolor sit amet consectetur.</nb-accordion-trigger>
     <nb-accordion-content>
-      Yes. It keeps the heavy border, offset shadow, bright trigger,
-      and rotating chevron from the referenced component.
+      Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
     </nb-accordion-content>
   </nb-accordion-item>
 </nb-accordion>`;
 
   protected readonly controlledExampleComponentCode = `import { signal } from '@angular/core';
 
-readonly value = signal<string | string[] | null>('overview');`;
+readonly controlledValue = signal<string | string[] | null>('overview');`;
 
-  protected readonly controlledExampleTemplateCode = `<button nbButton (click)="value.set('overview')">Overview</button>
-<button nbButton (click)="value.set('details')">Details</button>
-<button nbButton (click)="value.set(null)">Close</button>
+  protected readonly controlledExampleTemplateCode = `<div class="flex w-full max-w-xl flex-col gap-4">
+  <div class="flex flex-wrap gap-3">
+    <button
+      nbButton
+      size="sm"
+      variant="neutral"
+      type="button"
+      style="--nb-button-bg: var(--nb-yellow)"
+      (click)="controlledValue.set('overview')"
+    >
+      Overview
+    </button>
+    <button
+      nbButton
+      size="sm"
+      variant="neutral"
+      type="button"
+      style="--nb-button-bg: var(--nb-mint)"
+      (click)="controlledValue.set('details')"
+    >
+      Details
+    </button>
+    <button
+      nbButton
+      size="sm"
+      variant="neutral"
+      type="button"
+      style="--nb-button-bg: var(--nb-pink)"
+      (click)="controlledValue.set(null)"
+    >
+      Collapse All
+    </button>
+  </div>
 
-<nb-accordion [(value)]="value">
-  <nb-accordion-item value="overview">
-    <nb-accordion-trigger>Overview</nb-accordion-trigger>
-    <nb-accordion-content>
-      Bind [(value)] when another control should open or close panels.
-      Without collapsible, only the external button can collapse the active panel.
-    </nb-accordion-content>
-  </nb-accordion-item>
+  <nb-accordion [(value)]="controlledValue">
+    <nb-accordion-item value="overview">
+      <nb-accordion-trigger style="--nb-main: var(--nb-lavender)">Overview</nb-accordion-trigger>
+      <nb-accordion-content>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+      </nb-accordion-content>
+    </nb-accordion-item>
 
-  <nb-accordion-item value="details">
-    <nb-accordion-trigger>Details</nb-accordion-trigger>
-    <nb-accordion-content>
-      The value matches the active item in single mode.
-    </nb-accordion-content>
-  </nb-accordion-item>
-</nb-accordion>`;
+    <nb-accordion-item value="details">
+      <nb-accordion-trigger style="--nb-main: var(--nb-lavender)">Details</nb-accordion-trigger>
+      <nb-accordion-content>
+        Duis aute irure dolor in reprehenderit in voluptate velit.
+      </nb-accordion-content>
+    </nb-accordion-item>
+  </nb-accordion>
+</div>`;
 
   protected readonly multipleExampleCode = `<nb-accordion
   class="block w-full max-w-xl"
@@ -414,31 +443,30 @@ readonly value = signal<string | string[] | null>('overview');`;
   <nb-accordion-item value="item-1">
     <nb-accordion-trigger>Can multiple panels open?</nb-accordion-trigger>
     <nb-accordion-content>
-      Yes. Set type="multiple" to allow independent panel state.
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit.
     </nb-accordion-content>
   </nb-accordion-item>
 
   <nb-accordion-item value="item-2">
     <nb-accordion-trigger>Can panels start open?</nb-accordion-trigger>
     <nb-accordion-content>
-      Yes. Use defaultValue for uncontrolled accordions
-      or bind value for controlled state.
+      Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.
     </nb-accordion-content>
   </nb-accordion-item>
 </nb-accordion>`;
 
-  protected readonly disabledExampleCode = `<nb-accordion class="block w-full max-w-xl" defaultValue="enabled">
+  protected readonly disabledExampleCode = `<nb-accordion collapsible class="block w-full max-w-xl" defaultValue="enabled">
   <nb-accordion-item value="enabled">
     <nb-accordion-trigger>Enabled item</nb-accordion-trigger>
     <nb-accordion-content>
-      This panel can be opened and closed normally.
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit.
     </nb-accordion-content>
   </nb-accordion-item>
 
   <nb-accordion-item value="disabled" disabled>
     <nb-accordion-trigger>Disabled item</nb-accordion-trigger>
     <nb-accordion-content>
-      Disabled triggers cannot be activated.
+      Excepteur sint occaecat cupidatat non proident.
     </nb-accordion-content>
   </nb-accordion-item>
 </nb-accordion>`;

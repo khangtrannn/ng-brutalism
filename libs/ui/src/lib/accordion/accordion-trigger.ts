@@ -25,19 +25,13 @@ import { NbAccordionItemComponent } from './accordion-item';
       >
         <ng-content />
         <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="24"
-          height="24"
+          class="size-6 shrink-0 fill-none stroke-current stroke-[3] stroke-linecap-round stroke-linejoin-round"
           viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="2"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          [class]="chevronClasses()"
           aria-hidden="true"
         >
-          <path d="m6 9 6 6 6-6" />
+          <path
+            [attr.d]="item.open() ? 'm18 15-6-6-6 6' : 'm6 9 6 6 6-6'"
+          />
         </svg>
       </button>
     </h3>
@@ -56,13 +50,6 @@ export class NbAccordionTriggerComponent {
       'focus-visible:ring-(--nb-border) focus-visible:ring-offset-2',
       'disabled:pointer-events-none disabled:opacity-50',
       this.item.open() && 'border-b-2 border-(--nb-border)'
-    )
-  );
-
-  protected readonly chevronClasses = computed(() =>
-    nbClass(
-      'pointer-events-none size-5 shrink-0 transition-transform duration-200',
-      this.item.open() && 'rotate-180'
     )
   );
 }
