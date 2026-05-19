@@ -14,6 +14,7 @@ import {
 } from '@angular/core';
 
 import { nbClass } from '../core/class';
+import { NB_INPUT_GROUP } from '../input-group/input-group.types';
 import { NbSelectOption } from './select-option';
 import {
   NB_SELECT,
@@ -68,7 +69,7 @@ let nextSelectId = 0;
     }
   `,
   host: {
-    class: 'relative block w-full',
+    '[class]': 'hostClasses()',
     '[attr.data-state]': 'open() ? "open" : "closed"',
     '[attr.data-disabled]': 'disabled() ? "" : null',
     '(document:click)': 'onDocumentClick($event)',
@@ -78,6 +79,7 @@ let nextSelectId = 0;
 })
 export class NbSelectComponent implements NbSelectController, OnInit {
   private readonly element = inject<ElementRef<HTMLElement>>(ElementRef);
+  private readonly group = inject(NB_INPUT_GROUP, { optional: true });
 
   readonly placeholder = input('Select an option');
   readonly defaultValue = input<NbSelectValue | null>(null);
@@ -107,18 +109,29 @@ export class NbSelectComponent implements NbSelectController, OnInit {
     () => this.selectedOption()?.label() ?? ''
   );
 
-  protected readonly triggerClasses = computed(() =>
-    nbClass(
-      'flex h-14 w-full items-center gap-4 rounded-nb border-2 border-(--nb-border)',
-      'bg-(--nb-input-background,#ffffff) px-5 font-mono text-base font-bold',
-      'text-(--nb-foreground) shadow-nb transition-all duration-150',
-      'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--nb-focus,#8b5cf6)',
-      'focus-visible:ring-offset-2',
-      'disabled:cursor-not-allowed disabled:border-gray-400 disabled:text-gray-400 disabled:shadow-[5px_5px_0_0_#a3a3a3]',
-      this.open() &&
-        'border-(--nb-select-active-border,#8b5cf6) shadow-[5px_5px_0_0_var(--nb-shadow)]'
-    )
+  protected readonly hostClasses = computed(() =>
+    this.group !== null ? 'block w-full' : 'relative block w-full'
   );
+
+  protected readonly triggerClasses = computed(() => {
+    const inGroup = this.group !== null;
+    return nbClass(
+      'flex h-14 w-full items-center gap-4 font-mono text-base font-bold',
+      'text-(--nb-foreground) transition-all duration-150',
+      'disabled:cursor-not-allowed disabled:text-gray-400',
+      inGroup
+        ? ['flex-1 min-w-0 bg-transparent px-3 focus-visible:outline-none']
+        : [
+            'rounded-nb border-2 border-(--nb-border)',
+            'bg-(--nb-input-background,#ffffff) px-5 shadow-nb',
+            'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--nb-focus,#8b5cf6)',
+            'focus-visible:ring-offset-2',
+            'disabled:border-gray-400 disabled:shadow-[5px_5px_0_0_#a3a3a3]',
+            this.open() &&
+              'border-(--nb-select-active-border,#8b5cf6) shadow-[5px_5px_0_0_var(--nb-shadow)]',
+          ]
+    );
+  });
 
   protected readonly listboxClasses = nbClass(
     'absolute left-0 top-[calc(100%+8px)] z-50 w-full',

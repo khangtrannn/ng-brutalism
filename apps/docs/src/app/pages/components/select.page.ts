@@ -1,6 +1,8 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import {
   NbButton,
+  NbInputGroup,
+  NbInputPrefix,
   NbLabel,
   NbSelect,
   NbSelectComponent,
@@ -19,6 +21,8 @@ import { DocsTokens } from '../../docs/docs-tokens';
     DocsExample,
     DocsTokens,
     NbButton,
+    NbInputGroup,
+    NbInputPrefix,
     NbLabel,
     NbSelect,
     NbSelectComponent,
@@ -123,6 +127,39 @@ import { DocsTokens } from '../../docs/docs-tokens';
                 Enterprise
               </nb-select-option>
             </nb-select>
+          </div>
+        </docs-example>
+      </section>
+
+      <section id="with-prefix">
+        <h2 class="mt-10 mb-4 text-2xl font-bold">With Prefix</h2>
+        <docs-example [code]="withPrefixExampleCode">
+          <div class="w-90">
+            <label nbLabel id="subject-label" class="mb-2 block">Subject</label>
+            <nb-input-group>
+              <span nbInputPrefix>
+                <svg
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  aria-hidden="true"
+                >
+                  <path d="M12 2H2v10l9.29 9.29c.94.94 2.48.94 3.42 0l6.58-6.58c.94-.94.94-2.48 0-3.42L12 2Z" />
+                  <path d="M7 7h.01" />
+                </svg>
+              </span>
+              <nb-select placeholder="What is this regarding?" aria-labelledby="subject-label">
+                <nb-select-option value="general" label="General Inquiry">General Inquiry</nb-select-option>
+                <nb-select-option value="project" label="Project Proposal">Project Proposal</nb-select-option>
+                <nb-select-option value="bug" label="Bug Report">Bug Report</nb-select-option>
+                <nb-select-option value="other" label="Other">Other</nb-select-option>
+              </nb-select>
+            </nb-input-group>
           </div>
         </docs-example>
       </section>
@@ -362,6 +399,34 @@ export default class SelectPageComponent {
     <nb-select-option value="team" label="Team">Team</nb-select-option>
     <nb-select-option value="enterprise" label="Enterprise">Enterprise</nb-select-option>
   </nb-select>
+</div>`;
+
+  protected readonly withPrefixExampleCode = `<div class="w-80">
+  <label nbLabel id="subject-label" class="mb-2 block">Subject</label>
+  <nb-input-group>
+    <span nbInputPrefix>
+      <svg
+        width="20"
+        height="20"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2.5"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        aria-hidden="true"
+      >
+        <path d="M12 2H2v10l9.29 9.29c.94.94 2.48.94 3.42 0l6.58-6.58c.94-.94.94-2.48 0-3.42L12 2Z" />
+        <path d="M7 7h.01" />
+      </svg>
+    </span>
+    <nb-select placeholder="What is this regarding?" aria-labelledby="subject-label">
+      <nb-select-option value="general" label="General Inquiry">General Inquiry</nb-select-option>
+      <nb-select-option value="project" label="Project Proposal">Project Proposal</nb-select-option>
+      <nb-select-option value="bug" label="Bug Report">Bug Report</nb-select-option>
+      <nb-select-option value="other" label="Other">Other</nb-select-option>
+    </nb-select>
+  </nb-input-group>
 </div>`;
 
   protected readonly withIconExampleCode = `<div class="w-80">
