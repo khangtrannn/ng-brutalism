@@ -598,6 +598,40 @@ Both read `--nb-input-background` today. Two options:
 
 **Recommendation: Option A**, with `--nb-textarea-bg` defaulting to `var(--nb-input-bg)`. Same default, optional override. Costs one extra default line, gains independence.
 
+Status as of 2026-05-19: the input + textarea field surface is implemented.
+
+- `libs/ui/src/lib/input/input.directive.ts` now declares and reads:
+  - `--nb-field-bg: #faf3d6`
+  - `--nb-input-bg: var(--nb-field-bg)`
+  - `--nb-input-fg: var(--nb-foreground)`
+  - `--nb-input-border: var(--nb-border)`
+  - `--nb-input-radius: var(--nb-radius)`
+  - `--nb-input-shadow: var(--nb-shadow-offset-x) var(--nb-shadow-offset-y) 0 var(--nb-shadow)`
+- `libs/ui/src/lib/textarea/textarea.directive.ts` now declares and reads:
+  - `--nb-textarea-bg: var(--nb-input-bg, var(--nb-field-bg))`
+  - `--nb-textarea-fg: var(--nb-foreground)`
+  - `--nb-textarea-border: var(--nb-border)`
+  - `--nb-textarea-radius: var(--nb-radius)`
+  - `--nb-textarea-shadow: var(--nb-shadow-offset-x) var(--nb-shadow-offset-y) 0 var(--nb-shadow)`
+- The legacy `--nb-input-background` name was removed from code and docs. Native and custom select now use `--nb-input-bg` as the transitional shared field background until the full select token PR lands.
+- Added:
+  - `libs/ui/src/lib/input/input.tokens.spec.ts`
+  - `libs/ui/src/lib/textarea/textarea.tokens.spec.ts`
+- Updated `apps/docs/src/app/docs/docs-tokens.ts` for the input and textarea token tables, and changed select/input-group references from `--nb-input-background` to `--nb-input-bg`.
+
+Verification already run:
+
+- `pnpm vitest run --config libs/ui/vitest.config.mts src/lib/input/input.tokens.spec.ts src/lib/textarea/textarea.tokens.spec.ts --reporter=verbose` — passed, 6 tests.
+- `pnpm nx lint ui --output-style=stream` — passed.
+- `pnpm nx lint docs --output-style=stream` — passed.
+- `pnpm nx build ui --output-style=stream` — passed.
+- `pnpm nx build docs --output-style=stream` — passed.
+- `rg --glob '*.ts' --glob '*.css' -n -- "--nb-input-background" libs/ui/src/lib apps/docs/src/app` — no old token call sites remain.
+
+Known verification gaps:
+
+- Manual docs visual checks are still outstanding for `/components/input`, `/components/textarea`, `/components/input-group`, and `/components/select`. Expected rendered color is unchanged (`#faf3d6`) because the new token defaults preserve the old field background.
+
 ### 5.5 Select (compound: directive + component)
 
 Both `select[nbSelect]` and `<nb-select>` share scoped tokens (named `select`, not separated):
@@ -612,7 +646,7 @@ Don't add `--nb-select-option-hover-bg` yet — no driving use case.
 
 **Pre-existing test blocker for this PR:** `libs/ui/src/lib/select/select.spec.ts` is currently red on `pnpm nx test ui`. The "uses the same focus treatment as inputs and textareas" test (line ~42) asserts `focus-visible:ring-2` / `focus-visible:ring-(--nb-border)` / `focus-visible:ring-offset-2` / `focus-visible:shadow-none` on `button[aria-haspopup="listbox"]`. But in `select.ts:126`, `triggerClasses()` deliberately omits those — they live on `hostClasses()` (`select.ts:112`) as `focus-within:ring-*` on the `<nb-select>` host. Fix in this PR: change the assertion target from the trigger to the host element, and update the prefix from `focus-visible:` to `focus-within:`. Same expected ring tokens still apply.
 
-**`--nb-input-bg` rename ordering:** select reads `--nb-input-background` today (`select.directive.ts:41`, `select.ts:119`). Since §5.4 renames `--nb-input-background` → `--nb-input-bg`, the input PR must land before this one — or this PR ships the rename alongside its own work. Pick one path in the PR description.
+**`--nb-input-bg` rename ordering:** resolved by §5.4. Select no longer reads `--nb-input-background`; both native `select[nbSelect]` and custom `<nb-select>` now read `--nb-input-bg` as a transitional background token. The full select PR still needs to introduce the scoped select surface (`--nb-select-bg/fg/border/radius`, `--nb-select-listbox-bg`) and fix the existing focus-treatment spec blocker described above.
 
 ### 5.6 Input-group rename
 

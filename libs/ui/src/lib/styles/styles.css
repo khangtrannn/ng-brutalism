@@ -70,7 +70,7 @@ body {
   }
 
   :where(input[nbInput], textarea[nbTextarea]) {
-    background-color: var(--nb-input-background, #faf3d6);
+    background-color: var(--nb-input-bg, var(--nb-field-bg));
   }
 
   :where(input[nbInput]) {
@@ -107,7 +107,7 @@ body {
     font-family: var(--nb-font-mono, monospace);
     font-size: 1rem;
     font-weight: 700;
-    background-color: var(--nb-input-background, #faf3d6);
+    background-color: var(--nb-input-bg, var(--nb-field-bg));
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000000' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
     background-repeat: no-repeat;
     background-position: right 1rem center;

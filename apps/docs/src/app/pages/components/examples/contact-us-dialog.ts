@@ -47,7 +47,7 @@ import {
     </button>
     <nb-dialog #dialogRef>
       <div
-        class="relative bg-[#faf3d6] px-6 pt-7 pb-5 sm:px-10 sm:pt-9 sm:pb-6"
+        class="relative bg-(--nb-field-bg) px-6 pt-7 pb-5 sm:px-10 sm:pt-9 sm:pb-6"
       >
         <button
           nbButton

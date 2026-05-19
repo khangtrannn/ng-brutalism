@@ -44,7 +44,7 @@ import {
 
     <nb-dialog #contactDialog>
       <div
-        class="relative bg-[#faf3d6] px-6 pt-7 pb-5 sm:px-10 sm:pt-9 sm:pb-6"
+        class="relative bg-(--nb-field-bg) px-6 pt-7 pb-5 sm:px-10 sm:pt-9 sm:pb-6"
       >
         <button
           nbButton
@@ -100,7 +100,7 @@ import {
       </div>
 
       <nb-dialog-content
-        class="border-y-0 bg-[#faf3d6] px-6 pb-6 pt-2 sm:px-10"
+        class="border-y-0 bg-(--nb-field-bg) px-6 pb-6 pt-2 sm:px-10"
       >
         <form [id]="formId" class="grid gap-5" (submit)="submitContact($event)">
           <div class="grid gap-5 sm:grid-cols-2">
@@ -169,7 +169,7 @@ import {
       </nb-dialog-content>
 
       <nb-dialog-actions
-        class="gap-4 border-t-2 border-(--nb-border) bg-[#faf3d6] px-6 py-5 sm:px-10"
+        class="gap-4 border-t-2 border-(--nb-border) bg-(--nb-field-bg) px-6 py-5 sm:px-10"
       >
         <button
           nbButton

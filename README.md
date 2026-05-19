@@ -13,7 +13,7 @@ without ever reaching for `!important`:
   class — Tailwind utility, custom class, anything — wins automatically.
 - **CSS custom property tokens.** Properties users routinely customize are
   exposed as variables with sensible fallbacks, e.g.:
-  - `--nb-input-background`
+  - `--nb-field-bg`, `--nb-input-bg`
   - `--nb-dialog-content-bg`, `--nb-dialog-actions-bg`
   - `--nb-dialog-description-color`
 - **Override via tokens or utilities — your call.**
@@ -23,7 +23,7 @@ without ever reaching for `!important`:
 <input nbInput class="h-12 bg-[#fbf1bf]" />
 
 <!-- Token override -->
-<nb-dialog-content style="--nb-dialog-content-bg: #faf3d6;">…</nb-dialog-content>
+<nb-dialog-content style="--nb-dialog-content-bg: var(--nb-field-bg);">…</nb-dialog-content>
 ```
 
 Size variants on `nbInput` / `nbTextarea` are driven by the `[data-size]`

@@ -116,7 +116,7 @@ export class NbSelectComponent implements NbSelectController, OnInit {
       : nbClass(
           'relative block w-full',
           'rounded-nb border-2 border-(--nb-border)',
-          'bg-(--nb-input-background,#faf3d6) shadow-nb',
+          'bg-(--nb-input-bg,var(--nb-field-bg)) shadow-nb',
           'focus-within:outline-none focus-within:ring-2 focus-within:ring-(--nb-border)',
           'focus-within:ring-offset-2 focus-within:shadow-none',
           'data-[disabled]:border-gray-400 data-[disabled]:shadow-[5px_5px_0_0_#a3a3a3]',
@@ -137,7 +137,7 @@ export class NbSelectComponent implements NbSelectController, OnInit {
 
   protected readonly listboxClasses = nbClass(
       'absolute z-50 top-[calc(100%+8px)]',
-      'left-[-6px] w-[calc(100%+12px)]',
+      'left-[-6px] w-[calc(100%+12px)] mt-0.5',
       'rounded-b-nb border-2 border-(--nb-border) bg-(--nb-surface,#ffffff)',
       'shadow-nb'
     );

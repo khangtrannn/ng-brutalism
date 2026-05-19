@@ -10,6 +10,7 @@
   --nb-surface: #ffffff;
   --nb-surface-foreground: #000000;
   --nb-secondary-background: oklch(96% 0 0);
+  --nb-field-bg: #faf3d6;
 
   --nb-primary: #ff90e8;
   --nb-primary-foreground: #000000;

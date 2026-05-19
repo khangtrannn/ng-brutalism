@@ -21,8 +21,13 @@ export class NbTextarea {
     const inGroup = this.group !== null;
 
     return nbClass(
-      'flex border-2 border-(--nb-border)',
-      'text-(--nb-foreground)',
+      '[--nb-textarea-bg:var(--nb-input-bg,var(--nb-field-bg))]',
+      '[--nb-textarea-fg:var(--nb-foreground)]',
+      '[--nb-textarea-border:var(--nb-border)]',
+      '[--nb-textarea-radius:var(--nb-radius)]',
+      '[--nb-textarea-shadow:var(--nb-shadow-offset-x)_var(--nb-shadow-offset-y)_0_var(--nb-shadow)]',
+      'flex border-2 border-(--nb-textarea-border)',
+      'bg-(--nb-textarea-bg) text-(--nb-textarea-fg)',
       'font-medium',
       'placeholder:text-gray-400',
       'disabled:opacity-50 disabled:cursor-not-allowed',
@@ -35,10 +40,9 @@ export class NbTextarea {
             'focus-visible:outline-none',
           ]
         : [
-            'rounded-nb',
-            'shadow-nb',
-            'bg-[#faf3d6]',
-            'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--nb-border)',
+            'rounded-(--nb-textarea-radius)',
+            'shadow-[var(--nb-textarea-shadow)]',
+            'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--nb-textarea-border)',
             'focus-visible:ring-offset-2 focus-visible:shadow-none',
           ]
     );

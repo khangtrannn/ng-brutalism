@@ -217,9 +217,30 @@ const componentTokens: Record<DocsTokenComponent, DocsToken[]> = {
   'image-card': [],
   input: [
     {
-      name: '--nb-input-background',
-      defaultValue: '#faf3d6',
+      name: '--nb-input-bg',
+      defaultValue: 'var(--nb-field-bg)',
       usage: 'Input background',
+    },
+    {
+      name: '--nb-input-fg',
+      defaultValue: 'var(--nb-foreground)',
+      usage: 'Input text color',
+    },
+    {
+      name: '--nb-input-border',
+      defaultValue: 'var(--nb-border)',
+      usage: 'Input border and focus ring color',
+    },
+    {
+      name: '--nb-input-radius',
+      defaultValue: 'var(--nb-radius)',
+      usage: 'Input corner radius',
+    },
+    {
+      name: '--nb-input-shadow',
+      defaultValue:
+        'var(--nb-shadow-offset-x) var(--nb-shadow-offset-y) 0 var(--nb-shadow)',
+      usage: 'Input box shadow',
     },
   ],
   'input-group': [
@@ -239,8 +260,8 @@ const componentTokens: Record<DocsTokenComponent, DocsToken[]> = {
       usage: 'Prefix background',
     },
     {
-      name: '--nb-input-background',
-      defaultValue: '#faf3d6',
+      name: '--nb-input-bg',
+      defaultValue: 'var(--nb-field-bg)',
       usage: 'Nested field background',
     },
     {
@@ -265,12 +286,17 @@ const componentTokens: Record<DocsTokenComponent, DocsToken[]> = {
   ],
   select: [
     {
-      name: '--nb-input-background',
-      defaultValue: '#faf3d6',
+      name: '--nb-input-bg',
+      defaultValue: 'var(--nb-field-bg)',
       usage: 'Select background',
     },
   ],
   theme: [
+    {
+      name: '--nb-field-bg',
+      defaultValue: '#faf3d6',
+      usage: 'Shared field background',
+    },
     {
       name: '--nb-primary',
       defaultValue: '#ff90e8',
@@ -367,11 +393,6 @@ const componentTokens: Record<DocsTokenComponent, DocsToken[]> = {
       usage: 'Input group addon background',
     },
     {
-      name: '--nb-input-background',
-      defaultValue: '#faf3d6',
-      usage: 'Field background',
-    },
-    {
       name: '--nb-border-width',
       defaultValue: '2px',
       usage: 'Border width token available to consumers',
@@ -456,9 +477,35 @@ const componentTokens: Record<DocsTokenComponent, DocsToken[]> = {
   ],
   textarea: [
     {
-      name: '--nb-input-background',
-      defaultValue: '#faf3d6',
+      name: '--nb-textarea-bg',
+      defaultValue: 'var(--nb-input-bg, var(--nb-field-bg))',
       usage: 'Textarea background',
+    },
+    {
+      name: '--nb-textarea-fg',
+      defaultValue: 'var(--nb-foreground)',
+      usage: 'Textarea text color',
+    },
+    {
+      name: '--nb-textarea-border',
+      defaultValue: 'var(--nb-border)',
+      usage: 'Textarea border and focus ring color',
+    },
+    {
+      name: '--nb-textarea-radius',
+      defaultValue: 'var(--nb-radius)',
+      usage: 'Textarea corner radius',
+    },
+    {
+      name: '--nb-textarea-shadow',
+      defaultValue:
+        'var(--nb-shadow-offset-x) var(--nb-shadow-offset-y) 0 var(--nb-shadow)',
+      usage: 'Textarea box shadow',
+    },
+    {
+      name: '--nb-input-bg',
+      defaultValue: 'var(--nb-field-bg)',
+      usage: 'Shared field background consumed by the textarea default',
     },
   ],
 };
