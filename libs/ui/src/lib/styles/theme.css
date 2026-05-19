@@ -26,9 +26,6 @@
   --nb-warning: #ffd24a;
   --nb-warning-foreground: #000000;
 
-  --nb-input-addon-bg: var(--nb-yellow);
-  --nb-input-prefix-bg: var(--nb-input-addon-bg);
-
   /* Shape */
   --nb-radius: 0rem;
   --nb-border-width: 2px;

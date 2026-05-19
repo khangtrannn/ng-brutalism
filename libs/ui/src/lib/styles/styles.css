@@ -98,7 +98,7 @@ body {
   }
 
   :where([nbInputPrefix]:has(svg)) {
-    --nb-input-prefix-bg: var(--nb-yellow, #ffd24a);
+    --nb-input-group-prefix-bg: var(--nb-yellow, #ffd24a);
   }
 
   :where(select[nbSelect]) {

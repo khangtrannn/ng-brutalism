@@ -29,6 +29,8 @@ describe('NbInputGroup token surface', () => {
     expect(cls).toContain(
       '[--nb-input-group-bg:var(--nb-input-bg,var(--nb-field-bg))]'
     );
+    expect(cls).toContain('[--nb-input-group-border:var(--nb-border)]');
+    expect(cls).toContain('[--nb-input-group-radius:var(--nb-radius)]');
   });
 
   it('reads its scoped tokens instead of global tokens directly', async () => {
@@ -37,7 +39,11 @@ describe('NbInputGroup token surface', () => {
     const cls = group.className;
 
     expect(cls).toContain('bg-(--nb-input-group-bg)');
+    expect(cls).toContain('border-(--nb-input-group-border)');
+    expect(cls).toContain('rounded-(--nb-input-group-radius)');
     expect(cls).not.toContain('bg-(--nb-surface)');
+    expect(cls).not.toContain('border-(--nb-border)');
+    expect(cls).not.toContain('rounded-nb');
   });
 
   it('does not regress the default input group class shape', async () => {
@@ -48,28 +54,39 @@ describe('NbInputGroup token surface', () => {
     expect(cls).toContain('relative');
     expect(cls).toContain('inline-flex');
     expect(cls).toContain('w-full');
-    expect(cls).toContain('rounded-nb');
+    expect(cls).toContain('rounded-(--nb-input-group-radius)');
     expect(cls).toContain('border-2');
-    expect(cls).toContain('border-(--nb-border)');
+    expect(cls).toContain('border-(--nb-input-group-border)');
     expect(cls).toContain('shadow-nb');
     expect(cls).toContain('focus-within:outline-none');
     expect(cls).toContain('focus-within:ring-2');
     expect(cls).toContain('focus-within:ring-offset-2');
-    expect(cls).toContain('focus-within:ring-(--nb-border)');
+    expect(cls).toContain('focus-within:ring-(--nb-input-group-border)');
     expect(cls).toContain('focus-within:shadow-none');
   });
 
-  it('uses the yellow addon token for prefix and suffix backgrounds', async () => {
+  it('uses input-group addon tokens for prefix and suffix backgrounds', async () => {
     const fixture = await createFixture();
     const prefix = findPrefix(fixture);
     const suffix = findSuffix(fixture);
 
     expect(prefix.className).toContain(
-      '[--nb-input-prefix-bg:var(--nb-input-addon-bg,var(--nb-yellow))]'
+      '[--nb-input-group-addon-bg:var(--nb-yellow)]'
     );
-    expect(prefix.className).toContain('bg-(--nb-input-prefix-bg)');
-    expect(suffix.className).toContain('[--nb-input-addon-bg:var(--nb-yellow)]');
-    expect(suffix.className).toContain('bg-(--nb-input-addon-bg)');
+    expect(prefix.className).toContain(
+      '[--nb-input-group-prefix-bg:var(--nb-input-group-addon-bg)]'
+    );
+    expect(prefix.className).toContain('bg-(--nb-input-group-prefix-bg)');
+    expect(prefix.className).not.toContain('--nb-input-prefix-bg');
+
+    expect(suffix.className).toContain(
+      '[--nb-input-group-addon-bg:var(--nb-yellow)]'
+    );
+    expect(suffix.className).toContain(
+      '[--nb-input-group-suffix-bg:var(--nb-input-group-addon-bg)]'
+    );
+    expect(suffix.className).toContain('bg-(--nb-input-group-suffix-bg)');
+    expect(suffix.className).not.toContain('--nb-input-addon-bg');
   });
 });
 

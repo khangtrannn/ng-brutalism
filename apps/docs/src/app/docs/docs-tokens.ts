@@ -250,24 +250,29 @@ const componentTokens: Record<DocsTokenComponent, DocsToken[]> = {
       usage: 'Group wrapper background',
     },
     {
-      name: '--nb-input-addon-bg',
+      name: '--nb-input-group-border',
+      defaultValue: 'var(--nb-border)',
+      usage: 'Group wrapper border and focus ring color',
+    },
+    {
+      name: '--nb-input-group-radius',
+      defaultValue: 'var(--nb-radius)',
+      usage: 'Group wrapper corner radius',
+    },
+    {
+      name: '--nb-input-group-addon-bg',
       defaultValue: 'var(--nb-yellow)',
       usage: 'Prefix and suffix background',
     },
     {
-      name: '--nb-input-prefix-bg',
-      defaultValue: 'var(--nb-input-addon-bg, var(--nb-yellow))',
+      name: '--nb-input-group-prefix-bg',
+      defaultValue: 'var(--nb-input-group-addon-bg)',
       usage: 'Prefix background',
     },
     {
-      name: '--nb-input-bg',
-      defaultValue: 'var(--nb-field-bg)',
-      usage: 'Nested field background',
-    },
-    {
-      name: '--nb-yellow',
-      defaultValue: '#ffd24a',
-      usage: 'Prefix icon background',
+      name: '--nb-input-group-suffix-bg',
+      defaultValue: 'var(--nb-input-group-addon-bg)',
+      usage: 'Suffix background',
     },
   ],
   label: [
@@ -406,11 +411,6 @@ const componentTokens: Record<DocsTokenComponent, DocsToken[]> = {
       name: '--nb-secondary-background',
       defaultValue: 'oklch(96% 0 0)',
       usage: 'Subtle secondary backgrounds',
-    },
-    {
-      name: '--nb-input-addon-bg',
-      defaultValue: '#c4a8ff',
-      usage: 'Input group addon background',
     },
     {
       name: '--nb-border-width',

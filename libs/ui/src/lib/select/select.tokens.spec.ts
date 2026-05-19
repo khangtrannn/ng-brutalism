@@ -84,6 +84,8 @@ describe('NbSelectComponent token surface', () => {
     expect(cls).toContain('rounded-b-(--nb-select-radius)');
     expect(optionCls).toContain('text-(--nb-select-fg)');
     expect(optionCls).toContain('focus-visible:ring-(--nb-select-border)');
+    expect(optionCls).not.toContain('--nb-select-selected-bg');
+    expect(optionCls).not.toContain('--nb-select-option-hover-bg');
     expect(cls).not.toContain('bg-(--nb-surface');
     expect(cls).not.toContain('border-(--nb-border)');
     expect(cls).not.toContain('rounded-b-nb');

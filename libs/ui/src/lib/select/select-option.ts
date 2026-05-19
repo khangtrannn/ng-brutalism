@@ -77,8 +77,8 @@ export class NbSelectOption {
       'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--nb-select-border)',
       'disabled:pointer-events-none disabled:opacity-50',
       this.selected()
-        ? 'bg-(--nb-select-selected-bg,#bdf7c8)'
-        : 'bg-transparent hover:bg-(--nb-select-option-hover-bg,#e8d6ff) focus-visible:bg-(--nb-select-option-hover-bg,#e8d6ff)'
+        ? 'bg-[#bdf7c8]'
+        : 'bg-transparent hover:bg-[#e8d6ff] focus-visible:bg-[#e8d6ff]'
     )
   );
 

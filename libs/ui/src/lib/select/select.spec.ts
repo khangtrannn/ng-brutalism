@@ -128,7 +128,7 @@ describe('NbSelectComponent', () => {
     expect(resetOption.getAttribute('aria-selected')).toBe('false');
     expect(resetOption.querySelector('svg')).toBeNull();
     expect(selectedOption.getAttribute('aria-selected')).toBe('true');
-    expect(selectedOption.className).toContain('bg-(--nb-select-selected-bg');
+    expect(selectedOption.className).toContain('bg-[#bdf7c8]');
     expect(selectedOption.querySelector('svg')).not.toBeNull();
 
     resetOption.click();
@@ -146,7 +146,7 @@ describe('NbSelectComponent', () => {
     ) as HTMLButtonElement[];
 
     expect(resetOption.getAttribute('aria-selected')).toBe('true');
-    expect(resetOption.className).toContain('bg-(--nb-select-selected-bg');
+    expect(resetOption.className).toContain('bg-[#bdf7c8]');
     expect(resetOption.querySelector('svg')).toBeNull();
     expect(selectedOption.getAttribute('aria-selected')).toBe('false');
   });
@@ -227,7 +227,9 @@ describe('NbSelectComponent inside NbInputGroup', () => {
     ) as HTMLElement;
 
     expect(group.className).toContain('focus-within:ring-2');
-    expect(group.className).toContain('focus-within:ring-(--nb-border)');
+    expect(group.className).toContain(
+      'focus-within:ring-(--nb-input-group-border)'
+    );
     expect(group.className).toContain('focus-within:shadow-none');
     expect(group.className).not.toContain('focus-within:ring-(--nb-focus');
   });
@@ -285,7 +287,9 @@ describe('NbSelect directive inside NbInputGroup', () => {
     ) as HTMLElement;
 
     expect(group.className).toContain('focus-within:ring-2');
-    expect(group.className).toContain('focus-within:ring-(--nb-border)');
+    expect(group.className).toContain(
+      'focus-within:ring-(--nb-input-group-border)'
+    );
     expect(group.className).toContain('focus-within:shadow-none');
     expect(group.className).not.toContain('focus-within:ring-(--nb-focus');
   });

@@ -443,9 +443,17 @@ Phase 1 landed the button pilot (commit `5168aca`) and confirmed the protocol wo
 **Entry gate** (must hold before opening a Phase 2 PR):
 
 - Manual checks left over from §4.7 (DevTools token chain inspection, light/dark contrast review, scoped override smoke tests, pixel comparison of the button docs page) can land alongside the first Phase 2 PR — they don't gate Phase 2 conceptually, but flag any drift they uncover as it could change the per-component shadow/border defaults you'll mirror.
-- The two pre-existing broken specs flagged in §4.8 are still red on `pnpm nx test ui`. They belong to specific Phase 2 PRs:
-  - `libs/ui/src/lib/accordion/accordion.component.spec.ts` → fix in the **accordion PR (§5.1)**. The file imports paths/class names that never existed on this branch (`./accordion.component` etc., `NbAccordionTriggerComponent` selector `neo-accordion-trigger`); the real files are `accordion-trigger.ts` exporting `NbAccordionTriggerComponent` with selector `nb-accordion-trigger`. Either fix the imports + selectors or rewrite the spec — don't delete coverage.
-  - `libs/ui/src/lib/select/select.spec.ts` (lines ~42–54, "uses the same focus treatment as inputs and textareas") → fix in the **select PR (§5.5)**. The test asserts `focus-visible:ring-*` on the trigger button, but those classes live on `hostClasses()` (the `<nb-select>` host) as `focus-within:ring-*`. The select component PR re-tokens that focus treatment anyway; update the assertions to read the host element instead of the trigger.
+- The remaining pre-existing full-suite blocker is `libs/ui/src/lib/accordion/accordion.component.spec.ts` → fix in the **accordion PR (§5.1)**. The file imports paths/class names that never existed on this branch (`./accordion.component` etc., `NbAccordionTriggerComponent` selector `neo-accordion-trigger`); the real files are `accordion-trigger.ts` exporting `NbAccordionTriggerComponent` with selector `nb-accordion-trigger`. Either fix the imports + selectors or rewrite the spec — don't delete coverage.
+- The earlier select spec blocker is resolved in §5.5. `libs/ui/src/lib/select/select.spec.ts` now asserts focus treatment on the `<nb-select>` host and grouped native selects through the `border-0` override.
+
+**Current handoff as of 2026-05-19:**
+
+- Implemented in this working tree: button, card, input, textarea, select, and input-group scoped-token surfaces.
+- `pnpm nx test ui --output-style=stream` still fails because of the accordion spec import blocker above. Direct Vitest confirms the rest of the current suite passes: `46 passed`, `1 failed suite` (`src/lib/accordion/accordion.component.spec.ts` import resolution).
+- Focused input-group/select verification passed: `pnpm vitest run --config libs/ui/vitest.config.mts src/lib/input-group/input-group.tokens.spec.ts src/lib/select/select.spec.ts src/lib/select/select.tokens.spec.ts --reporter=verbose` — `22 passed`.
+- Latest validation also passed: `pnpm nx lint ui --output-style=stream`, `pnpm nx lint docs --output-style=stream`, `pnpm nx build ui --output-style=stream`, and `pnpm nx build docs --output-style=stream`.
+- Manual docs visual checks are still outstanding for `/components/input`, `/components/textarea`, `/components/input-group`, and `/components/select`; do those before claiming those component PRs visually complete.
+- Recommended next step: fix the accordion spec blocker first, then continue Phase 2 with the dialog token rollout (§5.7), unless manual visual checks reveal drift that needs to be corrected first.
 
 **Per-component PR template** (literal recipe, distilled from button pilot — replicate verbatim):
 
@@ -483,9 +491,9 @@ Phase 1 landed the button pilot (commit `5168aca`) and confirmed the protocol wo
 | 3   | card                           | (none yet)                                  | `--nb-card-bg/fg/border/radius/shadow`                                                                                       | Low                         |
 | 4   | input                          | `size` (layout, not color)                  | `--nb-input-bg/fg/border/radius`                                                                                             | Low                         |
 | 5   | textarea                       | `size`                                      | `--nb-textarea-bg/fg/border/radius` (see 5.4)                                                                                | Low                         |
-| 6   | select (directive + component) | `size`                                      | `--nb-select-bg/fg/border/radius`, `--nb-select-listbox-bg`                                                                  | Medium                      |
+| 6   | select (directive + component) | `size`                                      | `--nb-select-bg/fg/border/radius`, `--nb-select-listbox-bg`                                                                  | Medium — implemented        |
 | 7   | checkbox                       | (none yet)                                  | `--nb-checkbox-bg/fg/border/radius`                                                                                          | Low                         |
-| 8   | input-group + prefix/suffix    | (none yet)                                  | `--nb-input-group-bg/border/radius`, `--nb-input-group-addon-bg`, `--nb-input-group-prefix-bg`, `--nb-input-group-suffix-bg` | Medium                      |
+| 8   | input-group + prefix/suffix    | (none yet)                                  | `--nb-input-group-bg/border/radius`, `--nb-input-group-addon-bg`, `--nb-input-group-prefix-bg`, `--nb-input-group-suffix-bg` | Medium — implemented        |
 | 9   | dialog                         | (none yet)                                  | `--nb-dialog-bg/fg/border/radius/shadow`, `--nb-dialog-description-fg`, `--nb-dialog-content-bg`, `--nb-dialog-actions-bg`   | Medium                      |
 | 10  | title                          | (existing wave tokens conform)              | Keep `--nb-title-wave-*`                                                                                                     | Trivial — rename audit only |
 | 11  | image-card                     | (none yet)                                  | `--nb-image-card-bg/fg/border/radius/shadow`                                                                                 | Low                         |
@@ -652,6 +660,7 @@ Status as of 2026-05-19: select scoped-token rollout is implemented.
 
 - `select[nbSelect]` now declares and reads `--nb-select-bg/fg/border/radius`.
 - `<nb-select>` now declares and reads `--nb-select-bg/fg/border/radius` plus `--nb-select-listbox-bg`; the custom options read the select foreground and border tokens for text and focus rings.
+- Select option selected/hover backgrounds stay literal (`#bdf7c8` / `#e8d6ff`) so `--nb-select-selected-bg` and `--nb-select-option-hover-bg` do not become public token surface yet.
 - `libs/ui/src/lib/styles/styles.css` keeps native select base background aligned with `--nb-select-bg`.
 - `libs/ui/src/lib/select/select.spec.ts` now asserts custom select focus on the host `focus-within` treatment and native grouped selects via the `border-0` override.
 - Added `libs/ui/src/lib/select/select.tokens.spec.ts`.
@@ -660,6 +669,7 @@ Status as of 2026-05-19: select scoped-token rollout is implemented.
 Verification already run:
 
 - `pnpm vitest run --config libs/ui/vitest.config.mts src/lib/select/select.spec.ts src/lib/select/select.tokens.spec.ts --reporter=verbose` — passed, 18 tests.
+- `pnpm vitest run --config libs/ui/vitest.config.mts src/lib/input-group/input-group.tokens.spec.ts src/lib/select/select.spec.ts src/lib/select/select.tokens.spec.ts --reporter=verbose` — passed, 22 tests.
 - `pnpm nx lint ui --output-style=stream` — passed.
 - `pnpm nx lint docs --output-style=stream` — passed.
 - `pnpm nx test docs --output-style=stream` — passed.
@@ -682,6 +692,27 @@ Known verification gaps:
 **Audit watch:** `styles.css` line 101 sets `--nb-input-prefix-bg` on `:where([nbInputPrefix]:has(svg))`. The override must continue to work post-rename — likely means updating that selector to set the new name.
 
 Breaking change. Pre-1.0 acceptable; no alias.
+
+Status as of 2026-05-19: input-group scoped-token rollout is implemented.
+
+- `nb-input-group` now declares and reads `--nb-input-group-bg/border/radius`.
+- `[nbInputPrefix]` now declares `--nb-input-group-addon-bg` and `--nb-input-group-prefix-bg`; `[nbInputSuffix]` declares `--nb-input-group-addon-bg` and `--nb-input-group-suffix-bg`.
+- `libs/ui/src/lib/styles/styles.css` moved the SVG-prefix override to `--nb-input-group-prefix-bg`.
+- Removed legacy component-scoped `--nb-input-addon-bg` and `--nb-input-prefix-bg` from `theme.css`.
+- Updated `apps/docs/src/app/docs/docs-tokens.ts` and `libs/ui/src/lib/input-group/input-group.tokens.spec.ts`.
+
+Verification already run:
+
+- `pnpm vitest run --config libs/ui/vitest.config.mts src/lib/input-group/input-group.tokens.spec.ts src/lib/select/select.spec.ts src/lib/select/select.tokens.spec.ts --reporter=verbose` — passed, 22 tests.
+- `pnpm nx lint ui --output-style=stream` — passed.
+- `pnpm nx lint docs --output-style=stream` — passed.
+- `pnpm nx build ui --output-style=stream` — passed.
+- `pnpm nx build docs --output-style=stream` — passed.
+- `pnpm nx test ui --output-style=stream` — still blocked by the pre-existing `libs/ui/src/lib/accordion/accordion.component.spec.ts` import of missing `./accordion.component`; input-group specs pass directly.
+
+Known verification gaps:
+
+- Manual docs visual checks are still outstanding for `/components/input-group`: prefix/suffix, textarea, disabled, light mode, dark mode, and scoped override smoke tests for `--nb-input-group-bg`, `--nb-input-group-border`, `--nb-input-group-radius`, `--nb-input-group-addon-bg`, `--nb-input-group-prefix-bg`, and `--nb-input-group-suffix-bg`.
 
 ### 5.7 Dialog
 
