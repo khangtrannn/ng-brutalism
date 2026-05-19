@@ -7,8 +7,6 @@ import {
   NbCardFooter,
   NbCardHeader,
   NbCardTitle,
-  NbInput,
-  NbLabel,
 } from '@ng-brutalism/ui';
 
 import { DocsCodeBlock } from '../../docs/docs-code-block';
@@ -33,8 +31,6 @@ import JobListingCardExampleComponent from './examples/job-listing-card';
     NbCardFooter,
     NbCardHeader,
     NbCardTitle,
-    NbInput,
-    NbLabel,
   ],
   template: `
     <article>
@@ -69,63 +65,6 @@ import JobListingCardExampleComponent from './examples/job-listing-card';
 
       <section id="preview">
         <h2 class="mt-10 mb-4 text-2xl font-bold">Preview</h2>
-        <docs-example [code]="defaultExampleCode">
-          <nb-card class="w-full max-w-sm">
-            <nb-card-header>
-              <nb-card-title>Login to your account</nb-card-title>
-              <nb-card-description>
-                Enter your email below to login to your account
-              </nb-card-description>
-            </nb-card-header>
-            <nb-card-content>
-              <form>
-                <div class="flex flex-col gap-6">
-                  <div class="grid gap-2">
-                    <label nbLabel for="email">Email</label>
-                    <input
-                      nbInput
-                      id="email"
-                      type="email"
-                      placeholder="m&#64;example.com"
-                      required
-                    />
-                  </div>
-                  <div class="grid gap-2">
-                    <div class="flex items-center">
-                      <label nbLabel for="password">Password</label>
-                      <a
-                        href="#"
-                        class="ml-auto inline-block text-sm underline-offset-4 hover:underline"
-                      >
-                        Forgot your password?
-                      </a>
-                    </div>
-                    <input
-                      nbInput
-                      id="password"
-                      type="password"
-                      required
-                    />
-                  </div>
-                </div>
-              </form>
-            </nb-card-content>
-            <nb-card-footer class="flex-col gap-2">
-              <button nbButton type="submit" [fullWidth]="true">Login</button>
-              <button nbButton variant="neutral" [fullWidth]="true">
-                Login with Google
-              </button>
-              <div class="mt-4 text-center text-sm">
-                Don't have an account?
-                <a href="#" class="underline underline-offset-4">Sign up</a>
-              </div>
-            </nb-card-footer>
-          </nb-card>
-        </docs-example>
-      </section>
-
-      <section id="job-card">
-        <h2 class="mt-10 mb-4 text-2xl font-bold">Job listing card</h2>
         <docs-example [code]="jobListingExampleCode">
           <docs-job-listing-card-example />
         </docs-example>
@@ -299,46 +238,6 @@ export default class CardPageComponent {
   </nb-card-content>
   <nb-card-footer>
     <button nbButton>Action</button>
-  </nb-card-footer>
-</nb-card>`;
-
-  protected readonly defaultExampleCode = `<nb-card class="w-full max-w-sm">
-  <nb-card-header>
-    <nb-card-title>Login to your account</nb-card-title>
-    <nb-card-description>
-      Enter your email below to login to your account
-    </nb-card-description>
-  </nb-card-header>
-  <nb-card-content>
-    <form>
-      <div class="flex flex-col gap-6">
-        <div class="grid gap-2">
-          <label nbLabel for="email">Email</label>
-          <input nbInput id="email" type="email"
-            placeholder="m@example.com" required />
-        </div>
-        <div class="grid gap-2">
-          <div class="flex items-center">
-            <label nbLabel for="password">Password</label>
-            <a href="#" class="ml-auto inline-block text-sm
-              underline-offset-4 hover:underline">
-              Forgot your password?
-            </a>
-          </div>
-          <input nbInput id="password" type="password" required />
-        </div>
-      </div>
-    </form>
-  </nb-card-content>
-  <nb-card-footer class="flex-col gap-2">
-    <button nbButton type="submit" [fullWidth]="true">Login</button>
-    <button nbButton variant="neutral" [fullWidth]="true">
-      Login with Google
-    </button>
-    <div class="mt-4 text-center text-sm">
-      Don't have an account?
-      <a href="#" class="underline underline-offset-4">Sign up</a>
-    </div>
   </nb-card-footer>
 </nb-card>`;
 
