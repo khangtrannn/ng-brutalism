@@ -80,31 +80,6 @@ import JobListingCardExampleComponent from './examples/job-listing-card';
         <docs-code-block title="Template" [code]="templateCode" />
       </section>
 
-      <section id="simple">
-        <h2 class="mt-10 mb-4 text-2xl font-bold">Simple card</h2>
-        <docs-example [code]="simpleExampleCode">
-          <nb-card class="w-full max-w-sm">
-            <nb-card-header>
-              <nb-card-title>Notifications</nb-card-title>
-              <nb-card-description>
-                You have 3 unread messages.
-              </nb-card-description>
-            </nb-card-header>
-            <nb-card-content>
-              <p class="text-sm">
-                Check your inbox for the latest updates and messages from your
-                team.
-              </p>
-            </nb-card-content>
-            <nb-card-footer>
-              <button nbButton size="sm" style="--nb-button-bg: #fff">
-                View all
-              </button>
-            </nb-card-footer>
-          </nb-card>
-        </docs-example>
-      </section>
-
       <section id="parts">
         <h2 class="mt-10 mb-4 text-2xl font-bold">Sub-parts</h2>
         <p class="mb-4 text-sm font-medium">
