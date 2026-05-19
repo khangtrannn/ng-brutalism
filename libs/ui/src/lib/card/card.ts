@@ -14,10 +14,15 @@ import { nbClass } from '../core/class';
 })
 export class NbCardComponent {
   protected readonly classes = nbClass(
+    '[--nb-card-bg:var(--nb-background)]',
+    '[--nb-card-fg:var(--nb-foreground)]',
+    '[--nb-card-border:var(--nb-border)]',
+    '[--nb-card-radius:18px]',
+    '[--nb-card-shadow:var(--nb-shadow-offset-x)_var(--nb-shadow-offset-y)_0_var(--nb-shadow)]',
     'flex flex-col gap-6 py-6',
-    'rounded-nb border-2 border-(--nb-border)',
-    'bg-(--nb-background) text-(--nb-foreground)',
-    'shadow-nb font-medium'
+    'rounded-(--nb-card-radius) border-2 border-(--nb-card-border)',
+    'bg-(--nb-card-bg) text-(--nb-card-fg)',
+    'shadow-[var(--nb-card-shadow)] font-medium'
   );
 }
 

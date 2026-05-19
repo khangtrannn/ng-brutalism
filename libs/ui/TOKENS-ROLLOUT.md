@@ -436,9 +436,49 @@ Recommended next step before Phase 2:
 
 Order chosen by motivating value (accordion was the original example in `TOKENS.md`) then by complexity (small, prop-light components before compound components). One PR per component, each applying the §3 protocol end-to-end.
 
+### 5.0 Phase 2 entry criteria + proven recipe
+
+Phase 1 landed the button pilot (commit `5168aca`) and confirmed the protocol works. Phase 2 inherits that ground truth — every component PR replicates the same shape rather than re-deriving it.
+
+**Entry gate** (must hold before opening a Phase 2 PR):
+
+- Manual checks left over from §4.7 (DevTools token chain inspection, light/dark contrast review, scoped override smoke tests, pixel comparison of the button docs page) can land alongside the first Phase 2 PR — they don't gate Phase 2 conceptually, but flag any drift they uncover as it could change the per-component shadow/border defaults you'll mirror.
+- The two pre-existing broken specs flagged in §4.8 are still red on `pnpm nx test ui`. They belong to specific Phase 2 PRs:
+  - `libs/ui/src/lib/accordion/accordion.component.spec.ts` → fix in the **accordion PR (§5.1)**. The file imports paths/class names that never existed on this branch (`./accordion.component` etc., `NbAccordionTriggerComponent` selector `neo-accordion-trigger`); the real files are `accordion-trigger.ts` exporting `NbAccordionTriggerComponent` with selector `nb-accordion-trigger`. Either fix the imports + selectors or rewrite the spec — don't delete coverage.
+  - `libs/ui/src/lib/select/select.spec.ts` (lines ~42–54, "uses the same focus treatment as inputs and textareas") → fix in the **select PR (§5.5)**. The test asserts `focus-visible:ring-*` on the trigger button, but those classes live on `hostClasses()` (the `<nb-select>` host) as `focus-within:ring-*`. The select component PR re-tokens that focus treatment anyway; update the assertions to read the host element instead of the trigger.
+
+**Per-component PR template** (literal recipe, distilled from button pilot — replicate verbatim):
+
+1. **Branch + audit.** Inventory per §3.1 into a markdown table inside the PR description (mirrors the button table in §4.1). List: every example on the docs page + every override prop currently demonstrated + every class in the directive's class string sorted into layout vs color/border/shadow/radius.
+2. **Refactor the directive.** Inline the scoped-token defaults block-first (`[--nb-<comp>-<prop>:<value>]`), then the reads (`bg-(--nb-<comp>-bg)`, `border-(--nb-<comp>-border)`, etc.). Defaults follow `TOKENS.md` spec strictly — visual parity is preserved at the docs layer (§3.7), not by weakening library defaults. For radius/border/shadow specifically: keep the chain `--nb-<comp>-radius: var(--nb-radius)`, `--nb-<comp>-border: var(--nb-border)`, `--nb-<comp>-shadow: var(--nb-shadow-offset-x) var(--nb-shadow-offset-y) 0 var(--nb-shadow)`. Don't anchor to a hex.
+3. **Variant/state maps.** Default row is `''`. Non-default rows reassign tokens only — never `bg-*` or `text-*` utilities. Apply to badge, etc.
+4. **Write `<component>.tokens.spec.ts`** following the button spec's shape verbatim (`libs/ui/src/lib/button/button.tokens.spec.ts:1` is the reference). The five tests it ships:
+   - declares the expected default tokens on the base host (one `toContain` per token),
+   - reads its scoped tokens, not globals directly (positive `bg-(--nb-<comp>-bg)` assertions + negative `not.toContain('bg-(--nb-main)')`),
+   - one `it.each` row per non-default variant asserting both `--nb-<comp>-bg` and `--nb-<comp>-fg` reassignment,
+   - one test per non-default state prop (shadow, etc.) asserting the token reassignment and hover behavior,
+   - "does not regress the default class shape" — pins the layout/focus/disabled classes that must survive the refactor.
+5. **Docs example migration per §3.7 + §4.5 pattern.** For every example whose rendered color shifts, prefer variant swap; if none matches, add a scoped inline override `style="--nb-<comp>-<prop>: <value>"`. Re-screenshot and verify pixel-identical to baseline.
+6. **Update `apps/docs/src/app/docs/docs-tokens.ts`** so the component's table lists only its real scoped surface. Remove global tokens that were leaking in (e.g. the `--nb-main`/`--nb-surface` rows in `accordion`, `--nb-input-background` in `input`/`select`/`textarea`).
+7. **Verification matrix run before requesting review:**
+   - `pnpm nx lint ui --output-style=stream`
+   - `pnpm nx lint docs --output-style=stream`
+   - `pnpm nx build ui --output-style=stream`
+   - `pnpm nx build docs --output-style=stream`
+   - `pnpm vitest run --config libs/ui/vitest.config.mts src/lib/<component>/<component>.tokens.spec.ts --reporter=verbose`
+   - `rg -n "<any old variant/token names>" apps libs -g '*.ts' -g '*.html'` to confirm no orphan call sites
+   - Manual: `pnpm nx serve docs`, walk the component's page with DevTools open, verify the token chain resolves cleanly and a scoped `style="--nb-<comp>-<prop>: hotpink"` override does not leak.
+
+**Patterns proven in Phase 1, mandatory for Phase 2:**
+
+- Defaults live inline in the directive's class string, not in `theme.css` (TOKENS.md §"Guiding principles" #4). Phase 2 must not regress this — if a draft adds new entries to `theme.css`, treat as a review-blocking smell.
+- `variant="default"` map row is `''` — base produces it. Verified working in `button.directive.ts:57`.
+- Hover token reassignment limitation (§9 question 3): the literal `hover:shadow-none` form was kept in button (`button.directive.ts:80`) because Tailwind v4 arbitrary-property-in-variant syntax isn't proven in this project. Phase 2 components with hover state changes mirror this — use literal `hover:` utilities for now. The asymmetry that scoped overrides won't be respected on the hover branch is documented per-component in the PR description.
+- Test pattern: `it.each` for the variant axis (see `button.tokens.spec.ts:50`). Keeps the spec compact when a component has 5+ variants.
+
 | #   | Component                      | Driving props                               | Anticipated scoped tokens                                                                                                    | Complexity                  |
 | --- | ------------------------------ | ------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------- | --------------------------- |
-| 1   | accordion                      | (none yet — see 5.1)                        | `--nb-accordion-trigger-bg/fg`, `--nb-accordion-content-bg/fg`, `--nb-accordion-radius`                                      | Medium                      |
+| 1   | accordion                      | (none yet — see 5.1)                        | `--nb-accordion-item-bg/fg/border/radius/shadow`, `--nb-accordion-trigger-bg/fg`, `--nb-accordion-content-bg/fg`             | Medium                      |
 | 2   | badge                          | `variant`                                   | `--nb-badge-bg/fg/border/radius/shadow`                                                                                      | Low                         |
 | 3   | card                           | (none yet)                                  | `--nb-card-bg/fg/border/radius/shadow`                                                                                       | Low                         |
 | 4   | input                          | `size` (layout, not color)                  | `--nb-input-bg/fg/border/radius`                                                                                             | Low                         |
@@ -467,26 +507,87 @@ The component-specific notes below capture decisions or pitfalls beyond the temp
 
 ### 5.1 Accordion
 
-Today's trigger reads `bg-(--nb-main) text-(--nb-main-foreground)` directly — the leaky pattern from `TOKENS.md` line 16, and the original motivating example. Audit-derived defaults:
+The accordion has **three** scoped surfaces, not two as the §5 table previously implied. Inventory of the current directive code (`libs/ui/src/lib/accordion/`):
 
-- `--nb-accordion-trigger-bg: var(--nb-main)`
-- `--nb-accordion-trigger-fg: var(--nb-main-foreground)`
-- `--nb-accordion-content-bg: var(--nb-surface)`
-- `--nb-accordion-content-fg: var(--nb-surface-foreground)`
+- **`accordion-item.ts:44`** wrapper reads `rounded-nb border-2 border-(--nb-border) bg-(--nb-surface) text-(--nb-surface-foreground) shadow-nb` — the outer box. Needs its own scope.
+- **`accordion-trigger.ts:44`** reads `bg-(--nb-main) text-(--nb-main-foreground)` directly — the leaky pattern from `TOKENS.md` line 16 and the original motivating example.
+- **`accordion-content.ts:40`** reads `bg-(--nb-surface) text-(--nb-surface-foreground)` directly.
 
-Do **not** add `--nb-accordion-trigger-bg-open` — no prop drives it. Post-migration, the motivating override becomes scoped: `<nb-accordion-trigger style="--nb-accordion-trigger-bg: var(--nb-lavender)">`.
+Audit-derived defaults (spec column from `TOKENS.md`, baseline column from current code — both match here, no override gymnastics needed):
 
-**Audit watch:** the docs accordion page demonstrates open-state styling. Verify open state preserves identical visuals.
+| Token                        | Default                        | Source                                            |
+| ---------------------------- | ------------------------------ | ------------------------------------------------- |
+| `--nb-accordion-item-bg`     | `var(--nb-surface)`            | `accordion-item.ts:44` (`bg-(--nb-surface)`)      |
+| `--nb-accordion-item-fg`     | `var(--nb-surface-foreground)` | `accordion-item.ts:44` (`text-(--nb-surface-fg)`) |
+| `--nb-accordion-item-border` | `var(--nb-border)`             | `accordion-item.ts:44` (`border-(--nb-border)`)   |
+| `--nb-accordion-item-radius` | `var(--nb-radius)`             | `accordion-item.ts:44` (`rounded-nb`)             |
+| `--nb-accordion-item-shadow` | standard `--nb-shadow*` chain  | `accordion-item.ts:44` (`shadow-nb`)              |
+| `--nb-accordion-trigger-bg`  | `var(--nb-main)`               | `accordion-trigger.ts:44`                         |
+| `--nb-accordion-trigger-fg`  | `var(--nb-main-foreground)`    | `accordion-trigger.ts:44`                         |
+| `--nb-accordion-content-bg`  | `var(--nb-surface)`            | `accordion-content.ts:40`                         |
+| `--nb-accordion-content-fg`  | `var(--nb-surface-foreground)` | `accordion-content.ts:40`                         |
+
+Do **not** add `--nb-accordion-trigger-bg-open` — no prop drives it (the `border-b-2` open-state class on `accordion-trigger.ts:52` is structural, not a color reassignment). Post-migration, the motivating override becomes scoped: `<nb-accordion-trigger style="--nb-accordion-trigger-bg: var(--nb-lavender)">`.
+
+**Pre-existing test blocker for this PR:** `libs/ui/src/lib/accordion/accordion.component.spec.ts` is currently red. It imports `./accordion.component`, `./accordion-content.component`, `./accordion-item.component`, `./accordion-trigger.component` — none of those files exist; the actual files are `accordion.ts`, `accordion-content.ts`, etc. The template also uses `neo-accordion-*` selectors but the components use `nb-accordion-*`. Fix the imports + selectors in this PR (the test logic is sound — it asserts open/close/disabled behavior, all worth keeping). Add a new `accordion.tokens.spec.ts` alongside, per the §5.0 recipe.
+
+**Audit watch:** the docs accordion page demonstrates open-state styling. Verify open state preserves identical visuals — `border-b-2 border-(--nb-border)` on the trigger when open is structural and must survive.
+
+**docs-tokens.ts update:** the current `accordion` entry lists `--nb-main` / `--nb-main-foreground` / `--nb-surface` / `--nb-surface-foreground` as the public surface (`apps/docs/src/app/docs/docs-tokens.ts:66`). Replace those four with the nine scoped tokens above — those globals are no longer the public override surface for accordion.
 
 ### 5.2 Badge
 
-Closest analogue to button. Existing variants: `default | secondary | success | warning | destructive`. Audit each variant for its current `bg-*` and `text-*` classes, derive token reassignments preserving them.
+Closest analogue to button. Existing variants: `default | secondary | success | warning | destructive` (`libs/ui/src/lib/badge/badge.directive.ts:28`).
+
+**Partial migration already on `main`:** commit `698b410` tokenized the radius (`--nb-badge-radius: 9999px` inline default + `rounded-(--nb-badge-radius)` read) and shipped `libs/ui/src/lib/badge/badge.directive.spec.ts` asserting it. The variant map still uses raw utilities (`bg-(--nb-accent) text-(--nb-accent-foreground)`, etc.) — those are the leaky pattern the rest of this PR must convert.
+
+What's left in this PR:
+
+1. Add the rest of the scoped surface inline as defaults:
+   - `--nb-badge-bg` default `#fff` (audit value — today's `default` variant is `bg-white`)
+   - `--nb-badge-fg` default `var(--nb-foreground)`
+   - `--nb-badge-border` default `var(--nb-border)`
+   - `--nb-badge-shadow` default `2px 2px 0 var(--nb-shadow)` (verbatim from `badge.directive.ts:22` — note the `2px 2px` is per-component, not the global `--nb-shadow-offset-x/y`; see §9 question 5)
+2. Replace direct reads (`border-(--nb-border)`, `shadow-[2px_2px_0_0_var(--nb-shadow)]`) with `border-(--nb-badge-border)` and `shadow-[var(--nb-badge-shadow)]`.
+3. Convert the variant map to token reassignments only (no `bg-*`/`text-*` utilities). `default` row becomes `''`.
+4. Roll the existing `badge.directive.spec.ts` into the §5.0 token spec template — current file only tests the radius; expand to cover all defaults, every variant reassignment, and the no-regression class-shape check.
 
 **Naming wart:** badge calls it `destructive`; button calls it `danger`. Don't rename in this phase — it's a separate visual+API concern. Flagged in §6 cleanup.
+
+**`--nb-badge-shadow` follow-up:** the badge uses `2px 2px` while the global `--nb-shadow-offset-x/y` is `4px`. Preserve `2px 2px` in the token default — do not silently re-anchor to the global. Same boundary as the dialog `8px 8px` case in §5.7.
 
 ### 5.3 Card
 
 No `variant` prop. Audit current values (`bg-(--nb-background) text-(--nb-foreground) rounded-nb border-2 border-(--nb-border) shadow-nb`). Tokens are scoped escape hatches only — base class produces identical output.
+
+Status as of 2026-05-19: the root card surface is implemented.
+
+- `libs/ui/src/lib/card/card.ts` now declares and reads:
+  - `--nb-card-bg: var(--nb-background)`
+  - `--nb-card-fg: var(--nb-foreground)`
+  - `--nb-card-border: var(--nb-border)`
+  - `--nb-card-radius: 18px`
+  - `--nb-card-shadow: var(--nb-shadow-offset-x) var(--nb-shadow-offset-y) 0 var(--nb-shadow)`
+- Added `libs/ui/src/lib/card/card.tokens.spec.ts` covering default token declarations, scoped reads, default root class shape, and sub-part class shape.
+- Updated `apps/docs/src/app/docs/docs-tokens.ts` so the card token table lists the five scoped card tokens.
+
+Verification already run:
+
+- `pnpm vitest run --config libs/ui/vitest.config.mts src/lib/card/card.tokens.spec.ts --reporter=verbose` — passed, 4 tests.
+- `pnpm nx lint ui --output-style=stream` — passed.
+- `pnpm nx lint docs --output-style=stream` — passed.
+- `pnpm nx build ui --output-style=stream` — passed.
+- `pnpm nx build docs --output-style=stream` — passed.
+
+Next step for card:
+
+- Run `pnpm nx serve docs --output-style=stream` and open `/components/card`.
+- Compare the card examples against the pre-token rollout baseline in light and dark mode. The root card should still render with the same background, text color, border, and shadow; the scoped radius now defaults to `18px`.
+- In DevTools, smoke-test scoped overrides:
+  - Set `style="--nb-card-bg: hotpink"` on one `<nb-card>` and verify only that card changes.
+  - Set `style="--nb-card-radius: 9999px"` on one `<nb-card>` and verify only that card becomes pill-shaped.
+  - Set `:root { --nb-card-shadow: 8px 8px 0 magenta; }` and verify all cards pick up the shadow.
+- If those checks pass, mark card as manually verified and move to the next rollout component. Per the phase order, the next implementation target is `input`/`textarea` token renaming, unless you want to return to the earlier `accordion` or `badge` slots first.
 
 ### 5.4 Input vs textarea — token sharing
 
@@ -507,7 +608,11 @@ Both `select[nbSelect]` and `<nb-select>` share scoped tokens (named `select`, n
 
 Don't add `--nb-select-option-hover-bg` yet — no driving use case.
 
-**Audit watch:** the in-flight working-tree changes to `select.directive.ts` and `select.ts` may already touch select tokens. Treat them as draft and re-derive from the baseline.
+**Working-tree status note (resolved):** the in-flight changes flagged in §1.2 were merged ahead of Phase 1 — `select.directive.ts`, `select.ts`, `input-group.ts`, and `input-group-prefix.ts` are committed on `main`. Treat them as the current baseline; re-audit fresh against them.
+
+**Pre-existing test blocker for this PR:** `libs/ui/src/lib/select/select.spec.ts` is currently red on `pnpm nx test ui`. The "uses the same focus treatment as inputs and textareas" test (line ~42) asserts `focus-visible:ring-2` / `focus-visible:ring-(--nb-border)` / `focus-visible:ring-offset-2` / `focus-visible:shadow-none` on `button[aria-haspopup="listbox"]`. But in `select.ts:126`, `triggerClasses()` deliberately omits those — they live on `hostClasses()` (`select.ts:112`) as `focus-within:ring-*` on the `<nb-select>` host. Fix in this PR: change the assertion target from the trigger to the host element, and update the prefix from `focus-visible:` to `focus-within:`. Same expected ring tokens still apply.
+
+**`--nb-input-bg` rename ordering:** select reads `--nb-input-background` today (`select.directive.ts:41`, `select.ts:119`). Since §5.4 renames `--nb-input-background` → `--nb-input-bg`, the input PR must land before this one — or this PR ships the rename alongside its own work. Pick one path in the PR description.
 
 ### 5.6 Input-group rename
 
@@ -572,7 +677,7 @@ Resolve before / during Phase 1. Each has implications for visual parity, so the
 
    - **Recommendation:** ship the verbatim-preserving `hover:shadow-none` in Phase 1. Revisit if a real consumer use case shows up.
 
-4. **Type-level breaking change policy.** Removing `variant="reverse"` and `variant="noShadow"` is a public API break. Confirm pre-1.0 status and that internal docs are the only consumers — `pnpm nx run-many --target=lint` post-migration should be clean.
+4. ~~**Type-level breaking change policy.**~~ **RESOLVED.** Phase 1 confirmed: `rg -n "variant=\"(reverse|noShadow)\"|noShadow" apps libs -g '*.ts' -g '*.html'` returned no matches after the docs migration. Internal docs were the only consumers. Pre-1.0 policy carries forward for Phase 2 renames (input-group tokens, badge `destructive` → `danger`).
 
 5. **Per-component shadow size tokens.** `--nb-shadow-offset-x/y` are global today. Per-component shadow size (e.g. dialog is `8px 8px` — see §5.7) — supported by overriding `--nb-<comp>-shadow` directly, not by per-component offset tokens. Confirm boundary.
 

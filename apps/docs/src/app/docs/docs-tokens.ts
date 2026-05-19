@@ -162,7 +162,34 @@ const componentTokens: Record<DocsTokenComponent, DocsToken[]> = {
       usage: 'Button box shadow, reassigned by shadow',
     },
   ],
-  card: [],
+  card: [
+    {
+      name: '--nb-card-bg',
+      defaultValue: 'var(--nb-background)',
+      usage: 'Card background',
+    },
+    {
+      name: '--nb-card-fg',
+      defaultValue: 'var(--nb-foreground)',
+      usage: 'Card text color',
+    },
+    {
+      name: '--nb-card-border',
+      defaultValue: 'var(--nb-border)',
+      usage: 'Card border color',
+    },
+    {
+      name: '--nb-card-radius',
+      defaultValue: '18px',
+      usage: 'Card corner radius',
+    },
+    {
+      name: '--nb-card-shadow',
+      defaultValue:
+        'var(--nb-shadow-offset-x) var(--nb-shadow-offset-y) 0 var(--nb-shadow)',
+      usage: 'Card box shadow',
+    },
+  ],
   checkbox: [
     {
       name: '--nb-main',
