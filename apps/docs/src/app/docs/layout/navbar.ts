@@ -33,7 +33,7 @@ import { filter } from 'rxjs';
             aria-hidden="true"
           />
           <span class="hidden sm:flex flex-col leading-none">
-            <span class="brand-title">NEO·BRUTAL</span>
+            <span class="brand-title">NG·BRUTALISM</span>
             <span class="brand-sub">angular ui kit</span>
           </span>
         </a>
@@ -69,7 +69,7 @@ import { filter } from 'rxjs';
             class="hidden md:inline-flex h-10 items-center border-3 border-(--nb-border) bg-(--nb-mint) px-3 text-xs font-black tracking-wider uppercase shadow-[3px_3px_0_0_var(--nb-shadow)]"
             style="font-family: var(--font-mono);"
           >
-            v4.0 · NEW
+            v0.1.0 · PRE-RELEASE
           </span>
 
           <a
