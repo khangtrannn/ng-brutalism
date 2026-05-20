@@ -95,6 +95,7 @@ body {
   }
   :where(input[nbInput][type="file"])::file-selector-button {
     font-family: inherit;
+    background-color: var(--nb-main);
   }
 
   :where([nbInputPrefix]:has(svg)) {

@@ -73,14 +73,8 @@
   --color-secondary-background: #fff4d6;
 }
 
-/* === Body: cream paper background with subtle dot grid === */
-body {
-  background-color: var(--nb-cream);
-  background-image: radial-gradient(circle, rgba(0, 0, 0, 0.09) 1px, transparent 1px);
-  background-size: 28px 28px;
-}
-
-/* === Docs main content background: graph paper feel === */
+/* === Docs background: graph paper feel === */
+body,
 .docs-grid-bg {
   background-color: var(--nb-paper);
   background-image:
