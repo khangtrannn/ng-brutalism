@@ -65,7 +65,7 @@ import JobListingCardExampleComponent from './examples/job-listing-card';
       </header>
 
       <section id="preview">
-        <h2 class="mt-10 mb-4 text-2xl font-bold">Preview</h2>
+        <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">Preview</h2>
         <p class="mb-4 text-sm font-medium">
           The live demo is a styled composition showcase. The Code tab below
           shows the underlying card primitive usage; see the
@@ -83,7 +83,7 @@ import JobListingCardExampleComponent from './examples/job-listing-card';
       </section>
 
       <section id="usage">
-        <h2 class="mt-10 mb-4 text-2xl font-bold">Usage</h2>
+        <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">Usage</h2>
         <docs-code-block
           class="block mb-5"
           title="Import"
@@ -93,7 +93,7 @@ import JobListingCardExampleComponent from './examples/job-listing-card';
       </section>
 
       <section id="parts">
-        <h2 class="mt-10 mb-4 text-2xl font-bold">Sub-parts</h2>
+        <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">Sub-parts</h2>
         <p class="mb-4 text-sm font-medium">
           The card component is composed of 7 sub-parts that can be used
           independently.
@@ -193,7 +193,7 @@ import JobListingCardExampleComponent from './examples/job-listing-card';
       </section>
 
       <section id="action-slot">
-        <h2 class="mt-10 mb-4 text-2xl font-bold">Action slot</h2>
+        <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">Action slot</h2>
         <p class="mb-4 text-sm font-medium">
           Drop <code class="font-mono text-sm">&lt;nb-card-action&gt;</code>
           inside the header to anchor a control to the top-right. The header

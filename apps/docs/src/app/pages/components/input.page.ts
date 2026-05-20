@@ -50,14 +50,14 @@ import { DocsTokens } from '../../docs/docs-tokens';
       </header>
 
       <section id="preview">
-        <h2 class="mt-10 mb-4 text-2xl font-bold">Preview</h2>
+        <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">Preview</h2>
         <docs-example [code]="defaultExampleCode">
           <input nbInput placeholder="Email" class="w-75" />
         </docs-example>
       </section>
 
       <section id="usage">
-        <h2 class="mt-10 mb-4 text-2xl font-bold">Usage</h2>
+        <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">Usage</h2>
         <docs-code-block
           class="block mb-5"
           title="Import"
@@ -67,7 +67,7 @@ import { DocsTokens } from '../../docs/docs-tokens';
       </section>
 
       <section id="sizes">
-        <h2 class="mt-10 mb-4 text-2xl font-bold">Sizes</h2>
+        <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">Sizes</h2>
         <docs-example [code]="sizesExampleCode">
           <div class="flex flex-col items-center gap-4">
             <input nbInput size="sm" placeholder="Small" class="w-75" />
@@ -78,14 +78,14 @@ import { DocsTokens } from '../../docs/docs-tokens';
       </section>
 
       <section id="disabled">
-        <h2 class="mt-10 mb-4 text-2xl font-bold">Disabled</h2>
+        <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">Disabled</h2>
         <docs-example [code]="disabledExampleCode">
           <input nbInput placeholder="Email" class="w-75" disabled />
         </docs-example>
       </section>
 
       <section id="with-label">
-        <h2 class="mt-10 mb-4 text-2xl font-bold">With Label</h2>
+        <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">With Label</h2>
         <docs-example [code]="withLabelExampleCode">
           <div class="flex flex-col gap-2">
             <label nbLabel for="email">Email</label>
@@ -101,7 +101,7 @@ import { DocsTokens } from '../../docs/docs-tokens';
       </section>
 
       <section id="with-button">
-        <h2 class="mt-10 mb-4 text-2xl font-bold">With Button</h2>
+        <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">With Button</h2>
         <docs-example [code]="withButtonExampleCode">
           <div class="flex gap-2">
             <input nbInput placeholder="Email" class="w-75" />
@@ -117,7 +117,7 @@ import { DocsTokens } from '../../docs/docs-tokens';
       </section>
 
       <section id="file">
-        <h2 class="mt-10 mb-4 text-2xl font-bold">File</h2>
+        <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">File</h2>
         <docs-example [code]="fileExampleCode">
           <input nbInput type="file" class="w-[250px]" />
         </docs-example>
@@ -126,7 +126,7 @@ import { DocsTokens } from '../../docs/docs-tokens';
       <docs-tokens component="input" />
 
       <section id="api">
-        <h2 class="mt-10 mb-4 text-2xl font-bold">API</h2>
+        <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">API</h2>
 
         <div
           class="overflow-hidden border-2 border-(--nb-border) bg-nb-surface shadow-[5px_5px_0_0_var(--nb-shadow)]"

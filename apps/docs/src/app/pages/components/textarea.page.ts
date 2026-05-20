@@ -49,20 +49,20 @@ import { DocsTokens } from '../../docs/docs-tokens';
       </header>
 
       <section id="preview">
-        <h2 class="mt-10 mb-4 text-2xl font-bold">Preview</h2>
+        <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">Preview</h2>
         <docs-example [code]="defaultExampleCode">
           <textarea nbTextarea placeholder="Write something..." class="w-75"></textarea>
         </docs-example>
       </section>
 
       <section id="usage">
-        <h2 class="mt-10 mb-4 text-2xl font-bold">Usage</h2>
+        <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">Usage</h2>
         <docs-code-block class="block mb-5" title="Import" [code]="importCode" />
         <docs-code-block title="Template" [code]="defaultExampleCode" />
       </section>
 
       <section id="sizes">
-        <h2 class="mt-10 mb-4 text-2xl font-bold">Sizes</h2>
+        <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">Sizes</h2>
         <docs-example [code]="sizesExampleCode">
           <div class="flex flex-col items-center gap-4">
             <textarea nbTextarea size="sm" placeholder="Small" class="w-75"></textarea>
@@ -73,14 +73,14 @@ import { DocsTokens } from '../../docs/docs-tokens';
       </section>
 
       <section id="disabled">
-        <h2 class="mt-10 mb-4 text-2xl font-bold">Disabled</h2>
+        <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">Disabled</h2>
         <docs-example [code]="disabledExampleCode">
           <textarea nbTextarea placeholder="Disabled" class="w-75" disabled></textarea>
         </docs-example>
       </section>
 
       <section id="with-label">
-        <h2 class="mt-10 mb-4 text-2xl font-bold">With Label</h2>
+        <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">With Label</h2>
         <docs-example [code]="withLabelExampleCode">
           <div class="flex flex-col gap-2">
             <label nbLabel for="message">Message</label>
@@ -92,7 +92,7 @@ import { DocsTokens } from '../../docs/docs-tokens';
       <docs-tokens component="textarea" />
 
       <section id="api">
-        <h2 class="mt-10 mb-4 text-2xl font-bold">API</h2>
+        <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">API</h2>
 
         <div
           class="overflow-hidden border-2 border-(--nb-border) bg-nb-surface shadow-[5px_5px_0_0_var(--nb-shadow)]"

@@ -56,7 +56,7 @@ interface MarqueeSkill {
       </header>
 
       <section id="preview">
-        <h2 class="mt-10 mb-4 text-2xl font-bold">Preview</h2>
+        <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">Preview</h2>
         <docs-example [code]="defaultExampleTemplateCode">
           <nb-marquee class="w-full" duration="10s">
             @for (skill of skills; track skill.text) {
@@ -81,7 +81,7 @@ interface MarqueeSkill {
       </section>
 
       <section id="usage">
-        <h2 class="mt-10 mb-4 text-2xl font-bold">Usage</h2>
+        <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">Usage</h2>
         <docs-code-block
           class="block mb-5"
           title="Import"
@@ -96,7 +96,7 @@ interface MarqueeSkill {
       </section>
 
       <section id="reverse">
-        <h2 class="mt-10 mb-4 text-2xl font-bold">Reverse</h2>
+        <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">Reverse</h2>
         <docs-example [code]="reverseExampleCode">
           <nb-marquee class="w-full" duration="10s" [reverse]="true">
             @for (skill of skills; track skill.text) {
@@ -121,7 +121,7 @@ interface MarqueeSkill {
       </section>
 
       <section id="custom-speed">
-        <h2 class="mt-10 mb-4 text-2xl font-bold">Custom speed</h2>
+        <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">Custom speed</h2>
         <docs-example [code]="customSpeedExampleCode">
           <nb-marquee class="w-full" duration="20s">
             @for (skill of skills; track skill.text) {
@@ -146,7 +146,7 @@ interface MarqueeSkill {
       </section>
 
       <section id="pause-on-hover">
-        <h2 class="mt-10 mb-4 text-2xl font-bold">Disable pause</h2>
+        <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">Disable pause</h2>
         <docs-example [code]="pauseOnHoverExampleCode">
           <nb-marquee
             class="w-full"
@@ -177,7 +177,7 @@ interface MarqueeSkill {
       <docs-tokens component="marquee" />
 
       <section id="api">
-        <h2 class="mt-10 mb-4 text-2xl font-bold">API</h2>
+        <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">API</h2>
 
         <div
           class="overflow-hidden border-2 border-(--nb-border) bg-nb-surface shadow-[5px_5px_0_0_var(--nb-shadow)]"

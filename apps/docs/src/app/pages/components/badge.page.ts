@@ -40,20 +40,20 @@ import { DocsTokens } from '../../docs/docs-tokens';
       </header>
 
       <section id="preview">
-        <h2 class="mt-10 mb-4 text-2xl font-bold">Preview</h2>
+        <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">Preview</h2>
         <docs-example [code]="defaultExampleCode">
           <span nbBadge>Default</span>
         </docs-example>
       </section>
 
       <section id="usage">
-        <h2 class="mt-10 mb-4 text-2xl font-bold">Usage</h2>
+        <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">Usage</h2>
         <docs-code-block class="block mb-5" title="Import" [code]="importCode" />
         <docs-code-block title="Template" [code]="defaultExampleCode" />
       </section>
 
       <section id="variants">
-        <h2 class="mt-10 mb-4 text-2xl font-bold">Variants</h2>
+        <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">Variants</h2>
         <docs-example [code]="variantsExampleCode">
           <div class="flex flex-wrap items-center gap-3">
             <span nbBadge>Default</span>
@@ -68,7 +68,7 @@ import { DocsTokens } from '../../docs/docs-tokens';
       <docs-tokens component="badge" />
 
       <section id="api">
-        <h2 class="mt-10 mb-4 text-2xl font-bold">API</h2>
+        <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">API</h2>
 
         <div
           class="overflow-hidden border-2 border-(--nb-border) bg-nb-surface shadow-[5px_5px_0_0_var(--nb-shadow)]"

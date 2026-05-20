@@ -60,7 +60,7 @@ import { DocsTokens } from '../../docs/docs-tokens';
       </header>
 
       <section id="preview">
-        <h2 class="mt-10 mb-4 text-2xl font-bold">Preview</h2>
+        <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">Preview</h2>
         <docs-example [code]="defaultExampleCode">
           <nb-input-group class="max-w-80">
             <span nbInputPrefix>@</span>
@@ -70,13 +70,13 @@ import { DocsTokens } from '../../docs/docs-tokens';
       </section>
 
       <section id="usage">
-        <h2 class="mt-10 mb-4 text-2xl font-bold">Usage</h2>
+        <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">Usage</h2>
         <docs-code-block class="block mb-5" title="Import" [code]="importCode" />
         <docs-code-block title="Template" [code]="defaultExampleCode" />
       </section>
 
       <section id="prefix-suffix">
-        <h2 class="mt-10 mb-4 text-2xl font-bold">Prefix and Suffix</h2>
+        <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">Prefix and Suffix</h2>
         <docs-example [code]="prefixSuffixExampleCode">
           <nb-input-group class="max-w-96">
             <span nbInputPrefix>$</span>
@@ -87,7 +87,7 @@ import { DocsTokens } from '../../docs/docs-tokens';
       </section>
 
       <section id="with-label">
-        <h2 class="mt-10 mb-4 text-2xl font-bold">With Label</h2>
+        <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">With Label</h2>
         <docs-example [code]="withLabelExampleCode">
           <div class="grid w-full max-w-96 gap-2">
             <label nbLabel for="profile-url">Profile URL</label>
@@ -100,7 +100,7 @@ import { DocsTokens } from '../../docs/docs-tokens';
       </section>
 
       <section id="textarea">
-        <h2 class="mt-10 mb-4 text-2xl font-bold">Textarea</h2>
+        <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">Textarea</h2>
         <docs-example [code]="textareaExampleCode">
           <nb-input-group class="max-w-96">
             <span nbInputPrefix align="stretch">TXT</span>
@@ -110,7 +110,7 @@ import { DocsTokens } from '../../docs/docs-tokens';
       </section>
 
       <section id="disabled">
-        <h2 class="mt-10 mb-4 text-2xl font-bold">Disabled</h2>
+        <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">Disabled</h2>
         <docs-example [code]="disabledExampleCode">
           <nb-input-group class="max-w-80">
             <span nbInputPrefix>@</span>
@@ -122,7 +122,7 @@ import { DocsTokens } from '../../docs/docs-tokens';
       <docs-tokens component="input-group" />
 
       <section id="api">
-        <h2 class="mt-10 mb-4 text-2xl font-bold">API</h2>
+        <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">API</h2>
 
         <div
           class="overflow-hidden border-2 border-(--nb-border) bg-nb-surface shadow-[5px_5px_0_0_var(--nb-shadow)]"

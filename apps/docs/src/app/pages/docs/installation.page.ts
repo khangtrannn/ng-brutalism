@@ -20,7 +20,7 @@ import { DocsTokens } from '../../docs/docs-tokens';
       </header>
 
       <section id="prerequisites">
-        <h2 class="mt-10 mb-4 text-2xl font-bold">Prerequisites</h2>
+        <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">Prerequisites</h2>
         <p class="mb-2 text-base font-medium">
           Components are composed from Tailwind utilities applied through
           <code class="font-mono text-sm">nbClass</code>. The library expects
@@ -31,12 +31,12 @@ import { DocsTokens } from '../../docs/docs-tokens';
       </section>
 
       <section id="package">
-        <h2 class="mt-10 mb-4 text-2xl font-bold">Package</h2>
+        <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">Package</h2>
         <docs-code-block title="Install" [code]="installCode" />
       </section>
 
       <section id="styles">
-        <h2 class="mt-10 mb-4 text-2xl font-bold">Styles</h2>
+        <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">Styles</h2>
         <p class="mb-5 text-base font-medium">
           Import the bundled stylesheet once at your app's entry (e.g.
           <code class="font-mono text-sm">src/styles.css</code>). Theme tokens
@@ -46,7 +46,7 @@ import { DocsTokens } from '../../docs/docs-tokens';
       </section>
 
       <section id="provider">
-        <h2 class="mt-10 mb-4 text-2xl font-bold">Provider (optional)</h2>
+        <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">Provider (optional)</h2>
         <p class="mb-5 text-base font-medium">
           The provider is only needed if you want to override theme tokens from
           Angular config. The simpler alternative is to redefine the CSS custom
@@ -58,7 +58,7 @@ import { DocsTokens } from '../../docs/docs-tokens';
       <docs-tokens component="theme" />
 
       <section id="usage">
-        <h2 class="mt-10 mb-4 text-2xl font-bold">Usage</h2>
+        <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">Usage</h2>
         <docs-code-block title="Component" [code]="usageCode" />
       </section>
     </article>

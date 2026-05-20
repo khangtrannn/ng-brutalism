@@ -622,7 +622,7 @@ const componentTokens: Record<DocsTokenComponent, DocsToken[]> = {
   standalone: true,
   template: `
     <section id="customization">
-      <h2 class="mt-10 mb-4 text-2xl font-bold">Customization</h2>
+      <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">Customization</h2>
       <p class="mb-5 text-base font-medium">
         Override these CSS variables on <code>:root</code>, a wrapper, or the
         component element. More local values win, so per-instance styling can

@@ -19,7 +19,7 @@ import JobListingCardExampleComponent from '../components/examples/job-listing-c
       </header>
 
       <section id="utilities">
-        <h2 class="mt-10 mb-4 text-2xl font-bold">Utilities</h2>
+        <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">Utilities</h2>
         <p class="mb-5 text-base font-medium">
           <code class="font-mono text-sm">nbClass</code> is exported from
           <code class="font-mono text-sm">&#64;ng-brutalism/ui</code> and merges
@@ -32,7 +32,7 @@ import JobListingCardExampleComponent from '../components/examples/job-listing-c
       </section>
 
       <section id="components">
-        <h2 class="mt-10 mb-4 text-2xl font-bold">Highlights</h2>
+        <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">Highlights</h2>
         <p class="mb-5 text-base font-medium">
           Two of the most-used primitives — see the sidebar for the full
           component list.

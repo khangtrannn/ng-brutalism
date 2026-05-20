@@ -57,7 +57,7 @@ import { DocsTokens } from '../../docs/docs-tokens';
       </header>
 
       <section id="preview">
-        <h2 class="mt-10 mb-4 text-2xl font-bold">Preview</h2>
+        <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">Preview</h2>
         <docs-example [code]="defaultExampleCode">
           <button
             nbButton
@@ -70,7 +70,7 @@ import { DocsTokens } from '../../docs/docs-tokens';
       </section>
 
       <section id="usage">
-        <h2 class="mt-10 mb-4 text-2xl font-bold">Usage</h2>
+        <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">Usage</h2>
         <docs-code-block
           class="block mb-5"
           title="Import"
@@ -80,7 +80,7 @@ import { DocsTokens } from '../../docs/docs-tokens';
       </section>
 
       <section id="variants">
-        <h2 class="mt-10 mb-4 text-2xl font-bold">Variants</h2>
+        <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">Variants</h2>
         <docs-example [code]="variantsExampleCode">
           <div class="flex flex-wrap items-center justify-center gap-3">
             <button nbButton variant="default">Default</button>
@@ -96,7 +96,7 @@ import { DocsTokens } from '../../docs/docs-tokens';
       </section>
 
       <section id="sizes">
-        <h2 class="mt-10 mb-4 text-2xl font-bold">Sizes</h2>
+        <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">Sizes</h2>
         <docs-example [code]="sizesExampleCode">
           <div class="flex flex-wrap items-center justify-center gap-3">
             <button nbButton size="sm" variant="neutral" style="--nb-button-bg: var(--nb-warning)">Small</button>
@@ -108,7 +108,7 @@ import { DocsTokens } from '../../docs/docs-tokens';
       </section>
 
       <section id="full-width">
-        <h2 class="mt-10 mb-4 text-2xl font-bold">Full width</h2>
+        <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">Full width</h2>
         <docs-example [code]="fullWidthExampleCode">
           <div class="w-full max-w-md">
             <button
@@ -124,7 +124,7 @@ import { DocsTokens } from '../../docs/docs-tokens';
       </section>
 
       <section id="disabled">
-        <h2 class="mt-10 mb-4 text-2xl font-bold">Disabled</h2>
+        <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">Disabled</h2>
         <docs-example [code]="disabledExampleCode">
           <div class="flex flex-wrap items-center justify-center gap-4">
             <button
@@ -148,7 +148,7 @@ import { DocsTokens } from '../../docs/docs-tokens';
       </section>
 
       <section id="anchor-usage">
-        <h2 class="mt-10 mb-4 text-2xl font-bold">Anchor usage</h2>
+        <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">Anchor usage</h2>
         <docs-example [code]="anchorExampleCode">
           <div class="flex flex-wrap items-center justify-center gap-4">
             <a
@@ -178,7 +178,7 @@ import { DocsTokens } from '../../docs/docs-tokens';
       <docs-tokens component="button" />
 
       <section id="api">
-        <h2 class="mt-10 mb-4 text-2xl font-bold">API</h2>
+        <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">API</h2>
 
         <div
           class="overflow-hidden border-2 border-(--nb-border) bg-nb-surface shadow-[5px_5px_0_0_var(--nb-shadow)]"

@@ -42,7 +42,7 @@ import { DocsTokens } from '../../docs/docs-tokens';
       </header>
 
       <section id="preview">
-        <h2 class="mt-10 mb-4 text-2xl font-bold">Preview</h2>
+        <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">Preview</h2>
         <docs-example [code]="defaultExampleCode">
           <h2 nbTitle class="font-mono text-4xl font-black leading-tight uppercase">
             Brutal section title
@@ -51,13 +51,13 @@ import { DocsTokens } from '../../docs/docs-tokens';
       </section>
 
       <section id="usage">
-        <h2 class="mt-10 mb-4 text-2xl font-bold">Usage</h2>
+        <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">Usage</h2>
         <docs-code-block class="block mb-5" title="Import" [code]="importCode" />
         <docs-code-block title="Template" [code]="defaultExampleCode" />
       </section>
 
       <section id="custom-wave">
-        <h2 class="mt-10 mb-4 text-2xl font-bold">Custom Wave</h2>
+        <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">Custom Wave</h2>
         <docs-example [code]="customWaveExampleCode">
           <h3
             nbTitle
@@ -70,7 +70,7 @@ import { DocsTokens } from '../../docs/docs-tokens';
       </section>
 
       <section id="mixed-content">
-        <h2 class="mt-10 mb-4 text-2xl font-bold">Mixed Content</h2>
+        <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">Mixed Content</h2>
         <docs-example [code]="mixedContentExampleCode">
           <div class="max-w-xl border-2 border-(--nb-border) bg-nb-surface p-6 shadow-[5px_5px_0_0_var(--nb-shadow)]">
             <p class="mb-3 inline-block border-2 border-(--nb-border) bg-nb-secondary px-3 py-1 font-mono text-xs font-black uppercase">
@@ -90,7 +90,7 @@ import { DocsTokens } from '../../docs/docs-tokens';
       <docs-tokens component="title" />
 
       <section id="api">
-        <h2 class="mt-10 mb-4 text-2xl font-bold">API</h2>
+        <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">API</h2>
 
         <div
           class="overflow-hidden border-2 border-(--nb-border) bg-nb-surface shadow-[5px_5px_0_0_var(--nb-shadow)]"

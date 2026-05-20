@@ -153,7 +153,9 @@ export class NbDocsToc implements AfterViewInit {
       return;
     }
 
-    const nodes = contentEl.querySelectorAll('h2, h3');
+    const nodes = contentEl.querySelectorAll<HTMLElement>(
+      '[data-docs-heading]'
+    );
 
     this.headings.set(
       Array.from(nodes)

@@ -59,7 +59,7 @@ import { DocsTokens } from '../../docs/docs-tokens';
       </header>
 
       <section id="preview">
-        <h2 class="mt-10 mb-4 text-2xl font-bold">Preview</h2>
+        <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">Preview</h2>
         <docs-example [code]="exampleCode">
           <nb-accordion class="block w-full max-w-xl" collapsible>
             <nb-accordion-item>
@@ -83,7 +83,7 @@ import { DocsTokens } from '../../docs/docs-tokens';
       </section>
 
       <section id="usage">
-        <h2 class="mt-10 mb-4 text-2xl font-bold">Usage</h2>
+        <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">Usage</h2>
         <docs-code-block
           class="block mb-5"
           title="Import"
@@ -93,7 +93,7 @@ import { DocsTokens } from '../../docs/docs-tokens';
       </section>
 
       <section id="multiple">
-        <h2 class="mt-10 mb-4 text-2xl font-bold">Multiple</h2>
+        <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">Multiple</h2>
         <docs-example [code]="multipleExampleCode">
           <nb-accordion
             class="block w-full max-w-xl"
@@ -123,7 +123,7 @@ import { DocsTokens } from '../../docs/docs-tokens';
       </section>
 
       <section id="controlled">
-        <h2 class="mt-10 mb-4 text-2xl font-bold">Controlled</h2>
+        <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">Controlled</h2>
         <docs-example [code]="controlledExampleTemplateCode">
           <div class="flex w-full max-w-xl flex-col gap-4">
             <div class="flex flex-wrap gap-3">
@@ -185,7 +185,7 @@ import { DocsTokens } from '../../docs/docs-tokens';
       </section>
 
       <section id="disabled">
-        <h2 class="mt-10 mb-4 text-2xl font-bold">Disabled Item</h2>
+        <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">Disabled Item</h2>
         <docs-example [code]="disabledExampleCode">
           <nb-accordion
             collapsible
@@ -212,7 +212,7 @@ import { DocsTokens } from '../../docs/docs-tokens';
       <docs-tokens component="accordion" />
 
       <section id="api">
-        <h2 class="mt-10 mb-4 text-2xl font-bold">API</h2>
+        <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">API</h2>
         <h3 class="mt-6 mb-3 text-xl font-bold">Accordion</h3>
         <div
           class="overflow-hidden border-2 border-(--nb-border) bg-nb-surface shadow-nb"

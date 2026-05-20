@@ -49,7 +49,7 @@ import { DocsTokens } from '../../docs/docs-tokens';
       </header>
 
       <section id="preview">
-        <h2 class="mt-10 mb-4 text-2xl font-bold">Preview</h2>
+        <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">Preview</h2>
         <docs-example [code]="defaultExampleCode">
           <div class="flex items-center gap-2">
             <input type="checkbox" nbCheckbox id="accept-terms" />
@@ -59,13 +59,13 @@ import { DocsTokens } from '../../docs/docs-tokens';
       </section>
 
       <section id="usage">
-        <h2 class="mt-10 mb-4 text-2xl font-bold">Usage</h2>
+        <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">Usage</h2>
         <docs-code-block class="block mb-5" title="Import" [code]="importCode" />
         <docs-code-block title="Template" [code]="defaultExampleCode" />
       </section>
 
       <section id="with-input">
-        <h2 class="mt-10 mb-4 text-2xl font-bold">With Input</h2>
+        <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">With Input</h2>
         <docs-example [code]="withInputExampleCode">
           <div class="flex flex-col gap-2">
             <label nbLabel for="email">Email</label>
@@ -75,7 +75,7 @@ import { DocsTokens } from '../../docs/docs-tokens';
       </section>
 
       <section id="disabled-control">
-        <h2 class="mt-10 mb-4 text-2xl font-bold">Disabled Control</h2>
+        <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">Disabled Control</h2>
         <docs-example [code]="disabledControlExampleCode">
           <div class="flex items-center gap-2">
             <input
@@ -93,7 +93,7 @@ import { DocsTokens } from '../../docs/docs-tokens';
       <docs-tokens component="label" />
 
       <section id="api">
-        <h2 class="mt-10 mb-4 text-2xl font-bold">API</h2>
+        <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">API</h2>
 
         <div
           class="overflow-hidden border-2 border-(--nb-border) bg-nb-surface shadow-[5px_5px_0_0_var(--nb-shadow)]"

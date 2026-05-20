@@ -47,7 +47,7 @@ import { DocsTokens } from '../../docs/docs-tokens';
       </header>
 
       <section id="preview">
-        <h2 class="mt-10 mb-4 text-2xl font-bold">Preview</h2>
+        <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">Preview</h2>
         <docs-example [code]="defaultExampleCode">
           <nb-image-card
             class="w-full max-w-sm"
@@ -59,13 +59,13 @@ import { DocsTokens } from '../../docs/docs-tokens';
       </section>
 
       <section id="usage">
-        <h2 class="mt-10 mb-4 text-2xl font-bold">Usage</h2>
+        <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">Usage</h2>
         <docs-code-block class="block mb-5" title="Import" [code]="importCode" />
         <docs-code-block title="Template" [code]="templateCode" />
       </section>
 
       <section id="image-only">
-        <h2 class="mt-10 mb-4 text-2xl font-bold">Image only</h2>
+        <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">Image only</h2>
         <p class="mb-4 text-sm font-medium">
           When <code class="font-mono">caption</code> is omitted, the caption
           strip is not rendered.
@@ -82,7 +82,7 @@ import { DocsTokens } from '../../docs/docs-tokens';
       <docs-tokens component="image-card" />
 
       <section id="api">
-        <h2 class="mt-10 mb-4 text-2xl font-bold">API</h2>
+        <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">API</h2>
         <div
           class="overflow-hidden border-2 border-(--nb-border) bg-nb-surface shadow-[5px_5px_0_0_var(--nb-shadow)]"
         >

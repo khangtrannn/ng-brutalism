@@ -61,7 +61,7 @@ import { DocsTokens } from '../../docs/docs-tokens';
       </header>
 
       <section id="preview">
-        <h2 class="mt-10 mb-4 text-2xl font-bold">Preview</h2>
+        <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">Preview</h2>
         <docs-example [code]="defaultExampleCode">
           <div class="w-80">
             <nb-select placeholder="Select an option">
@@ -102,13 +102,13 @@ import { DocsTokens } from '../../docs/docs-tokens';
       </section>
 
       <section id="usage">
-        <h2 class="mt-10 mb-4 text-2xl font-bold">Usage</h2>
+        <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">Usage</h2>
         <docs-code-block class="block mb-5" title="Import" [code]="importCode" />
         <docs-code-block title="Template" [code]="defaultExampleCode" />
       </section>
 
       <section id="with-label">
-        <h2 class="mt-10 mb-4 text-2xl font-bold">With Label</h2>
+        <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">With Label</h2>
         <docs-example [code]="withLabelExampleCode">
           <div class="grid w-80 gap-2">
             <label nbLabel id="plan-label">Plan</label>
@@ -124,7 +124,7 @@ import { DocsTokens } from '../../docs/docs-tokens';
       </section>
 
       <section id="with-prefix">
-        <h2 class="mt-10 mb-4 text-2xl font-bold">With Prefix</h2>
+        <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">With Prefix</h2>
         <docs-example [code]="withPrefixExampleCode">
           <div class="w-90">
             <label nbLabel id="subject-label" class="mb-2 block">Subject</label>
@@ -157,7 +157,7 @@ import { DocsTokens } from '../../docs/docs-tokens';
       </section>
 
       <section id="with-icon">
-        <h2 class="mt-10 mb-4 text-2xl font-bold">Option Content</h2>
+        <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">Option Content</h2>
         <docs-example [code]="withIconExampleCode">
           <div class="w-80">
             <nb-select placeholder="Select location" defaultValue="worldwide">
@@ -218,7 +218,7 @@ import { DocsTokens } from '../../docs/docs-tokens';
       </section>
 
       <section id="disabled">
-        <h2 class="mt-10 mb-4 text-2xl font-bold">Disabled</h2>
+        <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">Disabled</h2>
         <docs-example [code]="disabledExampleCode">
           <div class="w-80">
             <nb-select placeholder="Select an option" disabled>
@@ -229,7 +229,7 @@ import { DocsTokens } from '../../docs/docs-tokens';
       </section>
 
       <section id="native-select">
-        <h2 class="mt-10 mb-4 text-2xl font-bold">Native Select</h2>
+        <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">Native Select</h2>
         <docs-example [code]="nativeExampleCode">
           <select
             nbSelect
@@ -247,7 +247,7 @@ import { DocsTokens } from '../../docs/docs-tokens';
       <docs-tokens component="select" />
 
       <section id="api">
-        <h2 class="mt-10 mb-4 text-2xl font-bold">API</h2>
+        <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">API</h2>
 
         <h3 class="mt-6 mb-3 text-xl font-bold">
           <code class="font-mono text-base">&lt;nb-select&gt;</code>
