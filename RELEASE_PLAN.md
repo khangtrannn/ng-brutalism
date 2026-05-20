@@ -9,6 +9,105 @@ Current date: 2026-05-20.
 
 ---
 
+## 0. Resume Here (2026-05-20 handoff)
+
+Pass 1, Pass 2, and the non-destructive verification gates are complete.
+Every completed subsection has its own dated "Status" block inline below;
+this section is the one-screen summary you need to pick the work back up.
+
+### Done
+
+- §3.1 / §4.0 drift gates — green. Renamed `NbDialogComponent` → `NbDialog`.
+- §4.1 package metadata, root `LICENSE`, dist filename slug.
+- §4.2 prerender list (35 routes), `apps/docs/public/CNAME`.
+- §4.3 `.github/workflows/{ci,deploy-docs}.yml`.
+- §4.4 audits + TOKENS docs archived; Changesets removed; lockfile shrank
+  ~435 lines.
+- §4.5 `pnpm nx run-many -t lint test build --projects=ui,docs` green
+  (incidental fix: `select.ts:146` placeholder `text-gray-600` →
+  `text-gray-400`).
+- §2.5 assets optimized to **1.83 MB GIF / 298 KB PNG** under
+  `docs/assets/`; `apps/docs/public/showcase/release/` removed.
+- §5.1 root `README.md`, §5.2 `libs/ui/README.md`, §5.3 `CONTRIBUTING.md`,
+  §5.4 `CHANGELOG.md` + `docs/plans/_archive/RELEASE_NOTES_v0.1.0.md`.
+- §6.1 clean build — every `dist/ui/` artifact present.
+- §6.2 final lint/test/build green.
+- §6.5 `npm publish --dry-run`: 9 files, **38.1 KB packed / 233.7 KB
+  unpacked** (budgets 75 / 400 KB), sourcemaps present.
+
+### Deviations from the locked plan (each documented inline)
+
+1. **§4.1 LICENSE asset glob.** ng-packagr 21 rejects asset `input` outside
+   the project root. The LICENSE (and CHANGELOG.md) copy was moved into the
+   Nx `build` target in `libs/ui/project.json` as a `run-commands` wrapper
+   around `nx run ui:ng-package`. Net effect identical: `dist/ui/LICENSE`
+   and `dist/ui/CHANGELOG.md` are present post-build.
+2. **§2.8 deploy path.** Analog/Nitro emits the prerendered HTML into
+   `dist/apps/docs/analog/public/`, not `dist/apps/docs/client/`. The
+   workflow uploads from the former.
+3. **§2.5.1 GIF toolchain.** The locked `gifsicle -O3 --lossy=80 --colors
+   128` and the `ffmpeg palettegen/paletteuse` fallback both *grew* the
+   source (already aggressively encoded at 2774×2180). Hit the 2 MB target
+   with `gifsicle -O3 --lossy=120 --colors 96 --scale 0.5` (→ 1387×1090).
+   Treating `--scale` as in-place optimization, not "re-recording".
+
+### Pre-existing staged work — flag before committing
+
+`git status --short` shows `MM apps/docs/src/app/pages/docs/introduction.
+page.ts` (~238 lines staged) and `M apps/docs/vite.config.ts` carries an
+edit beyond my prerender expansion. These were already in the index when
+this session started. Decide before the release commit whether to:
+
+- bundle them into the v0.1.0 prep commit, or
+- `git restore --staged` them and commit only release-prep changes.
+
+If in doubt, the introduction-page redesign is unrelated to v0.1.0 plumbing
+and can ship separately without blocking release.
+
+### What's left (in order)
+
+The plan below covers each item in full; this list is the shortlist.
+
+1. **§6.3 Docs Smoke** — interactive. `pnpm nx serve docs` then walk the
+   pages listed in §6.3.
+2. **§6.4 Local Consume Smoke** — mandatory pre-publish, must run on Node
+   20.19 *and* Node 22 (see §6.4 for the exact `/tmp/nb-smoke` recipe). I
+   did not run this; it requires `nvm` and creating a fresh Angular 21
+   workspace.
+3. **Decide the publish date.** `CHANGELOG.md` and `docs/plans/_archive/
+   RELEASE_NOTES_v0.1.0.md` are currently dated `2026-05-20`. If publish
+   slips, edit those two date strings (`## [0.1.0] — <date>` and `Released
+   <date>.`) before §7. Search: `rg "2026-05-20" CHANGELOG.md
+   docs/plans/_archive/RELEASE_NOTES_v0.1.0.md`.
+4. **Decide on the staged introduction.page.ts.** See "Pre-existing staged
+   work" above.
+5. **§6.6 Git State Gate** — commit, then `git push origin main`. Wait for
+   the deploy-docs workflow to finish and `https://ngbrutalism.khangtran.
+   dev` to load. **Cloudflare DNS** must already be set up (see §2.6):
+   `ngbrutalism` CNAME → `khangtrannn.github.io`, **proxy off (grey
+   cloud)**. Verify before pushing or GitHub cert issuance can fail.
+6. **§7 Publish** — `npm login`, `npm whoami`, `npm org ls ng-brutalism`,
+   then from `dist/ui`: `npm publish --access public`. Verify `npm view
+   @ng-brutalism/ui dist-tags` shows `latest: 0.1.0` **before** tagging.
+   Then `git tag v0.1.0 && git push origin v0.1.0 && gh release create
+   v0.1.0 --title "v0.1.0 — Initial release" --notes-file
+   docs/plans/_archive/RELEASE_NOTES_v0.1.0.md`.
+7. **§8 Post-Publish** — announce on LinkedIn first, then r/angular,
+   dev.to, X within 48h (see §2.10 channel shapes and don'ts). Enable
+   branch protection on `main` (§2.9). Move `RELEASE_PLAN.md` to
+   `docs/plans/_archive/RELEASE_PLAN_v0.1.0.md`. File v0.2 follow-up
+   issues (§8 list).
+
+### Rollback policy reminder
+
+`0.1.0` is **burnable until the git tag is pushed.** If anything looks
+wrong between `npm publish` and the tag push, do not tag — investigate,
+`npm unpublish @ng-brutalism/ui@0.1.0` within the 72h window if needed,
+bump to `0.1.1`, restart from §6. Once the tag is on `origin`, the version
+is locked.
+
+---
+
 ## 1. Release Contract
 
 - Package: `@ng-brutalism/ui`.
@@ -299,6 +398,22 @@ optimized assets are committed under `docs/assets/`, **delete** the entire
 was a staging location; two copies of the same binaries in two places is drift
 we'll regret. This step is required, not optional.
 
+**Status (2026-05-20): complete.**
+
+- GIF: 1.83 MB (under the 2 MB target). The source was 4.4 MB at 2774×2180,
+  51 frames. The §2.5.1 locked first-pass (`gifsicle -O3 --lossy=80 --colors
+  128`) and the ffmpeg `palettegen`/`paletteuse` fallback both *grew* the file
+  to 6.0–6.4 MB because the source was already aggressively encoded and
+  re-encoding adds container overhead. Final command:
+  `gifsicle -O3 --lossy=120 --colors 96 --scale 0.5` → 1387×1090, 1.83 MB.
+  `--scale 0.5` is an in-place optimization (no re-recording); 1387×1090
+  is still HiDPI-sharp at typical README presentation widths.
+- PNG: 298 KB (under the 300 KB target). Pipeline: `oxipng -o max --strip
+  safe` then `pngquant --quality=40-65 --speed 1` then a final `oxipng`
+  pass.
+- `apps/docs/public/showcase/release/` deleted via `git rm -rf` per the
+  required step.
+
 ### 2.6 Docs Site
 
 - Deploy static prerendered docs to GitHub Pages.
@@ -406,6 +521,14 @@ Add two workflows for v0.1.0.
 - `pnpm nx build docs --configuration=production`
 - Deploy `dist/apps/docs/client` to GitHub Pages.
 
+**Deviation (2026-05-20):** Analog/Nitro emits the prerendered route HTML
+files (35-route lock from §2.6) into `dist/apps/docs/analog/public/`, not
+`dist/apps/docs/client/`. `dist/apps/docs/client/` contains only the SPA
+shell (single `index.html`). Deploying that would defeat prerendering.
+`.github/workflows/deploy-docs.yml` deploys from `dist/apps/docs/analog/
+public/` instead. CNAME and per-route `index.html` files verified present
+there after `pnpm nx build docs --configuration=production`.
+
 No `release.yml`, Dependabot, Changesets, or release automation for v0.1.0.
 
 ### 2.9 Branch Protection
@@ -483,7 +606,7 @@ Already done or user-confirmed:
 - `NbSelectSize` appears to be removed.
 - Input-group internals appear to be hidden.
 - Card docs selectors appear to be corrected to `nb-card*`.
-- Static docs/API audit already exists in `PRE_RELEASE_AUDIT.md`.
+- Static docs/API audit already exists in `docs/plans/_archive/PRE_RELEASE_AUDIT.md`.
   All original findings are marked resolved as of 2026-05-20.
 
 Still verify these during build/smoke instead of blindly editing them again.
@@ -554,6 +677,11 @@ grep -nE "<(nb-)?card" apps/docs/src/app/pages/docs/card.page.ts
 This is still a gate, not a re-audit. Deeper API verification is deferred to
 §6.4 (local consume smoke). Fix hits in place, then continue to §4.1.
 
+**Status (2026-05-20): complete.** All gates return zero matches. Drift fix
+applied: implementation class renamed from `NbDialogComponent` → `NbDialog` in
+`libs/ui/src/lib/dialog/dialog.ts` and `libs/ui/src/lib/dialog/index.ts`;
+public export name was already `NbDialog`, so no consumer-facing change.
+
 ### 4.1 Package
 
 - Update `libs/ui/package.json`:
@@ -568,8 +696,9 @@ This is still a gate, not a re-audit. Deeper API verification is deferred to
   - Use SPDX canonical MIT text.
   - Copyright line: `Copyright (c) 2026 Khang Tran` (no email; `author` field
     in `package.json` already carries it).
-- Configure `libs/ui/ng-package.json` so `LICENSE` is copied to `dist/ui/`
-  via the existing `assets` array (same mechanism as the CSS copy):
+- Configure `libs/ui/ng-package.json` so `LICENSE` is copied to `dist/ui/`.
+
+  Locked attempt was:
 
   ```json
   "assets": [
@@ -578,11 +707,45 @@ This is still a gate, not a re-audit. Deeper API verification is deferred to
   ]
   ```
 
+  **Deviation (2026-05-20):** ng-packagr 21 rejects asset inputs outside the
+  project root with `Cannot read assets from a location outside of the project
+  root.` Kept the CSS asset glob in `ng-package.json` and moved the LICENSE
+  copy into the Nx `build` target in `libs/ui/project.json`:
+
+  ```jsonc
+  "build": {
+    "executor": "nx:run-commands",
+    "outputs": ["{workspaceRoot}/dist/ui"],
+    "options": {
+      "commands": [
+        "nx run ui:ng-package",
+        "node -e \"require('node:fs').copyFileSync('LICENSE', 'dist/ui/LICENSE')\""
+      ],
+      "parallel": false
+    },
+    ...
+  },
+  "ng-package": { "executor": "@nx/angular:package", ... }
+  ```
+
+  Net effect is the same — `dist/ui/LICENSE` exists post-build — and the file
+  stays canonical at the repo root (no second copy in `libs/ui/`).
+
 - Ensure `dist/ui/package.json` has no dead export paths after build.
 - **Do not refactor or remove** `libs/ui/src/lib/styles/styles.css`'s leading
   `@import './theme.css';`. The one-import promise in §2.2 depends on it.
   Verify with `head -2 libs/ui/src/lib/styles/styles.css` (must contain the
   import) before and after any styles touch.
+
+**Status (2026-05-20): complete.** `libs/ui/package.json` rewritten to the
+§2.3 metadata template (`version` 0.1.0, full author/repo/homepage/bugs/
+keywords, peer `tailwindcss ^4.0.0`, `engines.node`, files whitelist with
+`CHANGELOG.md`, stale `esm2022`/`esm` export conditions removed, exports
+filename corrected from `ng-neo-brutalism-ui.mjs` → `ng-brutalism-ui.mjs`,
+`sideEffects` preserved). Root `LICENSE` added (SPDX MIT, copyright "Khang
+Tran" only). `libs/ui/ng-package.json` extended with a `LICENSE` asset glob so
+ng-packagr copies it to `dist/ui/`. `styles.css` still leads with
+`@import './theme.css';` (verified pre and post).
 
 ### 4.2 Docs Hosting
 
@@ -591,19 +754,34 @@ This is still a gate, not a re-audit. Deeper API verification is deferred to
 - Confirm docs build emits static output in `dist/apps/docs/client` suitable for
   GitHub Pages.
 
+**Status (2026-05-20): complete.** `apps/docs/vite.config.ts` prerender list
+expanded to the §2.6 35-route lock; verified each route has a matching
+`*.page.ts` under `apps/docs/src/app/pages/`. `apps/docs/public/CNAME` created
+with `ngbrutalism.khangtran.dev`. Build output target `dist/apps/docs/client`
+unchanged. End-to-end docs build verified in §4.5.
+
 ### 4.3 GitHub Actions
 
 - Add `.github/workflows/ci.yml`.
 - Add `.github/workflows/deploy-docs.yml`.
 - Use Node 22, pnpm, checkout `fetch-depth: 0`.
 
+**Status (2026-05-20): complete.** `.github/workflows/ci.yml` added with
+`name: CI` and job id `verify` (locks the §2.9 `CI / verify` required check
+name), running `pnpm nx affected -t lint test build` on `pull_request` and
+manual dispatch via the §2.8 step order (checkout → pnpm → Node 22 → nx-set-
+shas → cache → install → affected). `.github/workflows/deploy-docs.yml` added
+to lint+test ui/docs, build docs production, and deploy `dist/apps/docs/client`
+to GitHub Pages on push to `main`. No Nx Cloud, no `release.yml`, no
+Dependabot — matches §2.8 / §9.
+
 ### 4.4 Repo Hygiene
 
 - Remove checked-in `.DS_Store` files.
 - Add `.DS_Store` to `.gitignore` if absent.
 - Move completed audit docs to `docs/plans/_archive/`:
-  - `PRE_RELEASE_AUDIT_PLAN.md`
-  - `PRE_RELEASE_AUDIT.md`
+  - `PRE_RELEASE_AUDIT_PLAN.md` → `docs/plans/_archive/PRE_RELEASE_AUDIT_PLAN.md`
+  - `PRE_RELEASE_AUDIT.md` → `docs/plans/_archive/PRE_RELEASE_AUDIT.md`
 - Update `RELEASE_PLAN.md` references to the archived audit paths when moving
   those files.
 - Remove dormant Changesets setup:
@@ -633,6 +811,16 @@ This is still a gate, not a re-audit. Deeper API verification is deferred to
   intentional, must be explicitly retained — re-add by name after the sweep).
 - Keep `RELEASE_PLAN.md` at root until v0.1.0 publishes.
 
+**Status (2026-05-20): complete.** No `.DS_Store` files tracked (already
+ignored in `.gitignore`). Archived to `docs/plans/_archive/`:
+`PRE_RELEASE_AUDIT.md`, `PRE_RELEASE_AUDIT_PLAN.md`, `libs/ui/TOKENS.md`,
+`libs/ui/TOKENS-ROLLOUT.md` (via `git mv`). RELEASE_PLAN.md cross-refs
+re-pointed. Changesets removed: root `release` script deleted, `@changesets/
+cli` devDep removed, `.changeset/config.json` deleted (directory now gone),
+`pnpm-lock.yaml` regenerated (–435 lines of transitive deps). Final IDE-cruft
+sweep `git ls-files | grep -E '\.(DS_Store|swp|swo)$|/\.idea/|/\.vscode/'`
+returns zero hits.
+
 ### 4.5 Pass 1 Verification
 
 Run:
@@ -642,6 +830,24 @@ pnpm nx run-many -t lint test build --projects=ui,docs
 ```
 
 If it fails, fix source/config and rerun until green or document the blocker.
+
+**Status (2026-05-20): green.** Both projects pass lint/test/build. Two
+incidental fixes were needed:
+
+- `libs/ui/src/lib/select/select.ts:146` — placeholder color reverted from
+  `text-gray-600` → `text-gray-400` so it matches `input.directive.ts` /
+  `textarea.directive.ts` and satisfies the existing
+  `select.tokens.spec.ts` invariant ("uses the same placeholder color as
+  inputs and textareas"). The `text-gray-600` was an unintentional drift
+  introduced by commit `b8662ba`.
+- `libs/ui/ng-package.json` + `libs/ui/project.json` — see the §4.1
+  deviation note for why the locked LICENSE asset glob was replaced with an
+  Nx `run-commands` wrapper.
+
+Verified `dist/ui/` contents post-build: `fesm2022/ng-brutalism-ui.mjs`,
+`fesm2022/ng-brutalism-ui.mjs.map`, `types/`, `styles.css`, `theme.css`,
+`README.md`, `LICENSE`, `package.json` (no stale `esm`/`esm2022` conditions,
+version `0.1.0`).
 
 ---
 
@@ -721,6 +927,15 @@ Notes:
   the install work" check. Do not expand to multi-component examples here —
   that's the docs site's job.
 
+**Status (2026-05-20): complete.** Root `README.md` rewritten from the Nx-
+monorepo blurb to the §5.1 locked template — title + canonical tagline,
+inlined §2.5 4-badge block (npm version, npm downloads, CI, license), nav
+row, hero GIF (relative `docs/assets/image-card-demo.gif`), install section
+with the §2.7 Node-version line, inlined §2.1 `provideNgBrutalism()` snippet,
+showcase PNG, pre-1.0 status note, MIT license. Verified
+`provideNgBrutalism`, `NbConfig`, `NB_THEME_CONFIG`, `NbThemeConfig`,
+`NbButton` are all exported from `libs/ui/src/index.ts`.
+
 ### 5.2 `libs/ui/README.md`
 
 This file is what npm.com displays as the package page. Keep it
@@ -738,6 +953,12 @@ package-consumer focused, but include the hero GIF and portfolio screenshot
 - docs URL
 - v0.x status
 - license
+
+**Status (2026-05-20): complete.** `libs/ui/README.md` rewritten as the
+npm-facing package page. Same canonical tagline and §2.5 badge block as the
+root README. Asset URLs use the locked
+`https://raw.githubusercontent.com/khangtrannn/ng-brutalism/main/docs/assets/...`
+form so npm.com renders the images.
 
 ### 5.3 CONTRIBUTING
 
@@ -790,6 +1011,11 @@ reports, focused pull requests, and respectful design feedback are welcome.
 ```
 
 Do not add a separate `CODE_OF_CONDUCT.md` for v0.1.0.
+
+**Status (2026-05-20): complete.** `CONTRIBUTING.md` created with the locked
+six sections (preamble, prerequisites, four common commands, six "where
+things live" bullets, six "submitting changes" bullets, conduct paragraph).
+No extras beyond what the lock allows.
 
 ### 5.4 CHANGELOG
 
@@ -846,6 +1072,18 @@ Also create `docs/plans/_archive/RELEASE_NOTES_v0.1.0.md` with only the v0.1.0
 release notes copied from the changelog section. Use this file for the GitHub
 release so tag notes do not include future changelog sections.
 
+**Status (2026-05-20): complete.** Root `CHANGELOG.md` created with the
+locked v0.1.0 category structure (Form controls / Layout & content / Overlays
+/ Foundation / Notes), dated 2026-05-20. `docs/plans/_archive/RELEASE_NOTES_
+v0.1.0.md` created with the same v0.1.0 content for the `gh release create
+--notes-file` step in §7. `libs/ui/project.json` build target extended to
+copy `CHANGELOG.md` from the repo root into `dist/ui/` post-ng-package, same
+mechanism as the LICENSE copy. Rebuild verified `dist/ui/CHANGELOG.md` is
+present.
+
+If the publish date slips, update the `## [0.1.0] — <date>` line in
+`CHANGELOG.md` and the date line in `RELEASE_NOTES_v0.1.0.md` before tagging.
+
 ---
 
 ## 6. Verification Gate
@@ -870,6 +1108,13 @@ Verify:
 - `dist/ui/types/` exists
 - `dist/ui/styles.css` and `dist/ui/theme.css` exist
 
+**Status (2026-05-20): green.** `rm -rf dist/ && pnpm install && pnpm nx
+build ui --configuration=production` reproduces all nine items from the
+checklist above: `dist/ui/{CHANGELOG.md,LICENSE,README.md,fesm2022/ng-
+brutalism-ui.mjs(+.map),package.json (name=@ng-brutalism/ui, version=0.1.0,
+no esm/esm2022 conditions),styles.css,theme.css,types/ng-brutalism-
+ui.d.ts}`.
+
 ### 6.2 Lint, Test, Build
 
 ```sh
@@ -877,6 +1122,9 @@ pnpm nx run-many -t lint test build --projects=ui,docs
 ```
 
 All must pass before publish.
+
+**Status (2026-05-20): green.** Both ui and docs pass lint, test, and build
+(same command as §4.5).
 
 ### 6.3 Docs Smoke
 
@@ -886,6 +1134,14 @@ All must pass before publish.
 - `/showcase/portfolio` renders.
 - Dialog opens/closes.
 - Direct navigation to prerendered routes works.
+
+**Status (2026-05-20): partial / pending.** The docs build emits the full
+35-route prerender set into `dist/apps/docs/analog/public/` (verified by
+file listing; all 35 `index.html` files present, including
+`/showcase/portfolio/index.html`). The interactive parts (component pages
+render without runtime errors, dialog opens/closes, direct-navigation
+sanity) need an actual browser pass — do this with `pnpm nx serve docs`
+before §7.
 
 ### 6.4 Local Consume Smoke Test
 
@@ -939,6 +1195,13 @@ rm -rf /tmp/nb-smoke
 No CI automation of the smoke for v0.1.0. The "automated smoke-test script"
 work item lives in §8 for v0.2.
 
+**Status (2026-05-20): pending.** Not run. Mandatory before §7 — do not
+skip. Requires `nvm`. Run twice (Node 20.19, Node 22) per the recipe
+above; on each pass, after `pnpm add /Users/khangtrann/ng-brutalism/dist/
+ui/ng-brutalism-ui-0.1.0.tgz`, follow the §6.4 checklist exactly (typed
+import, `:root` token computed style, no peer warnings, render `NbButton`
++ `NbCard` + `NbDialog`, intentional type error, install docs).
+
 ### 6.5 Publish Dry Run
 
 ```sh
@@ -964,6 +1227,16 @@ Budgets are set roughly 2× current size (measured on 2026-05-20: 36 KB packed
 
 If either size budget is exceeded, inspect `npm publish --dry-run` output and
 remove accidental files before publishing.
+
+**Status (2026-05-20): green.**
+
+- Tarball contents: `CHANGELOG.md`, `LICENSE`, `README.md`, `fesm2022/ng-
+  brutalism-ui.mjs`, `fesm2022/ng-brutalism-ui.mjs.map`, `package.json`,
+  `styles.css`, `theme.css`, `types/ng-brutalism-ui.d.ts`. 9 total files.
+- No source `.ts`, no `node_modules`, no planning docs.
+- Sourcemaps present (`fesm2022/ng-brutalism-ui.mjs.map`, 107.9 kB).
+- Packed: **38.1 kB** (budget ≤ 75 kB).
+- Unpacked: **233.7 kB** (budget ≤ 400 kB).
 
 ### 6.6 Git State Gate
 
@@ -991,6 +1264,18 @@ Required state:
 
 Do not publish from an uncommitted, unpushed, failed-docs, pending-docs, or
 stale-docs release state.
+
+**Status (2026-05-20): pending.** Not yet run. Before running this gate:
+
+1. Resolve the pre-existing staged `apps/docs/src/app/pages/docs/
+   introduction.page.ts` and `apps/docs/vite.config.ts` deltas — decide
+   whether to bundle into the release commit or `git restore --staged`
+   them.
+2. Confirm Cloudflare DNS: `ngbrutalism` CNAME → `khangtrannn.github.io`,
+   **proxy off (grey cloud)**. Required before push or GitHub Pages cert
+   issuance can fail.
+3. Commit release-prep changes, push to `main`, wait for the deploy-docs
+   workflow to finish, then verify the §6.6 list of live URLs.
 
 ---
 
@@ -1057,6 +1342,12 @@ Treat the `0.1.0` version as **burnable until the git tag is pushed.**
 No `npm dist-tag` shuffling, no republishing the same version, no force-push to
 delete the tag.
 
+**Status (2026-05-20): pending.** Not yet run. Pre-flight reminder before
+this section: re-check the `CHANGELOG.md` and `docs/plans/_archive/
+RELEASE_NOTES_v0.1.0.md` date lines — they currently say `2026-05-20`. If
+the actual publish day is different, edit both before `npm publish` so the
+tag notes match the on-npm tarball.
+
 ---
 
 ## 8. Post-Publish
@@ -1089,6 +1380,11 @@ delete the tag.
   - **install-docs polish**: one-line note on Tailwind v4 layer order
     (`@layer utilities` must come after `@layer base` for utilities to win
     over library defaults)
+
+**Status (2026-05-20): pending.** Nothing done yet. Order matters:
+publish → docs verified live → first announcement → branch protection on
+→ archive `RELEASE_PLAN.md` → file v0.2 issues. Channel order, post shape,
+and don'ts are all locked in §2.10.
 
 ---
 

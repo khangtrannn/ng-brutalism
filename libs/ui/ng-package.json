@@ -2,11 +2,7 @@
   "$schema": "../../node_modules/ng-packagr/ng-package.schema.json",
   "dest": "../../dist/ui",
   "assets": [
-    {
-      "glob": "*.css",
-      "input": "src/lib/styles",
-      "output": "."
-    }
+    { "glob": "*.css", "input": "src/lib/styles", "output": "." }
   ],
   "allowedNonPeerDependencies": [
     "clsx",

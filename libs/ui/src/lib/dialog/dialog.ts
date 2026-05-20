@@ -25,10 +25,10 @@ import { NB_DIALOG, type NbDialogController } from './dialog.types';
     </dialog>
   `,
   host: { '[attr.data-slot]': '"dialog"' },
-  providers: [{ provide: NB_DIALOG, useExisting: NbDialogComponent }],
+  providers: [{ provide: NB_DIALOG, useExisting: NbDialog }],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class NbDialogComponent implements NbDialogController {
+export class NbDialog implements NbDialogController {
   private readonly isBrowser = isPlatformBrowser(inject(PLATFORM_ID));
   private readonly dialogEl =
     viewChild.required<ElementRef<HTMLDialogElement>>('dialogEl');

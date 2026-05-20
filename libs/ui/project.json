@@ -15,6 +15,23 @@
   "tags": [],
   "targets": {
     "build": {
+      "executor": "nx:run-commands",
+      "outputs": ["{workspaceRoot}/dist/ui"],
+      "options": {
+        "commands": [
+          "nx run ui:ng-package",
+          "node -e \"require('node:fs').copyFileSync('LICENSE', 'dist/ui/LICENSE')\"",
+          "node -e \"require('node:fs').copyFileSync('CHANGELOG.md', 'dist/ui/CHANGELOG.md')\""
+        ],
+        "parallel": false
+      },
+      "configurations": {
+        "production": {},
+        "development": {}
+      },
+      "defaultConfiguration": "production"
+    },
+    "ng-package": {
       "executor": "@nx/angular:package",
       "outputs": ["{workspaceRoot}/dist/ui"],
       "options": {

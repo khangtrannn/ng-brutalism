@@ -143,7 +143,7 @@ export class NbSelectComponent implements NbSelectController, OnInit {
   protected readonly valueClasses = computed(() =>
     nbClass(
       'min-w-0 flex-1 truncate text-left',
-      this.selectedLabel() ? 'text-(--nb-select-fg)' : 'text-gray-600'
+      this.selectedLabel() ? 'text-(--nb-select-fg)' : 'text-gray-400'
     )
   );
 

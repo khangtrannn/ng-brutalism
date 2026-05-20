@@ -1,68 +1,78 @@
-# ng-brutalism
+# @ng-brutalism/ui
 
-Nx monorepo for [`@ng-brutalism/ui`](libs/ui/README.md) — a neo-brutalist Angular
-component library — and its Analog-powered docs app.
+A neo-brutalist Angular component library — Signals • Zoneless • Token-based • Tailwind v4.
 
-- **`libs/ui`** — the publishable component library (Angular 21, Tailwind v4).
-- **`apps/docs`** — the Analog docs site that doubles as a live playground.
+[![npm version](https://img.shields.io/npm/v/@ng-brutalism/ui.svg)](https://www.npmjs.com/package/@ng-brutalism/ui)
+[![npm downloads](https://img.shields.io/npm/dm/@ng-brutalism/ui.svg)](https://www.npmjs.com/package/@ng-brutalism/ui)
+[![CI](https://github.com/khangtrannn/ng-brutalism/actions/workflows/ci.yml/badge.svg)](https://github.com/khangtrannn/ng-brutalism/actions/workflows/ci.yml)
+[![license](https://img.shields.io/npm/l/@ng-brutalism/ui.svg)](https://github.com/khangtrannn/ng-brutalism/blob/main/LICENSE)
+
+[Documentation](https://ngbrutalism.khangtran.dev) ·
+[npm](https://www.npmjs.com/package/@ng-brutalism/ui) ·
+[GitHub](https://github.com/khangtrannn/ng-brutalism)
+
+![demo](docs/assets/image-card-demo.gif)
 
 ## Install
 
-```bash
+Requires Node 20.19+ or 22.12+, Angular 21, and Tailwind CSS v4.
+
+```sh
 pnpm add @ng-brutalism/ui
 ```
 
+Import the styles once in your global CSS:
+
 ```css
-/* src/styles.css */
 @import '@ng-brutalism/ui/styles.css';
-@import '@ng-brutalism/ui/theme.css';
 ```
+
+Use a component:
 
 ```ts
+import { Component } from '@angular/core';
 import { NbButton } from '@ng-brutalism/ui';
+
+@Component({
+  selector: 'app-root',
+  imports: [NbButton],
+  template: `<button nbButton>Click</button>`,
+})
+export class AppComponent {}
 ```
 
-Requires Angular 21+ and Tailwind CSS v4. Full consumer guide: [`libs/ui/README.md`](libs/ui/README.md).
+Optional — configure a subset of theme tokens from TypeScript at bootstrap.
+Sets the corresponding `--nb-*` custom properties for these keys. Tokens
+outside `NbThemeConfig` (e.g. `--nb-background`, `--nb-field-bg`) must still be
+overridden in CSS.
 
-## Theming
+```ts
+import { provideNgBrutalism } from '@ng-brutalism/ui';
 
-Components follow an Angular Material–style approach so consumers can restyle them
-without ever reaching for `!important`:
-
-- **Zero-specificity defaults.** Each primitive ships its visual defaults inside a
-  `:where([data-slot="…"])` rule, giving them specificity `0,0,0`. Any consumer
-  class — Tailwind utility, custom class, anything — wins automatically.
-- **Two-layer scoped tokens.** Each component declares its own scoped tokens
-  (`--nb-button-bg`, `--nb-accordion-trigger-bg`, `--nb-dialog-content-bg`, …)
-  that default to global theme tokens. Override the global to retheme the whole
-  app; override the scoped token to restyle a single instance without leaking.
-  See [`libs/ui/TOKENS.md`](libs/ui/TOKENS.md) for the full grammar.
-- **Override via tokens or utilities — your call.**
-
-```html
-<!-- Utility override (no `!` needed) -->
-<input nbInput class="h-12 bg-[#fbf1bf]" />
-
-<!-- Scoped token override — affects this dialog only -->
-<nb-dialog-content style="--nb-dialog-content-bg: var(--nb-field-bg);">…</nb-dialog-content>
-
-<!-- Scoped token override — affects this button only, never leaks to children -->
-<button nbButton style="--nb-button-bg: hotpink">Boom</button>
+bootstrapApplication(AppComponent, {
+  providers: [
+    provideNgBrutalism({
+      theme: {
+        primary: '#ffd166',
+        radius: '4px',
+        borderWidth: '3px',
+      },
+    }),
+  ],
+});
 ```
 
-Size variants on `nbInput` / `nbTextarea` are driven by the `[data-size]`
-attribute, so `size="lg"` works out of the box and an inline `h-12` still wins
-when you want a one-off.
+[Full installation guide →](https://ngbrutalism.khangtran.dev/docs/installation)
 
-## Breaking changes
+## What it looks like
 
-Pre-1.0 — no aliases are kept. See [`libs/ui/TOKENS-ROLLOUT.md`](libs/ui/TOKENS-ROLLOUT.md)
-for the token-rollout migration notes.
+![showcase](docs/assets/showcase-portfolio.png)
 
-## Commands
+## Status
 
-- `pnpm build:ui` builds the publishable UI package.
-- `pnpm build:docs` builds the Analog docs app.
-- `pnpm serve:docs` serves the docs app locally.
-- `pnpm test` runs affected tests.
-- `pnpm lint` runs affected lint targets.
+`@ng-brutalism/ui` is pre-1.0. The component APIs are usable today, but minor
+versions may include breaking changes while the library settles.
+
+## License
+
+MIT

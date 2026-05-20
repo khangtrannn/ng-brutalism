@@ -1,68 +1,81 @@
 # @ng-brutalism/ui
 
-A neo-brutalist Angular component library. Standalone components, signal-based APIs, themable via CSS custom properties, composed from Tailwind utilities.
+A neo-brutalist Angular component library — Signals • Zoneless • Token-based • Tailwind v4.
+
+[![npm version](https://img.shields.io/npm/v/@ng-brutalism/ui.svg)](https://www.npmjs.com/package/@ng-brutalism/ui)
+[![npm downloads](https://img.shields.io/npm/dm/@ng-brutalism/ui.svg)](https://www.npmjs.com/package/@ng-brutalism/ui)
+[![CI](https://github.com/khangtrannn/ng-brutalism/actions/workflows/ci.yml/badge.svg)](https://github.com/khangtrannn/ng-brutalism/actions/workflows/ci.yml)
+[![license](https://img.shields.io/npm/l/@ng-brutalism/ui.svg)](https://github.com/khangtrannn/ng-brutalism/blob/main/LICENSE)
+
+[Documentation](https://ngbrutalism.khangtran.dev) ·
+[npm](https://www.npmjs.com/package/@ng-brutalism/ui) ·
+[GitHub](https://github.com/khangtrannn/ng-brutalism)
+
+![demo](https://raw.githubusercontent.com/khangtrannn/ng-brutalism/main/docs/assets/image-card-demo.gif)
 
 ## Install
 
-```bash
+Requires Node 20.19+ or 22.12+, Angular 21, and Tailwind CSS v4.
+
+```sh
 pnpm add @ng-brutalism/ui
 ```
 
-Requires Angular 21+ and Tailwind CSS v4 in the consuming app.
-
-## Styles
-
-Import the bundled stylesheet once at the app entry (e.g. `src/styles.css`):
+Import the styles once in your global CSS:
 
 ```css
 @import '@ng-brutalism/ui/styles.css';
 ```
 
-The theme tokens (border, shadow, palette, radius) live in a separate sheet you can import or override:
-
-```css
-@import '@ng-brutalism/ui/theme.css';
-```
-
-## Usage
-
-Every component is standalone — import directly where you use it:
+Use a component:
 
 ```ts
 import { Component } from '@angular/core';
 import { NbButton } from '@ng-brutalism/ui';
 
 @Component({
-  selector: 'app-example',
-  standalone: true,
+  selector: 'app-root',
   imports: [NbButton],
-  template: `<button nbButton variant="neutral">Ship it</button>`,
+  template: `<button nbButton>Click</button>`,
 })
-export class ExampleComponent {}
+export class AppComponent {}
 ```
 
-## Optional provider
-
-Only needed if you want to override theme tokens from Angular config (CSS custom-property overrides work too):
+Optional — configure a subset of theme tokens from TypeScript at bootstrap.
+Sets the corresponding `--nb-*` custom properties for these keys. Tokens
+outside `NbThemeConfig` (e.g. `--nb-background`, `--nb-field-bg`) must still be
+overridden in CSS.
 
 ```ts
-import { ApplicationConfig } from '@angular/core';
 import { provideNgBrutalism } from '@ng-brutalism/ui';
 
-export const appConfig: ApplicationConfig = {
+bootstrapApplication(AppComponent, {
   providers: [
     provideNgBrutalism({
-      theme: { radius: '0px', borderWidth: '3px' },
+      theme: {
+        primary: '#ffd166',
+        radius: '4px',
+        borderWidth: '3px',
+      },
     }),
   ],
-};
+});
 ```
+
+## What it looks like
+
+![showcase](https://raw.githubusercontent.com/khangtrannn/ng-brutalism/main/docs/assets/showcase-portfolio.png)
 
 ## Documentation
 
-- Theming reference: [`TOKENS.md`](TOKENS.md)
-- Live examples: clone the [repo](https://github.com/khangtrannn/ng-neo-brutalism-workspace) and run `pnpm serve:docs`
+Full guides, component API tables, and live examples:
+[https://ngbrutalism.khangtran.dev](https://ngbrutalism.khangtran.dev)
+
+## Status
+
+`@ng-brutalism/ui` is pre-1.0. The component APIs are usable today, but minor
+versions may include breaking changes while the library settles.
 
 ## License
 
-MIT.
+MIT
