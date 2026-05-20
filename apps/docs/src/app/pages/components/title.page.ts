@@ -31,7 +31,7 @@ import { DocsTokens } from '../../docs/docs-tokens';
             <span class="nb-stat-tile__label">Heading level</span>
           </div>
           <div class="nb-stat-tile nb-stat-tile--pink">
-            <span class="nb-stat-tile__value">3</span>
+            <span class="nb-stat-tile__value">4</span>
             <span class="nb-stat-tile__label">Wave tokens</span>
           </div>
 

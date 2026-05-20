@@ -28,7 +28,7 @@ import { DocsTokens } from '../../docs/docs-tokens';
 
         <div class="mt-7 flex flex-wrap items-center gap-3">
           <div class="nb-stat-tile nb-stat-tile--yellow">
-            <span class="nb-stat-tile__value">2</span>
+            <span class="nb-stat-tile__value">3</span>
             <span class="nb-stat-tile__label">Inputs</span>
           </div>
           <div class="nb-stat-tile nb-stat-tile--mint">

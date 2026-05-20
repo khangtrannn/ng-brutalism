@@ -44,7 +44,7 @@ import JobListingCardExampleComponent from './examples/job-listing-card';
 
         <div class="mt-7 flex flex-wrap items-center gap-3">
           <div class="nb-stat-tile nb-stat-tile--yellow">
-            <span class="nb-stat-tile__value">6</span>
+            <span class="nb-stat-tile__value">7</span>
             <span class="nb-stat-tile__label">Parts</span>
           </div>
           <div class="nb-stat-tile nb-stat-tile--mint">
