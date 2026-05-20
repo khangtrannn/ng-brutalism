@@ -120,9 +120,11 @@ export default class TextareaPageComponent {
 
   protected readonly importCode = `import { NbTextarea } from '@ng-brutalism/ui';`;
 
-  protected readonly sizesExampleCode = `<textarea nbTextarea size="sm" placeholder="Small" class="w-75"></textarea>
-<textarea nbTextarea placeholder="Default" class="w-75"></textarea>
-<textarea nbTextarea size="lg" placeholder="Large" class="w-75"></textarea>`;
+  protected readonly sizesExampleCode = `<div class="flex flex-col items-center gap-4">
+  <textarea nbTextarea size="sm" placeholder="Small" class="w-75"></textarea>
+  <textarea nbTextarea placeholder="Default" class="w-75"></textarea>
+  <textarea nbTextarea size="lg" placeholder="Large" class="w-75"></textarea>
+</div>`;
 
   protected readonly disabledExampleCode = `<textarea nbTextarea placeholder="Disabled" class="w-75" disabled></textarea>`;
 

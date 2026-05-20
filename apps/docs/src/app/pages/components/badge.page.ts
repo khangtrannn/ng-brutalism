@@ -102,9 +102,11 @@ export default class BadgePageComponent {
 
   protected readonly importCode = `import { NbBadge } from '@ng-brutalism/ui';`;
 
-  protected readonly variantsExampleCode = `<span nbBadge>Default</span>
-<span nbBadge variant="secondary">Secondary</span>
-<span nbBadge variant="success">Success</span>
-<span nbBadge variant="warning">Warning</span>
-<span nbBadge variant="danger">Danger</span>`;
+  protected readonly variantsExampleCode = `<div class="flex flex-wrap items-center gap-3">
+  <span nbBadge>Default</span>
+  <span nbBadge variant="secondary">Secondary</span>
+  <span nbBadge variant="success">Success</span>
+  <span nbBadge variant="warning">Warning</span>
+  <span nbBadge variant="danger">Danger</span>
+</div>`;
 }

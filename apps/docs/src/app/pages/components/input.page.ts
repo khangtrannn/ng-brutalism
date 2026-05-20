@@ -172,9 +172,11 @@ export default class InputPageComponent {
 
   protected readonly importCode = `import { NbInput } from '@ng-brutalism/ui';`;
 
-  protected readonly sizesExampleCode = `<input nbInput size="sm" placeholder="Small" class="w-75" />
-<input nbInput placeholder="Default" class="w-75" />
-<input nbInput size="lg" placeholder="Large" class="w-75" />`;
+  protected readonly sizesExampleCode = `<div class="flex flex-col items-center gap-4">
+  <input nbInput size="sm" placeholder="Small" class="w-75" />
+  <input nbInput placeholder="Default" class="w-75" />
+  <input nbInput size="lg" placeholder="Large" class="w-75" />
+</div>`;
 
   protected readonly disabledExampleCode = `<input nbInput placeholder="Email" class="w-75" disabled />`;
 

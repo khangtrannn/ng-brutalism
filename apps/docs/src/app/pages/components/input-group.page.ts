@@ -180,7 +180,7 @@ export default class InputGroupPageComponent {
   protected readonly withLabelExampleCode = `<div class="grid w-full max-w-96 gap-2">
   <label nbLabel for="profile-url">Profile URL</label>
   <nb-input-group>
-    <span nbInputPrefix>https</span>
+    <span nbInputPrefix class="text-[0.8rem]">https</span>
     <input nbInput id="profile-url" placeholder="example.com" />
   </nb-input-group>
 </div>`;

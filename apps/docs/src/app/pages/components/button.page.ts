@@ -303,25 +303,31 @@ export const appConfig: ApplicationConfig = {
   <button nbButton size="icon" variant="neutral" aria-label="Add" style="--nb-button-bg: var(--nb-warning)">+</button>
 </div>`;
 
-  protected readonly fullWidthExampleCode = `<button nbButton variant="neutral" [fullWidth]="true" style="--nb-button-bg: var(--nb-warning)">
-  Full width button
-</button>`;
+  protected readonly fullWidthExampleCode = `<div class="w-full max-w-md">
+  <button nbButton variant="neutral" [fullWidth]="true" style="--nb-button-bg: var(--nb-warning)">
+    Full width button
+  </button>
+</div>`;
 
-  protected readonly disabledExampleCode = `<button nbButton variant="neutral" disabled style="--nb-button-bg: var(--nb-warning)">Disabled button</button>
-<a nbButton href="#" aria-disabled="true" style="--nb-button-bg: var(--nb-warning)">Disabled link style</a>`;
+  protected readonly disabledExampleCode = `<div class="flex flex-wrap items-center justify-center gap-4">
+  <button nbButton variant="neutral" disabled style="--nb-button-bg: var(--nb-warning)">Disabled button</button>
+  <a nbButton href="#" aria-disabled="true" style="--nb-button-bg: var(--nb-warning)">Disabled link style</a>
+</div>`;
 
-  protected readonly anchorExampleCode = `<a nbButton href="https://angular.dev" target="_blank" rel="noreferrer" style="--nb-button-bg: var(--nb-warning)">
-  Angular Docs
-</a>
+  protected readonly anchorExampleCode = `<div class="flex flex-wrap items-center justify-center gap-4">
+  <a nbButton href="https://angular.dev" target="_blank" rel="noreferrer" style="--nb-button-bg: var(--nb-warning)">
+    Angular Docs
+  </a>
 
-<a
-  nbButton
-  variant="neutral"
-  href="https://github.com/khangtrannn/ng-brutalism"
-  target="_blank"
-  rel="noreferrer"
-  style="--nb-button-bg: var(--nb-warning)"
->
-  GitHub Repo
-</a>`;
+  <a
+    nbButton
+    variant="neutral"
+    href="https://github.com/khangtrannn/ng-brutalism"
+    target="_blank"
+    rel="noreferrer"
+    style="--nb-button-bg: var(--nb-warning)"
+  >
+    GitHub Repo
+  </a>
+</div>`;
 }

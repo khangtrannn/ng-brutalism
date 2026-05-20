@@ -145,12 +145,16 @@ export default class CheckboxPageComponent {
 
   protected readonly importCode = `import { NbCheckbox } from '@ng-brutalism/ui';`;
 
-  protected readonly sizesExampleCode = `<input type="checkbox" nbCheckbox size="sm" />
-<input type="checkbox" nbCheckbox />
-<input type="checkbox" nbCheckbox size="lg" />`;
+  protected readonly sizesExampleCode = `<div class="flex items-center gap-4">
+  <input type="checkbox" nbCheckbox size="sm" />
+  <input type="checkbox" nbCheckbox />
+  <input type="checkbox" nbCheckbox size="lg" />
+</div>`;
 
-  protected readonly disabledExampleCode = `<input type="checkbox" nbCheckbox disabled />
-<input type="checkbox" nbCheckbox disabled checked />`;
+  protected readonly disabledExampleCode = `<div class="flex items-center gap-4">
+  <input type="checkbox" nbCheckbox disabled />
+  <input type="checkbox" nbCheckbox disabled checked />
+</div>`;
 
   protected readonly withLabelExampleCode = `<div class="flex items-center gap-2">
   <input type="checkbox" nbCheckbox id="terms" />
