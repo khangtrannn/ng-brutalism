@@ -118,8 +118,6 @@ Snippets use `--nb-yellow`, `--nb-mint`, `--nb-pink`, `--nb-lavender` but those 
 
 Apply consistently across button, accordion, input pages.
 
-Also: `--nb-input-group-addon-bg` is documented as `var(--nb-yellow)` but the impl uses literal `#ffd24a`. Pick a side per [PRE_RELEASE_AUDIT.md §Foundation HIGH #4](./PRE_RELEASE_AUDIT.md).
-
 ### 2.4 [HIGH] Installation page is incomplete ([PRE_RELEASE_AUDIT.md §Installation LOW #1-#3](./PRE_RELEASE_AUDIT.md))
 
 Currently missing:

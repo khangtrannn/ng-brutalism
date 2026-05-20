@@ -48,9 +48,9 @@ Each `/components/*.page.ts` typically contains, for every example: a **live dem
 
 ## 5. Components in scope
 
-All 16 library components plus the foundation surface:
+All 15 library components plus the foundation surface:
 
-**Foundation:** `provideNgBrutalism`, `NB_THEME_CONFIG` / `NbThemeConfig`, `NB_DENSITY` / `NbDensity`, `nbClass`.
+**Foundation:** `provideNgBrutalism`, `NB_THEME_CONFIG` / `NbThemeConfig`, `nbClass`.
 
 **Components:** accordion, avatar, badge, button, card, checkbox, dialog, image-card, input, input-group, label, marquee, select, textarea, title.
 
