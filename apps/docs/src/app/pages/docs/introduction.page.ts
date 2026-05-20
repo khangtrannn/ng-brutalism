@@ -18,6 +18,19 @@ import JobListingCardExampleComponent from '../components/examples/job-listing-c
         </p>
       </header>
 
+      <section id="utilities">
+        <h2 class="mt-10 mb-4 text-2xl font-bold">Utilities</h2>
+        <p class="mb-5 text-base font-medium">
+          <code class="font-mono text-sm">nbClass</code> is exported from
+          <code class="font-mono text-sm">&#64;ng-brutalism/ui</code> and merges
+          arrays of class strings using
+          <code class="font-mono text-sm">clsx</code> +
+          <code class="font-mono text-sm">tailwind-merge</code>. Use it inside
+          your own components when you want the same conditional-class
+          ergonomics the library uses internally.
+        </p>
+      </section>
+
       <section id="components">
         <h2 class="mt-10 mb-4 text-2xl font-bold">Highlights</h2>
         <p class="mb-5 text-base font-medium">
