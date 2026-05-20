@@ -3,7 +3,7 @@ import {
   NbInputGroup,
   NbInputPrefix,
   NbLabel,
-  NbSelect,
+  NbNativeSelect,
   NbSelectComponent,
   NbSelectOption,
 } from '@ng-brutalism/ui';
@@ -23,7 +23,7 @@ import { DocsTokens } from '../../docs/docs-tokens';
         NbInputGroup,
         NbInputPrefix,
         NbLabel,
-        NbSelect,
+        NbNativeSelect,
         NbSelectComponent,
         NbSelectOption,
     ],
@@ -364,7 +364,7 @@ import { DocsTokens } from '../../docs/docs-tokens';
 
         <h3 class="mt-8 mb-3 text-xl font-bold">
           <code class="font-mono text-base">select[nbSelect]</code>
-          (<code class="font-mono text-base">NbSelect</code>)
+          (<code class="font-mono text-base">NbNativeSelect</code>)
         </h3>
         <p class="text-sm font-medium">
           Directive applied to a native <code class="font-mono text-sm">&lt;select&gt;</code>
@@ -414,7 +414,7 @@ export default class SelectPageComponent {
   </nb-select>
 </div>`;
 
-  protected readonly importCode = `import { NbSelect, NbSelectComponent, NbSelectOption } from '@ng-brutalism/ui';`;
+  protected readonly importCode = `import { NbNativeSelect, NbSelectComponent, NbSelectOption } from '@ng-brutalism/ui';`;
 
   protected readonly withLabelExampleCode = `<div class="grid w-80 gap-2">
   <label nbLabel id="plan-label">Plan</label>
