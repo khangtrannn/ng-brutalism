@@ -384,6 +384,8 @@ export default class SelectPageComponent {
       <svg viewBox="0 0 24 24" aria-hidden="true">
         <circle cx="12" cy="12" r="9" />
         <path d="M3 12h18" />
+        <path d="M12 3a14 14 0 0 1 0 18" />
+        <path d="M12 3a14 14 0 0 0 0 18" />
       </svg>
       Worldwide
     </nb-select-option>
@@ -391,8 +393,23 @@ export default class SelectPageComponent {
       <svg viewBox="0 0 24 24" aria-hidden="true">
         <path d="M4 8h16v11H4z" />
         <path d="M9 8V5h6v3" />
+        <path d="M4 13h16" />
       </svg>
       Full-time
+    </nb-select-option>
+    <nb-select-option value="part-time" label="Part-time">
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <circle cx="12" cy="12" r="9" />
+        <path d="M12 7v6l4 2" />
+      </svg>
+      Part-time
+    </nb-select-option>
+    <nb-select-option value="remote" label="Remote">
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M5 21V4h14v17" />
+        <path d="M9 8h2M13 8h2M9 12h2M13 12h2M9 16h2M13 16h2" />
+      </svg>
+      Remote
     </nb-select-option>
   </nb-select>
 </div>`;
@@ -438,6 +455,13 @@ export default class SelectPageComponent {
 
   protected readonly withIconExampleCode = `<div class="w-80">
   <nb-select placeholder="Select location" defaultValue="worldwide">
+    <nb-select-option label="Select location">
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M12 21s7-5.2 7-12a7 7 0 0 0-14 0c0 6.8 7 12 7 12Z" />
+        <circle cx="12" cy="9" r="2.4" />
+      </svg>
+      Select location
+    </nb-select-option>
     <nb-select-option value="worldwide" label="Worldwide">
       <svg viewBox="0 0 24 24" aria-hidden="true">
         <circle cx="12" cy="12" r="9" />
@@ -447,8 +471,41 @@ export default class SelectPageComponent {
       </svg>
       Worldwide
     </nb-select-option>
-    <nb-select-option value="north-america" label="North America">North America</nb-select-option>
-    <nb-select-option value="europe" label="Europe">Europe</nb-select-option>
+    <nb-select-option value="north-america" label="North America">
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <circle cx="12" cy="12" r="9" />
+        <path d="M3 12h18" />
+      </svg>
+      North America
+    </nb-select-option>
+    <nb-select-option value="europe" label="Europe">
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <circle cx="12" cy="12" r="9" />
+        <path d="M3 12h18" />
+      </svg>
+      Europe
+    </nb-select-option>
+    <nb-select-option value="asia-pacific" label="Asia Pacific">
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <circle cx="12" cy="12" r="9" />
+        <path d="M3 12h18" />
+      </svg>
+      Asia Pacific
+    </nb-select-option>
+    <nb-select-option value="south-america" label="South America">
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <circle cx="12" cy="12" r="9" />
+        <path d="M3 12h18" />
+      </svg>
+      South America
+    </nb-select-option>
+    <nb-select-option value="africa" label="Africa">
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <circle cx="12" cy="12" r="9" />
+        <path d="M3 12h18" />
+      </svg>
+      Africa
+    </nb-select-option>
   </nb-select>
 </div>`;
 
