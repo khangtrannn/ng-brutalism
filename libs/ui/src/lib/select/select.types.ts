@@ -2,7 +2,6 @@ import { InjectionToken } from '@angular/core';
 
 import type { NbSelectOption } from './select-option';
 
-export type NbSelectSize = 'default';
 export type NbSelectValue = string | number;
 
 export interface NbSelectController {

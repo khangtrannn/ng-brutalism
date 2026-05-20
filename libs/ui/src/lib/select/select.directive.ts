@@ -1,20 +1,16 @@
-import { Directive, computed, inject, input } from '@angular/core';
+import { Directive, computed, inject } from '@angular/core';
 
 import { nbClass } from '../core/class';
 import { NB_INPUT_GROUP } from '../input-group/input-group.types';
-import type { NbSelectSize } from './select.types';
 
 @Directive({
   selector: 'select[nbSelect]',
   standalone: true,
   host: {
     '[class]': 'classes()',
-    '[attr.data-size]': 'size()',
   },
 })
 export class NbSelect {
-  readonly size = input<NbSelectSize>('default');
-
   private readonly group = inject(NB_INPUT_GROUP, { optional: true });
 
   protected readonly classes = computed(() => {
