@@ -278,13 +278,6 @@ export default class ButtonPageComponent {
 
   protected readonly importCode = `import { NbButton } from '@ng-brutalism/ui';`;
 
-  protected readonly providerCode = `import { ApplicationConfig } from '@angular/core';
-import { provideNgBrutalism } from '@ng-brutalism/ui';
-
-export const appConfig: ApplicationConfig = {
-  providers: [provideNgBrutalism()],
-};`;
-
   protected readonly variantsExampleCode = `<div class="flex flex-wrap items-center justify-center gap-3">
   <button nbButton variant="default">Default</button>
   <button nbButton variant="neutral">Neutral</button>

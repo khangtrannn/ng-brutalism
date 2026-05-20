@@ -100,8 +100,4 @@ export default class AvatarPageComponent {
   protected readonly importCode = `import { NbAvatar } from '@ng-brutalism/ui';`;
 
   protected readonly fallbackExampleCode = `<nb-avatar alt="John Doe">JD</nb-avatar>`;
-
-  protected readonly sizesExampleCode = `<nb-avatar alt="SM" class="h-8 w-8 text-xs">SM</nb-avatar>
-<nb-avatar alt="MD">MD</nb-avatar>
-<nb-avatar alt="LG" class="h-14 w-14 text-base">LG</nb-avatar>`;
 }
