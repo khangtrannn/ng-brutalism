@@ -16,7 +16,8 @@ import { DocsNavbarExternalLinkIcon } from './navbar.icons';
     imports: [RouterLink, DocsNavbarExternalLinkIcon],
     template: `
     <nav
-      class="fixed top-3 right-3 left-3 z-50 border-4 border-(--nb-border) bg-(--nb-paper) shadow-[8px_8px_0_0_var(--nb-shadow)]"
+      class="docs-navbar fixed top-3 right-3 left-3 z-50 border-4 border-(--nb-border) bg-(--nb-paper) shadow-[8px_8px_0_0_var(--nb-shadow)]"
+      [class.docs-navbar--scrolled]="scrolled()"
       aria-label="Main navigation"
     >
       <div class="flex min-h-20 items-center justify-between gap-5 px-4 py-3 sm:px-6">
@@ -86,7 +87,16 @@ import { DocsNavbarExternalLinkIcon } from './navbar.icons';
       </div>
     </nav>
   `,
+    host: { '(window:scroll)': 'onWindowScroll()' },
     styles: `
+    .docs-navbar {
+      transition: top 160ms ease;
+    }
+
+    .docs-navbar--scrolled {
+      top: 1px;
+    }
+
     .brand-title {
       font-family: var(--font-display);
       font-size: 1.05rem;
@@ -136,6 +146,7 @@ export class NbDocsNavbar {
   private readonly router = inject(Router);
   private readonly destroyRef = inject(DestroyRef);
   private readonly currentPath = signal(this.normalizePath(this.router.url));
+  protected readonly scrolled = signal(false);
 
   protected readonly activeSection = computed(() => {
     const path = this.currentPath();
@@ -162,6 +173,10 @@ export class NbDocsNavbar {
       .subscribe((event) =>
         this.currentPath.set(this.normalizePath(event.urlAfterRedirects))
       );
+  }
+
+  protected onWindowScroll(): void {
+    this.scrolled.set(window.scrollY > 0);
   }
 
   private normalizePath(url: string): string {
