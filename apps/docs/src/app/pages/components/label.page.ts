@@ -52,8 +52,8 @@ import { DocsTokens } from '../../docs/docs-tokens';
         <h2 class="mt-10 mb-4 text-2xl font-bold">Preview</h2>
         <docs-example [code]="defaultExampleCode">
           <div class="flex items-center gap-2">
-            <input type="checkbox" nbCheckbox id="terms-preview" />
-            <label nbLabel for="terms-preview">Accept terms and conditions</label>
+            <input type="checkbox" nbCheckbox id="accept-terms" />
+            <label nbLabel for="accept-terms">Accept terms and conditions</label>
           </div>
         </docs-example>
       </section>
@@ -133,8 +133,8 @@ import { DocsTokens } from '../../docs/docs-tokens';
 })
 export default class LabelPageComponent {
   protected readonly defaultExampleCode = `<div class="flex items-center gap-2">
-  <input type="checkbox" nbCheckbox id="terms" />
-  <label nbLabel for="terms">Accept terms and conditions</label>
+  <input type="checkbox" nbCheckbox id="accept-terms" />
+  <label nbLabel for="accept-terms">Accept terms and conditions</label>
 </div>`;
 
   protected readonly importCode = `import { NbCheckbox, NbLabel } from '@ng-brutalism/ui';`;
