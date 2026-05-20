@@ -19,16 +19,38 @@ import { DocsTokens } from '../../docs/docs-tokens';
         </div>
       </header>
 
+      <section id="prerequisites">
+        <h2 class="mt-10 mb-4 text-2xl font-bold">Prerequisites</h2>
+        <p class="mb-2 text-base font-medium">
+          Components are composed from Tailwind utilities applied through
+          <code class="font-mono text-sm">nbClass</code>. The library expects
+          your app to have <strong>Tailwind CSS v4</strong> configured and
+          scanning your project source. Without it the host classes will not
+          resolve and components will render unstyled.
+        </p>
+      </section>
+
       <section id="package">
         <h2 class="mt-10 mb-4 text-2xl font-bold">Package</h2>
         <docs-code-block title="Install" [code]="installCode" />
       </section>
 
-      <section id="provider">
-        <h2 class="mt-10 mb-4 text-2xl font-bold">Provider</h2>
+      <section id="styles">
+        <h2 class="mt-10 mb-4 text-2xl font-bold">Styles</h2>
         <p class="mb-5 text-base font-medium">
-          Register the provider once if you want to customize the global theme
-          tokens from Angular configuration.
+          Import the bundled stylesheet once at your app's entry (e.g.
+          <code class="font-mono text-sm">src/styles.css</code>). Theme tokens
+          live in a separate sheet you can import or override.
+        </p>
+        <docs-code-block title="src/styles.css" [code]="stylesCode" />
+      </section>
+
+      <section id="provider">
+        <h2 class="mt-10 mb-4 text-2xl font-bold">Provider (optional)</h2>
+        <p class="mb-5 text-base font-medium">
+          The provider is only needed if you want to override theme tokens from
+          Angular config. The simpler alternative is to redefine the CSS custom
+          properties in your own stylesheet.
         </p>
         <docs-code-block title="app.config.ts" [code]="providerCode" />
       </section>
@@ -45,6 +67,9 @@ import { DocsTokens } from '../../docs/docs-tokens';
 })
 export default class InstallationPageComponent {
   protected readonly installCode = `pnpm add @ng-brutalism/ui`;
+
+  protected readonly stylesCode = `@import '@ng-brutalism/ui/styles.css';
+@import '@ng-brutalism/ui/theme.css';`;
 
   protected readonly providerCode = `import { ApplicationConfig } from '@angular/core';
 import { provideNgBrutalism } from '@ng-brutalism/ui';

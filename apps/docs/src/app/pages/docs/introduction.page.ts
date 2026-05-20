@@ -19,10 +19,10 @@ import JobListingCardExampleComponent from '../components/examples/job-listing-c
       </header>
 
       <section id="components">
-        <h2 class="mt-10 mb-4 text-2xl font-bold">Components</h2>
+        <h2 class="mt-10 mb-4 text-2xl font-bold">Highlights</h2>
         <p class="mb-5 text-base font-medium">
-          Start with the core components, then combine them into your own
-          brutally useful Angular interfaces.
+          Two of the most-used primitives — see the sidebar for the full
+          component list.
         </p>
 
         <div class="flex flex-wrap gap-4">
