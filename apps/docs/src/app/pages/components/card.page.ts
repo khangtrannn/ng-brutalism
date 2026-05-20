@@ -1,14 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import {
-  NbButton,
-  NbCard,
-  NbCardActions,
-  NbCardContent,
-  NbCardDescription,
-  NbCardFooter,
-  NbCardHeader,
-  NbCardTitle,
-} from '@ng-brutalism/ui';
+import { NbButton, NbCard, NbCardActions, NbCardContent, NbCardDescription, NbCardFooter, NbCardHeader, NbCardTitle, NbTitle } from '@ng-brutalism/ui';
 
 import { DocsCodeBlock } from '../../docs/docs-code-block';
 import { DocsExample } from '../../docs/docs-example';
@@ -32,7 +23,8 @@ import JobListingCardExampleComponent from './examples/job-listing-card';
     NbCardFooter,
     NbCardHeader,
     NbCardTitle,
-  ],
+    NbTitle
+],
   template: `
     <article>
       <header id="overview" class="relative mb-10 scroll-mt-32">
@@ -204,7 +196,9 @@ import JobListingCardExampleComponent from './examples/job-listing-card';
         <docs-example [code]="actionsExampleCode">
           <nb-card class="w-full max-w-sm">
             <nb-card-header>
-              <nb-card-title>Notifications</nb-card-title>
+              <nb-card-title>
+                <h2 class="mt-0!">Notifications</h2>
+              </nb-card-title>
               <nb-card-description>
                 You have 3 unread messages.
               </nb-card-description>
