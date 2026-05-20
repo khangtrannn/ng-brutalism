@@ -359,7 +359,7 @@ const componentTokens: Record<DocsTokenComponent, DocsToken[]> = {
     },
     {
       name: '--nb-input-group-addon-bg',
-      defaultValue: 'var(--nb-yellow)',
+      defaultValue: '#ffd24a',
       usage: 'Prefix and suffix background',
     },
     {

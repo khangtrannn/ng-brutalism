@@ -108,7 +108,7 @@ import { DocsTokens } from '../../docs/docs-tokens';
             <button
               nbButton
               variant="neutral"
-              style="--nb-button-bg: var(--nb-yellow)"
+              style="--nb-button-bg: var(--nb-warning)"
             >
               Subscribe
             </button>
@@ -185,7 +185,7 @@ export default class InputPageComponent {
 
   protected readonly withButtonExampleCode = `<div class="flex gap-2">
   <input nbInput placeholder="Email" class="w-75" />
-  <button nbButton variant="neutral" style="--nb-button-bg: var(--nb-yellow)">Subscribe</button>
+  <button nbButton variant="neutral" style="--nb-button-bg: var(--nb-warning)">Subscribe</button>
 </div>`;
 
   protected readonly fileExampleCode = `<input nbInput type="file" class="w-[250px]" />`;

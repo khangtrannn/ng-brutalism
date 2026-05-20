@@ -132,7 +132,7 @@ import { DocsTokens } from '../../docs/docs-tokens';
                 size="sm"
                 variant="neutral"
                 type="button"
-                style="--nb-button-bg: var(--nb-yellow)"
+                style="--nb-button-bg: var(--nb-warning)"
                 (click)="controlledValue.set('overview')"
               >
                 Overview
@@ -142,7 +142,7 @@ import { DocsTokens } from '../../docs/docs-tokens';
                 size="sm"
                 variant="neutral"
                 type="button"
-                style="--nb-button-bg: var(--nb-mint)"
+                style="--nb-button-bg: var(--nb-success)"
                 (click)="controlledValue.set('details')"
               >
                 Details
@@ -152,7 +152,7 @@ import { DocsTokens } from '../../docs/docs-tokens';
                 size="sm"
                 variant="neutral"
                 type="button"
-                style="--nb-button-bg: var(--nb-pink)"
+                style="--nb-button-bg: var(--nb-primary)"
                 (click)="controlledValue.set(null)"
               >
                 Collapse All
@@ -162,7 +162,7 @@ import { DocsTokens } from '../../docs/docs-tokens';
             <nb-accordion [(value)]="controlledValue">
               <nb-accordion-item value="overview">
                 <nb-accordion-trigger
-                  style="--nb-accordion-trigger-bg: var(--nb-lavender)"
+                  style="--nb-accordion-trigger-bg: #b8a4ff"
                   >Overview</nb-accordion-trigger
                 >
                 <nb-accordion-content>
@@ -172,7 +172,7 @@ import { DocsTokens } from '../../docs/docs-tokens';
 
               <nb-accordion-item value="details">
                 <nb-accordion-trigger
-                  style="--nb-accordion-trigger-bg: var(--nb-lavender)"
+                  style="--nb-accordion-trigger-bg: #b8a4ff"
                   >Details</nb-accordion-trigger
                 >
                 <nb-accordion-content>
@@ -400,7 +400,7 @@ readonly controlledValue = signal<string | string[] | null>('overview');`;
       size="sm"
       variant="neutral"
       type="button"
-      style="--nb-button-bg: var(--nb-yellow)"
+      style="--nb-button-bg: var(--nb-warning)"
       (click)="controlledValue.set('overview')"
     >
       Overview
@@ -410,7 +410,7 @@ readonly controlledValue = signal<string | string[] | null>('overview');`;
       size="sm"
       variant="neutral"
       type="button"
-      style="--nb-button-bg: var(--nb-mint)"
+      style="--nb-button-bg: var(--nb-success)"
       (click)="controlledValue.set('details')"
     >
       Details
@@ -420,7 +420,7 @@ readonly controlledValue = signal<string | string[] | null>('overview');`;
       size="sm"
       variant="neutral"
       type="button"
-      style="--nb-button-bg: var(--nb-pink)"
+      style="--nb-button-bg: var(--nb-primary)"
       (click)="controlledValue.set(null)"
     >
       Collapse All
@@ -429,14 +429,14 @@ readonly controlledValue = signal<string | string[] | null>('overview');`;
 
   <nb-accordion [(value)]="controlledValue">
     <nb-accordion-item value="overview">
-      <nb-accordion-trigger style="--nb-accordion-trigger-bg: var(--nb-lavender)">Overview</nb-accordion-trigger>
+      <nb-accordion-trigger style="--nb-accordion-trigger-bg: #b8a4ff">Overview</nb-accordion-trigger>
       <nb-accordion-content>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit.
       </nb-accordion-content>
     </nb-accordion-item>
 
     <nb-accordion-item value="details">
-      <nb-accordion-trigger style="--nb-accordion-trigger-bg: var(--nb-lavender)">Details</nb-accordion-trigger>
+      <nb-accordion-trigger style="--nb-accordion-trigger-bg: #b8a4ff">Details</nb-accordion-trigger>
       <nb-accordion-content>
         Duis aute irure dolor in reprehenderit in voluptate velit.
       </nb-accordion-content>

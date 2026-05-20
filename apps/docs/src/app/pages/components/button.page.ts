@@ -62,7 +62,7 @@ import { DocsTokens } from '../../docs/docs-tokens';
           <button
             nbButton
             variant="neutral"
-            style="--nb-button-bg: var(--nb-yellow)"
+            style="--nb-button-bg: var(--nb-warning)"
           >
             Button
           </button>
@@ -87,7 +87,7 @@ import { DocsTokens } from '../../docs/docs-tokens';
               nbButton
               variant="neutral"
               [fullWidth]="true"
-              style="--nb-button-bg: var(--nb-yellow)"
+              style="--nb-button-bg: var(--nb-warning)"
             >
               Full width button
             </button>
@@ -103,7 +103,7 @@ import { DocsTokens } from '../../docs/docs-tokens';
               nbButton
               variant="neutral"
               disabled
-              style="--nb-button-bg: var(--nb-yellow)"
+              style="--nb-button-bg: var(--nb-warning)"
             >
               Disabled button
             </button>
@@ -111,7 +111,7 @@ import { DocsTokens } from '../../docs/docs-tokens';
               nbButton
               href="#"
               aria-disabled="true"
-              style="--nb-button-bg: var(--nb-yellow)"
+              style="--nb-button-bg: var(--nb-warning)"
             >
               Disabled link style
             </a>
@@ -128,7 +128,7 @@ import { DocsTokens } from '../../docs/docs-tokens';
               href="https://angular.dev"
               target="_blank"
               rel="noreferrer"
-              style="--nb-button-bg: var(--nb-yellow)"
+              style="--nb-button-bg: var(--nb-warning)"
             >
               Angular Docs
             </a>
@@ -139,7 +139,7 @@ import { DocsTokens } from '../../docs/docs-tokens';
               href="https://github.com/khangtrannn/ng-brutalism"
               target="_blank"
               rel="noreferrer"
-              style="--nb-button-bg: var(--nb-yellow)"
+              style="--nb-button-bg: var(--nb-warning)"
             >
               GitHub Repo
             </a>
@@ -246,7 +246,7 @@ import { DocsTokens } from '../../docs/docs-tokens';
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export default class ButtonPageComponent {
-  protected readonly defaultExampleCode = `<button nbButton variant="neutral" style="--nb-button-bg: var(--nb-yellow)">Button</button>`;
+  protected readonly defaultExampleCode = `<button nbButton variant="neutral" style="--nb-button-bg: var(--nb-warning)">Button</button>`;
 
   protected readonly importCode = `import { NbButton } from '@ng-brutalism/ui';`;
 
@@ -267,14 +267,14 @@ export const appConfig: ApplicationConfig = {
 <button nbButton size="lg" variant="neutral" style="--nb-button-bg: #fff">Large</button>
 <button nbButton size="icon" variant="neutral" aria-label="Icon button" style="--nb-button-bg: #fff">+</button>`;
 
-  protected readonly fullWidthExampleCode = `<button nbButton variant="neutral" [fullWidth]="true" style="--nb-button-bg: var(--nb-yellow)">
+  protected readonly fullWidthExampleCode = `<button nbButton variant="neutral" [fullWidth]="true" style="--nb-button-bg: var(--nb-warning)">
   Full width button
 </button>`;
 
-  protected readonly disabledExampleCode = `<button nbButton variant="neutral" disabled style="--nb-button-bg: var(--nb-yellow)">Disabled button</button>
-<a nbButton href="#" aria-disabled="true" style="--nb-button-bg: var(--nb-yellow)">Disabled link style</a>`;
+  protected readonly disabledExampleCode = `<button nbButton variant="neutral" disabled style="--nb-button-bg: var(--nb-warning)">Disabled button</button>
+<a nbButton href="#" aria-disabled="true" style="--nb-button-bg: var(--nb-warning)">Disabled link style</a>`;
 
-  protected readonly anchorExampleCode = `<a nbButton href="https://angular.dev" target="_blank" rel="noreferrer" style="--nb-button-bg: var(--nb-yellow)">
+  protected readonly anchorExampleCode = `<a nbButton href="https://angular.dev" target="_blank" rel="noreferrer" style="--nb-button-bg: var(--nb-warning)">
   Angular Docs
 </a>
 
@@ -284,7 +284,7 @@ export const appConfig: ApplicationConfig = {
   href="https://github.com/khangtrannn/ng-brutalism"
   target="_blank"
   rel="noreferrer"
-  style="--nb-button-bg: var(--nb-yellow)"
+  style="--nb-button-bg: var(--nb-warning)"
 >
   GitHub Repo
 </a>`;
