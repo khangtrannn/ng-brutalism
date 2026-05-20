@@ -12,8 +12,8 @@ export {
   NbCardDescriptionComponent as NbCardDescription,
 } from './card';
 export {
-  NbCardActionComponent,
-  NbCardActionComponent as NbCardAction,
+  NbCardActionsComponent,
+  NbCardActionsComponent as NbCardActions,
 } from './card';
 export {
   NbCardContentComponent,
@@ -23,3 +23,4 @@ export {
   NbCardFooterComponent,
   NbCardFooterComponent as NbCardFooter,
 } from './card';
+export type { NbCardActionsAlign } from './card';

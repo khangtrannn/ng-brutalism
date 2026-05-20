@@ -1,6 +1,13 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  input,
+} from '@angular/core';
 
 import { nbClass } from '../core/class';
+
+export type NbCardActionsAlign = 'start' | 'end';
 
 @Component({
   selector: 'nb-card',
@@ -39,7 +46,6 @@ export class NbCardComponent {
 export class NbCardHeaderComponent {
   protected readonly classes = nbClass(
     'grid auto-rows-min grid-rows-[auto_auto] items-start gap-1.5 px-6',
-    'has-[[data-slot=card-action]]:grid-cols-[1fr_auto]',
     '[.border-b]:pb-6'
   );
 }
@@ -73,18 +79,25 @@ export class NbCardDescriptionComponent {
 }
 
 @Component({
-  selector: 'nb-card-action',
+  selector: 'nb-card-actions',
   standalone: true,
   template: `<ng-content />`,
   host: {
-    '[class]': 'classes',
-    '[attr.data-slot]': '"card-action"',
+    '[class]': 'classes()',
+    '[attr.data-slot]': '"card-actions"',
+    '[attr.data-align]': 'align()',
   },
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class NbCardActionComponent {
-  protected readonly classes = nbClass(
-    'col-start-2 row-span-2 row-start-1 self-start justify-self-end'
+export class NbCardActionsComponent {
+  readonly align = input<NbCardActionsAlign>('start');
+
+  protected readonly classes = computed(() =>
+    nbClass(
+      'flex flex-wrap items-center gap-3 px-6',
+      '[[data-slot=card-footer]_&]:px-0',
+      this.align() === 'end' ? 'justify-end' : 'justify-start'
+    )
   );
 }
 
@@ -115,6 +128,9 @@ export class NbCardContentComponent {
 export class NbCardFooterComponent {
   protected readonly classes = nbClass(
     'flex items-center px-6',
+    'has-[[data-slot=card-actions]]:flex-wrap',
+    'has-[[data-slot=card-actions]]:justify-between',
+    'has-[[data-slot=card-actions]]:gap-4',
     '[.border-t]:pt-6'
   );
 }

@@ -3,6 +3,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { describe, expect, it } from 'vitest';
 
 import {
+  NbCardActionsComponent,
   NbCardComponent,
   NbCardContentComponent,
   NbCardDescriptionComponent,
@@ -19,6 +20,7 @@ import {
     NbCardTitleComponent,
     NbCardDescriptionComponent,
     NbCardContentComponent,
+    NbCardActionsComponent,
     NbCardFooterComponent,
   ],
   template: `
@@ -28,7 +30,11 @@ import {
         <nb-card-description>Unread messages</nb-card-description>
       </nb-card-header>
       <nb-card-content>Card content</nb-card-content>
-      <nb-card-footer>Card footer</nb-card-footer>
+      <nb-card-actions align="end">Card actions</nb-card-actions>
+      <nb-card-footer>
+        Card footer
+        <nb-card-actions>Nested actions</nb-card-actions>
+      </nb-card-footer>
     </nb-card>
   `,
 })
@@ -88,7 +94,12 @@ describe('NbCard token surface', () => {
     expect(findSlot(host, 'card-title').className).toContain('font-bold');
     expect(findSlot(host, 'card-description').className).toContain('text-sm');
     expect(findSlot(host, 'card-content').className).toContain('px-6');
+    expect(findSlot(host, 'card-actions').className).toContain('flex-wrap');
+    expect(findSlot(host, 'card-actions').className).toContain('justify-end');
     expect(findSlot(host, 'card-footer').className).toContain('flex');
+    expect(findSlot(host, 'card-footer').className).toContain(
+      'has-[[data-slot=card-actions]]:justify-between'
+    );
   });
 });
 

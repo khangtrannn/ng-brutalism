@@ -26,10 +26,11 @@ export {
   NbCardHeader,
   NbCardTitle,
   NbCardDescription,
-  NbCardAction,
+  NbCardActions,
   NbCardContent,
   NbCardFooter,
 } from './lib/card';
+export type { NbCardActionsAlign } from './lib/card';
 export { NbImageCard } from './lib/image-card';
 export { NbMarquee, NbMarqueeItem } from './lib/marquee';
 export { NbInput } from './lib/input';
@@ -40,7 +41,11 @@ export { NbTextarea } from './lib/textarea';
 export type { NbTextareaSize } from './lib/textarea';
 export { NbInputGroup, NbInputPrefix, NbInputSuffix } from './lib/input-group';
 export type { NbInputPrefixAlign, NbInputSuffixAlign } from './lib/input-group';
-export { NbNativeSelect, NbSelectComponent, NbSelectOption } from './lib/select';
+export {
+  NbNativeSelect,
+  NbSelectComponent,
+  NbSelectOption,
+} from './lib/select';
 export type { NbSelectValue } from './lib/select';
 export { NbBadge } from './lib/badge';
 export type { NbBadgeVariant } from './lib/badge';

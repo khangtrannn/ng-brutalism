@@ -2,6 +2,7 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 import {
   NbButton,
   NbCard,
+  NbCardActions,
   NbCardContent,
   NbCardDescription,
   NbCardFooter,
@@ -11,18 +12,19 @@ import {
 } from '@ng-brutalism/ui';
 
 @Component({
-    selector: 'docs-job-listing-card-example',
-    imports: [
-        NbButton,
-        NbCard,
-        NbCardContent,
-        NbCardDescription,
-        NbCardFooter,
-        NbCardHeader,
-        NbCardTitle,
-        NbTitle,
-    ],
-    template: `
+  selector: 'docs-job-listing-card-example',
+  imports: [
+    NbButton,
+    NbCard,
+    NbCardActions,
+    NbCardContent,
+    NbCardDescription,
+    NbCardFooter,
+    NbCardHeader,
+    NbCardTitle,
+    NbTitle,
+  ],
+  template: `
     <div class="job-card-demo" role="group" aria-label="Job posting">
       <nb-card class="job-card-shell">
         <nb-card-header class="job-card-section">
@@ -285,19 +287,9 @@ import {
               </div>
             </div>
 
-            <div class="job-card-actions">
-              <button
-                nbButton
-                type="button"
-                aria-label="Apply"
-              >
-                Apply
-              </button>
-              <button
-                nbButton
-                type="button"
-                variant="primary"
-              >
+            <nb-card-actions class="job-card-actions" align="end">
+              <button nbButton type="button" aria-label="Apply">Apply</button>
+              <button nbButton type="button" variant="primary">
                 Save
                 <svg
                   width="20"
@@ -313,14 +305,14 @@ import {
                   <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z" />
                 </svg>
               </button>
-            </div>
+            </nb-card-actions>
           </div>
         </nb-card-footer>
       </nb-card>
     </div>
   `,
-    styles: [
-        `
+  styles: [
+    `
       :host {
         display: block;
         width: min(100%, 480px);
@@ -624,7 +616,7 @@ import {
         }
       }
     `,
-    ],
-    changeDetection: ChangeDetectionStrategy.OnPush
+  ],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export default class JobListingCardExampleComponent {}
