@@ -79,6 +79,34 @@ import { DocsTokens } from '../../docs/docs-tokens';
         <docs-code-block title="Template" [code]="defaultExampleCode" />
       </section>
 
+      <section id="variants">
+        <h2 class="mt-10 mb-4 text-2xl font-bold">Variants</h2>
+        <docs-example [code]="variantsExampleCode">
+          <div class="flex flex-wrap items-center justify-center gap-3">
+            <button nbButton variant="default">Default</button>
+            <button nbButton variant="neutral">Neutral</button>
+            <button nbButton variant="primary">Primary</button>
+            <button nbButton variant="secondary">Secondary</button>
+            <button nbButton variant="accent">Accent</button>
+            <button nbButton variant="danger">Danger</button>
+            <button nbButton variant="success">Success</button>
+            <button nbButton variant="warning">Warning</button>
+          </div>
+        </docs-example>
+      </section>
+
+      <section id="sizes">
+        <h2 class="mt-10 mb-4 text-2xl font-bold">Sizes</h2>
+        <docs-example [code]="sizesExampleCode">
+          <div class="flex flex-wrap items-center justify-center gap-3">
+            <button nbButton size="sm" variant="neutral" style="--nb-button-bg: var(--nb-warning)">Small</button>
+            <button nbButton variant="neutral" style="--nb-button-bg: var(--nb-warning)">Default</button>
+            <button nbButton size="lg" variant="neutral" style="--nb-button-bg: var(--nb-warning)">Large</button>
+            <button nbButton size="icon" variant="neutral" aria-label="Add" style="--nb-button-bg: var(--nb-warning)">+</button>
+          </div>
+        </docs-example>
+      </section>
+
       <section id="full-width">
         <h2 class="mt-10 mb-4 text-2xl font-bold">Full width</h2>
         <docs-example [code]="fullWidthExampleCode">
@@ -257,15 +285,23 @@ export const appConfig: ApplicationConfig = {
   providers: [provideNgBrutalism()],
 };`;
 
-  protected readonly variantsExampleCode = `<button nbButton style="--nb-button-bg: #fff">Default</button>
-<button nbButton shadow="reverse" style="--nb-button-bg: #fff">Reverse shadow</button>
-<button nbButton shadow="none" style="--nb-button-bg: #fff">No shadow</button>
-<button nbButton variant="neutral" style="--nb-button-bg: #fff">Neutral</button>`;
+  protected readonly variantsExampleCode = `<div class="flex flex-wrap items-center justify-center gap-3">
+  <button nbButton variant="default">Default</button>
+  <button nbButton variant="neutral">Neutral</button>
+  <button nbButton variant="primary">Primary</button>
+  <button nbButton variant="secondary">Secondary</button>
+  <button nbButton variant="accent">Accent</button>
+  <button nbButton variant="danger">Danger</button>
+  <button nbButton variant="success">Success</button>
+  <button nbButton variant="warning">Warning</button>
+</div>`;
 
-  protected readonly sizesExampleCode = `<button nbButton size="sm" variant="neutral" style="--nb-button-bg: #fff">Small</button>
-<button nbButton size="default" variant="neutral" style="--nb-button-bg: #fff">Default</button>
-<button nbButton size="lg" variant="neutral" style="--nb-button-bg: #fff">Large</button>
-<button nbButton size="icon" variant="neutral" aria-label="Icon button" style="--nb-button-bg: #fff">+</button>`;
+  protected readonly sizesExampleCode = `<div class="flex flex-wrap items-center justify-center gap-3">
+  <button nbButton size="sm" variant="neutral" style="--nb-button-bg: var(--nb-warning)">Small</button>
+  <button nbButton variant="neutral" style="--nb-button-bg: var(--nb-warning)">Default</button>
+  <button nbButton size="lg" variant="neutral" style="--nb-button-bg: var(--nb-warning)">Large</button>
+  <button nbButton size="icon" variant="neutral" aria-label="Add" style="--nb-button-bg: var(--nb-warning)">+</button>
+</div>`;
 
   protected readonly fullWidthExampleCode = `<button nbButton variant="neutral" [fullWidth]="true" style="--nb-button-bg: var(--nb-warning)">
   Full width button
