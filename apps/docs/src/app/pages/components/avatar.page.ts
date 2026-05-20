@@ -95,7 +95,7 @@ import { DocsTokens } from '../../docs/docs-tokens';
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export default class AvatarPageComponent {
-  protected readonly defaultExampleCode = `<nb-avatar src="https://github.com/khangtrannn.png" alt="khangtrannn" />`;
+  protected readonly defaultExampleCode = `<nb-avatar class="h-20 w-20" src="https://github.com/khangtrannn.png" alt="khangtrannn" />`;
 
   protected readonly importCode = `import { NbAvatar } from '@ng-brutalism/ui';`;
 
