@@ -289,8 +289,6 @@ import {
               <button
                 nbButton
                 type="button"
-                variant="neutral"
-                style="--nb-button-bg: #fff"
                 aria-label="Apply"
               >
                 Apply
@@ -298,8 +296,7 @@ import {
               <button
                 nbButton
                 type="button"
-                variant="neutral"
-                style="--nb-button-bg: #fff"
+                variant="primary"
               >
                 Save
                 <svg

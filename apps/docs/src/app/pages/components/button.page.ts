@@ -19,9 +19,6 @@ import { DocsTokens } from '../../docs/docs-tokens';
         DocsSourceTile,
         DocsTokens,
         NbButton,
-        NbAccordionTrigger,
-        NbAccordionItem,
-        NbAccordion,
     ],
     template: `
     <article>
@@ -61,8 +58,6 @@ import { DocsTokens } from '../../docs/docs-tokens';
         <docs-example [code]="defaultExampleCode">
           <button
             nbButton
-            variant="neutral"
-            style="--nb-button-bg: var(--nb-warning)"
           >
             Button
           </button>
@@ -99,10 +94,9 @@ import { DocsTokens } from '../../docs/docs-tokens';
         <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">Sizes</h2>
         <docs-example [code]="sizesExampleCode">
           <div class="flex flex-wrap items-center justify-center gap-3">
-            <button nbButton size="sm" variant="neutral" style="--nb-button-bg: var(--nb-warning)">Small</button>
-            <button nbButton variant="neutral" style="--nb-button-bg: var(--nb-warning)">Default</button>
-            <button nbButton size="lg" variant="neutral" style="--nb-button-bg: var(--nb-warning)">Large</button>
-            <button nbButton size="icon" variant="neutral" aria-label="Add" style="--nb-button-bg: var(--nb-warning)">+</button>
+            <button nbButton size="sm">Small</button>
+            <button nbButton>Default</button>
+            <button nbButton size="lg">Large</button>
           </div>
         </docs-example>
       </section>
@@ -113,9 +107,7 @@ import { DocsTokens } from '../../docs/docs-tokens';
           <div class="w-full max-w-md">
             <button
               nbButton
-              variant="neutral"
               [fullWidth]="true"
-              style="--nb-button-bg: var(--nb-warning)"
             >
               Full width button
             </button>
@@ -129,9 +121,7 @@ import { DocsTokens } from '../../docs/docs-tokens';
           <div class="flex flex-wrap items-center justify-center gap-4">
             <button
               nbButton
-              variant="neutral"
               disabled
-              style="--nb-button-bg: var(--nb-warning)"
             >
               Disabled button
             </button>
@@ -139,7 +129,6 @@ import { DocsTokens } from '../../docs/docs-tokens';
               nbButton
               href="#"
               aria-disabled="true"
-              style="--nb-button-bg: var(--nb-warning)"
             >
               Disabled link style
             </a>
@@ -156,18 +145,15 @@ import { DocsTokens } from '../../docs/docs-tokens';
               href="https://angular.dev"
               target="_blank"
               rel="noreferrer"
-              style="--nb-button-bg: var(--nb-warning)"
             >
               Angular Docs
             </a>
 
             <a
               nbButton
-              variant="neutral"
               href="https://github.com/khangtrannn/ng-brutalism"
               target="_blank"
               rel="noreferrer"
-              style="--nb-button-bg: var(--nb-warning)"
             >
               GitHub Repo
             </a>
