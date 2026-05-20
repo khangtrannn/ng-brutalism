@@ -66,7 +66,18 @@ import JobListingCardExampleComponent from './examples/job-listing-card';
 
       <section id="preview">
         <h2 class="mt-10 mb-4 text-2xl font-bold">Preview</h2>
-        <docs-example [code]="jobListingExampleCode">
+        <p class="mb-4 text-sm font-medium">
+          The live demo is a styled composition showcase. The Code tab below
+          shows the underlying card primitive usage; see the
+          <a
+            class="underline"
+            href="https://github.com/khangtrannn/ng-brutalism/blob/main/apps/docs/src/app/pages/components/examples/job-listing-card.ts"
+            target="_blank"
+            rel="noreferrer"
+          >example source</a>
+          for the full implementation.
+        </p>
+        <docs-example [code]="templateCode">
           <docs-job-listing-card-example />
         </docs-example>
       </section>
@@ -237,16 +248,6 @@ export default class CardPageComponent {
     <button nbButton style="--nb-button-bg: #fff">Action</button>
   </nb-card-footer>
 </nb-card>`;
-
-  protected readonly jobListingExampleCode = `import JobListingCardExampleComponent from './examples/job-listing-card';
-
-@Component({
-  imports: [JobListingCardExampleComponent],
-  template: \`
-    <docs-job-listing-card-example />
-  \`,
-})
-export class CardDemoComponent {}`;
 
   protected readonly actionSlotExampleCode = `<nb-card class="w-full max-w-sm">
   <nb-card-header>
