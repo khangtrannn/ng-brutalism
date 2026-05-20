@@ -63,7 +63,7 @@ import { DocsTokens } from '../../docs/docs-tokens';
         <h2 class="mt-10 mb-4 text-2xl font-bold">Preview</h2>
         <docs-example [code]="defaultExampleCode">
           <nb-input-group class="max-w-80">
-            <span nbInputPrefix>&#64;</span>
+            <span nbInputPrefix>@</span>
             <input nbInput placeholder="username" />
           </nb-input-group>
         </docs-example>
@@ -113,7 +113,7 @@ import { DocsTokens } from '../../docs/docs-tokens';
         <h2 class="mt-10 mb-4 text-2xl font-bold">Disabled</h2>
         <docs-example [code]="disabledExampleCode">
           <nb-input-group class="max-w-80">
-            <span nbInputPrefix>&#64;</span>
+            <span nbInputPrefix>@</span>
             <input nbInput placeholder="username" disabled />
           </nb-input-group>
         </docs-example>
