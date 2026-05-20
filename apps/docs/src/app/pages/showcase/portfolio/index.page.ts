@@ -43,7 +43,6 @@ export default class PortfolioShowcasePageComponent {
 
   protected readonly assetPath = ASSET_PATH;
   protected readonly menuOpen = signal(false);
-  protected readonly sent = signal(false);
   protected readonly activeJourney = signal(-1);
 
   private readonly greetings = ['Hello!', 'Hola!', 'Bonjour!', 'Xin chào!'];
@@ -79,7 +78,4 @@ export default class PortfolioShowcasePageComponent {
     this.activeJourney.set(index);
   }
 
-  protected submitContact(): void {
-    this.sent.set(true);
-  }
 }

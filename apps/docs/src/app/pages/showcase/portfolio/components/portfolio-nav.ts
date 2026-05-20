@@ -5,13 +5,14 @@ import {
   output,
   signal,
 } from '@angular/core';
+import { NbButton } from '@ng-brutalism/ui';
+import { ContactUsDialog } from '../../../components/examples/contact-us-dialog';
 
 import type { NavLink } from '../portfolio.types';
-import { PortfolioContactDialogComponent } from './portfolio-contact-dialog';
 
 @Component({
     selector: 'docs-portfolio-nav',
-    imports: [PortfolioContactDialogComponent],
+    imports: [NbButton, ContactUsDialog],
     template: `
     <header class="sticky top-4 z-50 w-full px-4">
       <nav
@@ -44,10 +45,16 @@ import { PortfolioContactDialogComponent } from './portfolio-contact-dialog';
           }
 
           <div class="flex items-center gap-4">
-            <docs-portfolio-contact-dialog
-              [sent]="sent()"
-              (submitted)="contactSubmitted.emit()"
-            />
+            <contact-us-dialog #contact>
+              <button
+                nbButton
+                (click)="contact.open()"
+                style="--nb-button-bg: #76fbd9;"
+                class="h-10 font-heading text-sm text-black transition-all hover:scale-[1.02] active:scale-[0.98] md:text-base"
+              >
+                Get in Touch!
+              </button>
+            </contact-us-dialog>
           </div>
         </div>
 
@@ -88,10 +95,16 @@ import { PortfolioContactDialogComponent } from './portfolio-contact-dialog';
             }
           </div>
           <div class="mt-4 p-2">
-            <docs-portfolio-contact-dialog
-              [sent]="sent()"
-              (submitted)="contactSubmitted.emit()"
-            />
+            <contact-us-dialog #mobileContact>
+              <button
+                nbButton
+                (click)="mobileContact.open()"
+                style="--nb-button-bg: #76fbd9;"
+                class="h-12 w-full font-heading text-base text-black transition-all hover:scale-[1.02] active:scale-[0.98]"
+              >
+                Get in Touch!
+              </button>
+            </contact-us-dialog>
           </div>
         </div>
       </div>
@@ -105,11 +118,9 @@ export class PortfolioNavComponent {
   readonly assetPath = input.required<string>();
   readonly menuOpen = input(false);
   readonly navLinks = input.required<NavLink[]>();
-  readonly sent = input(false);
 
   readonly menuToggled = output<void>();
   readonly menuClosed = output<void>();
-  readonly contactSubmitted = output<void>();
 
   protected readonly showNav = signal(true);
   private lastScrollY = 0;

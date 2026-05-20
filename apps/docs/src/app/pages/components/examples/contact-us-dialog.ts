@@ -37,13 +37,15 @@ import {
         NbTitle,
     ],
     template: `
-    <button
-      nbButton
-      style="--nb-button-bg: var(--nb-yellow)"
-      (click)="dialog().open()"
-    >
-      Contact Us
-    </button>
+    <ng-content>
+      <button
+        nbButton
+        style="--nb-button-bg: var(--nb-yellow)"
+        (click)="open()"
+      >
+        Get in Touch
+      </button>
+    </ng-content>
     <nb-dialog #dialogRef>
       <div
         class="relative bg-(--nb-field-bg) px-6 pt-7 pb-5 sm:px-10 sm:pt-9 sm:pb-6"
@@ -323,5 +325,9 @@ import {
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ContactUsDialog {
-  dialog = viewChild.required<NbDialog>('dialogRef');
+  private dialog = viewChild.required<NbDialog>('dialogRef');
+
+  open() {
+    this.dialog().open();
+  }
 }

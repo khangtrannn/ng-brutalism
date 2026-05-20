@@ -14,10 +14,8 @@
       [assetPath]="assetPath"
       [menuOpen]="menuOpen()"
       [navLinks]="navLinks"
-      [sent]="sent()"
       (menuToggled)="toggleMenu()"
       (menuClosed)="closeMenu()"
-      (contactSubmitted)="submitContact()"
     />
 
     <main class="flex min-h-full flex-col">
@@ -25,8 +23,6 @@
         [assetPath]="assetPath"
         [greeting]="greeting()"
         [skills]="skills"
-        [sent]="sent()"
-        (contactSubmitted)="submitContact()"
       />
 
       <docs-portfolio-journey

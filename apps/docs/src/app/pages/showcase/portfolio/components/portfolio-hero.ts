@@ -5,16 +5,15 @@ import {
   input,
   signal,
   effect,
-  output,
 } from '@angular/core';
-import { NbMarquee, NbMarqueeItem, NbTitle } from '@ng-brutalism/ui';
-import { PortfolioContactDialogComponent } from './portfolio-contact-dialog';
+import { NbButton, NbMarquee, NbMarqueeItem, NbTitle } from '@ng-brutalism/ui';
+import { ContactUsDialog } from '../../../components/examples/contact-us-dialog';
 
 import type { Skill } from '../portfolio.types';
 
 @Component({
     selector: 'docs-portfolio-hero',
-    imports: [NbMarquee, NbMarqueeItem, NbTitle, PortfolioContactDialogComponent],
+    imports: [NbButton, NbMarquee, NbMarqueeItem, NbTitle, ContactUsDialog],
     template: `
     <section
       id="home"
@@ -104,10 +103,16 @@ import type { Skill } from '../portfolio.types';
                 </svg>
               </a>
             </div>
-            <docs-portfolio-contact-dialog
-              [sent]="sent()"
-              (submitted)="contactSubmitted.emit()"
-            />
+            <contact-us-dialog #contact>
+              <button
+                nbButton
+                (click)="contact.open()"
+                style="--nb-button-bg: #76fbd9;"
+                class="h-10 font-heading text-base text-black transition-all hover:scale-[1.02] active:scale-[0.98] md:h-12 md:text-lg lg:h-14 lg:text-xl"
+              >
+                Get in Touch!
+              </button>
+            </contact-us-dialog>
           </div>
         </div>
 
@@ -158,9 +163,6 @@ export class PortfolioHeroComponent {
   readonly greeting = input.required<string>();
   readonly isDark = input(false);
   readonly skills = input.required<Skill[]>();
-  readonly sent = input(false);
-
-  readonly contactSubmitted = output<void>();
 
   private readonly charIndex = signal(0);
   protected readonly displayedGreeting = computed(() => {
