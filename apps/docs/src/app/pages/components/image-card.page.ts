@@ -179,14 +179,14 @@ export default class ImageCardPageComponent {
 
   protected readonly defaultExampleCode = `<nb-image-card
   class="w-full max-w-sm"
-  image="https://hips.hearstapps.com/.../flowers.jpg"
+  [image]="imageUrl"
   alt="Flowers, trees and bushes reaching peak full bloom"
   caption="Image"
 />`;
 
   protected readonly imageOnlyExampleCode = `<nb-image-card
   class="w-full max-w-sm"
-  image="https://hips.hearstapps.com/.../flowers.jpg"
+  [image]="imageUrl"
   alt="Flowers, trees and bushes reaching peak full bloom"
 />`;
 }
