@@ -249,6 +249,10 @@ import { DocsTokens } from '../../docs/docs-tokens';
       <section id="api">
         <h2 class="mt-10 mb-4 text-2xl font-bold">API</h2>
 
+        <h3 class="mt-6 mb-3 text-xl font-bold">
+          <code class="font-mono text-base">&lt;nb-select&gt;</code>
+          (<code class="font-mono text-base">NbSelectComponent</code>)
+        </h3>
         <div
           class="overflow-hidden border-2 border-(--nb-border) bg-nb-surface shadow-[5px_5px_0_0_var(--nb-shadow)]"
         >
@@ -353,6 +357,53 @@ import { DocsTokens } from '../../docs/docs-tokens';
                   null
                 </td>
                 <td class="px-4 py-3">ID reference for an external label.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3 class="mt-8 mb-3 text-xl font-bold">
+          <code class="font-mono text-base">select[nbSelect]</code>
+          (<code class="font-mono text-base">NbSelect</code>)
+        </h3>
+        <p class="mb-3 text-sm font-medium">
+          Directive applied to a native <code class="font-mono text-sm">&lt;select&gt;</code>
+          element to give it the brutal look without the custom listbox behaviour.
+          Detects when nested inside an <code class="font-mono text-sm">&lt;nb-input-group&gt;</code>
+          and adjusts its border and shadow accordingly.
+        </p>
+        <div
+          class="overflow-hidden border-2 border-(--nb-border) bg-nb-surface shadow-[5px_5px_0_0_var(--nb-shadow)]"
+        >
+          <table class="w-full border-collapse text-left">
+            <thead class="bg-nb-secondary text-nb-secondary-fg">
+              <tr>
+                <th class="border-b-2 border-r-2 border-(--nb-border) px-4 py-3 font-bold">
+                  Input
+                </th>
+                <th class="border-b-2 border-r-2 border-(--nb-border) px-4 py-3 font-bold">
+                  Type
+                </th>
+                <th class="border-b-2 border-r-2 border-(--nb-border) px-4 py-3 font-bold">
+                  Default
+                </th>
+                <th class="border-b-2 border-(--nb-border) px-4 py-3 font-bold">
+                  Description
+                </th>
+              </tr>
+            </thead>
+            <tbody class="font-medium">
+              <tr>
+                <td class="border-r-2 border-(--nb-border) px-4 py-3">
+                  size
+                </td>
+                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">
+                  NbSelectSize
+                </td>
+                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">
+                  'default'
+                </td>
+                <td class="px-4 py-3">Reserved for future size variants.</td>
               </tr>
             </tbody>
           </table>
