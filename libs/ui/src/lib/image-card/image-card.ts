@@ -1,7 +1,6 @@
 import {
   ChangeDetectionStrategy,
   Component,
-  computed,
   input,
 } from '@angular/core';
 
@@ -14,15 +13,11 @@ import { nbClass } from '../core/class';
     <img
       [src]="image()"
       [alt]="alt()"
-      [class]="imageClasses()"
+      [class]="imageClasses"
       loading="lazy"
       decoding="async"
     />
-    @if (caption()) {
-    <div [class]="captionClasses" data-slot="image-card-caption">
-      {{ caption() }}
-    </div>
-    }
+    <ng-content select="nb-image-card-caption" />
   `,
   host: {
     '[class]': 'classes',
@@ -30,10 +25,9 @@ import { nbClass } from '../core/class';
   },
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class NbImageCardComponent {
+export class NbImageCard {
   readonly image = input.required<string>();
   readonly alt = input.required<string>();
-  readonly caption = input<string>('');
 
   protected readonly classes = nbClass(
     '[--nb-image-card-bg:var(--nb-background)]',
@@ -47,14 +41,22 @@ export class NbImageCardComponent {
     'shadow-[var(--nb-image-card-shadow)] font-medium'
   );
 
-  protected readonly imageClasses = computed(() =>
-    nbClass(
-      'block w-full h-auto',
-      this.caption() && 'border-b-2 border-(--nb-image-card-border)'
-    )
-  );
+  protected readonly imageClasses = nbClass('block w-full h-auto');
+}
 
-  protected readonly captionClasses = nbClass(
+@Component({
+  selector: 'nb-image-card-caption',
+  standalone: true,
+  template: `<ng-content />`,
+  host: {
+    '[class]': 'classes',
+    '[attr.data-slot]': '"image-card-caption"',
+  },
+  changeDetection: ChangeDetectionStrategy.OnPush,
+})
+export class NbImageCardCaption {
+  protected readonly classes = nbClass(
+    'border-t-2 border-(--nb-image-card-border)',
     'px-6 py-4 text-center font-bold text-base'
   );
 }

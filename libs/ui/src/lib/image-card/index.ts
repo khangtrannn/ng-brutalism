@@ -1,4 +1,4 @@
 export {
-  NbImageCardComponent,
-  NbImageCardComponent as NbImageCard,
+  NbImageCard,
+  NbImageCardCaption,
 } from './image-card';

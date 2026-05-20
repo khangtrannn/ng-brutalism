@@ -31,7 +31,7 @@ export {
   NbCardFooter,
 } from './lib/card';
 export type { NbCardActionsAlign } from './lib/card';
-export { NbImageCard } from './lib/image-card';
+export { NbImageCard, NbImageCardCaption } from './lib/image-card';
 export { NbMarquee, NbMarqueeItem } from './lib/marquee';
 export { NbInput } from './lib/input';
 export { NbLabel } from './lib/label';

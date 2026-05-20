@@ -2,17 +2,18 @@ import { Component } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { describe, expect, it } from 'vitest';
 
-import { NbImageCardComponent } from './image-card';
+import { NbImageCard, NbImageCardCaption } from './image-card';
 
 @Component({
   standalone: true,
-  imports: [NbImageCardComponent],
+  imports: [NbImageCard, NbImageCardCaption],
   template: `
     <nb-image-card
       image="https://example.com/photo.jpg"
       alt="Example"
-      caption="A caption"
-    />
+    >
+      <nb-image-card-caption>A caption</nb-image-card-caption>
+    </nb-image-card>
   `,
 })
 class ImageCardTokenTestComponent {}
@@ -49,12 +50,24 @@ describe('NbImageCard token surface', () => {
     expect(cls).not.toContain('shadow-nb');
   });
 
-  it('uses the scoped border token for the image divider', async () => {
+  it('does not put caption divider styles on the image', async () => {
     const fixture = await createFixture();
     const image = findImage(fixture);
     const cls = image.className;
 
-    expect(cls).toContain('border-b-2');
+    expect(cls).toContain('block');
+    expect(cls).toContain('w-full');
+    expect(cls).toContain('h-auto');
+    expect(cls).not.toContain('border-b-2');
+    expect(cls).not.toContain('border-(--nb-border)');
+  });
+
+  it('uses the scoped border token for the caption divider', async () => {
+    const fixture = await createFixture();
+    const caption = findCaption(fixture);
+    const cls = caption.className;
+
+    expect(cls).toContain('border-t-2');
     expect(cls).toContain('border-(--nb-image-card-border)');
     expect(cls).not.toContain('border-(--nb-border)');
   });
@@ -95,4 +108,12 @@ function findImage(
   fixture: ComponentFixture<ImageCardTokenTestComponent>
 ): HTMLImageElement {
   return fixture.nativeElement.querySelector('img') as HTMLImageElement;
+}
+
+function findCaption(
+  fixture: ComponentFixture<ImageCardTokenTestComponent>
+): HTMLElement {
+  return fixture.nativeElement.querySelector(
+    'nb-image-card-caption'
+  ) as HTMLElement;
 }
