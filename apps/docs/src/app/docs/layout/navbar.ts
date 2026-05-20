@@ -24,11 +24,14 @@ import { filter } from 'rxjs';
           class="brand group flex items-center gap-3 font-bold"
           aria-label="Ng Neo Brutalism home"
         >
-          <span
-            class="brand-mark flex h-14 min-w-14 items-center justify-center border-4 border-(--nb-border) bg-(--nb-yellow) px-3 text-3xl leading-none text-black shadow-[4px_4px_0_0_var(--nb-shadow)] transition-transform group-hover:-rotate-6"
-          >
-            N/B
-          </span>
+          <img
+            class="h-14 w-14 border-4 border-(--nb-border) bg-(--nb-yellow) object-contain p-1.5 shadow-[4px_4px_0_0_var(--nb-shadow)] transition-transform group-hover:-rotate-6"
+            src="/logo.png"
+            alt=""
+            width="56"
+            height="56"
+            aria-hidden="true"
+          />
           <span class="hidden sm:flex flex-col leading-none">
             <span class="brand-title">NEO·BRUTAL</span>
             <span class="brand-sub">angular ui kit</span>
@@ -95,15 +98,10 @@ import { filter } from 'rxjs';
     </nav>
   `,
     styles: `
-    .brand-mark {
-      font-family: var(--font-display);
-      letter-spacing: -0.05em;
-    }
-
     .brand-title {
       font-family: var(--font-display);
       font-size: 1.05rem;
-      letter-spacing: -0.02em;
+      letter-spacing: 0;
     }
 
     .brand-sub {

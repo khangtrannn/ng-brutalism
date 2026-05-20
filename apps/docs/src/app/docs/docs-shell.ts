@@ -29,10 +29,17 @@ import { docsNavGroups, findDocsNavItem } from './docs.navigation';
           <div class="flex items-center gap-10">
             <a
               routerLink="/docs/introduction"
-              class="flex size-8 items-center justify-center border-[3px] border-(--nb-border) bg-nb-secondary text-[22px] font-bold leading-none text-nb-secondary-fg shadow-[2px_2px_0_0_var(--nb-shadow)]"
+              class="flex items-center justify-center"
               aria-label="Ng Neo Brutalism home"
             >
-              N
+              <img
+                class="size-8 border-[3px] border-(--nb-border) bg-nb-secondary object-contain p-1 shadow-[2px_2px_0_0_var(--nb-shadow)]"
+                src="/logo.png"
+                alt=""
+                width="32"
+                height="32"
+                aria-hidden="true"
+              />
             </a>
 
             <nav

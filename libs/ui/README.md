@@ -60,7 +60,8 @@ export const appConfig: ApplicationConfig = {
 
 ## Documentation
 
-Full component reference and live examples: see the [docs app](https://github.com/khangtrannn/ng-neo-brutalism-workspace/tree/main/apps/docs).
+- Theming reference: [`TOKENS.md`](TOKENS.md)
+- Live examples: clone the [repo](https://github.com/khangtrannn/ng-neo-brutalism-workspace) and run `pnpm serve:docs`
 
 ## License
 

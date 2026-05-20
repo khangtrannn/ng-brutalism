@@ -1,7 +1,28 @@
 # ng-brutalism
 
-Nx 20 integrated monorepo for the Angular 18 `@ng-neo-brutalism/ui` library
-and its Analog docs app.
+Nx monorepo for [`@ng-brutalism/ui`](libs/ui/README.md) — a neo-brutalist Angular
+component library — and its Analog-powered docs app.
+
+- **`libs/ui`** — the publishable component library (Angular 21, Tailwind v4).
+- **`apps/docs`** — the Analog docs site that doubles as a live playground.
+
+## Install
+
+```bash
+pnpm add @ng-brutalism/ui
+```
+
+```css
+/* src/styles.css */
+@import '@ng-brutalism/ui/styles.css';
+@import '@ng-brutalism/ui/theme.css';
+```
+
+```ts
+import { NbButton } from '@ng-brutalism/ui';
+```
+
+Requires Angular 21+ and Tailwind CSS v4. Full consumer guide: [`libs/ui/README.md`](libs/ui/README.md).
 
 ## Theming
 
@@ -33,31 +54,10 @@ Size variants on `nbInput` / `nbTextarea` are driven by the `[data-size]`
 attribute, so `size="lg"` works out of the box and an inline `h-12` still wins
 when you want a one-off.
 
-## Migration notes (pre-1.0)
+## Breaking changes
 
-The token rollout (`libs/ui/TOKENS-ROLLOUT.md`) introduced breaking changes.
-Pre-1.0, no aliases are kept.
-
-- **Button variants** — `reverse` and `noShadow` are removed. Use the new
-  `shadow` input instead: `variant="reverse"` → `shadow="reverse"`,
-  `variant="noShadow"` → `shadow="none"`. Six new variants land in their place:
-  `primary | secondary | accent | danger | success | warning`. The default
-  `variant="default"` now renders `var(--nb-main)` (yellow), not white.
-- **Badge variants** — `destructive` renamed to `danger` for consistency with
-  the button variant union.
-- **Input-group tokens** renamed to follow the `--nb-<component>-<part>-<prop>`
-  grammar:
-  - `--nb-input-addon-bg` → `--nb-input-group-addon-bg`
-  - `--nb-input-prefix-bg` → `--nb-input-group-prefix-bg`
-  - New: `--nb-input-group-suffix-bg` (defaults to `--nb-input-group-addon-bg`).
-- **Input/textarea/select background token** — `--nb-input-background` →
-  `--nb-input-bg`. Textarea adds `--nb-textarea-bg` (defaults to
-  `--nb-input-bg`); select adds `--nb-select-bg`.
-- **Dialog description token** — `--nb-dialog-description-color` →
-  `--nb-dialog-description-fg`.
-- **`--nb-yellow` removed from the lib.** It was never a design-system token,
-  just a palette color the docs app uses for chrome. If you were relying on it,
-  declare it yourself or pick another color.
+Pre-1.0 — no aliases are kept. See [`libs/ui/TOKENS-ROLLOUT.md`](libs/ui/TOKENS-ROLLOUT.md)
+for the token-rollout migration notes.
 
 ## Commands
 
