@@ -45,7 +45,7 @@ describe('NbSelectComponent token surface', () => {
     expect(cls).toContain('[--nb-select-fg:var(--nb-foreground)]');
     expect(cls).toContain('[--nb-select-border:var(--nb-border)]');
     expect(cls).toContain('[--nb-select-radius:var(--nb-radius)]');
-    expect(cls).toContain('[--nb-select-listbox-bg:var(--nb-surface,#ffffff)]');
+    expect(cls).toContain('[--nb-select-listbox-bg:var(--nb-select-bg)]');
   });
 
   it('reads its scoped tokens instead of global tokens directly', async () => {

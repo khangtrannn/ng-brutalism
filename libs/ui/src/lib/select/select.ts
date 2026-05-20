@@ -114,7 +114,7 @@ export class NbSelectComponent implements NbSelectController, OnInit {
       '[--nb-select-fg:var(--nb-foreground)]',
       '[--nb-select-border:var(--nb-border)]',
       '[--nb-select-radius:var(--nb-radius)]',
-      '[--nb-select-listbox-bg:var(--nb-surface,#ffffff)]',
+      '[--nb-select-listbox-bg:var(--nb-select-bg)]',
       inGroup
         ? 'block w-full'
         : [

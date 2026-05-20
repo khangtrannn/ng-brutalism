@@ -404,7 +404,7 @@ const componentTokens: Record<DocsTokenComponent, DocsToken[]> = {
     },
     {
       name: '--nb-select-listbox-bg',
-      defaultValue: 'var(--nb-surface, #ffffff)',
+      defaultValue: 'var(--nb-select-bg)',
       usage: 'Custom select listbox background',
     },
   ],
