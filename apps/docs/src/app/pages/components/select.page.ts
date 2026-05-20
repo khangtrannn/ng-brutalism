@@ -366,48 +366,12 @@ import { DocsTokens } from '../../docs/docs-tokens';
           <code class="font-mono text-base">select[nbSelect]</code>
           (<code class="font-mono text-base">NbSelect</code>)
         </h3>
-        <p class="mb-3 text-sm font-medium">
+        <p class="text-sm font-medium">
           Directive applied to a native <code class="font-mono text-sm">&lt;select&gt;</code>
           element to give it the brutal look without the custom listbox behaviour.
           Detects when nested inside an <code class="font-mono text-sm">&lt;nb-input-group&gt;</code>
-          and adjusts its border and shadow accordingly.
+          and adjusts its border and shadow accordingly. Has no inputs.
         </p>
-        <div
-          class="overflow-hidden border-2 border-(--nb-border) bg-nb-surface shadow-[5px_5px_0_0_var(--nb-shadow)]"
-        >
-          <table class="w-full border-collapse text-left">
-            <thead class="bg-nb-secondary text-nb-secondary-fg">
-              <tr>
-                <th class="border-b-2 border-r-2 border-(--nb-border) px-4 py-3 font-bold">
-                  Input
-                </th>
-                <th class="border-b-2 border-r-2 border-(--nb-border) px-4 py-3 font-bold">
-                  Type
-                </th>
-                <th class="border-b-2 border-r-2 border-(--nb-border) px-4 py-3 font-bold">
-                  Default
-                </th>
-                <th class="border-b-2 border-(--nb-border) px-4 py-3 font-bold">
-                  Description
-                </th>
-              </tr>
-            </thead>
-            <tbody class="font-medium">
-              <tr>
-                <td class="border-r-2 border-(--nb-border) px-4 py-3">
-                  size
-                </td>
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">
-                  NbSelectSize
-                </td>
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">
-                  'default'
-                </td>
-                <td class="px-4 py-3">Reserved for future size variants.</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
       </section>
     </article>
   `,
