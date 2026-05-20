@@ -50,6 +50,11 @@ import { ContactUsDialog } from './examples/contact-us-dialog';
 
       <section id="preview">
         <h2 class="mt-10 mb-4 text-2xl font-bold">Preview</h2>
+        <p class="mb-4 text-sm font-medium">
+          The snippet below is self-contained — copy it as-is, no
+          <code class="font-mono text-sm">contact-us-dialog</code>
+          component required.
+        </p>
         <docs-example [code]="contactUsExampleCode">
           <contact-us-dialog />
         </docs-example>
@@ -162,6 +167,7 @@ import { ContactUsDialog } from './examples/contact-us-dialog';
 })
 export default class DialogPageComponent {
   protected readonly importCode = `import {
+  NbButton,
   NbDialog,
   NbDialogTitle,
   NbDialogDescription,
