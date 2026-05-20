@@ -425,7 +425,7 @@ export default class SelectPageComponent {
   </nb-select>
 </div>`;
 
-  protected readonly withPrefixExampleCode = `<div class="w-80">
+  protected readonly withPrefixExampleCode = `<div class="w-90">
   <label nbLabel id="subject-label" class="mb-2 block">Subject</label>
   <nb-input-group>
     <span nbInputPrefix>
