@@ -218,18 +218,18 @@ export default class DialogPageComponent {
   <nb-dialog-content class="border-y-0 bg-white px-6 pb-6 pt-4 sm:px-10">
     <form class="grid gap-5">
       <div class="grid gap-5 sm:grid-cols-2">
-        <div class="grid gap-2">
+        <div class="grid min-w-0 gap-2">
           <label nbLabel for="contact-name" class="font-mono text-base">Name</label>
-          <nb-input-group>
+          <nb-input-group class="min-w-0">
             <span nbInputPrefix>
               <docs-contact-user-icon class="size-5" />
             </span>
             <input nbInput id="contact-name" placeholder="Your name" class="h-12 font-mono" />
           </nb-input-group>
         </div>
-        <div class="grid gap-2">
+        <div class="grid min-w-0 gap-2">
           <label nbLabel for="contact-email" class="font-mono text-base">Email</label>
-          <nb-input-group>
+          <nb-input-group class="min-w-0">
             <span nbInputPrefix>
               <docs-contact-mail-icon class="size-5" />
             </span>
