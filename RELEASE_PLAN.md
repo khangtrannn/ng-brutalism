@@ -1,216 +1,486 @@
 # Release Plan — `@ng-brutalism/ui` v0.1.0
 
-Consolidated, actionable punch-list to ship the first public release. Pulls in:
-- Open items from [LAUNCH.md](./LAUNCH.md) (high-level checklist)
-- Open findings from [PRE_RELEASE_AUDIT.md](./PRE_RELEASE_AUDIT.md) (docs vs. impl drift)
-- Static scan of this workspace (`libs/ui`, `apps/docs`, root files, `dist/ui` build output)
+Canonical release plan for the first public release.
 
-Severity legend used below:
-- **BLOCK** — must fix before `npm publish` or the package is broken / unprofessional.
-- **HIGH** — must fix before the public announcement (post is louder than the fix is hard).
-- **NICE** — polish; can ship without, file as issues.
+This is the single source of truth for v0.1.0 planning, execution order,
+verification, publishing, and post-publish work.
 
-Snapshot status (2026-05-20):
-- Package name `@ng-brutalism/ui` is reserved and unused on npm (verified 2026-05-17).
-- Workspace migrated to Angular 21 + zoneless (commits `8e06828`, `1cec75a`).
-- Library builds to `dist/ui` with ng-packagr; fesm2022 artifact present.
-- No `LICENSE`, no `CHANGELOG.md`, no root npm-publishable README.
-- `libs/ui/README.md` is the default Nx stub.
-- 38 docs/impl findings in [PRE_RELEASE_AUDIT.md](./PRE_RELEASE_AUDIT.md) (4 BLOCKING, 14 HIGH, 20 LOW).
+Current date: 2026-05-20.
 
 ---
 
-## 1. Library packaging — BLOCK
+## 0. Next Session Handoff
 
-These are problems in what actually goes into the tarball. Fix before any publish attempt.
+Start the next session from **Pass 1 — Release Plumbing** (§4).
 
-### 1.1 [BLOCK] Stale `exports.esm2022` path in [libs/ui/package.json:13-17](libs/ui/package.json#L13-L17)
+Do first:
 
-The published `dist/ui/package.json` carries this verbatim from source:
+1. Inspect current git status.
+2. Treat this file, `RELEASE_PLAN.md`, as the only release source of truth.
+3. Do not restore `RELEASE_DECISIONS.md`; it was intentionally removed to
+   avoid two competing plans.
+4. Keep Pass 1 mechanical: package metadata, license packaging, docs
+   prerendering, CNAME, GitHub Actions, and repo hygiene.
+5. Do not rewrite README / CONTRIBUTING / CHANGELOG in Pass 1 unless a tiny
+   placeholder is required for a build or package output.
+6. After Pass 1, run:
+
+   ```sh
+   pnpm nx run-many -t lint test build --projects=ui,docs
+   ```
+
+Current workspace state to account for:
+
+- `RELEASE_DECISIONS.md` is deleted by design.
+- Raw visual assets were moved during planning to:
+  - `apps/docs/public/showcase/release/image-card-demo.gif`
+  - `apps/docs/public/showcase/release/showcase-portfolio.png`
+- Final README asset targets are still:
+  - `docs/assets/image-card-demo.gif`
+  - `docs/assets/showcase-portfolio.png`
+- The current GIF/PNG are over the final size budget. During Pass 2, optimize
+  or replace them before wiring the final README.
+- Root `README.md` is still the old monorepo-oriented README. Rewrite it in
+  Pass 2 according to §5.1.
+
+---
+
+## 1. Release Contract
+
+- Package: `@ng-brutalism/ui`.
+- Version: direct `0.1.0`. No RC dist-tag.
+- License: MIT.
+- Audience: Angular developers building neo-brutalist applications.
+- Compatibility: Angular 21 only for v0.1.0.
+- Consumer requirement: Angular 21 + Tailwind CSS v4.
+- Stability: pre-1.0, experimental but usable. Minor versions may include
+  breaking changes while the library settles.
+- Publishing account: npm org/scope `ng-brutalism` already exists. Publish
+  setup only needs login and membership verification.
+- GitHub repo: `khangtrannn/ng-brutalism`.
+- Docs URL: `https://ngbrutalism.khangtran.dev`.
+- Docs hosting: GitHub Pages with static prerendering, not SSR runtime.
+
+Package description:
+
+```text
+A neo-brutalist Angular component library — Signals • Zoneless • Token-based • Tailwind v4.
+```
+
+---
+
+## 2. Locked Decisions
+
+### 2.1 Public API
+
+- Use suffixless Angular names publicly and in source:
+  `NbSelect`, `NbDialog`, `NbCard`, etc.
+- Do not keep `*Component` as primary implementation class names.
+- Clean up `*.component.*` library filenames and test fixture names where
+  practical so the codebase follows the same convention end-to-end.
+- Root TypeScript import only for v0.1.0:
+
+  ```ts
+  import { NbButton } from '@ng-brutalism/ui';
+  ```
+
+- Do not add per-component secondary entrypoints for v0.1.0.
+- Reserve `NbSelect` / `<nb-select>` for the custom select component.
+- Rename the native select directive to `NbNativeSelect` with selector
+  `select[nbNativeSelect]`.
+- Remove/hide `NB_DENSITY` and `NbDensity` from the v0.1.0 public API.
+- Remove the one-value `NbSelectSize = 'default'` public API and any
+  corresponding `size` input.
+- Keep `provideNgBrutalism()` in v0.1.0, but document it as optional. CSS
+  custom properties remain the primary theming path.
+
+### 2.2 CSS
+
+- Keep both `styles.css` and `theme.css`.
+- Make `styles.css` include the default theme so first-time users need one CSS
+  import.
+- Keep `theme.css` as a direct advanced/token entrypoint.
+- `--nb-yellow`, `--nb-mint`, `--nb-pink`, and `--nb-lavender` are docs-brand
+  tokens only. Do not add them to `libs/ui/src/lib/styles/theme.css`.
+- Copy-pastable docs snippets must use shipped semantic tokens such as
+  `--nb-warning`, `--nb-success`, and `--nb-accent`.
+
+### 2.3 Package Metadata
+
+Use this package metadata in `libs/ui/package.json`:
 
 ```json
-"esm2022": "./esm2022/ng-neo-brutalism-ui.mjs",
-"esm":     "./esm2022/ng-neo-brutalism-ui.mjs",
+{
+  "version": "0.1.0",
+  "description": "A neo-brutalist Angular component library — Signals • Zoneless • Token-based • Tailwind v4.",
+  "license": "MIT",
+  "author": "Khang Tran <khangtrann8198@gmail.com>",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/khangtrannn/ng-brutalism.git"
+  },
+  "homepage": "https://ngbrutalism.khangtran.dev",
+  "bugs": {
+    "url": "https://github.com/khangtrannn/ng-brutalism/issues"
+  },
+  "keywords": [
+    "angular",
+    "ui",
+    "ui-library",
+    "components",
+    "neo-brutalism",
+    "brutalism",
+    "tailwind",
+    "tailwindcss",
+    "signals",
+    "zoneless",
+    "design-system"
+  ]
+}
 ```
 
-Neither file exists in the build output — `dist/ui/` contains only `fesm2022/ng-brutalism-ui.mjs` (verified). Bundlers that respect the `esm2022` condition will resolve to a 404. Either:
+In `exports["."]`, remove the stale conditions:
 
-- Remove the `esm2022` and `esm` conditions and rely on the `default` (fesm2022) + `types` entries, OR
-- Have ng-packagr emit `esm2022/` and rename the filename to match (`ng-brutalism-ui.mjs`).
-
-Fix path: edit [libs/ui/package.json](libs/ui/package.json), rebuild, verify `dist/ui/package.json` matches reality.
-
-### 1.2 [BLOCK] `libs/ui/README.md` is the Nx stub
-
-Currently:
-
-```
-# ui
-
-This library was generated with [Nx](https://nx.dev).
+```diff
+- "esm2022": "./esm2022/ng-neo-brutalism-ui.mjs",
+- "esm": "./esm2022/ng-neo-brutalism-ui.mjs",
 ```
 
-This is what shows on the npm package page. Replace with: install command, one minimal usage snippet, link to docs site, link to GitHub repo, v0.x stability note, license line. Keep under ~80 lines.
+Keep the `default` fesm2022 and `types` entries.
 
-### 1.3 [BLOCK] No `LICENSE` file at repo root or in published package
+### 2.4 Package Contents
 
-LAUNCH.md Phase 5 calls for MIT. Decide license, add `LICENSE` at repo root, and either copy it into `libs/ui/` so ng-packagr includes it, or add an `assets` entry to [libs/ui/ng-package.json](libs/ui/ng-package.json) to copy the root `LICENSE` into `dist/ui/`.
+Use a `files` whitelist in `libs/ui/package.json`:
 
-### 1.4 [BLOCK] `libs/ui/package.json` is missing publish metadata
+```json
+"files": [
+  "fesm2022/",
+  "types/",
+  "*.css",
+  "README.md",
+  "LICENSE",
+  "package.json"
+]
+```
 
-Currently has only `name`, `version`, `peerDependencies`, `dependencies`, `exports`, `sideEffects`. Add before publish:
+Ship only:
 
-- `"description"` — one sentence
-- `"license": "MIT"` (or chosen license)
-- `"repository": { "type": "git", "url": "git+https://github.com/khangtrannn/ng-brutalism.git" }`
-- `"homepage"` — docs site URL (set when Vercel domain is finalised)
-- `"bugs": { "url": "https://github.com/khangtrannn/ng-brutalism/issues" }`
-- `"keywords": ["angular", "angular21", "ui", "ui-library", "components", "neo-brutalism", "brutalism", "tailwind", "signals", "zoneless"]`
-- `"author"` — name + (optional) email
-- `"sideEffects"` is already correct — keep.
+- runtime bundles
+- type declarations
+- published CSS entrypoints
+- `README.md`
+- `LICENSE`
+- `package.json`
 
-ng-packagr passes these through to `dist/ui/package.json`.
+Do not ship:
 
-### 1.5 [BLOCK] Library version bump
+- source `.ts` files, except `.d.ts`
+- sourcemaps
+- `TOKENS.md`
+- `TOKENS-ROLLOUT.md`
+- planning docs
+- `node_modules`
 
-`libs/ui/package.json` is at `0.0.1`. LAUNCH.md targets `0.1.0`. Bump to `0.1.0` (or `0.1.0-rc.0` if a pre-release dry run is wanted first — see §6.3).
+Sourcemaps may still be generated locally in `dist/ui`, but they should not be
+included in the npm tarball. Verify with `npm publish --dry-run`.
 
-### 1.6 [HIGH] Decide on density token surface ([PRE_RELEASE_AUDIT.md §Foundation BLOCKING #1](./PRE_RELEASE_AUDIT.md))
+### 2.5 README And Assets
 
-`NB_DENSITY` / `NbDensity` are exported but no component consumes them. Either remove the export (and `density.tokens.ts`) until wired, or wire them into `provideNgBrutalism` + document. Shipping a no-op public API at v0.1 sets a precedent that's hard to walk back.
+- Root README becomes public-facing pitch copy.
+- Monorepo commands and contributor workflow move to `CONTRIBUTING.md`.
+- Keep the canonical package-description sentence exactly:
 
-### 1.7 [HIGH] Rename or hide one half of the `NbSelect` / `NbSelectComponent` collision ([PRE_RELEASE_AUDIT.md §Foundation LOW #6](./PRE_RELEASE_AUDIT.md))
+  ```text
+  A neo-brutalist Angular component library — Signals • Zoneless • Token-based • Tailwind v4.
+  ```
 
-`NbSelect` is a directive on native `<select>`, `NbSelectComponent` is a full custom listbox. Two unrelated components sharing a confusing name is the worst kind of API. Suggested: rename the directive to `NbNativeSelect`. Easy to do now, breaking after publish.
+- Use README badges:
+  - npm version
+  - npm monthly downloads
+  - CI workflow status
+  - MIT license
+- Use a navigation row:
 
-### 1.8 [HIGH] Drop the redundant `NbDialogComponent` alias ([PRE_RELEASE_AUDIT.md §Foundation LOW #5](./PRE_RELEASE_AUDIT.md))
+  ```md
+  [Documentation](https://ngbrutalism.khangtran.dev) ·
+  [npm](https://www.npmjs.com/package/@ng-brutalism/ui) ·
+  [GitHub](https://github.com/khangtrannn/ng-brutalism)
+  ```
 
-Both `NbDialog` and `NbDialogComponent` are exported. Docs only use `NbDialog`. Drop the second to match the `NbAccordion` / `NbCard` pattern.
+- Top README visual: optimized GIF of the Image Card docs page.
+- Portfolio screenshot: one extra image under `## What it looks like`.
+- Target asset paths:
+  - `docs/assets/image-card-demo.gif`, under 2 MB
+  - `docs/assets/showcase-portfolio.png`, under 300 KB
+- Do not use MP4 for the README hero; npm pages do not reliably render it.
+- Raw planning assets may exist elsewhere in the repo. During the README/content
+  pass, optimize or replace them and commit the final files under `docs/assets/`.
 
-### 1.9 [HIGH] Stub `NbSelectSize = 'default'` ([PRE_RELEASE_AUDIT.md §select HIGH #2](./PRE_RELEASE_AUDIT.md))
+### 2.6 Docs Site
 
-A one-value union exported as public API. Either add real sizes (`'sm' | 'md' | 'lg'`) or drop the type + input.
+- Deploy static prerendered docs to GitHub Pages.
+- Add `apps/docs/public/CNAME` with:
 
-### 1.10 [HIGH] Input-group internals leaking via sub-barrel ([PRE_RELEASE_AUDIT.md §input-group HIGH](./PRE_RELEASE_AUDIT.md))
+  ```text
+  ngbrutalism.khangtran.dev
+  ```
 
-`NB_INPUT_GROUP`, `NB_INPUT_PREFIX`, `NB_INPUT_SUFFIX`, `NbInputGroupContext` are re-exported from `libs/ui/src/lib/input-group/index.ts`. Even though root `index.ts` doesn't list them, deep-imports work. Move to `*.internal.ts` so they cannot be reached from outside.
+- Cloudflare DNS: `ngbrutalism` CNAME to `khangtrannn.github.io`, proxy off
+  (grey cloud), or GitHub certificate issuance can fail.
+- GitHub Pages setting: source = GitHub Actions.
+- No SPA fallback hack for v0.1.0. Direct routes should prerender.
+- Hardcode the full prerender route list for v0.1.0:
+
+  ```ts
+  const prerenderRoutes = [
+    '/',
+    '/components',
+    '/components/accordion',
+    '/components/avatar',
+    '/components/badge',
+    '/components/button',
+    '/components/card',
+    '/components/checkbox',
+    '/components/dialog',
+    '/components/image-card',
+    '/components/input',
+    '/components/input-group',
+    '/components/label',
+    '/components/marquee',
+    '/components/select',
+    '/components/textarea',
+    '/components/title',
+    '/docs',
+    '/docs/introduction',
+    '/docs/installation',
+    '/docs/accordion',
+    '/docs/avatar',
+    '/docs/badge',
+    '/docs/button',
+    '/docs/card',
+    '/docs/checkbox',
+    '/docs/dialog',
+    '/docs/image-card',
+    '/docs/input',
+    '/docs/input-group',
+    '/docs/label',
+    '/docs/marquee',
+    '/docs/select',
+    '/docs/textarea',
+    '/docs/title',
+    '/showcase/portfolio',
+  ];
+  ```
+
+### 2.7 Docs Quality
+
+Before publish, every component page must have:
+
+- one-line description
+- runnable preview
+- copy-paste snippet
+- accurate API table
+
+Baseline accessibility before publish:
+
+- obvious semantic, ARIA, keyboard, focus, label, alt-text, and disabled-state
+  issues fixed in core interactive components and examples
+- exhaustive WCAG audits and per-component accessibility docs deferred
+
+### 2.8 CI / CD
+
+Add two workflows for v0.1.0:
+
+- `.github/workflows/ci.yml` for pull requests and manual dispatch:
+  `pnpm nx affected -t lint test build --base=origin/main`
+- `.github/workflows/deploy-docs.yml` for push to `main` and manual dispatch:
+  `pnpm nx run-many -t lint test --projects=ui,docs`, then
+  `pnpm nx build docs --configuration=production`, then deploy GitHub Pages
+
+Use:
+
+- `actions/checkout@v4` with `fetch-depth: 0`
+- `pnpm/action-setup@v4`
+- `actions/setup-node@v4` with Node 22 and pnpm cache
+
+No `release.yml`, Dependabot, Changesets, or release automation for v0.1.0.
+
+### 2.9 Branch Protection
+
+Branch protection is flipped after v0.1.0 publishes:
+
+- require pull request before merging
+- require status check `CI / verify`
+- no required approvals while solo
+- no required linear history
+- do not include administrators
+
+The v0.1.0 prep itself can ship via direct commits to `main`.
+
+### 2.10 Announcement
+
+- Publish first, then verify `npm view @ng-brutalism/ui` shows `latest: 0.1.0`.
+- Run/confirm the local consume smoke test before posting.
+- First announcement channel: LinkedIn.
+- Within 48h: r/angular, dev.to long-form, X/Twitter short.
+- Skip Hacker News for v0.1.0.
 
 ---
 
-## 2. Docs site — HIGH
+## 3. Reality Check
 
-The docs site (`apps/docs`) is the public face of the library; it is what people will land on from the announcement. Treat every BLOCKING and HIGH finding from [PRE_RELEASE_AUDIT.md](./PRE_RELEASE_AUDIT.md) as required.
+Already done or user-confirmed:
 
-### 2.1 [BLOCK] Card page selectors are wrong ([PRE_RELEASE_AUDIT.md §card BLOCKING](./PRE_RELEASE_AUDIT.md))
+- GitHub repo renamed to `khangtrannn/ng-brutalism`.
+- npm org/scope `ng-brutalism` exists.
+- Package name `@ng-brutalism/ui` was verified unused/reserved on npm
+  on 2026-05-17.
+- Workspace migrated to Angular 21 + zoneless.
+- `libs/ui/README.md` is no longer the default Nx stub.
+- Density tokens have already been removed from source.
+- Native select rename to `NbNativeSelect` appears to be done.
+- `NbDialogComponent` public alias appears to be dropped.
+- `NbSelectSize` appears to be removed.
+- Input-group internals appear to be hidden.
+- Card docs selectors appear to be corrected to `nb-card*`.
 
-API table on [apps/docs/src/app/pages/components/card.page.ts:106-176](apps/docs/src/app/pages/components/card.page.ts#L106-L176) shows selectors as `neo-card*`. Actual selectors are `nb-card*`. Anyone copying from the API table writes a template that does not compile. Search/replace `neo-card` → `nb-card` in that file.
-
-### 2.2 [BLOCK] Select page does not document the directive's `size` input ([PRE_RELEASE_AUDIT.md §select BLOCKING](./PRE_RELEASE_AUDIT.md))
-
-Split the API into two tables: `<nb-select>` (component) vs `select[nbSelect]` (directive). Depends on §1.9 outcome.
-
-### 2.3 [HIGH] Foundation token surface ([PRE_RELEASE_AUDIT.md §Foundation HIGH #3-#4](./PRE_RELEASE_AUDIT.md))
-
-Snippets use `--nb-yellow`, `--nb-mint`, `--nb-pink`, `--nb-lavender` but those are only defined in `apps/docs/src/styles.css`, not in `libs/ui/src/lib/styles/theme.css`. A consumer pasting them gets unstyled components. Pick one of:
-
-- **fix-docs** — rewrite snippets to use shipped tokens (`var(--nb-warning)` etc.).
-- **fix-impl** — add the four palette tokens to `libs/ui/src/lib/styles/theme.css`.
-
-Apply consistently across button, accordion, input pages.
-
-### 2.4 [HIGH] Installation page is incomplete ([PRE_RELEASE_AUDIT.md §Installation LOW #1-#3](./PRE_RELEASE_AUDIT.md))
-
-Currently missing:
-
-- The CSS import step (`@import '@ng-brutalism/ui/styles.css';` or `angular.json` `styles` array entry).
-- Tailwind v4 prerequisite note (every component composes Tailwind utilities via `nbClass`).
-- A clear statement that `provideNgBrutalism` is *optional* (only needed for token overrides from TS).
-
-These are LOW per the audit's "consumer can recover" rubric, but in practice a first-time install with no Tailwind = no styles = bad first impression. Promote to HIGH for launch.
-
-### 2.5 [HIGH] Stat-tile / API-table arithmetic errors
-
-Per [PRE_RELEASE_AUDIT.md](./PRE_RELEASE_AUDIT.md):
-- button: "8 Variants / 4 Sizes" stat tiles point to sections that don't exist on the page.
-- card: stat tile says "6 Parts", prose says "7", table has 7.
-- image-card: "2 Inputs" — actually 3.
-- title: "3 Wave tokens" — actually 4.
-- avatar: snippet missing `class="h-20 w-20"` so a copy-paste renders at half size.
-
-Each is a one-line fix.
-
-### 2.6 [HIGH] Demo/snippet parity for select, dialog, marquee
-
-- dialog: `importCode` is missing `NbButton` — copy-paste fails to compile ([PRE_RELEASE_AUDIT.md §dialog LOW #2](./PRE_RELEASE_AUDIT.md), promote to HIGH because the symptom is a compile error).
-- select: snippet shows 2 options, live demo shows 4 (default); same divergence on the "Option Content" section.
-- marquee: snippet uses `skills`, live demo uses `portfolioSkills`. Pick one name.
-
-### 2.7 [HIGH] Component page coverage gate (from LAUNCH.md Phase 4)
-
-Confirm every page has: 1-line description + ≥1 runnable example + API table. Spot-check with the page index after fixes from §2.1–§2.6 land.
-
-### 2.8 [HIGH] Homepage / introduction copy
-
-LAUNCH.md Phase 4: "Homepage rewrite — pitch + install command + prominent CTA to /showcase/portfolio + GitHub link". Also [PRE_RELEASE_AUDIT.md §Installation LOW #4](./PRE_RELEASE_AUDIT.md) — introduction page only links to two components.
-
-### 2.9 [NICE] All other LOW findings ([PRE_RELEASE_AUDIT.md](./PRE_RELEASE_AUDIT.md))
-
-The 20 LOW findings (wrapper divs, var-name drift, redundant attrs, etc.) are cosmetic. File a single GitHub issue listing them after publish; fix in v0.1.1 polish pass.
+Still verify these during build/smoke instead of blindly editing them again.
 
 ---
 
-## 3. Repository hygiene — BLOCK / HIGH
+## 4. Pass 1 — Release Plumbing
 
-### 3.1 [BLOCK] Repo root `README.md` is workspace-internal
+Do this pass first. Keep it mechanical. Do not draft public copy unless a tiny
+placeholder is needed to keep builds/package output working.
 
-Current root README ([README.md](./README.md)) reads like internal dev notes (talks about theming approach, lists migration breaking changes for an audience that has the repo cloned). For a public repo it should:
+### 4.1 Package
 
-- Lead with what the project is (a brutalist Angular UI library).
-- Show install + minimal usage.
-- Link to docs site + showcase.
-- Have screenshots / GIF (use the existing portfolio reference assets).
-- State the v0.x contract.
-- License badge.
+- Update `libs/ui/package.json`:
+  - version `0.1.0`
+  - description/license/author/repository/homepage/bugs/keywords
+  - `files` whitelist
+  - remove stale `esm2022` and `esm` export conditions
+- Keep `sideEffects` for CSS.
+- Add MIT `LICENSE` at repo root.
+- Configure `libs/ui/ng-package.json` so `LICENSE` is copied to `dist/ui/`.
+- Ensure `dist/ui/package.json` has no dead export paths after build.
 
-The existing technical content is valuable — move to `docs/THEMING.md` and link from README.
+### 4.2 Docs Hosting
 
-### 3.2 [BLOCK] Rename GitHub repo to `ng-brutalism`
+- Expand `apps/docs/vite.config.ts` prerender route list.
+- Add `apps/docs/public/CNAME`.
+- Confirm docs build emits static output suitable for GitHub Pages.
 
-Per LAUNCH.md Phase 1. GitHub auto-redirects the old URL. Do this *before* the README mentions the new URL so the linked badges/CI work on the new name.
+### 4.3 GitHub Actions
 
-### 3.3 [HIGH] `npm org create ng-brutalism`
+- Add `.github/workflows/ci.yml`.
+- Add `.github/workflows/deploy-docs.yml`.
+- Use Node 22, pnpm, checkout `fetch-depth: 0`.
 
-Open in LAUNCH.md Phase 1. Required to publish under `@ng-brutalism/*` scope.
+### 4.4 Repo Hygiene
 
-### 3.4 [HIGH] Add `CHANGELOG.md` at repo root
+- Remove checked-in `.DS_Store` files.
+- Add `.DS_Store` to `.gitignore` if absent.
+- Move planning docs to `docs/plans/_archive/` after this canonical plan is no
+  longer needed at root.
+- Keep `RELEASE_PLAN.md` at root until v0.1.0 publishes.
 
-For v0.1.0: short stanza summarising what's in the first release (the 16 components + foundation). Used as the release notes on GitHub Releases and (optionally) the npm description.
+### 4.5 Pass 1 Verification
 
-### 3.5 [HIGH] Add `.npmignore` or whitelist via `files` in `dist/ui/package.json`
+Run:
 
-Currently ng-packagr generates the tarball from `dist/ui/`. Verify `pnpm publish --dry-run` (see §6.3) does NOT include `TOKENS-ROLLOUT.md`, `TOKENS.md`, source `.ts` files, sourcemaps in production. Use either a `files: ["fesm2022", "types", "*.css", "README.md", "package.json"]` whitelist in `libs/ui/package.json`, OR a `.npmignore` in `dist/ui/` emitted via ng-package assets.
+```sh
+pnpm nx run-many -t lint test build --projects=ui,docs
+```
 
-### 3.6 [NICE] CI
-
-No `.github/workflows/` directory exists. For v0.1.0 not strictly required (publishing is manual per LAUNCH.md Phase 6). For v0.2+, add:
-
-- `ci.yml` — install, lint, test, build on PR.
-- `deploy-docs.yml` — Vercel deploy on main.
-- (Later) `release.yml` — Changesets-driven publish on tag.
-
-File as issues, do not block v0.1.0.
-
-### 3.7 [NICE] Tidy planning docs
-
-Once v0.1.0 ships, the planning docs at repo root (`LAUNCH.md`, `MIGRATION_TO_NG21.md`, `PRE_RELEASE_AUDIT.md`, `PRE_RELEASE_AUDIT_PLAN.md`, `CONTEXT.md`, this file) clutter the repo root for newcomers. Move to `docs/_archive/` or delete. Keep `README.md`, `CHANGELOG.md`, `LICENSE`, `CONTRIBUTING.md` (when added).
+If it fails, fix source/config and rerun until green or document the blocker.
 
 ---
 
-## 4. Verification — required before publish
+## 5. Pass 2 — Public Content
 
-Each step is a literal command and a verifiable check.
+### 5.1 Root README
 
-### 4.1 Clean build
+Rewrite root README as public-facing package README:
+
+```md
+# @ng-brutalism/ui
+
+A neo-brutalist Angular component library — Signals • Zoneless • Token-based • Tailwind v4.
+
+[badges]
+
+[Documentation](https://ngbrutalism.khangtran.dev) ·
+[npm](https://www.npmjs.com/package/@ng-brutalism/ui) ·
+[GitHub](https://github.com/khangtrannn/ng-brutalism)
+
+![demo](docs/assets/image-card-demo.gif)
+
+## Install
+
+...
+
+## What it looks like
+
+![showcase](docs/assets/showcase-portfolio.png)
+
+## Status
+
+`@ng-brutalism/ui` is pre-1.0. The component APIs are usable today, but minor
+versions may include breaking changes while the library settles.
+
+## License
+
+MIT
+```
+
+### 5.2 `libs/ui/README.md`
+
+Keep package-consumer focused:
+
+- install
+- one CSS import
+- minimal component usage
+- optional provider
+- docs URL
+- v0.x status
+- license
+
+### 5.3 CONTRIBUTING
+
+Create `CONTRIBUTING.md` with:
+
+- monorepo layout
+- local dev commands
+- how to run `pnpm serve:docs`
+- PR guidance
+- Conventional Commit prefixes welcome but not required
+- lightweight conduct section:
+
+  ```md
+  Be kind, specific, and constructive. This project is early; clear bug
+  reports, focused pull requests, and respectful design feedback are welcome.
+  ```
+
+Do not add a separate `CODE_OF_CONDUCT.md` for v0.1.0.
+
+### 5.4 CHANGELOG
+
+Create `CHANGELOG.md` using Keep a Changelog style.
+
+For v0.1.0:
+
+- date it
+- enumerate components grouped by category
+- include foundation/theming notes
+- mention pre-1.0 status
+- write it so it can be reused as GitHub release notes
+
+---
+
+## 6. Verification Gate
+
+### 6.1 Clean Build
 
 ```sh
 rm -rf dist/
@@ -219,94 +489,59 @@ pnpm nx build ui --configuration=production
 ```
 
 Verify:
-- `dist/ui/package.json` `name` = `@ng-brutalism/ui`, `version` = `0.1.0` (or chosen).
-- `dist/ui/package.json` `exports` field has no dead paths (§1.1).
-- `dist/ui/README.md` is the rewritten one (§1.2), not the Nx stub.
-- `dist/ui/LICENSE` exists (§1.3).
-- `dist/ui/fesm2022/ng-brutalism-ui.mjs` exists and is non-trivial size.
-- `dist/ui/types/ng-brutalism-ui.d.ts` exports every documented symbol (open and grep).
-- `dist/ui/styles.css` + `dist/ui/theme.css` exist.
 
-### 4.2 Lint + test
+- `dist/ui/package.json` name is `@ng-brutalism/ui`
+- version is `0.1.0`
+- no dead `esm2022` / `esm` export paths
+- `dist/ui/README.md` exists
+- `dist/ui/LICENSE` exists
+- `dist/ui/fesm2022/ng-brutalism-ui.mjs` exists
+- `dist/ui/types/` exists
+- `dist/ui/styles.css` and `dist/ui/theme.css` exist
+
+### 6.2 Lint, Test, Build
 
 ```sh
-pnpm nx run-many --target=lint --projects=ui,docs
-pnpm nx run-many --target=test --projects=ui,docs
+pnpm nx run-many -t lint test build --projects=ui,docs
 ```
 
-All must pass. If `docs` tests don't exist or are minimal, ok — `ui` must pass.
+All must pass before publish.
 
-### 4.3 Docs app builds + serves
+### 6.3 Docs Smoke
 
-```sh
-pnpm build:docs
-pnpm serve:docs
-```
+- Docs build completes without prerender errors.
+- Home / introduction / installation render.
+- Every component page renders without runtime errors.
+- `/showcase/portfolio` renders.
+- Dialog opens/closes.
+- Direct navigation to prerendered routes works.
 
-Manual smoke (browser):
-- Home / introduction / installation pages render with no console errors.
-- Each component page renders its preview without runtime errors.
-- The /showcase/portfolio route renders end-to-end.
-- Contact dialog opens and closes (SSR smoke per LAUNCH.md Phase 5).
-- View source on a copied snippet for one component (e.g. button) and verify it would compile — this catches §2.1-type bugs that the audit may have missed.
+### 6.4 Local Consume Smoke Test
 
-### 4.4 Local consume smoke test
-
-The most important check: pretend to be a downstream user.
+Mandatory before publish:
 
 ```sh
-# In ng-brutalism repo
-pnpm nx build ui
+pnpm nx build ui --configuration=production
 cd dist/ui
 npm pack
-# produces ng-brutalism-ui-0.1.0.tgz
 
-# In a fresh directory elsewhere
-mkdir /tmp/nb-smoke && cd /tmp/nb-smoke
-pnpm create @angular@21 nb-smoke-app   # or: ng new
-cd nb-smoke-app
+cd /tmp
+pnpm create @angular@21 nb-smoke
+cd nb-smoke
 pnpm add /Users/khangtrann/ng-brutalism/dist/ui/ng-brutalism-ui-0.1.0.tgz
-# Set up Tailwind v4 per docs
-# Import a component, render in app.ts, run dev server.
 ```
 
-Verify:
-- `import { NbButton } from '@ng-brutalism/ui'` resolves.
-- `import '@ng-brutalism/ui/styles.css'` resolves.
-- Component renders with theme tokens applied.
-- TypeScript catches a wrong input type (proves `.d.ts` types are real).
+Then set up Tailwind v4 using the install docs and verify:
 
-This is the single highest-leverage check. Skip nothing here.
+- `import { NbButton } from '@ng-brutalism/ui'` resolves with types
+- `@import '@ng-brutalism/ui/styles.css'` works outside the monorepo
+- render at least `NbButton`, `NbCard`, and `NbDialog`
+- an intentionally wrong input type produces a TypeScript error
+- install docs are sufficient for a new consumer
 
-### 4.5 SSR smoke
+Anything wrong here means fix, repack, and retest. Do not publish around it.
 
-LAUNCH.md Phase 5: Analog SSR renders the Showcase contact section (which uses Dialog) without exception. Run `pnpm build:docs` (which does SSR) and grep the build log for "Error" / "ExpressionChanged" / "ReferenceError".
-
-### 4.6 Deploy docs to Vercel
-
-Set the final URL. Update `homepage` field in `libs/ui/package.json` (§1.4). Rebuild.
-
----
-
-## 5. npm publish — step by step
-
-### 5.1 One-time setup
-
-```sh
-npm login                      # opens browser, sign in as the publishing account
-npm whoami                     # confirm the right account
-npm org ls ng-brutalism        # verify you're a member (or owner) of the org
-```
-
-If the org does not exist:
-
-```sh
-npm org create ng-brutalism
-```
-
-(Free orgs are fine; the package will be published as **public**.)
-
-### 5.2 Verify the package contents (dry run)
+### 6.5 Publish Dry Run
 
 ```sh
 pnpm nx build ui --configuration=production
@@ -314,116 +549,86 @@ cd dist/ui
 npm publish --dry-run --access public
 ```
 
-The dry run prints the file list that *would* be uploaded. Read it. Confirm:
+Confirm:
 
-- No `*.ts` source files (other than `.d.ts`).
-- No sourcemaps unless intentional.
-- No `node_modules/`.
-- No internal docs (`TOKENS.md`, `TOKENS-ROLLOUT.md`) unless desired.
-- `README.md`, `LICENSE`, `package.json`, `fesm2022/`, `types/`, `styles.css`, `theme.css` are present.
-- Total tarball size sane (probably <500 KB; if multi-MB, something is wrong).
+- no source `.ts` files except `.d.ts`
+- no sourcemaps
+- no `node_modules`
+- no internal planning docs
+- includes `README.md`, `LICENSE`, `package.json`, `fesm2022/`, `types/`,
+  `styles.css`, `theme.css`
+- tarball size is sane
 
-If the list is wrong, fix §3.5 and re-build, do not just `--ignore-scripts`.
+---
 
-### 5.3 Publish
+## 7. Publish
+
+```sh
+npm login
+npm whoami
+npm org ls ng-brutalism
+```
+
+The org already exists; do not run `npm org create ng-brutalism` unless
+verification proves something is wrong.
+
+Publish:
 
 ```sh
 cd dist/ui
 npm publish --access public
 ```
 
-`--access public` is **required** for the first publish of a scoped package on the free plan; without it npm defaults to private and fails.
-
-Verify within 1-2 minutes:
+Verify:
 
 ```sh
 npm view @ng-brutalism/ui
 npm view @ng-brutalism/ui dist-tags
 ```
 
-Should show `latest: 0.1.0`.
+Expected: `latest: 0.1.0`.
 
-### 5.4 Tag the release
+Tag and release:
 
 ```sh
 git tag v0.1.0
 git push origin v0.1.0
-```
-
-### 5.5 GitHub release
-
-```sh
 gh release create v0.1.0 \
   --title "v0.1.0 — Initial release" \
   --notes-file CHANGELOG.md
 ```
 
-(Or use the GitHub UI and paste the changelog stanza.)
+---
 
-### 5.6 If something goes wrong post-publish
+## 8. Post-Publish
 
-- **Wrong files shipped** — bump to `0.1.1`, fix, publish again. Do NOT `npm unpublish` if anyone might have installed; it leaves a hole in the version range and the version number can never be reused for 24h+.
-- **Within 72h of publish, package is unused** — `npm unpublish @ng-brutalism/ui@0.1.0` is acceptable. Use as the last resort, not the first.
-- **Critical bug** — `npm deprecate '@ng-brutalism/ui@0.1.0' "Critical bug; use 0.1.1+"` is the right tool; never unpublish a known-installed version.
-
-### 5.7 Optional: pre-release dry run first
-
-If 0.1.0 feels too final for a first publish, use `0.1.0-rc.0` with `--tag rc`:
-
-```sh
-# in libs/ui/package.json set "version": "0.1.0-rc.0"
-pnpm nx build ui --configuration=production
-cd dist/ui
-npm publish --access public --tag rc
-```
-
-This publishes under the `rc` dist-tag so `pnpm add @ng-brutalism/ui` still resolves to nothing (latest is unset). Install via `pnpm add @ng-brutalism/ui@rc` to test. When ready, publish `0.1.0` under `latest`. Recommended only if a real consumer is available to install the rc.
+- Announce on LinkedIn after npm and docs are verified.
+- Within 48h: r/angular, dev.to, X/Twitter.
+- Enable branch protection on `main`.
+- File v0.2 issues:
+  - Dependabot
+  - Changesets / release automation
+  - automated smoke-test script
+  - Sheet / Tooltip / Toast / Skeleton
+  - per-component accessibility docs
+  - recipe/cookbook pages
+  - remaining low-priority audit polish
 
 ---
 
-## 6. Announcement — after publish lands
+## 9. Anti-Decisions
 
-Per LAUNCH.md Phase 6. Do NOT post until:
-- `npm view @ng-brutalism/ui` returns 0.1.0.
-- Docs site URL works and looks correct on mobile + desktop.
-- A fresh `pnpm add @ng-brutalism/ui` in a clean Angular project actually renders a component.
-- The README on the npm package page (visit https://www.npmjs.com/package/@ng-brutalism/ui) looks correct, not the stub.
+Do not re-open these for v0.1.0:
 
-Then:
-
-1. LinkedIn post (Tue/Wed morning local time, stay online ~4h).
-2. Within 48h: r/angular, dev.to long-form, X/Twitter short.
-3. Skip Hacker News (per LAUNCH.md).
-
-The post angle is parked per LAUNCH.md — maintainer decides at post time. Default recommendation: dogfooding + visual lead, portfolio screenshot, three links (portfolio / npm / GitHub), soft CTA.
-
----
-
-## 7. Order of operations (suggested)
-
-A reasonable serialisation, smallest blast radius first:
-
-1. **Library impl fixes** (§1.6 – §1.10) — break the API now if at all.
-2. **Library packaging fixes** (§1.1 – §1.5) — metadata, version, exports, README, LICENSE.
-3. **Docs fixes** (§2.1 – §2.8) — BLOCK and HIGH only.
-4. **Repo hygiene** (§3.1 – §3.5) — README, repo rename, npm org, changelog.
-5. **Verification gate** (§4.1 – §4.6) — clean build, smoke test, deploy docs.
-6. **Publish** (§5.1 – §5.5).
-7. **Announce** (§6).
-
-If any step in §4 fails, loop back to the relevant fix section; do not paper over.
-
----
-
-## 8. Out of scope for v0.1.0
-
-Filed (or to file) as GitHub issues:
-
-- Sheet, Tooltip, Sonner/Toast, Navigation Menu, Skeleton (per LAUNCH.md).
-- Per-component accessibility documentation.
-- Recipes / cookbook page.
-- Changesets release automation (the `release` script in [package.json](./package.json) references it but no `.changeset/` config exists).
-- Analytics on the docs site.
-- Contribution guide.
-- CI workflows.
-- The 20 LOW findings from [PRE_RELEASE_AUDIT.md](./PRE_RELEASE_AUDIT.md).
+- no RC dist-tag
+- no GitHub org
+- no per-component package entrypoints
+- no MP4 README hero
+- no `release.yml`
+- no Dependabot
+- no Changesets
+- no branch protection during release prep
+- no SSR runtime
+- no Cloudflare orange-cloud proxy for docs domain
+- no Hacker News launch
+- no automated smoke-test script
