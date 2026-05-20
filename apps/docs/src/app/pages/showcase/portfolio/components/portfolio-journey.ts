@@ -81,7 +81,7 @@ const INITIAL_ZOOM = 2;
               </button>
             </div>
 
-            <div class="relative flex-1 overflow-y-auto p-3 sm:p-4 md:p-6">
+            <div class="portfolio-journey-timeline-scroll relative flex-1 overflow-y-auto p-3 sm:p-4 md:p-6">
               @for (entry of timeline(); track entry.id; let index = $index) {
               <button
                 class="relative w-full cursor-pointer rounded-md border-l-4 border-transparent py-3 pl-10 pr-2 text-left transition-colors duration-200 hover:bg-gray-100 sm:py-4 sm:pl-14 sm:pr-4 md:pl-16"

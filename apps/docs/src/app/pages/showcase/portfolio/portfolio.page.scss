@@ -231,6 +231,19 @@
   }
 }
 
+.portfolio-journey-timeline-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: var(--nb-border, #000) transparent;
+
+  &::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: var(--nb-border, #000);
+  }
+}
+
 .portfolio-map-control {
   display: grid;
   width: 2.25rem;

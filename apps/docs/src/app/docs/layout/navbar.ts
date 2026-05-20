@@ -124,7 +124,7 @@ import { DocsNavbarExternalLinkIcon } from './navbar.icons';
       transition: transform 120ms, background-color 120ms;
     }
 
-    .nav-link:hover {
+    .nav-link:hover:not(.nav-link-active) {
       background: var(--nb-secondary-background);
       transform: translateY(-1px);
     }
