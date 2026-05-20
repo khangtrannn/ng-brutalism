@@ -2,6 +2,7 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 import {
   NbButton,
   NbCard,
+  NbCardAction,
   NbCardContent,
   NbCardDescription,
   NbCardFooter,
@@ -25,6 +26,7 @@ import JobListingCardExampleComponent from './examples/job-listing-card';
         JobListingCardExampleComponent,
         NbButton,
         NbCard,
+        NbCardAction,
         NbCardContent,
         NbCardDescription,
         NbCardFooter,
@@ -179,6 +181,33 @@ import JobListingCardExampleComponent from './examples/job-listing-card';
         </div>
       </section>
 
+      <section id="action-slot">
+        <h2 class="mt-10 mb-4 text-2xl font-bold">Action slot</h2>
+        <p class="mb-4 text-sm font-medium">
+          Drop <code class="font-mono text-sm">&lt;nb-card-action&gt;</code>
+          inside the header to anchor a control to the top-right. The header
+          switches to a two-column grid automatically when the action is present.
+        </p>
+        <docs-example [code]="actionSlotExampleCode">
+          <nb-card class="w-full max-w-sm">
+            <nb-card-header>
+              <nb-card-title>Notifications</nb-card-title>
+              <nb-card-description>
+                You have 3 unread messages.
+              </nb-card-description>
+              <nb-card-action>
+                <button nbButton size="sm" variant="neutral">Mark all read</button>
+              </nb-card-action>
+            </nb-card-header>
+            <nb-card-content>
+              <p class="text-sm">
+                Check your inbox for the latest updates from your team.
+              </p>
+            </nb-card-content>
+          </nb-card>
+        </docs-example>
+      </section>
+
       <docs-tokens component="card" />
     </article>
   `,
@@ -218,6 +247,23 @@ export default class CardPageComponent {
   \`,
 })
 export class CardDemoComponent {}`;
+
+  protected readonly actionSlotExampleCode = `<nb-card class="w-full max-w-sm">
+  <nb-card-header>
+    <nb-card-title>Notifications</nb-card-title>
+    <nb-card-description>
+      You have 3 unread messages.
+    </nb-card-description>
+    <nb-card-action>
+      <button nbButton size="sm" variant="neutral">Mark all read</button>
+    </nb-card-action>
+  </nb-card-header>
+  <nb-card-content>
+    <p class="text-sm">
+      Check your inbox for the latest updates from your team.
+    </p>
+  </nb-card-content>
+</nb-card>`;
 
   protected readonly simpleExampleCode = `<nb-card class="w-full max-w-sm">
   <nb-card-header>
