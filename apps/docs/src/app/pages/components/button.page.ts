@@ -1,10 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import {
-  NbAccordionTrigger,
-  NbButton,
-  NbAccordionItem,
-  NbAccordion,
-} from '@ng-brutalism/ui';
+import { NbButton } from '@ng-brutalism/ui';
 
 import { DocsCodeBlock } from '../../docs/docs-code-block';
 import { DocsExample } from '../../docs/docs-example';
@@ -260,7 +255,9 @@ import { DocsTokens } from '../../docs/docs-tokens';
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export default class ButtonPageComponent {
-  protected readonly defaultExampleCode = `<button nbButton variant="neutral" style="--nb-button-bg: var(--nb-warning)">Button</button>`;
+  protected readonly defaultExampleCode = `<button nbButton>
+  Button
+</button>`;
 
   protected readonly importCode = `import { NbButton } from '@ng-brutalism/ui';`;
 
@@ -276,35 +273,32 @@ export default class ButtonPageComponent {
 </div>`;
 
   protected readonly sizesExampleCode = `<div class="flex flex-wrap items-center justify-center gap-3">
-  <button nbButton size="sm" variant="neutral" style="--nb-button-bg: var(--nb-warning)">Small</button>
-  <button nbButton variant="neutral" style="--nb-button-bg: var(--nb-warning)">Default</button>
-  <button nbButton size="lg" variant="neutral" style="--nb-button-bg: var(--nb-warning)">Large</button>
-  <button nbButton size="icon" variant="neutral" aria-label="Add" style="--nb-button-bg: var(--nb-warning)">+</button>
+  <button nbButton size="sm">Small</button>
+  <button nbButton>Default</button>
+  <button nbButton size="lg">Large</button>
 </div>`;
 
   protected readonly fullWidthExampleCode = `<div class="w-full max-w-md">
-  <button nbButton variant="neutral" [fullWidth]="true" style="--nb-button-bg: var(--nb-warning)">
+  <button nbButton [fullWidth]="true">
     Full width button
   </button>
 </div>`;
 
   protected readonly disabledExampleCode = `<div class="flex flex-wrap items-center justify-center gap-4">
-  <button nbButton variant="neutral" disabled style="--nb-button-bg: var(--nb-warning)">Disabled button</button>
-  <a nbButton href="#" aria-disabled="true" style="--nb-button-bg: var(--nb-warning)">Disabled link style</a>
+  <button nbButton disabled>Disabled button</button>
+  <a nbButton href="#" aria-disabled="true">Disabled link style</a>
 </div>`;
 
   protected readonly anchorExampleCode = `<div class="flex flex-wrap items-center justify-center gap-4">
-  <a nbButton href="https://angular.dev" target="_blank" rel="noreferrer" style="--nb-button-bg: var(--nb-warning)">
+  <a nbButton href="https://angular.dev" target="_blank" rel="noreferrer">
     Angular Docs
   </a>
 
   <a
     nbButton
-    variant="neutral"
     href="https://github.com/khangtrannn/ng-brutalism"
     target="_blank"
     rel="noreferrer"
-    style="--nb-button-bg: var(--nb-warning)"
   >
     GitHub Repo
   </a>
