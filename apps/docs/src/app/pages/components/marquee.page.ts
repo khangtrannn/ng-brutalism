@@ -59,7 +59,7 @@ interface MarqueeSkill {
         <h2 class="mt-10 mb-4 text-2xl font-bold">Preview</h2>
         <docs-example [code]="defaultExampleTemplateCode">
           <nb-marquee class="w-full" duration="10s">
-            @for (skill of portfolioSkills; track skill.text) {
+            @for (skill of skills; track skill.text) {
               <nb-marquee-item>
                 <span class="mx-4 flex items-center sm:mx-6 lg:mx-8">
                   <img
@@ -99,7 +99,7 @@ interface MarqueeSkill {
         <h2 class="mt-10 mb-4 text-2xl font-bold">Reverse</h2>
         <docs-example [code]="reverseExampleCode">
           <nb-marquee class="w-full" duration="10s" [reverse]="true">
-            @for (skill of portfolioSkills; track skill.text) {
+            @for (skill of skills; track skill.text) {
               <nb-marquee-item>
                 <span class="mx-4 flex items-center sm:mx-6 lg:mx-8">
                   <img
@@ -123,8 +123,8 @@ interface MarqueeSkill {
       <section id="custom-speed">
         <h2 class="mt-10 mb-4 text-2xl font-bold">Custom speed</h2>
         <docs-example [code]="customSpeedExampleCode">
-          <nb-marquee class="w-full" duration="10s">
-            @for (skill of portfolioSkills; track skill.text) {
+          <nb-marquee class="w-full" duration="20s">
+            @for (skill of skills; track skill.text) {
               <nb-marquee-item>
                 <span class="mx-4 flex items-center sm:mx-6 lg:mx-8">
                   <img
@@ -146,14 +146,14 @@ interface MarqueeSkill {
       </section>
 
       <section id="pause-on-hover">
-        <h2 class="mt-10 mb-4 text-2xl font-bold">Pause on hover</h2>
+        <h2 class="mt-10 mb-4 text-2xl font-bold">Disable pause</h2>
         <docs-example [code]="pauseOnHoverExampleCode">
           <nb-marquee
             class="w-full"
             duration="10s"
-            [pauseOnHover]="true"
+            [pauseOnHover]="false"
           >
-            @for (skill of portfolioSkills; track skill.text) {
+            @for (skill of skills; track skill.text) {
               <nb-marquee-item>
                 <span class="mx-4 flex items-center sm:mx-6 lg:mx-8">
                   <img
@@ -303,7 +303,7 @@ protected readonly skills: Skill[] = [
   }
 </nb-marquee>`;
 
-  protected readonly portfolioSkills: MarqueeSkill[] = [
+  protected readonly skills: MarqueeSkill[] = [
     { text: 'ArcGIS', iconSlug: 'arcgis', iconLabel: 'ArcGIS' },
     { text: 'QGIS', iconSlug: 'qgis', iconLabel: 'QGIS' },
     { text: 'Docker', iconSlug: 'docker', iconLabel: 'Docker' },
@@ -325,17 +325,19 @@ protected readonly skills: Skill[] = [
     { text: 'Version Control', iconSlug: 'git', iconLabel: 'Git' },
   ];
 
-  protected readonly portfolioSkillsExampleCode = this.defaultExampleTemplateCode;
 
   protected readonly reverseExampleCode = this.defaultExampleTemplateCode.replace(
     'duration="10s"',
     'duration="10s" [reverse]="true"'
   );
 
-  protected readonly customSpeedExampleCode = this.defaultExampleTemplateCode;
+  protected readonly customSpeedExampleCode = this.defaultExampleTemplateCode.replace(
+    'duration="10s"',
+    'duration="20s"'
+  );
 
   protected readonly pauseOnHoverExampleCode = this.defaultExampleTemplateCode.replace(
     'duration="10s"',
-    'duration="10s" [pauseOnHover]="true"'
+    'duration="10s" [pauseOnHover]="false"'
   );
 }
