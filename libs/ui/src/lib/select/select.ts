@@ -42,7 +42,7 @@ let nextSelectId = 0;
       (click)="toggle()"
       (keydown)="onTriggerKeydown($event)"
     >
-      <span class="min-w-0 flex-1 truncate text-left">
+      <span [class]="valueClasses()">
         {{ selectedLabel() || placeholder() }}
       </span>
 
@@ -139,6 +139,13 @@ export class NbSelectComponent implements NbSelectController, OnInit {
         : ['flex-1 min-w-0 bg-transparent px-5 focus-visible:outline-none']
     );
   });
+
+  protected readonly valueClasses = computed(() =>
+    nbClass(
+      'min-w-0 flex-1 truncate text-left',
+      this.selectedLabel() ? 'text-(--nb-select-fg)' : 'text-gray-400'
+    )
+  );
 
   protected readonly listboxClasses = nbClass(
     'absolute z-50 top-[calc(100%+8px)]',

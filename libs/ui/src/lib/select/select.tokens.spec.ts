@@ -59,6 +59,7 @@ describe('NbSelectComponent token surface', () => {
     expect(cls).toContain('rounded-(--nb-select-radius)');
     expect(cls).toContain('focus-within:ring-(--nb-select-border)');
     expect(trigger.className).toContain('text-(--nb-select-fg)');
+    expect(findTriggerText(fixture).className).toContain('text-gray-400');
     expect(cls).not.toContain('bg-(--nb-input-bg');
     expect(cls).not.toContain('bg-(--nb-field-bg)');
     expect(cls).not.toContain('border-(--nb-border)');
@@ -111,6 +112,15 @@ describe('NbSelectComponent token surface', () => {
     expect(trigger.className).toContain('font-mono');
     expect(trigger.className).toContain('font-bold');
     expect(trigger.className).toContain('bg-transparent');
+  });
+
+  it('uses the same placeholder color as inputs and textareas', async () => {
+    const fixture = await createFixture(SelectTokenTestComponent);
+    const value = findTriggerText(fixture);
+
+    expect(value.textContent?.trim()).toBe('Pick one');
+    expect(value.className).toContain('text-gray-400');
+    expect(value.className).not.toContain('text-(--nb-select-fg)');
   });
 });
 
@@ -190,6 +200,12 @@ function findTrigger(
   return fixture.nativeElement.querySelector(
     'button[aria-haspopup="listbox"]'
   ) as HTMLButtonElement;
+}
+
+function findTriggerText(
+  fixture: ComponentFixture<SelectTokenTestComponent>
+): HTMLSpanElement {
+  return findTrigger(fixture).querySelector('span') as HTMLSpanElement;
 }
 
 function findNativeSelect(
