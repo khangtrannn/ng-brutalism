@@ -4,7 +4,7 @@ import { describe, expect, it } from 'vitest';
 
 import {
   NbDialogActions,
-  NbDialogComponent,
+  NbDialog,
   NbDialogContent,
   NbDialogDescription,
   NbDialogTitle,
@@ -13,7 +13,7 @@ import {
 @Component({
   standalone: true,
   imports: [
-    NbDialogComponent,
+    NbDialog,
     NbDialogTitle,
     NbDialogDescription,
     NbDialogContent,
