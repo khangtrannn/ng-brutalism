@@ -5,7 +5,7 @@ import {
   withInterceptors,
 } from '@angular/common/http';
 import { provideClientHydration } from '@angular/platform-browser';
-import { TitleStrategy } from '@angular/router';
+import { TitleStrategy, withInMemoryScrolling } from '@angular/router';
 import {
   provideFileRouter,
   requestContextInterceptor,
@@ -19,6 +19,10 @@ export const appConfig: ApplicationConfig = {
   providers: [
     provideZonelessChangeDetection(),
     provideFileRouter(
+      withInMemoryScrolling({
+        anchorScrolling: 'enabled',
+        scrollPositionRestoration: 'enabled',
+      }),
       withExtraRoutes([
         {
           path: '',

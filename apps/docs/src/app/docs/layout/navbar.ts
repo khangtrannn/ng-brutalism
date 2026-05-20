@@ -25,7 +25,7 @@ import { filter } from 'rxjs';
           aria-label="Ng Neo Brutalism home"
         >
           <img
-            class="h-14 w-14 border-4 border-(--nb-border) bg-(--nb-yellow) object-contain p-1.5 shadow-[4px_4px_0_0_var(--nb-shadow)] transition-transform group-hover:-rotate-6"
+            class="h-14 w-14 border-4 border-(--nb-border) bg-(--nb-yellow) object-contain shadow-[4px_4px_0_0_var(--nb-shadow)] transition-transform group-hover:-rotate-6"
             src="/logo.png"
             alt=""
             width="56"

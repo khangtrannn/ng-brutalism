@@ -14,7 +14,7 @@
 
   --nb-primary: #ff90e8;
   --nb-primary-foreground: #000000;
-  --nb-secondary: #ffd84d;
+  --nb-secondary: #c8a2ff;
   --nb-secondary-foreground: #000000;
   --nb-accent: #8ae9ff;
   --nb-accent-foreground: #000000;
@@ -22,7 +22,7 @@
   --nb-danger-foreground: #000000;
   --nb-success: #63e6be;
   --nb-success-foreground: #000000;
-  --nb-warning: #ffd24a;
+  --nb-warning: #ff9c42;
   --nb-warning-foreground: #000000;
 
   /* Shape */

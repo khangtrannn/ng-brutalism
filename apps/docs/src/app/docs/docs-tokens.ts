@@ -426,7 +426,7 @@ const componentTokens: Record<DocsTokenComponent, DocsToken[]> = {
     },
     {
       name: '--nb-secondary',
-      defaultValue: '#ffd84d',
+      defaultValue: '#c8a2ff',
       usage: 'Secondary accent color',
     },
     {
@@ -466,7 +466,7 @@ const componentTokens: Record<DocsTokenComponent, DocsToken[]> = {
     },
     {
       name: '--nb-warning',
-      defaultValue: '#ffd24a',
+      defaultValue: '#ff9c42',
       usage: 'Warning states',
     },
     {

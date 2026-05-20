@@ -63,7 +63,7 @@ import { DocsTokens } from '../../docs/docs-tokens';
         <docs-example [code]="exampleCode">
           <nb-accordion class="block w-full max-w-xl" collapsible>
             <nb-accordion-item>
-              <nb-accordion-trigger>Is it accessible?</nb-accordion-trigger>
+              <nb-accordion-trigger>Lorem, ipsum dolor.</nb-accordion-trigger>
               <nb-accordion-content>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit.
               </nb-accordion-content>
@@ -417,7 +417,7 @@ export default class AccordionPageComponent {
 
   protected readonly exampleCode = `<nb-accordion class="block w-full max-w-xl" collapsible>
   <nb-accordion-item>
-    <nb-accordion-trigger>Is it accessible?</nb-accordion-trigger>
+    <nb-accordion-trigger>Lorem, ipsum dolor.</nb-accordion-trigger>
     <nb-accordion-content>
       Lorem ipsum dolor sit amet, consectetur adipiscing elit.
     </nb-accordion-content>
