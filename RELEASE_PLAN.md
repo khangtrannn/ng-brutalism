@@ -135,7 +135,12 @@ Use this package metadata in `libs/ui/package.json`:
     "signals",
     "zoneless",
     "design-system"
-  ]
+  ],
+  "peerDependencies": {
+    "@angular/common": "^21.0.0",
+    "@angular/core": "^21.0.0",
+    "tailwindcss": "^4.0.0"
+  }
 }
 ```
 
@@ -148,6 +153,11 @@ In `exports["."]`, remove the stale conditions:
 
 Keep the `default` fesm2022 and `types` entries.
 
+Do not add `@angular/forms` as a peer dependency for v0.1.0. The library does
+not currently import Angular forms APIs or document form-control integration.
+Revisit if a shipped component imports `@angular/forms`, implements
+`ControlValueAccessor`, or documents `ngModel` / reactive forms usage.
+
 ### 2.4 Package Contents
 
 Use a `files` whitelist in `libs/ui/package.json`:
@@ -158,6 +168,7 @@ Use a `files` whitelist in `libs/ui/package.json`:
   "types/",
   "*.css",
   "README.md",
+  "CHANGELOG.md",
   "LICENSE",
   "package.json"
 ]
@@ -169,6 +180,7 @@ Ship only:
 - type declarations
 - published CSS entrypoints
 - `README.md`
+- `CHANGELOG.md`
 - `LICENSE`
 - `package.json`
 
@@ -212,6 +224,21 @@ included in the npm tarball. Verify with `npm publish --dry-run`.
 - Target asset paths:
   - `docs/assets/image-card-demo.gif`, under 2 MB
   - `docs/assets/showcase-portfolio.png`, under 300 KB
+- Binaries live **once** at the paths above. Do not duplicate them into
+  `libs/ui/` and do not ship them in the npm tarball.
+- Root `README.md` (GitHub-facing) references the assets with **relative**
+  paths: `docs/assets/image-card-demo.gif`.
+- `libs/ui/README.md` (npm-facing) references the **same** assets with
+  **absolute raw GitHub URLs pinned to `main`** so npm.com renders them:
+
+  ```md
+  ![demo](https://raw.githubusercontent.com/khangtrannn/ng-brutalism/main/docs/assets/image-card-demo.gif)
+  ![showcase](https://raw.githubusercontent.com/khangtrannn/ng-brutalism/main/docs/assets/showcase-portfolio.png)
+  ```
+
+  Trade-off accepted: if the repo is renamed or made private, old npm
+  versions' README images break. Solo/public repo makes this acceptable for
+  v0.1.0; tag-pinned URLs can be revisited later.
 - Do not use MP4 for the README hero; npm pages do not reliably render it.
 - Raw planning assets may exist elsewhere in the repo. During the README/content
   pass, optimize or replace them and commit the final files under `docs/assets/`.
@@ -289,19 +316,32 @@ Baseline accessibility before publish:
 
 ### 2.8 CI / CD
 
-Add two workflows for v0.1.0:
+Add two workflows for v0.1.0.
 
-- `.github/workflows/ci.yml` for pull requests and manual dispatch:
-  `pnpm nx affected -t lint test build --base=origin/main`
-- `.github/workflows/deploy-docs.yml` for push to `main` and manual dispatch:
-  `pnpm nx run-many -t lint test --projects=ui,docs`, then
-  `pnpm nx build docs --configuration=production`, then deploy GitHub Pages
+**`.github/workflows/ci.yml`** — pull requests and manual dispatch:
 
-Use:
+- Workflow `name: CI` and job id `verify`. This pins the required status
+  check name to `CI / verify`, which §2.9 references in branch protection.
+  Do not rename either without updating §2.9.
+- Steps in order:
+  1. `actions/checkout@v4` with `fetch-depth: 0`
+  2. `pnpm/action-setup@v4`
+  3. `actions/setup-node@v4` with Node 22 and pnpm cache
+  4. `nrwl/nx-set-shas@v4` — sets `NX_BASE` / `NX_HEAD` so `nx affected`
+     resolves the PR base correctly. Do NOT pass `--base=origin/main`
+     explicitly; that ref is not reliably available on PR runners.
+  5. `actions/cache@v4` for the Nx local cache (`.nx/cache`), keyed on
+     `pnpm-lock.yaml`. No Nx Cloud for v0.1.0 (extra signup, no
+     cache-sharing benefit while solo).
+  6. `pnpm install --frozen-lockfile`
+  7. `pnpm nx affected -t lint test build`
 
-- `actions/checkout@v4` with `fetch-depth: 0`
-- `pnpm/action-setup@v4`
-- `actions/setup-node@v4` with Node 22 and pnpm cache
+**`.github/workflows/deploy-docs.yml`** — push to `main` and manual dispatch:
+
+- Same setup steps (checkout, pnpm, node, install).
+- `pnpm nx run-many -t lint test --projects=ui,docs`
+- `pnpm nx build docs --configuration=production`
+- Deploy `dist/apps/docs/client` to GitHub Pages.
 
 No `release.yml`, Dependabot, Changesets, or release automation for v0.1.0.
 
@@ -310,7 +350,8 @@ No `release.yml`, Dependabot, Changesets, or release automation for v0.1.0.
 Branch protection is flipped after v0.1.0 publishes:
 
 - require pull request before merging
-- require status check `CI / verify`
+- require status check `CI / verify` (this name comes from §2.8: workflow
+  `name: CI` + job id `verify`; keep both in sync)
 - no required approvals while solo
 - no required linear history
 - do not include administrators
@@ -343,8 +384,29 @@ Already done or user-confirmed:
 - `NbSelectSize` appears to be removed.
 - Input-group internals appear to be hidden.
 - Card docs selectors appear to be corrected to `nb-card*`.
+- Static docs/API audit already exists in `PRE_RELEASE_AUDIT.md`.
+  All original findings are marked resolved as of 2026-05-20.
 
 Still verify these during build/smoke instead of blindly editing them again.
+Do not rerun the full static audit for v0.1.0 unless later edits reopen docs/API
+drift; use the normal build, docs smoke, and local consume smoke tests instead.
+
+### 3.1 Pre-Pass-1 Drift Check
+
+Run this checklist before starting Pass 1. Each command MUST return zero
+matches; if any returns a hit, that "appears to be done" item is not actually
+done — pause and fix before continuing.
+
+```sh
+grep -rE "\bNbDensity\b|\bNB_DENSITY\b" libs/ui/src/
+grep -rE "\bNbSelectSize\b" libs/ui/src/
+grep -rE "NbDialogComponent" libs/ui/src/
+grep -rE "\*Component\b" libs/ui/src/lib/
+grep -E "export" libs/ui/src/index.ts | grep -iE "density|selectsize"
+```
+
+This is a binary gate, not a full audit. Deeper API surface verification is
+deferred to §6.4 (local consume smoke test) and v0.2.
 
 ---
 
@@ -358,18 +420,33 @@ placeholder is needed to keep builds/package output working.
 - Update `libs/ui/package.json`:
   - version `0.1.0`
   - description/license/author/repository/homepage/bugs/keywords
+  - peer dependency `tailwindcss: ^4.0.0`
   - `files` whitelist
+  - include `CHANGELOG.md` in the `files` whitelist
   - remove stale `esm2022` and `esm` export conditions
 - Keep `sideEffects` for CSS.
 - Add MIT `LICENSE` at repo root.
-- Configure `libs/ui/ng-package.json` so `LICENSE` is copied to `dist/ui/`.
+  - Use SPDX canonical MIT text.
+  - Copyright line: `Copyright (c) 2026 Khang Tran` (no email; `author` field
+    in `package.json` already carries it).
+- Configure `libs/ui/ng-package.json` so `LICENSE` is copied to `dist/ui/`
+  via the existing `assets` array (same mechanism as the CSS copy):
+
+  ```json
+  "assets": [
+    { "glob": "*.css", "input": "src/lib/styles", "output": "." },
+    { "glob": "LICENSE", "input": "../../", "output": "." }
+  ]
+  ```
+
 - Ensure `dist/ui/package.json` has no dead export paths after build.
 
 ### 4.2 Docs Hosting
 
 - Expand `apps/docs/vite.config.ts` prerender route list.
 - Add `apps/docs/public/CNAME`.
-- Confirm docs build emits static output suitable for GitHub Pages.
+- Confirm docs build emits static output in `dist/apps/docs/client` suitable for
+  GitHub Pages.
 
 ### 4.3 GitHub Actions
 
@@ -381,6 +458,17 @@ placeholder is needed to keep builds/package output working.
 
 - Remove checked-in `.DS_Store` files.
 - Add `.DS_Store` to `.gitignore` if absent.
+- Move completed audit docs to `docs/plans/_archive/`:
+  - `PRE_RELEASE_AUDIT_PLAN.md`
+  - `PRE_RELEASE_AUDIT.md`
+- Update `RELEASE_PLAN.md` references to the archived audit paths when moving
+  those files.
+- Remove dormant Changesets setup:
+  - delete the root `release` script that runs `changeset publish`
+  - remove `@changesets/cli` from dev dependencies
+  - delete `.changeset/config.json`
+  - update the lockfile through the package manager
+- Reintroduce Changesets from scratch in v0.2 if release automation is adopted.
 - Move planning docs to `docs/plans/_archive/` after this canonical plan is no
   longer needed at root.
 - Keep `RELEASE_PLAN.md` at root until v0.1.0 publishes.
@@ -436,12 +524,18 @@ MIT
 
 ### 5.2 `libs/ui/README.md`
 
-Keep package-consumer focused:
+This file is what npm.com displays as the package page. Keep it
+package-consumer focused, but include the hero GIF and portfolio screenshot
+(see §2.5 for the raw GitHub URL form). Sections:
 
+- title + tagline (same canonical sentence as root README)
+- nav row (Documentation · npm · GitHub)
+- hero GIF (raw GitHub URL, pinned to `main`)
 - install
 - one CSS import
 - minimal component usage
 - optional provider
+- "What it looks like" with the portfolio screenshot (raw GitHub URL)
 - docs URL
 - v0.x status
 - license
@@ -476,6 +570,10 @@ For v0.1.0:
 - mention pre-1.0 status
 - write it so it can be reused as GitHub release notes
 
+Also create `docs/plans/_archive/RELEASE_NOTES_v0.1.0.md` with only the v0.1.0
+release notes copied from the changelog section. Use this file for the GitHub
+release so tag notes do not include future changelog sections.
+
 ---
 
 ## 6. Verification Gate
@@ -494,6 +592,7 @@ Verify:
 - version is `0.1.0`
 - no dead `esm2022` / `esm` export paths
 - `dist/ui/README.md` exists
+- `dist/ui/CHANGELOG.md` exists
 - `dist/ui/LICENSE` exists
 - `dist/ui/fesm2022/ng-brutalism-ui.mjs` exists
 - `dist/ui/types/` exists
@@ -535,6 +634,7 @@ Then set up Tailwind v4 using the install docs and verify:
 
 - `import { NbButton } from '@ng-brutalism/ui'` resolves with types
 - `@import '@ng-brutalism/ui/styles.css'` works outside the monorepo
+- install produces no missing peer warnings when Tailwind CSS v4 is present
 - render at least `NbButton`, `NbCard`, and `NbDialog`
 - an intentionally wrong input type produces a TypeScript error
 - install docs are sufficient for a new consumer
@@ -556,8 +656,39 @@ Confirm:
 - no `node_modules`
 - no internal planning docs
 - includes `README.md`, `LICENSE`, `package.json`, `fesm2022/`, `types/`,
-  `styles.css`, `theme.css`
-- tarball size is sane
+  `styles.css`, `theme.css`, `CHANGELOG.md`
+- packed tarball size is under 250 KB
+- unpacked package size is under 1 MB
+
+If either size budget is exceeded, inspect `npm publish --dry-run` output and
+remove accidental files before publishing.
+
+### 6.6 Git State Gate
+
+Before publishing:
+
+```sh
+git status --short
+git push origin main
+```
+
+Required state:
+
+- all release files are committed
+- `git status --short` is empty
+- `main` is pushed before `npm publish`
+- README raw GitHub asset URLs resolve from `main`
+- GitHub Pages deploy has completed successfully from `main`
+- `https://ngbrutalism.khangtran.dev` loads the release docs
+- key direct docs routes work:
+  - `/docs/introduction`
+  - `/docs/installation`
+  - `/components/button`
+  - `/components/dialog`
+  - `/showcase/portfolio`
+
+Do not publish from an uncommitted, unpushed, failed-docs, pending-docs, or
+stale-docs release state.
 
 ---
 
@@ -572,7 +703,14 @@ npm org ls ng-brutalism
 The org already exists; do not run `npm org create ng-brutalism` unless
 verification proves something is wrong.
 
-Publish:
+Tag before npm publish:
+
+```sh
+git tag v0.1.0
+git push origin v0.1.0
+```
+
+Publish npm:
 
 ```sh
 cd dist/ui
@@ -588,15 +726,15 @@ npm view @ng-brutalism/ui dist-tags
 
 Expected: `latest: 0.1.0`.
 
-Tag and release:
+Create the public GitHub release only after npm verification succeeds:
 
 ```sh
-git tag v0.1.0
-git push origin v0.1.0
 gh release create v0.1.0 \
   --title "v0.1.0 — Initial release" \
-  --notes-file CHANGELOG.md
+  --notes-file docs/plans/_archive/RELEASE_NOTES_v0.1.0.md
 ```
+
+Do not create the public GitHub release before npm publish succeeds.
 
 ---
 
@@ -605,6 +743,12 @@ gh release create v0.1.0 \
 - Announce on LinkedIn after npm and docs are verified.
 - Within 48h: r/angular, dev.to, X/Twitter.
 - Enable branch protection on `main`.
+- After v0.1.0 is published, docs are verified, and the first announcement is
+  posted, move `RELEASE_PLAN.md` to
+  `docs/plans/_archive/RELEASE_PLAN_v0.1.0.md`.
+- Keep root clean for product/contributor-facing files. Do not archive
+  `RELEASE_PLAN.md` before publish; it remains the active source of truth until
+  v0.1.0 is complete.
 - File v0.2 issues:
   - Dependabot
   - Changesets / release automation
