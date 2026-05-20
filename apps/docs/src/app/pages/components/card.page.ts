@@ -224,39 +224,6 @@ import JobListingCardExampleComponent from './examples/job-listing-card';
         </docs-example>
       </section>
 
-      <section id="footer-actions">
-        <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">
-          Footer with actions
-        </h2>
-        <p class="mb-4 text-sm font-medium">
-          Combine <code class="font-mono text-sm">&lt;nb-card-footer&gt;</code>
-          with actions when the bottom row needs both metadata and commands.
-        </p>
-        <docs-example [code]="footerActionsExampleCode">
-          <nb-card class="w-full max-w-xl">
-            <nb-card-header>
-              <nb-card-title>Senior Frontend Engineer</nb-card-title>
-              <nb-card-description>Inspectorio</nb-card-description>
-            </nb-card-header>
-            <nb-card-content>
-              <p class="text-sm">
-                Build delightful UI systems and scalable web experiences.
-              </p>
-            </nb-card-content>
-            <nb-card-footer class="border-t">
-              <div class="space-y-2 text-sm">
-                <p>Ho Chi Minh City / Remote</p>
-                <p>Posted 2 days ago</p>
-              </div>
-              <nb-card-actions align="end">
-                <button nbButton>Apply</button>
-                <button nbButton variant="primary">Save</button>
-              </nb-card-actions>
-            </nb-card-footer>
-          </nb-card>
-        </docs-example>
-      </section>
-
       <docs-tokens component="card" />
     </article>
   `,
