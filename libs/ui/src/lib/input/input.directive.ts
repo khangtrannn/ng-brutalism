@@ -32,7 +32,7 @@ export class NbInput {
       'placeholder:text-gray-400',
       'file:h-full file:py-0 file:my-0 file:mr-3 file:px-3',
       'file:cursor-pointer file:text-sm file:font-bold',
-      'file:bg-(--nb-secondary) file:text-(--nb-secondary-foreground)',
+      'file:bg-(--nb-main) file:text-(--nb-main-foreground)',
       'file:border-0 file:border-r-2 file:border-(--nb-input-border)',
       'disabled:opacity-50 disabled:cursor-not-allowed',
       inGroup

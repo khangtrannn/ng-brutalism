@@ -55,6 +55,7 @@ describe('NbInput token surface', () => {
     expect(cls).toContain('placeholder:text-gray-400');
     expect(cls).toContain('file:h-full');
     expect(cls).toContain('file:cursor-pointer');
+    expect(cls).toContain('file:bg-(--nb-main)');
     expect(cls).toContain('disabled:opacity-50');
     expect(cls).toContain('disabled:cursor-not-allowed');
     expect(cls).toContain('focus-visible:outline-none');
