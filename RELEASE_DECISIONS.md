@@ -3,7 +3,20 @@
 Companion to [RELEASE_PLAN.md](./RELEASE_PLAN.md). Captures grill-session decisions
 on 2026-05-20 and supersedes the plan where they conflict.
 
-When resuming: read § Open Questions first, that's where the next round picks up.
+When resuming: Pass 1 release-plumbing decisions are locked. Start
+implementation from § 3 Order of operations, then verify with the Pass 1 command
+listed there.
+
+Current checkpoint for next session:
+- Do **Pass 1 — release plumbing** only.
+- Do **not** draft README / CONTRIBUTING / CHANGELOG yet; those are Pass 2.
+- Keep `RELEASE_DECISIONS.md` at the repo root until v0.1.0 is published.
+- Assume `docs/assets/image-card-demo.gif` will be provided later by the user;
+  use the final path in docs/copy, but do not block Pass 1 on recording it.
+- `origin` remote has already been verified as
+  `https://github.com/khangtrannn/ng-brutalism.git`.
+- After Pass 1, run
+  `pnpm nx run-many -t lint test build --projects=ui,docs`.
 
 ---
 
@@ -32,9 +45,12 @@ during the §4.3 docs build smoke; do not pre-fix without verification.
 ### 2.1 Repository & domain
 
 - **GitHub repo renamed** to `khangtrannn/ng-brutalism` (user-confirmed; local
-  `origin` remote still points at the old URL — run `git remote set-url origin
-  https://github.com/khangtrannn/ng-brutalism.git` for hygiene).
+  `origin` remote verified on 2026-05-20 as
+  `https://github.com/khangtrannn/ng-brutalism.git` for fetch and push).
 - **Docs hosting**: GitHub Pages with custom domain `ngbrutalism.khangtran.dev`.
+- **CNAME file timing**: add `apps/docs/public/CNAME` in Pass 1, before DNS
+  and Pages are fully configured, so the first GitHub Actions deploy already
+  carries the custom-domain declaration.
 - **DNS**: Cloudflare. The `ngbrutalism` CNAME → `khangtrannn.github.io` must
   have **proxy OFF** (grey cloud), or GitHub's Let's Encrypt cert issuance
   silently fails.
@@ -68,6 +84,50 @@ during the §4.3 docs build smoke; do not pre-fix without verification.
 - Routes outside the prerender list will 404 on direct navigation, including
   links from LinkedIn / Google / OG previews. No SPA-fallback hack — it kills
   SEO and OG metadata.
+- **Implementation decision**: hardcode the full prerender route list for
+  v0.1.0. The route count is small and explicit config is easier to audit before
+  launch than filesystem-derived route generation.
+
+  ```ts
+  const prerenderRoutes = [
+    '/',
+    '/components',
+    '/components/accordion',
+    '/components/avatar',
+    '/components/badge',
+    '/components/button',
+    '/components/card',
+    '/components/checkbox',
+    '/components/dialog',
+    '/components/image-card',
+    '/components/input',
+    '/components/input-group',
+    '/components/label',
+    '/components/marquee',
+    '/components/select',
+    '/components/textarea',
+    '/components/title',
+    '/docs',
+    '/docs/introduction',
+    '/docs/installation',
+    '/docs/accordion',
+    '/docs/avatar',
+    '/docs/badge',
+    '/docs/button',
+    '/docs/card',
+    '/docs/checkbox',
+    '/docs/dialog',
+    '/docs/image-card',
+    '/docs/input',
+    '/docs/input-group',
+    '/docs/label',
+    '/docs/marquee',
+    '/docs/select',
+    '/docs/textarea',
+    '/docs/title',
+    '/showcase/portfolio',
+  ];
+  ```
 
 ### 2.4 CI / CD
 
@@ -87,6 +147,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with: { fetch-depth: 0 }
       - uses: pnpm/action-setup@v4
       - uses: actions/setup-node@v4
         with: { node-version: 22, cache: pnpm }
@@ -137,6 +198,10 @@ verification before deploy). Avoids the workflow_call indirection until needed.
 **source = "GitHub Actions"** (not "Deploy from a branch"). Without this, the
 deploy step fails confusingly.
 
+**CI checkout depth**: use `fetch-depth: 0` in `ci.yml` too. `nx affected`
+needs enough git history to compare against `origin/main`; the slightly slower
+checkout is worth avoiding confusing first-PR failures.
+
 ### 2.5 Branch protection — flipped *after* v0.1.0 publishes
 
 Settings → Branches → main, when the time comes:
@@ -161,7 +226,7 @@ The v0.1.0 prep itself ships via direct commits to `main`; the very next change
 
   [one-line elevator pitch]
 
-  ![demo](docs/assets/dialog-demo.gif)
+  ![demo](docs/assets/image-card-demo.gif)
 
   📚 Docs · 📦 npm · ⭐ GitHub
 
@@ -170,7 +235,6 @@ The v0.1.0 prep itself ships via direct commits to `main`; the very next change
 
   ## What it looks like
   ![showcase](docs/assets/showcase-portfolio.png)
-  ![components](docs/assets/components-grid.png)
 
   ## Status — v0.x
   Pre-1.0; breaking changes between minor versions.
@@ -183,9 +247,8 @@ The v0.1.0 prep itself ships via direct commits to `main`; the very next change
 
   | Asset | Path | Size budget | Source |
   |---|---|---|---|
-  | Hero GIF | `docs/assets/dialog-demo.gif` | < 2 MB | Contact dialog opening from `/showcase/portfolio` |
+  | Hero GIF | `docs/assets/image-card-demo.gif` | < 2 MB | Image-card docs page walkthrough / interaction |
   | Showcase shot | `docs/assets/showcase-portfolio.png` | < 300 KB | Full-page DevTools capture of `/showcase/portfolio` |
-  | Components grid | `docs/assets/components-grid.png` | < 300 KB | Full-page capture of `/components` index |
 
 - **GIF tooling**: Cmd+Shift+5 to record `.mov` → `gifski` (`brew install
   gifski`) → 800×500 px, 15 fps, 3-5 second loop. Test file size before
@@ -258,6 +321,68 @@ Anything wrong here → fix in source, repack, retest. No published version burn
 
 ## 3. Order of operations
 
+Implementation will be split into two reviewable passes:
+
+- **Pass 1 — release plumbing**: package metadata, package file whitelist,
+  license packaging, prerender routes, CNAME, GitHub Actions workflows, repo
+  hygiene, and planning-doc archive.
+- **Pass 2 — public content**: root README, CONTRIBUTING, and CHANGELOG.
+  `CHANGELOG.md` is intentionally drafted in Pass 2 so the launch/release copy
+  can be reviewed with the README and CONTRIBUTING tone.
+  `libs/ui/README.md` remains the npm package README and should be aligned with
+  the root README, but kept package-consumer focused.
+- **Pass 1 verification**: after the plumbing changes, run
+  `pnpm nx run-many -t lint test build --projects=ui,docs` locally. Pass 1
+  touches package metadata, docs build config, prerendering, and workflows, so
+  targeted checks are not enough.
+
+### 3.1 Pass 1 implementation checklist — next session starts here
+
+Scope: mechanical release plumbing only. Avoid public-copy drafting in this
+pass unless a file requires a tiny placeholder to keep builds/package output
+working.
+
+- `libs/ui/package.json`
+  - Set `"version": "0.1.0"`.
+  - Add description, license, author, repository, homepage, bugs, and locked
+    keywords from § 4.1 / § 5.2.
+  - Remove stale `esm2022` and `esm` export conditions from `exports["."]`.
+  - Add the locked `files` whitelist from § 5.1.
+  - Do not intentionally publish sourcemaps; verify during dry-run later.
+- Root/package license
+  - Add root `LICENSE` using MIT terms and Khang Tran as copyright holder.
+  - Configure the library package build so `LICENSE` is copied into `dist/ui/`.
+- Docs static hosting
+  - Expand `apps/docs/vite.config.ts` prerender routes to the hardcoded list in
+    § 2.3.
+  - Add `apps/docs/public/CNAME` containing
+    `ngbrutalism.khangtran.dev`.
+- GitHub Actions
+  - Add `.github/workflows/ci.yml` from § 2.4, including
+    `actions/checkout@v4` with `fetch-depth: 0`.
+  - Add `.github/workflows/deploy-docs.yml` from § 2.4.
+- Repo hygiene
+  - Remove checked-in `.DS_Store` files.
+  - Add `.DS_Store` to `.gitignore` if absent.
+  - Move `LAUNCH.md`, `MIGRATION_TO_NG21.md`, `PRE_RELEASE_AUDIT.md`,
+    `PRE_RELEASE_AUDIT_PLAN.md`, `CONTEXT.md`, and `RELEASE_PLAN.md` to
+    `docs/plans/_archive/`.
+  - Keep `RELEASE_DECISIONS.md` at repo root.
+- Verification
+  - Run `pnpm nx run-many -t lint test build --projects=ui,docs`.
+  - If the command fails, fix source/config and rerun until green or document
+    the blocker.
+
+Out of scope for Pass 1:
+
+- Root `README.md` rewrite.
+- `libs/ui/README.md` npm README alignment.
+- `CONTRIBUTING.md`.
+- `CHANGELOG.md`.
+- Capturing or optimizing `docs/assets/image-card-demo.gif`.
+- Publishing, tagging, GitHub release creation, branch protection, Dependabot,
+  release automation, and post-publish issue filing.
+
 1. **Library impl & metadata** (decisions in § 2.2):
    - Remove `esm2022`/`esm` conditions from `libs/ui/package.json` exports.
    - Bump version to `0.1.0`.
@@ -265,13 +390,15 @@ Anything wrong here → fix in source, repack, retest. No published version burn
      author fields.
    - Add `files` whitelist (see § 6 — open).
 2. **Repo hygiene**:
-   - `git remote set-url origin https://github.com/khangtrannn/ng-brutalism.git`.
+   - Git remote hygiene verified: `origin` fetch/push points at
+     `https://github.com/khangtrannn/ng-brutalism.git`.
    - Add `LICENSE` (MIT) at repo root.
    - Configure ng-package.json to copy `LICENSE` into `dist/ui/`.
-   - Add `CHANGELOG.md` (Option B, drafted).
    - Move `LAUNCH.md`, `MIGRATION_TO_NG21.md`, `PRE_RELEASE_AUDIT.md`,
-     `PRE_RELEASE_AUDIT_PLAN.md`, `CONTEXT.md`, `RELEASE_PLAN.md`, and this
-     file to `docs/_archive/` (or delete) once obsolete.
+     `PRE_RELEASE_AUDIT_PLAN.md`, `CONTEXT.md`, and `RELEASE_PLAN.md` to
+     `docs/plans/_archive/`.
+   - Keep `RELEASE_DECISIONS.md` at the repo root until v0.1.0 is published;
+     archive it only during post-publish cleanup.
 3. **README + assets**:
    - Capture GIF + 2 PNGs to `docs/assets/`.
    - Rewrite root `README.md` per § 2.6 structure.
@@ -323,7 +450,7 @@ Add fields:
 ```json
 {
   "version": "0.1.0",
-  "description": "<one-sentence pitch — TBD>",
+  "description": "A neo-brutalist Angular component library — Signals • Zoneless • Token-based • Tailwind v4.",
   "license": "MIT",
   "author": "Khang Tran <khangtrann8198@gmail.com>",
   "repository": {
@@ -332,7 +459,19 @@ Add fields:
   },
   "homepage": "https://ngbrutalism.khangtran.dev",
   "bugs": { "url": "https://github.com/khangtrannn/ng-brutalism/issues" },
-  "keywords": ["TBD — see § 6"]
+  "keywords": [
+    "angular",
+    "ui",
+    "ui-library",
+    "components",
+    "neo-brutalism",
+    "brutalism",
+    "tailwind",
+    "tailwindcss",
+    "signals",
+    "zoneless",
+    "design-system"
+  ]
 }
 ```
 
@@ -356,7 +495,7 @@ YAMLs in § 2.4 are final form. Lift directly into `.github/workflows/`.
 
 Decisions deferred for the next grill round, in order:
 
-### 5.1 `files` whitelist in `libs/ui/package.json`
+### 5.1 `files` whitelist in `libs/ui/package.json` — **LOCKED 2026-05-20**
 
 What exactly ships in the tarball? Need to confirm the array. Candidate:
 
@@ -371,88 +510,195 @@ What exactly ships in the tarball? Need to confirm the array. Candidate:
 ]
 ```
 
+Decision: ship only the built library surface:
+- Runtime bundle(s)
+- Type declarations
+- Published CSS entrypoints
+- `README.md`
+- `LICENSE`
+- `package.json`
+
+Do **not** ship `TOKENS.md` or `TOKENS-ROLLOUT.md`. They are maintainer /
+planning docs, not consumer-facing npm docs. Token guidance belongs in the docs
+site and README excerpts, not as extra root files in the tarball.
+
 Verify with `npm publish --dry-run` that this excludes:
 - Source `.ts` files (only `.d.ts` should remain via `types/`)
 - Sourcemaps (`*.map`)
 - `TOKENS.md`, `TOKENS-ROLLOUT.md` from `libs/ui/` (probably keep out)
 - Anything else surprising.
 
-Question: does `TOKENS.md` belong in the published tarball as consumer
-documentation, or is it dev-internal?
+Open implementation caveat: the current built package includes
+`fesm2022/ng-brutalism-ui.mjs.map`. After applying the whitelist, confirm
+whether npm still includes it. If yes, exclude sourcemaps deliberately rather
+than accepting them by accident.
 
-### 5.2 npm `keywords` list
+Decision: sourcemaps may still be generated in `dist/ui` for local/debugging
+use, but they should not ship in the v0.1.0 npm tarball. If
+`npm publish --dry-run` still lists `*.map`, add an explicit package-level
+exclusion instead of disabling build sourcemaps globally.
 
-Plan suggested:
-`["angular", "angular21", "ui", "ui-library", "components", "neo-brutalism", "brutalism", "tailwind", "signals", "zoneless"]`
+### 5.2 npm `keywords` list — **LOCKED 2026-05-20**
 
-To decide:
-- Is `angular21` valuable, or does it date the package badly?
-- Is `neo-brutalism` vs `brutalism` worth listing both? (One discoverable
-  search term; the other is also one.)
-- Should `analog` / `analogjs` / `ssr` / `prerender` appear? (Probably no —
-  the library doesn't depend on Analog.)
+```json
+"keywords": [
+  "angular",
+  "ui",
+  "ui-library",
+  "components",
+  "neo-brutalism",
+  "brutalism",
+  "tailwind",
+  "tailwindcss",
+  "signals",
+  "zoneless",
+  "design-system"
+]
+```
 
-### 5.3 Description for `libs/ui/package.json`
+Resolved:
+- Dropped `angular21` — same "dates the package" issue as the description;
+  peerDependencies is the source of truth for version pinning.
+- Kept both `neo-brutalism` *and* `brutalism` — cheap, covers searchers who
+  don't know the precise art-movement term.
+- Added `tailwindcss` (alternate spelling, npm tokenizes separately) and
+  `design-system` (adjacent search category).
+- Skipped `analog`/`analogjs`/`ssr`/`prerender` — the *library* doesn't
+  depend on Analog (that's a docs-app choice); listing would mislead.
+- Skipped `accessible`/`a11y` — aspirational without a formal a11y audit;
+  showing up in those searches with real gaps would be a credibility hit.
 
-Single sentence, shows on npm search results and the package page header.
-Needs to be punchy. Draft candidates to compare:
+### 5.3 Description for `libs/ui/package.json` — **LOCKED 2026-05-20**
 
-- "A neo-brutalist Angular component library — standalone, signal-driven,
-  themable."
-- "Angular 21 UI components in a neo-brutalist style. Tailwind v4 + signals
-  + zoneless."
-- "Brutalist UI for Angular. Loud borders, hard shadows, no nonsense."
+> **"A neo-brutalist Angular component library — Signals • Zoneless • Token-based • Tailwind v4."**
 
-Tone question to settle.
+Resolved: neutral/technical voice (rejected the personality-forward "loud
+borders, hard shadows" framing). Dropped "Angular 21" (dates the package
+when Angular 22 ships) and "standalone" (redundant since Angular 19+ makes
+every component standalone by default). Chose "token-based" over "themable"
+because it's more precise about *how* theming works (CSS custom properties).
+The four traits are middle-dot separated, Title Case — visually consistent
+with brutalist typography norms.
+
+This voice is the reference for README hero copy, LinkedIn launch post, and
+docs homepage rewrite — keep them consistent.
 
 ### 5.4 README copy
 
 - Elevator pitch (one line) — same tone question as § 5.3.
+- README keeps the canonical package-description sentence exactly:
+  "A neo-brutalist Angular component library — Signals • Zoneless •
+  Token-based • Tailwind v4."
+- To make the top visually stronger, add 4 trait chips under the sentence:
+  Angular, Signals, Zoneless, Tailwind v4. The package metadata description
+  still avoids pinning Angular 21; README chips may reflect the launch target.
+- Trait chips use shields.io `for-the-badge` image badges, not custom HTML text
+  chips, to match established UI-library README conventions and render
+  consistently on npm / GitHub.
 - "What it looks like" section text.
-- Status / v0.x callout wording.
-- Three-link line: `Docs · npm · GitHub` — emoji or no emoji?
+- Status wording:
+
+  ```md
+  ## Status
+
+  `@ng-brutalism/ui` is pre-1.0. The component APIs are usable today, but minor
+  versions may include breaking changes while the library settles.
+  ```
+- README direction: use the established UI-library convention with badges near
+  the top. User prefers badges over a plain text-only link row.
+- Badge set for v0.1.0:
+  - npm version
+  - npm monthly downloads
+  - CI workflow status
+  - MIT license
+  Skip coverage, OpenSSF, Discord, sponsor, and social badges until the project
+  has those surfaces for real.
+- Top README visual: GIF, not static screenshot. Use a short optimized product
+  demo loop of the image-card docs page so the README shows the docs UX and a
+  real component in motion immediately. User will prepare the GIF asset.
+- Include one extra README screenshot from the portfolio showcase demo. This
+  proves the components compose into a real page without turning the README
+  into a gallery. Drop the components-grid screenshot from README scope.
+- The portfolio screenshot lives under a `## What it looks like` heading.
+- Include a plain navigation row below the trait chips and before the GIF:
+  `[Documentation](https://ngbrutalism.khangtran.dev) ·
+  [npm](https://www.npmjs.com/package/@ng-brutalism/ui) ·
+  [GitHub](https://github.com/khangtrannn/ng-brutalism)`. Badges are trust
+  signals; this row is navigation.
 
 ### 5.5 CONTRIBUTING.md scope
 
 What goes in? At minimum:
 - Monorepo layout (lift current root README's commands section).
 - How to run `pnpm serve:docs` for local dev.
-- How to add a new component (or defer to v0.2).
+- Do **not** include "How to add a new component" for v0.1.0. Defer component
+  contribution workflow docs until v0.2, once the internal pattern is more
+  stable.
 - PR / branch conventions (Conventional Commits? Squash-merge?).
+- Commit convention decision: Conventional Commit prefixes (`feat:`, `fix:`,
+  `docs:`, `chore:`) are welcome but not required for v0.1.0. There is no
+  Changesets / release automation yet, so strict enforcement would add process
+  without tooling payoff.
 - Code of conduct (skip for v0.1.0?).
+- Conduct decision: add a lightweight `## Conduct` section inside
+  `CONTRIBUTING.md`; do not add a separate `CODE_OF_CONDUCT.md` for v0.1.0.
+  Wording:
+
+  ```md
+  Be kind, specific, and constructive. This project is early; clear bug
+  reports, focused pull requests, and respectful design feedback are welcome.
+  ```
 
 ### 5.6 Docs site §2.x verification
 
 Spot-check whether the following are actually still open after recent commits:
 - §2.2 Select page — directive `size` input documented?
-- §2.3 Foundation token surface (`--nb-yellow` / `--nb-mint` / `--nb-pink` /
-  `--nb-lavender` only in `apps/docs/src/styles.css`, not shipped theme.css).
+- §2.3 Foundation token surface — **LOCKED 2026-05-20**:
+  `--nb-yellow`, `--nb-mint`, `--nb-pink`, and `--nb-lavender` are docs-brand
+  tokens only. Do **not** add them to `libs/ui/src/lib/styles/theme.css`.
+  Copy-pastable docs snippets must use shipped semantic tokens such as
+  `--nb-warning`, `--nb-success`, `--nb-accent`, etc.
 - §2.4 Installation page — Tailwind v4 prereq + CSS import step + provider
   optionality.
 - §2.5 stat-tile arithmetic errors across button / card / image-card / title
   / avatar pages.
+  - Image-card "2 Inputs" is correct. Implementation has only `image` and
+    `alt`; `nb-image-card-caption` is a subcomponent, not an input. Treat the
+    old audit claim ("actually 3") as stale / incorrect.
 - §2.6 demo/snippet parity — dialog importCode (commit `9da2809` mentions
   this), select / marquee snippet vs live demo (commit `980c09a` /
   `3038128`).
 - §2.7 coverage gate.
 - §2.8 homepage / introduction copy.
 
-### 5.7 Where to put archived planning docs
+### 5.7 Where to put archived planning docs — **LOCKED 2026-05-20**
 
-Plan suggests `docs/_archive/`. Confirm path, or use `docs/plans/_archive/`
-(to nest under existing `docs/plans/`)?
+Use `docs/plans/_archive/`.
 
-### 5.8 GIF — willingness to record now vs schedule it
+These are planning artifacts, not public docs. Keeping them under `docs/plans/`
+makes the purpose obvious and avoids mixing archival release notes with
+user-facing docs assets/pages.
 
-The visual capture (~60-90 min including gifski tuning) is real work. Block
-the release prep on this, or schedule it as a separate evening task with the
-prep continuing in parallel?
+### 5.8 Repo file hygiene — **LOCKED 2026-05-20**
 
-### 5.9 npm scope creation
+Before release, remove checked-in `.DS_Store` files and add `.DS_Store` to
+`.gitignore` if it is not already ignored. This is tiny public-repo polish and
+prevents Finder metadata from reappearing.
 
-Verify whether `@ng-brutalism` npm org needs creating (`npm org create
-ng-brutalism`) or whether the scope was already reserved during the May 17
-verification. Run `npm org ls ng-brutalism` to check before publish.
+### 5.9 GIF scheduling — **LOCKED 2026-05-20**
+
+Assume the GIF asset already exists and will be provided later by the user.
+Do not block release-prep implementation on recording or tuning the GIF.
+
+The README can be drafted with the final committed path
+`docs/assets/image-card-demo.gif`; publish remains gated on the asset actually
+being present and under the agreed size budget.
+
+### 5.10 npm scope creation — **LOCKED 2026-05-20**
+
+User confirmed `@ng-brutalism` is already registered. Publish ritual still
+checks login / membership with `npm whoami` and `npm org ls ng-brutalism`, but
+`npm org create ng-brutalism` is no longer expected.
 
 ---
 
