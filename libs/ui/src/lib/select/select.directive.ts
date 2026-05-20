@@ -10,7 +10,7 @@ import { NB_INPUT_GROUP } from '../input-group/input-group.types';
     '[class]': 'classes()',
   },
 })
-export class NbSelect {
+export class NbNativeSelect {
   private readonly group = inject(NB_INPUT_GROUP, { optional: true });
 
   protected readonly classes = computed(() => {

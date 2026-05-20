@@ -5,7 +5,7 @@ import { describe, expect, it } from 'vitest';
 import { NbInputGroup } from '../input-group/input-group';
 import { NbInputPrefix } from '../input-group/input-group-prefix';
 import { NbSelectComponent } from './select';
-import { NbSelect } from './select.directive';
+import { NbNativeSelect } from './select.directive';
 import { NbSelectOption } from './select-option';
 
 @Component({
@@ -176,7 +176,7 @@ class SelectInGroupTestComponent {}
 
 @Component({
   standalone: true,
-  imports: [NbInputGroup, NbInputPrefix, NbSelect],
+  imports: [NbInputGroup, NbInputPrefix, NbNativeSelect],
   template: `
     <nb-input-group>
       <span nbInputPrefix>
@@ -257,7 +257,7 @@ describe('NbSelectComponent inside NbInputGroup', () => {
   });
 });
 
-describe('NbSelect directive inside NbInputGroup', () => {
+describe('NbNativeSelect directive inside NbInputGroup', () => {
   it('strips its own border and shadow when inside a group', async () => {
     const fixture = await createFixture(NativeSelectInGroupTestComponent);
     const select = fixture.nativeElement.querySelector(
