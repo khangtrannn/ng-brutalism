@@ -37,6 +37,10 @@ import { DocsTokens } from '../../docs/docs-tokens';
             <span class="nb-stat-tile__value">FORM</span>
             <span class="nb-stat-tile__label">Native</span>
           </div>
+          <div class="nb-stat-tile nb-stat-tile--pink">
+            <span class="nb-stat-tile__value">A11y</span>
+            <span class="nb-stat-tile__label">Label sync</span>
+          </div>
 
           <docs-source-tile
             href="https://github.com/khangtrannn/ng-brutalism/tree/main/libs/ui/src/lib/textarea"
