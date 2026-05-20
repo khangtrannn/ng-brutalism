@@ -26,7 +26,7 @@ import {
 } from './job-listing-card.icons';
 
 @Component({
-  selector: 'docs-job-listing-card-example',
+  selector: 'docs-job-listing-card',
   imports: [
     NbButton,
     NbCard,
@@ -479,4 +479,4 @@ import {
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export default class JobListingCardExampleComponent {}
+export default class JobListingCard {}

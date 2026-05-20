@@ -90,6 +90,26 @@ nb-docs-sidebar::-webkit-scrollbar {
 
 nb-docs-sidebar::-webkit-scrollbar-thumb {
   background: var(--nb-border);
+  border-radius: 0;
+}
+
+/* === Docs layout: page scrollbar === */
+html,
+body {
+  scrollbar-width: thin;
+  scrollbar-color: var(--nb-border) transparent;
+}
+
+html::-webkit-scrollbar,
+body::-webkit-scrollbar {
+  width: 6px;
+  border-radius: 0;
+}
+
+html::-webkit-scrollbar-thumb,
+body::-webkit-scrollbar-thumb {
+  background: var(--nb-border);
+  border-radius: 0;
 }
 
 @layer base {

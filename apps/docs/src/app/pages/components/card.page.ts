@@ -71,7 +71,7 @@ import JobListingCardExampleComponent from './examples/job-listing-card';
           for the full implementation.
         </p>
         <docs-example [code]="templateCode">
-          <docs-job-listing-card-example />
+          <docs-job-listing-card />
         </docs-example>
       </section>
 

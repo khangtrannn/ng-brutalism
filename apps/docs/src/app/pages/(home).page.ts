@@ -1,11 +1,10 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { NbButton } from '@ng-brutalism/ui';
-import JobListingCardExampleComponent from './components/examples/job-listing-card';
 
 @Component({
     selector: 'docs-home',
-    imports: [NbButton, RouterLink, JobListingCardExampleComponent],
+    imports: [NbButton, RouterLink],
     template: `
     <article>
       <header class="mb-8">

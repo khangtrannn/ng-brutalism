@@ -179,10 +179,12 @@ const GROUP_COLORS = ['yellow', 'pink', 'mint', 'lavender'] as const;
 
     .docs-sidebar::-webkit-scrollbar {
       width: 6px;
+      border-radius: 0;
     }
 
     .docs-sidebar::-webkit-scrollbar-thumb {
       background: var(--nb-border);
+      border-radius: 0;
     }
   `,
     changeDetection: ChangeDetectionStrategy.OnPush
