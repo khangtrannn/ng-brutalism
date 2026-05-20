@@ -26,31 +26,18 @@ import { Icon, Style } from 'ol/style';
 import 'ol/ol.css';
 
 import type { TimelineEntry } from '../portfolio.types';
-
-const MARKER_SVG = `
-  <svg width="36" height="36" viewBox="0 0 36 36" xmlns="http://www.w3.org/2000/svg">
-    <defs>
-      <filter id="ms" x="-50%" y="-50%" width="200%" height="200%">
-        <feDropShadow dx="1" dy="2" stdDeviation="2" flood-color="#000000" flood-opacity="0.3"/>
-      </filter>
-    </defs>
-    <g filter="url(#ms)">
-      <circle cx="18" cy="18" r="14" fill="#FFD700" stroke="#000000" stroke-width="2"/>
-      <circle cx="18" cy="18" r="6" fill="#000000"/>
-    </g>
-  </svg>
-`;
-
-const MARKER_URL = `data:image/svg+xml;charset=utf-8,${encodeURIComponent(
-  MARKER_SVG
-)}`;
+import {
+  DocsPortfolioChevronLeftIcon,
+  DocsPortfolioMenuIcon,
+} from './portfolio-journey.icons';
+import { PORTFOLIO_JOURNEY_MARKER_URL } from './portfolio-journey-marker';
 
 const INITIAL_CENTER: [number, number] = [58, 30];
 const INITIAL_ZOOM = 2;
 
 @Component({
     selector: 'docs-portfolio-journey',
-    imports: [],
+    imports: [DocsPortfolioChevronLeftIcon, DocsPortfolioMenuIcon],
     template: `
     <section
       id="journey"
@@ -90,19 +77,7 @@ const INITIAL_ZOOM = 2;
                 aria-label="Close timeline"
                 (click)="toggleTimeline()"
               >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="20"
-                  height="20"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                >
-                  <polyline points="15 18 9 12 15 6"></polyline>
-                </svg>
+                <docs-portfolio-chevron-left-icon class="size-5" />
               </button>
             </div>
 
@@ -147,21 +122,7 @@ const INITIAL_ZOOM = 2;
             aria-label="Open timeline"
             (click)="toggleTimeline()"
           >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            >
-              <line x1="3" y1="12" x2="21" y2="12"></line>
-              <line x1="3" y1="6" x2="21" y2="6"></line>
-              <line x1="3" y1="18" x2="21" y2="18"></line>
-            </svg>
+            <docs-portfolio-menu-icon class="size-6" />
           </button>
           }
 
@@ -384,7 +345,7 @@ export class PortfolioJourneyComponent {
         anchor: [0.5, 0.5],
         anchorXUnits: 'fraction',
         anchorYUnits: 'fraction',
-        src: MARKER_URL,
+        src: PORTFOLIO_JOURNEY_MARKER_URL,
         scale: 1,
       }),
     });

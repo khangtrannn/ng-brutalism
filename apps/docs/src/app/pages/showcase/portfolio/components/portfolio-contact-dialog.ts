@@ -16,6 +16,7 @@ import {
   NbLabel,
   NbTextarea,
 } from '@ng-brutalism/ui';
+import { DocsPortfolioContactZigzagIcon } from './portfolio-contact-dialog.icons';
 
 @Component({
     selector: 'docs-portfolio-contact-dialog',
@@ -30,6 +31,7 @@ import {
         NbInput,
         NbLabel,
         NbTextarea,
+        DocsPortfolioContactZigzagIcon,
     ],
     template: `
     <button
@@ -61,19 +63,7 @@ import {
           class="pointer-events-none absolute right-24 top-12 hidden items-center gap-2 sm:flex"
         >
           <span class="font-mono text-3xl font-black leading-none">&#42;</span>
-          <svg
-            width="68"
-            height="22"
-            viewBox="0 0 68 22"
-            fill="none"
-            stroke="#ff2f68"
-            stroke-width="3"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            aria-hidden="true"
-          >
-            <polyline points="2,17 13,5 24,17 35,5 46,17 57,5 66,17" />
-          </svg>
+          <docs-portfolio-contact-zigzag-icon />
         </div>
 
         <div class="flex flex-wrap items-center gap-4">

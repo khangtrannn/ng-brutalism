@@ -9,10 +9,11 @@ import {
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { NavigationEnd, Router, RouterLink } from '@angular/router';
 import { filter } from 'rxjs';
+import { DocsNavbarExternalLinkIcon } from './navbar.icons';
 
 @Component({
     selector: 'nb-docs-navbar',
-    imports: [RouterLink],
+    imports: [RouterLink, DocsNavbarExternalLinkIcon],
     template: `
     <nav
       class="fixed top-3 right-3 left-3 z-50 border-4 border-(--nb-border) bg-(--nb-paper) shadow-[8px_8px_0_0_var(--nb-shadow)]"
@@ -79,19 +80,7 @@ import { filter } from 'rxjs';
             rel="noreferrer"
           >
             GitHub
-            <svg
-              class="size-4"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="3"
-              stroke-linecap="square"
-              stroke-linejoin="miter"
-              aria-hidden="true"
-            >
-              <path d="M7 17 17 7" />
-              <path d="M9 7h8v8" />
-            </svg>
+            <docs-navbar-external-link-icon class="size-4" />
           </a>
         </div>
       </div>

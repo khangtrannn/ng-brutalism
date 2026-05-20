@@ -51,9 +51,7 @@ import { ContactUsDialog } from './examples/contact-us-dialog';
       <section id="preview">
         <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">Preview</h2>
         <p class="mb-4 text-sm font-medium">
-          The snippet below is self-contained — copy it as-is, no
-          <code class="font-mono text-sm">contact-us-dialog</code>
-          component required.
+          The snippet below mirrors the example markup used by the docs.
         </p>
         <docs-example [code]="contactUsExampleCode">
           <contact-us-dialog />
@@ -200,23 +198,8 @@ export default class DialogPageComponent {
 
     <div class="pointer-events-none absolute right-28 top-6 hidden items-center gap-3 sm:flex">
       <span class="font-mono text-3xl font-black leading-none">*</span>
-      <svg width="48" height="16" viewBox="0 0 68 22" fill="none" stroke="#ff2f68" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-        <polyline points="2,17 13,5 24,17 35,5 46,17 57,5 66,17" />
-      </svg>
-      <svg width="76" height="60" viewBox="0 0 100 80" fill="none" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-        <g stroke="#000" stroke-width="2.5">
-          <line x1="86" y1="10" x2="94" y2="6" />
-          <line x1="90" y1="20" x2="98" y2="22" />
-          <line x1="86" y1="32" x2="94" y2="38" />
-          <line x1="14" y1="10" x2="6" y2="6" />
-          <line x1="10" y1="22" x2="2" y2="22" />
-        </g>
-        <path d="M52 10 C28 8 14 22 16 42 C18 58 38 68 58 64 C78 60 90 44 86 26 C82 12 68 8 52 10 Z" fill="#ff8a6c" stroke="#000" stroke-width="2.5" />
-        <path d="M28 22 H68 a4 4 0 0 1 4 4 v16 a4 4 0 0 1 -4 4 H44 l-6 8 -2 -8 H28 a4 4 0 0 1 -4 -4 V26 a4 4 0 0 1 4 -4 Z" fill="#fff" stroke="#000" stroke-width="2.5" />
-        <circle cx="38" cy="34" r="2.5" fill="#000" />
-        <circle cx="48" cy="34" r="2.5" fill="#000" />
-        <circle cx="58" cy="34" r="2.5" fill="#000" />
-      </svg>
+      <docs-contact-zigzag-icon class="w-12 text-[#ff2f68]" />
+      <img src="/showcase/contact-dialog/message.png" alt="" aria-hidden="true" class="h-16 w-auto" />
     </div>
 
     <span class="inline-block border-2 border-(--nb-border) bg-[#c4a8ff] px-4 py-1.5 font-mono text-sm font-black uppercase tracking-wider text-black shadow-[3px_3px_0_0_var(--nb-shadow)]">
@@ -239,10 +222,7 @@ export default class DialogPageComponent {
           <label nbLabel for="contact-name" class="font-mono text-base">Name</label>
           <nb-input-group>
             <span nbInputPrefix>
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
-                <circle cx="12" cy="7" r="4" />
-              </svg>
+              <docs-contact-user-icon class="size-5" />
             </span>
             <input nbInput id="contact-name" placeholder="Your name" class="h-12 font-mono" />
           </nb-input-group>
@@ -251,10 +231,7 @@ export default class DialogPageComponent {
           <label nbLabel for="contact-email" class="font-mono text-base">Email</label>
           <nb-input-group>
             <span nbInputPrefix>
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <rect x="2" y="4" width="20" height="16" rx="2" />
-                <path d="m22 6-10 7L2 6" />
-              </svg>
+              <docs-contact-mail-icon class="size-5" />
             </span>
             <input nbInput id="contact-email" type="email" placeholder="you@company.com" class="h-12 font-mono" />
           </nb-input-group>
@@ -265,10 +242,7 @@ export default class DialogPageComponent {
         <label nbLabel id="contact-subject-label" class="font-mono text-base">Subject</label>
         <nb-input-group>
           <span nbInputPrefix>
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <path d="M12 2H2v10l9.29 9.29c.94.94 2.48.94 3.42 0l6.58-6.58c.94-.94.94-2.48 0-3.42L12 2Z" />
-              <path d="M7 7h.01" />
-            </svg>
+            <docs-contact-tag-icon class="size-5" />
           </span>
           <nb-select
             placeholder="What is this regarding?"
@@ -294,9 +268,7 @@ export default class DialogPageComponent {
         <label nbLabel for="contact-message" class="font-mono text-base">Message</label>
         <nb-input-group>
           <span nbInputPrefix align="stretch">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5z" />
-            </svg>
+            <docs-contact-edit-icon class="size-5" />
           </span>
           <textarea nbTextarea id="contact-message" placeholder="Type your message here..." class="min-h-40 font-mono"></textarea>
         </nb-input-group>
@@ -307,9 +279,7 @@ export default class DialogPageComponent {
   <nb-dialog-actions class="flex-col items-stretch justify-between gap-4 border-t-2 border-(--nb-border) bg-white px-6 py-5 sm:flex-row sm:items-center sm:px-10">
     <div class="flex items-center gap-3">
       <span class="flex h-10 w-10 shrink-0 items-center justify-center border-2 border-(--nb-border) bg-[#c4a8ff]">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z" />
-        </svg>
+        <docs-contact-shield-icon class="size-5" />
       </span>
       <div class="font-mono text-xs leading-tight">
         <p class="font-bold">Your data is safe with us.</p>
@@ -319,16 +289,11 @@ export default class DialogPageComponent {
 
     <div class="flex items-center gap-3">
       <span class="hidden h-10 w-px bg-(--nb-border) sm:block" aria-hidden="true"></span>
-      <svg width="36" height="14" viewBox="0 0 36 14" fill="none" stroke="#000" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="hidden sm:block" aria-hidden="true">
-        <polyline points="2,11 7,3 13,11 19,3 25,11 31,3 34,11" />
-      </svg>
+      <docs-contact-zigzag-icon class="hidden w-9 sm:block" />
       <button nbButton variant="neutral" nbDialogClose class="min-w-28 font-mono" style="--nb-button-bg: #fff">Cancel</button>
       <button nbButton nbDialogClose class="flex min-w-36 items-center justify-center gap-2 font-mono" style="--nb-button-bg: #ffd92e; --nb-button-fg: #000;">
         Send Message
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <path d="M5 12h14" />
-          <path d="m12 5 7 7-7 7" />
-        </svg>
+        <docs-contact-send-icon class="size-4" />
       </button>
     </div>
   </nb-dialog-actions>

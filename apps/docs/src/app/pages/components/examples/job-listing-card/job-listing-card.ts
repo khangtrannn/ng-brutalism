@@ -55,9 +55,6 @@ import {
         <nb-card-header class="job-card-section">
           <div class="job-card-header">
             <div class="job-card-logo" aria-hidden="true">
-              <!-- Previous implementation, kept for reference:
-              <span>n.</span>
-              -->
               <docs-job-card-logo-icon />
             </div>
 
@@ -281,21 +278,6 @@ import {
         --job-card-icon-size: 18px;
       }
 
-      /* Previous implementation, kept for reference:
-      .job-card-logo {
-        font-family: 'Caveat', 'Patrick Hand', 'Bradley Hand', 'Segoe Print',
-          cursive;
-        font-size: clamp(28px, 6.4cqw, 32px);
-        font-style: italic;
-        font-weight: 500;
-        line-height: 1;
-      }
-
-      .job-card-logo span {
-        transform: translateY(-2px);
-      }
-      */
-
       .job-card-title-block {
         min-width: 0;
         padding-top: 2px;
@@ -304,8 +286,6 @@ import {
       .job-card-title {
         display: block;
         color: var(--job-ink);
-        font-family: 'Patrick Hand', 'Comic Sans MS', 'Bradley Hand',
-          'Segoe Print', cursive;
         font-size: clamp(32px, 7.4cqw, 37px);
         font-weight: 400;
         letter-spacing: 0;
@@ -323,8 +303,6 @@ import {
         margin-top: 12px;
         padding-left: 2px;
         color: var(--job-ink);
-        font-family: 'Patrick Hand', 'Comic Sans MS', 'Bradley Hand',
-          'Segoe Print', cursive;
         font-size: clamp(20px, 4.6cqw, 23px);
         font-weight: 400;
         line-height: 1;
@@ -349,8 +327,6 @@ import {
       .job-card-tagline {
         margin-top: 22px;
         color: var(--job-ink);
-        font-family: 'Patrick Hand', 'Comic Sans MS', 'Bradley Hand',
-          'Segoe Print', cursive;
         font-size: clamp(18px, 4cqw, 21px);
         line-height: 1.25;
       }
@@ -387,8 +363,6 @@ import {
 
       .job-card-highlights-label {
         color: var(--job-ink);
-        font-family: 'Patrick Hand', 'Comic Sans MS', 'Bradley Hand',
-          'Segoe Print', cursive;
         font-size: clamp(20px, 4.4cqw, 23px);
         line-height: 1;
       }
@@ -408,8 +382,6 @@ import {
         padding: 0 10px;
         border-left: 1.5px solid rgba(26, 26, 26, 0.25);
         color: var(--job-ink);
-        font-family: 'Patrick Hand', 'Comic Sans MS', 'Bradley Hand',
-          'Segoe Print', cursive;
         font-size: clamp(15px, 3.3cqw, 17px);
         line-height: 1.1;
       }
@@ -446,8 +418,6 @@ import {
         flex-direction: column;
         gap: 5px;
         color: var(--job-ink);
-        font-family: 'Patrick Hand', 'Comic Sans MS', 'Bradley Hand',
-          'Segoe Print', cursive;
         font-size: clamp(15px, 3.5cqw, 18px);
       }
 

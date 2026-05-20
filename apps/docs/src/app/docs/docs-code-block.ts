@@ -10,6 +10,12 @@ import {
   signal,
 } from '@angular/core';
 import { DomSanitizer, type SafeHtml } from '@angular/platform-browser';
+import {
+  DocsCodeChevronIcon,
+  DocsCodeCopyIcon,
+  DocsCodeExpandIcon,
+  DocsCodeInfoIcon,
+} from './docs-code-block.icons';
 import { highlightCode, type HighlightLanguage } from './syntax-highlighter';
 
 type DocsCodeBlockVariant = 'standalone' | 'embedded';
@@ -37,6 +43,12 @@ function inferLanguage(title: string, code: string): HighlightLanguage {
 @Component({
   selector: 'docs-code-block',
   standalone: true,
+  imports: [
+    DocsCodeChevronIcon,
+    DocsCodeCopyIcon,
+    DocsCodeExpandIcon,
+    DocsCodeInfoIcon,
+  ],
   host: {
     class: 'block',
   },
@@ -64,12 +76,7 @@ function inferLanguage(title: string, code: string): HighlightLanguage {
           style="font-family: var(--font-display);"
           (click)="copy()"
         >
-          <svg viewBox="0 0 16 16" class="size-4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true">
-            <rect x="5" y="5" width="9" height="9" />
-            <path d="M2 11V2h9v2" />
-            <line x1="7" y1="8.5" x2="12" y2="8.5" />
-            <line x1="7" y1="10.5" x2="12" y2="10.5" />
-          </svg>
+          <docs-code-copy-icon class="size-4" />
           {{ copied() ? 'Copied' : 'Copy' }}
         </button>
 
@@ -96,11 +103,7 @@ function inferLanguage(title: string, code: string): HighlightLanguage {
                 class="inline-flex size-8 shrink-0 items-center justify-center border-2 border-black bg-(--nb-lavender) text-black"
                 aria-hidden="true"
               >
-                <svg viewBox="0 0 16 16" class="size-4" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
-                  <circle cx="8" cy="8" r="6" />
-                  <line x1="8" y1="7" x2="8" y2="11.5" stroke-linecap="round" />
-                  <circle cx="8" cy="4.6" r="0.85" fill="currentColor" stroke="none" />
-                </svg>
+                <docs-code-info-icon class="size-4" />
               </span>
               <span>Click '{{ expanded() ? 'Show less' : 'Show more' }}' to view {{ expanded() ? 'a condensed view' : 'additional details' }}.</span>
             </div>
@@ -111,21 +114,12 @@ function inferLanguage(title: string, code: string): HighlightLanguage {
               style="font-family: var(--font-display);"
               (click)="toggle()"
             >
-              <svg viewBox="0 0 16 16" class="size-4" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
-                <rect x="2" y="2" width="12" height="12" stroke-dasharray="2 2" />
-                <line x1="8" y1="5.5" x2="8" y2="10.5" stroke-linecap="round" />
-                @if (!expanded()) {
-                  <line x1="5.5" y1="8" x2="10.5" y2="8" stroke-linecap="round" />
-                }
-              </svg>
+              <docs-code-expand-icon class="size-4" [expanded]="expanded()" />
               {{ expanded() ? 'Show less' : 'Show more' }}
-              <svg viewBox="0 0 12 12" class="size-3" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                @if (expanded()) {
-                  <path d="M2 8L6 4l4 4" />
-                } @else {
-                  <path d="M2 4l4 4 4-4" />
-                }
-              </svg>
+              <docs-code-chevron-icon
+                [direction]="expanded() ? 'up' : 'down'"
+                class="size-3"
+              />
             </button>
           </div>
         }
