@@ -10,6 +10,7 @@ import {
 
 import { DocsCodeBlock } from '../../docs/docs-code-block';
 import { DocsExample } from '../../docs/docs-example';
+import { DocsIcon } from '../../docs/icons';
 import { DocsSourceTile } from '../../docs/docs-source-tile';
 import { DocsTokens } from '../../docs/docs-tokens';
 
@@ -18,6 +19,7 @@ import { DocsTokens } from '../../docs/docs-tokens';
     imports: [
         DocsCodeBlock,
         DocsExample,
+        DocsIcon,
         DocsSourceTile,
         DocsTokens,
         NbInputGroup,
@@ -66,34 +68,19 @@ import { DocsTokens } from '../../docs/docs-tokens';
           <div class="w-80">
             <nb-select placeholder="Select an option">
               <nb-select-option value="worldwide" label="Worldwide">
-                <svg viewBox="0 0 24 24" aria-hidden="true">
-                  <circle cx="12" cy="12" r="9" />
-                  <path d="M3 12h18" />
-                  <path d="M12 3a14 14 0 0 1 0 18" />
-                  <path d="M12 3a14 14 0 0 0 0 18" />
-                </svg>
+                <docs-icon name="globe" />
                 Worldwide
               </nb-select-option>
               <nb-select-option value="full-time" label="Full-time">
-                <svg viewBox="0 0 24 24" aria-hidden="true">
-                  <path d="M4 8h16v11H4z" />
-                  <path d="M9 8V5h6v3" />
-                  <path d="M4 13h16" />
-                </svg>
+                <docs-icon name="briefcase" />
                 Full-time
               </nb-select-option>
               <nb-select-option value="part-time" label="Part-time">
-                <svg viewBox="0 0 24 24" aria-hidden="true">
-                  <circle cx="12" cy="12" r="9" />
-                  <path d="M12 7v6l4 2" />
-                </svg>
+                <docs-icon name="clock" />
                 Part-time
               </nb-select-option>
               <nb-select-option value="remote" label="Remote">
-                <svg viewBox="0 0 24 24" aria-hidden="true">
-                  <path d="M5 21V4h14v17" />
-                  <path d="M9 8h2M13 8h2M9 12h2M13 12h2M9 16h2M13 16h2" />
-                </svg>
+                <docs-icon name="building" />
                 Remote
               </nb-select-option>
             </nb-select>
@@ -130,20 +117,7 @@ import { DocsTokens } from '../../docs/docs-tokens';
             <label nbLabel id="subject-label" class="mb-2 block">Subject</label>
             <nb-input-group>
               <span nbInputPrefix>
-                <svg
-                  width="20"
-                  height="20"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2.5"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  aria-hidden="true"
-                >
-                  <path d="M12 2H2v10l9.29 9.29c.94.94 2.48.94 3.42 0l6.58-6.58c.94-.94.94-2.48 0-3.42L12 2Z" />
-                  <path d="M7 7h.01" />
-                </svg>
+                <docs-icon name="tag" class="size-5" />
               </span>
               <nb-select placeholder="What is this regarding?" aria-labelledby="subject-label">
                 <nb-select-option value="general" label="General Inquiry">General Inquiry</nb-select-option>
@@ -162,54 +136,31 @@ import { DocsTokens } from '../../docs/docs-tokens';
           <div class="w-80">
             <nb-select placeholder="Select location" defaultValue="worldwide">
               <nb-select-option label="Select location">
-                <svg viewBox="0 0 24 24" aria-hidden="true">
-                  <path d="M12 21s7-5.2 7-12a7 7 0 0 0-14 0c0 6.8 7 12 7 12Z" />
-                  <circle cx="12" cy="9" r="2.4" />
-                </svg>
+                <docs-icon name="location" />
                 Select location
               </nb-select-option>
               <nb-select-option value="worldwide" label="Worldwide">
-                <svg viewBox="0 0 24 24" aria-hidden="true">
-                  <circle cx="12" cy="12" r="9" />
-                  <path d="M3 12h18" />
-                  <path d="M12 3a14 14 0 0 1 0 18" />
-                  <path d="M12 3a14 14 0 0 0 0 18" />
-                </svg>
+                <docs-icon name="globe" />
                 Worldwide
               </nb-select-option>
               <nb-select-option value="north-america" label="North America">
-                <svg viewBox="0 0 24 24" aria-hidden="true">
-                  <circle cx="12" cy="12" r="9" />
-                  <path d="M3 12h18" />
-                </svg>
+                <docs-icon name="globe" />
                 North America
               </nb-select-option>
               <nb-select-option value="europe" label="Europe">
-                <svg viewBox="0 0 24 24" aria-hidden="true">
-                  <circle cx="12" cy="12" r="9" />
-                  <path d="M3 12h18" />
-                </svg>
+                <docs-icon name="globe" />
                 Europe
               </nb-select-option>
               <nb-select-option value="asia-pacific" label="Asia Pacific">
-                <svg viewBox="0 0 24 24" aria-hidden="true">
-                  <circle cx="12" cy="12" r="9" />
-                  <path d="M3 12h18" />
-                </svg>
+                <docs-icon name="globe" />
                 Asia Pacific
               </nb-select-option>
               <nb-select-option value="south-america" label="South America">
-                <svg viewBox="0 0 24 24" aria-hidden="true">
-                  <circle cx="12" cy="12" r="9" />
-                  <path d="M3 12h18" />
-                </svg>
+                <docs-icon name="globe" />
                 South America
               </nb-select-option>
               <nb-select-option value="africa" label="Africa">
-                <svg viewBox="0 0 24 24" aria-hidden="true">
-                  <circle cx="12" cy="12" r="9" />
-                  <path d="M3 12h18" />
-                </svg>
+                <docs-icon name="globe" />
                 Africa
               </nb-select-option>
             </nb-select>

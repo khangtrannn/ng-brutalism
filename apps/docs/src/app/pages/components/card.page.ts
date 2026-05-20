@@ -71,7 +71,7 @@ import JobListingCardExampleComponent from './examples/job-listing-card';
           shows the underlying card primitive usage; see the
           <a
             class="underline"
-            href="https://github.com/khangtrannn/ng-brutalism/blob/main/apps/docs/src/app/pages/components/examples/job-listing-card.ts"
+            href="https://github.com/khangtrannn/ng-brutalism/blob/main/apps/docs/src/app/pages/components/examples/job-listing-card/job-listing-card.ts"
             target="_blank"
             rel="noreferrer"
             >example source</a

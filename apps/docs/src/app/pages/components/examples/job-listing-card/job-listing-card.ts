@@ -11,6 +11,20 @@ import {
   NbTitle,
 } from '@ng-brutalism/ui';
 
+import {
+  JobCardBookmarkIcon,
+  JobCardBriefcaseIcon,
+  JobCardClockIcon,
+  JobCardExperienceIcon,
+  JobCardHeartIcon,
+  JobCardLocationIcon,
+  JobCardLogoIcon,
+  JobCardRemoteIcon,
+  JobCardSalaryIcon,
+  JobCardStarIcon,
+  JobCardUrgentIcon,
+} from './job-listing-card.icons';
+
 @Component({
   selector: 'docs-job-listing-card-example',
   imports: [
@@ -23,6 +37,17 @@ import {
     NbCardHeader,
     NbCardTitle,
     NbTitle,
+    JobCardBookmarkIcon,
+    JobCardBriefcaseIcon,
+    JobCardClockIcon,
+    JobCardExperienceIcon,
+    JobCardHeartIcon,
+    JobCardLocationIcon,
+    JobCardLogoIcon,
+    JobCardRemoteIcon,
+    JobCardSalaryIcon,
+    JobCardStarIcon,
+    JobCardUrgentIcon,
   ],
   template: `
     <div class="job-card-demo" role="group" aria-label="Job posting">
@@ -33,20 +58,7 @@ import {
               <!-- Previous implementation, kept for reference:
               <span>n.</span>
               -->
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 113.1845 121.4197"
-              >
-                <g fill="currentColor">
-                  <circle cx="56.5904" cy="15.4347" r="15.4347" />
-                  <circle cx="15.4345" cy="37.0428" r="15.4347" />
-                  <circle cx="97.7498" cy="37.0436" r="15.4347" />
-                  <circle cx="56.5904" cy="60.7108" r="15.4347" />
-                  <circle cx="15.4346" cy="84.3761" r="15.4347" />
-                  <circle cx="97.7498" cy="84.3753" r="15.4347" />
-                  <circle cx="56.5904" cy="105.985" r="15.4347" />
-                </g>
-              </svg>
+              <docs-job-card-logo-icon />
             </div>
 
             <div class="job-card-title-block">
@@ -68,21 +80,7 @@ import {
                 style="--nb-button-bg: #fff"
                 aria-label="Save to favorites"
               >
-                <svg
-                  width="22"
-                  height="22"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="#1a1a1a"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  aria-hidden="true"
-                >
-                  <path
-                    d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"
-                  />
-                </svg>
+                <docs-job-card-heart-icon />
               </button>
             </div>
           </div>
@@ -98,23 +96,7 @@ import {
                 shadow="none"
                 style="--nb-button-bg: var(--job-pill-green-bg)"
               >
-                <svg
-                  width="18"
-                  height="18"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="#1a1a1a"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  aria-hidden="true"
-                >
-                  <circle cx="12" cy="12" r="10" />
-                  <line x1="2" y1="12" x2="22" y2="12" />
-                  <path
-                    d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"
-                  />
-                </svg>
+                <docs-job-card-remote-icon />
                 Remote
               </button>
               <button
@@ -124,20 +106,7 @@ import {
                 shadow="none"
                 style="--nb-button-bg: var(--job-pill-purple-bg)"
               >
-                <svg
-                  width="18"
-                  height="18"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="#1a1a1a"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  aria-hidden="true"
-                >
-                  <rect x="2" y="7" width="20" height="14" rx="2" ry="2" />
-                  <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16" />
-                </svg>
+                <docs-job-card-briefcase-icon />
                 Full-time
               </button>
               <button
@@ -147,22 +116,7 @@ import {
                 shadow="none"
                 style="--nb-button-bg: var(--job-pill-yellow-bg)"
               >
-                <svg
-                  width="18"
-                  height="18"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="#1a1a1a"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  aria-hidden="true"
-                >
-                  <circle cx="12" cy="12" r="10" />
-                  <path d="M16 8h-6a2 2 0 1 0 0 4h4a2 2 0 1 1 0 4H8" />
-                  <line x1="12" y1="6" x2="12" y2="8" />
-                  <line x1="12" y1="16" x2="12" y2="18" />
-                </svg>
+                <docs-job-card-salary-icon />
                 Negotiable
               </button>
               <button
@@ -172,21 +126,7 @@ import {
                 shadow="none"
                 style="--nb-button-bg: var(--job-pill-blue-bg)"
               >
-                <svg
-                  width="18"
-                  height="18"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="#1a1a1a"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  aria-hidden="true"
-                >
-                  <line x1="6" y1="20" x2="6" y2="14" />
-                  <line x1="12" y1="20" x2="12" y2="10" />
-                  <line x1="18" y1="20" x2="18" y2="6" />
-                </svg>
+                <docs-job-card-experience-icon />
                 5+ years
               </button>
               <button
@@ -196,19 +136,7 @@ import {
                 shadow="none"
                 style="--nb-button-bg: var(--job-pill-pink-bg)"
               >
-                <svg
-                  width="18"
-                  height="18"
-                  viewBox="0 0 24 24"
-                  fill="#1a1a1a"
-                  stroke="#1a1a1a"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  aria-hidden="true"
-                >
-                  <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
-                </svg>
+                <docs-job-card-urgent-icon />
                 Urgent
               </button>
             </div>
@@ -219,20 +147,7 @@ import {
 
             <div class="job-card-highlights">
               <div class="job-card-star" aria-hidden="true">
-                <svg
-                  width="28"
-                  height="28"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="#1a1a1a"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                >
-                  <polygon
-                    points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"
-                  />
-                </svg>
+                <docs-job-card-star-icon />
               </div>
               <span class="job-card-highlights-label">Highlights</span>
               <div class="job-card-highlights-items">
@@ -252,37 +167,11 @@ import {
           <div class="job-card-footer">
             <div class="job-card-meta">
               <div class="job-card-meta-row">
-                <svg
-                  width="18"
-                  height="18"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="#1a1a1a"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  aria-hidden="true"
-                >
-                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
-                  <circle cx="12" cy="10" r="3" />
-                </svg>
+                <docs-job-card-location-icon />
                 Ho Chi Minh City / Remote
               </div>
               <div class="job-card-meta-row">
-                <svg
-                  width="18"
-                  height="18"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="#1a1a1a"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  aria-hidden="true"
-                >
-                  <circle cx="12" cy="12" r="10" />
-                  <polyline points="12 6 12 12 16 14" />
-                </svg>
+                <docs-job-card-clock-icon />
                 Posted 2 days ago
               </div>
             </div>
@@ -291,19 +180,7 @@ import {
               <button nbButton type="button" aria-label="Apply">Apply</button>
               <button nbButton type="button" variant="primary">
                 Save
-                <svg
-                  width="20"
-                  height="20"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="#1a1a1a"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  aria-hidden="true"
-                >
-                  <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z" />
-                </svg>
+                <docs-job-card-bookmark-icon />
               </button>
             </nb-card-actions>
           </div>
@@ -388,10 +265,20 @@ import {
         color: var(--job-paper);
       }
 
-      .job-card-logo svg {
-        width: clamp(24px, 5.6cqw, 28px);
-        height: auto;
-        display: block;
+      .job-card-logo docs-job-card-logo-icon {
+        --job-card-icon-size: clamp(24px, 5.6cqw, 28px);
+      }
+
+      .job-card-action docs-job-card-heart-icon {
+        --job-card-icon-size: 22px;
+      }
+
+      .job-card-pills docs-job-card-remote-icon,
+      .job-card-pills docs-job-card-briefcase-icon,
+      .job-card-pills docs-job-card-salary-icon,
+      .job-card-pills docs-job-card-experience-icon,
+      .job-card-pills docs-job-card-urgent-icon {
+        --job-card-icon-size: 18px;
       }
 
       /* Previous implementation, kept for reference:
@@ -494,9 +381,8 @@ import {
         background: var(--job-highlights-star);
       }
 
-      .job-card-star svg {
-        width: 24px;
-        height: 24px;
+      .job-card-star docs-job-card-star-icon {
+        --job-card-icon-size: 24px;
       }
 
       .job-card-highlights-label {
@@ -571,9 +457,13 @@ import {
         gap: 8px;
       }
 
-      .job-card-meta-row svg {
-        width: 16px;
-        height: 16px;
+      .job-card-meta-row docs-job-card-location-icon,
+      .job-card-meta-row docs-job-card-clock-icon {
+        --job-card-icon-size: 16px;
+      }
+
+      .job-card-actions docs-job-card-bookmark-icon {
+        --job-card-icon-size: 20px;
       }
 
       .job-card-actions {
