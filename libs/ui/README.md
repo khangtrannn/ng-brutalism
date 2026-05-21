@@ -15,7 +15,7 @@ Tailwind v4 ergonomics from the first import.
 [npm](https://www.npmjs.com/package/@ng-brutalism/ui) ·
 [GitHub](https://github.com/khangtrannn/ng-brutalism)
 
-![demo](https://raw.githubusercontent.com/khangtrannn/ng-brutalism/main/docs/assets/image-card-demo.gif)
+![demo](https://raw.githubusercontent.com/khangtrannn/ng-brutalism/main/docs/assets/introduction.gif)
 
 ## Install
 

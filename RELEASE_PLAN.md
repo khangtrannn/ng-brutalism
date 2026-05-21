@@ -351,17 +351,17 @@ Verify with `npm publish --dry-run`.
 - Top README visual: optimized GIF of the Image Card docs page.
 - Portfolio screenshot: one extra image under `## What it looks like`.
 - Target asset paths:
-  - `docs/assets/image-card-demo.gif`, under 2 MB
+  - `docs/assets/introduction.gif`, under 2 MB
   - `docs/assets/showcase-portfolio.png`, under 300 KB
 - Binaries live **once** at the paths above. Do not duplicate them into
   `libs/ui/` and do not ship them in the npm tarball.
 - Root `README.md` (GitHub-facing) references the assets with **relative**
-  paths: `docs/assets/image-card-demo.gif`.
+  paths: `docs/assets/introduction.gif`.
 - `libs/ui/README.md` (npm-facing) references the **same** assets with
   **absolute raw GitHub URLs pinned to `main`** so npm.com renders them:
 
   ```md
-  ![demo](https://raw.githubusercontent.com/khangtrannn/ng-brutalism/main/docs/assets/image-card-demo.gif)
+  ![demo](https://raw.githubusercontent.com/khangtrannn/ng-brutalism/main/docs/assets/introduction.gif)
   ![showcase](https://raw.githubusercontent.com/khangtrannn/ng-brutalism/main/docs/assets/showcase-portfolio.png)
   ```
 
@@ -872,7 +872,7 @@ A neo-brutalist Angular component library — Signals • Zoneless • Token-bas
 [npm](https://www.npmjs.com/package/@ng-brutalism/ui) ·
 [GitHub](https://github.com/khangtrannn/ng-brutalism)
 
-![demo](docs/assets/image-card-demo.gif)
+![demo](docs/assets/introduction.gif)
 
 ## Install
 
@@ -934,7 +934,7 @@ Notes:
 **Status (2026-05-20): complete.** Root `README.md` rewritten from the Nx-
 monorepo blurb to the §5.1 locked template — title + canonical tagline,
 inlined §2.5 4-badge block (npm version, npm downloads, CI, license), nav
-row, hero GIF (relative `docs/assets/image-card-demo.gif`), install section
+row, hero GIF (relative `docs/assets/introduction.gif`), install section
 with the §2.7 Node-version line, inlined §2.1 `provideNgBrutalism()` snippet,
 showcase PNG, pre-1.0 status note, MIT license. Verified
 `provideNgBrutalism`, `NbConfig`, `NB_THEME_CONFIG`, `NbThemeConfig`,
