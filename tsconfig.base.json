@@ -20,7 +20,8 @@
     "isolatedModules": true,
     "esModuleInterop": true,
     "paths": {
-      "@ng-brutalism/ui": ["./libs/ui/src/index.ts"]
+      "@ng-brutalism/ui": ["./libs/ui/src/index.ts"],
+      "schematics": ["./libs/schematics/src/index.ts"]
     }
   },
   "angularCompilerOptions": {

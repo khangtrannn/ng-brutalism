@@ -1,0 +1,10 @@
+{
+  "$schema": "https://json.schemastore.org/angular-schematics-collection",
+  "schematics": {
+    "ng-add": {
+      "description": "Install @ng-brutalism/ui in an Angular CLI application.",
+      "factory": "./ng-add/index",
+      "schema": "./ng-add/schema.json"
+    }
+  }
+}

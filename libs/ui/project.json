@@ -19,7 +19,9 @@
       "outputs": ["{workspaceRoot}/dist/ui"],
       "options": {
         "commands": [
-          "nx run ui:ng-package",
+          "pnpm nx run schematics:build",
+          "pnpm nx run ui:ng-package",
+          "node -e \"require('node:fs').cpSync('dist/libs/schematics/src', 'dist/ui/schematics', { recursive: true })\"",
           "node -e \"require('node:fs').copyFileSync('LICENSE', 'dist/ui/LICENSE')\"",
           "node -e \"require('node:fs').copyFileSync('CHANGELOG.md', 'dist/ui/CHANGELOG.md')\""
         ],

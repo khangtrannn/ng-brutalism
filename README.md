@@ -21,6 +21,17 @@ Tailwind v4 ergonomics from the first import.
 
 Requires Node 20.19+ or 22.12+, Angular 21, and Tailwind CSS v4.
 
+Automatic setup:
+
+```sh
+ng add @ng-brutalism/ui
+```
+
+The schematic installs the package, configures Tailwind CSS v4 when needed, and
+adds the bundled styles to your global stylesheet.
+
+Manual setup:
+
 ```sh
 npm install @ng-brutalism/ui
 # or
@@ -30,6 +41,7 @@ pnpm add @ng-brutalism/ui
 Import the styles once in your global CSS:
 
 ```css
+@import 'tailwindcss';
 @import '@ng-brutalism/ui/styles.css';
 ```
 

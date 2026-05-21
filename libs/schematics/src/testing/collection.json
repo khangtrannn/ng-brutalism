@@ -1,0 +1,10 @@
+{
+  "$schema": "../../../../node_modules/@angular-devkit/schematics/collection-schema.json",
+  "schematics": {
+    "ng-add": {
+      "description": "Test collection for @ng-brutalism/ui ng-add.",
+      "factory": "../ng-add/index.ts",
+      "schema": "../ng-add/schema.json"
+    }
+  }
+}

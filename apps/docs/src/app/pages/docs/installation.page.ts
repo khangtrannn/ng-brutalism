@@ -4,41 +4,62 @@ import { DocsCodeBlock } from '../../docs/docs-code-block';
 import { DocsTokens } from '../../docs/docs-tokens';
 
 @Component({
-    selector: 'docs-installation-page',
-    imports: [DocsCodeBlock, DocsTokens],
-    template: `
+  selector: 'docs-installation-page',
+  imports: [DocsCodeBlock, DocsTokens],
+  template: `
     <article>
       <header id="overview" class="relative mb-10 scroll-mt-32">
         <div class="mb-5">
           <p>Getting Started</p>
           <h1>Installation</h1>
           <p class="mt-3 max-w-3xl text-base font-medium sm:text-lg">
-            Add the UI package to an Angular app, wire up the optional provider,
-            and import standalone components directly where you use them.
+            Add the UI package to an Angular app with the schematic, or install
+            it manually when you want full control over each setup step.
           </p>
         </div>
       </header>
 
       <section id="prerequisites">
-        <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">Prerequisites</h2>
+        <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">
+          Prerequisites
+        </h2>
         <p class="mb-2 text-base font-medium">
           Components are composed from Tailwind utilities applied through
           <code class="font-mono text-sm">nbClass</code>. The library expects
           your app to have <strong>Tailwind CSS v4</strong> configured and
-          scanning your project source. Without it the host classes will not
-          resolve and components will render unstyled.
+          scanning your project source. The
+          <code class="font-mono text-sm">ng add</code> schematic handles this
+          automatically for Angular CLI apps.
         </p>
       </section>
 
       <section id="package">
-        <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">Package</h2>
-        <docs-code-block title="Install" [code]="installCode" />
+        <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">
+          Automatic setup
+        </h2>
+        <p class="mb-5 text-base font-medium">
+          Use the schematic when you want the package, Tailwind CSS v4, PostCSS,
+          and global style imports configured for you.
+        </p>
+        <docs-code-block title="Angular CLI" [code]="schematicInstallCode" />
+      </section>
+
+      <section id="manual">
+        <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">
+          Manual setup
+        </h2>
+        <p class="mb-5 text-base font-medium">
+          Use manual setup when Tailwind is already managed by your app or when
+          you want to review each change yourself.
+        </p>
+        <docs-code-block title="Install" [code]="manualInstallCode" />
       </section>
 
       <section id="styles">
         <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">Styles</h2>
         <p class="mb-5 text-base font-medium">
-          Import the bundled stylesheet once at your app's entry (e.g.
+          For manual setup, import Tailwind and the bundled stylesheet once at
+          your app's entry (e.g.
           <code class="font-mono text-sm">src/styles.css</code>). It includes
           the default theme tokens; import
           <code class="font-mono text-sm">@ng-brutalism/ui/theme.css</code>
@@ -48,7 +69,9 @@ import { DocsTokens } from '../../docs/docs-tokens';
       </section>
 
       <section id="provider">
-        <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">Provider (optional)</h2>
+        <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">
+          Provider (optional)
+        </h2>
         <p class="mb-5 text-base font-medium">
           The provider is only needed if you want to override theme tokens from
           Angular config. The simpler alternative is to redefine the CSS custom
@@ -65,14 +88,17 @@ import { DocsTokens } from '../../docs/docs-tokens';
       </section>
     </article>
   `,
-    changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export default class InstallationPage {
-  protected readonly installCode = `npm install @ng-brutalism/ui
+  protected readonly schematicInstallCode = `ng add @ng-brutalism/ui`;
+
+  protected readonly manualInstallCode = `npm install @ng-brutalism/ui
 # or
 pnpm add @ng-brutalism/ui`;
 
-  protected readonly stylesCode = `@import '@ng-brutalism/ui/styles.css';`;
+  protected readonly stylesCode = `@import "tailwindcss";
+@import '@ng-brutalism/ui/styles.css';`;
 
   protected readonly providerCode = `import { ApplicationConfig } from '@angular/core';
 import { provideNgBrutalism } from '@ng-brutalism/ui';

@@ -13,17 +13,22 @@
     "url": "https://github.com/khangtrannn/ng-brutalism/issues"
   },
   "keywords": [
+    "neo-brutalism",
+    "neo-brutalism-ui",
+    "neo brutalism",
+    "brutalism",
+    "brutalist-design",
     "angular",
+    "angular-ui",
+    "angular-components",
     "ui",
     "ui-library",
-    "components",
-    "neo-brutalism",
-    "brutalism",
+    "component-library",
+    "design-system",
     "tailwind",
     "tailwindcss",
     "signals",
-    "zoneless",
-    "design-system"
+    "zoneless"
   ],
   "peerDependencies": {
     "@angular/common": "^21.0.0",
@@ -31,6 +36,7 @@
     "tailwindcss": "^4.0.0"
   },
   "dependencies": {
+    "@angular-devkit/schematics": "^21.0.0",
     "clsx": "^2.1.1",
     "tailwind-merge": "^3.5.0",
     "tslib": "^2.3.0"
@@ -41,12 +47,14 @@
   "files": [
     "fesm2022/",
     "types/",
+    "schematics/",
     "*.css",
     "README.md",
     "CHANGELOG.md",
     "LICENSE",
     "package.json"
   ],
+  "schematics": "./schematics/collection.json",
   "exports": {
     ".": {
       "types": "./index.d.ts",

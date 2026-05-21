@@ -1,0 +1,34 @@
+{
+  "name": "schematics",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/schematics/src",
+  "projectType": "library",
+  "tags": [],
+  "targets": {
+    "build": {
+      "executor": "@nx/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/schematics",
+        "main": "libs/schematics/src/index.ts",
+        "tsConfig": "libs/schematics/tsconfig.lib.json",
+        "assets": [
+          "libs/schematics/src/collection.json",
+          "libs/schematics/src/ng-add/schema.json"
+        ]
+      }
+    },
+    "test": {
+      "executor": "@nx/vitest:test",
+      "options": {
+        "configFile": "libs/schematics/vitest.config.mts"
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint",
+      "options": {
+        "lintFilePatterns": ["libs/schematics/**/*.ts"]
+      }
+    }
+  }
+}
