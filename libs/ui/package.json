@@ -1,6 +1,6 @@
 {
   "name": "@ng-brutalism/ui",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Neo-brutalist Angular component library (ng-brutalism) with signals, zoneless, token-driven design, and Tailwind v4.",
   "license": "MIT",
   "author": "Khang Tran <khangtrann8198@gmail.com>",
