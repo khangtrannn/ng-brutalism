@@ -217,9 +217,9 @@ import {
           (<code class="font-mono text-base">NbSelect</code>)
         </h3>
         <div
-          class="overflow-hidden border-2 border-(--nb-border) bg-nb-surface shadow-[5px_5px_0_0_var(--nb-shadow)]"
+          class="overflow-x-auto border-2 border-(--nb-border) bg-nb-surface shadow-[5px_5px_0_0_var(--nb-shadow)]"
         >
-          <table class="w-full border-collapse text-left">
+          <table class="w-full min-w-160 border-collapse text-left">
             <thead class="bg-nb-secondary text-nb-secondary-fg">
               <tr>
                 <th class="border-b-2 border-r-2 border-(--nb-border) px-4 py-3 font-bold">

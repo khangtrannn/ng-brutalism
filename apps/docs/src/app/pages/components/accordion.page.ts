@@ -215,9 +215,9 @@ import { DocsTokens } from '../../docs/docs-tokens';
         <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">API</h2>
         <h3 class="mt-6 mb-3 text-xl font-bold">Accordion</h3>
         <div
-          class="overflow-hidden border-2 border-(--nb-border) bg-nb-surface shadow-nb"
+          class="overflow-x-auto border-2 border-(--nb-border) bg-nb-surface shadow-nb"
         >
-          <table class="w-full border-collapse text-left">
+          <table class="w-full min-w-160 border-collapse text-left">
             <thead class="bg-nb-secondary text-nb-secondary-fg">
               <tr>
                 <th
@@ -287,9 +287,9 @@ import { DocsTokens } from '../../docs/docs-tokens';
 
         <h3 class="mt-8 mb-3 text-xl font-bold">Accordion Item</h3>
         <div
-          class="overflow-hidden border-2 border-(--nb-border) bg-nb-surface shadow-nb"
+          class="overflow-x-auto border-2 border-(--nb-border) bg-nb-surface shadow-nb"
         >
-          <table class="w-full border-collapse text-left">
+          <table class="w-full min-w-160 border-collapse text-left">
             <thead class="bg-nb-secondary text-nb-secondary-fg">
               <tr>
                 <th
@@ -342,9 +342,9 @@ import { DocsTokens } from '../../docs/docs-tokens';
 
         <h3 class="mt-8 mb-3 text-xl font-bold">Selectors</h3>
         <div
-          class="overflow-hidden border-2 border-(--nb-border) bg-nb-surface shadow-nb"
+          class="overflow-x-auto border-2 border-(--nb-border) bg-nb-surface shadow-nb"
         >
-          <table class="w-full border-collapse text-left">
+          <table class="w-full min-w-160 border-collapse text-left">
             <thead class="bg-nb-secondary text-nb-secondary-fg">
               <tr>
                 <th

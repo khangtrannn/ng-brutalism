@@ -15,8 +15,6 @@ import { DOC_NAV } from '../nav';
           <span class="pagination__eyebrow">← Previous</span>
           <span class="pagination__title">{{ prev()!.label }}</span>
         </a>
-      } @else {
-        <span></span>
       }
 
       @if (next()) {
@@ -29,13 +27,19 @@ import { DOC_NAV } from '../nav';
   `,
     styles: `
     .pagination {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1rem;
-      justify-content: space-between;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 0.75rem;
       margin-top: 4rem;
       padding-top: 1.75rem;
       border-top: 3px dashed var(--nb-border);
+    }
+
+    @media (min-width: 640px) {
+      .pagination {
+        grid-template-columns: 1fr 1fr;
+        gap: 1rem;
+      }
     }
 
     .pagination__card {
@@ -43,7 +47,7 @@ import { DOC_NAV } from '../nav';
       flex-direction: column;
       gap: 0.35rem;
       padding: 0.85rem 1.1rem;
-      min-width: 12rem;
+      min-width: 0;
       border: 3px solid var(--nb-border);
       background: var(--nb-paper);
       box-shadow: 5px 5px 0 0 var(--nb-shadow);
@@ -57,6 +61,7 @@ import { DOC_NAV } from '../nav';
 
     .pagination__card--prev {
       background: var(--nb-mint);
+      grid-column: 1;
     }
 
     .pagination__card--next {
@@ -64,6 +69,12 @@ import { DOC_NAV } from '../nav';
       text-align: right;
       align-items: flex-end;
       color: #fff;
+    }
+
+    @media (min-width: 640px) {
+      .pagination__card--next {
+        grid-column: 2;
+      }
     }
 
     .pagination__eyebrow {

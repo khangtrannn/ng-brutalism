@@ -60,8 +60,7 @@ import {
 
             <div class="job-card-title-block">
               <nb-card-title class="job-card-title">
-                Senior Frontend<br />
-                <span nbTitle>Engineer</span>
+                Senior Frontend <span nbTitle>Engineer</span>
               </nb-card-title>
               <nb-card-description class="job-card-subtitle">
                 Inspectorio
@@ -286,10 +285,10 @@ import {
       .job-card-title {
         display: block;
         color: var(--job-ink);
-        font-size: clamp(32px, 7.4cqw, 37px);
+        font-size: clamp(26px, 7.4cqw, 37px);
         font-weight: 400;
         letter-spacing: 0;
-        line-height: 0.98;
+        line-height: 1.05;
       }
 
       .job-card-title span {

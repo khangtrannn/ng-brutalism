@@ -96,8 +96,8 @@ import { NbDocsNavbar } from '../docs/layout/navbar';
         </aside>
 
         <!-- Main content -->
-        <main class="docs-grid-bg min-h-[calc(100vh-8rem)] flex-1 px-5 py-12 lg:ml-80 lg:mr-52 lg:px-8">
-          <div class="mx-auto w-full max-w-3xl">
+        <main class="docs-grid-bg min-h-[calc(100vh-8rem)] w-full min-w-0 flex-1 px-5 py-12 lg:ml-80 lg:mr-52 lg:px-8">
+          <div class="mx-auto w-full min-w-0 max-w-3xl">
             <div class="not-found-card relative border-4 border-(--nb-border) bg-(--nb-paper) p-8 shadow-[10px_10px_0_0_var(--nb-shadow)] sm:p-10">
 
               <div class="grid gap-6 md:grid-cols-[1fr_auto] md:items-center">

@@ -34,9 +34,9 @@ import { NbDocsToc } from './toc';
 
         <main
           data-docs-content
-          class="docs-grid-bg min-h-[calc(100vh-8rem)] flex-1 px-5 py-12 lg:ml-80 lg:mr-52 lg:px-8"
+          class="docs-grid-bg min-h-[calc(100vh-8rem)] w-full min-w-0 flex-1 px-5 py-12 lg:ml-80 lg:mr-52 lg:px-8"
         >
-          <div class="mx-auto min-h-full w-full max-w-3xl">
+          <div class="mx-auto min-h-full w-full min-w-0 max-w-3xl">
             <router-outlet />
             <nb-docs-pagination />
           </div>

@@ -95,9 +95,9 @@ import JobListingCardExample from './examples/job-listing-card';
         </p>
 
         <div
-          class="overflow-hidden border-2 border-(--nb-border) bg-nb-surface shadow-[5px_5px_0_0_var(--nb-shadow)]"
+          class="overflow-x-auto border-2 border-(--nb-border) bg-nb-surface shadow-[5px_5px_0_0_var(--nb-shadow)]"
         >
-          <table class="w-full border-collapse text-left">
+          <table class="w-full min-w-160 border-collapse text-left">
             <thead class="bg-nb-secondary text-nb-secondary-fg">
               <tr>
                 <th
