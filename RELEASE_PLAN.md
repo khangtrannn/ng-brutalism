@@ -154,6 +154,10 @@ A neo-brutalist Angular component library — Signals • Zoneless • Token-bas
 - Remove/hide `NB_DENSITY` and `NbDensity` from the v0.1.0 public API.
 - Remove the one-value `NbSelectSize = 'default'` public API and any
   corresponding `size` input.
+- `defaultValue` is not part of the v0.1.0 public API for `NbAccordion` or
+  `NbSelect`. The pattern for initial value is `[value]="..."` (one-way) or
+  `[(value)]="..."` (two-way binding via `model<T>()`). `defaultOpen` is
+  similarly removed from `NbSelect`; use `[open]` / `[(open)]`.
 - Keep `provideNgBrutalism()` in v0.1.0 as a **real, narrow, optional** API —
   not a reserved no-op. CSS custom properties remain the **primary** theming
   path; the provider is an alternative for callers who want to configure the
@@ -630,8 +634,8 @@ grep -E "^export" libs/ui/src/index.ts | grep -E "\bNb[A-Z][A-Za-z]*Component\b"
 
 The last grep catches `*Component` names leaking through the public barrel
 (`libs/ui/src/index.ts`) even when the implementation class has been renamed
-internally. Known offender as of plan-writing time: `NbSelectComponent` —
-must be renamed to `NbSelect` before Pass 1 verification.
+internally. All `*Component` / `*Directive` suffixes have been dropped as part
+of the v21 housekeeping: `NbSelect`, `NbAccordion`, `NbCard`, `NbButton`, etc.
 
 This is a binary gate, not a full audit. Deeper API surface verification is
 deferred to §6.4 (local consume smoke test) and v0.2.
