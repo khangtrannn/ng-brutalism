@@ -66,7 +66,9 @@ import { DocsTokens } from '../../docs/docs-tokens';
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export default class InstallationPage {
-  protected readonly installCode = `pnpm add @ng-brutalism/ui`;
+  protected readonly installCode = `npm install @ng-brutalism/ui
+# or
+pnpm add @ng-brutalism/ui`;
 
   protected readonly stylesCode = `@import '@ng-brutalism/ui/styles.css';
 @import '@ng-brutalism/ui/theme.css';`;

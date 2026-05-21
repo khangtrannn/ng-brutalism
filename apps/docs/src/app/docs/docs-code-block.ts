@@ -25,6 +25,17 @@ function inferLanguage(title: string, code: string): HighlightLanguage {
   const trimmedCode = code.trimStart();
 
   if (
+    normalizedTitle.endsWith('.css') ||
+    normalizedTitle.endsWith('.scss') ||
+    trimmedCode.startsWith('@import ') ||
+    trimmedCode.startsWith('@tailwind ') ||
+    trimmedCode.startsWith(':root') ||
+    trimmedCode.startsWith('@theme')
+  ) {
+    return 'css';
+  }
+
+  if (
     normalizedTitle === 'import' ||
     normalizedTitle.endsWith('.ts') ||
     normalizedTitle === 'component' ||
@@ -33,7 +44,13 @@ function inferLanguage(title: string, code: string): HighlightLanguage {
     return 'typescript';
   }
 
-  if (normalizedTitle === 'install' || trimmedCode.startsWith('pnpm ')) {
+  if (
+    normalizedTitle === 'install' ||
+    trimmedCode.startsWith('npm ') ||
+    trimmedCode.startsWith('pnpm ') ||
+    trimmedCode.startsWith('npx ') ||
+    trimmedCode.startsWith('pnpx ')
+  ) {
     return 'bash';
   }
 

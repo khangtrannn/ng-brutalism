@@ -44,6 +44,17 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
+      - name: Sync GitHub repository metadata
+        env:
+          GH_TOKEN: ${{ secrets.REPO_METADATA_TOKEN || secrets.GH_TOKEN }}
+        run: |
+          if [ -z "$GH_TOKEN" ]; then
+            echo "::notice::Skipping repository metadata sync because REPO_METADATA_TOKEN or GH_TOKEN is not set."
+            exit 0
+          fi
+
+          pnpm sync:repo-metadata
+
       - name: Lint and test
         run: pnpm nx run-many -t lint test --projects=ui,docs
 

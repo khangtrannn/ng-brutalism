@@ -22,6 +22,8 @@ Tailwind v4 ergonomics from the first import.
 Requires Node 20.19+ or 22.12+, Angular 21, and Tailwind CSS v4.
 
 ```sh
+npm install @ng-brutalism/ui
+# or
 pnpm add @ng-brutalism/ui
 ```
 

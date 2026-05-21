@@ -10,6 +10,9 @@ GitHub Actions as its source, and HTTPS is handled by GitHub Pages.
 Deploy mechanics: `.github/workflows/deploy-docs.yml` runs on every push to
 `main`, builds with `pnpm nx build docs --configuration=production`, and
 uploads the prerendered output from `dist/apps/docs/analog/public/`.
+The workflow also syncs the repository About metadata from
+`.github/repository.json` when either `REPO_METADATA_TOKEN` or `GH_TOKEN` is
+configured as a repository secret.
 
 ---
 
@@ -24,6 +27,7 @@ For routine docs updates:
 The workflow runs:
 
 ```bash
+pnpm sync:repo-metadata
 pnpm nx run-many -t lint test --projects=ui,docs
 pnpm nx build docs --configuration=production
 ```
@@ -80,6 +84,8 @@ GitHub repo settings:
 - Settings → Pages → Source: **GitHub Actions**
 - Custom domain: `ngbrutalism.khangtran.dev`
 - Enforce HTTPS: enabled after GitHub issues the certificate
+- Actions secret: `REPO_METADATA_TOKEN` or `GH_TOKEN`, using a GitHub token
+  with repository administration write access for About/sidebar metadata sync
 
 `apps/docs/public/CNAME` must contain exactly:
 
