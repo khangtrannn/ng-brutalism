@@ -35,7 +35,7 @@ this section is the one-screen summary you need to pick the work back up.
   §5.4 `CHANGELOG.md` + `docs/plans/_archive/RELEASE_NOTES_v0.1.0.md`.
 - §6.1 clean build — every `dist/ui/` artifact present.
 - §6.2 final lint/test/build green.
-- §6.5 `npm publish --dry-run`: 9 files, **38.1 KB packed / 233.7 KB
+- §6.5 `npm publish --dry-run`: 21 files, **43.4 KB packed / 247.0 KB
   unpacked** (budgets 75 / 400 KB), sourcemaps present.
 
 ### Deviations from the locked plan (each documented inline)
@@ -114,6 +114,9 @@ is locked.
 ## 1. Release Contract
 
 - Package: `@ng-brutalism/ui`.
+- Publish scope: `@ng-brutalism/ui` only. `libs/schematics` is private build
+  infrastructure; its built output is bundled into `dist/ui/schematics` so
+  consumers install and run `ng add @ng-brutalism/ui`.
 - Version: direct `0.1.0`. No RC dist-tag.
 - License: MIT.
 - Audience: Angular developers building neo-brutalist applications.
@@ -1154,6 +1157,10 @@ listing, including `/showcase/portfolio/index.html`). The site is live at
 `https://ngbrutalism.khangtran.dev`; direct navigation and changed pages should
 still be smoke-tested after each docs change.
 
+**Status (2026-05-21): interactive smoke passed.** Served locally with
+`pnpm nx serve docs`; home, introduction, installation, component pages,
+dialog behavior, and `/showcase/portfolio` all worked.
+
 ### 6.4 Local Consume Smoke Test
 
 Mandatory before publish. Run **twice** — once on Node 20.19 (the floor locked
@@ -1175,7 +1182,7 @@ npm pack
 cd /tmp
 pnpm create @angular@21 nb-smoke
 cd nb-smoke
-pnpm add /Users/khangtrann/ng-brutalism/dist/ui/ng-brutalism-ui-0.1.0.tgz
+pnpm exec ng add /Users/khangtrann/ng-brutalism/dist/ui/ng-brutalism-ui-0.1.0.tgz --skip-confirmation
 ```
 
 Do **not** pin the Angular point version (`@angular@21`, not `@angular@21.0.0`).
@@ -1183,7 +1190,11 @@ The smoke must reflect what a real new consumer gets from `pnpm create
 @angular@21` today; pinning defeats that. If a future 21.x patch breaks the
 smoke, fix the library.
 
-Then set up Tailwind v4 using the install docs and verify:
+Treat `ng add @ng-brutalism/ui` as the primary v0.1.0 install path. The
+local tarball command above must install the package and run the bundled
+`ng-add` schematic from `dist/ui/schematics`.
+
+Then verify:
 
 - `import { NbButton } from '@ng-brutalism/ui'` resolves with types
 - After `@import '@ng-brutalism/ui/styles.css';` in the consumer's CSS,
@@ -1191,9 +1202,27 @@ Then set up Tailwind v4 using the install docs and verify:
   `--nb-background: #ffffff` (and the rest of the `--nb-*` tokens) — the
   nested `@import './theme.css';` must resolve through `node_modules`
 - install produces no missing peer warnings when Tailwind CSS v4 is present
+- the schematic adds or preserves Tailwind v4/PostCSS setup and the
+  `@import "tailwindcss";` + `@import '@ng-brutalism/ui/styles.css';` global
+  stylesheet imports
 - render at least `NbButton`, `NbCard`, and `NbDialog`
 - an intentionally wrong input type produces a TypeScript error
-- install docs are sufficient for a new consumer
+- the automatic install docs are sufficient for a new consumer
+
+After the `ng add` path passes, run one manual-install spot check in either
+Node version:
+
+```sh
+rm -rf /tmp/nb-smoke-manual
+cd /tmp
+pnpm create @angular@21 nb-smoke-manual
+cd nb-smoke-manual
+pnpm add /Users/khangtrann/ng-brutalism/dist/ui/ng-brutalism-ui-0.1.0.tgz
+```
+
+Then follow the manual install docs exactly: install Tailwind v4 if missing,
+add the global CSS imports, render `NbButton`, and confirm the app builds.
+This path proves the fallback docs, not the main promise.
 
 Anything wrong here means fix, repack, and retest. Do not publish around it.
 
@@ -1208,10 +1237,24 @@ work item lives in §8 for v0.2.
 
 **Status (2026-05-20): pending.** Not run. Mandatory before §7 — do not
 skip. Requires `nvm`. Run twice (Node 20.19, Node 22) per the recipe
-above; on each pass, after `pnpm add /Users/khangtrann/ng-brutalism/dist/
-ui/ng-brutalism-ui-0.1.0.tgz`, follow the §6.4 checklist exactly (typed
-import, `:root` token computed style, no peer warnings, render `NbButton`
-+ `NbCard` + `NbDialog`, intentional type error, install docs).
+above; on each pass, after `pnpm exec ng add /Users/khangtrann/ng-brutalism/
+dist/ui/ng-brutalism-ui-0.1.0.tgz --skip-confirmation`, follow the §6.4
+checklist exactly (typed import, `:root` token computed style, no peer
+warnings, schematic-managed Tailwind/style imports, render `NbButton` +
+`NbCard` + `NbDialog`, intentional type error, install docs). Also run the
+single manual-install spot check in either Node version.
+
+**Status (2026-05-21): package smoke fixed and mostly passed.** Initial local
+tarball `ng add` failed because the root package is `"type": "module"` while
+the schematics output is CommonJS, causing `exports is not defined` when
+Angular CLI loaded `schematics/ng-add/index.js`. Fixed by writing
+`dist/ui/schematics/package.json` with `{ "type": "commonjs" }` during
+`ui:build`. Fresh local tarball `ng add` then passed under `fnm` Node 20.20.2
+and Node 22.22.2; both smoke apps rendered `NbButton` + `NbCard` and built.
+Manual fallback install spot check also built under Node 22.22.2. Intentional
+bad input check passed: `variant="definitely-not-valid"` on `button[nbButton]`
+fails with TS2322. Remaining before publishing: browser-computed `:root` token
+check.
 
 ### 6.5 Publish Dry Run
 
@@ -1239,15 +1282,20 @@ Budgets are set roughly 2× current size (measured on 2026-05-20: 36 KB packed
 If either size budget is exceeded, inspect `npm publish --dry-run` output and
 remove accidental files before publishing.
 
-**Status (2026-05-20): green.**
+**Status (2026-05-21): green after schematics CommonJS manifest fix.**
 
 - Tarball contents: `CHANGELOG.md`, `LICENSE`, `README.md`, `fesm2022/ng-
   brutalism-ui.mjs`, `fesm2022/ng-brutalism-ui.mjs.map`, `package.json`,
-  `styles.css`, `theme.css`, `types/ng-brutalism-ui.d.ts`. 9 total files.
+  `schematics/collection.json`, `schematics/package.json`,
+  `schematics/index.js`, `schematics/index.d.ts`, `schematics/ng-add/index.js`,
+  `schematics/ng-add/index.d.ts`, `schematics/ng-add/schema.json`,
+  `schematics/ng-add/schema.js`, `schematics/ng-add/schema.d.ts`,
+  corresponding schematic sourcemaps, `styles.css`, `theme.css`,
+  `types/ng-brutalism-ui.d.ts`. 21 total files.
 - No source `.ts`, no `node_modules`, no planning docs.
 - Sourcemaps present (`fesm2022/ng-brutalism-ui.mjs.map`, 107.9 kB).
-- Packed: **38.1 kB** (budget ≤ 75 kB).
-- Unpacked: **233.7 kB** (budget ≤ 400 kB).
+- Packed: **43.4 kB** (budget ≤ 75 kB).
+- Unpacked: **247.0 kB** (budget ≤ 400 kB).
 
 ### 6.6 Git State Gate
 
@@ -1312,6 +1360,9 @@ Publish npm:
 cd dist/ui
 npm publish --access public
 ```
+
+Do not publish `libs/schematics` or a separate `@ng-brutalism/schematics`
+package for v0.1.0; schematics ship inside `@ng-brutalism/ui`.
 
 Verify before doing anything else:
 
