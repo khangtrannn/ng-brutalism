@@ -280,6 +280,7 @@ body::-webkit-scrollbar-thumb {
 .nb-stat-tile--pink   { background: var(--nb-pink); }
 .nb-stat-tile--mint   { background: var(--nb-mint); }
 .nb-stat-tile--lavender { background: var(--nb-lavender); }
+.nb-stat-tile--peach { background: var(--nb-peach); }
 .nb-stat-tile--blue { background: var(--nb-blue); color: #fff; }
 
 a.nb-stat-tile,

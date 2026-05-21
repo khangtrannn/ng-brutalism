@@ -187,7 +187,7 @@ import { DocsCodeBlock } from '../../docs/docs-code-block';
             <span class="nb-stat-tile__label">Dense disclosure</span>
           </a>
           <a
-            class="nb-stat-tile nb-stat-tile--interactive nb-stat-tile--blue"
+            class="nb-stat-tile nb-stat-tile--interactive nb-stat-tile--peach"
             routerLink="/components/button"
           >
             <span class="nb-stat-tile__value">Button</span>

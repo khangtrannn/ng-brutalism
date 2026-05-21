@@ -39,8 +39,10 @@ import { DocsTokens } from '../../docs/docs-tokens';
         <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">Styles</h2>
         <p class="mb-5 text-base font-medium">
           Import the bundled stylesheet once at your app's entry (e.g.
-          <code class="font-mono text-sm">src/styles.css</code>). Theme tokens
-          live in a separate sheet you can import or override.
+          <code class="font-mono text-sm">src/styles.css</code>). It includes
+          the default theme tokens; import
+          <code class="font-mono text-sm">@ng-brutalism/ui/theme.css</code>
+          directly only when you need the token sheet by itself.
         </p>
         <docs-code-block title="src/styles.css" [code]="stylesCode" />
       </section>
@@ -70,8 +72,7 @@ export default class InstallationPage {
 # or
 pnpm add @ng-brutalism/ui`;
 
-  protected readonly stylesCode = `@import '@ng-brutalism/ui/styles.css';
-@import '@ng-brutalism/ui/theme.css';`;
+  protected readonly stylesCode = `@import '@ng-brutalism/ui/styles.css';`;
 
   protected readonly providerCode = `import { ApplicationConfig } from '@angular/core';
 import { provideNgBrutalism } from '@ng-brutalism/ui';
