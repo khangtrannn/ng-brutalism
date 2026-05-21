@@ -160,8 +160,8 @@ import { NbDocsNavbar } from '../docs/layout/navbar';
                   </h3>
                   <p class="mt-2 text-sm font-medium">
                     Built as Angular primitives with directive APIs, signal
-                    inputs, and native interaction patterns — not React
-                    components ported through a wrapper.
+                    inputs, and native interaction patterns that fit modern
+                    Angular apps.
                   </p>
                 </div>
                 <div

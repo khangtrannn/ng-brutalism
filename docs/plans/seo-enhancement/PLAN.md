@@ -34,13 +34,13 @@ itself. **Decision: split.** `/` becomes a dedicated marketing landing page;
 
 ### 2.2 Head-term target for `/` (Q3)
 
-**Primary: "neobrutalism angular"** (riding spillover intent from `neobrutalism.dev`
-React lib — devs already know what brutalism is and are looking for an Angular
-equivalent). **Secondary cluster: "neo-brutalist angular ui library",
-"brutalist angular components".** Branded "ng brutalism" comes free.
+**Primary: "neobrutalism angular"** (capturing developers who already know the
+visual style and are looking for Angular-native primitives). **Secondary
+cluster: "neo-brutalist angular ui library", "brutalist angular components".**
+Branded "ng brutalism" comes free.
 
-Explicitly **not** targeting "angular ui library" — unwinnable (Material,
-PrimeNG, NG-ZORRO, Taiga UI).
+Explicitly **not** targeting the broad "angular ui library" head term — too
+generic and crowded for this stage.
 
 ### 2.3 Resolve `/docs/<component>/` duplicates (Q4)
 
