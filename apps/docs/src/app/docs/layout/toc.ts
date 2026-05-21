@@ -2,14 +2,13 @@ import {
   ChangeDetectionStrategy,
   Component,
   DOCUMENT,
-  DestroyRef,
-  afterNextRender,
+  afterRenderEffect,
   inject,
   signal,
 } from '@angular/core';
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { toSignal } from '@angular/core/rxjs-interop';
 import { NavigationEnd, Router } from '@angular/router';
-import { filter } from 'rxjs/operators';
+import { filter, map } from 'rxjs';
 
 interface TocHeading {
   readonly id: string;
@@ -123,19 +122,22 @@ function extractHeadings(contentEl: Element): readonly TocHeading[] {
 export class NbDocsToc {
   private readonly document = inject(DOCUMENT);
   private readonly router = inject(Router);
-  private readonly destroyRef = inject(DestroyRef);
 
   protected readonly headings = signal<readonly TocHeading[]>([]);
 
-  constructor() {
-    afterNextRender(() => this.scan());
+  private readonly currentUrl = toSignal(
+    this.router.events.pipe(
+      filter((e): e is NavigationEnd => e instanceof NavigationEnd),
+      map((e) => e.urlAfterRedirects),
+    ),
+    { initialValue: this.router.url },
+  );
 
-    this.router.events
-      .pipe(
-        filter((e): e is NavigationEnd => e instanceof NavigationEnd),
-        takeUntilDestroyed(this.destroyRef)
-      )
-      .subscribe(() => queueMicrotask(() => this.scan()));
+  constructor() {
+    afterRenderEffect(() => {
+      this.currentUrl(); // depend on URL changes to re-run after each navigation
+      this.scan();
+    });
   }
 
   private scan(): void {
