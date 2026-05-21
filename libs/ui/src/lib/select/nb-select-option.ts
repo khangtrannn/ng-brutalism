@@ -25,7 +25,7 @@ let nextSelectOptionId = 0;
       [disabled]="disabled() || select.disabled()"
       [class]="classes()"
       (click)="select.selectOption(this)"
-      (keydown)="onKeydown($event)"
+      (keydown)="selectOptionOnKey($event)"
     >
       <span
         class="min-w-0 flex flex-1 items-center gap-3 truncate text-left [&_svg]:size-6 [&_svg]:shrink-0 [&_svg]:fill-none [&_svg]:stroke-current [&_svg]:stroke-[2.3] [&_svg]:stroke-linecap-round [&_svg]:stroke-linejoin-round"
@@ -85,7 +85,7 @@ export class NbSelectOption {
     this.element.nativeElement.querySelector('button')?.focus();
   }
 
-  onKeydown(event: KeyboardEvent): void {
+  selectOptionOnKey(event: KeyboardEvent): void {
     if (event.key === 'ArrowUp') {
       event.preventDefault();
       this.select.focusPreviousOption(this);

@@ -18,7 +18,7 @@ import { NB_DIALOG, type NbDialogController } from './dialog.types';
       #dialogEl
       data-nb-dialog
       [class]="classes"
-      (click)="onBackdropClick($event)"
+      (click)="dismissOnBackdrop($event)"
     >
       <ng-content />
     </dialog>
@@ -58,7 +58,7 @@ export class NbDialog implements NbDialogController {
     }
   }
 
-  protected onBackdropClick(event: MouseEvent): void {
+  protected dismissOnBackdrop(event: MouseEvent): void {
     if (event.target === this.dialogEl().nativeElement) {
       this.close();
     }

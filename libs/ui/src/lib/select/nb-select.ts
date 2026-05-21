@@ -37,7 +37,7 @@ let nextSelectId = 0;
       [attr.aria-label]="ariaLabel()"
       [attr.aria-labelledby]="ariaLabelledby()"
       (click)="toggle()"
-      (keydown)="onTriggerKeydown($event)"
+      (keydown)="openListboxOnKey($event)"
     >
       <span [class]="valueClasses()">
         {{ selectedLabel() || placeholder() }}
@@ -67,7 +67,7 @@ let nextSelectId = 0;
     '[class]': 'hostClasses()',
     '[attr.data-state]': 'open() ? "open" : "closed"',
     '[attr.data-disabled]': 'disabled() ? "" : null',
-    '(document:click)': 'onDocumentClick($event)',
+    '(document:click)': 'closeOnOutsideClick($event)',
   },
   providers: [{ provide: NB_SELECT, useExisting: NbSelect }],
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -192,7 +192,7 @@ export class NbSelect implements NbSelectController {
     this.focusRelativeOption(current, 1);
   }
 
-  onTriggerKeydown(event: KeyboardEvent): void {
+  openListboxOnKey(event: KeyboardEvent): void {
     if (
       event.key === 'ArrowDown' ||
       event.key === 'Enter' ||
@@ -203,7 +203,7 @@ export class NbSelect implements NbSelectController {
     }
   }
 
-  onDocumentClick(event: MouseEvent): void {
+  closeOnOutsideClick(event: MouseEvent): void {
     if (!this.element.nativeElement.contains(event.target as Node)) {
       this.open.set(false);
     }

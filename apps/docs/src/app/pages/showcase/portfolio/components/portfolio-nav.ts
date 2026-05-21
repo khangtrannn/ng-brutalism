@@ -111,7 +111,7 @@ import type { NavLink } from '../portfolio.types';
       }
     </header>
   `,
-    host: { '(window:scroll)': 'onWindowScroll()' },
+    host: { '(window:scroll)': 'updateScrollState()' },
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class PortfolioNav {
@@ -125,7 +125,7 @@ export class PortfolioNav {
   protected readonly showNav = signal(true);
   private lastScrollY = 0;
 
-  protected onWindowScroll(): void {
+  protected updateScrollState(): void {
     const currentScrollY = window.scrollY;
     if (currentScrollY > this.lastScrollY && currentScrollY > 100) {
       this.showNav.set(false);

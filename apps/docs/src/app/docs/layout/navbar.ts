@@ -86,7 +86,7 @@ import { DocsNavbarExternalLinkIcon } from './navbar.icons';
       </div>
     </nav>
   `,
-    host: { '(window:scroll)': 'onWindowScroll()' },
+    host: { '(window:scroll)': 'updateScrollState()' },
     styles: `
     .docs-navbar {
       transition: top 160ms ease;
@@ -167,7 +167,7 @@ export class NbDocsNavbar {
     return 'docs';
   });
 
-  protected onWindowScroll(): void {
+  protected updateScrollState(): void {
     this.scrolled.set(window.scrollY > 0);
   }
 

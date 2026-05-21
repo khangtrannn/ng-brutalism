@@ -87,7 +87,7 @@ const INITIAL_ZOOM = 2;
                 class="relative w-full cursor-pointer rounded-md border-l-4 border-transparent py-3 pl-10 pr-2 text-left transition-colors duration-200 hover:bg-gray-100 sm:py-4 sm:pl-14 sm:pr-4 md:pl-16"
                 type="button"
                 [class.bg-yellow-100]="activeJourney() === index"
-                (click)="onTimelineClick(index)"
+                (click)="focusTimelineEntry(index)"
               >
                 <span
                   class="absolute left-4 top-1/2 z-10 h-2 w-2 -translate-y-1/2 rounded-full bg-black sm:left-6"
@@ -212,7 +212,7 @@ export class PortfolioJourney {
     this.timelineOpen.update((v) => !v);
   }
 
-  protected onTimelineClick(index: number): void {
+  protected focusTimelineEntry(index: number): void {
     this.activeJourneyChanged.emit(index);
     const entry = this.timeline()[index];
     if (entry) {

@@ -62,7 +62,7 @@ import type { Project } from '../portfolio.types';
                 [attr.target]="isPlaceholderLink(project.github) ? null : '_blank'"
                 rel="noreferrer"
                 [attr.aria-disabled]="isPlaceholderLink(project.github)"
-                (click)="onProjectLinkClick($event, project.github)"
+                (click)="openProjectLink($event, project.github)"
               >
                 <span aria-hidden="true">⌘</span> Code
               </a>
@@ -72,7 +72,7 @@ import type { Project } from '../portfolio.types';
                 [attr.target]="isPlaceholderLink(project.live) ? null : '_blank'"
                 rel="noreferrer"
                 [attr.aria-disabled]="isPlaceholderLink(project.live)"
-                (click)="onProjectLinkClick($event, project.live)"
+                (click)="openProjectLink($event, project.live)"
               >
                 <span aria-hidden="true">↗</span> Live Demo
               </a>
@@ -93,7 +93,7 @@ export class PortfolioProjects {
     return url === '#';
   }
 
-  protected onProjectLinkClick(event: MouseEvent, url: string): void {
+  protected openProjectLink(event: MouseEvent, url: string): void {
     if (this.isPlaceholderLink(url)) {
       event.preventDefault();
     }
