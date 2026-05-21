@@ -1,9 +1,3 @@
-<p align="center">
-  <a href="https://ngbrutalism.khangtran.dev">
-    <img src="apps/docs/public/favicon.png" alt="@ng-brutalism/ui logo" width="112" height="109" />
-  </a>
-</p>
-
 # @ng-brutalism/ui
 
 Build loud. Stay sharp.
