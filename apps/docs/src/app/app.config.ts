@@ -1,4 +1,8 @@
-import { ApplicationConfig, provideZonelessChangeDetection } from '@angular/core';
+import {
+  ApplicationConfig,
+  ErrorHandler,
+  provideZonelessChangeDetection,
+} from '@angular/core';
 import {
   provideHttpClient,
   withFetch,
@@ -14,6 +18,7 @@ import {
 import { provideNgBrutalism } from '@ng-brutalism/ui';
 
 import { DocsTitleStrategy } from './docs/docs-title-strategy';
+import { DocsErrorHandler } from './stale-build-reload';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -41,6 +46,7 @@ export const appConfig: ApplicationConfig = {
         },
       ])
     ),
+    { provide: ErrorHandler, useClass: DocsErrorHandler },
     { provide: TitleStrategy, useClass: DocsTitleStrategy },
     provideNgBrutalism(),
     provideClientHydration(),

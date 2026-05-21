@@ -70,7 +70,7 @@ import { DocsNavbarExternalLinkIcon } from './navbar.icons';
             class="hidden md:inline-flex h-10 items-center border-3 border-(--nb-border) bg-(--nb-mint) px-3 text-xs font-black tracking-wider uppercase shadow-[3px_3px_0_0_var(--nb-shadow)]"
             style="font-family: var(--font-mono);"
           >
-            v0.1.0 · PRE-RELEASE
+            v0.1.0 · PRE-1.0
           </span>
 
           <a
