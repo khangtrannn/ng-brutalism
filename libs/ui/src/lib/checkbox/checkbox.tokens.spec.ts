@@ -9,7 +9,7 @@ import type { NbCheckboxSize } from './checkbox.types';
   imports: [NbCheckbox],
   template: `<input type="checkbox" nbCheckbox [size]="size" />`,
 })
-class CheckboxTokenTestComponent {
+class CheckboxTokenTest {
   size: NbCheckboxSize = 'default';
 }
 
@@ -76,13 +76,13 @@ describe('NbCheckbox token surface', () => {
 });
 
 async function createFixture(
-  inputs: Partial<Pick<CheckboxTokenTestComponent, 'size'>> = {}
-): Promise<ComponentFixture<CheckboxTokenTestComponent>> {
+  inputs: Partial<Pick<CheckboxTokenTest, 'size'>> = {}
+): Promise<ComponentFixture<CheckboxTokenTest>> {
   await TestBed.configureTestingModule({
-    imports: [CheckboxTokenTestComponent],
+    imports: [CheckboxTokenTest],
   }).compileComponents();
 
-  const fixture = TestBed.createComponent(CheckboxTokenTestComponent);
+  const fixture = TestBed.createComponent(CheckboxTokenTest);
   Object.assign(fixture.componentInstance, inputs);
   fixture.detectChanges();
 
@@ -90,7 +90,7 @@ async function createFixture(
 }
 
 function findCheckbox(
-  fixture: ComponentFixture<CheckboxTokenTestComponent>
+  fixture: ComponentFixture<CheckboxTokenTest>
 ): HTMLInputElement {
   return fixture.nativeElement.querySelector(
     'input[nbCheckbox]'

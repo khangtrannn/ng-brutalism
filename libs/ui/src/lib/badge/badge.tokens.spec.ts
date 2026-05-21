@@ -9,7 +9,7 @@ import type { NbBadgeVariant } from './badge.types';
   imports: [NbBadge],
   template: `<span nbBadge [variant]="variant">Badge</span>`,
 })
-class BadgeTokenTestComponent {
+class BadgeTokenTest {
   variant: NbBadgeVariant = 'default';
 }
 
@@ -73,13 +73,13 @@ describe('NbBadge token surface', () => {
 });
 
 async function createFixture(
-  inputs: Partial<Pick<BadgeTokenTestComponent, 'variant'>> = {}
-): Promise<ComponentFixture<BadgeTokenTestComponent>> {
+  inputs: Partial<Pick<BadgeTokenTest, 'variant'>> = {}
+): Promise<ComponentFixture<BadgeTokenTest>> {
   await TestBed.configureTestingModule({
-    imports: [BadgeTokenTestComponent],
+    imports: [BadgeTokenTest],
   }).compileComponents();
 
-  const fixture = TestBed.createComponent(BadgeTokenTestComponent);
+  const fixture = TestBed.createComponent(BadgeTokenTest);
   Object.assign(fixture.componentInstance, inputs);
   fixture.detectChanges();
 
@@ -87,7 +87,7 @@ async function createFixture(
 }
 
 function findBadge(
-  fixture: ComponentFixture<BadgeTokenTestComponent>
+  fixture: ComponentFixture<BadgeTokenTest>
 ): HTMLSpanElement {
   return fixture.nativeElement.querySelector(
     'span[nbBadge]'

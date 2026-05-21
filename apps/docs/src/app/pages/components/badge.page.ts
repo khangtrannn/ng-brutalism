@@ -97,7 +97,7 @@ import { DocsTokens } from '../../docs/docs-tokens';
   `,
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export default class BadgePageComponent {
+export default class BadgePage {
   protected readonly defaultExampleCode = `<span nbBadge>Default</span>`;
 
   protected readonly importCode = `import { NbBadge } from '@ng-brutalism/ui';`;

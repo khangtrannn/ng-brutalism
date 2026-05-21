@@ -1,11 +1,11 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 
-import TextareaPageComponent from '../components/textarea.page';
+import TextareaPage from '../components/textarea.page';
 
 @Component({
     selector: 'docs-textarea-route-page',
-    imports: [TextareaPageComponent],
+    imports: [TextareaPage],
     template: `<docs-textarea-page />`,
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export default class DocsTextareaRoutePageComponent {}
+export default class DocsTextareaRoutePage {}

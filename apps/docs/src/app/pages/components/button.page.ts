@@ -254,7 +254,7 @@ import { DocsTokens } from '../../docs/docs-tokens';
   `,
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export default class ButtonPageComponent {
+export default class ButtonPage {
   protected readonly defaultExampleCode = `<button nbButton>
   Button
 </button>`;

@@ -8,7 +8,7 @@ import { NbAvatar } from './nb-avatar';
   imports: [NbAvatar],
   template: `<nb-avatar alt="John Doe">JD</nb-avatar>`,
 })
-class AvatarTokenTestComponent {}
+class AvatarTokenTest {}
 
 describe('NbAvatar token surface', () => {
   it('declares the expected default tokens on the base host', async () => {
@@ -59,20 +59,20 @@ describe('NbAvatar token surface', () => {
 });
 
 async function createFixture(): Promise<
-  ComponentFixture<AvatarTokenTestComponent>
+  ComponentFixture<AvatarTokenTest>
 > {
   await TestBed.configureTestingModule({
-    imports: [AvatarTokenTestComponent],
+    imports: [AvatarTokenTest],
   }).compileComponents();
 
-  const fixture = TestBed.createComponent(AvatarTokenTestComponent);
+  const fixture = TestBed.createComponent(AvatarTokenTest);
   fixture.detectChanges();
 
   return fixture;
 }
 
 function findAvatar(
-  fixture: ComponentFixture<AvatarTokenTestComponent>
+  fixture: ComponentFixture<AvatarTokenTest>
 ): HTMLElement {
   return fixture.nativeElement.querySelector('nb-avatar') as HTMLElement;
 }

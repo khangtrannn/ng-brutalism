@@ -386,7 +386,7 @@ import { DocsTokens } from '../../docs/docs-tokens';
   `,
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export default class AccordionPageComponent {
+export default class AccordionPage {
   protected readonly controlledValue = signal<string | string[] | null>(
     'overview'
   );

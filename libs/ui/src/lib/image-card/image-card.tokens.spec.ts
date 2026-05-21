@@ -15,7 +15,7 @@ import { NbImageCard, NbImageCardCaption } from './nb-image-card';
     </nb-image-card>
   `,
 })
-class ImageCardTokenTestComponent {}
+class ImageCardTokenTest {}
 
 describe('NbImageCard token surface', () => {
   it('declares the expected default tokens on the base host', async () => {
@@ -85,32 +85,32 @@ describe('NbImageCard token surface', () => {
 });
 
 async function createFixture(): Promise<
-  ComponentFixture<ImageCardTokenTestComponent>
+  ComponentFixture<ImageCardTokenTest>
 > {
   await TestBed.configureTestingModule({
-    imports: [ImageCardTokenTestComponent],
+    imports: [ImageCardTokenTest],
   }).compileComponents();
 
-  const fixture = TestBed.createComponent(ImageCardTokenTestComponent);
+  const fixture = TestBed.createComponent(ImageCardTokenTest);
   fixture.detectChanges();
 
   return fixture;
 }
 
 function findImageCard(
-  fixture: ComponentFixture<ImageCardTokenTestComponent>
+  fixture: ComponentFixture<ImageCardTokenTest>
 ): HTMLElement {
   return fixture.nativeElement.querySelector('nb-image-card') as HTMLElement;
 }
 
 function findImage(
-  fixture: ComponentFixture<ImageCardTokenTestComponent>
+  fixture: ComponentFixture<ImageCardTokenTest>
 ): HTMLImageElement {
   return fixture.nativeElement.querySelector('img') as HTMLImageElement;
 }
 
 function findCaption(
-  fixture: ComponentFixture<ImageCardTokenTestComponent>
+  fixture: ComponentFixture<ImageCardTokenTest>
 ): HTMLElement {
   return fixture.nativeElement.querySelector(
     'nb-image-card-caption'

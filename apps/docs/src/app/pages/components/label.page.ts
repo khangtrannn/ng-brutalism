@@ -131,7 +131,7 @@ import { DocsTokens } from '../../docs/docs-tokens';
   `,
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export default class LabelPageComponent {
+export default class LabelPage {
   protected readonly defaultExampleCode = `<div class="flex items-center gap-2">
   <input type="checkbox" nbCheckbox id="accept-terms" />
   <label nbLabel for="accept-terms">Accept terms and conditions</label>

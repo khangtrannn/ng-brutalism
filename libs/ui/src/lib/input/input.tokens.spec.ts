@@ -8,7 +8,7 @@ import { NbInput } from './nb-input';
   imports: [NbInput],
   template: `<input nbInput placeholder="Email" />`,
 })
-class InputTokenTestComponent {}
+class InputTokenTest {}
 
 describe('NbInput token surface', () => {
   it('declares the expected default tokens on the base host', async () => {
@@ -65,20 +65,20 @@ describe('NbInput token surface', () => {
 });
 
 async function createFixture(): Promise<
-  ComponentFixture<InputTokenTestComponent>
+  ComponentFixture<InputTokenTest>
 > {
   await TestBed.configureTestingModule({
-    imports: [InputTokenTestComponent],
+    imports: [InputTokenTest],
   }).compileComponents();
 
-  const fixture = TestBed.createComponent(InputTokenTestComponent);
+  const fixture = TestBed.createComponent(InputTokenTest);
   fixture.detectChanges();
 
   return fixture;
 }
 
 function findInput(
-  fixture: ComponentFixture<InputTokenTestComponent>
+  fixture: ComponentFixture<InputTokenTest>
 ): HTMLInputElement {
   return fixture.nativeElement.querySelector(
     'input[nbInput]'

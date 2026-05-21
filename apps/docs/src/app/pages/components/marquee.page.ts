@@ -254,7 +254,7 @@ interface MarqueeSkill {
   `,
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export default class MarqueePageComponent {
+export default class MarqueePage {
   protected readonly importCode = `import { NbMarquee, NbMarqueeItem } from '@ng-brutalism/ui';`;
 
   protected readonly defaultExampleComponentCode = `interface Skill {

@@ -118,7 +118,7 @@ import { DocsTokens } from '../../docs/docs-tokens';
   `,
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export default class TitlePageComponent {
+export default class TitlePage {
   protected readonly defaultExampleCode = `<h2 nbTitle class="font-mono text-4xl font-black leading-tight uppercase">
   Brutal section title
 </h2>`;

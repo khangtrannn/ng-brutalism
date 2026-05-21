@@ -8,7 +8,7 @@ import { NbTextarea } from './nb-textarea';
   imports: [NbTextarea],
   template: `<textarea nbTextarea placeholder="Message"></textarea>`,
 })
-class TextareaTokenTestComponent {}
+class TextareaTokenTest {}
 
 describe('NbTextarea token surface', () => {
   it('declares the expected default tokens on the base host', async () => {
@@ -65,20 +65,20 @@ describe('NbTextarea token surface', () => {
 });
 
 async function createFixture(): Promise<
-  ComponentFixture<TextareaTokenTestComponent>
+  ComponentFixture<TextareaTokenTest>
 > {
   await TestBed.configureTestingModule({
-    imports: [TextareaTokenTestComponent],
+    imports: [TextareaTokenTest],
   }).compileComponents();
 
-  const fixture = TestBed.createComponent(TextareaTokenTestComponent);
+  const fixture = TestBed.createComponent(TextareaTokenTest);
   fixture.detectChanges();
 
   return fixture;
 }
 
 function findTextarea(
-  fixture: ComponentFixture<TextareaTokenTestComponent>
+  fixture: ComponentFixture<TextareaTokenTest>
 ): HTMLTextAreaElement {
   return fixture.nativeElement.querySelector(
     'textarea[nbTextarea]'

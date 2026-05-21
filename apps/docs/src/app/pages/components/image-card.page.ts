@@ -188,7 +188,7 @@ import { DocsTokens } from '../../docs/docs-tokens';
   `,
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export default class ImageCardPageComponent {
+export default class ImageCardPage {
   protected readonly previewImage =
     '/angular-mascot.gif';
 

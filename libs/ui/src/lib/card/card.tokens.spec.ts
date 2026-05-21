@@ -37,7 +37,7 @@ import {
     </nb-card>
   `,
 })
-class CardTokenTestComponent {}
+class CardTokenTest {}
 
 describe('NbCard token surface', () => {
   it('declares the expected default tokens on the base host', async () => {
@@ -103,20 +103,20 @@ describe('NbCard token surface', () => {
 });
 
 async function createFixture(): Promise<
-  ComponentFixture<CardTokenTestComponent>
+  ComponentFixture<CardTokenTest>
 > {
   await TestBed.configureTestingModule({
-    imports: [CardTokenTestComponent],
+    imports: [CardTokenTest],
   }).compileComponents();
 
-  const fixture = TestBed.createComponent(CardTokenTestComponent);
+  const fixture = TestBed.createComponent(CardTokenTest);
   fixture.detectChanges();
 
   return fixture;
 }
 
 function findCard(
-  fixture: ComponentFixture<CardTokenTestComponent>
+  fixture: ComponentFixture<CardTokenTest>
 ): HTMLElement {
   return fixture.nativeElement.querySelector('nb-card') as HTMLElement;
 }

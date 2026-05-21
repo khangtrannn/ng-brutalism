@@ -1,11 +1,11 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 
-import AvatarPageComponent from '../components/avatar.page';
+import AvatarPage from '../components/avatar.page';
 
 @Component({
     selector: 'docs-avatar-route-page',
-    imports: [AvatarPageComponent],
+    imports: [AvatarPage],
     template: `<docs-avatar-page />`,
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export default class DocsAvatarRoutePageComponent {}
+export default class DocsAvatarRoutePage {}

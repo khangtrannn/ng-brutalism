@@ -24,7 +24,7 @@ import { NbSelectOption } from './nb-select-option';
     </nb-select>
   `,
 })
-class SelectTestComponent {}
+class SelectTest {}
 
 @Component({
   imports: [NbSelect, NbSelectOption],
@@ -39,11 +39,11 @@ class SelectTestComponent {}
     </nb-select>
   `,
 })
-class SelectWithResetOptionTestComponent {}
+class SelectWithResetOptionTest {}
 
 describe('NbSelect', () => {
   it('uses the same focus treatment as inputs and textareas', async () => {
-    const fixture = await createFixture(SelectTestComponent);
+    const fixture = await createFixture(SelectTest);
     const select = fixture.nativeElement.querySelector(
       'nb-select'
     ) as HTMLElement;
@@ -58,7 +58,7 @@ describe('NbSelect', () => {
   });
 
   it('keeps the border token consistent while open', async () => {
-    const fixture = await createFixture(SelectTestComponent);
+    const fixture = await createFixture(SelectTest);
     const select = fixture.nativeElement.querySelector(
       'nb-select'
     ) as HTMLElement;
@@ -80,7 +80,7 @@ describe('NbSelect', () => {
   });
 
   it('opens on trigger click and selects an option', async () => {
-    const fixture = await createFixture(SelectTestComponent);
+    const fixture = await createFixture(SelectTest);
     const trigger = fixture.nativeElement.querySelector(
       'button[aria-haspopup="listbox"]'
     ) as HTMLButtonElement;
@@ -109,7 +109,7 @@ describe('NbSelect', () => {
   });
 
   it('highlights the reset option without showing a selected icon', async () => {
-    const fixture = await createFixture(SelectWithResetOptionTestComponent);
+    const fixture = await createFixture(SelectWithResetOptionTest);
     const trigger = fixture.nativeElement.querySelector(
       'button[aria-haspopup="listbox"]'
     ) as HTMLButtonElement;
@@ -169,7 +169,7 @@ describe('NbSelect', () => {
     </nb-input-group>
   `,
 })
-class SelectInGroupTestComponent {}
+class SelectInGroupTest {}
 
 @Component({
   imports: [NbInputGroup, NbInputPrefix, NbNativeSelect],
@@ -191,11 +191,11 @@ class SelectInGroupTestComponent {}
     </nb-input-group>
   `,
 })
-class NativeSelectInGroupTestComponent {}
+class NativeSelectInGroupTest {}
 
 describe('NbSelect inside NbInputGroup', () => {
   it('strips its own border and shadow when inside a group', async () => {
-    const fixture = await createFixture(SelectInGroupTestComponent);
+    const fixture = await createFixture(SelectInGroupTest);
     const trigger = fixture.nativeElement.querySelector(
       'button[aria-haspopup="listbox"]'
     ) as HTMLButtonElement;
@@ -206,7 +206,7 @@ describe('NbSelect inside NbInputGroup', () => {
   });
 
   it('adopts flex-fill and transparent background when inside a group', async () => {
-    const fixture = await createFixture(SelectInGroupTestComponent);
+    const fixture = await createFixture(SelectInGroupTest);
     const trigger = fixture.nativeElement.querySelector(
       'button[aria-haspopup="listbox"]'
     ) as HTMLButtonElement;
@@ -217,7 +217,7 @@ describe('NbSelect inside NbInputGroup', () => {
   });
 
   it('uses the same focus-within treatment as grouped inputs', async () => {
-    const fixture = await createFixture(SelectInGroupTestComponent);
+    const fixture = await createFixture(SelectInGroupTest);
     const group = fixture.nativeElement.querySelector(
       'nb-input-group'
     ) as HTMLElement;
@@ -231,7 +231,7 @@ describe('NbSelect inside NbInputGroup', () => {
   });
 
   it('still opens and selects an option when inside a group', async () => {
-    const fixture = await createFixture(SelectInGroupTestComponent);
+    const fixture = await createFixture(SelectInGroupTest);
     const trigger = fixture.nativeElement.querySelector(
       'button[aria-haspopup="listbox"]'
     ) as HTMLButtonElement;
@@ -255,7 +255,7 @@ describe('NbSelect inside NbInputGroup', () => {
 
 describe('NbNativeSelect directive inside NbInputGroup', () => {
   it('strips its own border and shadow when inside a group', async () => {
-    const fixture = await createFixture(NativeSelectInGroupTestComponent);
+    const fixture = await createFixture(NativeSelectInGroupTest);
     const select = fixture.nativeElement.querySelector(
       'select[nbSelect]'
     ) as HTMLSelectElement;
@@ -266,7 +266,7 @@ describe('NbNativeSelect directive inside NbInputGroup', () => {
   });
 
   it('adopts flex-fill and transparent background when inside a group', async () => {
-    const fixture = await createFixture(NativeSelectInGroupTestComponent);
+    const fixture = await createFixture(NativeSelectInGroupTest);
     const select = fixture.nativeElement.querySelector(
       'select[nbSelect]'
     ) as HTMLSelectElement;
@@ -277,7 +277,7 @@ describe('NbNativeSelect directive inside NbInputGroup', () => {
   });
 
   it('uses the same focus-within treatment as grouped inputs', async () => {
-    const fixture = await createFixture(NativeSelectInGroupTestComponent);
+    const fixture = await createFixture(NativeSelectInGroupTest);
     const group = fixture.nativeElement.querySelector(
       'nb-input-group'
     ) as HTMLElement;

@@ -17,7 +17,7 @@ import { NbSelectOption } from './nb-select-option';
     </nb-select>
   `,
 })
-class SelectTokenTestComponent {}
+class SelectTokenTest {}
 
 @Component({
   imports: [NbNativeSelect],
@@ -29,11 +29,11 @@ class SelectTokenTestComponent {}
     </select>
   `,
 })
-class NativeSelectTokenTestComponent {}
+class NativeSelectTokenTest {}
 
 describe('NbSelect token surface', () => {
   it('declares the expected default tokens on the base host', async () => {
-    const fixture = await createFixture(SelectTokenTestComponent);
+    const fixture = await createFixture(SelectTokenTest);
     const select = findCustomSelect(fixture);
     const cls = select.className;
 
@@ -47,7 +47,7 @@ describe('NbSelect token surface', () => {
   });
 
   it('reads its scoped tokens instead of global tokens directly', async () => {
-    const fixture = await createFixture(SelectTokenTestComponent);
+    const fixture = await createFixture(SelectTokenTest);
     const select = findCustomSelect(fixture);
     const trigger = findTrigger(fixture);
     const cls = select.className;
@@ -65,7 +65,7 @@ describe('NbSelect token surface', () => {
   });
 
   it('uses the scoped listbox background token', async () => {
-    const fixture = await createFixture(SelectTokenTestComponent);
+    const fixture = await createFixture(SelectTokenTest);
     findTrigger(fixture).click();
     fixture.detectChanges();
 
@@ -93,7 +93,7 @@ describe('NbSelect token surface', () => {
   });
 
   it('does not regress the default custom select class shape', async () => {
-    const fixture = await createFixture(SelectTokenTestComponent);
+    const fixture = await createFixture(SelectTokenTest);
     const select = findCustomSelect(fixture);
     const trigger = findTrigger(fixture);
     const cls = select.className;
@@ -113,7 +113,7 @@ describe('NbSelect token surface', () => {
   });
 
   it('uses the same placeholder color as inputs and textareas', async () => {
-    const fixture = await createFixture(SelectTokenTestComponent);
+    const fixture = await createFixture(SelectTokenTest);
     const value = findTriggerText(fixture);
 
     expect(value.textContent?.trim()).toBe('Pick one');
@@ -124,7 +124,7 @@ describe('NbSelect token surface', () => {
 
 describe('NbNativeSelect directive token surface', () => {
   it('declares the expected default tokens on the base host', async () => {
-    const fixture = await createFixture(NativeSelectTokenTestComponent);
+    const fixture = await createFixture(NativeSelectTokenTest);
     const select = findNativeSelect(fixture);
     const cls = select.className;
 
@@ -137,7 +137,7 @@ describe('NbNativeSelect directive token surface', () => {
   });
 
   it('reads its scoped tokens instead of global tokens directly', async () => {
-    const fixture = await createFixture(NativeSelectTokenTestComponent);
+    const fixture = await createFixture(NativeSelectTokenTest);
     const select = findNativeSelect(fixture);
     const cls = select.className;
 
@@ -153,7 +153,7 @@ describe('NbNativeSelect directive token surface', () => {
   });
 
   it('does not regress the default native select class shape', async () => {
-    const fixture = await createFixture(NativeSelectTokenTestComponent);
+    const fixture = await createFixture(NativeSelectTokenTest);
     const select = findNativeSelect(fixture);
     const cls = select.className;
 
@@ -187,13 +187,13 @@ async function createFixture<T>(
 }
 
 function findCustomSelect(
-  fixture: ComponentFixture<SelectTokenTestComponent>
+  fixture: ComponentFixture<SelectTokenTest>
 ): HTMLElement {
   return fixture.nativeElement.querySelector('nb-select') as HTMLElement;
 }
 
 function findTrigger(
-  fixture: ComponentFixture<SelectTokenTestComponent>
+  fixture: ComponentFixture<SelectTokenTest>
 ): HTMLButtonElement {
   return fixture.nativeElement.querySelector(
     'button[aria-haspopup="listbox"]'
@@ -201,13 +201,13 @@ function findTrigger(
 }
 
 function findTriggerText(
-  fixture: ComponentFixture<SelectTokenTestComponent>
+  fixture: ComponentFixture<SelectTokenTest>
 ): HTMLSpanElement {
   return findTrigger(fixture).querySelector('span') as HTMLSpanElement;
 }
 
 function findNativeSelect(
-  fixture: ComponentFixture<NativeSelectTokenTestComponent>
+  fixture: ComponentFixture<NativeSelectTokenTest>
 ): HTMLSelectElement {
   return fixture.nativeElement.querySelector(
     'select[nbSelect]'

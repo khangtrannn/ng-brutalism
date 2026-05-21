@@ -41,4 +41,4 @@ import { NbButton } from '@ng-brutalism/ui';
   `,
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export default class HomeComponent {}
+export default class Home {}

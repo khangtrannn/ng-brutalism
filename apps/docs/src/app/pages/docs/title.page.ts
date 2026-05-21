@@ -1,11 +1,11 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 
-import TitlePageComponent from '../components/title.page';
+import TitlePage from '../components/title.page';
 
 @Component({
     selector: 'docs-title-route-page',
-    imports: [TitlePageComponent],
+    imports: [TitlePage],
     template: `<docs-title-page />`,
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export default class DocsTitleRoutePageComponent {}
+export default class DocsTitleRoutePage {}

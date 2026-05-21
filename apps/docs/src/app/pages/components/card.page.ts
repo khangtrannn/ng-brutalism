@@ -5,7 +5,7 @@ import { DocsCodeBlock } from '../../docs/docs-code-block';
 import { DocsExample } from '../../docs/docs-example';
 import { DocsSourceTile } from '../../docs/docs-source-tile';
 import { DocsTokens } from '../../docs/docs-tokens';
-import JobListingCardExampleComponent from './examples/job-listing-card';
+import JobListingCardExample from './examples/job-listing-card';
 
 @Component({
   selector: 'docs-card-page',
@@ -14,7 +14,7 @@ import JobListingCardExampleComponent from './examples/job-listing-card';
     DocsExample,
     DocsSourceTile,
     DocsTokens,
-    JobListingCardExampleComponent,
+    JobListingCardExample,
     NbButton,
     NbCard,
     NbCardActions,
@@ -224,7 +224,7 @@ import JobListingCardExampleComponent from './examples/job-listing-card';
   styles: [],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export default class CardPageComponent {
+export default class CardPage {
   protected readonly importCode = `import {
   NbCard,
   NbCardHeader,

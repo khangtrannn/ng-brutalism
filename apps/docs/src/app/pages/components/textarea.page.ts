@@ -119,7 +119,7 @@ import { DocsTokens } from '../../docs/docs-tokens';
   `,
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export default class TextareaPageComponent {
+export default class TextareaPage {
   protected readonly defaultExampleCode = `<textarea nbTextarea placeholder="Write something..." class="w-75"></textarea>`;
 
   protected readonly importCode = `import { NbTextarea } from '@ng-brutalism/ui';`;

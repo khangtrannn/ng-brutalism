@@ -27,7 +27,7 @@ import {
     </nb-dialog>
   `,
 })
-class DialogTokenTestComponent {}
+class DialogTokenTest {}
 
 describe('NbDialog token surface', () => {
   it('declares the expected default tokens on the dialog element', async () => {
@@ -96,20 +96,20 @@ describe('NbDialog token surface', () => {
 });
 
 async function createFixture(): Promise<
-  ComponentFixture<DialogTokenTestComponent>
+  ComponentFixture<DialogTokenTest>
 > {
   await TestBed.configureTestingModule({
-    imports: [DialogTokenTestComponent],
+    imports: [DialogTokenTest],
   }).compileComponents();
 
-  const fixture = TestBed.createComponent(DialogTokenTestComponent);
+  const fixture = TestBed.createComponent(DialogTokenTest);
   fixture.detectChanges();
 
   return fixture;
 }
 
 function findDialog(
-  fixture: ComponentFixture<DialogTokenTestComponent>
+  fixture: ComponentFixture<DialogTokenTest>
 ): HTMLDialogElement {
   return fixture.nativeElement.querySelector('dialog') as HTMLDialogElement;
 }

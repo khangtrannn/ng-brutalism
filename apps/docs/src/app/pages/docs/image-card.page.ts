@@ -1,11 +1,11 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 
-import ImageCardPageComponent from '../components/image-card.page';
+import ImageCardPage from '../components/image-card.page';
 
 @Component({
     selector: 'docs-image-card-route-page',
-    imports: [ImageCardPageComponent],
+    imports: [ImageCardPage],
     template: `<docs-image-card-page />`,
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export default class DocsImageCardRoutePageComponent {}
+export default class DocsImageCardRoutePage {}

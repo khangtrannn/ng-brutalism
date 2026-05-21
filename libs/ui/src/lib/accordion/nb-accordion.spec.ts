@@ -58,7 +58,7 @@ function expectRegionOpen(region: HTMLElement, open: boolean): void {
     </nb-accordion>
   `,
 })
-class SingleAccordionTestComponent {}
+class SingleAccordionTest {}
 
 @Component({
   imports,
@@ -71,7 +71,7 @@ class SingleAccordionTestComponent {}
     </nb-accordion>
   `,
 })
-class CollapsibleAccordionTestComponent {}
+class CollapsibleAccordionTest {}
 
 @Component({
   imports,
@@ -88,7 +88,7 @@ class CollapsibleAccordionTestComponent {}
     </nb-accordion>
   `,
 })
-class MultipleAccordionTestComponent {}
+class MultipleAccordionTest {}
 
 @Component({
   imports,
@@ -101,7 +101,7 @@ class MultipleAccordionTestComponent {}
     </nb-accordion>
   `,
 })
-class DisabledItemAccordionTestComponent {}
+class DisabledItemAccordionTest {}
 
 @Component({
   imports,
@@ -114,11 +114,11 @@ class DisabledItemAccordionTestComponent {}
     </nb-accordion>
   `,
 })
-class InitialValueAccordionTestComponent {}
+class InitialValueAccordionTest {}
 
 describe('NbAccordion', () => {
   it('opens one item at a time in single mode', async () => {
-    const fixture = await createFixture(SingleAccordionTestComponent);
+    const fixture = await createFixture(SingleAccordionTest);
     const [firstButton, secondButton] = buttons(fixture);
     const [firstRegion, secondRegion] = regions(fixture);
 
@@ -144,7 +144,7 @@ describe('NbAccordion', () => {
   });
 
   it('keeps the open single item open when collapsible is false', async () => {
-    const fixture = await createFixture(SingleAccordionTestComponent);
+    const fixture = await createFixture(SingleAccordionTest);
     const [button] = buttons(fixture);
 
     button.click();
@@ -157,7 +157,7 @@ describe('NbAccordion', () => {
   });
 
   it('closes the open single item when collapsible is true', async () => {
-    const fixture = await createFixture(CollapsibleAccordionTestComponent);
+    const fixture = await createFixture(CollapsibleAccordionTest);
     const [button] = buttons(fixture);
 
     button.click();
@@ -170,7 +170,7 @@ describe('NbAccordion', () => {
   });
 
   it('allows multiple items to stay open in multiple mode', async () => {
-    const fixture = await createFixture(MultipleAccordionTestComponent);
+    const fixture = await createFixture(MultipleAccordionTest);
     const [firstButton, secondButton] = buttons(fixture);
     const [firstRegion, secondRegion] = regions(fixture);
 
@@ -185,7 +185,7 @@ describe('NbAccordion', () => {
   });
 
   it('does not toggle a disabled item', async () => {
-    const fixture = await createFixture(DisabledItemAccordionTestComponent);
+    const fixture = await createFixture(DisabledItemAccordionTest);
     const [button] = buttons(fixture);
 
     button.click();
@@ -197,7 +197,7 @@ describe('NbAccordion', () => {
   });
 
   it('sets initial value via [value] binding and connects trigger and content ids', async () => {
-    const fixture = await createFixture(InitialValueAccordionTestComponent);
+    const fixture = await createFixture(InitialValueAccordionTest);
     const [button] = buttons(fixture);
     const [region] = regions(fixture);
 

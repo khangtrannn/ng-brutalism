@@ -11,7 +11,7 @@ import type { NbButtonShadow, NbButtonVariant } from './button.types';
     Button
   </button>`,
 })
-class ButtonTokenTestComponent {
+class ButtonTokenTest {
   variant: NbButtonVariant = 'default';
   shadow: NbButtonShadow = 'default';
 }
@@ -106,13 +106,13 @@ describe('NbButton token surface', () => {
 });
 
 async function createFixture(
-  inputs: Partial<Pick<ButtonTokenTestComponent, 'variant' | 'shadow'>> = {}
-): Promise<ComponentFixture<ButtonTokenTestComponent>> {
+  inputs: Partial<Pick<ButtonTokenTest, 'variant' | 'shadow'>> = {}
+): Promise<ComponentFixture<ButtonTokenTest>> {
   await TestBed.configureTestingModule({
-    imports: [ButtonTokenTestComponent],
+    imports: [ButtonTokenTest],
   }).compileComponents();
 
-  const fixture = TestBed.createComponent(ButtonTokenTestComponent);
+  const fixture = TestBed.createComponent(ButtonTokenTest);
   Object.assign(fixture.componentInstance, inputs);
   fixture.detectChanges();
 
@@ -120,7 +120,7 @@ async function createFixture(
 }
 
 function findButton(
-  fixture: ComponentFixture<ButtonTokenTestComponent>
+  fixture: ComponentFixture<ButtonTokenTest>
 ): HTMLButtonElement {
   return fixture.nativeElement.querySelector(
     'button[nbButton]'

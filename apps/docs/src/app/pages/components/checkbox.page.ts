@@ -140,7 +140,7 @@ import { DocsTokens } from '../../docs/docs-tokens';
   `,
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export default class CheckboxPageComponent {
+export default class CheckboxPage {
   protected readonly defaultExampleCode = `<input type="checkbox" nbCheckbox />`;
 
   protected readonly importCode = `import { NbCheckbox } from '@ng-brutalism/ui';`;

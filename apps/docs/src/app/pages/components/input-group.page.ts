@@ -163,7 +163,7 @@ import { DocsTokens } from '../../docs/docs-tokens';
   `,
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export default class InputGroupPageComponent {
+export default class InputGroupPage {
   protected readonly defaultExampleCode = `<nb-input-group class="max-w-80">
   <span nbInputPrefix>@</span>
   <input nbInput placeholder="username" />

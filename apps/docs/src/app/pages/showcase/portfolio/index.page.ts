@@ -35,7 +35,7 @@ import { PortfolioProjects } from './components/portfolio-projects';
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export default class PortfolioShowcasePageComponent {
+export default class PortfolioShowcasePage {
   protected readonly assetPath = ASSET_PATH;
   protected readonly menuOpen = signal(false);
   protected readonly activeJourney = signal(-1);

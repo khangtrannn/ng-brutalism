@@ -163,7 +163,7 @@ import { ContactUsDialog } from './examples/contact-us-dialog';
   `,
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export default class DialogPageComponent {
+export default class DialogPage {
   protected readonly importCode = `import {
   NbButton,
   NbDialog,

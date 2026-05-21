@@ -38,7 +38,7 @@ import { NbButton } from '@ng-brutalism/ui';
   imports: [NbButton],
   template: `<button nbButton>Click</button>`,
 })
-export class AppComponent {}
+export class App {}
 ```
 
 Optional — configure a subset of theme tokens from TypeScript at bootstrap.
@@ -49,7 +49,7 @@ overridden in CSS.
 ```ts
 import { provideNgBrutalism } from '@ng-brutalism/ui';
 
-bootstrapApplication(AppComponent, {
+bootstrapApplication(App, {
   providers: [
     provideNgBrutalism({
       theme: {

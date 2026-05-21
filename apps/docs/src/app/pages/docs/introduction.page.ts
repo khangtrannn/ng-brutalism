@@ -222,7 +222,7 @@ import { DocsCodeBlock } from '../../docs/docs-code-block';
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export default class IntroductionPageComponent {
+export default class IntroductionPage {
   protected readonly quickStartCode = `import { Component } from '@angular/core';
 import { NbButton } from '@ng-brutalism/ui';
 

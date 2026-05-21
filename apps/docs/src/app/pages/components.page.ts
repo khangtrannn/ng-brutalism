@@ -8,4 +8,4 @@ import { NbDocsLayout } from '../docs/layout/docs-layout';
     template: `<nb-docs-layout />`,
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export default class ComponentsLayoutPageComponent {}
+export default class ComponentsLayoutPage {}

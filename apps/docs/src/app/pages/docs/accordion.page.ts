@@ -1,11 +1,11 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 
-import AccordionPageComponent from '../components/accordion.page';
+import AccordionPage from '../components/accordion.page';
 
 @Component({
     selector: 'docs-accordion-redirect-page',
-    imports: [AccordionPageComponent],
+    imports: [AccordionPage],
     template: `<docs-accordion-page />`,
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export default class AccordionRoutePageComponent {}
+export default class AccordionRoutePage {}

@@ -316,7 +316,7 @@ import {
   `,
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export default class SelectPageComponent {
+export default class SelectPage {
   protected readonly defaultExampleCode = `<div class="w-80">
   <nb-select placeholder="Select an option">
     <nb-select-option value="worldwide" label="Worldwide">

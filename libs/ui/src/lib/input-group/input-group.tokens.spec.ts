@@ -17,7 +17,7 @@ import { NbInputSuffix } from './nb-input-group-suffix';
     </nb-input-group>
   `,
 })
-class InputGroupTokenTestComponent {}
+class InputGroupTokenTest {}
 
 describe('NbInputGroup token surface', () => {
   it('declares the expected default tokens on the base host', async () => {
@@ -86,32 +86,32 @@ describe('NbInputGroup token surface', () => {
 });
 
 async function createFixture(): Promise<
-  ComponentFixture<InputGroupTokenTestComponent>
+  ComponentFixture<InputGroupTokenTest>
 > {
   await TestBed.configureTestingModule({
-    imports: [InputGroupTokenTestComponent],
+    imports: [InputGroupTokenTest],
   }).compileComponents();
 
-  const fixture = TestBed.createComponent(InputGroupTokenTestComponent);
+  const fixture = TestBed.createComponent(InputGroupTokenTest);
   fixture.detectChanges();
 
   return fixture;
 }
 
 function findGroup(
-  fixture: ComponentFixture<InputGroupTokenTestComponent>
+  fixture: ComponentFixture<InputGroupTokenTest>
 ): HTMLElement {
   return fixture.nativeElement.querySelector('nb-input-group') as HTMLElement;
 }
 
 function findPrefix(
-  fixture: ComponentFixture<InputGroupTokenTestComponent>
+  fixture: ComponentFixture<InputGroupTokenTest>
 ): HTMLElement {
   return fixture.nativeElement.querySelector('[nbInputPrefix]') as HTMLElement;
 }
 
 function findSuffix(
-  fixture: ComponentFixture<InputGroupTokenTestComponent>
+  fixture: ComponentFixture<InputGroupTokenTest>
 ): HTMLElement {
   return fixture.nativeElement.querySelector('[nbInputSuffix]') as HTMLElement;
 }

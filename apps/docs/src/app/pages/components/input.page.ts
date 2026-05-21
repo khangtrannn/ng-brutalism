@@ -165,7 +165,7 @@ import { DocsTokens } from '../../docs/docs-tokens';
   `,
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export default class InputPageComponent {
+export default class InputPage {
   protected readonly defaultExampleCode = `<input nbInput placeholder="Email" class="w-75" />`;
 
   protected readonly importCode = `import { NbInput } from '@ng-brutalism/ui';`;

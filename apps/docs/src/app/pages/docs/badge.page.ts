@@ -1,11 +1,11 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 
-import BadgePageComponent from '../components/badge.page';
+import BadgePage from '../components/badge.page';
 
 @Component({
     selector: 'docs-badge-route-page',
-    imports: [BadgePageComponent],
+    imports: [BadgePage],
     template: `<docs-badge-page />`,
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export default class DocsBadgeRoutePageComponent {}
+export default class DocsBadgeRoutePage {}

@@ -1,11 +1,11 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 
-import DialogPageComponent from '../components/dialog.page';
+import DialogPage from '../components/dialog.page';
 
 @Component({
     selector: 'docs-dialog-route-page',
-    imports: [DialogPageComponent],
+    imports: [DialogPage],
     template: `<docs-dialog-page />`,
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export default class DocsDialogRoutePageComponent {}
+export default class DocsDialogRoutePage {}

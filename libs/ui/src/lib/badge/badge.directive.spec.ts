@@ -8,11 +8,11 @@ import { NbBadge } from './nb-badge';
   imports: [NbBadge],
   template: `<span nbBadge>New</span>`,
 })
-class BadgeTestComponent {}
+class BadgeTest {}
 
 describe('NbBadge', () => {
   it('uses a badge-specific radius token', async () => {
-    const fixture = await createFixture(BadgeTestComponent);
+    const fixture = await createFixture(BadgeTest);
     const badge = fixture.nativeElement.querySelector(
       'span[nbBadge]'
     ) as HTMLSpanElement;

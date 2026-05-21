@@ -1,11 +1,11 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 
-import CheckboxPageComponent from '../components/checkbox.page';
+import CheckboxPage from '../components/checkbox.page';
 
 @Component({
     selector: 'docs-checkbox-route-page',
-    imports: [CheckboxPageComponent],
+    imports: [CheckboxPage],
     template: `<docs-checkbox-page />`,
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export default class DocsCheckboxRoutePageComponent {}
+export default class DocsCheckboxRoutePage {}

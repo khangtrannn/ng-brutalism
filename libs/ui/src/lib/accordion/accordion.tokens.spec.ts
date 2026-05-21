@@ -23,7 +23,7 @@ import { NbAccordionTrigger } from './nb-accordion-trigger';
     </nb-accordion>
   `,
 })
-class AccordionTokenTestComponent {}
+class AccordionTokenTest {}
 
 describe('NbAccordion token surface', () => {
   it('declares the expected default tokens on the component parts', async () => {
@@ -133,20 +133,20 @@ describe('NbAccordion token surface', () => {
 });
 
 async function createFixture(): Promise<
-  ComponentFixture<AccordionTokenTestComponent>
+  ComponentFixture<AccordionTokenTest>
 > {
   await TestBed.configureTestingModule({
-    imports: [AccordionTokenTestComponent],
+    imports: [AccordionTokenTest],
   }).compileComponents();
 
-  const fixture = TestBed.createComponent(AccordionTokenTestComponent);
+  const fixture = TestBed.createComponent(AccordionTokenTest);
   fixture.detectChanges();
 
   return fixture;
 }
 
 function findItemBox(
-  fixture: ComponentFixture<AccordionTokenTestComponent>
+  fixture: ComponentFixture<AccordionTokenTest>
 ): HTMLElement {
   return fixture.nativeElement.querySelector(
     'nb-accordion-item > div'
@@ -154,7 +154,7 @@ function findItemBox(
 }
 
 function findTrigger(
-  fixture: ComponentFixture<AccordionTokenTestComponent>
+  fixture: ComponentFixture<AccordionTokenTest>
 ): HTMLButtonElement {
   return fixture.nativeElement.querySelector(
     'nb-accordion-trigger button'
@@ -162,7 +162,7 @@ function findTrigger(
 }
 
 function findContent(
-  fixture: ComponentFixture<AccordionTokenTestComponent>
+  fixture: ComponentFixture<AccordionTokenTest>
 ): HTMLElement {
   return fixture.nativeElement.querySelector('[role="region"]') as HTMLElement;
 }
