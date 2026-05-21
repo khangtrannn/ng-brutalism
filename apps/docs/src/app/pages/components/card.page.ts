@@ -194,8 +194,8 @@ import JobListingCardExample from './examples/job-listing-card';
           the footer when the footer also contains supporting metadata.
         </p>
         <docs-example [code]="actionsExampleCode">
-          <nb-card class="w-full max-w-sm">
-            <nb-card-header>
+          <nb-card class="notifications-demo w-full max-w-sm">
+            <nb-card-header class="max-sm:px-4!">
               <nb-card-title>
                 <h2 class="mt-0!">Notifications</h2>
               </nb-card-title>
@@ -203,12 +203,15 @@ import JobListingCardExample from './examples/job-listing-card';
                 You have 3 unread messages.
               </nb-card-description>
             </nb-card-header>
-            <nb-card-content>
+            <nb-card-content class="max-sm:px-4!">
               <p class="text-sm">
                 Check your inbox for the latest updates from your team.
               </p>
             </nb-card-content>
-            <nb-card-actions align="end">
+            <nb-card-actions
+              align="end"
+              class="gap-2! max-sm:px-3!"
+            >
               <button nbButton size="sm" variant="neutral">
                 Mark all read
               </button>
@@ -221,7 +224,37 @@ import JobListingCardExample from './examples/job-listing-card';
       <docs-tokens component="card" />
     </article>
   `,
-  styles: [],
+  styles: [
+    `
+      .notifications-demo [data-slot='card-title'] h2 {
+        max-width: 100%;
+        overflow-wrap: anywhere;
+      }
+
+      .notifications-demo [data-slot='card-actions'] {
+        flex-wrap: nowrap;
+      }
+
+      @media (max-width: 480px) {
+        .notifications-demo [data-slot='card-title'] h2 {
+          padding: 0.25rem 0.55rem;
+          font-size: 1.125rem;
+          letter-spacing: 0;
+        }
+      }
+
+      @media (max-width: 374px) {
+        .notifications-demo [data-slot='card-actions'] {
+          flex-wrap: wrap;
+          justify-content: stretch;
+        }
+
+        .notifications-demo [data-slot='card-actions'] button {
+          flex: 1 1 100%;
+        }
+      }
+    `,
+  ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export default class CardPage {

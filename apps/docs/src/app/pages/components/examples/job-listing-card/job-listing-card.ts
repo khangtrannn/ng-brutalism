@@ -147,13 +147,9 @@ import {
               </div>
               <span class="job-card-highlights-label">Highlights</span>
               <div class="job-card-highlights-items">
-                <span class="job-card-highlight-item"
-                  >Angular +<br />TypeScript</span
-                >
-                <span class="job-card-highlight-item">Design<br />system</span>
-                <span class="job-card-highlight-item"
-                  >International<br />team</span
-                >
+                <span class="job-card-highlight-item">Angular + TypeScript</span>
+                <span class="job-card-highlight-item">Design system</span>
+                <span class="job-card-highlight-item">International team</span>
               </div>
             </div>
           </div>
@@ -369,20 +365,22 @@ import {
       .job-card-highlights-items {
         display: flex;
         grid-column: 1 / -1;
-        align-items: center;
-        justify-content: space-between;
+        align-items: stretch;
         min-width: 0;
       }
 
       .job-card-highlight-item {
         display: flex;
+        flex: 1 1 0;
+        min-width: 0;
         align-items: flex-start;
         gap: 7px;
-        padding: 0 10px;
+        padding: 0 8px;
         border-left: 1.5px solid rgba(26, 26, 26, 0.25);
         color: var(--job-ink);
-        font-size: clamp(15px, 3.3cqw, 17px);
-        line-height: 1.1;
+        font-size: clamp(14px, 3.2cqw, 17px);
+        line-height: 1.15;
+        word-break: break-word;
       }
 
       .job-card-highlight-item:first-child {
@@ -448,8 +446,6 @@ import {
         }
 
         .job-card-highlights-items {
-          flex-wrap: wrap;
-          gap: 14px 0;
           width: 100%;
           flex-basis: 100%;
         }
@@ -457,6 +453,30 @@ import {
         .job-card-actions {
           width: 100%;
           flex-wrap: wrap;
+        }
+
+        .job-card-actions button {
+          flex: 1 1 0;
+          min-width: 0;
+        }
+      }
+
+      @container (max-width: 380px) {
+        .job-card-highlights-items {
+          flex-direction: column;
+          align-items: stretch;
+          gap: 8px;
+        }
+
+        .job-card-highlight-item {
+          padding: 0;
+          padding-left: 4px;
+          border-left: 0;
+          font-size: 16px;
+        }
+
+        .job-card-highlights-label {
+          font-size: 18px;
         }
       }
 
