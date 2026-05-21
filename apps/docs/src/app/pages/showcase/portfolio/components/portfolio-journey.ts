@@ -4,13 +4,13 @@ import {
   Component,
   DestroyRef,
   ElementRef,
-  effect,
   inject,
   input,
   output,
   signal,
   viewChild,
 } from '@angular/core';
+import { toObservable, takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 import Feature from 'ol/Feature';
 import OlMap from 'ol/Map';
@@ -188,15 +188,16 @@ export class PortfolioJourney {
       this.initMap();
     });
 
-    effect(() => {
-      const idx = this.activeJourney();
-      const entries = this.timeline();
-      if (!this.map || !this.overlay || idx < 0 || idx >= entries.length) {
-        this.overlay?.setPosition(undefined);
-        return;
-      }
-      this.focusEntry(entries[idx], false);
-    });
+    toObservable(this.activeJourney)
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe((idx) => {
+        const entries = this.timeline();
+        if (!this.map || !this.overlay || idx < 0 || idx >= entries.length) {
+          this.overlay?.setPosition(undefined);
+          return;
+        }
+        this.focusEntry(entries[idx], false);
+      });
 
     this.destroyRef.onDestroy(() => {
       this.mediaQuery?.removeEventListener('change', this.onResize);
