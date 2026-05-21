@@ -35,9 +35,9 @@ import { Section, TOP_SECTIONS } from './sections';
     >
       <div class="flex min-h-20 items-center justify-between gap-3 px-3 py-3 sm:gap-5 sm:px-6">
         <a
-          routerLink="/docs/introduction"
+          routerLink="/"
           class="brand group flex items-center gap-3 font-bold"
-          aria-label="Ng Neo Brutalism home"
+          aria-label="Ng Brutalism home"
         >
           <img
             class="h-12 w-12 border-4 border-(--nb-border) bg-(--nb-yellow) object-contain shadow-[4px_4px_0_0_var(--nb-shadow)] transition-transform group-hover:-rotate-6 sm:h-14 sm:w-14"
@@ -186,6 +186,9 @@ export class NbDocsNavbar {
 
   protected readonly activeSection = computed<Section>(() => {
     const url = this.currentUrl();
+    if (url === '/' || url.startsWith('/?') || url.startsWith('/#')) {
+      return 'home';
+    }
     if (url.startsWith('/components')) return 'components';
     if (url.startsWith('/showcase')) return 'showcase';
     return 'docs';

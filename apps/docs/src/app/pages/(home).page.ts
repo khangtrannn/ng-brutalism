@@ -26,7 +26,7 @@ import { NbDocsNavbar } from '../docs/layout/navbar';
           <article>
             <header id="hero" class="mb-12 scroll-mt-32">
               <div
-                class="grid gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(320px,420px)] lg:items-center xl:grid-cols-[minmax(0,1fr)_minmax(380px,480px)]"
+                class="grid gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(300px,380px)] lg:items-center lg:gap-16 xl:grid-cols-[minmax(0,1fr)_minmax(360px,440px)] xl:gap-24"
               >
                 <div class="min-w-0">
                   <p
@@ -35,15 +35,15 @@ import { NbDocsNavbar } from '../docs/layout/navbar';
                     Ng Brutalism
                   </p>
                   <h1
-                    class="max-w-5xl font-heading text-5xl leading-[0.92] font-black tracking-normal text-balance uppercase sm:text-6xl md:text-7xl xl:text-8xl"
+                    class="max-w-4xl font-heading text-[3.25rem] leading-[0.94] font-black tracking-normal text-balance uppercase sm:text-6xl md:text-7xl xl:text-[5.75rem]"
                     aria-label="The neo-brutalism UI library for Angular"
                   >
-                    <span class="block">The neo-</span>
-                    <span class="block">brutalism UI</span>
-                    <span class="mt-2 flex flex-wrap items-center gap-3 sm:mt-3 sm:gap-4">
-                      <span class="block">library for</span>
+                    <span class="block">The neo-brutalism</span>
+                    <span class="block sm:whitespace-nowrap">UI library</span>
+                    <span class="mt-3 flex flex-wrap items-center gap-3 sm:mt-4 sm:gap-4">
+                      <span class="text-[0.62em] leading-none">for</span>
                       <span
-                        class="inline-block rotate-[-1deg] border-4 border-(--nb-border) bg-(--nb-yellow) px-3 py-1 shadow-[7px_7px_0_0_var(--nb-shadow)]"
+                        class="inline-block rotate-[-1deg] border-4 border-(--nb-border) bg-(--nb-yellow) px-3 py-1 text-[0.72em] leading-none shadow-[7px_7px_0_0_var(--nb-shadow)] sm:px-4 sm:py-2"
                       >
                         Angular
                       </span>
@@ -111,7 +111,7 @@ import { NbDocsNavbar } from '../docs/layout/navbar';
                 </div>
 
                 <div
-                  class="relative isolate mx-auto flex aspect-[1.05] w-full max-w-[340px] items-center justify-center border-4 border-(--nb-border) bg-(--nb-yellow) p-5 shadow-[10px_10px_0_0_var(--nb-shadow)] sm:max-w-[390px] sm:p-7 lg:mx-0 lg:justify-self-end xl:max-w-[460px]"
+                  class="relative isolate mx-auto flex aspect-[1.05] w-full max-w-[340px] items-center justify-center border-4 border-(--nb-border) bg-(--nb-yellow) p-5 shadow-[10px_10px_0_0_var(--nb-shadow)] sm:max-w-[390px] sm:p-7 lg:mx-0 lg:max-w-[380px] lg:justify-self-end xl:max-w-[440px]"
                   aria-label="Angular mascot preview"
                 >
                   <div
