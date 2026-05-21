@@ -80,7 +80,7 @@ import {
   template: `<ng-template #tpl><ng-content /></ng-template>`,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class NbMarqueeItemComponent {
+export class NbMarqueeItem {
   readonly tpl = viewChild.required<TemplateRef<void>>('tpl');
 }
 ```
@@ -177,7 +177,7 @@ import { NbMarqueeItemComponent } from './marquee-item';
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class NbMarqueeComponent {
+export class NbMarquee {
   readonly duration = input('5s');
   readonly reverse = input(false, { transform: booleanAttribute });
   readonly pauseOnHover = input(true, { transform: booleanAttribute });
@@ -236,7 +236,7 @@ import MarqueePageComponent from '../components/marquee.page';
   template: `<docs-marquee-page />`,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export default class MarqueeRoutePageComponent {}
+export default class MarqueeRoutePage {}
 ```
 
 ### 5. `apps/docs/src/app/pages/components/marquee.page.ts`
@@ -364,7 +364,7 @@ import { DocsExampleComponent } from '../../docs/docs-example.component';
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export default class MarqueePageComponent {
+export default class MarqueePage {
   protected readonly importCode = `import { NbMarquee, NbMarqueeItem } from '@ng-neo-brutalism/ui';`;
 
   protected readonly defaultExampleCode = `<neo-marquee>

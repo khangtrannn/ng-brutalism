@@ -42,7 +42,7 @@ import { NbButton } from '@ng-brutalism/ui';
   imports: [NbButton],
   template: `<button nbButton>Click</button>`,
 })
-export class AppComponent {}
+export class App {}
 ```
 
 ## Why it stands out

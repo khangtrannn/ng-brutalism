@@ -899,7 +899,7 @@ import { NbButton } from '@ng-brutalism/ui';
   imports: [NbButton],
   template: `<button nbButton>Click</button>`,
 })
-export class AppComponent {}
+export class App {}
 ```
 
 Optional — configure theme tokens from TypeScript at bootstrap (see §2.1 for
