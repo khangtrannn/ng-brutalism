@@ -1,10 +1,12 @@
-# @ng-brutalism/ui
+# ng-brutalism — Neo-brutalist Angular UI Component Library
 
 Build loud. Stay sharp.
 
-`@ng-brutalism/ui` gives modern Angular apps a token-driven component system
-with directive-first APIs, keyboard-ready interactions, hard-edged visuals, and
+ng-brutalism is a neo-brutalist Angular UI component library — token-driven,
+signals-first, zoneless, with directive APIs, keyboard-ready interactions, and
 Tailwind v4 ergonomics from the first import.
+
+If you like shadcn/ui or daisyUI, but for Angular and built around brutalism.
 
 [![npm version](https://img.shields.io/npm/v/@ng-brutalism/ui.svg)](https://www.npmjs.com/package/@ng-brutalism/ui)
 [![npm downloads](https://img.shields.io/npm/dm/@ng-brutalism/ui.svg)](https://www.npmjs.com/package/@ng-brutalism/ui)
@@ -15,7 +17,7 @@ Tailwind v4 ergonomics from the first import.
 [npm](https://www.npmjs.com/package/@ng-brutalism/ui) ·
 [GitHub](https://github.com/khangtrannn/ng-brutalism)
 
-![demo](https://raw.githubusercontent.com/khangtrannn/ng-brutalism/main/docs/assets/introduction.gif)
+![ng-brutalism Angular component library demo — buttons, cards, dialogs in neo-brutalist style](https://raw.githubusercontent.com/khangtrannn/ng-brutalism/main/docs/assets/introduction.gif)
 
 ## Install
 
@@ -90,19 +92,63 @@ bootstrapApplication(App, {
 });
 ```
 
+## Components
+
+| Component | Description | Docs |
+| --- | --- | --- |
+| Accordion | Vertically stacked, collapsible content panels with single or multi-expand modes. | [Docs](https://ngbrutalism.khangtran.dev/components/accordion) |
+| Avatar | Compact avatar with image and fallback support. | [Docs](https://ngbrutalism.khangtran.dev/components/avatar) |
+| Badge | Inline status pill with multiple variants. | [Docs](https://ngbrutalism.khangtran.dev/components/badge) |
+| Button | Directive-driven button with size, variant, and shadow controls. | [Docs](https://ngbrutalism.khangtran.dev/components/button) |
+| Card | Container with header, title, description, content, actions, and footer slots. | [Docs](https://ngbrutalism.khangtran.dev/components/card) |
+| Checkbox | Form checkbox with size variants and signal-friendly bindings. | [Docs](https://ngbrutalism.khangtran.dev/components/checkbox) |
+| Dialog | Modal dialog with title, description, content, actions, and close slots. | [Docs](https://ngbrutalism.khangtran.dev/components/dialog) |
+| Image Card | Image-led card with caption overlay for portfolios and galleries. | [Docs](https://ngbrutalism.khangtran.dev/components/image-card) |
+| Input | Single-line text input with size variants. | [Docs](https://ngbrutalism.khangtran.dev/components/input) |
+| Input Group | Input wrapper with prefix and suffix slots for icons, addons, or units. | [Docs](https://ngbrutalism.khangtran.dev/components/input-group) |
+| Label | Accessible label tied to form controls. | [Docs](https://ngbrutalism.khangtran.dev/components/label) |
+| Marquee | Looping horizontal scroller for logos, tags, or announcements. | [Docs](https://ngbrutalism.khangtran.dev/components/marquee) |
+| Select | Native or custom dropdown select with option templating. | [Docs](https://ngbrutalism.khangtran.dev/components/select) |
+| Textarea | Multi-line text input with size variants. | [Docs](https://ngbrutalism.khangtran.dev/components/textarea) |
+| Title | Typographic heading primitive with brutalist defaults. | [Docs](https://ngbrutalism.khangtran.dev/components/title) |
+
 ## What it looks like
 
-![showcase](https://raw.githubusercontent.com/khangtrannn/ng-brutalism/main/docs/assets/showcase-portfolio.png)
+![ng-brutalism component showcase — accordion, badge, button, card, checkbox, dialog, input, select rendered in brutalist design](https://raw.githubusercontent.com/khangtrannn/ng-brutalism/main/docs/assets/showcase-portfolio.png)
 
 ## Documentation
 
 Full guides, component API tables, and live examples:
 [https://ngbrutalism.khangtran.dev](https://ngbrutalism.khangtran.dev)
 
+## FAQ
+
+**Does ng-brutalism support Angular 21?**
+Yes — it is built and tested against Angular 21. Earlier Angular versions are not supported.
+
+**Do I need Tailwind CSS v4?**
+Yes. ng-brutalism is built on Tailwind v4's token system. Tailwind v3 is not supported.
+
+**Can I use ng-brutalism without zoneless mode?**
+Yes — components are signal-driven and work in both zone.js and zoneless apps.
+
+**Does ng-brutalism work with server-side rendering (SSR)?**
+Components are zoneless and avoid direct DOM access where possible, so SSR is expected to work — but it is not yet exhaustively verified at v0.1.0.
+
+**How customizable is the theme?**
+All visual tokens are exposed as CSS custom properties (`--nb-*`). A subset of tokens can also be configured from TypeScript via `provideNgBrutalism({ theme: ... })` at bootstrap.
+
+**Is ng-brutalism ready for production?**
+It is pre-1.0. Component APIs are usable today, but minor versions may include breaking changes while the library settles.
+
 ## Status
 
 `@ng-brutalism/ui` is pre-1.0. The component APIs are usable today, but minor
 versions may include breaking changes while the library settles.
+
+## Contributing
+
+Issues and pull requests are welcome. See [CONTRIBUTING.md](https://github.com/khangtrannn/ng-brutalism/blob/main/CONTRIBUTING.md) for details.
 
 ## License
 

@@ -1,7 +1,7 @@
 {
   "name": "@ng-brutalism/ui",
   "version": "0.1.0",
-  "description": "A neo-brutalist Angular component library — Signals • Zoneless • Token-based • Tailwind v4.",
+  "description": "Neo-brutalist Angular component library (ng-brutalism) with signals, zoneless, token-driven design, and Tailwind v4.",
   "license": "MIT",
   "author": "Khang Tran <khangtrann8198@gmail.com>",
   "repository": {
@@ -13,14 +13,17 @@
     "url": "https://github.com/khangtrannn/ng-brutalism/issues"
   },
   "keywords": [
+    "ng-brutalism",
     "neo-brutalism",
     "neo-brutalism-ui",
-    "neo brutalism",
+    "neobrutalism",
+    "neobrutalist",
     "brutalism",
     "brutalist-design",
     "angular",
     "angular-ui",
     "angular-components",
+    "angular-brutalism",
     "ui",
     "ui-library",
     "component-library",
