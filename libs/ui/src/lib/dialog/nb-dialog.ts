@@ -13,7 +13,6 @@ import { NB_DIALOG, type NbDialogController } from './dialog.types';
 
 @Component({
   selector: 'nb-dialog',
-  standalone: true,
   template: `
     <dialog
       #dialogEl

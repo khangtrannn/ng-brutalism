@@ -8,7 +8,6 @@ import { NbAccordionItem } from './nb-accordion-item';
 import { NbAccordionTrigger } from './nb-accordion-trigger';
 
 @Component({
-  standalone: true,
   imports: [
     NbAccordion,
     NbAccordionItem,

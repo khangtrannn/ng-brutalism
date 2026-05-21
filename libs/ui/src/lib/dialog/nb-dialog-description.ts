@@ -4,7 +4,6 @@ import { nbClass } from '../core/class';
 
 @Directive({
   selector: '[nbDialogDescription]',
-  standalone: true,
   host: {
     '[class]': 'classes',
     '[attr.data-slot]': '"dialog-description"',

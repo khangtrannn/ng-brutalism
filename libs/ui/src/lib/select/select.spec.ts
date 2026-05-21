@@ -9,7 +9,6 @@ import { NbNativeSelect } from './nb-native-select';
 import { NbSelectOption } from './nb-select-option';
 
 @Component({
-  standalone: true,
   imports: [NbSelect, NbSelectOption],
   template: `
     <nb-select placeholder="Pick one">
@@ -28,7 +27,6 @@ import { NbSelectOption } from './nb-select-option';
 class SelectTestComponent {}
 
 @Component({
-  standalone: true,
   imports: [NbSelect, NbSelectOption],
   template: `
     <nb-select placeholder="Select location" defaultValue="worldwide">
@@ -153,7 +151,6 @@ describe('NbSelect', () => {
 });
 
 @Component({
-  standalone: true,
   imports: [NbInputGroup, NbInputPrefix, NbSelect, NbSelectOption],
   template: `
     <nb-input-group>
@@ -175,7 +172,6 @@ describe('NbSelect', () => {
 class SelectInGroupTestComponent {}
 
 @Component({
-  standalone: true,
   imports: [NbInputGroup, NbInputPrefix, NbNativeSelect],
   template: `
     <nb-input-group>

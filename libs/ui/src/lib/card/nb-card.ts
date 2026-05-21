@@ -11,7 +11,6 @@ export type NbCardActionsAlign = 'start' | 'end';
 
 @Component({
   selector: 'nb-card',
-  standalone: true,
   template: `<ng-content />`,
   host: {
     '[class]': 'classes',
@@ -35,7 +34,6 @@ export class NbCard {
 
 @Component({
   selector: 'nb-card-header',
-  standalone: true,
   template: `<ng-content />`,
   host: {
     '[class]': 'classes',
@@ -52,7 +50,6 @@ export class NbCardHeader {
 
 @Component({
   selector: 'nb-card-title',
-  standalone: true,
   template: `<ng-content />`,
   host: {
     '[class]': 'classes',
@@ -66,7 +63,6 @@ export class NbCardTitle {
 
 @Component({
   selector: 'nb-card-description',
-  standalone: true,
   template: `<ng-content />`,
   host: {
     '[class]': 'classes',
@@ -80,7 +76,6 @@ export class NbCardDescription {
 
 @Component({
   selector: 'nb-card-actions',
-  standalone: true,
   template: `<ng-content />`,
   host: {
     '[class]': 'classes()',
@@ -103,7 +98,6 @@ export class NbCardActions {
 
 @Component({
   selector: 'nb-card-content',
-  standalone: true,
   template: `<ng-content />`,
   host: {
     '[class]': 'classes',
@@ -117,7 +111,6 @@ export class NbCardContent {
 
 @Component({
   selector: 'nb-card-footer',
-  standalone: true,
   template: `<ng-content />`,
   host: {
     '[class]': 'classes',

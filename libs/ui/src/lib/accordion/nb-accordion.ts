@@ -18,7 +18,6 @@ import {
 
 @Component({
   selector: 'nb-accordion',
-  standalone: true,
   template: `
     <div class="flex w-full flex-col gap-3">
       <ng-content />

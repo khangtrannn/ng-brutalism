@@ -2,7 +2,6 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 @Component({
   selector: 'docs-portfolio-contact-zigzag-icon',
-  standalone: true,
   template: `
     <svg viewBox="0 0 68 22" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
       <polyline points="2,17 13,5 24,17 35,5 46,17 57,5 66,17" />

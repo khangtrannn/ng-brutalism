@@ -619,7 +619,6 @@ const componentTokens: Record<DocsTokenComponent, DocsToken[]> = {
 
 @Component({
   selector: 'docs-tokens',
-  standalone: true,
   template: `
     <section id="customization">
       <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">Customization</h2>

@@ -2,7 +2,6 @@ import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 
 @Component({
   selector: 'docs-source-tile',
-  standalone: true,
   template: `
     <a
       class="nb-stat-tile nb-stat-tile--lavender"

@@ -6,7 +6,6 @@ import { NbCheckbox } from './nb-checkbox';
 import type { NbCheckboxSize } from './checkbox.types';
 
 @Component({
-  standalone: true,
   imports: [NbCheckbox],
   template: `<input type="checkbox" nbCheckbox [size]="size" />`,
 })

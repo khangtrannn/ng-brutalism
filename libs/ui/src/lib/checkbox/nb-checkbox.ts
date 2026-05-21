@@ -5,7 +5,6 @@ import type { NbCheckboxSize } from './checkbox.types';
 
 @Directive({
   selector: 'input[nbCheckbox]',
-  standalone: true,
   host: {
     '[class]': 'classes()',
     '[attr.data-size]': 'size()',

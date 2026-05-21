@@ -6,7 +6,6 @@ import { NbButton } from './nb-button';
 import type { NbButtonShadow, NbButtonVariant } from './button.types';
 
 @Component({
-  standalone: true,
   imports: [NbButton],
   template: `<button nbButton [variant]="variant" [shadow]="shadow">
     Button

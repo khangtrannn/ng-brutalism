@@ -6,7 +6,6 @@ import { NbBadge } from './nb-badge';
 import type { NbBadgeVariant } from './badge.types';
 
 @Component({
-  standalone: true,
   imports: [NbBadge],
   template: `<span nbBadge [variant]="variant">Badge</span>`,
 })

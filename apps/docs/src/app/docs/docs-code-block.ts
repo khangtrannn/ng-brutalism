@@ -42,7 +42,6 @@ function inferLanguage(title: string, code: string): HighlightLanguage {
 
 @Component({
   selector: 'docs-code-block',
-  standalone: true,
   imports: [
     DocsCodeChevronIcon,
     DocsCodeCopyIcon,

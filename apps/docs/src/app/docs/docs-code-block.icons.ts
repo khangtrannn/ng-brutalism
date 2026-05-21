@@ -28,7 +28,6 @@ const codeBlockIconStyles = `
 
 @Component({
   selector: 'docs-code-copy-icon',
-  standalone: true,
   template: `
     <svg
       viewBox="0 0 16 16"
@@ -53,7 +52,6 @@ export class DocsCodeCopyIcon {}
 
 @Component({
   selector: 'docs-code-info-icon',
-  standalone: true,
   template: `
     <svg
       viewBox="0 0 16 16"
@@ -75,7 +73,6 @@ export class DocsCodeInfoIcon {}
 
 @Component({
   selector: 'docs-code-expand-icon',
-  standalone: true,
   template: `
     <svg
       viewBox="0 0 16 16"
@@ -101,7 +98,6 @@ export class DocsCodeExpandIcon {
 
 @Component({
   selector: 'docs-code-chevron-icon',
-  standalone: true,
   template: `
     <svg
       viewBox="0 0 12 12"

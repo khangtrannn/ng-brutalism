@@ -4,7 +4,6 @@ import { nbClass } from '../core/class';
 
 @Directive({
   selector: 'label[nbLabel]',
-  standalone: true,
   host: {
     '[class]': 'classes',
   },

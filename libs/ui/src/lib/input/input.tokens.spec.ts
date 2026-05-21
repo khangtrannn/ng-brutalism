@@ -5,7 +5,6 @@ import { describe, expect, it } from 'vitest';
 import { NbInput } from './nb-input';
 
 @Component({
-  standalone: true,
   imports: [NbInput],
   template: `<input nbInput placeholder="Email" />`,
 })

@@ -44,7 +44,6 @@ function expectRegionOpen(region: HTMLElement, open: boolean): void {
 }
 
 @Component({
-  standalone: true,
   imports,
   template: `
     <nb-accordion>
@@ -62,7 +61,6 @@ function expectRegionOpen(region: HTMLElement, open: boolean): void {
 class SingleAccordionTestComponent {}
 
 @Component({
-  standalone: true,
   imports,
   template: `
     <nb-accordion collapsible>
@@ -76,7 +74,6 @@ class SingleAccordionTestComponent {}
 class CollapsibleAccordionTestComponent {}
 
 @Component({
-  standalone: true,
   imports,
   template: `
     <nb-accordion type="multiple">
@@ -94,7 +91,6 @@ class CollapsibleAccordionTestComponent {}
 class MultipleAccordionTestComponent {}
 
 @Component({
-  standalone: true,
   imports,
   template: `
     <nb-accordion>
@@ -108,7 +104,6 @@ class MultipleAccordionTestComponent {}
 class DisabledItemAccordionTestComponent {}
 
 @Component({
-  standalone: true,
   imports,
   template: `
     <nb-accordion [value]="'one'">

@@ -10,7 +10,6 @@ import { NbAccordionItem } from './nb-accordion-item';
 
 @Component({
   selector: 'nb-accordion-trigger',
-  standalone: true,
   template: `
     <h3 class="flex">
       <button

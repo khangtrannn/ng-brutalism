@@ -5,7 +5,6 @@ import { describe, expect, it } from 'vitest';
 import { NbTextarea } from './nb-textarea';
 
 @Component({
-  standalone: true,
   imports: [NbTextarea],
   template: `<textarea nbTextarea placeholder="Message"></textarea>`,
 })

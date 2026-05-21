@@ -9,7 +9,6 @@ import type {
 
 @Directive({
   selector: 'button[nbButton], a[nbButton]',
-  standalone: true,
   host: {
     '[class]': 'classes()',
     '[attr.data-variant]': 'variant()',

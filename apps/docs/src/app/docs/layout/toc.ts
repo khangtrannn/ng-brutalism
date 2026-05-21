@@ -46,7 +46,6 @@ function extractHeadings(contentEl: Element): readonly TocHeading[] {
 
 @Component({
   selector: 'nb-docs-toc',
-  standalone: true,
   template: `
     <nav class="toc" aria-label="On this page">
       <p class="toc__header">On this page</p>

@@ -15,7 +15,6 @@ import {
 
 @Component({
   selector: 'nb-input-group',
-  standalone: true,
   template: `<ng-content />`,
   host: {
     '[class]': 'classes()',

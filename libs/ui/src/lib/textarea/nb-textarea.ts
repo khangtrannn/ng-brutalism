@@ -6,7 +6,6 @@ import type { NbTextareaSize } from './textarea.types';
 
 @Directive({
   selector: 'textarea[nbTextarea]',
-  standalone: true,
   host: {
     '[class]': 'classes()',
     '[attr.data-size]': 'size()',

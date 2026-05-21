@@ -7,7 +7,6 @@ import { NbNativeSelect } from './nb-native-select';
 import { NbSelectOption } from './nb-select-option';
 
 @Component({
-  standalone: true,
   imports: [NbSelect, NbSelectOption],
   template: `
     <nb-select placeholder="Pick one">
@@ -21,7 +20,6 @@ import { NbSelectOption } from './nb-select-option';
 class SelectTokenTestComponent {}
 
 @Component({
-  standalone: true,
   imports: [NbNativeSelect],
   template: `
     <select nbSelect aria-label="Plan">

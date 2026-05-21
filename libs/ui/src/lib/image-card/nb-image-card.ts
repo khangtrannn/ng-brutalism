@@ -8,7 +8,6 @@ import { nbClass } from '../core/class';
 
 @Component({
   selector: 'nb-image-card',
-  standalone: true,
   template: `
     <img
       [src]="image()"
@@ -46,7 +45,6 @@ export class NbImageCard {
 
 @Component({
   selector: 'nb-image-card-caption',
-  standalone: true,
   template: `<ng-content />`,
   host: {
     '[class]': 'classes',

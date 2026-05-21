@@ -14,7 +14,6 @@ let nextAccordionItemId = 0;
 
 @Component({
   selector: 'nb-accordion-item',
-  standalone: true,
   template: `
     <div [class]="classes()">
       <ng-content />

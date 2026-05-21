@@ -5,7 +5,6 @@ import { NB_INPUT_GROUP } from '../input-group/input-group.types';
 
 @Directive({
   selector: 'select[nbSelect]',
-  standalone: true,
   host: {
     '[class]': 'classes()',
   },

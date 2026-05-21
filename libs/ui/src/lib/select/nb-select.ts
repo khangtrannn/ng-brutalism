@@ -26,7 +26,6 @@ let nextSelectId = 0;
 
 @Component({
   selector: 'nb-select',
-  standalone: true,
   template: `
     <button
       #trigger

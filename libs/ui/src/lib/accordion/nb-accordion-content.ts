@@ -10,7 +10,6 @@ import { NbAccordionItem } from './nb-accordion-item';
 
 @Component({
   selector: 'nb-accordion-content',
-  standalone: true,
   template: `
     <div
       [id]="item.contentId"

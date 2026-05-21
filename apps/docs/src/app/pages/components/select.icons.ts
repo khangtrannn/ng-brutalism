@@ -24,7 +24,6 @@ const selectIconStyles = `
 
 @Component({
   selector: 'docs-select-globe-icon',
-  standalone: true,
   template: `
     <svg viewBox="0 0 24 24" aria-hidden="true">
       <circle cx="12" cy="12" r="9" />
@@ -41,7 +40,6 @@ export class DocsSelectGlobeIcon {}
 
 @Component({
   selector: 'docs-select-briefcase-icon',
-  standalone: true,
   template: `
     <svg viewBox="0 0 24 24" aria-hidden="true">
       <path d="M4 8h16v11H4z" />
@@ -57,7 +55,6 @@ export class DocsSelectBriefcaseIcon {}
 
 @Component({
   selector: 'docs-select-clock-icon',
-  standalone: true,
   template: `
     <svg viewBox="0 0 24 24" aria-hidden="true">
       <circle cx="12" cy="12" r="9" />
@@ -72,7 +69,6 @@ export class DocsSelectClockIcon {}
 
 @Component({
   selector: 'docs-select-building-icon',
-  standalone: true,
   template: `
     <svg viewBox="0 0 24 24" aria-hidden="true">
       <path d="M5 21V4h14v17" />
@@ -87,7 +83,6 @@ export class DocsSelectBuildingIcon {}
 
 @Component({
   selector: 'docs-select-tag-icon',
-  standalone: true,
   template: `
     <svg
       viewBox="0 0 24 24"
@@ -110,7 +105,6 @@ export class DocsSelectTagIcon {}
 
 @Component({
   selector: 'docs-select-location-icon',
-  standalone: true,
   template: `
     <svg viewBox="0 0 24 24" aria-hidden="true">
       <path d="M12 21s7-5.2 7-12a7 7 0 0 0-14 0c0 6.8 7 12 7 12Z" />

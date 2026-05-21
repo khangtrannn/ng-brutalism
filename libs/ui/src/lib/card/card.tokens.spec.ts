@@ -13,7 +13,6 @@ import {
 } from './nb-card';
 
 @Component({
-  standalone: true,
   imports: [
     NbCard,
     NbCardHeader,

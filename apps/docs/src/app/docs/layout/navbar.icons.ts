@@ -2,7 +2,6 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 @Component({
   selector: 'docs-navbar-external-link-icon',
-  standalone: true,
   template: `
     <svg
       viewBox="0 0 24 24"

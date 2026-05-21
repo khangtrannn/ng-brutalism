@@ -5,7 +5,6 @@ import type { NbBadgeVariant } from './badge.types';
 
 @Directive({
   selector: 'span[nbBadge]',
-  standalone: true,
   host: {
     '[class]': 'classes()',
     '[attr.data-variant]': 'variant()',

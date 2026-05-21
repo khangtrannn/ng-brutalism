@@ -8,7 +8,6 @@ import { NbInputPrefix } from './nb-input-group-prefix';
 import { NbInputSuffix } from './nb-input-group-suffix';
 
 @Component({
-  standalone: true,
   imports: [NbInput, NbInputGroup, NbInputPrefix, NbInputSuffix],
   template: `
     <nb-input-group>

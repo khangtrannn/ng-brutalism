@@ -11,7 +11,6 @@ import {
 } from './index';
 
 @Component({
-  standalone: true,
   imports: [
     NbDialog,
     NbDialogTitle,

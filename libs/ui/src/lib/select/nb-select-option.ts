@@ -15,7 +15,6 @@ let nextSelectOptionId = 0;
 
 @Component({
   selector: 'nb-select-option',
-  standalone: true,
   template: `
     <button
       #button

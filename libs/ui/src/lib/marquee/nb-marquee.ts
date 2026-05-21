@@ -18,7 +18,6 @@ import { nbClass } from '../core/class';
 
 @Component({
   selector: 'nb-marquee',
-  standalone: true,
   host: {
     class: 'block',
   },

@@ -14,7 +14,6 @@ import { docsNavGroups, findDocsNavItem } from './docs.navigation';
 
 @Component({
   selector: 'docs-shell',
-  standalone: true,
   imports: [RouterLink],
   template: `
     <div

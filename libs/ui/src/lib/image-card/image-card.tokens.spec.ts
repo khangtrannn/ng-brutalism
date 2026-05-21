@@ -5,7 +5,6 @@ import { describe, expect, it } from 'vitest';
 import { NbImageCard, NbImageCardCaption } from './nb-image-card';
 
 @Component({
-  standalone: true,
   imports: [NbImageCard, NbImageCardCaption],
   template: `
     <nb-image-card

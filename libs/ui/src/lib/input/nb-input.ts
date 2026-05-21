@@ -6,7 +6,6 @@ import type { NbInputSize } from './input.types';
 
 @Directive({
   selector: 'input[nbInput]',
-  standalone: true,
   host: {
     '[class]': 'classes()',
     '[attr.data-size]': 'size()',

@@ -7,7 +7,6 @@ export type NbInputSuffixAlign = 'center' | 'stretch';
 
 @Directive({
   selector: '[nbInputSuffix]',
-  standalone: true,
   host: {
     '[class]': 'classes()',
     '[attr.data-align]': 'align()',

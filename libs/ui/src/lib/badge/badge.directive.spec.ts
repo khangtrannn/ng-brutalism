@@ -5,7 +5,6 @@ import { describe, expect, it } from 'vitest';
 import { NbBadge } from './nb-badge';
 
 @Component({
-  standalone: true,
   imports: [NbBadge],
   template: `<span nbBadge>New</span>`,
 })

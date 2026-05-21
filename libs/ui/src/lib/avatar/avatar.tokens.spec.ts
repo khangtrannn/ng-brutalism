@@ -5,7 +5,6 @@ import { describe, expect, it } from 'vitest';
 import { NbAvatar } from './nb-avatar';
 
 @Component({
-  standalone: true,
   imports: [NbAvatar],
   template: `<nb-avatar alt="John Doe">JD</nb-avatar>`,
 })

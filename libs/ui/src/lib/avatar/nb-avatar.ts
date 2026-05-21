@@ -4,7 +4,6 @@ import { nbClass } from '../core/class';
 
 @Component({
   selector: 'nb-avatar',
-  standalone: true,
   template: `
     @if (src()) {
     <img [src]="src()" [alt]="alt()" class="h-full w-full object-cover" />

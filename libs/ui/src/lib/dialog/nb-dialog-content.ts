@@ -4,7 +4,6 @@ import { nbClass } from '../core/class';
 
 @Component({
   selector: 'nb-dialog-content',
-  standalone: true,
   template: `<ng-content />`,
   host: {
     '[class]': 'classes',
