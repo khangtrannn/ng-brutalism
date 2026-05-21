@@ -50,10 +50,10 @@ import { DocsCodeBlock } from '../../docs/docs-code-block';
         </div>
 
         <p class="mt-8 max-w-4xl text-base font-medium sm:text-lg">
-          &#64;ng-brutalism/ui gives Angular 21 apps a loud, token-driven
-          component system: standalone primitives, hard-edged visuals,
-          keyboard-ready interactions, and Tailwind v4 ergonomics from the first
-          import.
+          &#64;ng-brutalism/ui gives modern Angular apps a token-driven
+          component system with directive-first APIs, keyboard-ready
+          interactions, hard-edged visuals, and Tailwind v4 ergonomics from the
+          first import.
         </p>
 
         <div class="mt-7 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
@@ -77,7 +77,7 @@ import { DocsCodeBlock } from '../../docs/docs-code-block';
 
         <div class="mt-7 flex flex-wrap items-center gap-3">
           <div class="nb-stat-tile nb-stat-tile--yellow">
-            <span class="nb-stat-tile__value">NG21</span>
+            <span class="nb-stat-tile__value">NG</span>
             <span class="nb-stat-tile__label">Angular native</span>
           </div>
           <div class="nb-stat-tile nb-stat-tile--mint">
@@ -107,8 +107,9 @@ import { DocsCodeBlock } from '../../docs/docs-code-block';
               Angular first
             </h3>
             <p class="mt-2 text-sm font-medium">
-              Drop standalone components directly into routes, examples, and
-              feature screens without module ceremony.
+              Built as Angular primitives with directive APIs, signal-friendly
+              internals, and native interaction patterns that fit modern Angular
+              apps.
             </p>
           </div>
           <div

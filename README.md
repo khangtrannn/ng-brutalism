@@ -1,6 +1,10 @@
 # @ng-brutalism/ui
 
-A neo-brutalist Angular component library — Signals • Zoneless • Token-based • Tailwind v4.
+Build loud. Stay sharp.
+
+`@ng-brutalism/ui` gives modern Angular apps a token-driven component system
+with directive-first APIs, keyboard-ready interactions, hard-edged visuals, and
+Tailwind v4 ergonomics from the first import.
 
 [![npm version](https://img.shields.io/npm/v/@ng-brutalism/ui.svg)](https://www.npmjs.com/package/@ng-brutalism/ui)
 [![npm downloads](https://img.shields.io/npm/dm/@ng-brutalism/ui.svg)](https://www.npmjs.com/package/@ng-brutalism/ui)
@@ -40,6 +44,16 @@ import { NbButton } from '@ng-brutalism/ui';
 })
 export class AppComponent {}
 ```
+
+## Why it stands out
+
+- **Angular first**: Built as Angular primitives with directive APIs,
+  signal-friendly internals, and native interaction patterns that fit modern
+  Angular apps.
+- **Loud by default**: Chunky borders, offset shadows, punchy color, and compact
+  motion make interfaces feel instantly brutalist.
+- **Easy to bend**: CSS custom properties and Tailwind utilities keep theme
+  overrides local, visible, and predictable.
 
 Optional — configure a subset of theme tokens from TypeScript at bootstrap.
 Sets the corresponding `--nb-*` custom properties for these keys. Tokens
