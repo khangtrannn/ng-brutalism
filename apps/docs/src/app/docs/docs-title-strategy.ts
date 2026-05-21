@@ -1,10 +1,14 @@
 import { Injectable, inject } from '@angular/core';
+import { DOCUMENT } from '@angular/common';
 import { Meta, Title } from '@angular/platform-browser';
 import { RouterStateSnapshot, TitleStrategy } from '@angular/router';
 
 import { findDocsNavItem } from './docs.navigation';
 
 const APP_TITLE = 'Ng Brutalism';
+const SITE_URL = 'https://ngbrutalism.khangtran.dev';
+const OG_IMAGE_URL = `${SITE_URL}/og.png`;
+const OG_IMAGE_ALT = 'Ng Brutalism — Neo-Brutalist Angular UI Library';
 const DEFAULT_DESCRIPTION =
   'Neo-brutalist Angular component library. Signals, zoneless, Tailwind v4. Bold borders, offset shadows, and punchy colors — drop it in and ship loud.';
 
@@ -86,23 +90,54 @@ const PAGE_DESCRIPTIONS: Record<string, string> = {
 
 @Injectable()
 export class DocsTitleStrategy extends TitleStrategy {
+  private readonly document = inject(DOCUMENT);
   private readonly title = inject(Title);
   private readonly meta = inject(Meta);
 
   override updateTitle(snapshot: RouterStateSnapshot): void {
     const path = snapshot.url.split(/[?#]/, 1)[0].replace(/\/+$/, '') || '/';
     const pageTitle = getDocsPageTitle(snapshot.url);
+    const fullTitle = pageTitle ? `${pageTitle} | ${APP_TITLE}` : APP_TITLE;
     const description = PAGE_DESCRIPTIONS[path] ?? DEFAULT_DESCRIPTION;
+    const canonicalUrl = toCanonicalUrl(path);
 
-    this.title.setTitle(
-      pageTitle ? `${pageTitle} | ${APP_TITLE}` : APP_TITLE
-    );
+    this.title.setTitle(fullTitle);
+    this.updateCanonicalLink(canonicalUrl);
     this.meta.updateTag({ name: 'description', content: description });
-    this.meta.updateTag({ property: 'og:description', content: description });
+    this.meta.updateTag({ property: 'og:url', content: canonicalUrl });
     this.meta.updateTag({
       property: 'og:title',
-      content: pageTitle ? `${pageTitle} | ${APP_TITLE}` : APP_TITLE,
+      content: fullTitle,
     });
+    this.meta.updateTag({ property: 'og:description', content: description });
+    this.meta.updateTag({ property: 'og:image', content: OG_IMAGE_URL });
+    this.meta.updateTag({
+      property: 'og:image:secure_url',
+      content: OG_IMAGE_URL,
+    });
+    this.meta.updateTag({ property: 'og:image:type', content: 'image/png' });
+    this.meta.updateTag({ property: 'og:image:width', content: '1200' });
+    this.meta.updateTag({ property: 'og:image:height', content: '630' });
+    this.meta.updateTag({ property: 'og:image:alt', content: OG_IMAGE_ALT });
+    this.meta.updateTag({ name: 'twitter:title', content: fullTitle });
+    this.meta.updateTag({ name: 'twitter:description', content: description });
+    this.meta.updateTag({ name: 'twitter:image', content: OG_IMAGE_URL });
+    this.meta.updateTag({ name: 'twitter:image:alt', content: OG_IMAGE_ALT });
+  }
+
+  private updateCanonicalLink(url: string): void {
+    const selector = 'link[rel="canonical"]';
+    const existingLink =
+      this.document.head.querySelector<HTMLLinkElement>(selector);
+    const link =
+      existingLink ?? this.document.createElement('link');
+
+    link.rel = 'canonical';
+    link.href = url;
+
+    if (!existingLink) {
+      this.document.head.appendChild(link);
+    }
   }
 }
 
@@ -130,6 +165,10 @@ function normalizePath(url: string): string {
   const path = url.split(/[?#]/, 1)[0] || '/';
 
   return path.length > 1 ? path.replace(/\/+$/, '') : path;
+}
+
+function toCanonicalUrl(path: string): string {
+  return path === '/' ? SITE_URL : `${SITE_URL}${path}`;
 }
 
 function humanizePath(path: string): string {
