@@ -13,7 +13,7 @@ import { NbButton } from '@ng-brutalism/ui';
         </p>
         <h1>Components</h1>
         <p class="mt-0 max-w-2xl text-base font-medium sm:text-lg">
-          Angular 18 standalone UI primitives with hard borders, offset shadows,
+          Angular standalone UI primitives with hard borders, offset shadows,
           and strong keyboard focus states.
         </p>
       </header>
