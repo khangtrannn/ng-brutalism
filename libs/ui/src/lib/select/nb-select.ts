@@ -2,14 +2,12 @@ import {
   ChangeDetectionStrategy,
   Component,
   ElementRef,
-  OnInit,
   booleanAttribute,
   computed,
   contentChildren,
   inject,
   input,
   model,
-  signal,
   viewChild,
 } from '@angular/core';
 
@@ -74,15 +72,13 @@ let nextSelectId = 0;
   providers: [{ provide: NB_SELECT, useExisting: NbSelect }],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class NbSelect implements NbSelectController, OnInit {
+export class NbSelect implements NbSelectController {
   private readonly element = inject<ElementRef<HTMLElement>>(ElementRef);
   private readonly group = inject(NB_INPUT_GROUP, { optional: true });
 
   readonly placeholder = input('Select an option');
-  readonly defaultValue = input<NbSelectValue | null>(null);
   readonly value = model<NbSelectValue | null>(null);
   readonly disabled = input(false, { transform: booleanAttribute });
-  readonly defaultOpen = input(false, { transform: booleanAttribute });
   readonly ariaLabel = input<string | null>(null, { alias: 'aria-label' });
   readonly ariaLabelledby = input<string | null>(null, {
     alias: 'aria-labelledby',
@@ -92,7 +88,7 @@ export class NbSelect implements NbSelectController, OnInit {
   private readonly trigger =
     viewChild<ElementRef<HTMLButtonElement>>('trigger');
 
-  readonly open = signal(false);
+  readonly open = model<boolean>(false);
 
   readonly id = nextSelectId++;
   readonly triggerId = `neo-select-trigger-${this.id}`;
@@ -152,14 +148,6 @@ export class NbSelect implements NbSelectController, OnInit {
     'rounded-b-(--nb-select-radius) border-2 border-(--nb-select-border) bg-(--nb-select-listbox-bg)',
     'shadow-nb'
   );
-
-  ngOnInit(): void {
-    if (this.value() === null && this.defaultValue() !== null) {
-      this.value.set(this.defaultValue());
-    }
-
-    this.open.set(this.defaultOpen());
-  }
 
   isSelected(value: NbSelectValue | null): boolean {
     return this.value() === value;

@@ -146,7 +146,7 @@ import {
         <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">Option Content</h2>
         <docs-example [code]="withIconExampleCode">
           <div class="w-80">
-            <nb-select placeholder="Select location" defaultValue="worldwide">
+            <nb-select placeholder="Select location" [value]="'worldwide'">
               <nb-select-option label="Select location">
                 <docs-select-location-icon />
                 Select location
@@ -251,18 +251,6 @@ import {
               </tr>
               <tr class="border-b-2 border-(--nb-border)">
                 <td class="border-r-2 border-(--nb-border) px-4 py-3">
-                  defaultValue
-                </td>
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">
-                  NbSelectValue | null
-                </td>
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">
-                  null
-                </td>
-                <td class="px-4 py-3">Initial selected value for uncontrolled usage.</td>
-              </tr>
-              <tr class="border-b-2 border-(--nb-border)">
-                <td class="border-r-2 border-(--nb-border) px-4 py-3">
                   value
                 </td>
                 <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">
@@ -284,18 +272,6 @@ import {
                   false
                 </td>
                 <td class="px-4 py-3">Disables the trigger and all options.</td>
-              </tr>
-              <tr class="border-b-2 border-(--nb-border)">
-                <td class="border-r-2 border-(--nb-border) px-4 py-3">
-                  defaultOpen
-                </td>
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">
-                  boolean
-                </td>
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">
-                  false
-                </td>
-                <td class="px-4 py-3">Initial open state for uncontrolled usage.</td>
               </tr>
               <tr class="border-b-2 border-(--nb-border)">
                 <td class="border-r-2 border-(--nb-border) px-4 py-3">
@@ -389,7 +365,7 @@ export default class SelectPageComponent {
 </div>`;
 
   protected readonly withIconExampleCode = `<div class="w-80">
-  <nb-select placeholder="Select location" defaultValue="worldwide">
+  <nb-select placeholder="Select location" [value]="'worldwide'">
     <nb-select-option label="Select location">
       <docs-select-location-icon />
       Select location

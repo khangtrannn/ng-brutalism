@@ -29,7 +29,7 @@ class SelectTestComponent {}
 @Component({
   imports: [NbSelect, NbSelectOption],
   template: `
-    <nb-select placeholder="Select location" defaultValue="worldwide">
+    <nb-select placeholder="Select location" [value]="'worldwide'">
       <nb-select-option label="Select location"
         >Select location</nb-select-option
       >

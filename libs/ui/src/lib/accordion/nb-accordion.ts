@@ -2,7 +2,6 @@ import {
   booleanAttribute,
   ChangeDetectionStrategy,
   Component,
-  OnInit,
   contentChildren,
   input,
   model,
@@ -31,19 +30,12 @@ import {
   providers: [{ provide: NB_ACCORDION, useExisting: NbAccordion }],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class NbAccordion implements NbAccordionController, OnInit {
+export class NbAccordion implements NbAccordionController {
   readonly type = input<NbAccordionType>('single');
   readonly collapsible = input(false, { transform: booleanAttribute });
-  readonly defaultValue = input<NbAccordionValue>(null);
   readonly value = model<NbAccordionValue>(null);
 
   readonly items = contentChildren(NbAccordionItem);
-
-  ngOnInit(): void {
-    if (this.value() === null && this.defaultValue() !== null) {
-      this.value.set(this.normalizeValue(this.defaultValue()));
-    }
-  }
 
   isItemOpen(value: string): boolean {
     const currentValue = this.value();
@@ -83,13 +75,5 @@ export class NbAccordion implements NbAccordionController, OnInit {
         ? values.filter((itemValue) => itemValue !== value)
         : [...values, value]
     );
-  }
-
-  private normalizeValue(value: NbAccordionValue): NbAccordionValue {
-    if (this.type() === 'multiple') {
-      return Array.isArray(value) ? value : value ? [value] : [];
-    }
-
-    return Array.isArray(value) ? value[0] ?? null : value;
   }
 }

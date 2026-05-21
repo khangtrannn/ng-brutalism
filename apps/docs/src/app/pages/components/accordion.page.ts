@@ -98,7 +98,7 @@ import { DocsTokens } from '../../docs/docs-tokens';
           <nb-accordion
             class="block w-full max-w-xl"
             type="multiple"
-            [defaultValue]="['item-1']"
+            [value]="['item-1']"
           >
             <nb-accordion-item value="item-1">
               <nb-accordion-trigger
@@ -190,7 +190,7 @@ import { DocsTokens } from '../../docs/docs-tokens';
           <nb-accordion
             collapsible
             class="block w-full max-w-xl"
-            defaultValue="enabled"
+            [value]="'enabled'"
           >
             <nb-accordion-item value="enabled">
               <nb-accordion-trigger>Enabled item</nb-accordion-trigger>
@@ -271,25 +271,8 @@ import { DocsTokens } from '../../docs/docs-tokens';
                 </td>
               </tr>
               <tr>
-                <td
-                  class="border-b-2 border-r-2 border-(--nb-border) px-4 py-3"
-                >
-                  value
-                </td>
-                <td
-                  class="border-b-2 border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
-                >
-                  string | string[] | null
-                </td>
-                <td
-                  class="border-b-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
-                >
-                  null
-                </td>
-              </tr>
-              <tr>
                 <td class="border-r-2 border-(--nb-border) px-4 py-3">
-                  defaultValue
+                  value
                 </td>
                 <td
                   class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
@@ -489,7 +472,7 @@ readonly controlledValue = signal<string | string[] | null>('overview');`;
   protected readonly multipleExampleCode = `<nb-accordion
   class="block w-full max-w-xl"
   type="multiple"
-  [defaultValue]="['item-1']"
+  [value]="['item-1']"
 >
   <nb-accordion-item value="item-1">
     <nb-accordion-trigger>Can multiple panels open?</nb-accordion-trigger>
@@ -506,7 +489,7 @@ readonly controlledValue = signal<string | string[] | null>('overview');`;
   </nb-accordion-item>
 </nb-accordion>`;
 
-  protected readonly disabledExampleCode = `<nb-accordion collapsible class="block w-full max-w-xl" defaultValue="enabled">
+  protected readonly disabledExampleCode = `<nb-accordion collapsible class="block w-full max-w-xl" [value]="'enabled'">
   <nb-accordion-item value="enabled">
     <nb-accordion-trigger>Enabled item</nb-accordion-trigger>
     <nb-accordion-content>
