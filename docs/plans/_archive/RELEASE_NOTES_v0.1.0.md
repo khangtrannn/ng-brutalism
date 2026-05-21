@@ -1,6 +1,6 @@
 # v0.1.0 — Initial release
 
-Released 2026-05-20.
+Released 2026-05-21.
 
 ## Added
 
