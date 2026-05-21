@@ -71,7 +71,7 @@ function inferLanguage(title: string, code: string): HighlightLanguage {
 
         <button
           type="button"
-          class="absolute top-14 right-3 z-10 inline-flex items-center gap-2 border-2 border-black bg-(--nb-yellow) px-3.5 py-1.5 text-xs font-black tracking-[0.15em] text-black uppercase shadow-[3px_3px_0_0_#fff] transition-transform hover:-translate-y-0.5 hover:-rotate-2 focus-visible:outline-(--nb-focus-ring) focus-visible:outline-offset-(--nb-focus-ring-offset)"
+          class="docs-code-copy-button absolute top-14 right-3 z-10 inline-flex items-center gap-2 border-2 border-black bg-(--nb-yellow) px-3.5 py-1.5 text-xs font-black tracking-[0.15em] text-black uppercase shadow-[3px_3px_0_0_#fff] transition-transform hover:-translate-y-0.5 hover:-rotate-2 focus-visible:outline-(--nb-focus-ring) focus-visible:outline-offset-(--nb-focus-ring-offset)"
           style="font-family: var(--font-display);"
           (click)="copy()"
         >
@@ -80,15 +80,15 @@ function inferLanguage(title: string, code: string): HighlightLanguage {
         </button>
 
         <div
-          class="docs-code-block-pre relative overflow-hidden"
+          class="docs-code-block-pre relative"
           [style.max-height.rem]="isCollapsible() && !expanded() ? maxLines() * 1 + 3.25 : null"
         >
           @if (highlightedHtml.value(); as html) {
             <div class="docs-code-block-shiki" [innerHTML]="html"></div>
           } @else {
             <pre
-              class="m-0 whitespace-pre-wrap bg-black pl-16 pr-24 pt-6 pb-7 text-xs text-white"
-              style="font-family: var(--font-mono); line-height: 1rem; overflow-wrap: anywhere; word-break: break-word;"
+              class="docs-code-block-fallback m-0 bg-black pl-16 pr-24 pt-6 pb-7 text-xs text-white"
+              style="font-family: var(--font-mono); line-height: 1rem;"
             ><code>{{ code() }}</code></pre>
           }
         </div>
@@ -131,6 +131,31 @@ function inferLanguage(title: string, code: string): HighlightLanguage {
         display: block;
       }
 
+      .docs-code-block-pre {
+        overflow-x: auto;
+        overflow-y: hidden;
+        scrollbar-color: var(--nb-yellow) #000;
+        scrollbar-width: thin;
+      }
+
+      .docs-code-block-pre::-webkit-scrollbar {
+        height: 0.75rem;
+      }
+
+      .docs-code-block-pre::-webkit-scrollbar-track {
+        background: #000;
+      }
+
+      .docs-code-block-pre::-webkit-scrollbar-thumb {
+        background: var(--nb-yellow);
+        border: 2px solid #000;
+      }
+
+      .docs-code-block-fallback {
+        min-width: max-content;
+        white-space: pre;
+      }
+
       .docs-code-block-shiki ::ng-deep pre.shiki {
         margin: 0;
         padding: 1.5rem 6rem 1.75rem 0;
@@ -138,18 +163,15 @@ function inferLanguage(title: string, code: string): HighlightLanguage {
         font-family: var(--font-mono);
         font-size: 0.75rem;
         line-height: 1.25rem;
-        overflow: hidden;
-        white-space: pre-wrap;
-        overflow-wrap: anywhere;
-        word-break: break-word;
+        min-width: max-content;
+        overflow: visible;
+        white-space: pre;
       }
 
       .docs-code-block-shiki ::ng-deep pre.shiki code {
         counter-reset: line;
         display: block;
-        white-space: pre-wrap;
-        overflow-wrap: anywhere;
-        word-break: break-word;
+        white-space: pre;
       }
 
       .docs-code-block-shiki ::ng-deep pre.shiki .line {
@@ -158,9 +180,7 @@ function inferLanguage(title: string, code: string): HighlightLanguage {
         position: relative;
         min-height: 1rem;
         line-height: 1.25rem;
-        white-space: pre-wrap;
-        overflow-wrap: anywhere;
-        word-break: break-word;
+        white-space: pre;
       }
 
       .docs-code-block-shiki ::ng-deep pre.shiki .line + .line {
@@ -176,6 +196,34 @@ function inferLanguage(title: string, code: string): HighlightLanguage {
         padding-right: 1rem;
         text-align: right;
         color: rgba(255, 255, 255, 0.3);
+      }
+
+      @media (max-width: 640px) {
+        .docs-code-copy-button {
+          display: flex;
+          width: max-content;
+          position: relative;
+          top: auto;
+          right: auto;
+          margin: 0.75rem 1rem 0;
+        }
+
+        .docs-code-block-shiki ::ng-deep pre.shiki {
+          padding: 1.25rem 1.25rem 1.5rem 0;
+        }
+
+        .docs-code-block-shiki ::ng-deep pre.shiki .line {
+          padding-left: 3.25rem;
+        }
+
+        .docs-code-block-shiki ::ng-deep pre.shiki .line::before {
+          width: 2.25rem;
+          padding-right: 0.75rem;
+        }
+
+        .docs-code-block-fallback {
+          padding: 1.25rem 1.25rem 1.5rem 3.25rem;
+        }
       }
     `,
   ],
