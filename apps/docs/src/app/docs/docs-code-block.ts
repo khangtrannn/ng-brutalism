@@ -3,13 +3,13 @@ import {
   ChangeDetectionStrategy,
   Component,
   computed,
-  effect,
   inject,
   input,
   PLATFORM_ID,
+  resource,
   signal,
 } from '@angular/core';
-import { DomSanitizer, type SafeHtml } from '@angular/platform-browser';
+import { DomSanitizer } from '@angular/platform-browser';
 import {
   DocsCodeChevronIcon,
   DocsCodeCopyIcon,
@@ -83,7 +83,7 @@ function inferLanguage(title: string, code: string): HighlightLanguage {
           class="docs-code-block-pre relative overflow-hidden"
           [style.max-height.rem]="isCollapsible() && !expanded() ? maxLines() * 1 + 3.25 : null"
         >
-          @if (highlightedHtml(); as html) {
+          @if (highlightedHtml.value(); as html) {
             <div class="docs-code-block-shiki" [innerHTML]="html"></div>
           } @else {
             <pre
@@ -190,7 +190,6 @@ export class DocsCodeBlock {
 
   protected readonly copied = signal(false);
   protected readonly expanded = signal(false);
-  protected readonly highlightedHtml = signal<SafeHtml | null>(null);
   protected readonly resolvedLanguage = computed(
     () => this.language() ?? inferLanguage(this.title(), this.code()),
   );
@@ -201,19 +200,14 @@ export class DocsCodeBlock {
   private readonly sanitizer = inject(DomSanitizer);
   private readonly isBrowser = isPlatformBrowser(inject(PLATFORM_ID));
 
-  constructor() {
-    effect(
-      () => {
-        const code = this.code();
-        const lang = this.resolvedLanguage();
-        if (!this.isBrowser) return;
-        void highlightCode(code, lang).then((html) => {
-          this.highlightedHtml.set(this.sanitizer.bypassSecurityTrustHtml(html));
-        });
-      },
-      { allowSignalWrites: true },
-    );
-  }
+  protected readonly highlightedHtml = resource({
+    params: () => ({ code: this.code(), lang: this.resolvedLanguage() }),
+    loader: async ({ params: { code, lang } }) => {
+      if (!this.isBrowser) return null;
+      const html = await highlightCode(code, lang);
+      return this.sanitizer.bypassSecurityTrustHtml(html);
+    },
+  });
 
   copy(): void {
     void navigator.clipboard.writeText(this.code());
