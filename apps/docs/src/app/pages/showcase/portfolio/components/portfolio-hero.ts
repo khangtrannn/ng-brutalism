@@ -4,6 +4,7 @@ import {
   computed,
   input,
 } from '@angular/core';
+import { NgOptimizedImage } from '@angular/common';
 import { toObservable, toSignal } from '@angular/core/rxjs-interop';
 import { NbButton, NbMarquee, NbMarqueeItem, NbTitle } from '@ng-brutalism/ui';
 import { scan, switchMap, takeWhile, timer } from 'rxjs';
@@ -22,6 +23,7 @@ import type { Skill } from '../portfolio.types';
         NbMarquee,
         NbMarqueeItem,
         NbTitle,
+        NgOptimizedImage,
         ContactUsDialog,
         DocsPortfolioGithubIcon,
         DocsPortfolioLinkedinIcon,
@@ -115,8 +117,12 @@ import type { Skill } from '../portfolio.types';
         >
           <img
             class="h-auto w-auto max-w-[180px] sm:max-w-[220px] md:max-w-[300px] lg:max-w-[400px] xl:max-w-[450px]"
-            [src]="assetPath() + '/khang.png'"
+            [ngSrc]="assetPath() + '/khang.png'"
+            width="1081"
+            height="1249"
+            priority
             alt="Khang Tran"
+            decoding="async"
           />
         </div>
       </div>
