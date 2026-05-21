@@ -68,7 +68,7 @@ import { DocsCodeBlock } from '../../docs/docs-code-block';
             class="w-full justify-center sm:w-auto"
             nbButton
             variant="neutral"
-            routerLink="/components/button"
+            routerLink="/components/accordion"
             style="--nb-button-bg: #fff"
           >
             See components
