@@ -9,6 +9,7 @@
     "build:ui": "nx build ui",
     "build:docs": "nx build docs",
     "serve:docs": "nx serve docs",
+    "sync:repo-metadata": "node scripts/sync-repository-metadata.mjs",
     "test": "nx affected --target=test",
     "lint": "nx affected --target=lint"
   },

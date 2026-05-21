@@ -1,0 +1,20 @@
+{
+  "owner": "khangtrannn",
+  "repo": "ng-brutalism",
+  "description": "Neo-brutalist Angular component library with Tailwind v4 ergonomics.",
+  "homepage": "https://ngbrutalism.khangtran.dev",
+  "topics": [
+    "angular",
+    "angular-components",
+    "angular-ui",
+    "component-library",
+    "components",
+    "design-system",
+    "neobrutalism",
+    "neo-brutalism",
+    "tailwindcss",
+    "tailwind-v4",
+    "ui-library",
+    "zoneless"
+  ]
+}
