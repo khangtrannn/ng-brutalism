@@ -1,92 +1,118 @@
-# Deploying the Docs Site
+# Docs Deployment
 
-One-time checklist for deploying `apps/docs` to GitHub Pages at
+`apps/docs` is deployed to GitHub Pages at
 <https://ngbrutalism.khangtran.dev>.
 
-Deploy mechanics: `.github/workflows/deploy-docs.yml` runs on push to `main`,
-builds via `pnpm nx build docs --configuration=production`, and uploads the
-prerendered output from `dist/apps/docs/analog/public/` to GitHub Pages.
+Current state: live. The first custom-domain setup is complete: Cloudflare
+DNS points `ngbrutalism.khangtran.dev` to GitHub Pages, GitHub Pages uses
+GitHub Actions as its source, and HTTPS is handled by GitHub Pages.
+
+Deploy mechanics: `.github/workflows/deploy-docs.yml` runs on every push to
+`main`, builds with `pnpm nx build docs --configuration=production`, and
+uploads the prerendered output from `dist/apps/docs/analog/public/`.
 
 ---
 
-## 1. Pre-flight
+## Normal deploys
 
-Verify the deploy plumbing is in place before the first push.
+For routine docs updates:
 
-- [ ] `.github/workflows/deploy-docs.yml` exists.
-- [ ] `apps/docs/public/CNAME` contains `ngbrutalism.khangtran.dev` (single
-      line, no protocol, no trailing slash).
-- [ ] Local production build succeeds:
+1. Merge or push the change to `main`.
+2. Wait for the **Deploy Docs** workflow to pass.
+3. Open <https://ngbrutalism.khangtran.dev> and smoke-test the changed page.
 
-      ```bash
-      pnpm nx build docs --configuration=production
-      ```
+The workflow runs:
 
-      Output lands in `dist/apps/docs/analog/public/`. Confirm the
-      `CNAME` file is copied there too.
+```bash
+pnpm nx run-many -t lint test --projects=ui,docs
+pnpm nx build docs --configuration=production
+```
 
-## 2. DNS (Cloudflare)
+The site only updates when those checks pass and the Pages deploy job
+completes.
 
-In the Cloudflare dashboard for `khangtran.dev`:
+To deploy without a new commit: GitHub → Actions → Deploy Docs → Run workflow.
 
-- [ ] DNS → Records → Add record:
-  - Type: `CNAME`
-  - Name: `ngbrutalism`
-  - Target: `khangtrannn.github.io`
-  - Proxy status: **DNS only (grey cloud)**. Required — orange (proxied)
-    blocks GitHub from issuing the Let's Encrypt cert.
-  - TTL: Auto.
-- [ ] Confirm resolution from a terminal:
+## Static routes
 
-      ```bash
-      dig +short ngbrutalism.khangtran.dev
-      ```
+The docs app is statically prerendered. Any new page that must work on direct
+navigation needs an entry in `prerender.routes` in `apps/docs/vite.config.ts`.
 
-      Should return `khangtrannn.github.io` (or its A records).
+After adding a route, verify locally:
 
-## 3. GitHub Pages
+```bash
+pnpm nx build docs --configuration=production
+```
 
-In repo Settings → Pages:
+Output should include an `index.html` under
+`dist/apps/docs/analog/public/<route>/`.
 
-- [ ] Source: **GitHub Actions**.
-- [ ] Custom domain: `ngbrutalism.khangtran.dev`. Auto-populates from the
-      `CNAME` file on first successful deploy; verify it matches.
-- [ ] Enforce HTTPS: enable once the cert issues (~5 min after DNS resolves
-      and the first deploy completes).
+Important existing smoke routes:
 
-## 4. First deploy
+- `/`
+- `/docs/introduction`
+- `/docs/installation`
+- `/components/button`
+- `/showcase/portfolio`
 
-- [ ] Push or merge to `main`.
-- [ ] Open the **Deploy Docs** workflow in the Actions tab.
-- [ ] Both jobs (`build`, then `deploy`) must go green. `deploy` exposes the
-      live URL as a job output.
+## Current settings
 
-## 5. Verify
+Cloudflare DNS for `khangtran.dev`:
 
-- [ ] `https://ngbrutalism.khangtran.dev` returns 200.
-- [ ] HTTPS cert is valid (no browser warning).
-- [ ] Smoke-test three routes covering different templates:
-  - `/`
-  - `/components/button`
-  - `/docs/introduction`
+- Type: `CNAME`
+- Name: `ngbrutalism`
+- Target: `khangtrannn.github.io`
+- Proxy status: **DNS only (grey cloud)**
+- TTL: Auto
 
-## 6. Troubleshooting
+Verify DNS:
 
-- **Cert issuance stuck for >10 min.** Confirm Cloudflare proxy is grey, not
-  orange. In GH Pages settings, remove the custom domain, save, re-add it,
-  save again — this re-triggers cert provisioning.
-- **404 on a route that should exist.** The route isn't in the prerender
-  list. Add it to `prerender.routes` in `apps/docs/vite.config.ts`, rebuild,
+```bash
+dig +short CNAME ngbrutalism.khangtran.dev
+dig +short ngbrutalism.khangtran.dev
+```
+
+Expected: the CNAME resolves to `khangtrannn.github.io`, followed by GitHub
+Pages IPs.
+
+GitHub repo settings:
+
+- Settings → Pages → Source: **GitHub Actions**
+- Custom domain: `ngbrutalism.khangtran.dev`
+- Enforce HTTPS: enabled after GitHub issues the certificate
+
+`apps/docs/public/CNAME` must contain exactly:
+
+```text
+ngbrutalism.khangtran.dev
+```
+
+No protocol, no trailing slash.
+
+## First-time setup history
+
+The one-time setup has already been done, but this is the recovery checklist
+if the Pages configuration is ever reset:
+
+1. Make sure Cloudflare uses the DNS-only CNAME above.
+2. In GitHub Settings → Pages, set Source to **GitHub Actions**.
+3. Set the custom domain to `ngbrutalism.khangtran.dev`.
+4. Run the **Deploy Docs** workflow.
+5. Wait for certificate provisioning, then enable **Enforce HTTPS**.
+
+Do not choose GitHub's suggested Jekyll or Static HTML templates. This repo
+already owns its Pages workflow in `.github/workflows/deploy-docs.yml`.
+
+## Troubleshooting
+
+- **Workflow fails at Configure Pages.** Confirm Settings → Pages → Source is
+  **GitHub Actions** and the custom domain is saved.
+- **Cert issuance is stuck.** Confirm Cloudflare proxy is grey, not orange.
+  If DNS is correct, remove the custom domain in GitHub Pages, save, re-add it,
+  and save again to retrigger provisioning.
+- **Direct route returns 404.** The route is probably missing from
+  `prerender.routes` in `apps/docs/vite.config.ts`. Add it, rebuild, and
   redeploy.
-- **CNAME mismatch warning in Pages settings.** The workflow uploads
-  `apps/docs/public/CNAME` on every deploy. If the GH Pages "Custom domain"
-  field disagrees, the file wins on the next deploy. Update the file to
-  match what you want, then push.
-
----
-
-## Subsequent deploys
-
-After initial setup, every push to `main` re-runs the workflow and
-re-deploys automatically. To trigger manually without a push: Actions →
-Deploy Docs → Run workflow.
+- **CNAME mismatch warning.** Keep `apps/docs/public/CNAME` and the GitHub
+  Pages custom-domain setting aligned. The workflow uploads the CNAME file on
+  every deploy.

@@ -7,6 +7,13 @@ Project-specific terminology for `ng-brutalism-workspace`. Update inline as term
 ### Showcase
 The portfolio site mounted at `/showcase/portfolio` inside `apps/docs`. Built using only `@ng-brutalism/ui` primitives as a real-world stress test of the library, and serves as the marketing demo for the v0.1.0 npm release. Content is the maintainer's actual portfolio (not a fictional persona or starter template).
 
+### Docs deployment
+The `apps/docs` site is live at `https://ngbrutalism.khangtran.dev` on GitHub
+Pages. Cloudflare holds the DNS record as a DNS-only CNAME (`ngbrutalism` →
+`khangtrannn.github.io`), and GitHub Pages uses the repo's `Deploy Docs`
+GitHub Actions workflow. Every successful push or merge to `main` rebuilds and
+redeploys the prerendered Analog output from `dist/apps/docs/analog/public/`.
+
 ### Launch-blocker
 A missing UI primitive whose absence would prevent the Showcase from being built at acceptable fidelity for the v0.1.0 npm announcement. Confirmed launch-blocker list (2026-05-17): Dialog, Textarea, Badge, Avatar. Sheet was considered and rejected (mobile hamburger menu cut from Showcase scope). Tooltip, Sonner/Toast, Navigation Menu, Skeleton are explicitly NOT launch-blockers and deferred to v0.2+.
 

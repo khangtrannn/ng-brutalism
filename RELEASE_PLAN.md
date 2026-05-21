@@ -5,7 +5,7 @@ Canonical release plan for the first public release.
 This is the single source of truth for v0.1.0 planning, execution order,
 verification, publishing, and post-publish work.
 
-Current date: 2026-05-20.
+Current date: 2026-05-21.
 
 ---
 
@@ -19,8 +19,11 @@ this section is the one-screen summary you need to pick the work back up.
 
 - §3.1 / §4.0 drift gates — green. Renamed `NbDialogComponent` → `NbDialog`.
 - §4.1 package metadata, root `LICENSE`, dist filename slug.
-- §4.2 prerender list (35 routes), `apps/docs/public/CNAME`.
+- §4.2 prerender list (36 routes), `apps/docs/public/CNAME`.
 - §4.3 `.github/workflows/{ci,deploy-docs}.yml`.
+- Docs deployment is live at <https://ngbrutalism.khangtran.dev> via GitHub
+  Pages; subsequent pushes to `main` update the site automatically when the
+  workflow passes.
 - §4.4 audits + TOKENS docs archived; Changesets removed; lockfile shrank
   ~435 lines.
 - §4.5 `pnpm nx run-many -t lint test build --projects=ui,docs` green
@@ -83,9 +86,9 @@ The plan below covers each item in full; this list is the shortlist.
    work" above.
 5. **§6.6 Git State Gate** — commit, then `git push origin main`. Wait for
    the deploy-docs workflow to finish and `https://ngbrutalism.khangtran.
-   dev` to load. **Cloudflare DNS** must already be set up (see §2.6):
-   `ngbrutalism` CNAME → `khangtrannn.github.io`, **proxy off (grey
-   cloud)**. Verify before pushing or GitHub cert issuance can fail.
+   dev` to load. **Cloudflare DNS is already set up** (see §2.6):
+   `ngbrutalism` CNAME → `khangtrannn.github.io`, **proxy off (grey cloud)**.
+   Re-verify before publishing if DNS or Pages settings were touched.
 6. **§7 Publish** — `npm login`, `npm whoami`, `npm org ls ng-brutalism`,
    then from `dist/ui`: `npm publish --access public`. Verify `npm view
    @ng-brutalism/ui dist-tags` shows `latest: 0.1.0` **before** tagging.
@@ -474,6 +477,12 @@ we'll regret. This step is required, not optional.
   ];
   ```
 
+**Status (2026-05-21): live.** `ngbrutalism.khangtran.dev` is served by
+GitHub Pages. Cloudflare DNS is a DNS-only CNAME to `khangtrannn.github.io`,
+GitHub Pages Source is **GitHub Actions**, and the custom domain is configured
+in GitHub Pages. The deploy workflow publishes the Analog prerender output from
+`dist/apps/docs/analog/public/`.
+
 ### 2.7 Docs Quality
 
 Before publish, every component page must have:
@@ -523,10 +532,10 @@ Add two workflows for v0.1.0.
 - Same setup steps (checkout, pnpm, node, install).
 - `pnpm nx run-many -t lint test --projects=ui,docs`
 - `pnpm nx build docs --configuration=production`
-- Deploy `dist/apps/docs/client` to GitHub Pages.
+- Deploy `dist/apps/docs/analog/public` to GitHub Pages.
 
-**Deviation (2026-05-20):** Analog/Nitro emits the prerendered route HTML
-files (35-route lock from §2.6) into `dist/apps/docs/analog/public/`, not
+**Decision update (2026-05-21):** Analog/Nitro emits the prerendered route HTML
+files (36-route lock from §2.6) into `dist/apps/docs/analog/public/`, not
 `dist/apps/docs/client/`. `dist/apps/docs/client/` contains only the SPA
 shell (single `index.html`). Deploying that would defeat prerendering.
 `.github/workflows/deploy-docs.yml` deploys from `dist/apps/docs/analog/
@@ -755,14 +764,14 @@ ng-packagr copies it to `dist/ui/`. `styles.css` still leads with
 
 - Expand `apps/docs/vite.config.ts` prerender route list.
 - Add `apps/docs/public/CNAME`.
-- Confirm docs build emits static output in `dist/apps/docs/client` suitable for
+- Confirm docs build emits static output in `dist/apps/docs/analog/public` suitable for
   GitHub Pages.
 
 **Status (2026-05-20): complete.** `apps/docs/vite.config.ts` prerender list
-expanded to the §2.6 35-route lock; verified each route has a matching
+expanded to the §2.6 36-route lock; verified each route has a matching
 `*.page.ts` under `apps/docs/src/app/pages/`. `apps/docs/public/CNAME` created
-with `ngbrutalism.khangtran.dev`. Build output target `dist/apps/docs/client`
-unchanged. End-to-end docs build verified in §4.5.
+with `ngbrutalism.khangtran.dev`. Prerendered output is published from
+`dist/apps/docs/analog/public`. End-to-end docs build verified in §4.5.
 
 ### 4.3 GitHub Actions
 
@@ -775,9 +784,9 @@ unchanged. End-to-end docs build verified in §4.5.
 name), running `pnpm nx affected -t lint test build` on `pull_request` and
 manual dispatch via the §2.8 step order (checkout → pnpm → Node 22 → nx-set-
 shas → cache → install → affected). `.github/workflows/deploy-docs.yml` added
-to lint+test ui/docs, build docs production, and deploy `dist/apps/docs/client`
-to GitHub Pages on push to `main`. No Nx Cloud, no `release.yml`, no
-Dependabot — matches §2.8 / §9.
+to lint+test ui/docs, build docs production, and deploy
+`dist/apps/docs/analog/public` to GitHub Pages on push to `main`. No Nx Cloud,
+no `release.yml`, no Dependabot — matches §2.8 / §9.
 
 ### 4.4 Repo Hygiene
 
@@ -1139,13 +1148,11 @@ All must pass before publish.
 - Dialog opens/closes.
 - Direct navigation to prerendered routes works.
 
-**Status (2026-05-20): partial / pending.** The docs build emits the full
-35-route prerender set into `dist/apps/docs/analog/public/` (verified by
-file listing; all 35 `index.html` files present, including
-`/showcase/portfolio/index.html`). The interactive parts (component pages
-render without runtime errors, dialog opens/closes, direct-navigation
-sanity) need an actual browser pass — do this with `pnpm nx serve docs`
-before §7.
+**Status (2026-05-21): live smoke complete.** The docs build emits the full
+36-route prerender set into `dist/apps/docs/analog/public/` (verified by file
+listing, including `/showcase/portfolio/index.html`). The site is live at
+`https://ngbrutalism.khangtran.dev`; direct navigation and changed pages should
+still be smoke-tested after each docs change.
 
 ### 6.4 Local Consume Smoke Test
 
@@ -1269,15 +1276,15 @@ Required state:
 Do not publish from an uncommitted, unpushed, failed-docs, pending-docs, or
 stale-docs release state.
 
-**Status (2026-05-20): pending.** Not yet run. Before running this gate:
+**Status (2026-05-21): docs deploy portion complete.** Before publishing, still
+run the full gate for the final release commit:
 
 1. Resolve the pre-existing staged `apps/docs/src/app/pages/docs/
    introduction.page.ts` and `apps/docs/vite.config.ts` deltas — decide
    whether to bundle into the release commit or `git restore --staged`
    them.
-2. Confirm Cloudflare DNS: `ngbrutalism` CNAME → `khangtrannn.github.io`,
-   **proxy off (grey cloud)**. Required before push or GitHub Pages cert
-   issuance can fail.
+2. Confirm Cloudflare DNS remains: `ngbrutalism` CNAME →
+   `khangtrannn.github.io`, **proxy off (grey cloud)**.
 3. Commit release-prep changes, push to `main`, wait for the deploy-docs
    workflow to finish, then verify the §6.6 list of live URLs.
 
@@ -1346,7 +1353,7 @@ Treat the `0.1.0` version as **burnable until the git tag is pushed.**
 No `npm dist-tag` shuffling, no republishing the same version, no force-push to
 delete the tag.
 
-**Status (2026-05-20): pending.** Not yet run. Pre-flight reminder before
+**Status (2026-05-21): pending.** Not yet run. Pre-flight reminder before
 this section: re-check the `CHANGELOG.md` and `docs/plans/_archive/
 RELEASE_NOTES_v0.1.0.md` date lines — they currently say `2026-05-20`. If
 the actual publish day is different, edit both before `npm publish` so the
@@ -1385,8 +1392,9 @@ tag notes match the on-npm tarball.
     (`@layer utilities` must come after `@layer base` for utilities to win
     over library defaults)
 
-**Status (2026-05-20): pending.** Nothing done yet. Order matters:
-publish → docs verified live → first announcement → branch protection on
+**Status (2026-05-21): pending.** Docs are verified live; nothing else done
+yet. Order matters:
+publish → final docs smoke → first announcement → branch protection on
 → archive `RELEASE_PLAN.md` → file v0.2 issues. Channel order, post shape,
 and don'ts are all locked in §2.10.
 

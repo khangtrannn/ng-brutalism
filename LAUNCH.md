@@ -57,7 +57,9 @@ Deferred to v0.2 (file as GitHub issues): per-component a11y notes, recipes/cook
 - [ ] `package.json` audit: `files`, `exports`, `peerDependencies`, `repository`, `homepage`, `keywords`, `license`
 - [ ] One smoke test per new component (render + basic interaction — not full coverage)
 - [ ] SSR smoke test for Dialog (Analog SSR renders the Showcase contact section without exception)
-- [ ] Deploy `apps/docs` to Vercel; verify public URL renders + Showcase works in production
+- [x] Deploy `apps/docs` to GitHub Pages at
+  <https://ngbrutalism.khangtran.dev>; verify public URL renders + Showcase
+  works in production
 - [ ] `pnpm publish --dry-run` — verify entry points and `files` are correct
 - [ ] GitHub repo settings: public, description, topics (`angular`, `ui-library`, `neo-brutalism`, `tailwind`, `signals`), pin docs URL in sidebar
 
