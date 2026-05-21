@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { describe, expect, it } from 'vitest';
 
-import { NbInput } from './input.directive';
+import { NbInput } from './nb-input';
 
 @Component({
   standalone: true,

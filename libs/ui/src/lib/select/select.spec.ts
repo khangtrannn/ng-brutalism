@@ -2,15 +2,15 @@ import { Component } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { describe, expect, it } from 'vitest';
 
-import { NbInputGroup } from '../input-group/input-group';
-import { NbInputPrefix } from '../input-group/input-group-prefix';
-import { NbSelectComponent } from './select';
-import { NbNativeSelect } from './select.directive';
-import { NbSelectOption } from './select-option';
+import { NbInputGroup } from '../input-group/nb-input-group';
+import { NbInputPrefix } from '../input-group/nb-input-group-prefix';
+import { NbSelect } from './nb-select';
+import { NbNativeSelect } from './nb-native-select';
+import { NbSelectOption } from './nb-select-option';
 
 @Component({
   standalone: true,
-  imports: [NbSelectComponent, NbSelectOption],
+  imports: [NbSelect, NbSelectOption],
   template: `
     <nb-select placeholder="Pick one">
       <nb-select-option value="worldwide" label="Worldwide">
@@ -29,7 +29,7 @@ class SelectTestComponent {}
 
 @Component({
   standalone: true,
-  imports: [NbSelectComponent, NbSelectOption],
+  imports: [NbSelect, NbSelectOption],
   template: `
     <nb-select placeholder="Select location" defaultValue="worldwide">
       <nb-select-option label="Select location"
@@ -43,7 +43,7 @@ class SelectTestComponent {}
 })
 class SelectWithResetOptionTestComponent {}
 
-describe('NbSelectComponent', () => {
+describe('NbSelect', () => {
   it('uses the same focus treatment as inputs and textareas', async () => {
     const fixture = await createFixture(SelectTestComponent);
     const select = fixture.nativeElement.querySelector(
@@ -154,7 +154,7 @@ describe('NbSelectComponent', () => {
 
 @Component({
   standalone: true,
-  imports: [NbInputGroup, NbInputPrefix, NbSelectComponent, NbSelectOption],
+  imports: [NbInputGroup, NbInputPrefix, NbSelect, NbSelectOption],
   template: `
     <nb-input-group>
       <span nbInputPrefix>
@@ -197,7 +197,7 @@ class SelectInGroupTestComponent {}
 })
 class NativeSelectInGroupTestComponent {}
 
-describe('NbSelectComponent inside NbInputGroup', () => {
+describe('NbSelect inside NbInputGroup', () => {
   it('strips its own border and shadow when inside a group', async () => {
     const fixture = await createFixture(SelectInGroupTestComponent);
     const trigger = fixture.nativeElement.querySelector(

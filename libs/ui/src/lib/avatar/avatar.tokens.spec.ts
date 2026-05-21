@@ -2,11 +2,11 @@ import { Component } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { describe, expect, it } from 'vitest';
 
-import { NbAvatarComponent } from './avatar';
+import { NbAvatar } from './nb-avatar';
 
 @Component({
   standalone: true,
-  imports: [NbAvatarComponent],
+  imports: [NbAvatar],
   template: `<nb-avatar alt="John Doe">JD</nb-avatar>`,
 })
 class AvatarTokenTestComponent {}

@@ -1,5 +1,2 @@
-export { NbMarqueeComponent, NbMarqueeComponent as NbMarquee } from './marquee';
-export {
-  NbMarqueeItemComponent,
-  NbMarqueeItemComponent as NbMarqueeItem,
-} from './marquee-item';
+export { NbMarquee } from './nb-marquee';
+export { NbMarqueeItem } from './nb-marquee-item';

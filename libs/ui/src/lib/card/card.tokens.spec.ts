@@ -3,25 +3,25 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { describe, expect, it } from 'vitest';
 
 import {
-  NbCardActionsComponent,
-  NbCardComponent,
-  NbCardContentComponent,
-  NbCardDescriptionComponent,
-  NbCardFooterComponent,
-  NbCardHeaderComponent,
-  NbCardTitleComponent,
-} from './card';
+  NbCard,
+  NbCardActions,
+  NbCardContent,
+  NbCardDescription,
+  NbCardFooter,
+  NbCardHeader,
+  NbCardTitle,
+} from './nb-card';
 
 @Component({
   standalone: true,
   imports: [
-    NbCardComponent,
-    NbCardHeaderComponent,
-    NbCardTitleComponent,
-    NbCardDescriptionComponent,
-    NbCardContentComponent,
-    NbCardActionsComponent,
-    NbCardFooterComponent,
+    NbCard,
+    NbCardHeader,
+    NbCardTitle,
+    NbCardDescription,
+    NbCardContent,
+    NbCardActions,
+    NbCardFooter,
   ],
   template: `
     <nb-card>

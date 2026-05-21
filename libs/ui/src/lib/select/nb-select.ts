@@ -15,7 +15,7 @@ import {
 
 import { nbClass } from '../core/class';
 import { NB_INPUT_GROUP } from '../input-group/input-group.types';
-import { NbSelectOption } from './select-option';
+import { NbSelectOption } from './nb-select-option';
 import {
   NB_SELECT,
   type NbSelectController,
@@ -72,10 +72,10 @@ let nextSelectId = 0;
     '[attr.data-disabled]': 'disabled() ? "" : null',
     '(document:click)': 'onDocumentClick($event)',
   },
-  providers: [{ provide: NB_SELECT, useExisting: NbSelectComponent }],
+  providers: [{ provide: NB_SELECT, useExisting: NbSelect }],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class NbSelectComponent implements NbSelectController, OnInit {
+export class NbSelect implements NbSelectController, OnInit {
   private readonly element = inject<ElementRef<HTMLElement>>(ElementRef);
   private readonly group = inject(NB_INPUT_GROUP, { optional: true });
 

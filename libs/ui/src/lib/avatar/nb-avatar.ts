@@ -20,7 +20,7 @@ import { nbClass } from '../core/class';
   },
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class NbAvatarComponent {
+export class NbAvatar {
   readonly src = input<string | undefined>(undefined);
   readonly alt = input<string>('');
 

@@ -2,13 +2,13 @@ import { Component } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { describe, expect, it } from 'vitest';
 
-import { NbSelectComponent } from './select';
-import { NbNativeSelect } from './select.directive';
-import { NbSelectOption } from './select-option';
+import { NbSelect } from './nb-select';
+import { NbNativeSelect } from './nb-native-select';
+import { NbSelectOption } from './nb-select-option';
 
 @Component({
   standalone: true,
-  imports: [NbSelectComponent, NbSelectOption],
+  imports: [NbSelect, NbSelectOption],
   template: `
     <nb-select placeholder="Pick one">
       <nb-select-option value="starter" label="Starter"
@@ -33,7 +33,7 @@ class SelectTokenTestComponent {}
 })
 class NativeSelectTokenTestComponent {}
 
-describe('NbSelectComponent token surface', () => {
+describe('NbSelect token surface', () => {
   it('declares the expected default tokens on the base host', async () => {
     const fixture = await createFixture(SelectTokenTestComponent);
     const select = findCustomSelect(fixture);

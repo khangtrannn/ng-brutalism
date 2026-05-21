@@ -19,7 +19,7 @@ export type NbCardActionsAlign = 'start' | 'end';
   },
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class NbCardComponent {
+export class NbCard {
   protected readonly classes = nbClass(
     '[--nb-card-bg:var(--nb-background)]',
     '[--nb-card-fg:var(--nb-foreground)]',
@@ -43,7 +43,7 @@ export class NbCardComponent {
   },
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class NbCardHeaderComponent {
+export class NbCardHeader {
   protected readonly classes = nbClass(
     'grid auto-rows-min grid-rows-[auto_auto] items-start gap-1.5 px-6',
     '[.border-b]:pb-6'
@@ -60,7 +60,7 @@ export class NbCardHeaderComponent {
   },
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class NbCardTitleComponent {
+export class NbCardTitle {
   protected readonly classes = nbClass('font-bold leading-none');
 }
 
@@ -74,7 +74,7 @@ export class NbCardTitleComponent {
   },
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class NbCardDescriptionComponent {
+export class NbCardDescription {
   protected readonly classes = nbClass('text-sm font-medium');
 }
 
@@ -89,7 +89,7 @@ export class NbCardDescriptionComponent {
   },
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class NbCardActionsComponent {
+export class NbCardActions {
   readonly align = input<NbCardActionsAlign>('start');
 
   protected readonly classes = computed(() =>
@@ -111,7 +111,7 @@ export class NbCardActionsComponent {
   },
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class NbCardContentComponent {
+export class NbCardContent {
   protected readonly classes = nbClass('px-6');
 }
 
@@ -125,7 +125,7 @@ export class NbCardContentComponent {
   },
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class NbCardFooterComponent {
+export class NbCardFooter {
   protected readonly classes = nbClass(
     'flex items-center px-6',
     'has-[[data-slot=card-actions]]:flex-wrap',

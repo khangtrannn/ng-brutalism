@@ -2,16 +2,16 @@ import { Component } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { describe, expect, it } from 'vitest';
 
-import { NbAccordionComponent } from './accordion';
-import { NbAccordionContentComponent } from './accordion-content';
-import { NbAccordionItemComponent } from './accordion-item';
-import { NbAccordionTriggerComponent } from './accordion-trigger';
+import { NbAccordion } from './nb-accordion';
+import { NbAccordionContent } from './nb-accordion-content';
+import { NbAccordionItem } from './nb-accordion-item';
+import { NbAccordionTrigger } from './nb-accordion-trigger';
 
 const imports = [
-  NbAccordionComponent,
-  NbAccordionItemComponent,
-  NbAccordionTriggerComponent,
-  NbAccordionContentComponent,
+  NbAccordion,
+  NbAccordionItem,
+  NbAccordionTrigger,
+  NbAccordionContent,
 ];
 
 function buttons<T>(fixture: ComponentFixture<T>): HTMLButtonElement[] {
@@ -111,7 +111,7 @@ class DisabledItemAccordionTestComponent {}
   standalone: true,
   imports,
   template: `
-    <nb-accordion [defaultValue]="defaultValue">
+    <nb-accordion [value]="'one'">
       <nb-accordion-item value="one">
         <nb-accordion-trigger>One</nb-accordion-trigger>
         <nb-accordion-content>First panel</nb-accordion-content>
@@ -119,9 +119,7 @@ class DisabledItemAccordionTestComponent {}
     </nb-accordion>
   `,
 })
-class DefaultValueAccordionTestComponent {
-  defaultValue = 'one';
-}
+class InitialValueAccordionTestComponent {}
 
 describe('NbAccordion', () => {
   it('opens one item at a time in single mode', async () => {
@@ -203,8 +201,8 @@ describe('NbAccordion', () => {
     expectRegionOpen(regions(fixture)[0], false);
   });
 
-  it('opens the default value and connects trigger and content ids', async () => {
-    const fixture = await createFixture(DefaultValueAccordionTestComponent);
+  it('sets initial value via [value] binding and connects trigger and content ids', async () => {
+    const fixture = await createFixture(InitialValueAccordionTestComponent);
     const [button] = buttons(fixture);
     const [region] = regions(fixture);
 

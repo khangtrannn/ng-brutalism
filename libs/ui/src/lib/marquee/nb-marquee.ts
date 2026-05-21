@@ -102,7 +102,7 @@ import { nbClass } from '../core/class';
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class NbMarqueeComponent {
+export class NbMarquee {
   readonly duration = input('5s');
   readonly reverse = input(false, { transform: booleanAttribute });
   readonly pauseOnHover = input(true, { transform: booleanAttribute });

@@ -1,4 +1,1 @@
-export {
-  NbImageCard,
-  NbImageCardCaption,
-} from './image-card';
+export { NbImageCard, NbImageCardCaption } from './nb-image-card';

@@ -166,7 +166,7 @@ const INITIAL_ZOOM = 2;
   `,
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class PortfolioJourneyComponent {
+export class PortfolioJourney {
   readonly activeJourney = input(0);
   readonly timeline = input.required<TimelineEntry[]>();
   readonly activeJourneyChanged = output<number>();

@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { describe, expect, it } from 'vitest';
 
-import { NbCheckbox } from './checkbox.directive';
+import { NbCheckbox } from './nb-checkbox';
 import type { NbCheckboxSize } from './checkbox.types';
 
 @Component({

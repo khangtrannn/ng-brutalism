@@ -1,2 +1,2 @@
-export { NbCheckbox } from './checkbox.directive';
+export { NbCheckbox } from './nb-checkbox';
 export type { NbCheckboxSize } from './checkbox.types';

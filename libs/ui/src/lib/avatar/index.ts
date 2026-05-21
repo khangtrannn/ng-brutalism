@@ -1,1 +1,1 @@
-export { NbAvatarComponent, NbAvatarComponent as NbAvatar } from './avatar';
+export { NbAvatar } from './nb-avatar';

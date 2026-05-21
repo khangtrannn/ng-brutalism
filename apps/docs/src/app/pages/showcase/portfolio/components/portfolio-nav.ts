@@ -114,7 +114,7 @@ import type { NavLink } from '../portfolio.types';
     host: { '(window:scroll)': 'onWindowScroll()' },
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class PortfolioNavComponent {
+export class PortfolioNav {
   readonly assetPath = input.required<string>();
   readonly menuOpen = input(false);
   readonly navLinks = input.required<NavLink[]>();

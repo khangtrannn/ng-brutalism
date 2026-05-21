@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { describe, expect, it } from 'vitest';
 
-import { NbTextarea } from './textarea.directive';
+import { NbTextarea } from './nb-textarea';
 
 @Component({
   standalone: true,

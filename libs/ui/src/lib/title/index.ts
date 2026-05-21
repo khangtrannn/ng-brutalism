@@ -1,1 +1,1 @@
-export { NbTitle } from './title.directive';
+export { NbTitle } from './nb-title';

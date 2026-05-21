@@ -21,4 +21,4 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
   `,
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class PortfolioFooterComponent {}
+export class PortfolioFooter {}

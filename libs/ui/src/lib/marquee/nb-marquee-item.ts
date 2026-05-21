@@ -9,4 +9,4 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
   template: `<ng-content />`,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class NbMarqueeItemComponent {}
+export class NbMarqueeItem {}

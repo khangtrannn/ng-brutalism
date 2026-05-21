@@ -85,7 +85,7 @@ import type { Project } from '../portfolio.types';
   `,
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class PortfolioProjectsComponent {
+export class PortfolioProjects {
   readonly assetPath = input.required<string>();
   readonly projects = input.required<Project[]>();
 

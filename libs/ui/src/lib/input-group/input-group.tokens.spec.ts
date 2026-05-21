@@ -2,10 +2,10 @@ import { Component } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { describe, expect, it } from 'vitest';
 
-import { NbInput } from '../input/input.directive';
-import { NbInputGroup } from './input-group';
-import { NbInputPrefix } from './input-group-prefix';
-import { NbInputSuffix } from './input-group-suffix';
+import { NbInput } from '../input/nb-input';
+import { NbInputGroup } from './nb-input-group';
+import { NbInputPrefix } from './nb-input-group-prefix';
+import { NbInputSuffix } from './nb-input-group-suffix';
 
 @Component({
   standalone: true,

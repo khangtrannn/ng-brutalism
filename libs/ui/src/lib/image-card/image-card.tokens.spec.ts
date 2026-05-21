@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { describe, expect, it } from 'vitest';
 
-import { NbImageCard, NbImageCardCaption } from './image-card';
+import { NbImageCard, NbImageCardCaption } from './nb-image-card';
 
 @Component({
   standalone: true,

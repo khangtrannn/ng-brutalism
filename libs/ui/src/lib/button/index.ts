@@ -1,4 +1,4 @@
-export { NbButton } from './button.directive';
+export { NbButton } from './nb-button';
 export type {
   NbButtonShadow,
   NbButtonSize,

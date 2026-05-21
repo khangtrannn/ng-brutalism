@@ -1,2 +1,2 @@
-export { NbInput } from './input.directive';
+export { NbInput } from './nb-input';
 export type { NbInputSize } from './input.types';

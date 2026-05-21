@@ -94,5 +94,5 @@ import { NbButton } from '@ng-brutalism/ui';
   imports: [NbButton],
   template: \`<button nbButton variant="neutral" style="--nb-button-bg: #fff">Ship it</button>\`,
 })
-export class ExampleComponent {}`;
+export class Example {}`;
 }

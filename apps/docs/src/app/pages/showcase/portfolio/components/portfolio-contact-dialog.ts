@@ -183,13 +183,13 @@ import { DocsPortfolioContactZigzagIcon } from './portfolio-contact-dialog.icons
   `,
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class PortfolioContactDialogComponent {
+export class PortfolioContactDialog {
   private static nextId = 0;
 
   readonly sent = input(false);
   readonly submitted = output<void>();
 
-  protected readonly id = ++PortfolioContactDialogComponent.nextId;
+  protected readonly id = ++PortfolioContactDialog.nextId;
   protected readonly formId = `portfolio-contact-${this.id}`;
   protected readonly nameId = `portfolio-name-${this.id}`;
   protected readonly emailId = `portfolio-email-${this.id}`;

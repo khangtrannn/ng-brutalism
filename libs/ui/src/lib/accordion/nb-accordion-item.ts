@@ -28,7 +28,7 @@ let nextAccordionItemId = 0;
   },
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class NbAccordionItemComponent {
+export class NbAccordionItem {
   private readonly id = nextAccordionItemId++;
 
   readonly value = input(`neo-accordion-item-${this.id}`);

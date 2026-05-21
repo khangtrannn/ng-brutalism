@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { describe, expect, it } from 'vitest';
 
-import { NbBadge } from './badge.directive';
+import { NbBadge } from './nb-badge';
 
 @Component({
   standalone: true,

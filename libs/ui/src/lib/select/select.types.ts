@@ -1,6 +1,6 @@
 import { InjectionToken } from '@angular/core';
 
-import type { NbSelectOption } from './select-option';
+import type { NbSelectOption } from './nb-select-option';
 
 export type NbSelectValue = string | number;
 

@@ -1,1 +1,1 @@
-export { NbLabel } from './label.directive';
+export { NbLabel } from './nb-label';

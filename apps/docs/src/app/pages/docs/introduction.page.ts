@@ -17,7 +17,7 @@ import { DocsCodeBlock } from '../../docs/docs-code-block';
             <div
               class="mt-4 grid gap-7 md:grid-cols-[minmax(0,1fr)_minmax(200px,300px)] md:items-center lg:grid-cols-[minmax(0,1fr)_minmax(240px,320px)]"
             >
-              <h1 class="max-w-4xl">Build loud. Stay sharp.</h1>
+              <h1 class="max-w-4xl">Angular UI that refuses to whisper.</h1>
 
               <div
                 class="relative isolate mx-auto flex aspect-square w-full max-w-[240px] items-center justify-center border-4 border-(--nb-border) bg-(--nb-yellow) p-5 shadow-[8px_8px_0_0_var(--nb-shadow)] sm:max-w-[280px] md:mx-0 md:max-w-[300px] md:justify-self-end lg:max-w-[320px] lg:p-6"
@@ -34,7 +34,7 @@ import { DocsCodeBlock } from '../../docs/docs-code-block';
                   aria-hidden="true"
                 ></div>
                 <div
-                  class="absolute -top-2 left-7 z-20 h-6 w-16 rotate-[8deg] border-3 border-(--nb-border) bg-white shadow-[3px_3px_0_0_var(--nb-shadow)] sm:left-9"
+                  class="absolute -top-4 left-7 z-20 h-6 w-16 rotate-[8deg] border-3 border-(--nb-border) bg-white shadow-[3px_3px_0_0_var(--nb-shadow)] sm:left-9"
                   aria-hidden="true"
                 ></div>
                 <img
@@ -48,9 +48,10 @@ import { DocsCodeBlock } from '../../docs/docs-code-block';
             </div>
 
             <p class="mt-8 max-w-4xl text-base font-medium sm:text-lg">
-              ng-brutalism is a set of standalone Angular UI primitives for
-              products that want chunky borders, crisp shadows, playful color,
-              and reliable accessibility without giving up developer ergonomics.
+              &#64;ng-brutalism/ui gives Angular 21 apps a loud, token-driven
+              component system: standalone primitives, hard-edged visuals,
+              keyboard-ready interactions, and Tailwind v4 ergonomics from the
+              first import.
             </p>
 
             <div class="mt-7 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
@@ -59,7 +60,7 @@ import { DocsCodeBlock } from '../../docs/docs-code-block';
                 nbButton
                 routerLink="/docs/installation"
               >
-                Get installed
+                Start building
               </a>
               <a
                 class="w-full justify-center sm:w-auto"
@@ -68,7 +69,7 @@ import { DocsCodeBlock } from '../../docs/docs-code-block';
                 routerLink="/components/button"
                 style="--nb-button-bg: #fff"
               >
-                Browse components
+                See components
               </a>
             </div>
           </div>
@@ -76,49 +77,51 @@ import { DocsCodeBlock } from '../../docs/docs-code-block';
 
         <div class="mt-9 grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
           <div class="nb-stat-tile nb-stat-tile--yellow">
-            <span class="nb-stat-tile__value">21</span>
-            <span class="nb-stat-tile__label">Angular-ready</span>
+            <span class="nb-stat-tile__value">NG21</span>
+            <span class="nb-stat-tile__label">Angular native</span>
           </div>
           <div class="nb-stat-tile nb-stat-tile--mint">
             <span class="nb-stat-tile__value">A11Y</span>
-            <span class="nb-stat-tile__label">Focus states</span>
+            <span class="nb-stat-tile__label">Keyboard ready</span>
           </div>
           <div class="nb-stat-tile nb-stat-tile--pink">
             <span class="nb-stat-tile__value">CSS</span>
-            <span class="nb-stat-tile__label">Token driven</span>
+            <span class="nb-stat-tile__label">Token powered</span>
           </div>
           <div class="nb-stat-tile nb-stat-tile--lavender">
-            <span class="nb-stat-tile__value">0</span>
-            <span class="nb-stat-tile__label">Global setup pain</span>
+            <span class="nb-stat-tile__value">Z</span>
+            <span class="nb-stat-tile__label">Zoneless friendly</span>
           </div>
         </div>
       </header>
+    </article>
 
-      <section id="why">
+    <div>
+<section id="why">
         <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">
-          Why use it
+          Why it stands out
         </h2>
         <div class="grid gap-4 md:grid-cols-3">
           <div
             class="border-3 border-(--nb-border) bg-(--nb-yellow) p-5 shadow-[5px_5px_0_0_var(--nb-shadow)]"
           >
             <h3 class="font-heading text-xl font-black uppercase">
-              Standalone first
+              Angular first
             </h3>
             <p class="mt-2 text-sm font-medium">
-              Import only the primitives you need directly into Angular
-              components, routes, and examples.
+              Drop standalone components directly into routes, examples, and
+              feature screens without module ceremony.
             </p>
           </div>
           <div
             class="border-3 border-(--nb-border) bg-(--nb-mint) p-5 shadow-[5px_5px_0_0_var(--nb-shadow)]"
           >
             <h3 class="font-heading text-xl font-black uppercase">
-              Opinionated look
+              Loud by default
             </h3>
             <p class="mt-2 text-sm font-medium">
-              Borders, hard shadows, compact motion, and high-contrast focus
-              states come baked in.
+              Chunky borders, offset shadows, punchy color, and compact motion
+              make interfaces feel instantly brutalist.
             </p>
           </div>
           <div
@@ -128,8 +131,8 @@ import { DocsCodeBlock } from '../../docs/docs-code-block';
               Easy to bend
             </h3>
             <p class="mt-2 text-sm font-medium">
-              CSS custom properties and Tailwind utilities make theme overrides
-              feel local and predictable.
+              CSS custom properties and Tailwind utilities keep theme overrides
+              local, visible, and predictable.
             </p>
           </div>
         </div>
@@ -140,8 +143,8 @@ import { DocsCodeBlock } from '../../docs/docs-code-block';
           Quick start
         </h2>
         <p class="mb-5 text-base font-medium">
-          Install the package, import the styles once, then bring standalone
-          components into the Angular files that use them.
+          Install the package, import the stylesheet once, then pull each
+          primitive into the Angular component that actually uses it.
         </p>
         <docs-code-block title="Component" [code]="quickStartCode" />
       </section>
@@ -151,8 +154,8 @@ import { DocsCodeBlock } from '../../docs/docs-code-block';
           Start exploring
         </h2>
         <p class="mb-5 text-base font-medium">
-          Jump into the component docs or keep going through setup. The sidebar
-          has the full catalog when you are ready to mix primitives together.
+          Jump straight into the pieces that shape the most visible moments:
+          setup, layout, overlays, actions, and forms.
         </p>
 
         <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
@@ -161,42 +164,42 @@ import { DocsCodeBlock } from '../../docs/docs-code-block';
             routerLink="/docs/installation"
           >
             <span class="nb-stat-tile__value">Install</span>
-            <span class="nb-stat-tile__label">Package and styles</span>
+            <span class="nb-stat-tile__label">Package, styles, tokens</span>
           </a>
           <a
             class="nb-stat-tile nb-stat-tile--interactive nb-stat-tile--mint"
             routerLink="/components/card"
           >
             <span class="nb-stat-tile__value">Card</span>
-            <span class="nb-stat-tile__label">Composable layout</span>
+            <span class="nb-stat-tile__label">Bold content blocks</span>
           </a>
           <a
             class="nb-stat-tile nb-stat-tile--interactive nb-stat-tile--pink"
             routerLink="/components/dialog"
           >
             <span class="nb-stat-tile__value">Dialog</span>
-            <span class="nb-stat-tile__label">Native modal</span>
+            <span class="nb-stat-tile__label">Native modal flow</span>
           </a>
           <a
             class="nb-stat-tile nb-stat-tile--interactive nb-stat-tile--lavender"
             routerLink="/components/accordion"
           >
             <span class="nb-stat-tile__value">Accordion</span>
-            <span class="nb-stat-tile__label">Expandable content</span>
+            <span class="nb-stat-tile__label">Dense disclosure</span>
           </a>
           <a
             class="nb-stat-tile nb-stat-tile--interactive nb-stat-tile--blue"
             routerLink="/components/button"
           >
             <span class="nb-stat-tile__value">Button</span>
-            <span class="nb-stat-tile__label">Core action</span>
+            <span class="nb-stat-tile__label">High-impact actions</span>
           </a>
           <a
             class="nb-stat-tile nb-stat-tile--interactive"
             routerLink="/components/input"
           >
             <span class="nb-stat-tile__value">Input</span>
-            <span class="nb-stat-tile__label">Forms and fields</span>
+            <span class="nb-stat-tile__label">Sharp form fields</span>
           </a>
         </div>
       </section>
@@ -211,11 +214,11 @@ import { DocsCodeBlock } from '../../docs/docs-code-block';
           conditional class arrays with
           <code class="font-mono text-sm">clsx</code> plus
           <code class="font-mono text-sm">tailwind-merge</code>. Use it in your
-          own components when you want the same class ergonomics the library
-          uses internally.
+          own components when you want the same conditional styling ergonomics
+          the library uses internally.
         </p>
       </section>
-    </article>
+    </div>
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
@@ -232,5 +235,5 @@ import { NbButton } from '@ng-brutalism/ui';
     </button>
   \`,
 })
-export class ShipButtonComponent {}`;
+export class ShipButton {}`;
 }

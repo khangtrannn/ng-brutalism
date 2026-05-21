@@ -8,7 +8,7 @@ import {
   model,
 } from '@angular/core';
 
-import { NbAccordionItemComponent } from './accordion-item';
+import { NbAccordionItem } from './nb-accordion-item';
 import {
   NB_ACCORDION,
   type NbAccordionController,
@@ -29,16 +29,16 @@ import {
     '[attr.data-orientation]': '"vertical"',
     '[attr.data-type]': 'type()',
   },
-  providers: [{ provide: NB_ACCORDION, useExisting: NbAccordionComponent }],
+  providers: [{ provide: NB_ACCORDION, useExisting: NbAccordion }],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class NbAccordionComponent implements NbAccordionController, OnInit {
+export class NbAccordion implements NbAccordionController, OnInit {
   readonly type = input<NbAccordionType>('single');
   readonly collapsible = input(false, { transform: booleanAttribute });
   readonly defaultValue = input<NbAccordionValue>(null);
   readonly value = model<NbAccordionValue>(null);
 
-  readonly items = contentChildren(NbAccordionItemComponent);
+  readonly items = contentChildren(NbAccordionItem);
 
   ngOnInit(): void {
     if (this.value() === null && this.defaultValue() !== null) {

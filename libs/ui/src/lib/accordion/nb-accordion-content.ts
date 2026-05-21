@@ -6,7 +6,7 @@ import {
 } from '@angular/core';
 
 import { nbClass } from '../core/class';
-import { NbAccordionItemComponent } from './accordion-item';
+import { NbAccordionItem } from './nb-accordion-item';
 
 @Component({
   selector: 'nb-accordion-content',
@@ -34,8 +34,8 @@ import { NbAccordionItemComponent } from './accordion-item';
   },
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class NbAccordionContentComponent {
-  protected readonly item = inject(NbAccordionItemComponent);
+export class NbAccordionContent {
+  protected readonly item = inject(NbAccordionItem);
 
   protected readonly classes = computed(() =>
     nbClass(

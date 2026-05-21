@@ -2,21 +2,21 @@ import { Component } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { describe, expect, it } from 'vitest';
 
-import { NbAccordionComponent } from './accordion';
-import { NbAccordionContentComponent } from './accordion-content';
-import { NbAccordionItemComponent } from './accordion-item';
-import { NbAccordionTriggerComponent } from './accordion-trigger';
+import { NbAccordion } from './nb-accordion';
+import { NbAccordionContent } from './nb-accordion-content';
+import { NbAccordionItem } from './nb-accordion-item';
+import { NbAccordionTrigger } from './nb-accordion-trigger';
 
 @Component({
   standalone: true,
   imports: [
-    NbAccordionComponent,
-    NbAccordionItemComponent,
-    NbAccordionTriggerComponent,
-    NbAccordionContentComponent,
+    NbAccordion,
+    NbAccordionItem,
+    NbAccordionTrigger,
+    NbAccordionContent,
   ],
   template: `
-    <nb-accordion defaultValue="one">
+    <nb-accordion [value]="'one'">
       <nb-accordion-item value="one">
         <nb-accordion-trigger>One</nb-accordion-trigger>
         <nb-accordion-content>First panel</nb-accordion-content>

@@ -18,20 +18,20 @@ import {
   SKILLS,
   TIMELINE,
 } from './portfolio.data';
-import { PortfolioFooterComponent } from './components/portfolio-footer';
-import { PortfolioHeroComponent } from './components/portfolio-hero';
-import { PortfolioJourneyComponent } from './components/portfolio-journey';
-import { PortfolioNavComponent } from './components/portfolio-nav';
-import { PortfolioProjectsComponent } from './components/portfolio-projects';
+import { PortfolioFooter } from './components/portfolio-footer';
+import { PortfolioHero } from './components/portfolio-hero';
+import { PortfolioJourney } from './components/portfolio-journey';
+import { PortfolioNav } from './components/portfolio-nav';
+import { PortfolioProjects } from './components/portfolio-projects';
 
 @Component({
     selector: 'docs-portfolio-showcase-page',
     imports: [
-        PortfolioFooterComponent,
-        PortfolioHeroComponent,
-        PortfolioJourneyComponent,
-        PortfolioNavComponent,
-        PortfolioProjectsComponent,
+        PortfolioFooter,
+        PortfolioHero,
+        PortfolioJourney,
+        PortfolioNav,
+        PortfolioProjects,
     ],
     templateUrl: './portfolio.page.html',
     styleUrl: './portfolio.page.scss',

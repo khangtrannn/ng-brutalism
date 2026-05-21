@@ -1,2 +1,2 @@
-export { NbBadge } from './badge.directive';
+export { NbBadge } from './nb-badge';
 export type { NbBadgeVariant } from './badge.types';

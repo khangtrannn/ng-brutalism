@@ -1,2 +1,2 @@
-export { NbTextarea } from './textarea.directive';
+export { NbTextarea } from './nb-textarea';
 export type { NbTextareaSize } from './textarea.types';

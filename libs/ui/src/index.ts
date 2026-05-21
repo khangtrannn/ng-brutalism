@@ -43,7 +43,7 @@ export { NbInputGroup, NbInputPrefix, NbInputSuffix } from './lib/input-group';
 export type { NbInputPrefixAlign, NbInputSuffixAlign } from './lib/input-group';
 export {
   NbNativeSelect,
-  NbSelectComponent,
+  NbSelect,
   NbSelectOption,
 } from './lib/select';
 export type { NbSelectValue } from './lib/select';

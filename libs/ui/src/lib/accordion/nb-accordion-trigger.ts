@@ -6,7 +6,7 @@ import {
 } from '@angular/core';
 
 import { nbClass } from '../core/class';
-import { NbAccordionItemComponent } from './accordion-item';
+import { NbAccordionItem } from './nb-accordion-item';
 
 @Component({
   selector: 'nb-accordion-trigger',
@@ -36,8 +36,8 @@ import { NbAccordionItemComponent } from './accordion-item';
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class NbAccordionTriggerComponent {
-  protected readonly item = inject(NbAccordionItemComponent);
+export class NbAccordionTrigger {
+  protected readonly item = inject(NbAccordionItem);
 
   protected readonly triggerClasses = computed(() =>
     nbClass(

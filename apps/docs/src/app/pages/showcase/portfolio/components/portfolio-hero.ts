@@ -152,7 +152,7 @@ import type { Skill } from '../portfolio.types';
   `,
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class PortfolioHeroComponent {
+export class PortfolioHero {
   readonly assetPath = input.required<string>();
   readonly greeting = input.required<string>();
   readonly isDark = input(false);

@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { describe, expect, it } from 'vitest';
 
-import { NbButton } from './button.directive';
+import { NbButton } from './nb-button';
 import type { NbButtonShadow, NbButtonVariant } from './button.types';
 
 @Component({

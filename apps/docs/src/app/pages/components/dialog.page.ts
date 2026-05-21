@@ -177,7 +177,7 @@ export default class DialogPageComponent {
   NbInputGroup,
   NbInputPrefix,
   NbLabel,
-  NbSelectComponent,
+  NbSelect,
   NbSelectOption,
   NbTextarea,
 } from '@ng-brutalism/ui';`;

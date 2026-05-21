@@ -1,4 +1,4 @@
-export { NbNativeSelect } from './select.directive';
-export { NbSelectComponent } from './select';
-export { NbSelectOption } from './select-option';
+export { NbNativeSelect } from './nb-native-select';
+export { NbSelect } from './nb-select';
+export { NbSelectOption } from './nb-select-option';
 export type { NbSelectValue } from './select.types';

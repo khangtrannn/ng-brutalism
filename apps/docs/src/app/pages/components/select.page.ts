@@ -4,7 +4,7 @@ import {
   NbInputPrefix,
   NbLabel,
   NbNativeSelect,
-  NbSelectComponent,
+  NbSelect,
   NbSelectOption,
 } from '@ng-brutalism/ui';
 
@@ -38,7 +38,7 @@ import {
         NbInputPrefix,
         NbLabel,
         NbNativeSelect,
-        NbSelectComponent,
+        NbSelect,
         NbSelectOption,
     ],
     template: `
@@ -214,7 +214,7 @@ import {
 
         <h3 class="mt-6 mb-3 text-xl font-bold">
           <code class="font-mono text-base">&lt;nb-select&gt;</code>
-          (<code class="font-mono text-base">NbSelectComponent</code>)
+          (<code class="font-mono text-base">NbSelect</code>)
         </h3>
         <div
           class="overflow-hidden border-2 border-(--nb-border) bg-nb-surface shadow-[5px_5px_0_0_var(--nb-shadow)]"
@@ -362,7 +362,7 @@ export default class SelectPageComponent {
   </nb-select>
 </div>`;
 
-  protected readonly importCode = `import { NbNativeSelect, NbSelectComponent, NbSelectOption } from '@ng-brutalism/ui';`;
+  protected readonly importCode = `import { NbNativeSelect, NbSelect, NbSelectOption } from '@ng-brutalism/ui';`;
 
   protected readonly withLabelExampleCode = `<div class="grid w-80 gap-2">
   <label nbLabel id="plan-label">Plan</label>
