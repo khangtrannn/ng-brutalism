@@ -1244,7 +1244,7 @@ warnings, schematic-managed Tailwind/style imports, render `NbButton` +
 `NbCard` + `NbDialog`, intentional type error, install docs). Also run the
 single manual-install spot check in either Node version.
 
-**Status (2026-05-21): package smoke fixed and mostly passed.** Initial local
+**Status (2026-05-21): package smoke fixed and passed.** Initial local
 tarball `ng add` failed because the root package is `"type": "module"` while
 the schematics output is CommonJS, causing `exports is not defined` when
 Angular CLI loaded `schematics/ng-add/index.js`. Fixed by writing
@@ -1253,8 +1253,10 @@ Angular CLI loaded `schematics/ng-add/index.js`. Fixed by writing
 and Node 22.22.2; both smoke apps rendered `NbButton` + `NbCard` and built.
 Manual fallback install spot check also built under Node 22.22.2. Intentional
 bad input check passed: `variant="definitely-not-valid"` on `button[nbButton]`
-fails with TS2322. Remaining before publishing: browser-computed `:root` token
-check.
+fails with TS2322. Browser-computed token check passed in Chrome against the
+Node 22 smoke app: `getComputedStyle(document.documentElement)
+.getPropertyValue('--nb-background')` returned `#ffffff`, and the sample
+`main` background computed to `rgb(255, 255, 255)`.
 
 ### 6.5 Publish Dry Run
 
