@@ -1,5 +1,5 @@
-import { Injectable, inject } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
+import { Injectable, inject } from '@angular/core';
 import { Meta, Title } from '@angular/platform-browser';
 import { RouterStateSnapshot, TitleStrategy } from '@angular/router';
 
@@ -9,6 +9,7 @@ const APP_TITLE = 'Ng Brutalism';
 const SITE_URL = 'https://ngbrutalism.khangtran.dev';
 const OG_IMAGE_URL = `${SITE_URL}/og.png`;
 const OG_IMAGE_ALT = 'Ng Brutalism — Neo-Brutalist Angular UI Library';
+const OG_LOCALE = 'en_US';
 const DEFAULT_DESCRIPTION =
   'Neo-brutalist Angular component library. Signals, zoneless, Tailwind v4. Bold borders, offset shadows, and punchy colors — drop it in and ship loud.';
 
@@ -95,21 +96,21 @@ export class DocsTitleStrategy extends TitleStrategy {
   private readonly meta = inject(Meta);
 
   override updateTitle(snapshot: RouterStateSnapshot): void {
-    const path = snapshot.url.split(/[?#]/, 1)[0].replace(/\/+$/, '') || '/';
-    const pageTitle = getDocsPageTitle(snapshot.url);
-    const fullTitle = pageTitle ? `${pageTitle} | ${APP_TITLE}` : APP_TITLE;
-    const description = PAGE_DESCRIPTIONS[path] ?? DEFAULT_DESCRIPTION;
-    const canonicalUrl = toCanonicalUrl(path);
+    const seo = getDocsPageSeo(snapshot.url);
 
-    this.title.setTitle(fullTitle);
-    this.updateCanonicalLink(canonicalUrl);
-    this.meta.updateTag({ name: 'description', content: description });
-    this.meta.updateTag({ property: 'og:url', content: canonicalUrl });
+    this.title.setTitle(seo.title);
+    this.updateCanonicalLink(seo.canonicalUrl);
+    this.meta.updateTag({ name: 'description', content: seo.description });
+    this.meta.updateTag({ property: 'og:url', content: seo.canonicalUrl });
     this.meta.updateTag({
       property: 'og:title',
-      content: fullTitle,
+      content: seo.title,
     });
-    this.meta.updateTag({ property: 'og:description', content: description });
+    this.meta.updateTag({
+      property: 'og:description',
+      content: seo.description,
+    });
+    this.meta.updateTag({ property: 'og:locale', content: OG_LOCALE });
     this.meta.updateTag({ property: 'og:image', content: OG_IMAGE_URL });
     this.meta.updateTag({
       property: 'og:image:secure_url',
@@ -119,8 +120,11 @@ export class DocsTitleStrategy extends TitleStrategy {
     this.meta.updateTag({ property: 'og:image:width', content: '1200' });
     this.meta.updateTag({ property: 'og:image:height', content: '630' });
     this.meta.updateTag({ property: 'og:image:alt', content: OG_IMAGE_ALT });
-    this.meta.updateTag({ name: 'twitter:title', content: fullTitle });
-    this.meta.updateTag({ name: 'twitter:description', content: description });
+    this.meta.updateTag({ name: 'twitter:title', content: seo.title });
+    this.meta.updateTag({
+      name: 'twitter:description',
+      content: seo.description,
+    });
     this.meta.updateTag({ name: 'twitter:image', content: OG_IMAGE_URL });
     this.meta.updateTag({ name: 'twitter:image:alt', content: OG_IMAGE_ALT });
   }
@@ -139,6 +143,23 @@ export class DocsTitleStrategy extends TitleStrategy {
       this.document.head.appendChild(link);
     }
   }
+}
+
+export interface DocsPageSeo {
+  title: string;
+  description: string;
+  canonicalUrl: string;
+}
+
+export function getDocsPageSeo(url: string): DocsPageSeo {
+  const path = normalizePath(url);
+  const pageTitle = getDocsPageTitle(path);
+
+  return {
+    title: pageTitle ? `${pageTitle} | ${APP_TITLE}` : APP_TITLE,
+    description: PAGE_DESCRIPTIONS[path] ?? DEFAULT_DESCRIPTION,
+    canonicalUrl: toCanonicalUrl(path),
+  };
 }
 
 export function getDocsPageTitle(url: string): string {
@@ -168,7 +189,9 @@ function normalizePath(url: string): string {
 }
 
 function toCanonicalUrl(path: string): string {
-  return path === '/' ? SITE_URL : `${SITE_URL}${path}`;
+  const canonicalPath = path === '/' ? '/' : `${path}/`;
+
+  return new URL(canonicalPath, `${SITE_URL}/`).toString();
 }
 
 function humanizePath(path: string): string {
