@@ -72,7 +72,7 @@ import { Section, TOP_SECTIONS } from './sections';
             class="hidden h-10 items-center border-3 border-(--nb-border) bg-(--nb-mint) px-3 text-xs font-black tracking-wider uppercase shadow-[3px_3px_0_0_var(--nb-shadow)] md:inline-flex"
             style="font-family: var(--font-mono);"
           >
-            v0.1.0 · PRE-1.0
+            v0.1.1 · PRE-1.0
           </span>
 
           <a

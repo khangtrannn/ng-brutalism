@@ -133,7 +133,7 @@ Yes. ng-brutalism is built on Tailwind v4's token system. Tailwind v3 is not sup
 Yes — components are signal-driven and work in both zone.js and zoneless apps.
 
 **Does ng-brutalism work with server-side rendering (SSR)?**
-Components are zoneless and avoid direct DOM access where possible, so SSR is expected to work — but it is not yet exhaustively verified at v0.1.0.
+Components are zoneless and avoid direct DOM access where possible, so SSR is expected to work — but it is not yet exhaustively verified at v0.1.1.
 
 **How customizable is the theme?**
 All visual tokens are exposed as CSS custom properties (`--nb-*`). A subset of tokens can also be configured from TypeScript via `provideNgBrutalism({ theme: ... })` at bootstrap.
