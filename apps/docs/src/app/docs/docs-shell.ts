@@ -1,14 +1,12 @@
 import {
   ChangeDetectionStrategy,
   Component,
-  DestroyRef,
   computed,
   inject,
-  signal,
 } from '@angular/core';
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { toSignal } from '@angular/core/rxjs-interop';
 import { NavigationEnd, Router, RouterLink } from '@angular/router';
-import { filter } from 'rxjs';
+import { filter, map } from 'rxjs';
 
 import { docsNavGroups, findDocsNavItem } from './docs.navigation';
 
@@ -127,22 +125,18 @@ import { docsNavGroups, findDocsNavItem } from './docs.navigation';
 })
 export class DocsShell {
   private readonly router = inject(Router);
-  private readonly destroyRef = inject(DestroyRef);
 
   protected readonly navGroups = docsNavGroups;
-  private readonly currentUrl = signal(this.router.url);
+
+  private readonly currentUrl = toSignal(
+    this.router.events.pipe(
+      filter((e): e is NavigationEnd => e instanceof NavigationEnd),
+      map((e) => e.urlAfterRedirects),
+    ),
+    { initialValue: this.router.url },
+  );
+
   protected readonly activeItem = computed(() =>
     findDocsNavItem(this.currentUrl())
   );
-
-  constructor() {
-    this.router.events
-      .pipe(
-        filter(
-          (event): event is NavigationEnd => event instanceof NavigationEnd
-        ),
-        takeUntilDestroyed(this.destroyRef)
-      )
-      .subscribe((event) => this.currentUrl.set(event.urlAfterRedirects));
-  }
 }

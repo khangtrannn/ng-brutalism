@@ -1,14 +1,13 @@
 import {
   ChangeDetectionStrategy,
   Component,
-  DestroyRef,
   computed,
   inject,
   signal,
 } from '@angular/core';
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { toSignal } from '@angular/core/rxjs-interop';
 import { NavigationEnd, Router, RouterLink } from '@angular/router';
-import { filter } from 'rxjs';
+import { filter, map } from 'rxjs';
 import { DocsNavbarExternalLinkIcon } from './navbar.icons';
 
 @Component({
@@ -144,9 +143,15 @@ import { DocsNavbarExternalLinkIcon } from './navbar.icons';
 })
 export class NbDocsNavbar {
   private readonly router = inject(Router);
-  private readonly destroyRef = inject(DestroyRef);
-  private readonly currentPath = signal(this.normalizePath(this.router.url));
   protected readonly scrolled = signal(false);
+
+  private readonly currentPath = toSignal(
+    this.router.events.pipe(
+      filter((e): e is NavigationEnd => e instanceof NavigationEnd),
+      map((e) => this.normalizePath(e.urlAfterRedirects)),
+    ),
+    { initialValue: this.normalizePath(this.router.url) },
+  );
 
   protected readonly activeSection = computed(() => {
     const path = this.currentPath();
@@ -161,19 +166,6 @@ export class NbDocsNavbar {
 
     return 'docs';
   });
-
-  constructor() {
-    this.router.events
-      .pipe(
-        filter(
-          (event): event is NavigationEnd => event instanceof NavigationEnd
-        ),
-        takeUntilDestroyed(this.destroyRef)
-      )
-      .subscribe((event) =>
-        this.currentPath.set(this.normalizePath(event.urlAfterRedirects))
-      );
-  }
 
   protected onWindowScroll(): void {
     this.scrolled.set(window.scrollY > 0);
