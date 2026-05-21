@@ -3,10 +3,10 @@ import {
   Component,
   computed,
   input,
-  signal,
-  effect,
 } from '@angular/core';
+import { toObservable, toSignal } from '@angular/core/rxjs-interop';
 import { NbButton, NbMarquee, NbMarqueeItem, NbTitle } from '@ng-brutalism/ui';
+import { scan, switchMap, takeWhile, timer } from 'rxjs';
 import { ContactUsDialog } from '../../../components/examples/contact-us-dialog';
 import {
   DocsPortfolioGithubIcon,
@@ -158,29 +158,19 @@ export class PortfolioHero {
   readonly isDark = input(false);
   readonly skills = input.required<Skill[]>();
 
-  private readonly charIndex = signal(0);
-  protected readonly displayedGreeting = computed(() => {
-    const text = this.greeting();
-    return text.slice(0, this.charIndex());
-  });
+  private readonly charIndex = toSignal(
+    toObservable(this.greeting).pipe(
+      switchMap((text) =>
+        timer(0, 100).pipe(
+          scan((i) => i + 1, 0),
+          takeWhile((i) => i <= text.length),
+        ),
+      ),
+    ),
+    { initialValue: 0 },
+  );
 
-  constructor() {
-    effect(
-      () => {
-        const fullText = this.greeting();
-        this.charIndex.set(0);
-
-        let currentIndex = 0;
-        const interval = setInterval(() => {
-          currentIndex++;
-          if (currentIndex <= fullText.length) {
-            this.charIndex.set(currentIndex);
-          } else {
-            clearInterval(interval);
-          }
-        }, 100);
-      },
-      { allowSignalWrites: true }
-    );
-  }
+  protected readonly displayedGreeting = computed(() =>
+    this.greeting().slice(0, this.charIndex()),
+  );
 }

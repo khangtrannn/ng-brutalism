@@ -1,14 +1,11 @@
 import {
-  afterNextRender,
   ChangeDetectionStrategy,
   Component,
-  DestroyRef,
   ViewEncapsulation,
-  inject,
   signal,
 } from '@angular/core';
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { interval } from 'rxjs';
+import { toSignal } from '@angular/core/rxjs-interop';
+import { interval, map } from 'rxjs';
 
 import {
   ABOUT_CARDS,
@@ -39,26 +36,17 @@ import { PortfolioProjects } from './components/portfolio-projects';
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export default class PortfolioShowcasePageComponent {
-  private readonly destroyRef = inject(DestroyRef);
-
   protected readonly assetPath = ASSET_PATH;
   protected readonly menuOpen = signal(false);
   protected readonly activeJourney = signal(-1);
 
   private readonly greetings = ['Hello!', 'Hola!', 'Bonjour!', 'Xin chào!'];
-  private greetingIndex = 0;
-  protected readonly greeting = signal(this.greetings[0]);
-
-  constructor() {
-    afterNextRender(() => {
-      interval(1500)
-        .pipe(takeUntilDestroyed(this.destroyRef))
-        .subscribe(() => {
-          this.greetingIndex = (this.greetingIndex + 1) % this.greetings.length;
-          this.greeting.set(this.greetings[this.greetingIndex]);
-        });
-    });
-  }
+  protected readonly greeting = toSignal(
+    interval(1500).pipe(
+      map((tick) => this.greetings[(tick + 1) % this.greetings.length]),
+    ),
+    { initialValue: this.greetings[0] },
+  );
 
   protected readonly navLinks = NAV_LINKS;
   protected readonly skills = SKILLS;
