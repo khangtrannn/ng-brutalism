@@ -10,72 +10,72 @@ import { DocsCodeBlock } from '../../docs/docs-code-block';
   template: `
     <article>
       <header id="overview" class="relative mb-10 scroll-mt-32">
-        <div class="max-w-6xl">
-          <div>
-            <p>Getting Started</p>
+        <div
+          class="grid gap-7 md:grid-cols-[minmax(0,1fr)_minmax(180px,240px)] md:items-center xl:grid-cols-[minmax(0,1fr)_minmax(220px,300px)]"
+        >
+          <div class="min-w-0">
+            <p class="eyebrow">Getting Started</p>
+            <h1 class="max-w-3xl text-[clamp(2.35rem,7vw,4.5rem)] md:text-[clamp(2.6rem,5.2vw,4.5rem)] xl:text-[clamp(3.5rem,5vw,4.5rem)]">
+              <span class="block">Build loud.</span>
+              <span class="block">Stay sharp.</span>
+            </h1>
+          </div>
 
+          <div
+            class="relative isolate mx-auto flex aspect-square w-full max-w-[220px] items-center justify-center border-4 border-(--nb-border) bg-(--nb-yellow) p-4 shadow-[8px_8px_0_0_var(--nb-shadow)] sm:max-w-[260px] sm:p-5 md:mx-0 md:max-w-[240px] md:justify-self-end xl:max-w-[300px] xl:p-6"
+            aria-label="Angular mascot preview"
+          >
             <div
-              class="mt-4 grid gap-7 md:grid-cols-[minmax(0,1fr)_minmax(200px,300px)] md:items-center lg:grid-cols-[minmax(0,1fr)_minmax(240px,320px)]"
+              class="absolute -top-4 right-2 z-30 border-3 border-(--nb-border) px-3 py-1 font-mono text-xs font-black uppercase text-white shadow-[4px_4px_0_0_var(--nb-shadow)] sm:right-3"
+              style="background: linear-gradient(135deg, #ff31d9 0%, #dd0031 48%, #7c3aed 100%)"
             >
-              <h1 class="max-w-4xl">Angular UI that refuses to whisper.</h1>
-
-              <div
-                class="relative isolate mx-auto flex aspect-square w-full max-w-[240px] items-center justify-center border-4 border-(--nb-border) bg-(--nb-yellow) p-5 shadow-[8px_8px_0_0_var(--nb-shadow)] sm:max-w-[280px] md:mx-0 md:max-w-[300px] md:justify-self-end lg:max-w-[320px] lg:p-6"
-                aria-label="Angular mascot preview"
-              >
-                <div
-                  class="absolute -top-5 right-2 z-30 border-3 border-(--nb-border) px-3 py-1 font-mono text-xs font-black uppercase text-white shadow-[4px_4px_0_0_var(--nb-shadow)] sm:right-3"
-                  style="background: linear-gradient(135deg, #ff31d9 0%, #dd0031 48%, #7c3aed 100%)"
-                >
-                  Angular
-                </div>
-                <div
-                  class="absolute bottom-4 left-4 z-20 h-7 w-7 rotate-[-10deg] border-3 border-(--nb-border) bg-(--nb-pink) shadow-[4px_4px_0_0_var(--nb-shadow)] sm:bottom-6 sm:left-5 sm:h-8 sm:w-8"
-                  aria-hidden="true"
-                ></div>
-                <div
-                  class="absolute -top-4 left-7 z-20 h-6 w-16 rotate-[8deg] border-3 border-(--nb-border) bg-white shadow-[3px_3px_0_0_var(--nb-shadow)] sm:left-9"
-                  aria-hidden="true"
-                ></div>
-                <img
-                  class="relative z-10 block w-full max-w-[170px] drop-shadow-[8px_8px_0_rgba(0,0,0,0.18)] sm:max-w-[205px] md:max-w-[220px] lg:max-w-[235px]"
-                  src="/angular-mascot.gif"
-                  width="488"
-                  height="488"
-                  alt="Animated Angular mascot"
-                />
-              </div>
+              Angular
             </div>
-
-            <p class="mt-8 max-w-4xl text-base font-medium sm:text-lg">
-              &#64;ng-brutalism/ui gives Angular 21 apps a loud, token-driven
-              component system: standalone primitives, hard-edged visuals,
-              keyboard-ready interactions, and Tailwind v4 ergonomics from the
-              first import.
-            </p>
-
-            <div class="mt-7 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-              <a
-                class="w-full justify-center sm:w-auto"
-                nbButton
-                routerLink="/docs/installation"
-              >
-                Start building
-              </a>
-              <a
-                class="w-full justify-center sm:w-auto"
-                nbButton
-                variant="neutral"
-                routerLink="/components/button"
-                style="--nb-button-bg: #fff"
-              >
-                See components
-              </a>
-            </div>
+            <div
+              class="absolute bottom-4 left-4 z-20 h-7 w-7 rotate-[-10deg] border-3 border-(--nb-border) bg-(--nb-pink) shadow-[4px_4px_0_0_var(--nb-shadow)] sm:bottom-6 sm:left-5 sm:h-8 sm:w-8"
+              aria-hidden="true"
+            ></div>
+            <div
+              class="absolute -top-4 left-7 z-20 h-6 w-16 rotate-[8deg] border-3 border-(--nb-border) bg-white shadow-[3px_3px_0_0_var(--nb-shadow)] sm:left-9"
+              aria-hidden="true"
+            ></div>
+            <img
+              class="relative z-10 block w-full max-w-[155px] drop-shadow-[8px_8px_0_rgba(0,0,0,0.18)] sm:max-w-[190px] md:max-w-[170px] xl:max-w-[220px]"
+              src="/angular-mascot.gif"
+              width="488"
+              height="488"
+              alt="Animated Angular mascot"
+            />
           </div>
         </div>
 
-        <div class="mt-9 grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
+        <p class="mt-8 max-w-4xl text-base font-medium sm:text-lg">
+          &#64;ng-brutalism/ui gives Angular 21 apps a loud, token-driven
+          component system: standalone primitives, hard-edged visuals,
+          keyboard-ready interactions, and Tailwind v4 ergonomics from the first
+          import.
+        </p>
+
+        <div class="mt-7 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+          <a
+            class="w-full justify-center sm:w-auto"
+            nbButton
+            routerLink="/docs/installation"
+          >
+            Start building
+          </a>
+          <a
+            class="w-full justify-center sm:w-auto"
+            nbButton
+            variant="neutral"
+            routerLink="/components/button"
+            style="--nb-button-bg: #fff"
+          >
+            See components
+          </a>
+        </div>
+
+        <div class="mt-7 flex flex-wrap items-center gap-3">
           <div class="nb-stat-tile nb-stat-tile--yellow">
             <span class="nb-stat-tile__value">NG21</span>
             <span class="nb-stat-tile__label">Angular native</span>
@@ -94,10 +94,8 @@ import { DocsCodeBlock } from '../../docs/docs-code-block';
           </div>
         </div>
       </header>
-    </article>
 
-    <div>
-<section id="why">
+      <section id="why">
         <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">
           Why it stands out
         </h2>
@@ -218,7 +216,7 @@ import { DocsCodeBlock } from '../../docs/docs-code-block';
           the library uses internally.
         </p>
       </section>
-    </div>
+    </article>
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
