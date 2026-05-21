@@ -1,6 +1,8 @@
 /* styles.css - full theme + base reset */
 @import './theme.css';
 
+@source './fesm2022/ng-brutalism-ui.mjs';
+
 *,
 *::before,
 *::after {
