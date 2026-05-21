@@ -21,11 +21,12 @@ import { DocsTokens } from '../../docs/docs-tokens';
     <article>
       <header id="overview" class="relative mb-10 scroll-mt-32">
         <div class="mb-5">
-          <p>Components</p>
+          <p>Neo-Brutalist Angular Input</p>
           <h1>Input</h1>
           <p class="mt-3 max-w-3xl text-base font-medium sm:text-lg">
-            Displays a form input field with hard borders, offset shadow, and
-            strong focus states in the neo-brutalism style.
+            The neo-brutalist Angular Input component. A form input field with
+            hard borders, offset shadow, and strong focus states in the
+            brutalist style.
           </p>
         </div>
 

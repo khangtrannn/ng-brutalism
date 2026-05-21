@@ -21,10 +21,12 @@ import { DocsTokens } from '../../docs/docs-tokens';
     <article>
       <header id="overview" class="relative mb-10 scroll-mt-32">
         <div class="mb-5">
-          <p>Components</p>
+          <p>Neo-Brutalist Angular Image Card</p>
           <h1>Image Card</h1>
           <p class="mt-3 max-w-3xl text-base font-medium sm:text-lg">
-            A card component optimized for displaying images with captions.
+            The neo-brutalist Angular Image Card component. A media card with
+            thick borders and offset shadow, optimized for displaying images
+            with captions.
           </p>
         </div>
 

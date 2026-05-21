@@ -5,16 +5,16 @@
   "homepage": "https://ngbrutalism.khangtran.dev",
   "topics": [
     "angular",
-    "angular-components",
     "angular-ui",
-    "component-library",
-    "components",
-    "design-system",
-    "neobrutalism",
-    "neo-brutalism",
-    "tailwindcss",
-    "tailwind-v4",
+    "angular-components",
     "ui-library",
-    "zoneless"
+    "component-library",
+    "neo-brutalism",
+    "neobrutalism",
+    "brutalist-design",
+    "tailwindcss",
+    "signals",
+    "zoneless",
+    "design-system"
   ]
 }

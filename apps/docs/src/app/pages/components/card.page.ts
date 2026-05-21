@@ -29,10 +29,12 @@ import JobListingCardExample from './examples/job-listing-card';
     <article>
       <header id="overview" class="relative mb-10 scroll-mt-32">
         <div class="mb-5">
-          <p>Components</p>
+          <p>Neo-Brutalist Angular Card</p>
           <h1>Card</h1>
           <p class="mt-3 max-w-3xl text-base font-medium sm:text-lg">
-            Displays a card with header, content, and footer.
+            The neo-brutalist Angular Card component. A bold content block
+            with header, content, and footer slots wrapped in thick borders
+            and an offset shadow.
           </p>
         </div>
 

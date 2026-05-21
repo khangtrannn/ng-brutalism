@@ -13,11 +13,12 @@ import { DocsTokens } from '../../docs/docs-tokens';
     <article>
       <header id="overview" class="relative mb-10 scroll-mt-32">
         <div class="mb-5">
-          <p>Components</p>
+          <p>Neo-Brutalist Angular Title</p>
           <h1>Title</h1>
           <p class="mt-3 max-w-3xl text-base font-medium sm:text-lg">
-            Adds a brutal wave underline to headings without changing the
-            heading level or document structure.
+            The neo-brutalist Angular Title component. Adds a brutalist wave
+            underline to headings without changing the heading level or
+            document structure.
           </p>
         </div>
 

@@ -19,11 +19,12 @@ import { DocsTokens } from '../../docs/docs-tokens';
     <article>
       <header id="overview" class="relative mb-10 scroll-mt-32">
         <div class="mb-5">
-          <p>Components</p>
+          <p>Neo-Brutalist Angular Avatar</p>
           <h1>Avatar</h1>
           <p class="mt-3 max-w-3xl text-base font-medium sm:text-lg">
-            A circular image frame with a thick border and offset shadow.
-            Falls back to projected initials when no image source is provided.
+            The neo-brutalist Angular Avatar component. A circular image frame
+            with a thick border and offset shadow. Falls back to projected
+            initials when no image source is provided.
           </p>
         </div>
 

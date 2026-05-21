@@ -31,11 +31,12 @@ import { DocsTokens } from '../../docs/docs-tokens';
     <article>
       <header id="overview" class="relative mb-10 scroll-mt-32">
         <div class="mb-5">
-          <p>Components</p>
+          <p>Neo-Brutalist Angular Input Group</p>
           <h1>Input Group</h1>
           <p class="mt-3 max-w-3xl text-base font-medium sm:text-lg">
-            Combines inputs or textareas with bordered prefix and suffix
-            addons, creating one continuous neo-brutalism control.
+            The neo-brutalist Angular Input Group component. Combines inputs
+            or textareas with bordered prefix and suffix addons, creating one
+            continuous brutalist control.
           </p>
         </div>
 

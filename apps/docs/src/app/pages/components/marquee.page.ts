@@ -26,12 +26,12 @@ interface MarqueeSkill {
     <article>
       <header id="overview" class="relative mb-10 scroll-mt-32">
         <div class="mb-5">
-          <p>Components</p>
+          <p>Ng Brutalism Marquee</p>
           <h1>Marquee</h1>
           <p class="mt-3 max-w-3xl text-base font-medium sm:text-lg">
-            A horizontally scrolling component that loops its content
-            infinitely. Supports configurable speed, reverse direction, and
-            pause on hover.
+            The Ng Brutalism Marquee component. A horizontally scrolling
+            ticker that loops its content infinitely. Supports configurable
+            speed, reverse direction, and pause on hover.
           </p>
         </div>
 

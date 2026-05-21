@@ -19,10 +19,11 @@ import { ContactUsDialog } from './examples/contact-us-dialog';
     <article>
       <header id="overview" class="relative mb-10 scroll-mt-32">
         <div class="mb-5">
-          <p>Components</p>
+          <p>Neo-Brutalist Angular Dialog</p>
           <h1>Dialog</h1>
           <p class="mt-3 max-w-3xl text-base font-medium sm:text-lg">
-            A modal dialog built on the native
+            The neo-brutalist Angular Dialog component — a brutalist modal
+            built on the native
             <code class="font-mono">&lt;dialog&gt;</code> element. Compound API
             with SSR-safe open/close. Click the backdrop to dismiss.
           </p>

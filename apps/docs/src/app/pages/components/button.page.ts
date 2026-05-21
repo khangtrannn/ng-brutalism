@@ -19,12 +19,12 @@ import { DocsTokens } from '../../docs/docs-tokens';
     <article>
       <header id="overview" class="relative mb-10 scroll-mt-32">
         <div class="mb-5">
-          <p>Components</p>
+          <p>Neo-Brutalist Angular Button</p>
           <h1>Button</h1>
           <p class="mt-3 max-w-3xl text-base font-medium sm:text-lg">
-            Displays a button or link that looks like a button, with hard
-            borders, offset shadows, strong colors, keyboard focus states, and
-            native disabled behavior.
+            The neo-brutalist Angular Button component. Displays a button or
+            link that looks like a button, with hard borders, offset shadows,
+            strong colors, keyboard focus states, and native disabled behavior.
           </p>
         </div>
 

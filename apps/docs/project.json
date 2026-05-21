@@ -55,6 +55,22 @@
         "lintFilePatterns": ["apps/docs/**/*.ts", "apps/docs/**/*.html"]
       }
     },
+    "build-seo-artifacts": {
+      "executor": "nx:run-commands",
+      "dependsOn": ["build"],
+      "options": {
+        "command": "node apps/docs/scripts/build-seo-artifacts.mjs",
+        "cwd": "{workspaceRoot}"
+      },
+      "outputs": [
+        "{workspaceRoot}/apps/docs/public/sitemap.xml",
+        "{workspaceRoot}/apps/docs/public/llms.txt",
+        "{workspaceRoot}/dist/apps/docs/client/sitemap.xml",
+        "{workspaceRoot}/dist/apps/docs/client/llms.txt",
+        "{workspaceRoot}/dist/apps/docs/analog/public/sitemap.xml",
+        "{workspaceRoot}/dist/apps/docs/analog/public/llms.txt"
+      ]
+    },
     "test": {
       "executor": "@analogjs/vitest-angular:test",
       "options": {

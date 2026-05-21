@@ -20,11 +20,12 @@ import { DocsTokens } from '../../docs/docs-tokens';
     <article>
       <header id="overview" class="relative mb-10 scroll-mt-32">
         <div class="mb-5">
-          <p>Components</p>
+          <p>Neo-Brutalist Angular Checkbox</p>
           <h1>Checkbox</h1>
           <p class="mt-3 max-w-3xl text-base font-medium sm:text-lg">
-            A control that allows the user to toggle between checked and not
-            checked in the neo-brutalism style.
+            The neo-brutalist Angular Checkbox component. A control that
+            allows the user to toggle between checked and not checked in the
+            brutalist style with strong focus states.
           </p>
         </div>
 

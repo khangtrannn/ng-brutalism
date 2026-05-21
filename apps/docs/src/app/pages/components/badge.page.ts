@@ -19,11 +19,11 @@ import { DocsTokens } from '../../docs/docs-tokens';
     <article>
       <header id="overview" class="relative mb-10 scroll-mt-32">
         <div class="mb-5">
-          <p>Components</p>
+          <p>Neo-Brutalist Angular Badge</p>
           <h1>Badge</h1>
           <p class="mt-3 max-w-3xl text-base font-medium sm:text-lg">
-            A small status indicator with thick borders and flat shadow across
-            five semantic variants.
+            The neo-brutalist Angular Badge component. A small status indicator
+            with thick borders and flat shadow across five semantic variants.
           </p>
         </div>
 

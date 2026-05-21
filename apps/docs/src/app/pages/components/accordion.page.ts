@@ -29,12 +29,12 @@ import { DocsTokens } from '../../docs/docs-tokens';
     <article>
       <header id="overview" class="relative mb-10 scroll-mt-32">
         <div class="mb-5">
-          <p>Components</p>
+          <p>Neo-Brutalist Angular Accordion</p>
           <h1>Accordion</h1>
           <p class="mt-3 max-w-3xl text-base font-medium sm:text-lg">
-            A vertically stacked set of interactive headings that reveal related
-            content panels with native button semantics, ARIA state, and
-            neo-brutalist borders.
+            The neo-brutalist Angular Accordion component. A vertically stacked
+            set of interactive headings that reveal related content panels with
+            native button semantics, ARIA state, and brutalist borders.
           </p>
         </div>
 

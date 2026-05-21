@@ -45,12 +45,12 @@ import {
     <article>
       <header id="overview" class="relative mb-10 scroll-mt-32">
         <div class="mb-5">
-          <p>Components</p>
+          <p>Neo-Brutalist Angular Select</p>
           <h1>Select</h1>
           <p class="mt-3 max-w-3xl text-base font-medium sm:text-lg">
-            Offers a brutal custom dropdown with projected option content,
-            active states, selected checks, and a native select directive for
-            simple forms.
+            The neo-brutalist Angular Select component. A brutalist custom
+            dropdown with projected option content, active states, selected
+            checks, and a native select directive for simple forms.
           </p>
         </div>
 

@@ -20,11 +20,12 @@ import { DocsTokens } from '../../docs/docs-tokens';
     <article>
       <header id="overview" class="relative mb-10 scroll-mt-32">
         <div class="mb-5">
-          <p>Components</p>
+          <p>Neo-Brutalist Angular Textarea</p>
           <h1>Textarea</h1>
           <p class="mt-3 max-w-3xl text-base font-medium sm:text-lg">
-            A multi-line text input with hard borders, offset shadow, and
-            strong focus states matching the neo-brutalism style.
+            The neo-brutalist Angular Textarea component. A multi-line text
+            input with hard borders, offset shadow, and strong focus states
+            matching the brutalist style.
           </p>
         </div>
 

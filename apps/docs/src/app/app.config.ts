@@ -30,11 +30,6 @@ export const appConfig: ApplicationConfig = {
       }),
       withExtraRoutes([
         {
-          path: '',
-          redirectTo: '/docs/introduction',
-          pathMatch: 'full',
-        },
-        {
           path: 'docs',
           redirectTo: '/docs/introduction',
           pathMatch: 'full',
