@@ -98,7 +98,9 @@ export function getDocsPageSeo(url: string): DocsPageSeo {
   const path = normalizePath(url);
   const pageTitle = getDocsPageTitle(path);
   const isTechArticle =
-    path.startsWith('/docs/') || path.startsWith('/components/');
+    path.startsWith('/docs/') ||
+    path.startsWith('/components/') ||
+    path === '/showcase/portfolio';
 
   return {
     title: formatPageTitle(path, pageTitle),

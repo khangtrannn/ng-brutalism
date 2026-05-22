@@ -95,8 +95,9 @@ function buildLlmsTxt() {
   const lines = [
     '# Ng Brutalism',
     '',
-    '> The neo-brutalist Angular UI library. Signals, zoneless change detection, Tailwind v4. Bold borders, offset shadows, punchy colors.',
+    '> Ng Brutalism is a neo-brutalist Angular UI library by Khang Tran. Built with signals, zoneless change detection, and Tailwind v4. It ships as @ng-brutalism/ui on npm. Bold borders, offset shadows, punchy colors.',
     '',
+    '- Author: Khang Tran (https://github.com/khangtrannn)',
     '- Repository: https://github.com/khangtrannn/ng-brutalism',
     '- npm: https://www.npmjs.com/package/@ng-brutalism/ui',
     '- License: MIT',

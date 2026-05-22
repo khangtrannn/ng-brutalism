@@ -36,21 +36,32 @@ import { NbDocsNavbar } from '../docs/layout/navbar';
                   </p>
                   <h1
                     class="max-w-4xl font-heading text-[3.25rem] leading-[0.94] font-black tracking-normal text-balance uppercase sm:text-6xl md:text-7xl xl:text-[5.75rem]"
-                    aria-label="The neo-brutalism UI library for Angular"
+                    aria-label="The neo-brutalist Angular UI library"
                   >
-                    <span class="block">The neo-brutalism</span>
-                    <span class="block sm:whitespace-nowrap">UI library</span>
+                    <span class="block">The neo-brutalist</span>
                     <span class="mt-3 flex flex-wrap items-center gap-3 sm:mt-4 sm:gap-4">
-                      <span class="text-[0.62em] leading-none">for</span>
                       <span
                         class="inline-block rotate-[-1deg] border-4 border-(--nb-border) bg-(--nb-yellow) px-3 py-1 text-[0.72em] leading-none shadow-[7px_7px_0_0_var(--nb-shadow)] sm:px-4 sm:py-2"
                       >
                         Angular
                       </span>
                     </span>
+                    <span class="mt-3 block sm:mt-4 sm:whitespace-nowrap">UI library</span>
                   </h1>
 
-                  <p class="mt-7 max-w-3xl text-base font-bold sm:text-lg">
+                  <p class="mt-5 font-mono text-xs font-bold tracking-[0.08em] uppercase">
+                    Created by
+                    <a
+                      class="underline decoration-(--nb-border) decoration-2 underline-offset-4 hover:bg-(--nb-yellow)"
+                      href="https://github.com/khangtrannn"
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      Khang Tran
+                    </a>
+                  </p>
+
+                  <p class="mt-5 max-w-3xl text-base font-bold sm:text-lg">
                     Ng Brutalism is the neo-brutalist Angular UI library — a
                     token-driven set of brutalist Angular components with
                     signals, zoneless-friendly change detection, and Tailwind v4

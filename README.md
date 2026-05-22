@@ -138,6 +138,10 @@ All visual tokens are exposed as CSS custom properties (`--nb-*`). A subset of t
 **Is ng-brutalism ready for production?**
 It is pre-1.0. Component APIs are usable today, but minor versions may include breaking changes while the library settles.
 
+## Author
+
+Created by [Khang Tran](https://github.com/khangtrannn).
+
 ## Status
 
 `@ng-brutalism/ui` is pre-1.0. The component APIs are usable today, but minor
