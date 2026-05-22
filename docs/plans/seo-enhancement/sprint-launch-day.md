@@ -78,13 +78,14 @@ week-1 ranking sprint.
 
 ## Up next (in order)
 
-1. **Deploy the schema changes** (gates everything Google-side).
-2. **Block 3b** — GitHub repo description rewrite.
-3. **Block 1** — open the awesome-angular PR (drafted, ready to submit).
-4. **Block 4** — file the bestofjs issue (drafted, ready to submit).
-5. **Block 3c/3d/3e** — GSC nudge, schema validators, partial LLM probes.
-6. **Block 2** — reply to r/Angular2 comments.
-7. **Block 5 (20:00 ICT)** — r/SideProject cross-post.
+1. **Tonight** — keep replying to r/Angular2 comments while the post is
+   active, then stop by 21:00.
+2. **Sat–Sun 2026-05-23 → 2026-05-24** — rest / let awesome-angular,
+   bestofjs, schema, and Reddit signals sit.
+3. **Mon 2026-05-25 evening** — Block 6: Show HN content prep via
+   `/grill-me`.
+4. **Tue 2026-05-26 20:00 ICT** — Block 7: Show HN go-live.
+5. **Fri 2026-05-29 ~15:00 ICT** — 72h post-Show-HN verification.
 
 ---
 
@@ -111,7 +112,7 @@ moved off Friday onto Tuesday (stronger day-of-week for HN).
 | 16:00–16:30 | 3 | Admin block (GSC + GitHub desc + schema + Twitter + LLM probes) | Khang manual |
 | 16:30–16:45 | 4 | bestofjs issue (sole survivor of directory submissions) | Khang manual |
 | 16:45–18:00 | — | Buffer / dinner prep | — |
-| 20:00–21:00 | 5 | r/SideProject cross-post + first 45 min of comments | Khang manual |
+| 20:00–21:00 | 5 | r/SideProject skipped; keep replying to r/Angular2 if active | Khang manual |
 | 21:00–    | — | Off | — |
 
 **Sat–Sun (2026-05-23 → 2026-05-24):** rest / let awesome-angular + bestofjs sit.
@@ -345,19 +346,41 @@ Already-shipped directory signals (no action needed):
 - GitHub topic tags (12 topics ✓)
 - libraries.io auto-indexes from npm — already happening, no action
 
-### Block 5 — r/SideProject cross-post (20:00–21:00)
+### Block 5 — r/SideProject cross-post — SKIP TONIGHT
 
-**Sole survivor** of the original 3-venue cross-post block, after
-grilling session 2 deferred Show HN to Tuesday. r/SideProject runs
-tonight because Saturday-morning-coffee browse is its peak window and
-it's independent enough from HN that same-week posting doesn't look
-coordinated.
+Decision update (2026-05-22): **do not post to r/SideProject tonight.**
 
-- [ ] Copy-paste the r/Angular2 post body (or a tightened version),
-      retitle for the "I built X" launcher framing.
-- [ ] Submit at <https://www.reddit.com/r/SideProject/submit>
-- [ ] Stay online ~45 min, reply to comments.
+Reason: the r/Angular2 post already became Khang's #1 post of all time
+and the #1 post on r/Angular2 today. Cross-posting the same project to
+r/SideProject within hours risks reading as over-distribution rather
+than a separate, useful story.
+
+Preserve goodwill. Let the high-intent Angular audience breathe, reply
+to comments there, and save r/SideProject for a genuinely different
+angle.
+
+- [x] Re-evaluate whether tonight's r/SideProject post is necessary.
+- [x] Decision: skip tonight's r/SideProject post.
+- [ ] Keep replying to r/Angular2 comments while the post is active.
 - [ ] Off by 21:00.
+
+Future r/SideProject trigger: only post if there is a distinct
+side-project story, not just a retitled launch post.
+
+Possible future framings:
+
+- "My Angular UI side project hit #1 on r/Angular2. Here's what I'm
+  trying to figure out next."
+- "I shipped v0.2 after launch feedback. Here's what changed."
+- "First external user/contributor milestone: what I learned building an
+  opinionated Angular component library."
+
+If posting later:
+
+- Use **Text** post, not link post. Put the docs URL in-body so the post
+  can carry context instead of looking like a drive-by promo.
+- Ask for product/positioning feedback, not Angular API feedback.
+- Do not mention SEO, backlinks, HN, or launch sequencing.
 
 **Not running tonight (parked for later if useful):**
 
