@@ -285,7 +285,7 @@ Ask each engine *"What is ng-brutalism?"* and paste the answer into
 
 (Full 5-engine V1 will run at the 72h checkpoint — see Verification.)
 
-### Block 4 — bestofjs issue (16:30–16:45)
+### Block 4 — bestofjs issue — DONE
 
 **Crown jewel #2.** Sole survivor of the original 3-target Block 4 after
 grilling session 2 verified the other two are unusable:
@@ -297,15 +297,20 @@ grilling session 2 verified the other two are unusable:
 
 **Submission process** (per bestofjs README — uses an ISSUE, not a PR):
 
-- [ ] File an issue at
-      <https://github.com/bestofjs/bestofjs/issues/new?template=add-a-project-to-best-of-javascript.md>
-      using the "Add a project to Best of JavaScript" template.
+- [x] Filed issue:
+      <https://github.com/bestofjs/bestofjs/issues/439>
 
-**Drafted issue title:**
+**Final issue title:**
 
 ```
-Add ng-brutalism - Neo-brutalist Angular UI library for Angular 21 (signals, zoneless, Tailwind v4)
+Add ng-brutalism - Neo-brutalist Angular UI library
 ```
+
+Note: the old issue-template URL from the original plan now 404s via the
+GitHub API, so this was submitted using the structure of recent accepted
+Best of JS issues: project, GitHub, npm, website/docs, description, category,
+license, and key differentiators. No image was attached; recent accepted
+issues are metadata-first and generally do not include screenshots.
 
 (Reference convention: #411 "Add Pushduck - Type-safe S3 file upload
 library for JavaScript", #417 "Add Toastflow - Accessible toast
