@@ -1,6 +1,30 @@
-# HTML pages — always revalidate
-/*
-  Cache-Control: public, max-age=0, must-revalidate
+# HTML pages — always revalidate and prevent edge HTML mutation.
+# Cloudflare Web Analytics automatic setup injects beacon.min.js unless
+# Cache-Control includes no-transform.
+/
+  Cache-Control: public, max-age=0, must-revalidate, no-transform
+
+/docs
+  Cache-Control: public, max-age=0, must-revalidate, no-transform
+
+/docs/*
+  Cache-Control: public, max-age=0, must-revalidate, no-transform
+
+/components
+  Cache-Control: public, max-age=0, must-revalidate, no-transform
+
+/components/*
+  Cache-Control: public, max-age=0, must-revalidate, no-transform
+
+/showcase/portfolio
+  Cache-Control: public, max-age=0, must-revalidate, no-transform
+
+/showcase/portfolio/*
+  Cache-Control: public, max-age=0, must-revalidate, no-transform
+
+# Crawlers should re-check the canonical robots policy at the edge.
+/robots.txt
+  Cache-Control: public, max-age=0, must-revalidate, no-transform
 
 # Hashed JS/CSS bundles — content-addressed, safe to cache 1 year
 /assets/*

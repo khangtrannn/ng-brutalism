@@ -1,0 +1,8 @@
+name = "ng-brutalism-analytics"
+main = "src/index.ts"
+compatibility_date = "2025-01-01"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "copy-events"
+database_id = "4a38eebd-86b0-4341-8702-1392236c28d4"

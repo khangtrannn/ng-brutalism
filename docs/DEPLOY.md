@@ -142,14 +142,30 @@ the build output and read by Cloudflare Pages.
 
 Important rules:
 
-- `/*`: `Cache-Control: public, max-age=0, must-revalidate`
+- HTML routes: `Cache-Control: public, max-age=0, must-revalidate, no-transform`
 - `/assets/*`: `Cache-Control: public, max-age=31536000, immutable`
+- `/robots.txt`: `Cache-Control: public, max-age=0, must-revalidate, no-transform`
 - Logo, favicon, Open Graph image, and mascot media:
   `Cache-Control: public, max-age=86400`
 
-Cloudflare Pages applies matching `_headers` rules top-to-bottom. Later matching
-rules override earlier conflicting header values, so `/assets/*` can override
-the default HTML revalidation rule.
+`no-transform` prevents Cloudflare Web Analytics automatic setup from injecting
+the `static.cloudflareinsights.com/beacon.min.js` script into HTML responses.
+Keep the HTML rules route-scoped so hashed assets retain a clean one-year cache
+policy.
+
+## Lighthouse Edge Settings
+
+Two Lighthouse findings are controlled by Cloudflare dashboard features rather
+than application code:
+
+- **Cloudflare Web Analytics beacon cache TTL.** The repo prevents automatic
+  beacon injection by serving HTML with `Cache-Control: no-transform`. If the
+  beacon still appears in live HTML after deploy, disable Pages Web Analytics
+  automatic setup for the `ng-brutalism-docs` project.
+- **`robots.txt` syntax warning.** Keep Cloudflare managed `robots.txt` and
+  Content Signals disabled for this zone. Those features prepend
+  `Content-Signal` and AI crawler rules before the repo's `robots.txt`, which
+  Lighthouse reports as an unknown robots directive.
 
 ## Static Routes
 

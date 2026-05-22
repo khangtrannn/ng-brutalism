@@ -10,6 +10,7 @@ import {
   signal,
 } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
+import { Analytics } from '../analytics';
 import {
   DocsCodeChevronIcon,
   DocsCodeCopyIcon,
@@ -264,6 +265,7 @@ export class DocsCodeBlock {
 
   private readonly sanitizer = inject(DomSanitizer);
   private readonly isBrowser = isPlatformBrowser(inject(PLATFORM_ID));
+  private readonly analytics = inject(Analytics);
 
   protected readonly highlightedHtml = resource({
     params: () => ({ code: this.code(), lang: this.resolvedLanguage() }),
@@ -278,6 +280,7 @@ export class DocsCodeBlock {
   copy(): void {
     void navigator.clipboard.writeText(this.code());
     this.copied.set(true);
+    this.analytics.trackCopy(this.title());
 
     window.setTimeout(() => this.copied.set(false), 1400);
   }
