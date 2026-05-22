@@ -37,6 +37,7 @@ export class DocsTitleStrategy extends TitleStrategy {
     this.title.setTitle(seo.title);
     this.updateCanonicalLink(seo.canonicalUrl);
     this.meta.updateTag({ name: 'description', content: seo.description });
+    this.meta.updateTag({ name: 'robots', content: seo.robots });
     this.meta.updateTag({ property: 'og:type', content: seo.ogType });
     this.meta.updateTag({ property: 'og:url', content: seo.canonicalUrl });
     this.meta.updateTag({ property: 'og:title', content: seo.title });

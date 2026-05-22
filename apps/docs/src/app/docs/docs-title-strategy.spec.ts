@@ -8,6 +8,7 @@ describe('docs SEO metadata', () => {
         'Neo-brutalist Button component for Angular. Hard borders, offset shadows, and multiple variants — built with directive APIs and signals.',
       canonicalUrl: 'https://ngbrutalism.khangtran.dev/components/button/',
       path: '/components/button',
+      robots: 'index, follow',
       ogType: 'article',
       isTechArticle: true,
       breadcrumb: {
@@ -28,7 +29,28 @@ describe('docs SEO metadata', () => {
       title: 'Ng Brutalism — Neo-Brutalist Angular UI Library',
       canonicalUrl: 'https://ngbrutalism.khangtran.dev/',
       path: '/',
+      robots: 'index, follow',
       ogType: 'website',
+      isTechArticle: false,
+    });
+  });
+
+  it('keeps layout-only routes crawlable but out of the index', () => {
+    expect(getDocsPageSeo('/components')).toMatchObject({
+      title: 'Components | Ng Brutalism',
+      canonicalUrl: 'https://ngbrutalism.khangtran.dev/components/',
+      path: '/components',
+      robots: 'noindex, follow',
+      isTechArticle: false,
+    });
+  });
+
+  it('marks unknown routes noindex so 404-style pages do not pollute search', () => {
+    expect(getDocsPageSeo('/missing/launch-page?utm_source=test')).toMatchObject({
+      title: 'Launch Page | Ng Brutalism',
+      canonicalUrl: 'https://ngbrutalism.khangtran.dev/missing/launch-page/',
+      path: '/missing/launch-page',
+      robots: 'noindex, follow',
       isTechArticle: false,
     });
   });

@@ -90,6 +90,7 @@ export interface DocsPageSeo {
   description: string;
   canonicalUrl: string;
   path: string;
+  robots: 'index, follow' | 'noindex, follow';
   ogType: 'website' | 'article';
   isTechArticle: boolean;
   breadcrumb: { name: string; url: string };
@@ -97,17 +98,20 @@ export interface DocsPageSeo {
 
 export function getDocsPageSeo(url: string): DocsPageSeo {
   const path = normalizePath(url);
+  const robots = getRobotsDirective(path);
   const pageTitle = getDocsPageTitle(path);
   const isTechArticle =
-    path.startsWith('/docs/') ||
-    path.startsWith('/components/') ||
-    path === '/showcase/portfolio';
+    robots === 'index, follow' &&
+    (path.startsWith('/docs/') ||
+      path.startsWith('/components/') ||
+      path === '/showcase/portfolio');
 
   return {
     title: formatPageTitle(path, pageTitle),
-    description: PAGE_DESCRIPTIONS[path] ?? DEFAULT_DESCRIPTION,
+    description: getDocsPageDescription(path),
     canonicalUrl: toCanonicalUrl(path),
     path,
+    robots,
     ogType: path === '/' ? 'website' : 'article',
     isTechArticle,
     breadcrumb: {
@@ -125,7 +129,11 @@ export function getDocsPageTitle(url: string): string {
   }
 
   if (path === '/docs') {
-    return 'Introduction';
+    return 'Docs';
+  }
+
+  if (path === '/components') {
+    return 'Components';
   }
 
   if (path === '/showcase/portfolio') {
@@ -141,6 +149,34 @@ export function getDocsPageTitle(url: string): string {
   }
 
   return humanizePath(path);
+}
+
+function getDocsPageDescription(path: string): string {
+  if (PAGE_DESCRIPTIONS[path]) {
+    return PAGE_DESCRIPTIONS[path];
+  }
+
+  if (path === '/docs') {
+    return 'Browse Ng Brutalism documentation for installation, Angular usage, Tailwind v4 setup, and component examples.';
+  }
+
+  if (path === '/components') {
+    return 'Browse Ng Brutalism Angular components, including buttons, cards, dialogs, inputs, selects, and other neo-brutalist UI primitives.';
+  }
+
+  return 'This Ng Brutalism docs page could not be found. Return to the Angular component library documentation or component examples.';
+}
+
+function getRobotsDirective(path: string): DocsPageSeo['robots'] {
+  if (path === '/docs' || path === '/components') {
+    return 'noindex, follow';
+  }
+
+  if (path === '/' || PAGE_DESCRIPTIONS[path]) {
+    return 'index, follow';
+  }
+
+  return 'noindex, follow';
 }
 
 function formatPageTitle(path: string, pageTitle: string): string {
