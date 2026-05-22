@@ -19,6 +19,11 @@
     <changefreq>weekly</changefreq>
   </url>
   <url>
+    <loc>https://ngbrutalism.khangtran.dev/docs/faq/</loc>
+    <priority>0.8</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
     <loc>https://ngbrutalism.khangtran.dev/components/button/</loc>
     <lastmod>2026-05-21T23:53:11+07:00</lastmod>
     <priority>0.8</priority>

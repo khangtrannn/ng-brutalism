@@ -75,6 +75,7 @@ export default defineConfig(({ mode }) => {
             '/docs',
             '/docs/introduction',
             '/docs/installation',
+            '/docs/faq',
             '/showcase/portfolio',
           ],
         },

@@ -28,6 +28,7 @@ const ROUTES = [
   { path: '/', file: '(home).page.ts', priority: '1.0', changefreq: 'weekly' },
   { path: '/docs/introduction', file: 'docs/introduction.page.ts', priority: '0.9', changefreq: 'weekly' },
   { path: '/docs/installation', file: 'docs/installation.page.ts', priority: '0.9', changefreq: 'weekly' },
+  { path: '/docs/faq', file: 'docs/faq.page.ts', priority: '0.8', changefreq: 'weekly' },
   { path: '/components/button', file: 'components/button.page.ts', priority: '0.8', changefreq: 'weekly' },
   { path: '/components/card', file: 'components/card.page.ts', priority: '0.8', changefreq: 'weekly' },
   { path: '/components/dialog', file: 'components/dialog.page.ts', priority: '0.8', changefreq: 'weekly' },

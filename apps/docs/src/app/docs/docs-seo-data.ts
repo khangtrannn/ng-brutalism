@@ -47,6 +47,8 @@ export const PAGE_DESCRIPTIONS: Record<string, string> = {
     'Get started with Ng Brutalism — a neo-brutalist Angular UI library built with signals, zoneless change detection, and Tailwind v4.',
   '/docs/installation':
     'Install @ng-brutalism/ui in your Angular project. Requires a modern Angular setup, Tailwind v4, and Node 20+.',
+  '/docs/faq':
+    'Ng Brutalism FAQ for Angular developers. Learn what the neo-brutalist Angular UI library is, why it uses Tailwind v4, how it compares, and whether it fits your project.',
 
   // Components — /components/* (demo pages)
   '/components/accordion':

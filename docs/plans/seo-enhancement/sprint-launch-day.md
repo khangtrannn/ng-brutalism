@@ -499,7 +499,7 @@ in the prior shipping or not.
 | Creating a NEW Twitter brand account | Using existing `@mktrann` instead; no second handle |
 | 301 redirects for retired `/docs/<component>/` URLs | Gated on GSC traffic data (PLAN.md §7) |
 | `llms-full.txt` | Deferred per PLAN.md §3 "until baseline traffic data is in" |
-| Content depth pages (vs-compare, FAQ, blog) | Long-term play, doesn't move 1-week T2 rankings. **May trigger as next sprint per kill-criterion below.** |
+| Content depth pages (vs-compare, FAQ, blog) | Decision update 2026-05-22: narrow exception approved. Ship one `/docs/faq` page now because it needs no manual posting and improves long-tail / LLM entity clarity while launch signals settle. Deeper comparison/blog sprint still waits for the kill-criterion below. |
 | Core Web Vitals tuning | Separate ticket, needs real-device Lighthouse |
 
 ---

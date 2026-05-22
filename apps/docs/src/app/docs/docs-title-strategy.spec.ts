@@ -24,6 +24,19 @@ describe('docs SEO metadata', () => {
     );
   });
 
+  it('uses indexable metadata for the FAQ content-depth page', () => {
+    expect(getDocsPageSeo('/docs/faq')).toMatchObject({
+      title: 'FAQ | Ng Brutalism',
+      description:
+        'Ng Brutalism FAQ for Angular developers. Learn what the neo-brutalist Angular UI library is, why it uses Tailwind v4, how it compares, and whether it fits your project.',
+      canonicalUrl: 'https://ngbrutalism.khangtran.dev/docs/faq/',
+      path: '/docs/faq',
+      robots: 'index, follow',
+      ogType: 'article',
+      isTechArticle: true,
+    });
+  });
+
   it('uses website metadata for the dedicated home page', () => {
     expect(getDocsPageSeo('/')).toMatchObject({
       title: 'Ng Brutalism — Neo-Brutalist Angular UI Library',

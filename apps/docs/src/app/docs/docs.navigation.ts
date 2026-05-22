@@ -20,6 +20,22 @@ export const docsNavGroups: readonly DocsNavGroup[] = [
     items: [
       { label: 'Introduction', path: '/docs/introduction' },
       { label: 'Installation', path: '/docs/installation' },
+      {
+        label: 'FAQ',
+        path: '/docs/faq',
+        toc: [
+          { label: 'Overview', fragment: 'overview' },
+          { label: 'What it is', fragment: 'what-is-ng-brutalism' },
+          { label: 'Why Angular', fragment: 'why-angular' },
+          { label: 'Modern Angular', fragment: 'modern-angular' },
+          { label: 'Tailwind v4', fragment: 'tailwind-v4' },
+          { label: 'Comparison', fragment: 'library-comparison' },
+          { label: 'Production readiness', fragment: 'production-readiness' },
+          { label: 'Components', fragment: 'components-included' },
+          { label: 'SSR', fragment: 'ssr' },
+          { label: 'Author', fragment: 'who-made-it' },
+        ],
+      },
     ],
   },
   {
