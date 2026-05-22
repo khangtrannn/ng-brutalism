@@ -5,6 +5,23 @@ the audit finding that justifies it.
 
 **Audit:** `audit-2026-05-22.md` (frozen snapshot).
 
+**Shipping snapshot (2026-05-22):** 6/7 sprint items shipped to `main` and
+deployed. Only **SPRINT-3** (GitHub repo description rewrite) remains — it
+lives in GitHub web UI settings, not in the repo files, so it has to be done
+by hand. GSC indexing is currently processing; rank baseline (V2) and LLM
+probe (V1) re-checks should wait until the index settles plus the
+recommended 48–72 hr re-crawl window.
+
+| Sprint | Status | Where |
+|---|---|---|
+| SPRINT-1 README author section | ✅ shipped | `libs/ui/README.md`, root `README.md` |
+| SPRINT-2 home byline | ✅ shipped | `apps/docs/src/app/pages/(home).page.ts` |
+| SPRINT-3 GitHub description | 🟥 pending (manual) | GitHub web UI |
+| SPRINT-4 `llms.txt` preamble | ✅ shipped | `apps/docs/scripts/build-seo-artifacts.mjs` |
+| SPRINT-5 home H1 wording | ✅ shipped | `apps/docs/src/app/pages/(home).page.ts` |
+| SPRINT-6 GitHub repo page author | ✅ auto-resolved by SPRINT-1 | — |
+| SPRINT-7 portfolio TechArticle | ✅ shipped | `apps/docs/src/app/docs/docs-seo-data.ts` |
+
 **Goal (verbatim from audit §0.1):** When a user asks a live-retrieval engine
 *"What is ng-brutalism?"*, the answer converges on:
 
@@ -20,23 +37,28 @@ surface except `/showcase/portfolio/`. Most of this sprint is closing that gap.
 
 ## Punch list (ordered by impact-per-minute)
 
-### SPRINT-1 — Add author attribution to README opening 🔴 S
+### SPRINT-1 — Add author attribution to README ✅ shipped 2026-05-22
 
 **Justifies:** audit findings GH-3, NPM-2 (same root cause; one edit fixes both).
 
-**File:** `libs/ui/README.md` (and root `README.md` if it duplicates — both currently identical at the opening).
+**File:** `libs/ui/README.md` + root `README.md`.
 
-**Edit:** change the third paragraph from
+**As shipped:** rather than editing the opening paragraph, a dedicated `## Author`
+section was inserted between the FAQ and `## Status`. Opening product copy was
+left untouched.
 
-> ng-brutalism is a neo-brutalist Angular UI component library — token-driven,
-> signals-first, zoneless, with directive APIs, keyboard-ready interactions,
-> and Tailwind v4 ergonomics from the first import.
+```md
+## Author
 
-to
+Created by [Khang Tran](https://github.com/khangtrannn).
+```
 
-> ng-brutalism is a neo-brutalist Angular UI component library by **Khang Tran**
-> — token-driven, signals-first, zoneless, with directive APIs, keyboard-ready
-> interactions, and Tailwind v4 ergonomics from the first import.
+**Why the deviation:** putting "by Khang Tran" in the opening paragraph read as
+duplicative on the GitHub view (where the repo owner breadcrumb already
+identifies the author by username), and read awkwardly when combined with the
+home-page byline. A dedicated section keeps the author string present for the
+surfaces that lack GitHub chrome — npm package page, raw README scrapes,
+aggregators — without doubling up on the GitHub-rendered view.
 
 **Why this first:** README is the single highest-leverage text in the entire
 SEO surface. It renders on:
@@ -46,24 +68,31 @@ SEO surface. It renders on:
 - LLM training scrapes that walk `raw.githubusercontent.com`
 - Every documentation aggregator that mirrors npm READMEs
 
-Status: [ ] not started · [ ] done
+Status: [x] done
 
 ---
 
-### SPRINT-2 — Add visible author line on docs `/` 🔴 S
+### SPRINT-2 — Add visible author line on docs `/` ✅ shipped 2026-05-22
 
 **Justifies:** audit finding DOCS-2.
 
 **File:** `apps/docs/src/app/pages/(home).page.ts`
 
-**Edit:** add a single visible line directly below the H1, before the install
-snippet. Suggested copy:
+**As shipped:** a small-caption byline rendered directly below the H1, styled
+to match the existing eyebrow type (mono, uppercase, tracked):
 
-> Created by [Khang Tran](https://github.com/khangtrannn).
+```html
+<p class="mt-5 font-mono text-xs font-bold tracking-[0.08em] uppercase">
+  Created by
+  <a … href="https://github.com/khangtrannn" target="_blank" rel="noreferrer">
+    Khang Tran
+  </a>
+</p>
+```
 
-Render styling is your call — small caption type, eyebrow above the H1, or a
-discrete byline below the strapline are all fine. The SEO requirement is that
-"Khang Tran" appears as visible text on the prerendered HTML.
+Hero description paragraph was left as the original product copy (no second
+"by Khang Tran") — the byline is the canonical attribution; doubling up read
+awkward.
 
 **Verify after deploy:**
 
@@ -72,13 +101,15 @@ curl -sL https://ngbrutalism.khangtran.dev/ \
   | grep -o 'Khang Tran' | head -3
 ```
 
-Should return at least one match outside the `<meta>` and JSON-LD blocks.
+Expect: 2 matches — one in the visible byline and one in the
+`SoftwareApplication` JSON-LD author block. The `<meta name="author">` tag
+also carries it but won't match this exact string in casing/context.
 
-Status: [ ] not started · [ ] done
+Status: [x] done
 
 ---
 
-### SPRINT-3 — Rewrite GitHub repo description 🔴 S
+### SPRINT-3 — Rewrite GitHub repo description 🔴 S — pending (manual)
 
 **Justifies:** audit finding GH-1.
 
@@ -106,28 +137,24 @@ Status: [ ] not started · [ ] done
 
 ---
 
-### SPRINT-4 — Add author line to `llms.txt` 🔴 S
+### SPRINT-4 — Add author line to `llms.txt` ✅ shipped 2026-05-22
 
 **Justifies:** audit finding DOCS-1.
 
-**File:** `apps/docs/scripts/build-seo-artifacts.mjs` (the generator) — `llms.txt`
-itself is generated, so edit the source.
+**File:** `apps/docs/scripts/build-seo-artifacts.mjs` (the generator).
 
-**Edit:** in the section that produces the `llms.txt` preamble, change the
-opening from
-
-```
-# Ng Brutalism
-
-> The neo-brutalist Angular UI library. Signals, zoneless change detection, Tailwind v4. ...
-```
-
-to
+**As shipped:** preamble rewritten to embed all three canonical sentences plus
+an explicit `Author:` reference line.
 
 ```
 # Ng Brutalism
 
-> Ng Brutalism is a neo-brutalist Angular UI library by Khang Tran. Signals, zoneless change detection, Tailwind v4. Bold borders, offset shadows, punchy colors. Ships as @ng-brutalism/ui on npm.
+> Ng Brutalism is a neo-brutalist Angular UI library by Khang Tran. Built with signals, zoneless change detection, and Tailwind v4. It ships as @ng-brutalism/ui on npm. Bold borders, offset shadows, punchy colors.
+
+- Author: Khang Tran (https://github.com/khangtrannn)
+- Repository: https://github.com/khangtrannn/ng-brutalism
+- npm: https://www.npmjs.com/package/@ng-brutalism/ui
+- License: MIT
 ```
 
 This contains all three canonical sentences from the goal in one paragraph —
@@ -136,40 +163,47 @@ exactly what an LLM consuming `llms.txt` will retrieve and cite.
 **Verify after deploy:**
 
 ```sh
-curl -sL https://ngbrutalism.khangtran.dev/llms.txt | head -5
+curl -sL https://ngbrutalism.khangtran.dev/llms.txt | head -10
 ```
 
-Status: [ ] not started · [ ] done
+Status: [x] done
 
 ---
 
-### SPRINT-5 — Fix home H1 wording 🟡 S
+### SPRINT-5 — Fix home H1 wording ✅ shipped 2026-05-22
 
 **Justifies:** audit finding DOCS-3.
 
-**File:** wherever the home H1 lives (likely `apps/docs/src/app/pages/(home).page.ts`).
+**File:** `apps/docs/src/app/pages/(home).page.ts`.
 
-**Edit:** `The neo-brutalism UI library for Angular` → `The neo-brutalist Angular UI library`.
+**As shipped:** H1 restructured to read `The neo-brutalist Angular UI library`
+across three lines, with the existing yellow "Angular" pill kept as the visual
+hook between "neo-brutalist" and "UI library". `aria-label` updated to match.
+
+```
+The neo-brutalist
+[Angular]
+UI library
+```
 
 Three tokens earn their place:
 - "neo-brutalist" (adjective form, matches title tag)
-- "Angular" (framework first — what readers scan for)
+- "Angular" (framework — what readers scan for, also the visual anchor)
 - "UI library" (category)
 
-Status: [ ] not started · [ ] done
+Status: [x] done
 
 ---
 
-### SPRINT-6 — Surface "Khang Tran" on GitHub via repo page 🟡 S
+### SPRINT-6 — Surface "Khang Tran" on GitHub via repo page ✅ auto-resolved via SPRINT-1
 
 **Justifies:** audit finding GH-2.
 
-GitHub renders the repo page, About sidebar, and README inline. Once SPRINT-1
-ships (README mentions Khang Tran), this finding auto-resolves — the README
-section of the rendered repo page will contain "Khang Tran". No separate
-action needed beyond confirming on the deployed repo page.
+GitHub renders the repo page, About sidebar, and README inline. SPRINT-1 added
+the `## Author` section to the README, which the repo page now renders inline.
+No separate action needed.
 
-**Verify after SPRINT-1 ships:**
+**Verify after SPRINT-1 ships (push merged to `main`):**
 
 ```sh
 curl -sL https://github.com/khangtrannn/ng-brutalism | grep -o 'Khang Tran' | head -3
@@ -177,31 +211,29 @@ curl -sL https://github.com/khangtrannn/ng-brutalism | grep -o 'Khang Tran' | he
 
 Should return ≥1 match.
 
-Status: [ ] depends on SPRINT-1 — verify only
+Status: [x] resolved (verify only)
 
 ---
 
-### SPRINT-7 — Reconcile `og:type` and JSON-LD on `/showcase/portfolio/` 🟡 S
+### SPRINT-7 — Reconcile `og:type` and JSON-LD on `/showcase/portfolio/` ✅ shipped 2026-05-22
 
 **Justifies:** audit finding DOCS-4.
 
-**File:** `apps/docs/src/app/docs/docs-seo-data.ts` and `docs-title-strategy.ts`.
+**File:** `apps/docs/src/app/docs/docs-seo-data.ts`.
 
-The portfolio showcase page declares `og:type: article` but emits no
-`TechArticle` JSON-LD (only `BreadcrumbList`). Two options:
+**As shipped:** Option A — `isTechArticle` now matches `/showcase/portfolio`
+in addition to `/docs/*` and `/components/*`. Prerendered
+`showcase/portfolio/index.html` now contains a `TechArticle` JSON-LD block,
+so `og:type=article` and the structured data agree.
 
-- **Option A (recommended):** add `/showcase/portfolio` to the set of paths
-  that emit `TechArticle`. The page is more of a `CreativeWork` / `WebSite`
-  showcase than a tech article, but `TechArticle` is the closest schema.org
-  type that documents "showcases of working software" — Google accepts it.
-- **Option B:** flip `og:type` to `website` so it matches "no article-class
-  JSON-LD" — but then it disagrees with the title tag's `| Ng Brutalism`
-  pattern that signals article-ish content.
+```ts
+const isTechArticle =
+  path.startsWith('/docs/') ||
+  path.startsWith('/components/') ||
+  path === '/showcase/portfolio';
+```
 
-Implementation for A: in `docs-seo-data.ts`, change `isTechArticle` to also
-include `/showcase/portfolio`. One line.
-
-Status: [ ] not started · [ ] done
+Status: [x] done
 
 ---
 
@@ -209,10 +241,11 @@ Status: [ ] not started · [ ] done
 
 ### V1 — Re-run LLM probes (audit §5)
 
-After SPRINT-1 through SPRINT-4 ship and Google has had ~48–72 hours to
-re-crawl, query the same five engines from audit §5 with the prompt **"What
-is ng-brutalism?"** and paste verbatim answers below. Compare against
-baseline.
+**Gate:** wait until GSC reports "Indexing: completed" (currently still
+"processing data") AND ~48–72 hr have elapsed since the post-deploy crawl, so
+LLM retrieval engines have a chance to pick up the new content. Then query
+the same five engines from audit §5 with the prompt **"What is ng-brutalism?"**
+and paste verbatim answers below. Compare against baseline.
 
 ```
 Google AI Overview (2026-05-29):
@@ -231,7 +264,10 @@ Claude web (2026-05-29):
 
 ### V2 — Re-check rank baseline (audit §6)
 
-Same incognito-Google routine, paste new positions:
+**Gate:** wait until GSC indexing finishes processing. The dashboard
+currently reads *"indexing: processing data, please check again in a day or
+so"* — running the rank baseline before the index settles produces noise.
+Then same incognito-Google routine, paste new positions:
 
 ```
 T1 — ng-brutalism:             before [    ]  →  after [    ]
