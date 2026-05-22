@@ -255,15 +255,15 @@ already provides owner context:
 
 > Ng Brutalism (@ng-brutalism/ui) - a neo-brutalist Angular UI component library. Signals, zoneless, Tailwind v4. Bold borders, offset shadows, drop in and ship loud.
 
-#### 3c — V4 GSC nudge (7 min)
+#### 3c — V4 GSC nudge — DONE
 
 Search Console → Sitemaps → re-submit
 `https://ngbrutalism.khangtran.dev/sitemap.xml`. Then URL Inspection →
 Request Indexing for:
 
-- `/`
-- `/components/button/`
-- `/showcase/portfolio/`
+- [x] `/`
+- [x] `/components/button/`
+- [x] `/showcase/portfolio/`
 
 #### 3d — V3 schema validators (5 min)
 
