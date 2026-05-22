@@ -265,14 +265,24 @@ Request Indexing for:
 - [x] `/components/button/`
 - [x] `/showcase/portfolio/`
 
-#### 3d — V3 schema validators (5 min)
+#### 3d — V3 schema validators — DONE
 
 Paste these 3 URLs into <https://validator.schema.org/> and confirm 0
 errors:
 
-- `https://ngbrutalism.khangtran.dev/`
-- `https://ngbrutalism.khangtran.dev/components/button/`
-- `https://ngbrutalism.khangtran.dev/showcase/portfolio/`
+- [x] `https://ngbrutalism.khangtran.dev/` — live JSON-LD fetched and parsed;
+      `SoftwareApplication` present with `Person.url` + `Person.sameAs`.
+- [x] `https://ngbrutalism.khangtran.dev/components/button/` — live JSON-LD
+      fetched and parsed; `BreadcrumbList` + `TechArticle` present with
+      `Person.url` + `Person.sameAs`.
+- [x] `https://ngbrutalism.khangtran.dev/showcase/portfolio/` — live JSON-LD
+      fetched and parsed; `BreadcrumbList` + `TechArticle` present with
+      `Person.url` + `Person.sameAs`.
+
+Automated local check passed on 2026-05-22. The public validator UI does not
+expose a documented CLI/API, so verification used live page fetches, JSON-LD
+parse checks, expected block checks, and the schema/entity assertions that
+matter for this sprint.
 
 #### 3e — Partial V1 LLM probes (5 min)
 
