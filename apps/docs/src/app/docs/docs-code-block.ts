@@ -16,7 +16,7 @@ import {
   DocsCodeExpandIcon,
   DocsCodeInfoIcon,
 } from './docs-code-block.icons';
-import { highlightCode, type HighlightLanguage } from './syntax-highlighter';
+import type { HighlightLanguage } from './syntax-highlighter';
 
 type DocsCodeBlockVariant = 'standalone' | 'embedded';
 
@@ -269,6 +269,7 @@ export class DocsCodeBlock {
     params: () => ({ code: this.code(), lang: this.resolvedLanguage() }),
     loader: async ({ params: { code, lang } }) => {
       if (!this.isBrowser) return null;
+      const { highlightCode } = await import('./syntax-highlighter');
       const html = await highlightCode(code, lang);
       return this.sanitizer.bypassSecurityTrustHtml(html);
     },

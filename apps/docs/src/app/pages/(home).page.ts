@@ -2,12 +2,11 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { NbButton } from '@ng-brutalism/ui';
 
-import { DocsCodeBlock } from '../docs/docs-code-block';
 import { NbDocsNavbar } from '../docs/layout/navbar';
 
 @Component({
   selector: 'docs-home-page',
-  imports: [DocsCodeBlock, NbButton, NbDocsNavbar, RouterLink],
+  imports: [NbButton, NbDocsNavbar, RouterLink],
   template: `
     <div class="relative min-h-screen overflow-x-clip">
       <span
@@ -152,6 +151,8 @@ import { NbDocsNavbar } from '../docs/layout/navbar';
                       width="488"
                       height="488"
                       alt="Animated Angular mascot for Ng Brutalism"
+                      fetchpriority="high"
+                      decoding="async"
                     />
                   </div>
                 </div>
@@ -210,7 +211,21 @@ import { NbDocsNavbar } from '../docs/layout/navbar';
                 configures Tailwind CSS v4, and adds the global stylesheet
                 import in one step.
               </p>
-              <docs-code-block title="Angular CLI" [code]="installCode" />
+              <div
+                class="border-4 border-(--nb-border) bg-black text-white shadow-[8px_8px_0_0_var(--nb-shadow)]"
+              >
+                <div
+                  class="flex h-11 items-center gap-2 border-b-2 border-white/20 bg-black px-4 font-mono text-xs font-black tracking-[0.12em] text-white/80 uppercase"
+                >
+                  <span class="inline-block size-2.5 rounded-full border border-white/40 bg-(--nb-pink)"></span>
+                  <span class="inline-block size-2.5 rounded-full border border-white/40 bg-(--nb-yellow)"></span>
+                  <span class="inline-block size-2.5 rounded-full border border-white/40 bg-(--nb-mint)"></span>
+                  <span class="ml-2">Angular CLI</span>
+                </div>
+                <pre
+                  class="m-0 overflow-x-auto px-5 py-5 font-mono text-sm leading-6 text-white"
+                ><code>ng add &#64;ng-brutalism/ui</code></pre>
+              </div>
               <p class="mt-4 text-sm font-medium">
                 Need manual setup or want to review each step?
                 <a
@@ -258,6 +273,4 @@ import { NbDocsNavbar } from '../docs/layout/navbar';
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export default class HomePage {
-  protected readonly installCode = `ng add @ng-brutalism/ui`;
-}
+export default class HomePage {}

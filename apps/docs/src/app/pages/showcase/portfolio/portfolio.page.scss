@@ -55,6 +55,31 @@
   }
 }
 
+.portfolio-hero-portrait {
+  display: block;
+  flex: 0 0 auto;
+  width: 180px;
+  max-width: 100%;
+  aspect-ratio: 1081 / 1249;
+  background: url('/showcase/portfolio/khang.png') center / contain no-repeat;
+
+  @media (min-width: 640px) {
+    width: 220px;
+  }
+
+  @media (min-width: 768px) {
+    width: 300px;
+  }
+
+  @media (min-width: 1024px) {
+    width: 400px;
+  }
+
+  @media (min-width: 1280px) {
+    width: 450px;
+  }
+}
+
 .portfolio-skill-icon {
   width: clamp(1.5rem, 4vw, 2.5rem);
   height: clamp(1.5rem, 4vw, 2.5rem);

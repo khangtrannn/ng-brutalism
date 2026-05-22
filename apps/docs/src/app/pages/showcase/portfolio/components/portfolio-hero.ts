@@ -4,7 +4,6 @@ import {
   computed,
   input,
 } from '@angular/core';
-import { NgOptimizedImage } from '@angular/common';
 import { toObservable, toSignal } from '@angular/core/rxjs-interop';
 import { NbButton, NbMarquee, NbMarqueeItem, NbTitle } from '@ng-brutalism/ui';
 import { scan, switchMap, takeWhile, timer } from 'rxjs';
@@ -23,7 +22,6 @@ import type { Skill } from '../portfolio.types';
         NbMarquee,
         NbMarqueeItem,
         NbTitle,
-        NgOptimizedImage,
         ContactUsDialog,
         DocsPortfolioGithubIcon,
         DocsPortfolioLinkedinIcon,
@@ -113,17 +111,20 @@ import type { Skill } from '../portfolio.types';
         </div>
 
         <div
+          ngNonBindable
           class="order-1 mt-2 flex w-full justify-center lg:order-2 lg:mt-0 lg:w-1/2 lg:justify-end"
         >
-          <img
-            class="h-auto w-auto max-w-[180px] sm:max-w-[220px] md:max-w-[300px] lg:max-w-[400px] xl:max-w-[450px]"
-            [ngSrc]="assetPath() + '/khang.png'"
-            width="1081"
-            height="1249"
-            priority
-            alt="Khang Tran"
-            decoding="async"
+          <link
+            rel="preload"
+            as="image"
+            href="/showcase/portfolio/khang.png"
+            fetchpriority="high"
           />
+          <div
+            class="portfolio-hero-portrait"
+            role="img"
+            aria-label="Khang Tran"
+          ></div>
         </div>
       </div>
 
@@ -159,7 +160,6 @@ import type { Skill } from '../portfolio.types';
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class PortfolioHero {
-  readonly assetPath = input.required<string>();
   readonly greeting = input.required<string>();
   readonly isDark = input(false);
   readonly skills = input.required<Skill[]>();
