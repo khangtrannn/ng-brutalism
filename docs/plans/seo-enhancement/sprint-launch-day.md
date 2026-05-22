@@ -246,13 +246,13 @@ author: {
 },
 ```
 
-#### 3b — SPRINT-3 GitHub repo description (3 min)
+#### 3b — SPRINT-3 GitHub repo description — DONE
 
-GitHub web UI → repo About → settings cog. Replace current 92-char
-description with the proposed copy from `sprint-entity-authority.md`
-SPRINT-3:
+Synced via `.github/repository.json` + `pnpm sync:repo-metadata` on
+2026-05-22. Final copy intentionally omits `by Khang Tran` because GitHub
+already provides owner context:
 
-> Ng Brutalism (@ng-brutalism/ui) — a neo-brutalist Angular UI component library by Khang Tran. Signals, zoneless, Tailwind v4. Bold borders, offset shadows, drop in and ship loud.
+> Ng Brutalism (@ng-brutalism/ui) - a neo-brutalist Angular UI component library. Signals, zoneless, Tailwind v4. Bold borders, offset shadows, drop in and ship loud.
 
 #### 3c — V4 GSC nudge (7 min)
 
