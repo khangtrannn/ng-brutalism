@@ -206,10 +206,21 @@ import { NbDocsNavbar } from '../docs/layout/navbar';
                 Install
               </h2>
               <p class="mb-5 text-base font-medium">
-                Add the package to your Angular app, import the stylesheet
-                once, then pull each primitive into the component that uses it.
+                Run the Angular CLI schematic — it installs the package,
+                configures Tailwind CSS v4, and adds the global stylesheet
+                import in one step.
               </p>
-              <docs-code-block title="Terminal" [code]="installCode" />
+              <docs-code-block title="Angular CLI" [code]="installCode" />
+              <p class="mt-4 text-sm font-medium">
+                Need manual setup or want to review each step?
+                <a
+                  class="underline decoration-(--nb-border) decoration-2 underline-offset-4 hover:bg-(--nb-yellow)"
+                  routerLink="/docs/introduction"
+                >
+                  See the introduction
+                </a>
+                for full details.
+              </p>
             </section>
 
             <section id="explore" class="scroll-mt-32">
@@ -248,7 +259,5 @@ import { NbDocsNavbar } from '../docs/layout/navbar';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export default class HomePage {
-  protected readonly installCode = `pnpm add @ng-brutalism/ui
-# or
-npm install @ng-brutalism/ui`;
+  protected readonly installCode = `ng add @ng-brutalism/ui`;
 }
