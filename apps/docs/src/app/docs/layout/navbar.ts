@@ -37,17 +37,19 @@ import { Section, TOP_SECTIONS } from './sections';
         <a
           routerLink="/"
           class="brand group flex items-center gap-3 font-bold"
-          aria-label="Ng Brutalism home"
         >
-          <img
-            class="h-12 w-12 border-4 border-(--nb-border) bg-(--nb-yellow) object-contain shadow-[4px_4px_0_0_var(--nb-shadow)] transition-transform group-hover:-rotate-6 sm:h-14 sm:w-14"
-            src="/logo.png"
-            alt=""
-            width="56"
-            height="56"
-            aria-hidden="true"
-          />
-          <span class="hidden flex-col leading-none sm:flex">
+          <picture>
+            <source srcset="/logo.webp" type="image/webp" />
+            <img
+              class="h-12 w-12 border-4 border-(--nb-border) bg-(--nb-yellow) object-contain shadow-[4px_4px_0_0_var(--nb-shadow)] transition-transform group-hover:-rotate-6 sm:h-14 sm:w-14"
+              src="/logo.png"
+              alt=""
+              width="56"
+              height="56"
+              aria-hidden="true"
+            />
+          </picture>
+          <span class="sr-only flex-col leading-none sm:not-sr-only sm:flex">
             <span class="brand-title">NG·BRUTALISM</span>
             <span class="brand-sub">angular ui kit</span>
           </span>
@@ -76,7 +78,7 @@ import { Section, TOP_SECTIONS } from './sections';
           </span>
 
           <a
-            class="cta inline-flex h-11 items-center gap-2 border-4 border-(--nb-border) bg-(--nb-hot) px-3 text-sm font-black tracking-normal text-white uppercase shadow-[5px_5px_0_0_var(--nb-shadow)] transition-transform hover:-translate-y-0.5 hover:-rotate-1 sm:h-12 sm:px-5 sm:text-base"
+            class="cta inline-flex h-11 items-center gap-2 border-4 border-(--nb-border) bg-(--nb-hot) px-3 text-sm font-black tracking-normal text-black uppercase shadow-[5px_5px_0_0_var(--nb-shadow)] transition-transform hover:-translate-y-0.5 hover:-rotate-1 sm:h-12 sm:px-5 sm:text-base"
             href="https://github.com/khangtrannn/ng-brutalism"
             target="_blank"
             rel="noreferrer"

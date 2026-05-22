@@ -145,15 +145,19 @@ import { NbDocsNavbar } from '../docs/layout/navbar';
                   <div
                     class="relative z-10 flex aspect-square w-full items-center justify-center border-0 bg-white shadow-[12px_12px_0_0_rgba(0,0,0,0.18)]"
                   >
-                    <img
+                    <video
                       class="block w-full max-w-[230px] sm:max-w-[280px] xl:max-w-[330px]"
-                      src="/angular-mascot.gif"
                       width="488"
                       height="488"
-                      alt="Animated Angular mascot for Ng Brutalism"
-                      fetchpriority="high"
-                      decoding="async"
-                    />
+                      autoplay
+                      loop
+                      muted
+                      playsinline
+                      aria-label="Animated Angular mascot for Ng Brutalism"
+                    >
+                      <source src="/angular-mascot.webm" type="video/webm" />
+                      <source src="/angular-mascot.mp4" type="video/mp4" />
+                    </video>
                   </div>
                 </div>
               </div>
