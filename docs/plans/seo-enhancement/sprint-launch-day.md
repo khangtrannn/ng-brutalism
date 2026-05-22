@@ -172,9 +172,10 @@ explicit distinguishing line vs the closest existing entry
 
 **Steps:**
 
-- [ ] Fork <https://github.com/PatrickJS/awesome-angular>
-- [ ] Add the drafted entry to `### UI Libraries built on Tailwind CSS`
-- [ ] Open PR with the drafted title + description above
+- [x] Fork <https://github.com/PatrickJS/awesome-angular>
+- [x] Add the drafted entry to `### UI Libraries built on Tailwind CSS`
+- [x] Open PR with the drafted title + description above:
+      <https://github.com/PatrickJS/awesome-angular/pull/2200>
 
 Expected merge: 24–48h if format matches.
 
