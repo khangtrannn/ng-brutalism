@@ -179,16 +179,18 @@ explicit distinguishing line vs the closest existing entry
 
 Expected merge: 24–48h if format matches.
 
-### Block 2 — r/Angular2 engagement (15:45–16:00)
+### Block 2 — r/Angular2 engagement — DONE / no-op
 
 The post is 3+ hours old. Comment-momentum window closes around the 6-hour
 post-mark (~17:30 ICT). Engage now while still inside it.
 
-- [ ] Open the r/Angular2 post and reply to every comment.
-- [ ] If anyone asks vs-shadcn / vs-daisyUI / vs-spartan-ng, answer with
+- [x] Open the r/Angular2 post and reply to every comment.
+- [x] If anyone asks vs-shadcn / vs-daisyUI / vs-spartan-ng, answer with
       specifics. That's the comparison that converts readers.
-- [ ] If there's a particularly good question, edit the post body with
+- [x] If there's a particularly good question, edit the post body with
       "**Edit:** clarifying X" — engagement signals to Reddit's algo.
+
+2026-05-22 check: no comments to reply to, so no post-body edit needed.
 
 ### Block 3 — Admin block (16:00–16:30)
 
@@ -222,11 +224,11 @@ Handle: `@mktrann` → <https://x.com/mktrann>.
       `nx run docs:build-seo-artifacts`; prerendered HTML on `/` and
       `/components/card/` renders `Person.url` + `Person.sameAs:
       [AUTHOR_X_URL]` correctly.
-- [ ] **Deploy.** Commit is already on `main` as `20941f6`
+- [x] **Deploy.** Commit is already on `main` as `20941f6`
       (`feat(docs): update sitemap lastmod timestamp and add author X URL to SEO data`).
-      Deployment is still pending unless already handled outside this checkout;
-      until deployed, Google sees the old schema and the X-handle binding can't
-      fire.
+      Deployment verified live on 2026-05-22: `/` and `/components/card/`
+      both expose `Person.url` + `Person.sameAs: ["https://x.com/mktrann"]`
+      in JSON-LD.
 
 **Q5 risk confirmed empirically** (2026-05-22 ~17:00 ICT): tried to
 verify the X profile from outside the browser; both vectors failed.
