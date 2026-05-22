@@ -53,8 +53,9 @@ generic and crowded for this stage.
 Every component currently has two URLs serving byte-identical body content
 (`/docs/button.page.ts` is an 11-line re-export of `/components/button.page.ts`).
 **Decision: delete the `/docs/<component>/` wrapper routes entirely.** Sitemap
-shrinks to 19 URLs: `/`, two `/docs/*` pages, 15 `/components/*` pages, and the
-portfolio showcase. `/docs/*` keeps only `introduction` and `installation`.
+initially shrank to 19 URLs: `/`, two `/docs/*` pages, 15 `/components/*`
+pages, and the portfolio showcase. A later launch-week content-depth exception
+added `/docs/faq/`, bringing the generated route set to 20 URLs.
 
 ### 2.4 Per-component keyword pattern + H1 treatment (Q5)
 
@@ -312,5 +313,6 @@ Resolved during implementation:
 - `<meta name="theme-color">` uses `#ffd24a`, matching the docs `--nb-yellow`
   token.
 - Component eyebrows use per-page text, e.g. `Neo-Brutalist Angular Button`.
-- The generated route set is 19 URLs because the portfolio showcase is retained
-  alongside `/`, two docs pages, and 15 component pages.
+- The generated route set is 20 URLs because the portfolio showcase and the
+  later `/docs/faq/` content-depth page are retained alongside `/`, two original
+  docs pages, and 15 component pages.

@@ -5,18 +5,17 @@ the audit finding that justifies it.
 
 **Audit:** `audit-2026-05-22.md` (frozen snapshot).
 
-**Shipping snapshot (2026-05-22):** 6/7 sprint items shipped to `main` and
-deployed. Only **SPRINT-3** (GitHub repo description rewrite) remains — it
-lives in GitHub web UI settings, not in the repo files, so it has to be done
-by hand. GSC indexing is currently processing; rank baseline (V2) and LLM
-probe (V1) re-checks should wait until the index settles plus the
-recommended 48–72 hr re-crawl window.
+**Shipping snapshot (2026-05-22):** all 7 sprint items shipped. SPRINT-3 was
+completed via `.github/repository.json` + `pnpm sync:repo-metadata`; GSC
+indexing is currently processing, so rank baseline (V2) and LLM probe (V1)
+re-checks should wait until the index settles plus the recommended 48–72 hr
+re-crawl window.
 
 | Sprint | Status | Where |
 |---|---|---|
 | SPRINT-1 README author section | ✅ shipped | `libs/ui/README.md`, root `README.md` |
 | SPRINT-2 home byline | ✅ shipped | `apps/docs/src/app/pages/(home).page.ts` |
-| SPRINT-3 GitHub description | 🟥 pending (manual) | GitHub web UI |
+| SPRINT-3 GitHub description | ✅ shipped | `.github/repository.json` + GitHub repo settings |
 | SPRINT-4 `llms.txt` preamble | ✅ shipped | `apps/docs/scripts/build-seo-artifacts.mjs` |
 | SPRINT-5 home H1 wording | ✅ shipped | `apps/docs/src/app/pages/(home).page.ts` |
 | SPRINT-6 GitHub repo page author | ✅ auto-resolved by SPRINT-1 | — |
@@ -109,31 +108,39 @@ Status: [x] done
 
 ---
 
-### SPRINT-3 — Rewrite GitHub repo description 🔴 S — pending (manual)
+### SPRINT-3 — Rewrite GitHub repo description ✅ shipped 2026-05-22
 
 **Justifies:** audit finding GH-1.
 
-**Where:** GitHub web UI → repo page → About sidebar → settings cog → edit
-description. (Not in the repo files. Manual.)
+**Where:** `.github/repository.json`, synced to GitHub repo settings with
+`pnpm sync:repo-metadata`.
 
 **Current** (92 chars):
 
 > Neo-brutalist Angular component library with Tailwind v4 ergonomics.
 
-**Proposed** (under 250 chars):
+**Originally proposed** (under 250 chars):
 
 > Ng Brutalism (@ng-brutalism/ui) — a neo-brutalist Angular UI component library
 > by Khang Tran. Signals, zoneless, Tailwind v4. Bold borders, offset shadows,
 > drop in and ship loud.
 
-This addresses all three missing facts from GH-1: name, author, npm name. It
-also lifts the description's 7-fact score from 4/7 to 7/7.
+**As shipped:**
+
+> Ng Brutalism (@ng-brutalism/ui) - a neo-brutalist Angular UI component library.
+> Signals, zoneless, Tailwind v4. Bold borders, offset shadows, drop in and ship
+> loud.
+
+The final copy intentionally omits "by Khang Tran" because GitHub already
+renders owner context and the README now carries the full author attribution.
+It still closes the project-name and npm-package gaps from GH-1 while keeping
+the About text tighter.
 
 While you're in the settings, double-check:
 - Homepage URL is `https://ngbrutalism.khangtran.dev` ✓ (already set)
 - Topic tags match the 12 in audit §3.2 ✓ (already set)
 
-Status: [ ] not started · [ ] done
+Status: [x] done
 
 ---
 
@@ -316,9 +323,8 @@ of "processing data":
 
 - Submit updated sitemap in Google Search Console.
 - Use GSC "URL inspection" to request indexing of `/` and `/showcase/portfolio/`.
-- After SPRINT-3 lands (GitHub description rewrite), no docs-site re-deploy
-  is needed — the change is on GitHub only — but re-fetch the GitHub repo
-  page on the next audit to confirm.
+- SPRINT-3 has landed; re-fetch the GitHub repo page on the next audit to
+  confirm the synced description remains live.
 
 ---
 
@@ -334,8 +340,8 @@ forgotten:
 - New backlink campaigns (Reddit, dev.to, awesome-angular PRs) — off-site work.
 - Core Web Vitals / Lighthouse perf — separate ticket, needs real-device
   measurement.
-- Twitter / X handles in JSON-LD `sameAs` — add if/when the project has
-  social accounts to point at.
+- Additional social handles beyond X — add later only if they become stable
+  entity surfaces worth asserting in JSON-LD.
 - Restructuring the npm public page — Cloudflare-gated, not actionable.
 
 ---
