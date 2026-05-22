@@ -70,12 +70,15 @@ week-1 ranking sprint.
 ## Done today (2026-05-22) — progress so far
 
 - **Block 3a** — X profile updates + JSON-LD code change. ✅ shipped
-  (except commit+deploy of the code, which is still pending).
+  (commit exists on `main`; deploy is still pending unless already handled
+  outside this checkout).
   See Block 3a below for the final copy used.
+- **Block 8** — image alt audit. ✅ shipped locally on 2026-05-22.
+  No missing meaningful alts found; tightened a few generic mascot/logo alts.
 
 ## Up next (in order)
 
-1. **Commit + deploy the schema changes** (gates everything Google-side).
+1. **Deploy the schema changes** (gates everything Google-side).
 2. **Block 3b** — GitHub repo description rewrite.
 3. **Block 1** — open the awesome-angular PR (drafted, ready to submit).
 4. **Block 4** — file the bestofjs issue (drafted, ready to submit).
@@ -218,8 +221,11 @@ Handle: `@mktrann` → <https://x.com/mktrann>.
       `nx run docs:build-seo-artifacts`; prerendered HTML on `/` and
       `/components/card/` renders `Person.url` + `Person.sameAs:
       [AUTHOR_X_URL]` correctly.
-- [ ] **Commit + deploy.** Still pending — until deployed, Google sees
-      the old schema and the X-handle binding can't fire.
+- [ ] **Deploy.** Commit is already on `main` as `20941f6`
+      (`feat(docs): update sitemap lastmod timestamp and add author X URL to SEO data`).
+      Deployment is still pending unless already handled outside this checkout;
+      until deployed, Google sees the old schema and the X-handle binding can't
+      fire.
 
 **Q5 risk confirmed empirically** (2026-05-22 ~17:00 ICT): tried to
 verify the X profile from outside the browser; both vectors failed.
@@ -427,8 +433,12 @@ framework name.
 **Mode:** Claude runs solo. Decoupled from the daily schedule — fits any
 spare window between now and Show HN.
 
-- [ ] Image alt audit — sweep `apps/docs/src` and `libs/ui/README.md` for
+- [x] Image alt audit — sweep `apps/docs/src` and `libs/ui/README.md` for
       `<img>` and `![](`)` patterns. Flag any blanks or low-quality alts.
+      Completed 2026-05-22: no missing meaningful alts found. Empty alts are
+      decorative and paired with `aria-hidden`; README badges and content
+      screenshots have descriptive markdown alts. Tightened generic mascot/logo
+      alts in the docs app.
 
 PLAN.md Phase 6 step 9 listed this; verify whether it was actually done
 in the prior shipping or not.

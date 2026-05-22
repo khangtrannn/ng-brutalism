@@ -151,7 +151,7 @@ import { NbDocsNavbar } from '../docs/layout/navbar';
                       src="/angular-mascot.gif"
                       width="488"
                       height="488"
-                      alt="Animated Angular mascot"
+                      alt="Animated Angular mascot for Ng Brutalism"
                     />
                   </div>
                 </div>

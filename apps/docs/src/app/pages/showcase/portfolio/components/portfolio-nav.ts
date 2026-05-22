@@ -17,17 +17,17 @@ import type { NavLink } from '../portfolio.types';
     <header class="sticky top-4 z-50 w-full px-4">
       <nav
         class="mx-auto mt-2 flex h-[60px] w-full max-w-full items-center justify-between border-[3px] border-black bg-yellow-300 px-3 shadow-[8px_8px_0px_0px_#000] transition-transform duration-300 sm:mt-4 sm:h-[70px] sm:px-6 md:h-[80px] {{ showNav() ? 'translate-y-0' : '-translate-y-[calc(100%+40px)]' }}"
-        aria-label="Ronit portfolio"
+        aria-label="Khang Tran portfolio"
       >
         <a
           href="/showcase/portfolio#home"
           class="block min-w-[80px] -rotate-2 transition-transform duration-300 hover:rotate-0 xs:min-w-[100px]"
-          aria-label="Ronit Jadhav home"
+          aria-label="Khang Tran home"
         >
           <img
             class="h-[52px] w-[52px] object-contain sm:h-[64px] sm:w-[64px] md:h-[70px] md:w-[70px]"
             [src]="assetPath() + '/logo.png'"
-            alt="MK Logo"
+            alt="Khang Tran portfolio logo"
           />
         </a>
 

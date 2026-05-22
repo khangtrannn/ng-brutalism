@@ -56,7 +56,7 @@ import { DocsTokens } from '../../docs/docs-tokens';
           <nb-image-card
             class="w-full max-w-sm"
             [image]="previewImage"
-            alt="Animated Angular mascot"
+            alt="Animated Angular mascot for Ng Brutalism"
           >
             <nb-image-card-caption>
               <span
@@ -87,7 +87,7 @@ import { DocsTokens } from '../../docs/docs-tokens';
           <nb-image-card
             class="w-full max-w-sm"
             [image]="previewImage"
-            alt="Animated Angular mascot"
+            alt="Animated Angular mascot for Ng Brutalism"
           />
         </docs-example>
       </section>
@@ -205,7 +205,7 @@ export default class ImageCardPage {
   protected readonly defaultExampleCode = `<nb-image-card
   class="w-full max-w-sm"
   [image]="imageUrl"
-  alt="Animated Angular mascot"
+  alt="Animated Angular mascot for Ng Brutalism"
 >
   <nb-image-card-caption>
     <span
@@ -221,6 +221,6 @@ export default class ImageCardPage {
   protected readonly imageOnlyExampleCode = `<nb-image-card
   class="w-full max-w-sm"
   [image]="imageUrl"
-  alt="Animated Angular mascot"
+  alt="Animated Angular mascot for Ng Brutalism"
 />`;
 }
