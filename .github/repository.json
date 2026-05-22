@@ -1,7 +1,7 @@
 {
   "owner": "khangtrannn",
   "repo": "ng-brutalism",
-  "description": "Ng Brutalism (@ng-brutalism/ui) - a neo-brutalist Angular UI component library by Khang Tran. Signals, zoneless, Tailwind v4. Bold borders, offset shadows, drop in and ship loud.",
+  "description": "Ng Brutalism (@ng-brutalism/ui) - a neo-brutalist Angular UI component library. Signals, zoneless, Tailwind v4. Bold borders, offset shadows, drop in and ship loud.",
   "homepage": "https://ngbrutalism.khangtran.dev",
   "topics": [
     "angular",
