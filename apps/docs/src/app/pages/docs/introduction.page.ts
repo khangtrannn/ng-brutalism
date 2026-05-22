@@ -39,13 +39,19 @@ import { DocsCodeBlock } from '../../docs/docs-code-block';
               class="absolute -top-4 left-7 z-20 h-6 w-16 rotate-[8deg] border-3 border-(--nb-border) bg-white shadow-[3px_3px_0_0_var(--nb-shadow)] sm:left-9"
               aria-hidden="true"
             ></div>
-            <img
+            <video
               class="relative z-10 block w-full max-w-[155px] drop-shadow-[8px_8px_0_rgba(0,0,0,0.18)] sm:max-w-[190px] md:max-w-[170px] xl:max-w-[220px]"
-              src="/angular-mascot.gif"
               width="488"
               height="488"
-              alt="Animated Angular mascot for Ng Brutalism"
-            />
+              autoplay
+              loop
+              muted
+              playsinline
+              aria-label="Animated Angular mascot for Ng Brutalism"
+            >
+              <source src="/angular-mascot.webm" type="video/webm" />
+              <source src="/angular-mascot.mp4" type="video/mp4" />
+            </video>
           </div>
         </div>
 

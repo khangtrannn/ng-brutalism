@@ -33,6 +33,8 @@ import type { Project } from '../portfolio.types';
                 class="h-full w-full object-cover transition-transform group-hover:scale-110"
                 [src]="assetPath() + '/' + project.image"
                 [alt]="project.title"
+                loading="lazy"
+                decoding="async"
               />
             </div>
 

@@ -109,6 +109,7 @@ import {
             src="/showcase/contact-dialog/message.png"
             alt=""
             aria-hidden="true"
+            loading="lazy"
             class="pointer-events-none hidden h-28 w-auto select-none sm:block"
           />
         </div>

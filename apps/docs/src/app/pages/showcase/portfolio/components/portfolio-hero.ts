@@ -114,17 +114,21 @@ import type { Skill } from '../portfolio.types';
           ngNonBindable
           class="order-1 mt-2 flex w-full justify-center lg:order-2 lg:mt-0 lg:w-1/2 lg:justify-end"
         >
-          <link
-            rel="preload"
-            as="image"
-            href="/showcase/portfolio/khang.png"
-            fetchpriority="high"
-          />
-          <div
-            class="portfolio-hero-portrait"
-            role="img"
-            aria-label="Khang Tran"
-          ></div>
+          <picture>
+            <source
+              srcset="/showcase/portfolio/khang-450.webp 450w, /showcase/portfolio/khang-900.webp 900w"
+              sizes="(min-width: 1280px) 450px, (min-width: 1024px) 400px, (min-width: 768px) 300px, (min-width: 640px) 220px, 180px"
+              type="image/webp"
+            />
+            <img
+              class="portfolio-hero-portrait"
+              src="/showcase/portfolio/khang.png"
+              alt="Khang Tran"
+              width="1081"
+              height="1249"
+              fetchpriority="high"
+            />
+          </picture>
         </div>
       </div>
 

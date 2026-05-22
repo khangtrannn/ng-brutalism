@@ -23,6 +23,22 @@ push to main
   -> Cloudflare Pages serves ngbrutalism.khangtran.dev
 ```
 
+```mermaid
+flowchart TD
+  commit[Push or merge to main] --> action[GitHub Actions<br/>Deploy Docs]
+  action --> install[pnpm install<br/>frozen lockfile]
+  install --> metadata[Sync repository metadata<br/>optional GitHub token]
+  metadata --> checks[Nx lint and test<br/>ui + docs]
+  checks --> build[Nx docs build<br/>plus SEO artifacts]
+  build --> output[Static output<br/>dist/apps/docs/analog/public]
+  output --> wrangler[Wrangler direct upload]
+  wrangler --> pages[Cloudflare Pages<br/>ng-brutalism-docs]
+  pages --> domain[Custom domain<br/>ngbrutalism.khangtran.dev]
+
+  headers[_headers cache rules] -. copied into .-> output
+  secrets[GitHub secrets<br/>Cloudflare token + account ID] -. authorize .-> wrangler
+```
+
 The workflow lives in `.github/workflows/deploy-docs.yml`.
 
 The deploy command is:

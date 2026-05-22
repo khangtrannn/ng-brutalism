@@ -252,22 +252,205 @@ magick public/logo.png -resize 112x112 /tmp/logo-112-tmp.png && cwebp -q 85 /tmp
 
 | Audit | Estimated savings | Notes |
 |---|---|---|
-| `unused-javascript` | ~39KB | Main Angular bundle; needs code-splitting / lazy-loading investigation |
+| `unused-javascript` | ~39KB (docs), ~94KB (portfolio) | Main Angular bundle; needs code-splitting / lazy-loading investigation |
 | `render-blocking-resources` | 350ms (mobile) | Main Vite CSS bundle (16KB) — making it async causes FOUC; not worth the tradeoff on SSG |
-| LCP element render delay | ~1,560ms | Text `<p>` in prerendered HTML. Blocked by render-blocking CSS (748ms on mobile) + Angular bootstrap style/layout (780ms). Fixing render-blocking CSS is the lever but has FOUC tradeoff. |
+| LCP element render delay | ~1,560ms (docs homepage) | Text `<p>` in prerendered HTML. Blocked by render-blocking CSS (748ms on mobile) + Angular bootstrap style/layout (780ms). Fixing render-blocking CSS is the lever but has FOUC tradeoff. |
 | Font CLS | 0.001 | Caused by async Google Fonts WOFF2 load; already using `display=swap`. Score well within good threshold (<0.1) — safe to ignore |
+| `nb-docs-pagination` contrast | — | The shared pagination component at the bottom of every docs page fails WCAG AA color-contrast. Fixing it brings docs pages from A11y 95 → 100. |
 
 ---
 
-## Applying to other pages
+## Other pages audited (May 2026)
 
-Pages to audit next (all prerendered):
-- `/docs/introduction`
-- `/components/button`
-- `/showcase/portfolio`
+### `/docs/introduction`
 
-Check each for:
-1. Animated GIFs (same `angular-mascot.gif` used on introduction page — same video fix applies)
-2. Unoptimized images served without `srcset` or modern formats
-3. Color contrast issues specific to that page's color usage
-4. Missing or mismatched `aria-label` attributes
+| | Mobile | Desktop |
+|---|---|---|
+| Performance | 80 | 98 |
+| Accessibility | 95 | 95 |
+| Desktop LCP | — | 0.7s |
+
+**Fixes applied:** Fix 8 (GIF → video). No other images or aria-label mismatches.
+
+**A11y 95 cause:** `nb-docs-pagination` contrast failure (shared component, affects all docs pages — see remaining opportunities above).
+
+**Mobile 80 floor:** Angular TBT (770ms, score 38) + unused-javascript. Same unfixable floor as homepage.
+
+---
+
+### `/showcase/portfolio`
+
+**Before:**
+
+| | Mobile | Desktop |
+|---|---|---|
+| Performance | 66 | 90 |
+| Accessibility | 100 | 100 |
+| Mobile LCP | 7.0s | — |
+| Desktop LCP | — | 1.9s |
+
+**After (all fixes applied):**
+
+| | Mobile | Desktop |
+|---|---|---|
+| Performance | 87 | **100** |
+| Accessibility | 100 | 100 |
+| Mobile LCP | 1.9s | — |
+| Desktop LCP | — | **0.6s** |
+
+**Fixes applied:** Fix 9, 10, 11, 12 (see below).
+
+**Mobile 87 floor:** Angular TBT (420ms, score 65) + unused-javascript (94KB). Code-splitting is the only lever.
+
+---
+
+## Fix 8 — Introduction page: GIF → Video
+
+**Impact:** ~1MB payload saving. Same fix as Fix 1 — video files already existed from the homepage fix.
+
+**File:** `apps/docs/src/app/pages/docs/introduction.page.ts`
+
+Replace `<img src="/angular-mascot.gif">` with:
+```html
+<video
+  class="..."
+  width="488"
+  height="488"
+  autoplay
+  loop
+  muted
+  playsinline
+  aria-label="Animated Angular mascot for Ng Brutalism"
+>
+  <source src="/angular-mascot.webm" type="video/webm" />
+  <source src="/angular-mascot.mp4" type="video/mp4" />
+</video>
+```
+
+---
+
+## Fix 9 — Portfolio nav logo → responsive WebP
+
+**Impact:** 2MB → 1.6KB (1×) / 3.2KB (2×). Fixes `uses-responsive-images` audit.
+
+**Root cause:** `logo.png` is 1536×1024 px displayed at 52–70px.
+
+**Generate size variants:**
+```bash
+magick public/showcase/portfolio/logo.png -resize 70x70 /tmp/logo-70-tmp.png && cwebp -q 85 /tmp/logo-70-tmp.png -o public/showcase/portfolio/logo-70.webp
+magick public/showcase/portfolio/logo.png -resize 140x140 /tmp/logo-140-tmp.png && cwebp -q 85 /tmp/logo-140-tmp.png -o public/showcase/portfolio/logo-140.webp
+```
+
+**Update `<picture>` in `portfolio-nav.ts`:**
+```html
+<picture>
+  <source
+    [attr.srcset]="assetPath() + '/logo-70.webp 70w, ' + assetPath() + '/logo-140.webp 140w'"
+    sizes="(min-width: 768px) 70px, (min-width: 640px) 64px, 52px"
+    type="image/webp"
+  />
+  <img
+    class="h-[52px] w-[52px] object-contain sm:h-[64px] sm:w-[64px] md:h-[70px] md:w-[70px]"
+    [src]="assetPath() + '/logo.png'"
+    alt="Khang Tran portfolio logo"
+  />
+</picture>
+```
+
+**Note:** Use `[attr.srcset]` (not `[srcset]`) on `<source>` elements — Angular needs the attribute binding form here.
+
+---
+
+## Fix 10 — Portfolio project card images: lazy loading
+
+**Impact:** Defers all below-fold project images from blocking initial paint.
+
+**File:** `apps/docs/src/app/pages/showcase/portfolio/components/portfolio-projects.ts`
+
+```diff
+  <img
+    class="h-full w-full object-cover transition-transform group-hover:scale-110"
+    [src]="assetPath() + '/' + project.image"
+    [alt]="project.title"
++   loading="lazy"
++   decoding="async"
+  />
+```
+
+---
+
+## Fix 11 — Portfolio hero portrait: CSS background → `<img fetchpriority="high">` + WebP
+
+**Impact:** Mobile LCP 7.0s → 1.9s, Desktop LCP 1.9s → 0.6s. Biggest single win.
+
+**Root cause:** `div.portfolio-hero-portrait` used `background: url('/showcase/portfolio/khang.png')` (366KB PNG, 1081×1249px displayed at 180–450px). CSS background images are invisible to the browser's preload scanner — they block on JS parse + CSS evaluation before load starts. The in-template `<link rel="preload">` was also ineffective (Angular renders it into the body, not `<head>`).
+
+**Generate size variants:**
+```bash
+magick public/showcase/portfolio/khang.png -resize 450x /tmp/khang-450-tmp.png && cwebp -q 85 /tmp/khang-450-tmp.png -o public/showcase/portfolio/khang-450.webp
+magick public/showcase/portfolio/khang.png -resize 900x /tmp/khang-900-tmp.png && cwebp -q 85 /tmp/khang-900-tmp.png -o public/showcase/portfolio/khang-900.webp
+```
+
+Result: 366KB → 48KB (1×) / 147KB (2×).
+
+**Template change in `portfolio-hero.ts`** — replace `<link rel="preload">` + `<div>` with:
+```html
+<picture>
+  <source
+    srcset="/showcase/portfolio/khang-450.webp 450w, /showcase/portfolio/khang-900.webp 900w"
+    sizes="(min-width: 1280px) 450px, (min-width: 1024px) 400px, (min-width: 768px) 300px, (min-width: 640px) 220px, 180px"
+    type="image/webp"
+  />
+  <img
+    class="portfolio-hero-portrait"
+    src="/showcase/portfolio/khang.png"
+    alt="Khang Tran"
+    width="1081"
+    height="1249"
+    fetchpriority="high"
+  />
+</picture>
+```
+
+**CSS change in `portfolio.page.scss`:**
+```diff
+  .portfolio-hero-portrait {
+    aspect-ratio: 1081 / 1249;
+-   background: url('/showcase/portfolio/khang.png') center / contain no-repeat;
++   object-fit: contain;
+  }
+```
+
+---
+
+## Fix 12 — Contact dialog: lazy-load decorative image
+
+**Impact:** 624KB deferred until dialog opens (saves on every page that embeds `<contact-us-dialog>`).
+
+**Root cause:** `message.png` (639KB) inside `contact-us-dialog.ts` loaded eagerly even though the dialog is closed on page load.
+
+**File:** `apps/docs/src/app/pages/components/examples/contact-us-dialog.ts`
+
+```diff
+  <img
+    src="/showcase/contact-dialog/message.png"
+    alt=""
+    aria-hidden="true"
++   loading="lazy"
+    class="pointer-events-none hidden h-28 w-auto select-none sm:block"
+  />
+```
+
+---
+
+## Color contrast investigation (portfolio project links)
+
+**Conclusion: no fix needed.**
+
+`bg-blue-400` (#60a5fa) and `bg-green-400` (#4ade80) with `color: #000` give contrast ratios of **8.76:1** and **12.52:1** respectively — both well above the WCAG AA threshold of 4.5:1.
+
+---
+
+## Pages deferred
+
+- `/components/button` — no images or GIF found; no obvious aria-label issues. Audit when a concrete Lighthouse flag surfaces.

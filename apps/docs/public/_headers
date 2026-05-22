@@ -31,3 +31,15 @@
 
 /og.png
   Cache-Control: public, max-age=86400
+
+/showcase/portfolio/logo-70.webp
+  Cache-Control: public, max-age=86400
+
+/showcase/portfolio/logo-140.webp
+  Cache-Control: public, max-age=86400
+
+/showcase/portfolio/khang-450.webp
+  Cache-Control: public, max-age=86400
+
+/showcase/portfolio/khang-900.webp
+  Cache-Control: public, max-age=86400

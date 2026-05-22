@@ -24,11 +24,18 @@ import type { NavLink } from '../portfolio.types';
           class="block min-w-[80px] -rotate-2 transition-transform duration-300 hover:rotate-0 xs:min-w-[100px]"
           aria-label="Khang Tran home"
         >
-          <img
-            class="h-[52px] w-[52px] object-contain sm:h-[64px] sm:w-[64px] md:h-[70px] md:w-[70px]"
-            [src]="assetPath() + '/logo.png'"
-            alt="Khang Tran portfolio logo"
-          />
+          <picture>
+            <source
+              [attr.srcset]="assetPath() + '/logo-70.webp 70w, ' + assetPath() + '/logo-140.webp 140w'"
+              sizes="(min-width: 768px) 70px, (min-width: 640px) 64px, 52px"
+              type="image/webp"
+            />
+            <img
+              class="h-[52px] w-[52px] object-contain sm:h-[64px] sm:w-[64px] md:h-[70px] md:w-[70px]"
+              [src]="assetPath() + '/logo.png'"
+              alt="Khang Tran portfolio logo"
+            />
+          </picture>
         </a>
 
         <div class="hidden items-center space-x-6 text-base lg:text-lg md:flex">

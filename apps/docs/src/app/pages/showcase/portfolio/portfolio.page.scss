@@ -61,7 +61,7 @@
   width: 180px;
   max-width: 100%;
   aspect-ratio: 1081 / 1249;
-  background: url('/showcase/portfolio/khang.png') center / contain no-repeat;
+  object-fit: contain;
 
   @media (min-width: 640px) {
     width: 220px;
