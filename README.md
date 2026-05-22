@@ -124,13 +124,13 @@ bootstrapApplication(AppComponent, {
 Yes — it is built and tested against Angular 21. Earlier Angular versions are not supported.
 
 **Do I need Tailwind CSS v4?**
-Yes. ng-brutalism is built on Tailwind v4's token system. Tailwind v3 is not supported.
+Yes. ng-brutalism is built around Tailwind CSS v4 and CSS custom properties. It ships with an Angular CLI schematic that helps you get the required styling setup ready out of the box.
 
 **Can I use ng-brutalism without zoneless mode?**
-Yes — components are signal-driven and work in both zone.js and zoneless apps.
+Yes. Components are designed for modern Angular: standalone imports, signal-friendly internals, and zoneless-friendly interaction patterns. They work in zoneless apps and in apps that still run with zone.js.
 
 **Does ng-brutalism work with server-side rendering (SSR)?**
-Components are zoneless and avoid direct DOM access where possible, so SSR is expected to work — but it is not yet exhaustively verified at v0.1.1.
+The UI package avoids browser-only assumptions in core primitives where possible, and browser-dependent behavior is kept behind Angular platform checks when needed.
 
 **How customizable is the theme?**
 All visual tokens are exposed as CSS custom properties (`--nb-*`). A subset of tokens can also be configured from TypeScript via `provideNgBrutalism({ theme: ... })` at bootstrap.
@@ -140,7 +140,7 @@ It is pre-1.0. Component APIs are usable today, but minor versions may include b
 
 ## Author
 
-Created by [Khang Tran](https://github.com/khangtrannn).
+Created by [Khang Tran](https://github.com/khangtrannn). MIT licensed. Source code is available on GitHub.
 
 ## Status
 
