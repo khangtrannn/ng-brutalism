@@ -60,8 +60,7 @@ jobs:
         run: pnpm nx run docs:build-seo-artifacts
 
       - name: Deploy to Cloudflare Pages
-        uses: cloudflare/wrangler-action@v3
-        with:
-          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          command: pages deploy dist/apps/docs/analog/public --project-name=ng-brutalism-docs
+        run: pnpm dlx wrangler@3 pages deploy dist/apps/docs/analog/public --project-name=ng-brutalism-docs
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}

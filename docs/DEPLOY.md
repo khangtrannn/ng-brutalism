@@ -1,22 +1,71 @@
 # Docs Deployment
 
-`apps/docs` is deployed to GitHub Pages at
+`apps/docs` is deployed to Cloudflare Pages at
 <https://ngbrutalism.khangtran.dev>.
 
-Current state: live. The first custom-domain setup is complete: Cloudflare
-DNS points `ngbrutalism.khangtran.dev` to GitHub Pages, GitHub Pages uses
-GitHub Actions as its source, and HTTPS is handled by GitHub Pages.
+The production Pages project is `ng-brutalism-docs`. Deploys are built by
+GitHub Actions and uploaded to Cloudflare Pages with Wrangler direct upload.
+Cloudflare owns the hosting, custom domain, HTTPS, CDN cache behavior, and
+runtime response headers.
 
-Deploy mechanics: `.github/workflows/deploy-docs.yml` runs on every push to
-`main`, builds with `pnpm nx build docs --configuration=production`, and
-uploads the prerendered output from `dist/apps/docs/analog/public/`.
-The workflow also syncs the repository About metadata from
-`.github/repository.json` when either `REPO_METADATA_TOKEN` or `GH_TOKEN` is
-configured as a repository secret.
+## Architecture
 
----
+The deployment flow is:
 
-## Normal deploys
+```text
+push to main
+  -> GitHub Actions: Deploy Docs
+  -> pnpm install
+  -> repository metadata sync
+  -> Nx lint/test gate
+  -> Nx docs production build + SEO artifacts
+  -> Wrangler uploads dist/apps/docs/analog/public
+  -> Cloudflare Pages serves ngbrutalism.khangtran.dev
+```
+
+The workflow lives in `.github/workflows/deploy-docs.yml`.
+
+The deploy command is:
+
+```bash
+pnpm nx run docs:build-seo-artifacts
+wrangler pages deploy dist/apps/docs/analog/public --project-name=ng-brutalism-docs
+```
+
+The `docs:build-seo-artifacts` target depends on the docs build and then writes
+`sitemap.xml` and `llms.txt` into the deploy output. The deployable directory is
+`dist/apps/docs/analog/public`.
+
+## Why Cloudflare Pages
+
+The docs site moved from GitHub Pages to Cloudflare Pages because GitHub Pages
+does not allow this repo to control cache headers for static assets. GitHub
+Pages serves assets with a short cache lifetime, which caused repeat visits to
+redownload hashed JavaScript and CSS bundles.
+
+Cloudflare Pages supports a `_headers` file in the static output, so this repo
+can serve content with cache policy that matches how the files are produced:
+
+- HTML pages revalidate on each visit.
+- Hashed assets under `/assets/*` are cached for one year with `immutable`.
+- Images and media are cached for one day.
+
+That fixes the cache TTL issue from the Lighthouse audit while keeping the
+existing Nx/GitHub Actions quality gate.
+
+## Why Direct Upload
+
+Cloudflare Pages also supports importing a Git repository, but this repo uses
+Wrangler direct upload on purpose. GitHub Actions is the single build authority:
+it installs the exact pnpm workspace, runs Nx lint/test checks, syncs repository
+metadata, generates SEO artifacts, and only then uploads the built static
+output.
+
+Using Cloudflare Git integration would require duplicating that logic in
+Cloudflare build settings and secrets. Direct upload keeps CI and deploy gating
+in one place while still using Cloudflare for hosting and CDN behavior.
+
+## Normal Deploys
 
 For routine docs updates:
 
@@ -29,15 +78,64 @@ The workflow runs:
 ```bash
 pnpm sync:repo-metadata
 pnpm nx run-many -t lint test --projects=ui,docs
-pnpm nx build docs --configuration=production
+pnpm nx run docs:build-seo-artifacts
 ```
 
-The site only updates when those checks pass and the Pages deploy job
-completes.
+The site only updates when those checks pass and Wrangler successfully uploads
+the static output to Cloudflare Pages.
 
-To deploy without a new commit: GitHub → Actions → Deploy Docs → Run workflow.
+To deploy without a new commit: GitHub -> Actions -> Deploy Docs -> Run
+workflow.
 
-## Static routes
+## Required Secrets
+
+GitHub Actions needs these repository secrets:
+
+- `CLOUDFLARE_API_TOKEN`: Cloudflare API token with `Account -> Cloudflare Pages -> Edit`.
+- `CLOUDFLARE_ACCOUNT_ID`: Cloudflare account ID for the account that owns
+  `ng-brutalism-docs`.
+- `REPO_METADATA_TOKEN` or `GH_TOKEN`: optional GitHub token with repository
+  administration write access for About/sidebar metadata sync.
+
+The Cloudflare token should not be committed to the repo. If it is rotated,
+update the GitHub repository secret with the new value.
+
+## Cloudflare Settings
+
+Cloudflare Pages:
+
+- Project: `ng-brutalism-docs`
+- Deploy method: Direct Upload / Wrangler
+- Production domain: `ng-brutalism-docs.pages.dev`
+- Custom domain: `ngbrutalism.khangtran.dev`
+
+Cloudflare DNS for `khangtran.dev` should route `ngbrutalism.khangtran.dev` to
+the Cloudflare Pages project. When the custom domain is configured through
+Cloudflare Pages, Cloudflare manages the required DNS record.
+
+Verify DNS:
+
+```bash
+dig +short ngbrutalism.khangtran.dev
+```
+
+## Cache Headers
+
+Cache policy is defined in `apps/docs/public/_headers`, which is copied into
+the build output and read by Cloudflare Pages.
+
+Important rules:
+
+- `/*`: `Cache-Control: public, max-age=0, must-revalidate`
+- `/assets/*`: `Cache-Control: public, max-age=31536000, immutable`
+- Logo, favicon, Open Graph image, and mascot media:
+  `Cache-Control: public, max-age=86400`
+
+Cloudflare Pages applies matching `_headers` rules top-to-bottom. Later matching
+rules override earlier conflicting header values, so `/assets/*` can override
+the default HTML revalidation rule.
+
+## Static Routes
 
 The docs app is statically prerendered. Any new page that must work on direct
 navigation needs an entry in `prerender.routes` in `apps/docs/vite.config.ts`.
@@ -45,7 +143,7 @@ navigation needs an entry in `prerender.routes` in `apps/docs/vite.config.ts`.
 After adding a route, verify locally:
 
 ```bash
-pnpm nx build docs --configuration=production
+pnpm nx run docs:build-seo-artifacts
 ```
 
 Output should include an `index.html` under
@@ -59,66 +157,27 @@ Important existing smoke routes:
 - `/components/button`
 - `/showcase/portfolio`
 
-## Current settings
+## GitHub Pages
 
-Cloudflare DNS for `khangtran.dev`:
+GitHub Pages is no longer the production host for this site. After confirming a
+Cloudflare Pages deployment works, keep GitHub Pages disabled for this repo so
+there is only one production deployment path.
 
-- Type: `CNAME`
-- Name: `ngbrutalism`
-- Target: `khangtrannn.github.io`
-- Proxy status: **DNS only (grey cloud)**
-- TTL: Auto
-
-Verify DNS:
-
-```bash
-dig +short CNAME ngbrutalism.khangtran.dev
-dig +short ngbrutalism.khangtran.dev
-```
-
-Expected: the CNAME resolves to `khangtrannn.github.io`, followed by GitHub
-Pages IPs.
-
-GitHub repo settings:
-
-- Settings → Pages → Source: **GitHub Actions**
-- Custom domain: `ngbrutalism.khangtran.dev`
-- Enforce HTTPS: enabled after GitHub issues the certificate
-- Actions secret: `REPO_METADATA_TOKEN` or `GH_TOKEN`, using a GitHub token
-  with repository administration write access for About/sidebar metadata sync
-
-`apps/docs/public/CNAME` must contain exactly:
-
-```text
-ngbrutalism.khangtran.dev
-```
-
-No protocol, no trailing slash.
-
-## First-time setup history
-
-The one-time setup has already been done, but this is the recovery checklist
-if the Pages configuration is ever reset:
-
-1. Make sure Cloudflare uses the DNS-only CNAME above.
-2. In GitHub Settings → Pages, set Source to **GitHub Actions**.
-3. Set the custom domain to `ngbrutalism.khangtran.dev`.
-4. Run the **Deploy Docs** workflow.
-5. Wait for certificate provisioning, then enable **Enforce HTTPS**.
-
-Do not choose GitHub's suggested Jekyll or Static HTML templates. This repo
-already owns its Pages workflow in `.github/workflows/deploy-docs.yml`.
+`apps/docs/public/CNAME` can remain in the repo because it is harmless on
+Cloudflare Pages, but the authoritative custom-domain setting now lives in
+Cloudflare Pages.
 
 ## Troubleshooting
 
-- **Workflow fails at Configure Pages.** Confirm Settings → Pages → Source is
-  **GitHub Actions** and the custom domain is saved.
-- **Cert issuance is stuck.** Confirm Cloudflare proxy is grey, not orange.
-  If DNS is correct, remove the custom domain in GitHub Pages, save, re-add it,
-  and save again to retrigger provisioning.
+- **GitHub Actions fails at the Wrangler deploy step.** Confirm
+  `CLOUDFLARE_API_TOKEN` and `CLOUDFLARE_ACCOUNT_ID` are set in GitHub Actions
+  secrets and that the token has `Cloudflare Pages: Edit` permission.
+- **Wrangler says the project does not exist.** Confirm the Cloudflare Pages
+  project is named exactly `ng-brutalism-docs`.
+- **Custom domain does not load.** Confirm the domain is active under
+  Cloudflare Pages -> `ng-brutalism-docs` -> Custom domains.
+- **Cache headers are missing.** Confirm `_headers` exists in
+  `dist/apps/docs/analog/public` after running `pnpm nx run docs:build-seo-artifacts`.
 - **Direct route returns 404.** The route is probably missing from
   `prerender.routes` in `apps/docs/vite.config.ts`. Add it, rebuild, and
   redeploy.
-- **CNAME mismatch warning.** Keep `apps/docs/public/CNAME` and the GitHub
-  Pages custom-domain setting aligned. The workflow uploads the CNAME file on
-  every deploy.
