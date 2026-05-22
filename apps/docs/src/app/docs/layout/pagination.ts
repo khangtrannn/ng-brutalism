@@ -68,7 +68,7 @@ import { DOC_NAV } from '../nav';
       background: var(--nb-pink);
       text-align: right;
       align-items: flex-end;
-      color: #fff;
+      color: #000;
     }
 
     @media (min-width: 640px) {
@@ -86,10 +86,6 @@ import { DOC_NAV } from '../nav';
       color: rgba(0, 0, 0, 0.7);
     }
 
-    .pagination__card--next .pagination__eyebrow {
-      color: rgba(255, 255, 255, 0.95);
-    }
-
     .pagination__title {
       font-family: var(--font-display);
       font-size: 1.1rem;
@@ -97,10 +93,6 @@ import { DOC_NAV } from '../nav';
       line-height: 1.1;
       letter-spacing: -0.02em;
       color: #000;
-    }
-
-    .pagination__card--next .pagination__title {
-      color: #fff;
     }
   `,
     changeDetection: ChangeDetectionStrategy.OnPush

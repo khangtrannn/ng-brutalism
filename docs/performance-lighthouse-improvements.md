@@ -248,6 +248,41 @@ magick public/logo.png -resize 112x112 /tmp/logo-112-tmp.png && cwebp -q 85 /tmp
 
 ---
 
+## Fix 13 — Pagination contrast: white-on-pink → black-on-pink
+
+**Impact:** Fixes WCAG AA failure on every docs page — brings A11y 95 → 100 for `/docs/introduction` and all other docs pages.
+
+**Root cause:** `--nb-pink` = `#ff7eb6`. White text (`#fff`) on this background yields a contrast ratio of **2.33:1** (WCAG AA requires 4.5:1). Black text (`#000`) on the same background yields **9.01:1**.
+
+**File:** `apps/docs/src/app/docs/layout/pagination.ts`
+
+```diff
+  .pagination__card--next {
+    background: var(--nb-pink);
+    text-align: right;
+    align-items: flex-end;
+-   color: #fff;
++   color: #000;
+  }
+
+- .pagination__card--next .pagination__eyebrow {
+-   color: rgba(255, 255, 255, 0.95);
+- }
+
+  .pagination__title {
+    ...
+    color: #000;
+  }
+
+- .pagination__card--next .pagination__title {
+-   color: #fff;
+- }
+```
+
+**Why:** Removed the overrides that forced white text on the "next" card. The base rules (`color: #000` on the card, `rgba(0,0,0,0.7)` on the eyebrow, `#000` on the title) already apply correctly to both cards.
+
+---
+
 ## Remaining known opportunities (not yet implemented)
 
 | Audit | Estimated savings | Notes |
@@ -256,7 +291,6 @@ magick public/logo.png -resize 112x112 /tmp/logo-112-tmp.png && cwebp -q 85 /tmp
 | `render-blocking-resources` | 350ms (mobile) | Main Vite CSS bundle (16KB) — making it async causes FOUC; not worth the tradeoff on SSG |
 | LCP element render delay | ~1,560ms (docs homepage) | Text `<p>` in prerendered HTML. Blocked by render-blocking CSS (748ms on mobile) + Angular bootstrap style/layout (780ms). Fixing render-blocking CSS is the lever but has FOUC tradeoff. |
 | Font CLS | 0.001 | Caused by async Google Fonts WOFF2 load; already using `display=swap`. Score well within good threshold (<0.1) — safe to ignore |
-| `nb-docs-pagination` contrast | — | The shared pagination component at the bottom of every docs page fails WCAG AA color-contrast. Fixing it brings docs pages from A11y 95 → 100. |
 
 ---
 
@@ -267,12 +301,10 @@ magick public/logo.png -resize 112x112 /tmp/logo-112-tmp.png && cwebp -q 85 /tmp
 | | Mobile | Desktop |
 |---|---|---|
 | Performance | 80 | 98 |
-| Accessibility | 95 | 95 |
+| Accessibility | 100 | 100 |
 | Desktop LCP | — | 0.7s |
 
-**Fixes applied:** Fix 8 (GIF → video). No other images or aria-label mismatches.
-
-**A11y 95 cause:** `nb-docs-pagination` contrast failure (shared component, affects all docs pages — see remaining opportunities above).
+**Fixes applied:** Fix 8 (GIF → video), Fix 13 (pagination contrast).
 
 **Mobile 80 floor:** Angular TBT (770ms, score 38) + unused-javascript. Same unfixable floor as homepage.
 
