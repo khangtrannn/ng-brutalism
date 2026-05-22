@@ -283,15 +283,22 @@ T2 — neo-brutalist angular ui library: before [    ]  →  after [    ]
 
 ### V3 — Schema validators (audit §4.7)
 
-After SPRINT-7 ships, re-run [Schema Markup Validator](https://validator.schema.org/)
-on `/showcase/portfolio/`. Confirm `TechArticle` is now present and validates.
+Re-run [Schema Markup Validator](https://validator.schema.org/) on
+`/showcase/portfolio/`. Confirm the newly-emitted `TechArticle` block is
+present and validates. Also re-validate `/` and `/components/button/` since
+the home page DOM changed (byline + H1 restructure) — no JSON-LD shape change
+expected, but worth a quick re-check.
 
 ### V4 — Sitemap submission
 
-After all critical sprints ship and `lastmod` timestamps update:
+`lastmod` timestamps refreshed on the SPRINT-2/5 deploy. Once GSC moves out
+of "processing data":
 
 - Submit updated sitemap in Google Search Console.
 - Use GSC "URL inspection" to request indexing of `/` and `/showcase/portfolio/`.
+- After SPRINT-3 lands (GitHub description rewrite), no docs-site re-deploy
+  is needed — the change is on GitHub only — but re-fetch the GitHub repo
+  page on the next audit to confirm.
 
 ---
 

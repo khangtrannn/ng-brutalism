@@ -14,6 +14,7 @@ export const DEFAULT_DESCRIPTION =
 
 export const AUTHOR_NAME = 'Khang Tran';
 export const AUTHOR_URL = 'https://github.com/khangtrannn';
+export const AUTHOR_X_URL = 'https://x.com/mktrann';
 export const REPO_URL = 'https://github.com/khangtrannn/ng-brutalism';
 export const NPM_URL = 'https://www.npmjs.com/package/@ng-brutalism/ui';
 // Kept in sync with libs/ui/package.json by the release flow.

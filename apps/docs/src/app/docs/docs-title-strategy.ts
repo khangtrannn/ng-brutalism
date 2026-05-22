@@ -7,6 +7,7 @@ import {
   APP_TITLE,
   AUTHOR_NAME,
   AUTHOR_URL,
+  AUTHOR_X_URL,
   DocsPageSeo,
   GOOGLE_SITE_VERIFICATION,
   LIB_VERSION,
@@ -150,12 +151,13 @@ function buildSoftwareApplicationLd(): object {
     codeRepository: REPO_URL,
     downloadUrl: NPM_URL,
     keywords: SOFTWARE_KEYWORDS.join(', '),
-    sameAs: [NPM_URL, REPO_URL, AUTHOR_URL],
+    sameAs: [NPM_URL, REPO_URL],
     offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
     author: {
       '@type': 'Person',
       name: AUTHOR_NAME,
-      sameAs: [AUTHOR_URL],
+      url: AUTHOR_URL,
+      sameAs: [AUTHOR_X_URL],
     },
   };
 }
@@ -195,6 +197,7 @@ function buildTechArticleLd(seo: DocsPageSeo): object {
       '@type': 'Person',
       name: AUTHOR_NAME,
       url: AUTHOR_URL,
+      sameAs: [AUTHOR_X_URL],
     },
     publisher: {
       '@type': 'Organization',
