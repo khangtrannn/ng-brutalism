@@ -8,13 +8,26 @@
 | Accessibility | 95 | 95 |
 | Desktop LCP | — | 1.9s |
 
-## After applying all fixes
+## After applying all fixes (Fixes 1–14, May 2026)
+
+### Docs homepage (`/`)
 
 | | Mobile | Desktop |
 |---|---|---|
-| Performance | 97 | 100 |
+| Performance | 99 | 100 |
 | Accessibility | 100 | 100 |
-| Desktop LCP | — | 0.6s |
+| Mobile LCP | 1.5s | — |
+| Desktop LCP | — | 0.5s |
+
+### Portfolio showcase (`/showcase/portfolio`)
+
+| | Before | After |
+|---|---|---|
+| Mobile Performance | 66 | **98** |
+| Desktop Performance | 90 | **100** |
+| Accessibility | 100 | 100 |
+| Mobile LCP | 7.0s | 1.9s |
+| Desktop LCP | 1.9s | 0.7s |
 
 ---
 
@@ -283,14 +296,17 @@ magick public/logo.png -resize 112x112 /tmp/logo-112-tmp.png && cwebp -q 85 /tmp
 
 ---
 
-## Remaining known opportunities (not yet implemented)
+## Remaining known opportunities
 
-| Audit | Estimated savings | Notes |
-|---|---|---|
-| `unused-javascript` | ~39KB (docs), ~94KB (portfolio) | Main Angular bundle; needs code-splitting / lazy-loading investigation |
-| `render-blocking-resources` | 350ms (mobile) | Main Vite CSS bundle (16KB) — making it async causes FOUC; not worth the tradeoff on SSG |
-| LCP element render delay | ~1,560ms (docs homepage) | Text `<p>` in prerendered HTML. Blocked by render-blocking CSS (748ms on mobile) + Angular bootstrap style/layout (780ms). Fixing render-blocking CSS is the lever but has FOUC tradeoff. |
-| Font CLS | 0.001 | Caused by async Google Fonts WOFF2 load; already using `display=swap`. Score well within good threshold (<0.1) — safe to ignore |
+Ranked by estimated impact vs effort. Items marked **skip** are not worth pursuing.
+
+| Priority | Audit | Estimated savings | Status | Notes |
+|---|---|---|---|---|
+| 1 | `unused-javascript` (portfolio) | ~94KB | **Done (Fix 14)** | OpenLayers deferred via `@defer (on viewport)`. Portfolio mobile: 87 → 98. |
+| 2 | `unused-javascript` (shared bundle) | ~38KB | **Skip** | Docs-specific providers in shared Angular chunk. Would need feature-shell architecture split. Scores already 98–99/100. |
+| 3 | LCP render delay | ~1,560ms mobile | **Skip** | Split: 748ms render-blocking CSS (FOUC tradeoff — skip) + 780ms Angular bootstrap. Scores already at practical ceiling. |
+| — | `render-blocking-resources` | 350ms (mobile) | **Skip** | Main Vite CSS bundle (16KB) — async causes FOUC on SSG. |
+| — | Font CLS | 0.001 | **Skip** | Already using `display=swap`. Well within threshold. |
 
 ---
 
@@ -321,7 +337,7 @@ magick public/logo.png -resize 112x112 /tmp/logo-112-tmp.png && cwebp -q 85 /tmp
 | Mobile LCP | 7.0s | — |
 | Desktop LCP | — | 1.9s |
 
-**After (all fixes applied):**
+**After Fix 9–12 (images + lazy loading):**
 
 | | Mobile | Desktop |
 |---|---|---|
@@ -330,9 +346,18 @@ magick public/logo.png -resize 112x112 /tmp/logo-112-tmp.png && cwebp -q 85 /tmp
 | Mobile LCP | 1.9s | — |
 | Desktop LCP | — | **0.6s** |
 
-**Fixes applied:** Fix 9, 10, 11, 12 (see below).
+**After Fix 14 (`@defer` for OpenLayers):**
 
-**Mobile 87 floor:** Angular TBT (420ms, score 65) + unused-javascript (94KB). Code-splitting is the only lever.
+| | Mobile | Desktop |
+|---|---|---|
+| Performance | **98** | **100** |
+| Accessibility | 100 | 100 |
+| Mobile LCP | 1.9s | — |
+| Desktop LCP | — | 0.7s |
+
+**Fixes applied:** Fix 9, 10, 11, 12, 14.
+
+**Remaining 38 KB unused JS:** `index-*.js` (shared Angular bundle) contains docs-specific providers (`docs.navigation`, `docs-seo-data`, `docs-title-strategy`) that are unused on portfolio routes. Splitting these requires moving providers to a feature-level shell — not worth the effort at 98/100.
 
 ---
 
@@ -480,6 +505,37 @@ Result: 366KB → 48KB (1×) / 147KB (2×).
 **Conclusion: no fix needed.**
 
 `bg-blue-400` (#60a5fa) and `bg-green-400` (#4ade80) with `color: #000` give contrast ratios of **8.76:1** and **12.52:1** respectively — both well above the WCAG AA threshold of 4.5:1.
+
+---
+
+## Fix 14 — Portfolio journey: lazy-load OpenLayers via `@defer`
+
+**Impact:** Portfolio `/showcase/portfolio` initial JS: 357KB raw → 35KB raw (gzip: ~106KB → 11.5KB). OpenLayers moves to a separate `portfolio-journey-*.js` chunk (323KB raw / 95KB gzip) that loads only when the map section enters the viewport.
+
+**Root cause:** `portfolio-journey.ts` imported OpenLayers (`ol`) at the top level, bundling the entire 14MB library into the page's initial chunk.
+
+**File:** `apps/docs/src/app/pages/showcase/portfolio/portfolio.page.html`
+
+```diff
+-     <docs-portfolio-journey
+-       [activeJourney]="activeJourney()"
+-       [timeline]="timeline"
+-       (activeJourneyChanged)="setActiveJourney($event)"
+-     />
++     @defer (on viewport) {
++       <docs-portfolio-journey
++         [activeJourney]="activeJourney()"
++         [timeline]="timeline"
++         (activeJourneyChanged)="setActiveJourney($event)"
++       />
++     } @placeholder {
++       <section id="journey" class="portfolio-grid-section ...">
++         <!-- skeleton with same height as the real map section -->
++       </section>
++     }
+```
+
+**Why this works:** Angular's `@defer` block code-splits all component dependencies (including `ol`) into a separate lazy chunk. No changes needed to the TypeScript — the component stays in `imports`. The `@placeholder` block reserves layout space so there's no CLS when the map loads.
 
 ---
 

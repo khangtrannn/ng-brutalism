@@ -24,11 +24,36 @@
         [skills]="skills"
       />
 
-      <docs-portfolio-journey
-        [activeJourney]="activeJourney()"
-        [timeline]="timeline"
-        (activeJourneyChanged)="setActiveJourney($event)"
-      />
+      @defer (on viewport) {
+        <docs-portfolio-journey
+          [activeJourney]="activeJourney()"
+          [timeline]="timeline"
+          (activeJourneyChanged)="setActiveJourney($event)"
+        />
+      } @placeholder {
+        <section
+          id="journey"
+          class="portfolio-grid-section relative scroll-mt-6 bg-white p-2 py-8 sm:p-4 sm:py-12 md:p-6 md:py-16 lg:p-8"
+          aria-label="Journey section loading"
+        >
+          <div class="portfolio-grid-bg absolute inset-0"></div>
+          <div class="portfolio-radial absolute inset-0"></div>
+          <div class="relative z-10 mx-auto max-w-full px-2 sm:px-5">
+            <div class="portfolio-section-title mb-4 sm:mb-6 md:mb-10">
+              <h2
+                class="text-center font-heading text-xl font-black text-black sm:text-2xl md:text-4xl lg:text-5xl"
+              >
+                My Journey Through Time &amp; Space
+                <span aria-hidden="true">🗺️</span>
+              </h2>
+            </div>
+            <div
+              class="h-[400px] rounded-md border-2 border-black bg-[#dbeafe] shadow-[4px_4px_0px_0px_#000] sm:h-[500px] sm:border-4 sm:shadow-[8px_8px_0px_0px_#000] md:h-[600px] lg:h-[700px] xl:h-[750px]"
+              aria-hidden="true"
+            ></div>
+          </div>
+        </section>
+      }
 
       <docs-portfolio-projects [assetPath]="assetPath" [projects]="projects" />
 
