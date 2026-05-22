@@ -284,14 +284,19 @@ expose a documented CLI/API, so verification used live page fetches, JSON-LD
 parse checks, expected block checks, and the schema/entity assertions that
 matter for this sprint.
 
-#### 3e — Partial V1 LLM probes (5 min)
+#### 3e — Partial V1 LLM probes — DONE
 
 Ask each engine *"What is ng-brutalism?"* and paste the answer into
 `sprint-entity-authority.md` V1 section:
 
-- Perplexity (perplexity.ai)
-- ChatGPT with web tools enabled
-- Claude with web search enabled
+- [x] Perplexity (perplexity.ai) — recognized the entity; 5/7 canonical facts.
+- [x] ChatGPT with web tools enabled — missed the entity; answered generic
+      neo-brutalism design-style explanation.
+- [x] Claude with web search enabled — missed the entity; answered generic
+      neo-brutalism design-style explanation.
+
+Logged in `sprint-entity-authority.md` under "Partial launch-day probe —
+2026-05-22".
 
 (Full 5-engine V1 will run at the 72h checkpoint — see Verification.)
 

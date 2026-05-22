@@ -262,6 +262,26 @@ Claude web (2026-05-29):
 **Pass condition:** each engine's answer hits ≥5/7 canonical facts including
 **author** (Khang Tran).
 
+#### Partial launch-day probe — 2026-05-22
+
+Prompt: **"What is ng-brutalism?"**
+
+Purpose: early entity-recognition smoke test, not the formal 72h V1. Full V1
+still runs on 2026-05-29 after Show HN + additional crawl time.
+
+| Engine | Result | Score vs canonical facts | Notes |
+|---|---|---:|---|
+| Perplexity | Entity recognized | 5/7 | Correctly described `ng-brutalism` as a neo-brutalist Angular UI component library with directive-first APIs, signal-friendly internals, zoneless architecture, Tailwind v4 compatibility, CSS tokens, and component examples. Missed author (`Khang Tran`) and npm package name (`@ng-brutalism/ui`). |
+| ChatGPT with web | Entity missed | 0/7 | Answered generic neo-brutalism / UI design style, not the library. Mentioned Tailwind as a commonly associated tool but did not identify Angular, package, author, docs, or project. |
+| Claude with web | Entity missed | 0/7 | Answered generic neo-brutalism / neubrutalism design trend. Did not identify the Angular library, package, author, docs, or project. |
+
+**Interpretation:** early LLM/entity recognition is weak but not zero.
+Perplexity has picked up enough launch-day surface to identify the library;
+ChatGPT and Claude still collapse the query into the generic design-style
+meaning. This is expected for a fresh no-history project and reinforces the
+need for the two longer-horizon surfaces opened today: awesome-angular PR
+#2200 and bestofjs issue #439.
+
 ### V2 — Re-check rank baseline (audit §6)
 
 **Gate:** wait until GSC indexing finishes processing. The dashboard
