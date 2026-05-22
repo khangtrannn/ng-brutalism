@@ -8,6 +8,12 @@ This plan implements decisions reached across seven grilling questions. Each
 section names the question that authored it so future readers can trace
 "why this and not the alternative."
 
+> **Follow-up artifacts (2026-05-22):** post-shipment external audit of npm +
+> GitHub + docs surfaces lives in [`audit-2026-05-22.md`](./audit-2026-05-22.md)
+> (frozen snapshot). The remediation punch list — entity-authority sprint
+> targeting LLM-answer correctness and T1+T2 keyword rankings — is in
+> [`sprint-entity-authority.md`](./sprint-entity-authority.md) (mutable).
+
 ---
 
 ## 1. Goals (priority-ordered)
