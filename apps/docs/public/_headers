@@ -1,0 +1,33 @@
+# HTML pages — always revalidate
+/*
+  Cache-Control: public, max-age=0, must-revalidate
+
+# Hashed JS/CSS bundles — content-addressed, safe to cache 1 year
+/assets/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# Videos
+/angular-mascot.webm
+  Cache-Control: public, max-age=86400
+
+/angular-mascot.mp4
+  Cache-Control: public, max-age=86400
+
+# Images
+/logo.png
+  Cache-Control: public, max-age=86400
+
+/logo.webp
+  Cache-Control: public, max-age=86400
+
+/logo-56.webp
+  Cache-Control: public, max-age=86400
+
+/logo-112.webp
+  Cache-Control: public, max-age=86400
+
+/favicon.png
+  Cache-Control: public, max-age=86400
+
+/og.png
+  Cache-Control: public, max-age=86400

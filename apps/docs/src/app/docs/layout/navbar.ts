@@ -39,7 +39,11 @@ import { Section, TOP_SECTIONS } from './sections';
           class="brand group flex items-center gap-3 font-bold"
         >
           <picture>
-            <source srcset="/logo.webp" type="image/webp" />
+            <source
+              srcset="/logo-56.webp 56w, /logo-112.webp 112w"
+              sizes="(min-width: 640px) 56px, 48px"
+              type="image/webp"
+            />
             <img
               class="h-12 w-12 border-4 border-(--nb-border) bg-(--nb-yellow) object-contain shadow-[4px_4px_0_0_var(--nb-shadow)] transition-transform group-hover:-rotate-6 sm:h-14 sm:w-14"
               src="/logo.png"

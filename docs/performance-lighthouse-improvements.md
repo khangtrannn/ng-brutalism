@@ -179,14 +179,83 @@ console.log('Desktop Perf:', fmt(d.categories.performance.score), '| A11y:', fmt
 
 ---
 
+## Fix 6 — Responsive logo images
+
+**Impact:** logo.webp: 44 KB → 1.4 KB (1x) / 2.9 KB (2x retina). Fixes `uses-responsive-images` audit.
+
+**Root cause:** `logo.webp` is 1166×1166 px but displayed at 48×48 (mobile) / 56×56 (desktop sm+).
+
+**Generate size variants:**
+```bash
+magick public/logo.png -resize 56x56 /tmp/logo-56-tmp.png && cwebp -q 85 /tmp/logo-56-tmp.png -o public/logo-56.webp
+magick public/logo.png -resize 112x112 /tmp/logo-112-tmp.png && cwebp -q 85 /tmp/logo-112-tmp.png -o public/logo-112.webp
+```
+
+**Update `<picture>` in `navbar.ts`:**
+```html
+<picture>
+  <source
+    srcset="/logo-56.webp 56w, /logo-112.webp 112w"
+    sizes="(min-width: 640px) 56px, 48px"
+    type="image/webp"
+  />
+  <img src="/logo.png" alt="" width="56" height="56" aria-hidden="true" ... />
+</picture>
+```
+
+**Why these sizes:**
+- 56w = exact 1× display size for sm+ (desktop)
+- 112w = 2× retina for desktop; also best match for 2× mobile (96px needed, browser picks 112w as nearest)
+- `sizes` tells the browser the CSS display size so it can select the right descriptor
+
+---
+
+## Fix 7 — Cache TTL via Cloudflare Pages migration
+
+**Impact:** ~563KB savings on repeat visits. GitHub Pages hard-codes 10-minute TTL for all assets.
+
+**Steps:**
+
+1. Create `apps/docs/public/_headers` (Cloudflare Pages reads this file from the build output):
+```
+# HTML pages — always revalidate
+/*
+  Cache-Control: public, max-age=0, must-revalidate
+
+# Hashed JS/CSS bundles — content-addressed, safe to cache 1 year
+/assets/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# Videos / images — 1 day
+/angular-mascot.webm
+  Cache-Control: public, max-age=86400
+/angular-mascot.mp4
+  Cache-Control: public, max-age=86400
+/logo*.webp
+  Cache-Control: public, max-age=86400
+```
+
+2. Update `.github/workflows/deploy-docs.yml` to use `cloudflare/wrangler-action@v3` instead of `actions/deploy-pages`.
+
+3. In the Cloudflare dashboard:
+   - Create a new Pages project (`ng-brutalism-docs`)
+   - Add custom domain `ngbrutalism.khangtran.dev`
+   - Add secrets to GitHub: `CLOUDFLARE_API_TOKEN`, `CLOUDFLARE_ACCOUNT_ID`
+
+4. In the GitHub Pages settings: disable GitHub Pages for the repo (it will now serve from Cloudflare).
+
+**Why `/*` then `/assets/*` ordering works:** Cloudflare Pages applies ALL matching header rules top-to-bottom; later rules win on conflicts. So `/assets/*` overrides the `max-age=0` from `/*` for asset paths.
+
+---
+
 ## Remaining known opportunities (not yet implemented)
 
 | Audit | Estimated savings | Notes |
 |---|---|---|
-| `uses-long-cache-ttl` | ~461KB | Requires CDN/server cache-control headers, not a build change |
-| `unused-javascript` | ~39KB | Main Angular bundle; needs code-splitting investigation |
-| `uses-responsive-images` | ~44KB | `logo.png` is still served at one size; add `srcset` with multiple widths |
-| `render-blocking-resources` | 0ms est. savings | Main CSS bundle; Lighthouse flags it but savings are minimal on SSG |
+| `unused-javascript` | ~39KB | Main Angular bundle; needs code-splitting / lazy-loading investigation |
+| `render-blocking-resources` | 350ms (mobile) | Main Vite CSS bundle (16KB) — making it async causes FOUC; not worth the tradeoff on SSG |
+| LCP element render delay | ~1,560ms | Text `<p>` in prerendered HTML. Blocked by render-blocking CSS (748ms on mobile) + Angular bootstrap style/layout (780ms). Fixing render-blocking CSS is the lever but has FOUC tradeoff. |
+| Font CLS | 0.001 | Caused by async Google Fonts WOFF2 load; already using `display=swap`. Score well within good threshold (<0.1) — safe to ignore |
 
 ---
 
