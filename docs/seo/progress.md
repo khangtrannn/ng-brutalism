@@ -34,7 +34,9 @@
 
 | Priority | Item | Gate / deadline |
 |---|---|---|
+| 🔴 | **Publish `@ng-brutalism/ui@0.1.2` to npm** — triggers search index crawl; package currently absent from npm search (0 results even for exact name) | Do immediately: `pnpm build:ui && cd dist/ui && npm publish --access public` |
 | 🔴 | Angular Weekly (ng-news, Rainer Hahnenkamp) — submit for inclusion | Submit ASAP; high-intent Angular audience, best star-growth channel |
+| 🟡 | Verify npm search indexing ~24–48h after publish: search `@ng-brutalism/ui` on npmjs.com | Should surface package after crawler re-runs |
 | 🟡 | 72h verification (LLM probes, rank baseline, star/download delta) | Run ~72h after Angular Weekly goes out |
 | 🟡 | bestofjs listing | Gate: 100 stars (currently 12) |
 | 🟢 | GSC URL inspection: request re-index of `/` and `/showcase/portfolio/` | User action, after GSC finishes processing |
@@ -46,6 +48,10 @@
 
 > One line per SEO-relevant change. Include commit hash, date, and the SEO
 > consequence. Future-you will thank present-you.
+
+### 2026-05-23 (session 3)
+
+- **npm package v0.1.2 — search index fix**: `libs/ui/package.json` bumped to 0.1.2. Root cause: `@ng-brutalism/ui` is in the registry but absent from npm's search index (`api.npms.io` returns 404; `registry.npmjs.org/-/v1/search` returns 0 results even for exact name). A new publish fires the registry event that wakes the search crawler. Description rewritten to lead with T2 keyword "neo-brutalist Angular UI library" and include "brutalist Angular components" + "ng add @ng-brutalism/ui". Keywords: added `ngbrutalism` (unhyphenated — matches domain prefix users see), `ng-add`, `schematics`; removed `ui` (too generic) and `tailwind` (duplicate of `tailwindcss`).
 
 ### 2026-05-23 (session 2)
 
