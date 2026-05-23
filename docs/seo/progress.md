@@ -34,11 +34,11 @@
 
 | Priority | Item | Gate / deadline |
 |---|---|---|
-| 🟡 | Show HN — post whenever ready | No hard deadline |
-| 🟡 | 72h verification (LLM probes, rank baseline, star/download delta) | Run 72h after Show HN |
+| 🔴 | Angular Weekly (ng-news, Rainer Hahnenkamp) — submit for inclusion | Submit ASAP; high-intent Angular audience, best star-growth channel |
+| 🟡 | 72h verification (LLM probes, rank baseline, star/download delta) | Run ~72h after Angular Weekly goes out |
 | 🟡 | bestofjs listing | Gate: 100 stars (currently 12) |
-| 🟢 | V3 schema validators — Rich Results Test (interactive) | User action |
 | 🟢 | GSC URL inspection: request re-index of `/` and `/showcase/portfolio/` | User action, after GSC finishes processing |
+| ~~🟡~~ | ~~Show HN~~ | **DROPPED** — poor audience fit; see sprint-launch-day.md |
 
 ---
 

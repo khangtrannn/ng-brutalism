@@ -101,14 +101,11 @@ week-1 ranking sprint.
 
 ## Up next (in order)
 
-1. **Tonight** — keep replying to r/Angular2 comments while the post is
-   active, then stop by 21:00.
-2. **Sat–Sun 2026-05-23 → 2026-05-24** — rest / let awesome-angular,
-   bestofjs, schema, and Reddit signals sit.
-3. **Mon 2026-05-25 evening** — Block 6: Show HN content prep via
-   `/grill-me`.
-4. **Tue 2026-05-26 20:00 ICT** — Block 7: Show HN go-live.
-5. **Fri 2026-05-29 ~15:00 ICT** — 72h post-Show-HN verification.
+1. **ASAP (2026-05-23)** — Block 9: Submit to Angular Weekly (ng-news / Rainer Hahnenkamp). DM on X + check GitHub submission flow. ~15 min.
+2. **Sat–Sun 2026-05-23 → 2026-05-24** — rest / let awesome-angular, schema, and Reddit signals sit.
+3. **After Angular Weekly goes out** — 72h verification (LLM probes, rank baseline, star/download delta). Update kill-criterion results.
+4. ~~Mon 2026-05-25 evening — Block 6: Show HN content prep~~ **DROPPED**
+5. ~~Tue 2026-05-26 20:00 ICT — Block 7: Show HN go-live~~ **DROPPED**
 
 ---
 
@@ -426,11 +423,34 @@ All Reddit links are `nofollow`. Value is brand surface + referral
 traffic, not SEO juice. The dofollow backlink play is fully covered by
 Blocks 1 (awesome-angular) and 4 (bestofjs).
 
-### Block 6 & 7 — Show HN (do whenever ready)
+### Block 6 & 7 — Show HN — **DROPPED** (2026-05-23)
 
-- [ ] Pick a title and post to <https://news.ycombinator.com/submit> with URL `https://ngbrutalism.khangtran.dev`
-- [ ] Post a first comment immediately after submitting (HN allows this for Show HN)
-- [ ] Stay online ~90 min to reply to comments
+**Decision:** Show HN removed from the plan. Reasoning:
+- HN frontend audience is ~80% React/Next.js. Angular carries a perception tax ("enterprise," "Google graveyard").
+- Neo-brutalism is a visual pitch; HN rewards technical novelty (new paradigms, benchmarks). Won't generate meaningful discussion.
+- Realistic HN outcome for an Angular UI library: 20–50 points, 10–30 stars. Does not close the 88-star gap to bestofjs.
+- The assumption "Show HN = primary path to 100 stars" was never stress-tested and is likely wrong.
+
+**Replaced by:** Block 9 — Angular Weekly (ng-news). See below.
+
+---
+
+### Block 9 — Angular Weekly / ng-news (Rainer Hahnenkamp) — **NEW**
+
+**Why this instead of HN:** Angular Weekly is the direct pipeline to Angular practitioners — the exact audience that evaluates and stars Angular UI libraries. High-intent, zero noise, no Angular perception tax. This channel was omitted from the original plan.
+
+**Submission:**
+- Rainer Hahnenkamp runs ng-news (<https://ng-news.com> / <https://x.com/rainerhahnenkamp>)
+- Angular Weekly is also published at <https://angularweekly.dev> (curated by the community)
+- Submit via: X DM to @rainerhahnenkamp, or GitHub issue on the Angular Weekly repo if one exists
+
+**Drafted submission message (DM to Rainer):**
+
+> Hi Rainer, I built ng-brutalism — a neo-brutalist Angular UI library (signals, zoneless, Tailwind v4). 15 primitives, directive-first APIs, no NgModules. Would love a mention in ng-news if it fits. Docs: https://ngbrutalism.khangtran.dev — GitHub: https://github.com/khangtrannn/ng-brutalism
+
+- [ ] Send DM to @rainerhahnenkamp on X
+- [ ] Check if Angular Weekly has a GitHub submission flow and file an issue
+- [ ] Check <https://angularweekly.dev> for submission instructions
 
 ### Block 8 — Image alt audit (async, anytime before Tue 2026-05-26)
 
@@ -477,12 +497,13 @@ to the next unchecked block.
 
 ---
 
-## Verification at 72h post-Show-HN (2026-05-29 ~15:00 ICT)
+## Verification at 72h post-Angular-Weekly
 
-**Window shifted** from 2026-05-25 to 2026-05-29 to land 72h after the
-Tuesday Show HN go-live, not 72h after the awesome-angular PR. Reading
-metrics 72h after the major brand-surface event is what was meant; the
-move-Show-HN-to-Tuesday decision pushed this proportionally.
+**Window:** Run ~72h after Angular Weekly goes out with the submission.
+Date TBD — depends on when Rainer publishes the next issue (typically weekly).
+
+**Previously tied to Show HN (2026-05-29). That date is now void — Show HN dropped 2026-05-23.
+Reset the 72h clock from the Angular Weekly publication date.**
 
 
 
