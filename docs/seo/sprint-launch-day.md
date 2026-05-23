@@ -58,6 +58,17 @@ week-1 ranking sprint.
 
 ---
 
+## Metrics baseline (updated 2026-05-23)
+
+| Signal | 2026-05-22 launch | 2026-05-23 |
+|---|---|---|
+| GitHub stars | 5 | **12** (+7) |
+| npm weekly downloads | — | **231** |
+| awesome-angular PR | filed | **MERGED** ✅ |
+| bestofjs | filed | **Gated at 100 stars** |
+
+---
+
 ## Already done before this sprint started
 
 - **r/Angular2 launch post** — posted ~3 hours before this file was written.
@@ -66,6 +77,18 @@ week-1 ranking sprint.
 - **LinkedIn launch post** — posted same day.
   - URL: <https://www.linkedin.com/posts/khangtrann_angular-opensource-frontend-activity-7463287983379619840-NtZ5>
   - Voice/framing reference used to draft the X launch tweet.
+
+## Done on 2026-05-23 (Saturday)
+
+- **awesome-angular PR #2200 MERGED** ✅ — crown jewel #1 dofollow backlink is live.
+- **Performance sprint shipped** (CWV-relevant — see `progress.md` shipped log):
+  - Cloudflare Pages migration + caching headers (`c55b745`, `3355db4`)
+  - Image optimization + WebP responsive images (`dbb5e8c`)
+  - Pagination contrast a11y fix (`9b50098`)
+  - Portfolio `@defer` lazy load (`0ea9133`)
+  - Cloudflare Web Analytics beacon + copy-event tracking (`6bc9e7e`)
+- **bestofjs GATED** ❌ — michaelrambeau: 100-star threshold required. Issue
+  filed and acknowledged; no re-submission needed. Gate: hit 100 stars (currently 12).
 
 ## Done today (2026-05-22) — progress so far
 
@@ -303,9 +326,19 @@ Logged in `sprint-entity-authority.md` under "Partial launch-day probe —
 
 (Full 5-engine V1 will run at the 72h checkpoint — see Verification.)
 
-### Block 4 — bestofjs issue — DONE
+### Block 4 — bestofjs issue — GATED (100 stars required)
 
-**Crown jewel #2.** Sole survivor of the original 3-target Block 4 after
+**Status update 2026-05-23:** michaelrambeau responded to issue #439:
+> "In principle we accept only requests for projects with more than 100 stars
+> on GitHub. We'll keep an eye on the project and consider adding it once it
+> reaches the required threshold of 100 stars."
+>
+> Current stars: 12. Need: +88. Primary path to threshold: Show HN (Block 7).
+
+**Crown jewel #2 is not done — it's gated.** The issue is filed and the
+maintainer is aware of the project; no re-submission needed. Just hit 100 stars.
+
+**Crown jewel #2 (original context).** Sole survivor of the original 3-target Block 4 after
 grilling session 2 verified the other two are unusable:
 
 - **OpenBase: DROPPED.** Site is defunct — `curl https://openbase.com/`

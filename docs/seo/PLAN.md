@@ -13,6 +13,10 @@ section names the question that authored it so future readers can trace
 > (frozen snapshot). The remediation punch list — entity-authority sprint
 > targeting LLM-answer correctness and T1+T2 keyword rankings — is in
 > [`sprint-entity-authority.md`](./sprint-entity-authority.md) (mutable).
+>
+> **Live status (always current):** [`progress.md`](./progress.md) — metrics,
+> pending actions, and a rolling log of every SEO-relevant change regardless of
+> which sprint it belongs to. Read this file first at the start of any session.
 
 ---
 

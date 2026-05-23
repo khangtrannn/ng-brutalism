@@ -93,7 +93,17 @@ Strong success criteria let you loop independently. Weak criteria ("make it work
 
 **These guidelines are working if:** fewer unnecessary changes in diffs, fewer rewrites due to overcomplication, and clarifying questions come before implementation rather than after mistakes.
 
-## 5. Portfolio showcase reference
+## 5. Doc navigation
+
+At the start of any working session:
+1. Read `docs/INDEX.md` to find domain files relevant to the current task.
+2. Read `docs/progress.md` for current status across all domains.
+
+After completing work in any domain, update:
+- `docs/progress.md` — the summary section for that domain (max 5 lines, no history)
+- `docs/<domain>/progress.md` — add a shipped-log entry with commit hash and date
+
+## 6. Portfolio showcase reference
 
 Website: https://ronit.io/
 Repo: https://github.com/ronitjadhav/ronit.io
