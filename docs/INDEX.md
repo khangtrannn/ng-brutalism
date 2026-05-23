@@ -40,6 +40,17 @@ Agent session protocol:
 
 ---
 
+## Analytics
+
+**When to read:** working on Cloudflare Web Analytics, D1 copy events, traffic reports, usage signals, visitor/source/page metrics.
+
+| File | Purpose | Mutable? |
+|---|---|---|
+| `docs/analytics/README.md` | How to generate and interpret local analytics reports | Yes |
+| `docs/analytics/reports/` | Generated weekly analytics reports | Yes |
+
+---
+
 ## Components
 **When to read:** working on UI primitives, component API design, design system decisions, contact dialog, input-group, select.
 

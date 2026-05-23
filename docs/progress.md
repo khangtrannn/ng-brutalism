@@ -37,6 +37,14 @@ For history and details, read the domain's own `progress.md`.
 
 ---
 
+## Analytics
+
+**Status:** Local weekly report generator in progress. Combines Cloudflare Web Analytics with D1 copy events.
+**Next:** Run `pnpm analytics:report` with Cloudflare env vars and review first committed report.
+→ Details: `docs/analytics/README.md`
+
+---
+
 ## Release
 **Status:** v0.1.0 + v0.1.1 shipped to npm. No v0.2 plan yet.
 **Next:** Begin v0.2 planning when component backlog is prioritized.
