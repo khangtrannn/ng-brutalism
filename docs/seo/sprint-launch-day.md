@@ -426,86 +426,11 @@ All Reddit links are `nofollow`. Value is brand surface + referral
 traffic, not SEO juice. The dofollow backlink play is fully covered by
 Blocks 1 (awesome-angular) and 4 (bestofjs).
 
-### Block 6 — Show HN content prep (Mon 2026-05-25 evening)
+### Block 6 & 7 — Show HN (do whenever ready)
 
-**Dedicated session, run via `/grill-me`** to extract:
-- Title pick from candidates below
-- Bracketed answers in the first-comment template
-- Final draft of first comment
-
-Why this is its own session: the bracketed answers (especially "Why
-Angular not React") are the highest-stakes content in the whole launch
-and deserve real interrogation 24h before posting. Drafting them while
-tired on launch day is how thin first comments happen.
-
-- [ ] Pick title from candidates (or rewrite your own):
-  1. `Show HN: Ng Brutalism – neo-brutalist Angular UI, signals + zoneless + Tailwind v4` (78 chars)
-  2. `Show HN: Ng Brutalism – Angular UI library, signals-first, zoneless, Tailwind v4`
-  3. `Show HN: A neo-brutalist Angular UI library (signals, zoneless, Tailwind v4)` (72 chars)
-
-  All three lead with the technical hooks (signals, zoneless, Tailwind v4)
-  that signal "this is current Angular, not legacy" — HN scans titles in
-  <1s and clicks on what's technically interesting, not stylistically.
-
-- [ ] Draft your first comment now, using this template (fill in the
-      [bracketed] honest answers):
-
-      > Hey HN — author here. Built this over [N weeks/months] because I
-      > wanted an Angular UI primitive set that committed to the
-      > neo-brutalist aesthetic end-to-end (bold borders, offset shadows,
-      > no gradients) instead of bolting it on top of a neutral library
-      > like Spartan.
-      >
-      > Tech: Angular 21, signals throughout, zoneless, Tailwind v4. No
-      > NgModules, no zone.js, no decorators-as-state. Each component is
-      > a primitive — drop in `<ng-button>`, `<ng-card>` etc. and ship.
-      >
-      > Stack choices I'd expect questions on:
-      > - Why Angular not React: [your honest 1-line answer]
-      > - Why a new library instead of theming Spartan/Taiga: [1-line]
-      > - License: MIT. Repo: [GitHub URL].
-      >
-      > Happy to answer anything.
-
-  Preempts the four predictable HN objections in 5 sentences:
-  "why Angular not React," "why another UI library," "what is brutalism
-  in code terms," "is this a serious lib or a toy."
-
-### Block 7 — Show HN go-live (Tue 2026-05-26, 20:00–21:30 ICT)
-
-**Day-of-week rationale:** Friday HN windows lose to weekend ranking
-decay starting Friday EST evening — exactly when post momentum would
-need to clear front-page threshold. Tuesday morning EST is one of the
-strongest accumulation days; weekly devs-at-desk count is highest.
-
-**Timing math:** 9–10am EDT (US east coast wake-up window) = 13:00–14:00
-UTC = **20:00–21:00 ICT**. Extended window 20:00–22:00 is fine.
-
-Why this window: HN ranking algorithm uses upvotes-per-hour with decay.
-First 60–90 min after posting is the critical accumulation window — need
-~5–10 upvotes in the first hour to avoid being decayed before more
-people see the post.
-
-- [ ] Submit at <https://news.ycombinator.com/submit>
-- [ ] Use title from Block 6
-- [ ] URL: `https://ngbrutalism.khangtran.dev`
-- [ ] **Immediately post your drafted first comment.** HN explicitly
-      allows this for Show HN — it's not shilling, it's expected.
-- [ ] Stay online and active for **90 min minimum**, responding to every
-      comment thoughtfully.
-
-Realistic outcomes:
-
-| Outcome | Probability | What it looks like |
-|---|---|---|
-| Flat (<5 points) | ~60% | Dies in /newest. Costs nothing. |
-| Mild (5–30 points) | ~25% | Few hours on /show, 500–2k visitors. |
-| Catches (30–100 points) | ~12% | Front page 1–3h, 5k–15k visitors, newsletter pickup likely. |
-| Hits (100+ points) | ~3% | Front page 6+h, 30k+ visitors, multiple newsletter + blog pickups. |
-
-Angular is a headwind for HN's React-skewed audience — that's why the
-title and first comment lead with modern-Angular hooks, not the
-framework name.
+- [ ] Pick a title and post to <https://news.ycombinator.com/submit> with URL `https://ngbrutalism.khangtran.dev`
+- [ ] Post a first comment immediately after submitting (HN allows this for Show HN)
+- [ ] Stay online ~90 min to reply to comments
 
 ### Block 8 — Image alt audit (async, anytime before Tue 2026-05-26)
 

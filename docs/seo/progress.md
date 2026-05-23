@@ -34,9 +34,8 @@
 
 | Priority | Item | Gate / deadline |
 |---|---|---|
-| 🔴 | Show HN Block 6 — content prep (`/grill-me`) | ASAP (was Mon 2026-05-25) |
-| 🔴 | Show HN Block 7 — go-live | Tue 2026-05-26 20:00 ICT |
-| 🟡 | 72h verification (V1 LLM probes + V2 ranks + V3 schema + V4 sitemap) | 2026-05-29 ~15:00 ICT |
+| 🟡 | Show HN — post whenever ready | No hard deadline |
+| 🟡 | 72h verification (LLM probes, rank baseline, star/download delta) | Run 72h after Show HN |
 | 🟡 | bestofjs listing | Gate: 100 stars (currently 12) |
 | 🟢 | V3 schema validators — Rich Results Test (interactive) | User action |
 | 🟢 | GSC URL inspection: request re-index of `/` and `/showcase/portfolio/` | User action, after GSC finishes processing |
@@ -48,7 +47,13 @@
 > One line per SEO-relevant change. Include commit hash, date, and the SEO
 > consequence. Future-you will thank present-you.
 
-### 2026-05-23
+### 2026-05-23 (session 2)
+
+- **FAQPage JSON-LD on `/docs/faq/`**: 9-item `FAQPage` structured data block added to `DocsTitleStrategy`. Unlocks Google FAQ rich results for the FAQ page. Data lives in `FAQ_ITEMS` constant in `docs-seo-data.ts`. Shipped alongside `TechArticle` + `BreadcrumbList` already on that route.
+- **`MODIFIED_DATE` updated to 2026-05-23**: All `TechArticle` JSON-LD blocks now reflect the correct last-modified date (was `2026-05-21`, pre-launch).
+- **`Person.sameAs` expanded**: LinkedIn (`linkedin.com/in/khangtrann`) and GitHub profile (`github.com/khangtrannn`) added alongside X. Both `SoftwareApplication.author` and `TechArticle.author` blocks updated. GitHub is fully crawlable (unlike X which returns 403 to bots), strengthening entity binding.
+
+### 2026-05-23 (session 1)
 
 - **Analytics wiring** (`6bc9e7e`): Cloudflare Web Analytics beacon added to
   `index.html`. Async, no Lighthouse impact. Enables real traffic data for

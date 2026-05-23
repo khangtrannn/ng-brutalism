@@ -5,10 +5,12 @@ import { RouterStateSnapshot, TitleStrategy } from '@angular/router';
 
 import {
   APP_TITLE,
+  AUTHOR_LINKEDIN_URL,
   AUTHOR_NAME,
   AUTHOR_URL,
   AUTHOR_X_URL,
   DocsPageSeo,
+  FAQ_ITEMS,
   GOOGLE_SITE_VERIFICATION,
   LIB_VERSION,
   MODIFIED_DATE,
@@ -106,6 +108,7 @@ export class DocsTitleStrategy extends TitleStrategy {
         seo.path === '/' ? buildSoftwareApplicationLd() : null,
       breadcrumbs: seo.path === '/' ? null : buildBreadcrumbListLd(seo),
       'tech-article': seo.isTechArticle ? buildTechArticleLd(seo) : null,
+      'faq-page': seo.path === '/docs/faq' ? buildFaqPageLd() : null,
     };
 
     for (const [key, payload] of Object.entries(blocks)) {
@@ -158,7 +161,7 @@ function buildSoftwareApplicationLd(): object {
       '@type': 'Person',
       name: AUTHOR_NAME,
       url: AUTHOR_URL,
-      sameAs: [AUTHOR_X_URL],
+      sameAs: [AUTHOR_URL, AUTHOR_LINKEDIN_URL, AUTHOR_X_URL],
     },
   };
 }
@@ -198,7 +201,7 @@ function buildTechArticleLd(seo: DocsPageSeo): object {
       '@type': 'Person',
       name: AUTHOR_NAME,
       url: AUTHOR_URL,
-      sameAs: [AUTHOR_X_URL],
+      sameAs: [AUTHOR_URL, AUTHOR_LINKEDIN_URL, AUTHOR_X_URL],
     },
     publisher: {
       '@type': 'Organization',
@@ -209,5 +212,20 @@ function buildTechArticleLd(seo: DocsPageSeo): object {
       '@type': 'WebPage',
       '@id': seo.canonicalUrl,
     },
+  };
+}
+
+function buildFaqPageLd(): object {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: FAQ_ITEMS.map((item) => ({
+      '@type': 'Question',
+      name: item.question,
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: item.answer,
+      },
+    })),
   };
 }

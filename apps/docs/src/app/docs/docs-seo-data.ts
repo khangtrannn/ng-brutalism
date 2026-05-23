@@ -15,6 +15,7 @@ export const DEFAULT_DESCRIPTION =
 export const AUTHOR_NAME = 'Khang Tran';
 export const AUTHOR_URL = 'https://github.com/khangtrannn';
 export const AUTHOR_X_URL = 'https://x.com/mktrann';
+export const AUTHOR_LINKEDIN_URL = 'https://www.linkedin.com/in/khangtrann';
 export const REPO_URL = 'https://github.com/khangtrannn/ng-brutalism';
 export const NPM_URL = 'https://www.npmjs.com/package/@ng-brutalism/ui';
 // Kept in sync with libs/ui/package.json by the release flow.
@@ -22,7 +23,7 @@ export const LIB_VERSION = '0.1.1';
 // Coarse fallback dates for TechArticle JSON-LD. Could be replaced by a
 // build-time per-page manifest later; for now they apply uniformly.
 export const PUBLISHED_DATE = '2025-10-01';
-export const MODIFIED_DATE = '2026-05-21';
+export const MODIFIED_DATE = '2026-05-23';
 
 export const GOOGLE_SITE_VERIFICATION =
   'lq5mTAkarsSjy3r_0qKiuAUUvzEFyaXagIKcCZMmcd4';
@@ -218,3 +219,52 @@ function humanizePath(path: string): string {
     .map((part) => part[0].toUpperCase() + part.slice(1))
     .join(' ');
 }
+
+export const FAQ_ITEMS: Array<{ question: string; answer: string }> = [
+  {
+    question: 'What is Ng Brutalism?',
+    answer:
+      'Ng Brutalism is a neo-brutalist Angular UI component library published as @ng-brutalism/ui. It gives modern Angular apps directive-first components with hard borders, offset shadows, punchy colors, and Tailwind CSS v4 styling ergonomics. It ships with loud defaults, directive-first primitives, and CSS tokens you can tune so the brutalist style still fits your brand.',
+  },
+  {
+    question: 'Why build it for Angular?',
+    answer:
+      'Angular has excellent application primitives, especially in modern versions with standalone components, signals, and zoneless-friendly patterns. Ng Brutalism is built to fit that world directly, with APIs and interaction patterns that feel natural in Angular applications. Each component can be imported directly into the Angular component that uses it.',
+  },
+  {
+    question: 'Does it support signals and zoneless Angular?',
+    answer:
+      'Yes. The library is designed for modern Angular: standalone imports, signal-friendly internals, and zoneless-friendly interaction patterns. You can use Ng Brutalism in a zoneless app, and you can also use it in Angular apps that still run with zone.js.',
+  },
+  {
+    question: 'Does it require Tailwind CSS v4?',
+    answer:
+      'Yes. Ng Brutalism is built around Tailwind CSS v4 and CSS custom properties. It ships with an Angular CLI schematic that helps you get the required styling setup ready out of the box.',
+  },
+  {
+    question:
+      'How is it different from Angular Material, PrimeNG, Taiga UI, or Spartan?',
+    answer:
+      'Ng Brutalism starts from a narrower design promise: neo-brutalist components that look opinionated on day one. The library leans on CSS tokens and Tailwind utilities rather than a large theme abstraction — you tune borders, shadows, colors, and local component accents close to the markup. Where other libraries focus on unstyled primitives, Ng Brutalism takes a visual-first approach.',
+  },
+  {
+    question: 'Is it production ready?',
+    answer:
+      'Ng Brutalism is pre-1.0. The components are usable today, but minor API changes can happen while the library hardens. It is a good fit for prototypes, portfolios, launch pages, and side projects. For conservative enterprise systems, wait for a later stable release.',
+  },
+  {
+    question: 'What components are included?',
+    answer:
+      'The current public preview includes Button, Card, Dialog, Input, Select, and Accordion — common UI primitives for actions, layout, content, forms, and overlays.',
+  },
+  {
+    question: 'Does it work with SSR?',
+    answer:
+      'The docs site itself is prerendered with Analog and Angular. The UI package avoids browser-only assumptions in core primitives where possible, and browser-dependent behavior is kept behind Angular platform checks when needed.',
+  },
+  {
+    question: 'Who made Ng Brutalism?',
+    answer:
+      'Ng Brutalism was created by Khang Tran, is MIT licensed, and is published to npm as @ng-brutalism/ui. The source code is available on GitHub at github.com/khangtrannn/ng-brutalism.',
+  },
+];
