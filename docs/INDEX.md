@@ -68,7 +68,7 @@ Agent session protocol:
 | File | Purpose | Mutable? |
 |---|---|---|
 | `CHANGELOG.md` (root) | Running changelog — update on every release | Yes |
-| `docs/release/` | Future release plans go here (empty until v0.2 planning begins) | — |
+| `docs/release/RELEASE.md` | Step-by-step release runbook (build → tag → GitHub release → npm publish) | Yes |
 
 ---
 
