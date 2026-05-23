@@ -34,10 +34,10 @@
 
 | Priority | Item | Gate / deadline |
 |---|---|---|
-| 🔴 | **Publish `@ng-brutalism/ui@0.1.2` to npm** — triggers search index crawl; package currently absent from npm search (0 results even for exact name) | Do immediately: `pnpm build:ui && cd dist/ui && npm publish --access public` |
-| 🔴 | Angular Weekly (ng-news, Rainer Hahnenkamp) — submit for inclusion | Submit ASAP; high-intent Angular audience, best star-growth channel |
-| 🟡 | Verify npm search indexing ~24–48h after publish: search `@ng-brutalism/ui` on npmjs.com | Should surface package after crawler re-runs |
-| 🟡 | 72h verification (LLM probes, rank baseline, star/download delta) | Run ~72h after Angular Weekly goes out |
+| ~~🔴~~ | ~~**Publish `@ng-brutalism/ui@0.1.2` to npm**~~ | **DONE** — live on npm; searchable via `@ng-brutalism/ui`, `ng-brutalism`, `ngbrutalism` |
+| ~~🔴~~ | ~~Angular Weekly (ng-news, Rainer Hahnenkamp) — submit for inclusion~~ | **SUBMITTED 2026-05-23** — awaiting response; publishes Wednesdays, next issue 2026-05-28 |
+| ~~🟡~~ | ~~Verify npm search indexing~~ | **DONE** — confirmed all 3 search terms surface v0.1.2 |
+| 🟡 | 72h verification (LLM probes, rank baseline, star/download delta) | Run ~72h after Angular Weekly goes out (target: 2026-05-31) |
 | 🟡 | bestofjs listing | Gate: 100 stars (currently 12) |
 | 🟢 | GSC URL inspection: request re-index of `/` and `/showcase/portfolio/` | User action, after GSC finishes processing |
 | ~~🟡~~ | ~~Show HN~~ | **DROPPED** — poor audience fit; see sprint-launch-day.md |
@@ -48,6 +48,10 @@
 
 > One line per SEO-relevant change. Include commit hash, date, and the SEO
 > consequence. Future-you will thank present-you.
+
+### 2026-05-23 (session 5)
+
+- **ng-news (Angular Weekly) submission**: DM sent to Rainer Hahnenkamp. Message led with the "brutalism trend + Angular had nothing for it" hook, ended with soft ask. ng-news publishes Wednesdays — next issue 2026-05-28. No formal submission process exists; direct DM is the channel.
 
 ### 2026-05-23 (session 4)
 
