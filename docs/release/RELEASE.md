@@ -82,7 +82,7 @@ exist before any future `nx release version` run.
 ```sh
 gh release create v0.x.y \
   --title "v0.x.y" \
-  --notes "$(sed -n '/^## \[0\.x\.y\]/,/^## \[/p' CHANGELOG.md | head -n -1)"
+  --notes "$(awk '/^## \[0\.x\.y\]/{found=1} found && /^## \[0\./ && !/^## \[0\.x\.y\]/{exit} found{print}' CHANGELOG.md)"
 ```
 
 Replace `0.x.y` with the actual version. This extracts the relevant CHANGELOG
@@ -141,7 +141,8 @@ git tag "v$VERSION"
 git push origin main --tags
 
 # 6: GitHub release
-gh release create "v$VERSION" --title "v$VERSION" --generate-notes
+gh release create "v$VERSION" --title "v$VERSION" \
+  --notes "$(awk "/^## \[$VERSION\]/{found=1} found && /^## \[/ && !/^## \[$VERSION\]/{exit} found{print}" CHANGELOG.md)"
 
 # 7: publish
 cd dist/ui && npm publish --access public && cd -

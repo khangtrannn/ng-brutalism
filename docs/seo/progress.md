@@ -49,6 +49,10 @@
 > One line per SEO-relevant change. Include commit hash, date, and the SEO
 > consequence. Future-you will thank present-you.
 
+### 2026-05-23 (session 4)
+
+- **Brotli compression restored + double beacon fixed**: removed `no-transform` from all HTML `Cache-Control` rules in `apps/docs/public/_headers` — Cloudflare was skipping compression because of it (Lighthouse: "No compression applied", est. 19 KiB savings). Also removed manual beacon from `index.html` — live site had 2 beacons (manual + Cloudflare Pages auto-injection); `no-transform` never blocked Pages injection so it was causing double analytics. Pages auto-injection remains as the single source. **CWV impact:** smaller HTML transfer → lower TTFB → faster FCP/LCP.
+
 ### 2026-05-23 (session 3)
 
 - **npm package v0.1.2 — search index fix**: `libs/ui/package.json` bumped to 0.1.2. Root cause: `@ng-brutalism/ui` is in the registry but absent from npm's search index (`api.npms.io` returns 404; `registry.npmjs.org/-/v1/search` returns 0 results even for exact name). A new publish fires the registry event that wakes the search crawler. Description rewritten to lead with T2 keyword "neo-brutalist Angular UI library" and include "brutalist Angular components" + "ng add @ng-brutalism/ui". Keywords: added `ngbrutalism` (unhyphenated — matches domain prefix users see), `ng-add`, `schematics`; removed `ui` (too generic) and `tailwind` (duplicate of `tailwindcss`).
