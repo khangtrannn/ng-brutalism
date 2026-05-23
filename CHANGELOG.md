@@ -21,6 +21,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Portfolio journey map sync migrated to `toObservable + subscribe`.
 - Event handlers renamed to reflect actions rather than triggering events.
 
+## [0.1.2] — 2026-05-23
+
+### Changed
+
+- npm package `description` rewritten to lead with "neo-brutalist Angular UI library" and include "brutalist Angular components" and `ng add @ng-brutalism/ui` (T1/T2 keyword alignment).
+- npm `keywords`: added `ngbrutalism`, `ng-add`, `schematics`; removed generic `ui` and redundant `tailwind`.
+
+> Patch motivation: `@ng-brutalism/ui` was absent from npm's search index even for exact-name queries. Publishing a new version fires the registry event that triggers the search crawler.
+
 ## [0.1.1] — 2026-05-21
 
 ### Fixed
