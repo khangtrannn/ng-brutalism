@@ -20,6 +20,7 @@ export const docsNavGroups: readonly DocsNavGroup[] = [
     items: [
       { label: 'Introduction', path: '/docs/introduction' },
       { label: 'Installation', path: '/docs/installation' },
+      { label: 'Inspired Designs', path: '/docs/inspired-designs' },
       {
         label: 'FAQ',
         path: '/docs/faq',
