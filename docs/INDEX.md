@@ -57,6 +57,7 @@ Agent session protocol:
 
 | File | Purpose | Mutable? |
 |---|---|---|
+| `docs/components/primitives-roadmap.md` | Brutalist primitives roadmap — failure modes, decisions, candidate primitives, next steps | Yes |
 | `docs/components/contact-dialog/PLAN.md` | Contact dialog redesign — status + design decisions | Yes |
 | `docs/adr/0001-dialog-native-element.md` | ADR: why native `<dialog>` over overlay approach | No |
 | `CONTEXT.md` (root) | Project glossary — `Nb` prefix, v0.x contract, CSS transform patterns | Yes |
