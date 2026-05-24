@@ -6,10 +6,10 @@ For history and details, read the domain's own `progress.md`.
 ---
 
 ## SEO
-**Status:** Launch week in progress. Show HN post due 2026-05-26.
-**Last action:** awesome-angular PR merged; Cloudflare Web Analytics wired; Portfolio mobile Perf 87→98.
-**Next:** Show HN Block 6 content prep (grilling session), then go-live Tue 2026-05-26 20:00 ICT.
-**Blocking:** bestofjs gated at 100 stars (currently 12). GSC indexing pending.
+**Status:** dev.to demo built + article draft done. Khang publishes and adds URL to JSON-LD.
+**Last action:** `~/ng-brutalism-job-board/` scaffolded; all 15 components wired; `ng build` clean; full article draft at `docs/seo/devto-article-draft.md`.
+**Next:** Khang: screenshot → StackBlitz → post dev.to article → add URL to `sameAs` in `docs-seo-data.ts`.
+**Blocking:** bestofjs gated at 100 stars (currently 12).
 → Details: `docs/seo/progress.md`
 
 ---

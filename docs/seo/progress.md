@@ -39,6 +39,7 @@
 | ~~🟡~~ | ~~Verify npm search indexing~~ | **DONE** — confirmed all 3 search terms surface v0.1.2 |
 | 🟡 | 72h verification (LLM probes, rank baseline, star/download delta) | Run ~72h after Angular Weekly goes out (target: 2026-05-31) |
 | 🟡 | bestofjs listing | Gate: 100 stars (currently 12) |
+| 🟡 | **dev.to article** — Khang: screenshot/GIF → StackBlitz → post to dev.to → add URL to JSON-LD | Draft done: `docs/seo/devto-article-draft.md`; demo at `~/ng-brutalism-job-board/` |
 | 🟢 | GSC URL inspection: request re-index of `/` and `/showcase/portfolio/` | User action, after GSC finishes processing |
 | ~~🟡~~ | ~~Show HN~~ | **DROPPED** — poor audience fit; see sprint-launch-day.md |
 
@@ -48,6 +49,14 @@
 
 > One line per SEO-relevant change. Include commit hash, date, and the SEO
 > consequence. Future-you will thank present-you.
+
+### 2026-05-23 (session 7)
+
+- **dev.to demo + article draft built**: `~/ng-brutalism-job-board/` scaffolded (`ng new` → `ng add @ng-brutalism/ui`). All 15 components wired: dark header, marquee, 4 pastel job cards, apply dialog, accordion footer. `ng build` clean. Article draft at `docs/seo/devto-article-draft.md`. **Remaining:** Khang screenshots → StackBlitz → posts to dev.to → adds URL to `sameAs` JSON-LD.
+
+### 2026-05-23 (session 6)
+
+- **dev.to sprint decisions locked**: grill session resolved all implementation unknowns — standalone `ng new` at `~/ng-brutalism-job-board/`, `ng add @ng-brutalism/ui` for real consumer install, 4 job cards (Google/Figma/Vercel/GitHub), template-based dialog. See `sprint-devto-article.md` for full decision table. Ready to build next session.
 
 ### 2026-05-23 (session 5)
 

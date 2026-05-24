@@ -17,6 +17,7 @@ Agent session protocol:
 | `docs/seo/PLAN.md` | Master strategy + decisions from 2026-05-21 grill session | No (decisions frozen) |
 | `docs/seo/sprint-launch-day.md` | Launch-week execution (2026-05-22 → 2026-05-26) | Yes |
 | `docs/seo/sprint-entity-authority.md` | Author-attribution punch list | Yes |
+| `docs/seo/sprint-devto-article.md` | dev.to article + StackBlitz demo plan (next sprint) | Yes |
 | `docs/seo/audit-2026-05-22.md` | Frozen external audit snapshot | No |
 
 ---
