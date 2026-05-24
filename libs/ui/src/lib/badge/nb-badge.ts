@@ -15,7 +15,7 @@ export class NbBadge {
 
   protected readonly classes = computed(() =>
     nbClass(
-      'inline-flex items-center rounded-(--nb-badge-radius) border-2 border-(--nb-badge-border)',
+      'inline-flex items-center gap-1.5 rounded-(--nb-badge-radius) border-2 border-(--nb-badge-border)',
       'bg-(--nb-badge-bg) text-(--nb-badge-fg)',
       '[--nb-badge-bg:#fff]',
       '[--nb-badge-fg:var(--nb-foreground)]',

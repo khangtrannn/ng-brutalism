@@ -1,6 +1,6 @@
 # Library Improvement Roadmap — Brutalist Primitives
 
-**Status:** Decisions locked (2026-05-24 grill session). Ready to research + build. Pick up in next session.
+**Status:** Primitive list locked (2026-05-24 grill session #2). Ready to build.
 
 **Context:** Analysis of the job board demo (`~/ng-brutalism-job-board/`) revealed that users — including Claude implementing the demo — needed 1,446 lines of custom CSS and bypassed several library components entirely. This session diagnosed root causes and set the direction for the next phase of the library.
 
@@ -52,18 +52,37 @@ Some components feel too heavy for simple use cases, pushing users toward raw HT
 
 ---
 
-## Candidate Primitives (from job board analysis)
+## How the Primitive List Was Derived
 
-The job board card broke down into these building blocks that don't exist yet:
+The final primitive list was validated against 10 real-world UI scenarios (pricing table, testimonial grid, team directory, analytics dashboard, e-commerce product card, blog article card, event listing, recipe card, social profile card, job board). Each scenario was decomposed bottom-up into atomic visual units — no preconceptions — and patterns were counted across scenarios.
 
-| Primitive | What it is | Status |
+| Pattern | Scenarios | Verdict |
 |---|---|---|
-| **`nb-media`** | Bordered, shadowed box for image/logo/icon — standalone, not a full card | Missing |
-| **`nb-badge` improvement** | Add `gap-1.5` for icon+text layout, document `--nb-badge-bg`/`--nb-badge-fg` as public API | Exists, needs fix |
-| **`nb-stat`** | Icon circle + value + label — for salary, metrics, KPIs | Missing |
-| **`nb-avatar-row`** | Avatar + name + meta text inline (recruiter row, author row, team grid) | `nb-avatar` exists; row layout missing |
+| Bounded image container | 6/10 | → `nb-media` |
+| Stat / number display | 6/10 | → `nb-stat` |
+| Compact interactive block | 5/10 | → `nb-tile` |
+| Attribution row (avatar + name + meta) | 5/10 | Dismissed — just `nb-avatar` + raw HTML |
+| Star / review rating | 4/10 | → `nb-rating` |
+| Icon + text pair | 6/10 | Dismissed — no built-in icon system; use `nb-label` |
+| Badge / tag | 9/10 | Already exists — needs icon gap fix |
 
-**Important:** This list is based on ONE candidate (job board). More use cases need to be analyzed to validate and complete the primitive set. The plan is to start here and expand as more real-world patterns are studied.
+---
+
+## Final Primitive List (locked)
+
+### v0.1.3 — patch
+| Primitive | Change |
+|---|---|
+| **`nb-badge`** | Add `gap-1.5` for icon+text layout; document `--nb-badge-bg` / `--nb-badge-fg` / `--nb-badge-border` / `--nb-badge-radius` / `--nb-badge-shadow` as public API |
+| **CSS variables** | Document all component-scoped tokens as public API across all components |
+
+### v0.2.0 — minor (new components)
+| Primitive | What it is | API notes |
+|---|---|---|
+| **`nb-media`** | Bordered, shadowed container for any media — image, logo, icon, screenshot | CSS vars for size, border, shadow, radius; content projected |
+| **`nb-stat`** | Stylized data display — icon (optional) + large value + small label | Icon via optional projected slot; `value` and `label` as inputs or projected |
+| **`nb-tile`** | Compact, opinionated, interactive block — icon + title + optional description | Whole tile is the clickable unit; brutalist hover/active states |
+| **`nb-rating`** | N filled/unfilled stars + optional count | `value` input (0–5), `max` input, `count` input; read-only display |
 
 ---
 
@@ -71,21 +90,32 @@ The job board card broke down into these building blocks that don't exist yet:
 
 | Decision | Choice | Rationale |
 |---|---|---|
-| Fix nb-badge | Extend in place (Option A) — free color via CSS vars + icon support | One flexible component beats two with split responsibility |
-| Fix nb-badge icon layout | Add `gap-1.5` to base classes | Icon+text already works via native content, just needs spacing |
+| Release versioning | v0.1.3 patch + v0.2.0 minor | Semver: fixes are patch, new components are minor |
+| Fix nb-badge | Extend in place — add `gap-1.5`, document CSS vars as public API | Quick win; ships in v0.1.3 |
 | Document CSS variables | Expose all component-scoped tokens as public API in docs | Discoverability is severe enough that even Claude missed them |
-| Card layout direction | Universal primitives + docs examples, NOT domain-specific card components | Cannot predict all domains; composition over specialization |
-| Scope of this work | Gather all issues first, decide release scope later | v0.2.0 vs docs-first TBD |
+| Card layout direction | Universal primitives + docs examples, NOT domain-specific components | Cannot predict all domains; composition over specialization |
+| nb-avatar-row | Dismissed — not a primitive | Just `nb-avatar` + raw HTML layout; no distinct brutalist treatment needed |
+| Icon + text pair | Dismissed — not a primitive | No built-in icon system; users bring their own icon + `nb-label` |
+| nb-stat icon | Optional projected slot, not a built-in | Consistent with no-built-in-icon policy |
+| Primitive list scope | Lock at 4 new components for v0.2.0, expand in v0.2.1+ based on real usage | Avoid scope creep; validate with job board refactor first |
 
 ---
 
-## Open Questions (resolve in next session)
+## Build Checklist
 
-1. **Release scope:** docs-first this week vs component improvements in v0.2.0 vs combined release
-2. **More use cases:** what other real-world patterns (pricing table, testimonial, team grid, dashboard) should we analyze to complete the primitive map before building?
-3. **`nb-avatar-row` naming:** standalone component or `nb-avatar` with layout inputs?
-4. **`nb-select` complexity:** what's the simpler API surface for single-line filter use cases?
-5. **Icon system:** 6+ SVGs were embedded inline in the job board — does the library need an icon strategy?
+### v0.1.3
+- [ ] Fix `nb-badge`: add `gap-1.5` to base classes
+- [ ] Document all CSS variables as public API in docs (all 15 existing components)
+- [ ] Release v0.1.3
+
+### v0.2.0
+- [ ] Build `nb-rating` (simplest — stars display, value/max inputs)
+- [ ] Build `nb-media` (bordered container, CSS vars for size/border/shadow/radius)
+- [ ] Build `nb-stat` (value + label inputs, optional icon slot, brutalist typography)
+- [ ] Build `nb-tile` (interactive block, icon + title + description slots, hover/active states)
+- [ ] Refactor job board demo to use new components
+- [ ] Write docs composition examples (job card, profile card, etc.)
+- [ ] Release v0.2.0
 
 ---
 
@@ -96,16 +126,3 @@ The job board card broke down into these building blocks that don't exist yet:
 - Components bypassed: `nb-badge` (100%), `nb-select` for sort UI
 - Components overridden with `!important`: `nb-card` border-radius
 - Custom building blocks hand-built: logo box, pill/badge row, salary stat, recruiter row, decorative patterns
-
----
-
-## Next Session Checklist
-
-- [ ] Analyze 1–2 more real-world use cases (suggest: pricing table, testimonial grid) to validate primitive list
-- [ ] Lock final primitive list + APIs
-- [ ] Fix `nb-badge`: add `gap-1.5`, document CSS variables as public API
-- [ ] Design `nb-media` component API
-- [ ] Design `nb-stat` component API
-- [ ] Design `nb-avatar-row` or improved `nb-avatar` API
-- [ ] Decide release scope (docs-first vs v0.2.0)
-- [ ] Build + ship
