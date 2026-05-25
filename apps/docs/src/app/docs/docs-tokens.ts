@@ -8,6 +8,7 @@ type DocsTokenComponent =
   | 'card'
   | 'checkbox'
   | 'dialog'
+  | 'display'
   | 'image-card'
   | 'input'
   | 'input-group'
@@ -241,6 +242,18 @@ const componentTokens: Record<DocsTokenComponent, DocsToken[]> = {
       name: '--nb-checkbox-radius',
       defaultValue: '0',
       usage: 'Checkbox corner radius',
+    },
+  ],
+  display: [
+    {
+      name: '--nb-display-size',
+      defaultValue: 'set by size input',
+      usage: 'Font size. Overrides the size preset when set inline.',
+    },
+    {
+      name: '--nb-display-color',
+      defaultValue: 'currentColor',
+      usage: 'Text color. Inherits from the parent by default.',
     },
   ],
   dialog: [

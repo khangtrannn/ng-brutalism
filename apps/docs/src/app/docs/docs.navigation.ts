@@ -78,6 +78,19 @@ export const docsNavGroups: readonly DocsNavGroup[] = [
       { label: 'Card', path: '/components/card' },
       { label: 'Checkbox', path: '/components/checkbox' },
       { label: 'Dialog', path: '/components/dialog' },
+      {
+        label: 'Display',
+        path: '/components/display',
+        toc: [
+          { label: 'Overview', fragment: 'overview' },
+          { label: 'Preview', fragment: 'preview' },
+          { label: 'Usage', fragment: 'usage' },
+          { label: 'Sizes', fragment: 'sizes' },
+          { label: 'Color', fragment: 'color' },
+          { label: 'Custom Size', fragment: 'custom-size' },
+          { label: 'API', fragment: 'api' },
+        ],
+      },
       { label: 'Image Card', path: '/components/image-card' },
       { label: 'Input', path: '/components/input' },
       {

@@ -23,9 +23,10 @@ For history and details, read the domain's own `progress.md`.
 ---
 
 ## Components
-**Status:** v0.1.1 shipped. Contact dialog redesign phases A+B complete, visual sign-off pending.
-**Next:** v0.2 component planning not yet started.
-→ Details: `docs/components/contact-dialog/PLAN.md`
+**Status:** v0.1.1 shipped. v0.2.0 plan locked. NbStat, NbRating, NbMedia, NbTile implemented (no docs pages yet). NbDisplay shipped with docs page.
+**Next:** Build remaining 9 new primitives: Separator → StatusDot → Chip → IconButton → Button trailing icon → Progress → AvatarGroup → Sticker → Halftone. Then 6 recipe docs pages.
+**Goal:** All 18 reference designs buildable with v0.2.0 primitives (~90% fidelity).
+→ Plan: `docs/release/v0.2.0-plan.md`
 
 ---
 
@@ -46,6 +47,6 @@ For history and details, read the domain's own `progress.md`.
 ---
 
 ## Release
-**Status:** v0.1.0 + v0.1.1 shipped to npm. No v0.2 plan yet.
-**Next:** Begin v0.2 planning when component backlog is prioritized.
-→ Details: `CHANGELOG.md`
+**Status:** v0.1.0 + v0.1.1 shipped to npm. v0.2.0 plan locked.
+**Next:** Implement 10 new primitives + docs pages for 4 already-done + 6 recipe pages, then batch release.
+→ Plan: `docs/release/v0.2.0-plan.md`

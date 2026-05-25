@@ -36,6 +36,8 @@ export { NbMarquee, NbMarqueeItem } from './lib/marquee';
 export { NbInput } from './lib/input';
 export { NbLabel } from './lib/label';
 export { NbTitle } from './lib/title';
+export { NbDisplay } from './lib/display';
+export type { NbDisplaySize } from './lib/display';
 export type { NbInputSize } from './lib/input';
 export { NbTextarea } from './lib/textarea';
 export type { NbTextareaSize } from './lib/textarea';

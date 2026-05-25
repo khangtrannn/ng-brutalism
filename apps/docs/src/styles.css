@@ -197,7 +197,7 @@ body::-webkit-scrollbar-thumb {
   box-shadow: 3px 3px 0 0 var(--nb-shadow);
 }
 
-[data-docs-content] h2:not([data-slot="dialog-title"]):not([data-nb-title]) {
+[data-docs-content] h2[data-docs-heading] {
   position: relative;
   display: inline-block;
   margin-top: 2.75rem;
@@ -215,22 +215,22 @@ body::-webkit-scrollbar-thumb {
   transform: rotate(-1deg);
 }
 
-[data-docs-content] section:nth-of-type(2n) h2:not([data-slot="dialog-title"]):not([data-nb-title]) {
+[data-docs-content] section:nth-of-type(2n) h2[data-docs-heading] {
   background: var(--nb-pink);
   transform: rotate(1deg);
 }
 
-[data-docs-content] section:nth-of-type(3n) h2:not([data-slot="dialog-title"]):not([data-nb-title]) {
+[data-docs-content] section:nth-of-type(3n) h2[data-docs-heading] {
   background: var(--nb-lavender);
   transform: rotate(-1.5deg);
 }
 
-[data-docs-content] section:nth-of-type(4n) h2:not([data-slot="dialog-title"]):not([data-nb-title]) {
+[data-docs-content] section:nth-of-type(4n) h2[data-docs-heading] {
   background: var(--nb-yellow);
   transform: rotate(0.5deg);
 }
 
-[data-docs-content] section:nth-of-type(5n) h2:not([data-slot="dialog-title"]):not([data-nb-title]) {
+[data-docs-content] section:nth-of-type(5n) h2[data-docs-heading] {
   background: var(--nb-blue);
   color: #fff;
   transform: rotate(-0.5deg);
