@@ -23,8 +23,8 @@ For history and details, read the domain's own `progress.md`.
 ---
 
 ## Components
-**Status:** v0.1.1 shipped. v0.2.0 plan locked. NbStat, NbRating, NbMedia, NbTile implemented (no docs pages yet). NbDisplay shipped with docs page.
-**Next:** Build remaining 9 new primitives: Separator → StatusDot → Chip → IconButton → Button trailing icon → Progress → AvatarGroup → Sticker → Halftone. Then 6 recipe docs pages.
+**Status:** v0.1.1 shipped. v0.2.0 plan locked. NbStat, NbRating, NbMedia, NbTile implemented (no docs pages yet). NbDisplay + NbSeparator shipped with docs pages.
+**Next:** Build remaining 8 new primitives: StatusDot → Chip → IconButton → Button trailing icon → Progress → AvatarGroup → Sticker → Halftone. Then 4 already-done docs pages (Stat, Rating, Media, Tile) + 6 recipe pages.
 **Goal:** All 18 reference designs buildable with v0.2.0 primitives (~90% fidelity).
 → Plan: `docs/release/v0.2.0-plan.md`
 

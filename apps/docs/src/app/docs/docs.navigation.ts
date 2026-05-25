@@ -124,6 +124,19 @@ export const docsNavGroups: readonly DocsNavGroup[] = [
         ],
       },
       {
+        label: 'Separator',
+        path: '/components/separator',
+        toc: [
+          { label: 'Overview', fragment: 'overview' },
+          { label: 'Preview', fragment: 'preview' },
+          { label: 'Usage', fragment: 'usage' },
+          { label: 'Variants', fragment: 'variants' },
+          { label: 'Vertical', fragment: 'orientation' },
+          { label: 'Custom Color', fragment: 'custom-color' },
+          { label: 'API', fragment: 'api' },
+        ],
+      },
+      {
         label: 'Title',
         path: '/components/title',
         toc: [

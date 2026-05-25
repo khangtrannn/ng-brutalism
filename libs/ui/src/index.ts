@@ -38,6 +38,8 @@ export { NbLabel } from './lib/label';
 export { NbTitle } from './lib/title';
 export { NbDisplay } from './lib/display';
 export type { NbDisplaySize } from './lib/display';
+export { NbSeparator } from './lib/separator';
+export type { NbSeparatorOrientation, NbSeparatorVariant } from './lib/separator';
 export type { NbInputSize } from './lib/input';
 export { NbTextarea } from './lib/textarea';
 export type { NbTextareaSize } from './lib/textarea';

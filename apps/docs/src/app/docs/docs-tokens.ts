@@ -15,6 +15,7 @@ type DocsTokenComponent =
   | 'label'
   | 'marquee'
   | 'select'
+  | 'separator'
   | 'theme'
   | 'title'
   | 'textarea';
@@ -571,6 +572,18 @@ const componentTokens: Record<DocsTokenComponent, DocsToken[]> = {
       name: '--nb-focus-ring-offset',
       defaultValue: '2px',
       usage: 'Focus outline offset',
+    },
+  ],
+  separator: [
+    {
+      name: '--nb-separator-color',
+      defaultValue: 'var(--nb-border)',
+      usage: 'Line color',
+    },
+    {
+      name: '--nb-separator-thickness',
+      defaultValue: '2px (4px for thick)',
+      usage: 'Line thickness. Overrides the variant preset when set inline.',
     },
   ],
   title: [
