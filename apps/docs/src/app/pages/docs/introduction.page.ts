@@ -22,7 +22,7 @@ import { DocsCodeBlock } from '../../docs/docs-code-block';
           </div>
 
           <div
-            class="relative isolate mx-auto flex aspect-square w-full max-w-[220px] items-center justify-center border-4 border-(--nb-border) bg-(--nb-yellow) p-4 shadow-[8px_8px_0_0_var(--nb-shadow)] sm:max-w-[260px] sm:p-5 md:mx-0 md:max-w-[240px] md:justify-self-end xl:max-w-[300px] xl:p-6"
+            class="relative isolate mx-auto flex aspect-square w-full max-w-55 items-center justify-center border-4 border-(--nb-border) bg-(--nb-yellow) p-4 shadow-[8px_8px_0_0_var(--nb-shadow)] sm:max-w-[260px] sm:p-5 md:mx-0 md:max-w-[240px] md:justify-self-end xl:max-w-75 xl:p-6"
             aria-label="Angular mascot preview"
           >
             <div
