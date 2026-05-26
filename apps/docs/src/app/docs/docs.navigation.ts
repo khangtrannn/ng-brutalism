@@ -74,9 +74,32 @@ export const docsNavGroups: readonly DocsNavGroup[] = [
         ],
       },
       { label: 'Avatar', path: '/components/avatar' },
+      {
+        label: 'Avatar Group',
+        path: '/components/avatar-group',
+        toc: [
+          { label: 'Overview', fragment: 'overview' },
+          { label: 'Preview', fragment: 'preview' },
+          { label: 'Usage', fragment: 'usage' },
+          { label: 'Without overflow', fragment: 'no-overflow' },
+          { label: 'API', fragment: 'api' },
+        ],
+      },
       { label: 'Badge', path: '/components/badge' },
       { label: 'Card', path: '/components/card' },
       { label: 'Checkbox', path: '/components/checkbox' },
+      {
+        label: 'Chip',
+        path: '/components/chip',
+        toc: [
+          { label: 'Overview', fragment: 'overview' },
+          { label: 'Preview', fragment: 'preview' },
+          { label: 'Usage', fragment: 'usage' },
+          { label: 'Tones', fragment: 'tones' },
+          { label: 'With Icon', fragment: 'with-icon' },
+          { label: 'API', fragment: 'api' },
+        ],
+      },
       { label: 'Dialog', path: '/components/dialog' },
       {
         label: 'Display',
@@ -88,6 +111,31 @@ export const docsNavGroups: readonly DocsNavGroup[] = [
           { label: 'Sizes', fragment: 'sizes' },
           { label: 'Color', fragment: 'color' },
           { label: 'Custom Size', fragment: 'custom-size' },
+          { label: 'API', fragment: 'api' },
+        ],
+      },
+      {
+        label: 'Halftone',
+        path: '/components/halftone',
+        toc: [
+          { label: 'Overview', fragment: 'overview' },
+          { label: 'Preview', fragment: 'preview' },
+          { label: 'Usage', fragment: 'usage' },
+          { label: 'Positions', fragment: 'positions' },
+          { label: 'Custom Color', fragment: 'custom-color' },
+          { label: 'API', fragment: 'api' },
+        ],
+      },
+      {
+        label: 'Icon Button',
+        path: '/components/icon-button',
+        toc: [
+          { label: 'Overview', fragment: 'overview' },
+          { label: 'Preview', fragment: 'preview' },
+          { label: 'Usage', fragment: 'usage' },
+          { label: 'Shapes', fragment: 'shapes' },
+          { label: 'Sizes', fragment: 'sizes' },
+          { label: 'Variants', fragment: 'variants' },
           { label: 'API', fragment: 'api' },
         ],
       },
@@ -109,6 +157,41 @@ export const docsNavGroups: readonly DocsNavGroup[] = [
       },
       { label: 'Label', path: '/components/label' },
       { label: 'Marquee', path: '/components/marquee' },
+      {
+        label: 'Media',
+        path: '/components/media',
+        toc: [
+          { label: 'Overview', fragment: 'overview' },
+          { label: 'Preview', fragment: 'preview' },
+          { label: 'Usage', fragment: 'usage' },
+          { label: 'With image', fragment: 'with-image' },
+          { label: 'Customization', fragment: 'customization' },
+        ],
+      },
+      {
+        label: 'Progress',
+        path: '/components/progress',
+        toc: [
+          { label: 'Overview', fragment: 'overview' },
+          { label: 'Preview', fragment: 'preview' },
+          { label: 'Usage', fragment: 'usage' },
+          { label: 'Tones', fragment: 'tones' },
+          { label: 'API', fragment: 'api' },
+        ],
+      },
+      {
+        label: 'Rating',
+        path: '/components/rating',
+        toc: [
+          { label: 'Overview', fragment: 'overview' },
+          { label: 'Preview', fragment: 'preview' },
+          { label: 'Usage', fragment: 'usage' },
+          { label: 'Values', fragment: 'values' },
+          { label: 'With count', fragment: 'with-count' },
+          { label: 'Custom max', fragment: 'custom-max' },
+          { label: 'API', fragment: 'api' },
+        ],
+      },
       {
         label: 'Select',
         path: '/components/select',
@@ -137,6 +220,53 @@ export const docsNavGroups: readonly DocsNavGroup[] = [
         ],
       },
       {
+        label: 'Stat',
+        path: '/components/stat',
+        toc: [
+          { label: 'Overview', fragment: 'overview' },
+          { label: 'Preview', fragment: 'preview' },
+          { label: 'Usage', fragment: 'usage' },
+          { label: 'With icon', fragment: 'with-icon' },
+          { label: 'Row direction', fragment: 'row-direction' },
+          { label: 'API', fragment: 'api' },
+        ],
+      },
+      {
+        label: 'Status Dot',
+        path: '/components/status-dot',
+        toc: [
+          { label: 'Overview', fragment: 'overview' },
+          { label: 'Preview', fragment: 'preview' },
+          { label: 'Usage', fragment: 'usage' },
+          { label: 'States', fragment: 'states' },
+          { label: 'API', fragment: 'api' },
+        ],
+      },
+      {
+        label: 'Sticker',
+        path: '/components/sticker',
+        toc: [
+          { label: 'Overview', fragment: 'overview' },
+          { label: 'Preview', fragment: 'preview' },
+          { label: 'Usage', fragment: 'usage' },
+          { label: 'Shapes', fragment: 'shapes' },
+          { label: 'Tones', fragment: 'tones' },
+          { label: 'Rotation', fragment: 'rotate' },
+          { label: 'API', fragment: 'api' },
+        ],
+      },
+      {
+        label: 'Tile',
+        path: '/components/tile',
+        toc: [
+          { label: 'Overview', fragment: 'overview' },
+          { label: 'Preview', fragment: 'preview' },
+          { label: 'Usage', fragment: 'usage' },
+          { label: 'Feature list', fragment: 'feature-list' },
+          { label: 'Customization', fragment: 'customization' },
+        ],
+      },
+      {
         label: 'Title',
         path: '/components/title',
         toc: [
@@ -150,6 +280,71 @@ export const docsNavGroups: readonly DocsNavGroup[] = [
         ],
       },
       { label: 'Textarea', path: '/components/textarea' },
+    ],
+  },
+  {
+    label: 'Recipes',
+    items: [
+      {
+        label: 'Profile Card',
+        path: '/recipes/profile-card',
+        toc: [
+          { label: 'Overview', fragment: 'overview' },
+          { label: 'Preview', fragment: 'preview' },
+          { label: 'Code', fragment: 'code' },
+          { label: 'Primitives used', fragment: 'primitives' },
+        ],
+      },
+      {
+        label: 'Job Card',
+        path: '/recipes/job-card',
+        toc: [
+          { label: 'Overview', fragment: 'overview' },
+          { label: 'Preview', fragment: 'preview' },
+          { label: 'Code', fragment: 'code' },
+          { label: 'Primitives used', fragment: 'primitives' },
+        ],
+      },
+      {
+        label: 'Charity Card',
+        path: '/recipes/charity-card',
+        toc: [
+          { label: 'Overview', fragment: 'overview' },
+          { label: 'Preview', fragment: 'preview' },
+          { label: 'Code', fragment: 'code' },
+          { label: 'Primitives used', fragment: 'primitives' },
+        ],
+      },
+      {
+        label: 'Listing Card',
+        path: '/recipes/listing-card',
+        toc: [
+          { label: 'Overview', fragment: 'overview' },
+          { label: 'Preview', fragment: 'preview' },
+          { label: 'Code', fragment: 'code' },
+          { label: 'Primitives used', fragment: 'primitives' },
+        ],
+      },
+      {
+        label: 'Esports Card',
+        path: '/recipes/esports-card',
+        toc: [
+          { label: 'Overview', fragment: 'overview' },
+          { label: 'Preview', fragment: 'preview' },
+          { label: 'Code', fragment: 'code' },
+          { label: 'Primitives used', fragment: 'primitives' },
+        ],
+      },
+      {
+        label: 'Podcast Card',
+        path: '/recipes/podcast-card',
+        toc: [
+          { label: 'Overview', fragment: 'overview' },
+          { label: 'Preview', fragment: 'preview' },
+          { label: 'Code', fragment: 'code' },
+          { label: 'Primitives used', fragment: 'primitives' },
+        ],
+      },
     ],
   },
 ];

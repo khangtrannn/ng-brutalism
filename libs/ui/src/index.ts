@@ -66,3 +66,17 @@ export {
   NbDialogActions,
   NbDialogClose,
 } from './lib/dialog';
+export { NbStatusDot } from './lib/status-dot';
+export type { NbStatusDotState } from './lib/status-dot';
+export { NbChip, NbChipGroup } from './lib/chip';
+export type { NbChipTone } from './lib/chip';
+export { NbIconButton } from './lib/icon-button';
+export type { NbIconButtonShape, NbIconButtonSize, NbIconButtonVariant } from './lib/icon-button';
+export { NbButtonTrailingIcon } from './lib/button/nb-button-trailing-icon';
+export { NbProgress } from './lib/progress';
+export type { NbProgressTone } from './lib/progress';
+export { NbAvatarGroup } from './lib/avatar-group';
+export { NbSticker } from './lib/sticker';
+export type { NbStickerShape, NbStickerTone } from './lib/sticker';
+export { NbHalftone } from './lib/halftone';
+export type { NbHalftonePosition } from './lib/halftone';
