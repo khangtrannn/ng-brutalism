@@ -23,8 +23,8 @@ For history and details, read the domain's own `progress.md`.
 ---
 
 ## Components
-**Status:** v0.1.1 shipped. v0.2.0 plan in progress. All 10 new primitives implemented (code + docs). StatusDot, Chip, ChipGroup, IconButton, ButtonTrailingIcon, Progress, AvatarGroup, Sticker, Halftone — all shipped with docs pages. Stat, Rating, Media, Tile docs pages added.
-**Next:** 6 recipe pages (Job Card, Charity Card, Listing Card, Esports Card, Profile Card, Podcast Card).
+**Status:** v0.1.1 shipped. v0.2.0 feature-complete: all 10 new primitives + 6 recipe pages live under `/recipes/*` (Profile, Job, Charity, Listing, Esports, Podcast). Recipes nav group added; "Recipes" link wired into top navbar/mobile drawer.
+**Next:** Visual QA pass on each recipe page, then cut v0.2.0 release.
 **Goal:** All 18 reference designs buildable with v0.2.0 primitives (~90% fidelity).
 → Plan: `docs/release/v0.2.0-plan.md`
 
@@ -47,6 +47,6 @@ For history and details, read the domain's own `progress.md`.
 ---
 
 ## Release
-**Status:** v0.1.0 + v0.1.1 shipped to npm. v0.2.0 plan locked.
-**Next:** Implement 10 new primitives + docs pages for 4 already-done + 6 recipe pages, then batch release.
+**Status:** v0.1.0 + v0.1.1 shipped to npm. v0.2.0 implementation complete: 10 primitives + docs + 6 recipes.
+**Next:** Visual QA, bump version in libs/ui, run `docs/release/RELEASE.md` runbook (tag → GitHub release → npm publish).
 → Plan: `docs/release/v0.2.0-plan.md`

@@ -1,8 +1,8 @@
-import { ChangeDetectionStrategy, Component, Directive, computed, input } from '@angular/core';
+import { Directive, computed, input } from '@angular/core';
 
 import { nbClass } from '../core/class';
 
-export type NbChipTone = 'default' | 'yellow' | 'pink' | 'mint' | 'lavender' | 'accent' | 'success' | 'warning' | 'danger';
+export type NbChipTone = 'default' | 'ink' | 'yellow' | 'pink' | 'mint' | 'lavender' | 'accent' | 'success' | 'warning' | 'danger';
 
 @Directive({
   selector: 'span[nbChip]',
@@ -19,12 +19,10 @@ export class NbChip {
     nbClass(
       'inline-flex items-center gap-1.5',
       'border-2 border-(--nb-border)',
-      'bg-(--nb-chip-bg) text-(--nb-chip-fg)',
-      '[--nb-chip-bg:var(--nb-surface)]',
-      '[--nb-chip-fg:var(--nb-foreground)]',
+      'bg-[var(--nb-chip-bg,var(--nb-surface))] text-[var(--nb-chip-fg,var(--nb-foreground))]',
+      'rounded-[var(--nb-chip-radius,0px)] shadow-[var(--nb-chip-shadow,2px_2px_0_0_var(--nb-shadow))]',
       'px-2.5 py-0.5 text-xs font-bold',
-      'shadow-[2px_2px_0_0_var(--nb-shadow)]',
-      '[&_svg]:size-3 [&_svg]:shrink-0',
+      '[&_svg]:size-[var(--nb-chip-icon-size,0.75rem)] [&_svg]:shrink-0',
       this.toneClass()
     )
   );
@@ -32,6 +30,7 @@ export class NbChip {
   private toneClass(): string {
     const map: Record<NbChipTone, string> = {
       default: '',
+      ink: '[--nb-chip-bg:#1a1a1a] [--nb-chip-fg:#ffffff]',
       yellow: '[--nb-chip-bg:#ffd24a]',
       pink: '[--nb-chip-bg:#ff7eb6]',
       mint: '[--nb-chip-bg:#99e8c8]',
@@ -45,13 +44,11 @@ export class NbChip {
   }
 }
 
-@Component({
-  selector: 'nb-chip-group',
-  template: `<ng-content />`,
+@Directive({
+  selector: '[nbChipGroup]',
   host: {
-    '[class]': '"flex flex-wrap gap-2"',
+    class: 'flex flex-wrap gap-2',
     '[attr.data-nb-chip-group]': '""',
   },
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NbChipGroup {}

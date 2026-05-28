@@ -21,12 +21,10 @@ export type NbStickerTone = 'default' | 'yellow' | 'pink' | 'mint' | 'lavender' 
           points="50,2 61,35 95,35 68,57 79,91 50,70 21,91 32,57 5,35 39,35"
         />
       </svg>
-      <span class="relative z-10 flex items-center justify-center text-center">
-        <ng-content />
-      </span>
-    } @else {
-      <ng-content />
     }
+    <span [class]="contentClass()">
+      <ng-content />
+    </span>
   `,
   host: {
     '[class]': 'classes()',
@@ -59,6 +57,12 @@ export class NbSticker {
     const rotate = this.rotate();
     return `${toneVars}; transform: rotate(${rotate}deg)`;
   });
+
+  protected readonly contentClass = computed(() =>
+    this.shape() === 'burst'
+      ? 'relative z-10 flex items-center justify-center text-center'
+      : 'contents'
+  );
 
   private shapeClass(): string {
     const map: Record<NbStickerShape, string> = {

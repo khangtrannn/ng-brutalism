@@ -16,8 +16,8 @@ import { DocsSourceTile } from '../../docs/docs-source-tile';
           <h1>Chip</h1>
           <p class="mt-3 max-w-3xl text-base font-medium sm:text-lg">
             A directive on <code class="font-mono">&lt;span&gt;</code> for compact
-            labels, tags, and categories. Pairs with <code class="font-mono">NbChipGroup</code>
-            for horizontal chip rows. Supports 9 tones and an optional leading icon via
+            labels, tags, and categories. Pairs with <code class="font-mono">nbChipGroup</code>
+            for horizontal chip rows. Supports 10 tones and an optional leading icon via
             <code class="font-mono">ng-content</code>.
           </p>
         </div>
@@ -28,7 +28,7 @@ import { DocsSourceTile } from '../../docs/docs-source-tile';
             <span class="nb-stat-tile__label">Host element</span>
           </div>
           <div class="nb-stat-tile nb-stat-tile--mint">
-            <span class="nb-stat-tile__value">9</span>
+            <span class="nb-stat-tile__value">10</span>
             <span class="nb-stat-tile__label">Tones</span>
           </div>
 
@@ -41,12 +41,12 @@ import { DocsSourceTile } from '../../docs/docs-source-tile';
       <section id="preview">
         <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">Preview</h2>
         <docs-example [code]="defaultExampleCode">
-          <nb-chip-group class="p-4">
+          <div nbChipGroup class="p-4">
             <span nbChip>Angular</span>
             <span nbChip tone="mint">TypeScript</span>
             <span nbChip tone="pink">RxJS</span>
             <span nbChip tone="lavender">Signals</span>
-          </nb-chip-group>
+          </div>
         </docs-example>
       </section>
 
@@ -59,8 +59,9 @@ import { DocsSourceTile } from '../../docs/docs-source-tile';
       <section id="tones">
         <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">Tones</h2>
         <docs-example [code]="tonesExampleCode">
-          <nb-chip-group class="p-4">
+          <div nbChipGroup class="p-4">
             <span nbChip>default</span>
+            <span nbChip tone="ink">ink</span>
             <span nbChip tone="yellow">yellow</span>
             <span nbChip tone="pink">pink</span>
             <span nbChip tone="mint">mint</span>
@@ -69,7 +70,27 @@ import { DocsSourceTile } from '../../docs/docs-source-tile';
             <span nbChip tone="success">success</span>
             <span nbChip tone="warning">warning</span>
             <span nbChip tone="danger">danger</span>
-          </nb-chip-group>
+          </div>
+        </docs-example>
+      </section>
+
+      <section id="tokens">
+        <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">Tokens</h2>
+        <docs-example [code]="tokensExampleCode">
+          <div nbChipGroup class="p-4">
+            <span
+              nbChip
+              tone="yellow"
+              class="gap-[14px] px-[18px] py-[10px] text-[22px] leading-none font-black"
+              style="--nb-chip-radius:8px; --nb-chip-shadow:6px 6px 0 0 var(--nb-shadow); --nb-chip-icon-size:36px"
+            >
+              <svg viewBox="0 0 40 40" fill="none" aria-hidden="true">
+                <circle cx="20" cy="20" r="18" fill="currentColor" />
+                <text x="20" y="27" text-anchor="middle" font-size="24" font-weight="1000" fill="#fff" font-family="Arial Black, Arial, sans-serif">$</text>
+              </svg>
+              $95K - $130K
+            </span>
+          </div>
         </docs-example>
       </section>
 
@@ -79,7 +100,7 @@ import { DocsSourceTile } from '../../docs/docs-source-tile';
           Place any SVG icon inside the chip — it auto-sizes to 12px.
         </p>
         <docs-example [code]="withIconExampleCode">
-          <nb-chip-group class="p-4">
+          <div nbChipGroup class="p-4">
             <span nbChip tone="mint">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                 <polyline points="20 6 9 17 4 12"/>
@@ -92,7 +113,7 @@ import { DocsSourceTile } from '../../docs/docs-source-tile';
               </svg>
               Error
             </span>
-          </nb-chip-group>
+          </div>
         </docs-example>
       </section>
 
@@ -114,7 +135,7 @@ import { DocsSourceTile } from '../../docs/docs-source-tile';
             <tbody class="font-medium">
               <tr>
                 <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">tone</td>
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">'default' | 'yellow' | 'pink' | 'mint' | 'lavender' | 'accent' | 'success' | 'warning' | 'danger'</td>
+                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">'default' | 'ink' | 'yellow' | 'pink' | 'mint' | 'lavender' | 'accent' | 'success' | 'warning' | 'danger'</td>
                 <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">'default'</td>
                 <td class="px-4 py-3">Background color tone.</td>
               </tr>
@@ -123,7 +144,49 @@ import { DocsSourceTile } from '../../docs/docs-source-tile';
         </div>
 
         <p class="mt-6 mb-4 font-bold">NbChipGroup</p>
-        <p class="font-medium">Wrapper component with <code class="font-mono">flex flex-wrap gap-2</code>. No inputs — use Tailwind or inline styles to override spacing.</p>
+        <p class="font-medium">Wrapper directive with <code class="font-mono">flex flex-wrap gap-2</code>. No inputs — use Tailwind or inline styles to override spacing.</p>
+
+        <p class="mt-6 mb-4 font-bold">CSS tokens</p>
+        <div
+          class="overflow-x-auto border-2 border-(--nb-border) bg-nb-surface shadow-[5px_5px_0_0_var(--nb-shadow)]"
+        >
+          <table class="w-full min-w-160 border-collapse text-left">
+            <thead class="bg-nb-secondary text-nb-secondary-fg">
+              <tr>
+                <th class="border-b-2 border-r-2 border-(--nb-border) px-4 py-3 font-bold">Token</th>
+                <th class="border-b-2 border-r-2 border-(--nb-border) px-4 py-3 font-bold">Default</th>
+                <th class="border-b-2 border-(--nb-border) px-4 py-3 font-bold">Description</th>
+              </tr>
+            </thead>
+            <tbody class="font-medium">
+              <tr>
+                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">--nb-chip-bg</td>
+                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">var(--nb-surface)</td>
+                <td class="px-4 py-3">Background color.</td>
+              </tr>
+              <tr>
+                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">--nb-chip-fg</td>
+                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">var(--nb-foreground)</td>
+                <td class="px-4 py-3">Text and icon color.</td>
+              </tr>
+              <tr>
+                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">--nb-chip-radius</td>
+                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">0px</td>
+                <td class="px-4 py-3">Corner radius.</td>
+              </tr>
+              <tr>
+                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">--nb-chip-shadow</td>
+                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">2px 2px 0 0 var(--nb-shadow)</td>
+                <td class="px-4 py-3">Box shadow.</td>
+              </tr>
+              <tr>
+                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">--nb-chip-icon-size</td>
+                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">0.75rem</td>
+                <td class="px-4 py-3">Projected SVG size.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </section>
     </article>
   `,
@@ -132,15 +195,16 @@ import { DocsSourceTile } from '../../docs/docs-source-tile';
 export default class ChipPage {
   protected readonly importCode = `import { NbChip, NbChipGroup } from '@ng-brutalism/ui';`;
 
-  protected readonly defaultExampleCode = `<nb-chip-group>
+  protected readonly defaultExampleCode = `<div nbChipGroup>
   <span nbChip>Angular</span>
   <span nbChip tone="mint">TypeScript</span>
   <span nbChip tone="pink">RxJS</span>
   <span nbChip tone="lavender">Signals</span>
-</nb-chip-group>`;
+</div>`;
 
-  protected readonly tonesExampleCode = `<nb-chip-group>
+  protected readonly tonesExampleCode = `<div nbChipGroup>
   <span nbChip>default</span>
+  <span nbChip tone="ink">ink</span>
   <span nbChip tone="yellow">yellow</span>
   <span nbChip tone="pink">pink</span>
   <span nbChip tone="mint">mint</span>
@@ -149,9 +213,19 @@ export default class ChipPage {
   <span nbChip tone="success">success</span>
   <span nbChip tone="warning">warning</span>
   <span nbChip tone="danger">danger</span>
-</nb-chip-group>`;
+</div>`;
 
-  protected readonly withIconExampleCode = `<nb-chip-group>
+  protected readonly tokensExampleCode = `<span
+  nbChip
+  tone="yellow"
+  class="gap-[14px] px-[18px] py-[10px] text-[22px] leading-none font-black"
+  style="--nb-chip-radius:8px; --nb-chip-shadow:6px 6px 0 0 var(--nb-shadow); --nb-chip-icon-size:36px"
+>
+  <svg viewBox="0 0 40 40" fill="none" aria-hidden="true">...</svg>
+  $95K - $130K
+</span>`;
+
+  protected readonly withIconExampleCode = `<div nbChipGroup>
   <span nbChip tone="mint">
     <svg ...>...</svg>
     Done
@@ -160,5 +234,5 @@ export default class ChipPage {
     <svg ...>...</svg>
     Error
   </span>
-</nb-chip-group>`;
+</div>`;
 }
