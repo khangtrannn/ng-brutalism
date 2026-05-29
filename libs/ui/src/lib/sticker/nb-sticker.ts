@@ -161,7 +161,7 @@ const NB_STICKER_TONE_TOKENS: Record<NbStickerTone, NbStickerToneTokens> = {
       }
 
       :host([data-shape='star']) {
-        --nb-sticker-min-inline-size: 15rem;
+        --nb-sticker-min-inline-size: 13.25rem;
         --nb-sticker-min-block-size: 13.25rem;
         --nb-sticker-max-block-size: 14rem;
         --nb-sticker-padding-inline: 4.55rem;
