@@ -146,7 +146,6 @@ const NB_STICKER_TONE_TOKENS: Record<NbStickerTone, NbStickerToneTokens> = {
         --nb-sticker-font-size: 1.75rem;
         --nb-sticker-safe-zone: 0.5 0.42;
         --nb-sticker-content-scale: 1;
-        --nb-sticker-content-max-inline-size: none;
 
         display: inline-block;
         vertical-align: middle;
@@ -169,7 +168,6 @@ const NB_STICKER_TONE_TOKENS: Record<NbStickerTone, NbStickerToneTokens> = {
         --nb-sticker-rotate: 0deg;
         --nb-sticker-stroke-width: 5px;
         --nb-sticker-safe-zone: 0.5 0.36;
-        --nb-sticker-content-max-inline-size: 50%;
       }
 
       :host([data-shape='splat']) {
@@ -243,7 +241,6 @@ const NB_STICKER_TONE_TOKENS: Record<NbStickerTone, NbStickerToneTokens> = {
 
       .nb-sticker__content-scale {
         display: block;
-        max-inline-size: var(--nb-sticker-content-max-inline-size);
         scale: var(--nb-sticker-content-scale);
 
         pointer-events: none;

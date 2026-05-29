@@ -5,12 +5,12 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
   template: `
     <svg
       class="nb-sticker-face__svg"
-      viewBox="0 0 320 220"
+      viewBox="13 5 320 220"
       aria-hidden="true"
       focusable="false"
     >
       <ellipse class="nb-sticker-face__eye" cx="126" cy="64" rx="20" ry="35" />
-      <ellipse class="nb-sticker-face__eye" cx="214" cy="68" rx="20" ry="35" />
+      <ellipse class="nb-sticker-face__eye" cx="214" cy="64" rx="20" ry="35" />
       <path
         class="nb-sticker-face__smile"
         d="M78 132 C116 202 226 206 268 150"
@@ -30,7 +30,6 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
         display: block;
         width: var(--nb-sticker-face-size, 5.55rem);
         height: calc(var(--nb-sticker-face-size, 5.55rem) * 0.64);
-        transform: translate(-29%, 2%);
       }
 
       .nb-sticker-face__svg {

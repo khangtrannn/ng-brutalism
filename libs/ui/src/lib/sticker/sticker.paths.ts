@@ -62,7 +62,7 @@ export const NB_STICKER_PATHS: Record<NbStickerShape, NbStickerPathConfig> = {
     `,
   },
   star: {
-    viewBox: '90 150 858 780',
+    viewBox: '65 105 858 780',
     shadowTransform: 'translate(34 38)',
     path: `
       M296 178

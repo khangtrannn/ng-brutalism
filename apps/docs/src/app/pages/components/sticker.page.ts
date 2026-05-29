@@ -47,10 +47,9 @@ import { DocsSourceTile } from '../../docs/docs-source-tile';
       <section id="preview">
         <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">Preview</h2>
         <docs-example [code]="defaultExampleCode">
-          <div class="flex flex-wrap items-center gap-9 p-8">
+          <div class="flex flex-wrap items-center justify-center gap-9 p-8">
             <nb-sticker shape="burst" tone="mint" [rotate]="-8">
-              NEW<br />
-              JOB!
+              GROW<br>YOUR<br>SELF
             </nb-sticker>
             <nb-sticker shape="burst-wide" tone="yellow" [rotate]="5">
               LIMITED<br />
