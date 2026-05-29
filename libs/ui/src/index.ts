@@ -53,7 +53,14 @@ export type { NbSelectValue } from './lib/select';
 export { NbBadge } from './lib/badge';
 export type { NbBadgeVariant } from './lib/badge';
 export { NbAvatar } from './lib/avatar';
-export { NbMedia } from './lib/media';
+export { NbMediaFrame } from './lib/media-frame';
+export type {
+  NbMediaFrameFit,
+  NbMediaFrameRadius,
+  NbMediaFrameRatio,
+  NbMediaFrameShadow,
+  NbMediaFrameTone,
+} from './lib/media-frame';
 export { NbStat } from './lib/stat';
 export { NbRating } from './lib/rating';
 export { NbTile } from './lib/tile';

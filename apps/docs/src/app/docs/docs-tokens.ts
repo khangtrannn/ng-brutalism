@@ -15,6 +15,7 @@ type DocsTokenComponent =
   | 'input-group'
   | 'label'
   | 'marquee'
+  | 'media-frame'
   | 'select'
   | 'separator'
   | 'surface'
@@ -422,6 +423,33 @@ const componentTokens: Record<DocsTokenComponent, DocsToken[]> = {
       name: '--nb-marquee-duration',
       defaultValue: '5s',
       usage: 'Computed animation duration',
+    },
+  ],
+  'media-frame': [
+    {
+      name: '--nb-media-frame-bg',
+      defaultValue: 'var(--nb-surface)',
+      usage: 'Frame background color. Reassigned by the tone input.',
+    },
+    {
+      name: '--nb-media-frame-fg',
+      defaultValue: 'var(--nb-surface-foreground)',
+      usage: 'Frame foreground color. Reassigned by the tone input.',
+    },
+    {
+      name: '--nb-media-frame-border-width',
+      defaultValue: 'var(--nb-border-width)',
+      usage: 'Frame border width. Reassigned by the shadow input.',
+    },
+    {
+      name: '--nb-media-frame-radius',
+      defaultValue: '1rem',
+      usage: 'Frame corner radius. Reassigned by the radius input.',
+    },
+    {
+      name: '--nb-media-frame-shadow',
+      defaultValue: 'none',
+      usage: 'Frame box shadow. Reassigned by the shadow input.',
     },
   ],
   select: [

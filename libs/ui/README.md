@@ -108,6 +108,7 @@ bootstrapApplication(App, {
 | Input Group | Input wrapper with prefix and suffix slots for icons, addons, or units. | [Docs](https://ngbrutalism.khangtran.dev/components/input-group) |
 | Label | Accessible label tied to form controls. | [Docs](https://ngbrutalism.khangtran.dev/components/label) |
 | Marquee | Looping horizontal scroller for logos, tags, or announcements. | [Docs](https://ngbrutalism.khangtran.dev/components/marquee) |
+| Media Frame | Directive-driven frame for images, video, portraits, previews, and media-like blocks. | [Docs](https://ngbrutalism.khangtran.dev/components/media-frame) |
 | Select | Native or custom dropdown select with option templating. | [Docs](https://ngbrutalism.khangtran.dev/components/select) |
 | Textarea | Multi-line text input with size variants. | [Docs](https://ngbrutalism.khangtran.dev/components/textarea) |
 | Title | Typographic heading primitive with brutalist defaults. | [Docs](https://ngbrutalism.khangtran.dev/components/title) |

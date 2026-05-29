@@ -174,14 +174,19 @@ export const docsNavGroups: readonly DocsNavGroup[] = [
       { label: 'Label', path: '/components/label' },
       { label: 'Marquee', path: '/components/marquee' },
       {
-        label: 'Media',
-        path: '/components/media',
+        label: 'Media Frame',
+        path: '/components/media-frame',
         toc: [
           { label: 'Overview', fragment: 'overview' },
           { label: 'Preview', fragment: 'preview' },
           { label: 'Usage', fragment: 'usage' },
-          { label: 'With image', fragment: 'with-image' },
+          { label: 'Examples', fragment: 'examples' },
+          { label: 'Tones', fragment: 'tones' },
+          { label: 'Ratios', fragment: 'ratios' },
+          { label: 'Fit', fragment: 'fit' },
+          { label: 'Shape', fragment: 'shape' },
           { label: 'Customization', fragment: 'customization' },
+          { label: 'API', fragment: 'api' },
         ],
       },
       {
