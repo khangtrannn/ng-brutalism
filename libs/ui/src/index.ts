@@ -39,17 +39,16 @@ export { NbTitle } from './lib/title';
 export { NbDisplay } from './lib/display';
 export type { NbDisplaySize } from './lib/display';
 export { NbSeparator } from './lib/separator';
-export type { NbSeparatorOrientation, NbSeparatorVariant } from './lib/separator';
+export type {
+  NbSeparatorOrientation,
+  NbSeparatorVariant,
+} from './lib/separator';
 export type { NbInputSize } from './lib/input';
 export { NbTextarea } from './lib/textarea';
 export type { NbTextareaSize } from './lib/textarea';
 export { NbInputGroup, NbInputPrefix, NbInputSuffix } from './lib/input-group';
 export type { NbInputPrefixAlign, NbInputSuffixAlign } from './lib/input-group';
-export {
-  NbNativeSelect,
-  NbSelect,
-  NbSelectOption,
-} from './lib/select';
+export { NbNativeSelect, NbSelect, NbSelectOption } from './lib/select';
 export type { NbSelectValue } from './lib/select';
 export { NbBadge } from './lib/badge';
 export type { NbBadgeVariant } from './lib/badge';
@@ -71,12 +70,16 @@ export type { NbStatusDotState } from './lib/status-dot';
 export { NbChip, NbChipGroup } from './lib/chip';
 export type { NbChipTone } from './lib/chip';
 export { NbIconButton } from './lib/icon-button';
-export type { NbIconButtonShape, NbIconButtonSize, NbIconButtonVariant } from './lib/icon-button';
+export type {
+  NbIconButtonShape,
+  NbIconButtonSize,
+  NbIconButtonVariant,
+} from './lib/icon-button';
 export { NbButtonTrailingIcon } from './lib/button/nb-button-trailing-icon';
 export { NbProgress } from './lib/progress';
 export type { NbProgressTone } from './lib/progress';
 export { NbAvatarGroup } from './lib/avatar-group';
-export { NbSticker } from './lib/sticker';
+export { NbSticker, NbStickerFace } from './lib/sticker';
 export type { NbStickerShape, NbStickerTone } from './lib/sticker';
 export { NbHalftone } from './lib/halftone';
 export type { NbHalftonePosition } from './lib/halftone';

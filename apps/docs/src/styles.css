@@ -1,7 +1,7 @@
-@import "tailwindcss";
-@import "tw-animate-css";
+@import 'tailwindcss';
+@import 'tw-animate-css';
 
-@import "@ng-brutalism/ui/styles.css";
+@import '@ng-brutalism/ui/styles.css';
 
 @source "../../../libs/ui/src";
 @source inline("bg-main text-main-foreground border-border shadow-shadow rounded-base bg-background bg-secondary-background font-heading");
@@ -24,7 +24,8 @@
   --nb-reverse-shadow-offset-x: -5px;
   --nb-reverse-shadow-offset-y: -5px;
   --radius-nb: var(--nb-radius);
-  --shadow-nb: var(--nb-shadow-offset-x) var(--nb-shadow-offset-y) 0 0 var(--nb-shadow);
+  --shadow-nb: var(--nb-shadow-offset-x) var(--nb-shadow-offset-y) 0 0
+    var(--nb-shadow);
 
   /* === Carnival palette === */
   --nb-cream: #faf3df;
@@ -38,10 +39,14 @@
   --nb-sky: #9dd7ff;
   --nb-hot: #ff4f8a;
 
-  --font-sans: 'Space Grotesk', 'Coming Soon', ui-sans-serif, system-ui, sans-serif;
-  --font-heading: 'Archivo Black', 'Coming Soon', ui-sans-serif, system-ui, sans-serif;
-  --font-base: 'Space Grotesk', 'Coming Soon', ui-sans-serif, system-ui, sans-serif;
-  --font-display: 'Archivo Black', 'Coming Soon', ui-sans-serif, system-ui, sans-serif;
+  --font-sans: 'Space Grotesk', 'Coming Soon', ui-sans-serif, system-ui,
+    sans-serif;
+  --font-heading: 'Archivo Black', 'Coming Soon', ui-sans-serif, system-ui,
+    sans-serif;
+  --font-base: 'Space Grotesk', 'Coming Soon', ui-sans-serif, system-ui,
+    sans-serif;
+  --font-display: 'Archivo Black', 'Coming Soon', ui-sans-serif, system-ui,
+    sans-serif;
   --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
 
   --font-weight-heading: 900;
@@ -67,7 +72,8 @@
   --docs-main: #ffd24a;
   --nb-main: var(--docs-main);
   --nb-secondary-background: #fff4d6;
-  --nb-font-sans: 'Space Grotesk', 'Coming Soon', ui-sans-serif, system-ui, sans-serif;
+  --nb-font-sans: 'Space Grotesk', 'Coming Soon', ui-sans-serif, system-ui,
+    sans-serif;
   --nb-font-weight-normal: 500;
   --color-main: var(--docs-main);
   --color-secondary-background: #fff4d6;
@@ -77,8 +83,7 @@
 body,
 .docs-grid-bg {
   background-color: var(--nb-paper);
-  background-image:
-    linear-gradient(rgba(0, 0, 0, 0.04) 1px, transparent 1px),
+  background-image: linear-gradient(rgba(0, 0, 0, 0.04) 1px, transparent 1px),
     linear-gradient(90deg, rgba(0, 0, 0, 0.04) 1px, transparent 1px);
   background-size: 32px 32px, 32px 32px;
 }
@@ -140,7 +145,7 @@ body::-webkit-scrollbar-thumb {
   }
 
   [data-docs-content] article::before {
-    content: "";
+    content: '';
     display: block;
     position: absolute;
     top: -18px;
@@ -155,7 +160,7 @@ body::-webkit-scrollbar-thumb {
   }
 
   [data-docs-content] article::after {
-    content: "";
+    content: '';
     display: block;
     position: absolute;
     top: -8px;
@@ -187,7 +192,7 @@ body::-webkit-scrollbar-thumb {
 }
 
 [data-docs-content] h1::after {
-  content: "";
+  content: '';
   display: block;
   margin-top: 1.1rem;
   width: 5.5rem;
@@ -287,12 +292,25 @@ body::-webkit-scrollbar-thumb {
   color: rgba(0, 0, 0, 0.7);
 }
 
-.nb-stat-tile--yellow { background: var(--nb-yellow); }
-.nb-stat-tile--pink   { background: var(--nb-pink); }
-.nb-stat-tile--mint   { background: var(--nb-mint); }
-.nb-stat-tile--lavender { background: var(--nb-lavender); }
-.nb-stat-tile--peach { background: var(--nb-peach); }
-.nb-stat-tile--blue { background: var(--nb-blue); color: #fff; }
+.nb-stat-tile--yellow {
+  background: var(--nb-yellow);
+}
+.nb-stat-tile--pink {
+  background: var(--nb-pink);
+}
+.nb-stat-tile--mint {
+  background: var(--nb-mint);
+}
+.nb-stat-tile--lavender {
+  background: var(--nb-lavender);
+}
+.nb-stat-tile--peach {
+  background: var(--nb-peach);
+}
+.nb-stat-tile--blue {
+  background: var(--nb-blue);
+  color: #fff;
+}
 
 a.nb-stat-tile,
 .nb-stat-tile--interactive {
@@ -325,8 +343,6 @@ a.nb-stat-tile:focus-visible,
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  border: 3px solid var(--nb-border);
-  box-shadow: 4px 4px 0 0 var(--nb-shadow);
 }
 
 /* === Decorative scribbles === */

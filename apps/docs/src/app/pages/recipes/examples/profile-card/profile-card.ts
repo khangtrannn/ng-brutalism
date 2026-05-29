@@ -42,11 +42,21 @@ import {
   template: `
     <article class="profile-card">
       <div class="profile-card__sticker" aria-hidden="true">
-        <nb-sticker shape="burst" tone="pink" [rotate]="20" class="profile-card__star">★</nb-sticker>
-        <nb-sticker shape="stamp" tone="pink" [rotate]="8" class="profile-card__stamp-back"></nb-sticker>
-        <nb-sticker shape="stamp" tone="default" [rotate]="-4" class="profile-card__stamp-front">
-          <span class="profile-card__stamp-circle"></span>
-        </nb-sticker>
+        <nb-sticker
+          shape="burst"
+          tone="pink"
+          [rotate]="20"
+          decorative
+          class="profile-card__star"
+          >★</nb-sticker
+        >
+        <nb-sticker
+          shape="splat"
+          tone="default"
+          [rotate]="-8"
+          decorative
+          class="profile-card__splat"
+        ></nb-sticker>
       </div>
 
       <div class="profile-card__top">
@@ -60,9 +70,7 @@ import {
             OPEN TO WORK
           </span>
 
-          <h1 nbDisplay size="lg" class="profile-card__name">
-            NORA<br />CHEN
-          </h1>
+          <h1 nbDisplay size="lg" class="profile-card__name">NORA<br />CHEN</h1>
         </div>
       </div>
 
@@ -71,7 +79,13 @@ import {
           <hr nbSeparator variant="thick" class="profile-card__rule" />
           <p class="profile-card__role">Product Designer</p>
         </div>
-        <nb-halftone position="bottom-right" [rows]="5" [cols]="5" [size]="4" [gap]="4" />
+        <nb-halftone
+          position="bottom-right"
+          [rows]="5"
+          [cols]="5"
+          [size]="4"
+          [gap]="4"
+        />
       </div>
 
       <div nbChipGroup class="profile-card__tags">
@@ -81,7 +95,8 @@ import {
       </div>
 
       <p class="profile-card__bio">
-        Designing intuitive, accessible, and delightful experiences that make an impact.
+        Designing intuitive, accessible, and delightful experiences that make an
+        impact.
       </p>
 
       <div class="profile-card__actions">
@@ -154,43 +169,29 @@ import {
       }
 
       .profile-card__star,
-      .profile-card__stamp-back,
-      .profile-card__stamp-front {
+      .profile-card__splat {
         position: absolute;
       }
 
       .profile-card__star {
         top: -10px;
         right: -6px;
-        width: 64px !important;
-        height: 64px !important;
-        font-size: 0;
+        --nb-sticker-min-inline-size: 4rem;
+        --nb-sticker-min-block-size: 4rem;
+        --nb-sticker-max-inline-size: 4rem;
+        --nb-sticker-max-block-size: 4rem;
+        --nb-sticker-padding-inline: 0;
+        --nb-sticker-padding-block: 0;
+        --nb-sticker-font-size: 0;
+        --nb-sticker-stroke-width: 3px;
         z-index: 3;
       }
 
-      .profile-card__stamp-back {
+      .profile-card__splat {
         top: 18px;
         right: 8px;
-        width: 56px !important;
-        height: 56px !important;
+        --nb-sticker-size: 3.5rem;
         z-index: 1;
-      }
-
-      .profile-card__stamp-front {
-        top: 14px;
-        right: 22px;
-        width: 56px !important;
-        height: 56px !important;
-        z-index: 2;
-      }
-
-      .profile-card__stamp-circle {
-        display: block;
-        width: 22px;
-        height: 22px;
-        border-radius: 50%;
-        border: 2px solid var(--nb-border);
-        background: #99e8c8;
       }
 
       .profile-card__top {

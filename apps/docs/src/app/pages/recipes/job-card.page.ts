@@ -83,7 +83,7 @@ export default class JobCardRecipePage {
     { name: 'NbChip', path: '/components/chip', role: 'JOBS label + requirement tags' },
     { name: 'NbStatusDot', path: '/components/status-dot', role: 'hiring manager presence' },
     { name: 'NbIconButton', path: '/components/icon-button', role: 'bookmark action' },
-    { name: 'NbSticker', path: '/components/sticker', role: 'NEW JOB! burst' },
+    { name: 'NbSticker', path: '/components/sticker', role: 'NEW JOB burst' },
     { name: 'NbButton', path: '/components/button', role: 'APPLY NOW CTA with trailing arrow' },
   ];
 
@@ -99,7 +99,7 @@ export default class JobCardRecipePage {
 } from '@ng-brutalism/ui';`;
 
   protected readonly templateCode = `<article class="job-card">
-  <nb-sticker shape="burst" tone="mint" [rotate]="-8">NEW JOB!</nb-sticker>
+  <nb-sticker shape="burst" tone="mint" [rotate]="-8">NEW JOB</nb-sticker>
 
   <header class="job-card__header">
     <span nbChip tone="ink">JOBS</span>

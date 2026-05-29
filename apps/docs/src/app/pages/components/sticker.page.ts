@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { NbSticker } from '@ng-brutalism/ui';
+import { NbSticker, NbStickerFace } from '@ng-brutalism/ui';
 
 import { DocsCodeBlock } from '../../docs/docs-code-block';
 import { DocsExample } from '../../docs/docs-example';
@@ -7,7 +7,13 @@ import { DocsSourceTile } from '../../docs/docs-source-tile';
 
 @Component({
   selector: 'docs-sticker-page',
-  imports: [DocsCodeBlock, DocsExample, DocsSourceTile, NbSticker],
+  imports: [
+    DocsCodeBlock,
+    DocsExample,
+    DocsSourceTile,
+    NbSticker,
+    NbStickerFace,
+  ],
   template: `
     <article>
       <header id="overview" class="relative mb-10 scroll-mt-32">
@@ -15,20 +21,20 @@ import { DocsSourceTile } from '../../docs/docs-source-tile';
           <p>Neo-Brutalist Angular Sticker</p>
           <h1>Sticker</h1>
           <p class="mt-3 max-w-3xl text-base font-medium sm:text-lg">
-            A decorative component for callouts, badges, and badges. Three shapes —
-            <strong>stamp</strong>, <strong>burst</strong>, and <strong>pill</strong> — and
-            9 tones let you highlight prices, statuses, and limited offers without leaving
-            the brutalist aesthetic.
+            SVG-backed callout stickers for launches, cards, badges, and
+            decorative bursts. The component auto-scales text inside jagged
+            sticker shapes and includes a small face primitive for the star
+            sticker.
           </p>
         </div>
 
         <div class="mt-7 flex flex-wrap items-center gap-3">
           <div class="nb-stat-tile nb-stat-tile--yellow">
-            <span class="nb-stat-tile__value">3</span>
+            <span class="nb-stat-tile__value">4</span>
             <span class="nb-stat-tile__label">Shapes</span>
           </div>
           <div class="nb-stat-tile nb-stat-tile--mint">
-            <span class="nb-stat-tile__value">9</span>
+            <span class="nb-stat-tile__value">10</span>
             <span class="nb-stat-tile__label">Tones</span>
           </div>
 
@@ -41,41 +47,62 @@ import { DocsSourceTile } from '../../docs/docs-source-tile';
       <section id="preview">
         <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">Preview</h2>
         <docs-example [code]="defaultExampleCode">
-          <div class="flex flex-wrap items-center gap-6 p-6">
-            <nb-sticker tone="yellow" [rotate]="-8">
-              NEW
+          <div class="flex flex-wrap items-center gap-9 p-8">
+            <nb-sticker shape="burst" tone="mint" [rotate]="-8">
+              NEW<br />
+              JOB!
             </nb-sticker>
-            <nb-sticker shape="burst" tone="pink" [rotate]="6">
-              HOT
+            <nb-sticker shape="burst-wide" tone="yellow" [rotate]="5">
+              LIMITED<br />
+              DROP
             </nb-sticker>
-            <nb-sticker shape="pill" tone="mint">
-              LIMITED
+            <nb-sticker shape="star" tone="pink" aria-label="Happy sticker">
+              <nb-sticker-face />
             </nb-sticker>
+            <nb-sticker shape="splat" tone="purple" decorative />
           </div>
         </docs-example>
       </section>
 
       <section id="usage">
         <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">Usage</h2>
-        <docs-code-block class="block mb-5" title="Import" [code]="importCode" />
+        <docs-code-block
+          class="block mb-5"
+          title="Import"
+          [code]="importCode"
+        />
         <docs-code-block title="Template" [code]="defaultExampleCode" />
       </section>
 
       <section id="shapes">
         <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">Shapes</h2>
         <docs-example [code]="shapesExampleCode">
-          <div class="flex flex-wrap items-center gap-8 p-6">
-            <div class="flex flex-col items-center gap-3">
-              <nb-sticker shape="stamp" tone="yellow">STAMP</nb-sticker>
-              <span class="font-mono text-xs font-bold">stamp</span>
-            </div>
-            <div class="flex flex-col items-center gap-3">
-              <nb-sticker shape="burst" tone="pink">BURST</nb-sticker>
+          <div class="grid gap-8 p-6 sm:grid-cols-2 xl:grid-cols-4">
+            <div
+              class="flex min-h-44 flex-col items-center justify-center gap-4"
+            >
+              <nb-sticker shape="burst" tone="mint">BURST</nb-sticker>
               <span class="font-mono text-xs font-bold">burst</span>
             </div>
-            <div class="flex flex-col items-center gap-3">
-              <nb-sticker shape="pill" tone="mint">PILL</nb-sticker>
-              <span class="font-mono text-xs font-bold">pill</span>
+            <div
+              class="flex min-h-44 flex-col items-center justify-center gap-4"
+            >
+              <nb-sticker shape="burst-wide" tone="yellow">WIDE</nb-sticker>
+              <span class="font-mono text-xs font-bold">burst-wide</span>
+            </div>
+            <div
+              class="flex min-h-44 flex-col items-center justify-center gap-4"
+            >
+              <nb-sticker shape="star" tone="pink" aria-label="Face sticker">
+                <nb-sticker-face />
+              </nb-sticker>
+              <span class="font-mono text-xs font-bold">star</span>
+            </div>
+            <div
+              class="flex min-h-44 flex-col items-center justify-center gap-4"
+            >
+              <nb-sticker shape="splat" tone="purple" decorative />
+              <span class="font-mono text-xs font-bold">splat</span>
             </div>
           </div>
         </docs-example>
@@ -84,31 +111,129 @@ import { DocsSourceTile } from '../../docs/docs-source-tile';
       <section id="tones">
         <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">Tones</h2>
         <docs-example [code]="tonesExampleCode">
-          <div class="flex flex-wrap items-center gap-4 p-6">
-            <nb-sticker shape="pill">default</nb-sticker>
-            <nb-sticker shape="pill" tone="yellow">yellow</nb-sticker>
-            <nb-sticker shape="pill" tone="pink">pink</nb-sticker>
-            <nb-sticker shape="pill" tone="mint">mint</nb-sticker>
-            <nb-sticker shape="pill" tone="lavender">lavender</nb-sticker>
-            <nb-sticker shape="pill" tone="accent">accent</nb-sticker>
-            <nb-sticker shape="pill" tone="success">success</nb-sticker>
-            <nb-sticker shape="pill" tone="warning">warning</nb-sticker>
-            <nb-sticker shape="pill" tone="danger">danger</nb-sticker>
+          <div class="grid gap-6 p-6 sm:grid-cols-2 lg:grid-cols-5">
+            <div class="flex flex-col items-center gap-2">
+              <nb-sticker
+                class="sticker-tone-face"
+                shape="star"
+                aria-label="Default tone smiling sticker"
+              >
+                <nb-sticker-face />
+              </nb-sticker>
+              <span class="font-mono text-xs font-bold">default</span>
+            </div>
+            <div class="flex flex-col items-center gap-2">
+              <nb-sticker
+                class="sticker-tone-face"
+                shape="star"
+                tone="yellow"
+                aria-label="Yellow smiling sticker"
+              >
+                <nb-sticker-face />
+              </nb-sticker>
+              <span class="font-mono text-xs font-bold">yellow</span>
+            </div>
+            <div class="flex flex-col items-center gap-2">
+              <nb-sticker
+                class="sticker-tone-face"
+                shape="star"
+                tone="pink"
+                aria-label="Pink smiling sticker"
+              >
+                <nb-sticker-face />
+              </nb-sticker>
+              <span class="font-mono text-xs font-bold">pink</span>
+            </div>
+            <div class="flex flex-col items-center gap-2">
+              <nb-sticker
+                class="sticker-tone-face"
+                shape="star"
+                tone="mint"
+                aria-label="Mint smiling sticker"
+              >
+                <nb-sticker-face />
+              </nb-sticker>
+              <span class="font-mono text-xs font-bold">mint</span>
+            </div>
+            <div class="flex flex-col items-center gap-2">
+              <nb-sticker
+                class="sticker-tone-face"
+                shape="star"
+                tone="lavender"
+                aria-label="Lavender smiling sticker"
+              >
+                <nb-sticker-face />
+              </nb-sticker>
+              <span class="font-mono text-xs font-bold">lavender</span>
+            </div>
+            <div class="flex flex-col items-center gap-2">
+              <nb-sticker
+                class="sticker-tone-face"
+                shape="star"
+                tone="purple"
+                aria-label="Purple smiling sticker"
+              >
+                <nb-sticker-face />
+              </nb-sticker>
+              <span class="font-mono text-xs font-bold">purple</span>
+            </div>
+            <div class="flex flex-col items-center gap-2">
+              <nb-sticker
+                class="sticker-tone-face"
+                shape="star"
+                tone="accent"
+                aria-label="Accent smiling sticker"
+              >
+                <nb-sticker-face />
+              </nb-sticker>
+              <span class="font-mono text-xs font-bold">accent</span>
+            </div>
+            <div class="flex flex-col items-center gap-2">
+              <nb-sticker
+                class="sticker-tone-face"
+                shape="star"
+                tone="success"
+                aria-label="Success smiling sticker"
+              >
+                <nb-sticker-face />
+              </nb-sticker>
+              <span class="font-mono text-xs font-bold">success</span>
+            </div>
+            <div class="flex flex-col items-center gap-2">
+              <nb-sticker
+                class="sticker-tone-face"
+                shape="star"
+                tone="warning"
+                aria-label="Warning smiling sticker"
+              >
+                <nb-sticker-face />
+              </nb-sticker>
+              <span class="font-mono text-xs font-bold">warning</span>
+            </div>
+            <div class="flex flex-col items-center gap-2">
+              <nb-sticker
+                class="sticker-tone-face"
+                shape="star"
+                tone="danger"
+                aria-label="Danger smiling sticker"
+              >
+                <nb-sticker-face />
+              </nb-sticker>
+              <span class="font-mono text-xs font-bold">danger</span>
+            </div>
           </div>
         </docs-example>
       </section>
 
       <section id="rotate">
-        <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">Rotation</h2>
-        <p class="mb-4 font-medium">
-          Pass a <code class="font-mono">[rotate]</code> angle in degrees to tilt the sticker — a
-          small rotation gives cards a handcrafted feel.
-        </p>
+        <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">
+          Rotation
+        </h2>
         <docs-example [code]="rotateExampleCode">
           <div class="flex flex-wrap items-center gap-8 p-6">
-            <nb-sticker tone="yellow" [rotate]="-12">-12°</nb-sticker>
-            <nb-sticker tone="pink" [rotate]="0">0°</nb-sticker>
-            <nb-sticker tone="mint" [rotate]="12">+12°</nb-sticker>
+            <nb-sticker tone="yellow" [rotate]="-12">-12</nb-sticker>
+            <nb-sticker tone="pink" [rotate]="0">0</nb-sticker>
+            <nb-sticker tone="mint" [rotate]="12">+12</nb-sticker>
           </div>
         </docs-example>
       </section>
@@ -121,30 +246,101 @@ import { DocsSourceTile } from '../../docs/docs-source-tile';
           <table class="w-full min-w-160 border-collapse text-left">
             <thead class="bg-nb-secondary text-nb-secondary-fg">
               <tr>
-                <th class="border-b-2 border-r-2 border-(--nb-border) px-4 py-3 font-bold">Input</th>
-                <th class="border-b-2 border-r-2 border-(--nb-border) px-4 py-3 font-bold">Type</th>
-                <th class="border-b-2 border-r-2 border-(--nb-border) px-4 py-3 font-bold">Default</th>
-                <th class="border-b-2 border-(--nb-border) px-4 py-3 font-bold">Description</th>
+                <th
+                  class="border-b-2 border-r-2 border-(--nb-border) px-4 py-3 font-bold"
+                >
+                  Input
+                </th>
+                <th
+                  class="border-b-2 border-r-2 border-(--nb-border) px-4 py-3 font-bold"
+                >
+                  Type
+                </th>
+                <th
+                  class="border-b-2 border-r-2 border-(--nb-border) px-4 py-3 font-bold"
+                >
+                  Default
+                </th>
+                <th class="border-b-2 border-(--nb-border) px-4 py-3 font-bold">
+                  Description
+                </th>
               </tr>
             </thead>
             <tbody class="font-medium">
               <tr class="border-b-2 border-(--nb-border)">
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">shape</td>
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">'stamp' | 'burst' | 'pill'</td>
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">'stamp'</td>
-                <td class="px-4 py-3">Outer shape of the sticker.</td>
+                <td
+                  class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
+                >
+                  shape
+                </td>
+                <td
+                  class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
+                >
+                  'burst' | 'burst-wide' | 'star' | 'splat'
+                </td>
+                <td
+                  class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
+                >
+                  'burst'
+                </td>
+                <td class="px-4 py-3">Outer SVG shape.</td>
               </tr>
               <tr class="border-b-2 border-(--nb-border)">
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">tone</td>
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">'default' | 'yellow' | 'pink' | 'mint' | 'lavender' | 'accent' | 'success' | 'warning' | 'danger'</td>
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">'yellow'</td>
-                <td class="px-4 py-3">Background fill color.</td>
+                <td
+                  class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
+                >
+                  tone
+                </td>
+                <td
+                  class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
+                >
+                  'default' | 'yellow' | 'pink' | 'mint' | 'lavender' | 'purple'
+                  | 'accent' | 'success' | 'warning' | 'danger'
+                </td>
+                <td
+                  class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
+                >
+                  'mint'
+                </td>
+                <td class="px-4 py-3">Background fill token.</td>
+              </tr>
+              <tr class="border-b-2 border-(--nb-border)">
+                <td
+                  class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
+                >
+                  decorative
+                </td>
+                <td
+                  class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
+                >
+                  boolean
+                </td>
+                <td
+                  class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
+                >
+                  false
+                </td>
+                <td class="px-4 py-3">
+                  Marks purely visual stickers as hidden from assistive tech.
+                </td>
               </tr>
               <tr>
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">rotate</td>
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">number</td>
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">0</td>
-                <td class="px-4 py-3">CSS rotation in degrees.</td>
+                <td
+                  class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
+                >
+                  rotate
+                </td>
+                <td
+                  class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
+                >
+                  number | undefined
+                </td>
+                <td
+                  class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
+                >
+                  shape default
+                </td>
+                <td class="px-4 py-3">Optional CSS rotation in degrees.</td>
               </tr>
             </tbody>
           </table>
@@ -152,30 +348,77 @@ import { DocsSourceTile } from '../../docs/docs-source-tile';
       </section>
     </article>
   `,
+  styles: [
+    `
+      nb-sticker.sticker-tone-face {
+        --nb-sticker-min-inline-size: 7.25rem;
+        --nb-sticker-min-block-size: 6.25rem;
+        --nb-sticker-max-inline-size: 7.75rem;
+        --nb-sticker-max-block-size: 6.75rem;
+        --nb-sticker-padding-inline: 2.35rem;
+        --nb-sticker-padding-block: 2.15rem;
+        --nb-sticker-content-max-inline-size: 58%;
+        --nb-sticker-face-size: 2.8rem;
+      }
+    `,
+  ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export default class StickerPage {
-  protected readonly importCode = `import { NbSticker } from '@ng-brutalism/ui';`;
+  protected readonly importCode = `import { NbSticker, NbStickerFace } from '@ng-brutalism/ui';`;
 
-  protected readonly defaultExampleCode = `<nb-sticker tone="yellow" [rotate]="-8">NEW</nb-sticker>
-<nb-sticker shape="burst" tone="pink" [rotate]="6">HOT</nb-sticker>
-<nb-sticker shape="pill" tone="mint">LIMITED</nb-sticker>`;
+  protected readonly defaultExampleCode = `<nb-sticker shape="burst" tone="mint" [rotate]="-8">
+  NEW<br />
+  JOB!
+</nb-sticker>
+<nb-sticker shape="burst-wide" tone="yellow" [rotate]="5">
+  LIMITED<br />
+  DROP
+</nb-sticker>
+<nb-sticker shape="star" tone="pink" aria-label="Happy sticker">
+  <nb-sticker-face />
+</nb-sticker>
+<nb-sticker shape="splat" tone="purple" decorative />`;
 
-  protected readonly shapesExampleCode = `<nb-sticker shape="stamp" tone="yellow">STAMP</nb-sticker>
-<nb-sticker shape="burst" tone="pink">BURST</nb-sticker>
-<nb-sticker shape="pill" tone="mint">PILL</nb-sticker>`;
+  protected readonly shapesExampleCode = `<nb-sticker shape="burst" tone="mint">BURST</nb-sticker>
+<nb-sticker shape="burst-wide" tone="yellow">WIDE</nb-sticker>
+<nb-sticker shape="star" tone="pink" aria-label="Face sticker">
+  <nb-sticker-face />
+</nb-sticker>
+<nb-sticker shape="splat" tone="purple" decorative />`;
 
-  protected readonly tonesExampleCode = `<nb-sticker shape="pill">default</nb-sticker>
-<nb-sticker shape="pill" tone="yellow">yellow</nb-sticker>
-<nb-sticker shape="pill" tone="pink">pink</nb-sticker>
-<nb-sticker shape="pill" tone="mint">mint</nb-sticker>
-<nb-sticker shape="pill" tone="lavender">lavender</nb-sticker>
-<nb-sticker shape="pill" tone="accent">accent</nb-sticker>
-<nb-sticker shape="pill" tone="success">success</nb-sticker>
-<nb-sticker shape="pill" tone="warning">warning</nb-sticker>
-<nb-sticker shape="pill" tone="danger">danger</nb-sticker>`;
+  protected readonly tonesExampleCode = `<nb-sticker class="sticker-tone-face" shape="star" aria-label="Default tone smiling sticker">
+  <nb-sticker-face />
+</nb-sticker>
+<nb-sticker class="sticker-tone-face" shape="star" tone="yellow" aria-label="Yellow smiling sticker">
+  <nb-sticker-face />
+</nb-sticker>
+<nb-sticker class="sticker-tone-face" shape="star" tone="pink" aria-label="Pink smiling sticker">
+  <nb-sticker-face />
+</nb-sticker>
+<nb-sticker class="sticker-tone-face" shape="star" tone="mint" aria-label="Mint smiling sticker">
+  <nb-sticker-face />
+</nb-sticker>
+<nb-sticker class="sticker-tone-face" shape="star" tone="lavender" aria-label="Lavender smiling sticker">
+  <nb-sticker-face />
+</nb-sticker>
+<nb-sticker class="sticker-tone-face" shape="star" tone="purple" aria-label="Purple smiling sticker">
+  <nb-sticker-face />
+</nb-sticker>
+<nb-sticker class="sticker-tone-face" shape="star" tone="accent" aria-label="Accent smiling sticker">
+  <nb-sticker-face />
+</nb-sticker>
+<nb-sticker class="sticker-tone-face" shape="star" tone="success" aria-label="Success smiling sticker">
+  <nb-sticker-face />
+</nb-sticker>
+<nb-sticker class="sticker-tone-face" shape="star" tone="warning" aria-label="Warning smiling sticker">
+  <nb-sticker-face />
+</nb-sticker>
+<nb-sticker class="sticker-tone-face" shape="star" tone="danger" aria-label="Danger smiling sticker">
+  <nb-sticker-face />
+</nb-sticker>`;
 
-  protected readonly rotateExampleCode = `<nb-sticker tone="yellow" [rotate]="-12">-12°</nb-sticker>
-<nb-sticker tone="pink" [rotate]="0">0°</nb-sticker>
-<nb-sticker tone="mint" [rotate]="12">+12°</nb-sticker>`;
+  protected readonly rotateExampleCode = `<nb-sticker tone="yellow" [rotate]="-12">-12</nb-sticker>
+<nb-sticker tone="pink" [rotate]="0">0</nb-sticker>
+<nb-sticker tone="mint" [rotate]="12">+12</nb-sticker>`;
 }
