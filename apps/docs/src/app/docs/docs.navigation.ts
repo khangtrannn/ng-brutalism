@@ -256,6 +256,20 @@ export const docsNavGroups: readonly DocsNavGroup[] = [
         ],
       },
       {
+        label: 'Surface',
+        path: '/components/surface',
+        toc: [
+          { label: 'Overview', fragment: 'overview' },
+          { label: 'Preview', fragment: 'preview' },
+          { label: 'Usage', fragment: 'usage' },
+          { label: 'Tones', fragment: 'tones' },
+          { label: 'Shape', fragment: 'shape' },
+          { label: 'Clip', fragment: 'clip' },
+          { label: 'Customization', fragment: 'customization' },
+          { label: 'API', fragment: 'api' },
+        ],
+      },
+      {
         label: 'Tile',
         path: '/components/tile',
         toc: [

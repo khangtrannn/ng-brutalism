@@ -16,6 +16,7 @@ type DocsTokenComponent =
   | 'marquee'
   | 'select'
   | 'separator'
+  | 'surface'
   | 'theme'
   | 'title'
   | 'textarea';
@@ -584,6 +585,39 @@ const componentTokens: Record<DocsTokenComponent, DocsToken[]> = {
       name: '--nb-separator-thickness',
       defaultValue: '2px (4px for thick)',
       usage: 'Line thickness. Overrides the variant preset when set inline.',
+    },
+  ],
+  surface: [
+    {
+      name: '--nb-surface-bg',
+      defaultValue: 'var(--nb-surface)',
+      usage: 'Surface background color. Reassigned by the tone input.',
+    },
+    {
+      name: '--nb-surface-fg',
+      defaultValue: 'var(--nb-surface-foreground)',
+      usage: 'Surface foreground color. Reassigned by the tone input.',
+    },
+    {
+      name: '--nb-surface-border',
+      defaultValue: 'var(--nb-border)',
+      usage: 'Surface border color. Reassigned by the border input.',
+    },
+    {
+      name: '--nb-surface-border-width',
+      defaultValue: 'var(--nb-border-width)',
+      usage: 'Surface border width. Reassigned by the border input.',
+    },
+    {
+      name: '--nb-surface-radius',
+      defaultValue: 'var(--nb-radius)',
+      usage: 'Surface corner radius. Reassigned by the radius input.',
+    },
+    {
+      name: '--nb-surface-shadow',
+      defaultValue:
+        'var(--nb-shadow-offset-x) var(--nb-shadow-offset-y) 0 0 var(--nb-shadow)',
+      usage: 'Surface box shadow. Reassigned by the shadow input.',
     },
   ],
   title: [

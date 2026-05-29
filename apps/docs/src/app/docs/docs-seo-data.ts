@@ -78,6 +78,8 @@ export const PAGE_DESCRIPTIONS: Record<string, string> = {
     'Ng Brutalism Marquee component for Angular. Continuous scrolling ticker with bold borders and configurable speed.',
   '/components/select':
     'Neo-brutalist Select component for Angular. Custom dropdown with bold styling and full keyboard support.',
+  '/components/surface':
+    'Neo-brutalist Surface directive for Angular. Build custom panels with typed tone, radius, border, shadow, and clipping presets.',
   '/components/textarea':
     'Neo-brutalist Textarea component for Angular. Multi-line input with sharp borders and brutalist focus states.',
   '/components/title':

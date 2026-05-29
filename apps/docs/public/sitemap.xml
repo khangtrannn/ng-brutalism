@@ -8,7 +8,7 @@
   </url>
   <url>
     <loc>https://ngbrutalism.khangtran.dev/docs/introduction/</loc>
-    <lastmod>2026-05-22T15:58:16+07:00</lastmod>
+    <lastmod>2026-05-25T21:06:15+07:00</lastmod>
     <priority>0.9</priority>
     <changefreq>weekly</changefreq>
   </url>
@@ -99,6 +99,11 @@
   <url>
     <loc>https://ngbrutalism.khangtran.dev/components/select/</loc>
     <lastmod>2026-05-21T23:53:11+07:00</lastmod>
+    <priority>0.7</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://ngbrutalism.khangtran.dev/components/surface/</loc>
     <priority>0.7</priority>
     <changefreq>weekly</changefreq>
   </url>

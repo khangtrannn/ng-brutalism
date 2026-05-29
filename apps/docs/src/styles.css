@@ -130,13 +130,14 @@ body::-webkit-scrollbar-thumb {
 }
 
 /* === Article: chunky paper sheet with sticker corner === */
-[data-docs-content] article::before,
-[data-docs-content] article::after {
+/* Scope to routed page root articles so examples can use semantic articles. */
+[data-docs-content] > div > * > article::before,
+[data-docs-content] > div > * > article::after {
   display: none;
 }
 
 @media (min-width: 1024px) {
-  [data-docs-content] article {
+  [data-docs-content] > div > * > article {
     position: relative;
     border: 4px solid var(--nb-border);
     background: var(--nb-paper);
@@ -144,7 +145,7 @@ body::-webkit-scrollbar-thumb {
     box-shadow: 10px 10px 0 0 var(--nb-shadow);
   }
 
-  [data-docs-content] article::before {
+  [data-docs-content] > div > * > article::before {
     content: '';
     display: block;
     position: absolute;
@@ -159,7 +160,7 @@ body::-webkit-scrollbar-thumb {
     z-index: 0;
   }
 
-  [data-docs-content] article::after {
+  [data-docs-content] > div > * > article::after {
     content: '';
     display: block;
     position: absolute;

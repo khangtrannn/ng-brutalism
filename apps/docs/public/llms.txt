@@ -26,6 +26,7 @@
 - [Neo-Brutalist Angular Label | Ng Brutalism](https://ngbrutalism.khangtran.dev/components/label/): Neo-brutalist Label component for Angular. Bold form labels with strong typography and brutalist styling.
 - [Neo-Brutalist Angular Marquee | Ng Brutalism](https://ngbrutalism.khangtran.dev/components/marquee/): Ng Brutalism Marquee component for Angular. Continuous scrolling ticker with bold borders and configurable speed.
 - [Neo-Brutalist Angular Select | Ng Brutalism](https://ngbrutalism.khangtran.dev/components/select/): Neo-brutalist Select component for Angular. Custom dropdown with bold styling and full keyboard support.
+- [Neo-Brutalist Angular Surface | Ng Brutalism](https://ngbrutalism.khangtran.dev/components/surface/): Neo-brutalist Surface directive for Angular. Build custom panels with typed tone, radius, border, shadow, and clipping presets.
 - [Neo-Brutalist Angular Textarea | Ng Brutalism](https://ngbrutalism.khangtran.dev/components/textarea/): Neo-brutalist Textarea component for Angular. Multi-line input with sharp borders and brutalist focus states.
 - [Neo-Brutalist Angular Title | Ng Brutalism](https://ngbrutalism.khangtran.dev/components/title/): Neo-brutalist Title component for Angular. Decorative heading with custom wave underline and mixed content support.
 - [Portfolio Showcase | Ng Brutalism](https://ngbrutalism.khangtran.dev/showcase/portfolio/): Portfolio showcase built with Ng Brutalism — see the neo-brutalist Angular UI library in action.

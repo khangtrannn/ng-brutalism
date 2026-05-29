@@ -42,6 +42,7 @@ const ROUTES = [
   { path: '/components/label', file: 'components/label.page.ts', priority: '0.7', changefreq: 'weekly' },
   { path: '/components/marquee', file: 'components/marquee.page.ts', priority: '0.7', changefreq: 'weekly' },
   { path: '/components/select', file: 'components/select.page.ts', priority: '0.7', changefreq: 'weekly' },
+  { path: '/components/surface', file: 'components/surface.page.ts', priority: '0.7', changefreq: 'weekly' },
   { path: '/components/textarea', file: 'components/textarea.page.ts', priority: '0.7', changefreq: 'weekly' },
   { path: '/components/title', file: 'components/title.page.ts', priority: '0.7', changefreq: 'weekly' },
   { path: '/showcase/portfolio', file: 'showcase/portfolio/index.page.ts', priority: '0.6', changefreq: 'monthly' },

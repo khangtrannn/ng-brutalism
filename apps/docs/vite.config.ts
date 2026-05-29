@@ -72,6 +72,7 @@ export default defineConfig(({ mode }) => {
             '/components/marquee',
             '/components/select',
             '/components/separator',
+            '/components/surface',
             '/components/textarea',
             '/components/title',
             '/docs',

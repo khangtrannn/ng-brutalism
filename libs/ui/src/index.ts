@@ -83,3 +83,10 @@ export { NbSticker, NbStickerFace } from './lib/sticker';
 export type { NbStickerShape, NbStickerTone } from './lib/sticker';
 export { NbHalftone } from './lib/halftone';
 export type { NbHalftonePosition } from './lib/halftone';
+export { NbSurface } from './lib/surface';
+export type {
+  NbSurfaceBorder,
+  NbSurfaceRadius,
+  NbSurfaceShadow,
+  NbSurfaceTone,
+} from './lib/surface';
