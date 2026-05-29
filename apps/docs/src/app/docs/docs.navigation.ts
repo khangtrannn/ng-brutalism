@@ -73,6 +73,22 @@ export const docsNavGroups: readonly DocsNavGroup[] = [
           { label: 'API', fragment: 'api' },
         ],
       },
+      {
+        label: 'Callout',
+        path: '/components/callout',
+        toc: [
+          { label: 'Overview', fragment: 'overview' },
+          { label: 'Preview', fragment: 'preview' },
+          { label: 'Usage', fragment: 'usage' },
+          { label: 'Examples', fragment: 'examples' },
+          { label: 'Tones', fragment: 'tones' },
+          { label: 'Sizes', fragment: 'sizes' },
+          { label: 'Layouts', fragment: 'layouts' },
+          { label: 'Shadows', fragment: 'shadows' },
+          { label: 'Customization', fragment: 'customization' },
+          { label: 'API', fragment: 'api' },
+        ],
+      },
       { label: 'Avatar', path: '/components/avatar' },
       {
         label: 'Avatar Group',

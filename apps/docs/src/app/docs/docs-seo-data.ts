@@ -60,6 +60,8 @@ export const PAGE_DESCRIPTIONS: Record<string, string> = {
     'Neo-brutalist Badge component for Angular. Punchy status labels with thick borders and high-contrast colors.',
   '/components/button':
     'Neo-brutalist Button component for Angular. Hard borders, offset shadows, and multiple variants — built with directive APIs and signals.',
+  '/components/callout':
+    'Neo-brutalist Callout directive for Angular. Highlight prices, stats, dates, ratings, awards, and important values with loud brutalist emphasis.',
   '/components/card':
     'Neo-brutalist Card component for Angular. Bold content blocks with thick borders and offset shadows.',
   '/components/checkbox':

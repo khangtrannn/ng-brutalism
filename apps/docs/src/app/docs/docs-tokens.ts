@@ -5,6 +5,7 @@ type DocsTokenComponent =
   | 'avatar'
   | 'badge'
   | 'button'
+  | 'callout'
   | 'card'
   | 'checkbox'
   | 'dialog'
@@ -194,6 +195,33 @@ const componentTokens: Record<DocsTokenComponent, DocsToken[]> = {
       defaultValue:
         'var(--nb-shadow-offset-x) var(--nb-shadow-offset-y) 0 var(--nb-shadow)',
       usage: 'Button box shadow, reassigned by shadow',
+    },
+  ],
+  callout: [
+    {
+      name: '--nb-callout-bg',
+      defaultValue: '#ffd84d',
+      usage: 'Callout background color. Reassigned by the tone input.',
+    },
+    {
+      name: '--nb-callout-fg',
+      defaultValue: '#000000',
+      usage: 'Callout text color. Reassigned by the tone input.',
+    },
+    {
+      name: '--nb-callout-border-width',
+      defaultValue: '3px',
+      usage: 'Callout border width. Reassigned by the size input.',
+    },
+    {
+      name: '--nb-callout-radius',
+      defaultValue: '0.75rem',
+      usage: 'Callout corner radius. Reassigned by the size input.',
+    },
+    {
+      name: '--nb-callout-shadow',
+      defaultValue: '6px 6px 0 0 var(--nb-shadow)',
+      usage: 'Callout box shadow. Reassigned by the shadow input.',
     },
   ],
   card: [

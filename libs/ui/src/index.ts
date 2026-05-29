@@ -90,3 +90,10 @@ export type {
   NbSurfaceShadow,
   NbSurfaceTone,
 } from './lib/surface';
+export { NbCallout } from './lib/callout';
+export type {
+  NbCalloutLayout,
+  NbCalloutShadow,
+  NbCalloutSize,
+  NbCalloutTone,
+} from './lib/callout';
