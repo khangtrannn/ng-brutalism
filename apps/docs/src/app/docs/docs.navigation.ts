@@ -286,58 +286,8 @@ export const docsNavGroups: readonly DocsNavGroup[] = [
     label: 'Recipes',
     items: [
       {
-        label: 'Profile Card',
-        path: '/recipes/profile-card',
-        toc: [
-          { label: 'Overview', fragment: 'overview' },
-          { label: 'Preview', fragment: 'preview' },
-          { label: 'Code', fragment: 'code' },
-          { label: 'Primitives used', fragment: 'primitives' },
-        ],
-      },
-      {
-        label: 'Job Card',
-        path: '/recipes/job-card',
-        toc: [
-          { label: 'Overview', fragment: 'overview' },
-          { label: 'Preview', fragment: 'preview' },
-          { label: 'Code', fragment: 'code' },
-          { label: 'Primitives used', fragment: 'primitives' },
-        ],
-      },
-      {
-        label: 'Charity Card',
-        path: '/recipes/charity-card',
-        toc: [
-          { label: 'Overview', fragment: 'overview' },
-          { label: 'Preview', fragment: 'preview' },
-          { label: 'Code', fragment: 'code' },
-          { label: 'Primitives used', fragment: 'primitives' },
-        ],
-      },
-      {
-        label: 'Listing Card',
-        path: '/recipes/listing-card',
-        toc: [
-          { label: 'Overview', fragment: 'overview' },
-          { label: 'Preview', fragment: 'preview' },
-          { label: 'Code', fragment: 'code' },
-          { label: 'Primitives used', fragment: 'primitives' },
-        ],
-      },
-      {
-        label: 'Esports Card',
-        path: '/recipes/esports-card',
-        toc: [
-          { label: 'Overview', fragment: 'overview' },
-          { label: 'Preview', fragment: 'preview' },
-          { label: 'Code', fragment: 'code' },
-          { label: 'Primitives used', fragment: 'primitives' },
-        ],
-      },
-      {
-        label: 'Podcast Card',
-        path: '/recipes/podcast-card',
+        label: 'Travel Card',
+        path: '/recipes/travel-card',
         toc: [
           { label: 'Overview', fragment: 'overview' },
           { label: 'Preview', fragment: 'preview' },
