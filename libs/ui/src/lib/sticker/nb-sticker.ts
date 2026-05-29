@@ -104,6 +104,7 @@ const NB_STICKER_TONE_TOKENS: Record<NbStickerTone, NbStickerToneTokens> = {
     '[style.--nb-sticker-ink]': 'toneTokens().ink',
     '[style.--nb-sticker-shadow]': 'toneTokens().shadow',
     '[style.--nb-sticker-rotate]': 'rotateStyle()',
+    '[style.--nb-sticker-scale]': 'size()',
   },
   styles: [
     `
@@ -129,9 +130,10 @@ const NB_STICKER_TONE_TOKENS: Record<NbStickerTone, NbStickerToneTokens> = {
       }
 
       :host([data-shape='star']) {
-        --nb-sticker-min-block-size: 13.25rem;
-        --nb-sticker-padding-inline: 5rem;
-        --nb-sticker-padding-block: 5rem;
+        --nb-sticker-min-block-size: 7.5rem;
+        --nb-sticker-padding-inline: 2.5rem;
+        --nb-sticker-padding-block: 2.5rem;
+        --nb-sticker-face-size: 3.5rem;
         --nb-sticker-rotate: 0deg;
         --nb-sticker-stroke-width: 5px;
       }
@@ -156,7 +158,7 @@ const NB_STICKER_TONE_TOKENS: Record<NbStickerTone, NbStickerToneTokens> = {
         inline-size: max-content;
         block-size: max-content;
 
-        transform: rotate(var(--nb-sticker-rotate));
+        transform: rotate(var(--nb-sticker-rotate)) scale(var(--nb-sticker-scale, 1));
         transform-origin: center;
       }
 
@@ -229,21 +231,12 @@ export class NbSticker {
   readonly shape = input<NbStickerShape>('burst');
   readonly tone = input<NbStickerTone>('mint');
   readonly decorative = input(false, { transform: booleanAttribute });
-  readonly rotate = input(undefined, { transform: toOptionalNumber });
+  readonly rotate = input(0, { transform: numberAttribute });
+  readonly size = input(1, { transform: numberAttribute });
 
   protected readonly config = computed(() => NB_STICKER_PATHS[this.shape()]);
   protected readonly toneTokens = computed(
     () => NB_STICKER_TONE_TOKENS[this.tone()]
   );
-  protected readonly rotateStyle = computed(() => {
-    const rotate = this.rotate();
-
-    return rotate === undefined ? null : `${rotate}deg`;
-  });
-}
-
-function toOptionalNumber(value: unknown): number | undefined {
-  const result = numberAttribute(value);
-
-  return Number.isFinite(result) ? result : undefined;
+  protected readonly rotateStyle = computed(() => `${this.rotate()}deg`);
 }

@@ -76,30 +76,22 @@ import { DocsSourceTile } from '../../docs/docs-source-tile';
       <section id="shapes">
         <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">Shapes</h2>
         <docs-example [code]="shapesExampleCode">
-          <div class="grid gap-8 p-6 sm:grid-cols-2 xl:grid-cols-4">
-            <div
-              class="flex min-h-44 flex-col items-center justify-center gap-4"
-            >
+          <div class="flex flex-wrap items-center justify-center gap-x-14 gap-y-8 p-8">
+            <div class="flex flex-col items-center gap-4">
               <nb-sticker shape="burst" tone="mint">BURST</nb-sticker>
               <span class="font-mono text-xs font-bold">burst</span>
             </div>
-            <div
-              class="flex min-h-44 flex-col items-center justify-center gap-4"
-            >
+            <div class="flex flex-col items-center gap-4">
               <nb-sticker shape="burst-wide" tone="yellow">WIDE</nb-sticker>
               <span class="font-mono text-xs font-bold">burst-wide</span>
             </div>
-            <div
-              class="flex min-h-44 flex-col items-center justify-center gap-4"
-            >
+            <div class="flex flex-col items-center gap-4">
               <nb-sticker shape="star" tone="pink" aria-label="Face sticker">
                 <nb-sticker-face />
               </nb-sticker>
               <span class="font-mono text-xs font-bold">star</span>
             </div>
-            <div
-              class="flex min-h-44 flex-col items-center justify-center gap-4"
-            >
+            <div class="flex flex-col items-center gap-4">
               <nb-sticker shape="splat" tone="purple" decorative />
               <span class="font-mono text-xs font-bold">splat</span>
             </div>
