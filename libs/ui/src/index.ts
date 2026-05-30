@@ -116,6 +116,7 @@ export { NbSplit } from './lib/split';
 export type {
   NbSplitAlign,
   NbSplitCollapse,
+  NbSplitDivider,
   NbSplitGap,
   NbSplitPadding,
   NbSplitRatio,

@@ -70,12 +70,15 @@ import {
           </div>
         </div>
 
-        <div nbSplit ratio="2:1" gap="xl" padding="lg" collapse="md">
-          <div
-            nbStack
-            gap="lg"
-            class="relative md:after:absolute md:after:top-0 md:after:right-[-0.75rem] md:after:bottom-0 md:after:border-r-2 md:after:border-(--nb-border) md:after:content-['']"
-          >
+        <div
+          nbSplit
+          ratio="2:1"
+          gap="xl"
+          padding="lg"
+          collapse="md"
+          divider="solid"
+        >
+          <div nbStack gap="lg">
             <div nbCluster gap="md" align="center">
               <img
                 src="/tokyo-city-escape/roam-go-logo.png"
