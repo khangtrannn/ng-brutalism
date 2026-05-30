@@ -16,6 +16,12 @@ class ButtonTokenTest {
   shadow: NbButtonShadow = 'default';
 }
 
+@Component({
+  imports: [NbButton],
+  template: `<button nbButton fullWidth>Save</button>`,
+})
+class FullWidthButtonTest {}
+
 describe('NbButton token surface', () => {
   it('declares the expected default tokens on the base host', async () => {
     const fixture = await createFixture();
@@ -83,6 +89,17 @@ describe('NbButton token surface', () => {
     expect(cls).toContain(
       'hover:shadow-[var(--nb-shadow-offset-x)_var(--nb-shadow-offset-y)_0_var(--nb-shadow)]'
     );
+  });
+
+  it('fullWidth bare attribute makes the button full width', async () => {
+    await TestBed.configureTestingModule({
+      imports: [FullWidthButtonTest],
+    }).compileComponents();
+    const fixture = TestBed.createComponent(FullWidthButtonTest);
+    fixture.detectChanges();
+    const button = fixture.nativeElement.querySelector('button[nbButton]') as HTMLButtonElement;
+
+    expect(button.className).toContain('w-full');
   });
 
   it('does not regress the default button class shape', async () => {

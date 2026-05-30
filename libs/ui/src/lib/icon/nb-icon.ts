@@ -51,6 +51,8 @@ const toneMap: Record<NbIconTone, string> = {
     '[attr.aria-hidden]': 'ariaHiddenValue()',
     '[attr.aria-label]': 'ariaLabelValue()',
 
+    '[style.--nb-icon-color]': 'toneValue()',
+
     '[style.display]': '"inline-block"',
     '[style.width]': 'sizeValue()',
     '[style.height]': 'sizeValue()',

@@ -120,7 +120,10 @@ describe('NbSplit', () => {
       '[&>*:first-child]:after:border-r-(length:--nb-border-width)'
     );
     expect(split.className).toContain(
-      '[&>*:first-child]:after:border-r-[var(--nb-border)]'
+      '[&>*:first-child]:after:[border-right-color:var(--nb-border)]'
+    );
+    expect(split.className).toContain(
+      '[&>*:first-child]:after:border-solid'
     );
     // Stacked on mobile, revealed once the columns appear at `md`.
     expect(split.className).toContain('[&>*:first-child]:after:hidden');
@@ -141,6 +144,9 @@ describe('NbSplit', () => {
     expect(split.className).toContain(
       '[&>*:first-child]:after:border-r-(length:--nb-border-width)'
     );
+    expect(split.className).toContain(
+      '[&>*:first-child]:after:[border-right-color:var(--nb-border)]'
+    );
     // collapse="none" means no breakpoint gating.
     expect(classNames(split)).not.toContain('[&>*:first-child]:after:hidden');
   });
@@ -153,6 +159,10 @@ describe('NbSplit', () => {
 
     expect(split.getAttribute('data-divider')).toBe('thick');
     expect(split.className).toContain('[&>*:first-child]:after:border-r-[4px]');
+    expect(split.className).toContain('[&>*:first-child]:after:border-solid');
+    expect(split.className).toContain(
+      '[&>*:first-child]:after:[border-right-color:var(--nb-border)]'
+    );
     expect(split.className).toContain('lg:[&>*:first-child]:after:block');
     expect(classNames(split)).not.toContain(
       '[&>*:first-child]:after:border-dashed'

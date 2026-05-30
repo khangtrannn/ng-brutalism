@@ -133,17 +133,23 @@ const dividerBaseClass = nbClass(
   '[&>*:first-child]:after:absolute',
   '[&>*:first-child]:after:inset-y-0',
   '[&>*:first-child]:after:right-[calc(var(--nb-split-gap)/-2)]',
-  '[&>*:first-child]:after:border-r-[var(--nb-border)]',
+  '[&>*:first-child]:after:[border-right-color:var(--nb-border)]',
   '[&>*:first-child]:after:content-[""]'
 );
 
 const dividerStyleClass: Record<Exclude<NbSplitDivider, 'none'>, string> = {
-  solid: '[&>*:first-child]:after:border-r-(length:--nb-border-width)',
+  solid: nbClass(
+    '[&>*:first-child]:after:border-r-(length:--nb-border-width)',
+    '[&>*:first-child]:after:border-solid'
+  ),
   dashed: nbClass(
     '[&>*:first-child]:after:border-r-(length:--nb-border-width)',
     '[&>*:first-child]:after:border-dashed'
   ),
-  thick: '[&>*:first-child]:after:border-r-[4px]',
+  thick: nbClass(
+    '[&>*:first-child]:after:border-r-[4px]',
+    '[&>*:first-child]:after:border-solid'
+  ),
 };
 
 // Hide the divider while the split is stacked into a single column, then reveal

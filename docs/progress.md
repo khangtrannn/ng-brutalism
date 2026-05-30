@@ -23,8 +23,8 @@ For history and details, read the domain's own `progress.md`.
 ---
 
 ## Components
-**Status:** v0.1.1 shipped. v0.2.0 feature-complete: all 10 new primitives + 6 recipe pages live under `/recipes/*`. `NbText` + `NbIcon` added. `NbButton` upgraded: `tone`, `radius`, `weight`, `transform`, `tracking` inputs; new `sm/md/lg/xl` size scale. `NbButtonTrailingIcon` upgraded: `shape`, `tone`, `size` inputs. Travel card fully declarative.
-**Next:** Visual QA pass on each recipe page, then cut v0.2.0 release. Add NbText + NbIcon docs pages.
+**Status:** Stabilization pass complete on `feat/recipes`. Divider border color classes made explicit (`[border-top-color]`, `[border-right-color]`). `NbButton.fullWidth` uses `booleanAttribute`. `NbIcon` assigns `--nb-icon-color` CSS variable. Cluster docs updated with divider section + API row. Job card recipe added (P9 validation). All tests pass; build clean.
+**Next:** Visual QA pass on job card and cluster divider demos, then cut v0.2.0 release.
 **Goal:** All 18 reference designs buildable with v0.2.0 primitives (~90% fidelity).
 → Plan: `docs/release/v0.2.0-plan.md`
 

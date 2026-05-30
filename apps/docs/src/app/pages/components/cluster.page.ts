@@ -1,13 +1,14 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import {
   NbButton,
+  NbChip,
   NbCluster,
   NbDisplay,
   NbMediaItem,
   NbMediaItemTitle,
-  NbSeparator,
   NbSurface,
   type NbClusterAlign,
+  type NbClusterDivider,
   type NbClusterGap,
   type NbClusterJustify,
   type NbClusterWrap,
@@ -37,6 +38,11 @@ interface ClusterWrapDemo {
   readonly label: string;
 }
 
+interface ClusterDividerDemo {
+  readonly value: NbClusterDivider;
+  readonly label: string;
+}
+
 @Component({
   selector: 'docs-cluster-page',
   imports: [
@@ -44,11 +50,11 @@ interface ClusterWrapDemo {
     DocsExample,
     DocsSourceTile,
     NbButton,
+    NbChip,
     NbCluster,
     NbDisplay,
     NbMediaItem,
     NbMediaItemTitle,
-    NbSeparator,
     NbSurface,
   ],
   template: `
@@ -77,6 +83,10 @@ interface ClusterWrapDemo {
           <div class="nb-stat-tile nb-stat-tile--pink">
             <span class="nb-stat-tile__value">Wrap</span>
             <span class="nb-stat-tile__label">Default</span>
+          </div>
+          <div class="nb-stat-tile nb-stat-tile--lavender">
+            <span class="nb-stat-tile__value">4</span>
+            <span class="nb-stat-tile__label">Dividers</span>
           </div>
 
           <docs-source-tile
@@ -261,6 +271,44 @@ interface ClusterWrapDemo {
         </docs-example>
       </section>
 
+      <section id="dividers">
+        <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">
+          Dividers
+        </h2>
+        <p class="mb-4 font-medium">
+          Use <code class="font-mono">divider</code> to render inline separators
+          between cluster children. When a divider is active, gap is collapsed to
+          <code class="font-mono">gap-x-0</code> and children receive
+          <code class="font-mono">padding-inline-start</code> from
+          <code class="font-mono">--nb-cluster-gap</code>. Best for
+          single-line clusters — wrapping rows may keep their divider regardless
+          of position.
+        </p>
+        <docs-example [code]="dividersExampleCode">
+          <div class="grid w-full grid-cols-1 gap-4 p-4">
+            @for (d of dividers; track d.value) {
+              @if (d.value !== 'none') {
+                <div nbSurface tone="cream" shadow="sm" class="p-4">
+                  <div nbCluster gap="lg" align="center" [divider]="d.value"
+                       class="[--nb-media-item-title-size:12px]">
+                    <nb-media-item icon="/tokyo-city-escape/central-locations.png">
+                      <span nbMediaItemTitle>Central<br />Locations</span>
+                    </nb-media-item>
+                    <nb-media-item icon="/tokyo-city-escape/guided-experiences.png">
+                      <span nbMediaItemTitle>Guided<br />Experiences</span>
+                    </nb-media-item>
+                    <nb-media-item icon="/tokyo-city-escape/24-7-support.png">
+                      <span nbMediaItemTitle>24/7<br />Support</span>
+                    </nb-media-item>
+                  </div>
+                  <p class="mt-3 font-mono text-xs font-black uppercase opacity-50">divider="{{ d.label }}"</p>
+                </div>
+              }
+            }
+          </div>
+        </docs-example>
+      </section>
+
       <section id="composition">
         <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">
           Composition
@@ -270,16 +318,15 @@ interface ClusterWrapDemo {
             nbCluster
             gap="lg"
             align="center"
+            divider="dashed"
             class="p-4 [--nb-media-item-title-size:12px]"
           >
             <nb-media-item icon="/tokyo-city-escape/central-locations.png">
               <span nbMediaItemTitle>Central<br />Locations</span>
             </nb-media-item>
-            <hr nbSeparator orientation="vertical" variant="dashed" />
             <nb-media-item icon="/tokyo-city-escape/guided-experiences.png">
               <span nbMediaItemTitle>Guided<br />Experiences</span>
             </nb-media-item>
-            <hr nbSeparator orientation="vertical" variant="dashed" />
             <nb-media-item icon="/tokyo-city-escape/24-7-support.png">
               <span nbMediaItemTitle>24/7<br />Support</span>
             </nb-media-item>
@@ -331,11 +378,17 @@ interface ClusterWrapDemo {
                 <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">'start'</td>
                 <td class="px-4 py-3">Main-axis distribution when the cluster has extra width.</td>
               </tr>
-              <tr>
+              <tr class="border-b-2 border-(--nb-border)">
                 <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">wrap</td>
                 <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">'wrap' | 'nowrap'</td>
                 <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">'wrap'</td>
                 <td class="px-4 py-3">Controls whether children can wrap onto additional rows.</td>
+              </tr>
+              <tr>
+                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">divider</td>
+                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">'none' | 'solid' | 'dashed' | 'thick'</td>
+                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">'none'</td>
+                <td class="px-4 py-3">Inline-start border between each child. When active, <code class="font-mono">gap-x</code> is collapsed and spacing comes from <code class="font-mono">padding-inline-start</code>.</td>
               </tr>
             </tbody>
           </table>
@@ -393,15 +446,24 @@ export default class ClusterPage {
   ...
 </div>`;
 
-  protected readonly compositionExampleCode = `<div nbCluster gap="lg" align="center">
+  protected readonly dividersExampleCode = `<div nbCluster gap="lg" align="center" divider="dashed">
   <nb-media-item icon="/icons/location.png">
-    <span>Central<br />Locations</span>
+    <span nbMediaItemTitle>Central<br />Locations</span>
   </nb-media-item>
-
-  <hr nbSeparator orientation="vertical" variant="dashed" />
-
+  <nb-media-item icon="/icons/guide.png">
+    <span nbMediaItemTitle>Guided<br />Experiences</span>
+  </nb-media-item>
   <nb-media-item icon="/icons/support.png">
-    <span>24/7<br />Support</span>
+    <span nbMediaItemTitle>24/7<br />Support</span>
+  </nb-media-item>
+</div>`;
+
+  protected readonly compositionExampleCode = `<div nbCluster gap="lg" align="center" divider="dashed">
+  <nb-media-item icon="/icons/location.png">
+    <span nbMediaItemTitle>Central<br />Locations</span>
+  </nb-media-item>
+  <nb-media-item icon="/icons/support.png">
+    <span nbMediaItemTitle>24/7<br />Support</span>
   </nb-media-item>
 </div>`;
 
@@ -442,4 +504,11 @@ export default class ClusterPage {
     { value: 'wrap', label: 'wrap' },
     { value: 'nowrap', label: 'nowrap' },
   ] satisfies readonly ClusterWrapDemo[];
+
+  protected readonly dividers = [
+    { value: 'none', label: 'none' },
+    { value: 'solid', label: 'solid' },
+    { value: 'dashed', label: 'dashed' },
+    { value: 'thick', label: 'thick' },
+  ] satisfies readonly ClusterDividerDemo[];
 }

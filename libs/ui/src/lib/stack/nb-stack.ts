@@ -79,13 +79,14 @@ export class NbStack {
       none: '',
       solid: nbClass(
         '[&>*+*]:border-t-(length:--nb-border-width)',
-        '[&>*+*]:border-t-[var(--nb-border)]',
+        '[&>*+*]:border-solid',
+        '[&>*+*]:[border-top-color:var(--nb-border)]',
         '[&>*+*]:pt-[var(--nb-stack-gap)]'
       ),
       dashed: nbClass(
         '[&>*+*]:border-t-(length:--nb-border-width)',
         '[&>*+*]:border-dashed',
-        '[&>*+*]:border-t-[var(--nb-border)]',
+        '[&>*+*]:[border-top-color:var(--nb-border)]',
         '[&>*+*]:pt-[var(--nb-stack-gap)]'
       ),
     };

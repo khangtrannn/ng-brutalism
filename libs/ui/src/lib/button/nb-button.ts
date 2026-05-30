@@ -1,4 +1,4 @@
-import { Directive, computed, input } from '@angular/core';
+import { Directive, booleanAttribute, computed, input } from '@angular/core';
 
 import { nbClass } from '../core/class';
 import { nbToneTokens } from '../tokens/tone';
@@ -69,7 +69,7 @@ export class NbButton {
   readonly weight = input<NbButtonWeight>('bold');
   readonly transform = input<NbButtonTransform>('none');
   readonly tracking = input<NbButtonTracking>('normal');
-  readonly fullWidth = input(false);
+  readonly fullWidth = input(false, { transform: booleanAttribute });
 
   protected readonly toneBg = computed(() => {
     const t = this.tone();
