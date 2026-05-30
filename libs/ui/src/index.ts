@@ -121,6 +121,14 @@ export type {
   NbSplitPadding,
   NbSplitRatio,
 } from './lib/split';
+export { NbSection } from './lib/section';
+export type {
+  NbSectionAlign,
+  NbSectionBorder,
+  NbSectionBorderStyle,
+  NbSectionLayout,
+  NbSectionPadding,
+} from './lib/section';
 export { NbCallout } from './lib/callout';
 export type {
   NbCalloutLayout,

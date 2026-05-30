@@ -84,6 +84,8 @@ export const PAGE_DESCRIPTIONS: Record<string, string> = {
     'Neo-brutalist Media Item directive for Angular. Pair icons, images, or avatars with a title and optional description — covers feature lists, event details, product specs, status chips, and more.',
   '/components/media-frame':
     'Neo-brutalist Media Frame directive for Angular. Frame images, video, portraits, previews, maps, and media-like blocks with typed ratio, tone, fit, radius, and shadow presets.',
+  '/components/section':
+    'Neo-brutalist Section directive for Angular. Compose card headers, body blocks, and footers with typed padding, border side, border style, layout, and alignment inputs.',
   '/components/select':
     'Neo-brutalist Select component for Angular. Custom dropdown with bold styling and full keyboard support.',
   '/components/surface':

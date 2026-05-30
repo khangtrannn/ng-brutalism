@@ -9,6 +9,7 @@ import {
   NbMediaFrame,
   NbMediaItem,
   NbMediaItemTitle,
+  NbSection,
   NbSeparator,
   NbSplit,
   NbStack,
@@ -28,6 +29,7 @@ import {
     NbMediaFrame,
     NbMediaItem,
     NbMediaItemTitle,
+    NbSection,
     NbSeparator,
     NbSplit,
     NbStack,
@@ -139,7 +141,7 @@ import {
           </div>
         </div>
 
-        <div class="border-t-2 border-(--nb-border) px-6 py-6">
+        <div nbSection border="top" padding="lg">
           <div nbSplit ratio="2:1" gap="lg" collapse="md">
             <div
               nbCluster
