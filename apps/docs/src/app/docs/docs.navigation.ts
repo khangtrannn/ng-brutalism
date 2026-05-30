@@ -312,6 +312,21 @@ export const docsNavGroups: readonly DocsNavGroup[] = [
         ],
       },
       {
+        label: 'Split',
+        path: '/components/split',
+        toc: [
+          { label: 'Overview', fragment: 'overview' },
+          { label: 'Preview', fragment: 'preview' },
+          { label: 'Usage', fragment: 'usage' },
+          { label: 'Ratios', fragment: 'ratios' },
+          { label: 'Gaps and padding', fragment: 'gaps-padding' },
+          { label: 'Collapse', fragment: 'collapse' },
+          { label: 'Alignment', fragment: 'alignment' },
+          { label: 'Composition', fragment: 'composition' },
+          { label: 'API', fragment: 'api' },
+        ],
+      },
+      {
         label: 'Sticker',
         path: '/components/sticker',
         toc: [

@@ -112,6 +112,14 @@ export type {
   NbClusterJustify,
   NbClusterWrap,
 } from './lib/cluster';
+export { NbSplit } from './lib/split';
+export type {
+  NbSplitAlign,
+  NbSplitCollapse,
+  NbSplitGap,
+  NbSplitPadding,
+  NbSplitRatio,
+} from './lib/split';
 export { NbCallout } from './lib/callout';
 export type {
   NbCalloutLayout,

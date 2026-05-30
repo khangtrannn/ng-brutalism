@@ -10,6 +10,7 @@ import {
   NbMediaItem,
   NbMediaItemTitle,
   NbSeparator,
+  NbSplit,
   NbStack,
   NbSticker,
   NbSurface,
@@ -28,6 +29,7 @@ import {
     NbMediaItem,
     NbMediaItemTitle,
     NbSeparator,
+    NbSplit,
     NbStack,
     NbSticker,
     NbSurface,
@@ -68,8 +70,12 @@ import {
           </div>
         </div>
 
-        <div class="grid gap-6 p-4 md:grid-cols-[2fr_auto_1fr]">
-          <div nbStack gap="lg">
+        <div nbSplit ratio="2:1" gap="xl" padding="lg" collapse="md">
+          <div
+            nbStack
+            gap="lg"
+            class="relative md:after:absolute md:after:top-0 md:after:right-[-0.75rem] md:after:bottom-0 md:after:border-r-2 md:after:border-(--nb-border) md:after:content-['']"
+          >
             <div nbCluster gap="md" align="center">
               <img
                 src="/tokyo-city-escape/roam-go-logo.png"
@@ -87,8 +93,6 @@ import {
               unforgettable memories.
             </p>
           </div>
-
-          <hr nbSeparator orientation="vertical" class="hidden md:block" />
 
           <div nbStack gap="lg" align="start" class="shrink-0">
             <div
@@ -132,44 +136,44 @@ import {
           </div>
         </div>
 
-        <div
-          class="grid gap-5 border-t-2 border-(--nb-border) px-6 py-6 md:grid-cols-[2fr_1fr]"
-        >
-          <div
-            nbCluster
-            gap="lg"
-            align="center"
-            class="[--nb-media-item-title-size:12px]"
-          >
-            <nb-media-item icon="/tokyo-city-escape/central-locations.png">
-              <span nbMediaItemTitle>Central<br />Locations</span>
-            </nb-media-item>
-            <hr nbSeparator orientation="vertical" variant="dashed" />
-            <nb-media-item icon="/tokyo-city-escape/guided-experiences.png">
-              <span nbMediaItemTitle>Guided<br />Experiences</span>
-            </nb-media-item>
-            <hr nbSeparator orientation="vertical" variant="dashed" />
-            <nb-media-item icon="/tokyo-city-escape/24-7-support.png">
-              <span nbMediaItemTitle>24/7<br />Support</span>
-            </nb-media-item>
-          </div>
-
-          <button
-            nbButton
-            style="--nb-button-bg: var(--nb-lavender); --nb-button-radius: 0.5rem"
-            class="h-14 px-4 text-[20px] font-black tracking-wide uppercase"
-          >
-            Book Trip
-            <span
-              nbButtonTrailingIcon
-              class="inline-flex size-8 items-center justify-center rounded-full bg-(--nb-foreground) text-(--nb-background)"
+        <div class="border-t-2 border-(--nb-border) px-6 py-6">
+          <div nbSplit ratio="2:1" gap="lg" collapse="md">
+            <div
+              nbCluster
+              gap="lg"
+              align="center"
+              class="[--nb-media-item-title-size:12px]"
             >
+              <nb-media-item icon="/tokyo-city-escape/central-locations.png">
+                <span nbMediaItemTitle>Central<br />Locations</span>
+              </nb-media-item>
+              <hr nbSeparator orientation="vertical" variant="dashed" />
+              <nb-media-item icon="/tokyo-city-escape/guided-experiences.png">
+                <span nbMediaItemTitle>Guided<br />Experiences</span>
+              </nb-media-item>
+              <hr nbSeparator orientation="vertical" variant="dashed" />
+              <nb-media-item icon="/tokyo-city-escape/24-7-support.png">
+                <span nbMediaItemTitle>24/7<br />Support</span>
+              </nb-media-item>
+            </div>
+
+            <button
+              nbButton
+              style="--nb-button-bg: var(--nb-lavender); --nb-button-radius: 0.5rem"
+              class="h-14 px-4 text-[20px] font-black tracking-wide uppercase"
+            >
+              Book Trip
               <span
-                aria-hidden="true"
-                class="size-4 bg-current [mask:url(/tokyo-city-escape/nb-arrow-right.svg)_center/contain_no-repeat]"
-              ></span>
-            </span>
-          </button>
+                nbButtonTrailingIcon
+                class="inline-flex size-8 items-center justify-center rounded-full bg-(--nb-foreground) text-(--nb-background)"
+              >
+                <span
+                  aria-hidden="true"
+                  class="size-4 bg-current [mask:url(/tokyo-city-escape/nb-arrow-right.svg)_center/contain_no-repeat]"
+                ></span>
+              </span>
+            </button>
+          </div>
         </div>
       </div>
     </div>
