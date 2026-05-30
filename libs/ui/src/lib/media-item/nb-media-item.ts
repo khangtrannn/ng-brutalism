@@ -104,16 +104,16 @@ export class NbMediaItem {
       '[&_svg]:shrink-0 [&_img]:shrink-0 [&_[data-nb-media-item-icon]]:shrink-0 [&_[nbSurface]]:shrink-0',
       '[&_svg]:rounded-[calc(var(--nb-media-item-radius)-0.25rem)]',
       '[&_img]:rounded-[calc(var(--nb-media-item-radius)-0.25rem)]',
-      '[&_svg]:size-[var(--nb-media-item-icon-size)]',
-      '[&_img]:size-[var(--nb-media-item-icon-size)]',
+      '[&_svg]:h-[var(--nb-media-item-icon-size)] [&_svg]:max-w-[var(--nb-media-item-icon-size)] [&_svg]:w-auto',
+      '[&_img]:h-[var(--nb-media-item-icon-size)] [&_img]:max-w-[var(--nb-media-item-icon-size)] [&_img]:w-auto [&_img]:object-contain',
       '[&_[data-nb-media-item-title]]:block',
       '[&_[data-nb-media-item-title]]:[font-family:var(--nb-media-item-title-font-family,var(--font-sans))]',
       '[&_[data-nb-media-item-title]]:font-black',
       '[&_[data-nb-media-item-title]]:leading-none',
-      '[&_[data-nb-media-item-title]]:text-(length:--nb-media-item-title-size)',
+      '[&_[data-nb-media-item-title]]:text-[length:var(--nb-media-item-title-size,var(--nb-media-item-title-default-size))]',
       '[&_[data-nb-media-item-description]]:mt-1',
       '[&_[data-nb-media-item-description]]:block',
-      '[&_[data-nb-media-item-description]]:text-(length:--nb-media-item-description-size)',
+      '[&_[data-nb-media-item-description]]:text-[length:var(--nb-media-item-description-size,var(--nb-media-item-description-default-size))]',
       '[&_[data-nb-media-item-description]]:font-bold',
       '[&_[data-nb-media-item-description]]:leading-none',
       '[&_[data-nb-media-item-description]]:opacity-[var(--nb-media-item-description-opacity)]',
@@ -189,8 +189,8 @@ export class NbMediaItem {
         '[--nb-media-item-gap:0.5rem]',
         '[--nb-media-item-icon-size:1rem]',
         '[--nb-media-item-surface-size:2.25rem]',
-        '[--nb-media-item-title-size:0.75rem]',
-        '[--nb-media-item-description-size:0.625rem]',
+        '[--nb-media-item-title-default-size:0.75rem]',
+        '[--nb-media-item-description-default-size:0.625rem]',
         this.variant() === 'plain' ? '' : 'px-2.5 py-1.5'
       ),
       md: nbClass(
@@ -198,8 +198,8 @@ export class NbMediaItem {
         '[--nb-media-item-gap:0.75rem]',
         '[--nb-media-item-icon-size:1.25rem]',
         '[--nb-media-item-surface-size:2.75rem]',
-        '[--nb-media-item-title-size:0.875rem]',
-        '[--nb-media-item-description-size:0.65625rem]',
+        '[--nb-media-item-title-default-size:0.875rem]',
+        '[--nb-media-item-description-default-size:0.65625rem]',
         this.variant() === 'plain' ? '' : 'px-3 py-2'
       ),
       lg: nbClass(
@@ -207,8 +207,8 @@ export class NbMediaItem {
         '[--nb-media-item-gap:1rem]',
         '[--nb-media-item-icon-size:1.5rem]',
         '[--nb-media-item-surface-size:3.25rem]',
-        '[--nb-media-item-title-size:1rem]',
-        '[--nb-media-item-description-size:0.75rem]',
+        '[--nb-media-item-title-default-size:1rem]',
+        '[--nb-media-item-description-default-size:0.75rem]',
         this.variant() === 'plain' ? '' : 'px-4 py-3'
       ),
     };

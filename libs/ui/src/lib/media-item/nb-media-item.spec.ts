@@ -144,7 +144,18 @@ describe('NbMediaItem', () => {
     expect(description.textContent?.trim()).toBe('Economy window');
     expect(item.className).toContain('[--nb-media-item-gap:0.75rem]');
     expect(item.className).toContain(
-      '[&_[data-nb-media-item-title]]:text-(length:--nb-media-item-title-size)'
+      '[--nb-media-item-title-default-size:0.875rem]'
+    );
+    expect(item.className).not.toContain(
+      '[--nb-media-item-title-size:0.875rem]'
+    );
+    expect(item.className).toContain(
+      '[&_img]:h-[var(--nb-media-item-icon-size)]'
+    );
+    expect(item.className).toContain('[&_img]:w-auto');
+    expect(item.className).toContain('[&_img]:object-contain');
+    expect(item.className).toContain(
+      '[&_[data-nb-media-item-title]]:text-[length:var(--nb-media-item-title-size,var(--nb-media-item-title-default-size))]'
     );
   });
 

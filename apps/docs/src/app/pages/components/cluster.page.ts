@@ -270,7 +270,7 @@ interface ClusterWrapDemo {
             nbCluster
             gap="lg"
             align="center"
-            class="p-4 **:data-nb-media-item:[--nb-media-item-title-size:12px]"
+            class="p-4 [--nb-media-item-title-size:12px]"
           >
             <nb-media-item icon="/tokyo-city-escape/central-locations.png">
               <span nbMediaItemTitle>Central<br />Locations</span>
