@@ -2,7 +2,6 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
 
 import { DocsCodeBlock } from '../../../docs/docs-code-block';
-import { DocsExample } from '../../../docs/docs-example';
 import { DocsSourceTile } from '../../../docs/docs-source-tile';
 
 import { TravelCard } from './travel-card';
@@ -17,7 +16,10 @@ import { TravelCard } from './travel-card';
           <p>Recipe</p>
           <h1>Travel Card</h1>
           <p class="mt-3 max-w-3xl text-base font-medium sm:text-lg">
-            Description
+            A bold travel-package card composing the library's media, sticker,
+            chip, and display primitives into a single brutalist promo. Hero
+            banner, trip highlights, price, and a call to action — responsive
+            down to mobile.
           </p>
         </div>
 
@@ -27,8 +29,8 @@ import { TravelCard } from './travel-card';
             <span class="nb-stat-tile__label">Primitives</span>
           </div>
           <div class="nb-stat-tile nb-stat-tile--mint">
-            <span class="nb-stat-tile__value">90%</span>
-            <span class="nb-stat-tile__label">Fidelity</span>
+            <span class="nb-stat-tile__value">100%</span>
+            <span class="nb-stat-tile__label">Composed</span>
           </div>
 
           <docs-source-tile
@@ -78,26 +80,56 @@ import { TravelCard } from './travel-card';
 })
 export default class TravelCardRecipePage {
   protected readonly primitives = [
+    { name: 'NbCard', path: '/components/card', role: 'bordered card shell' },
+    { name: 'NbMediaFrame', path: '/components/media-frame', role: 'hero banner image' },
+    { name: 'NbSticker', path: '/components/sticker', role: '4D/3N highlight burst' },
     { name: 'NbDisplay', path: '/components/display', role: 'destination mega title' },
-    { name: 'NbProgress', path: '/components/progress', role: 'trip completion bar' },
-    { name: 'NbAvatarGroup', path: '/components/avatar-group', role: 'traveler stack + overflow' },
-    { name: 'NbChip', path: '/components/chip', role: 'category tags' },
-    { name: 'NbSticker', path: '/components/sticker', role: 'highlight burst' },
-    { name: 'NbHalftone', path: '/components/halftone', role: 'decorative dots' },
-    { name: 'NbIconButton', path: '/components/icon-button', role: 'save action' },
+    { name: 'NbChip', path: '/components/chip', role: 'flight / hotel / top-pick tags' },
+    { name: 'NbMediaItem', path: '/components/media-item', role: 'icon + label trip features' },
+    { name: 'NbButton', path: '/components/button', role: 'book trip call to action' },
   ];
 
   protected readonly importCode = `import {
-  NbAvatarGroup,
   NbButton,
+  NbButtonTrailingIcon,
+  NbCard,
   NbChip,
-  NbChipGroup,
   NbDisplay,
-  NbHalftone,
-  NbIconButton,
-  NbProgress,
+  NbMediaFrame,
+  NbMediaItem,
   NbSticker,
 } from '@ng-brutalism/ui';`;
 
-  protected readonly templateCode = ``;
+  protected readonly templateCode = `<nb-card class="relative w-full max-w-220">
+  <!-- Hero banner with floating sticker -->
+  <div class="relative px-5">
+    <nb-sticker shape="burst" tone="mint" [size]="0.6"
+      class="absolute -top-7 -left-5 z-20">4D<br />3N</nb-sticker>
+    <div nbMediaFrame ratio="21/9" radius="lg" shadow="hard">
+      <img src="/tokyo-city-escape/hero-illustration.png" alt="Tokyo skyline" />
+    </div>
+  </div>
+
+  <!-- Headline + trip meta -->
+  <div class="flex flex-col gap-6 px-6 md:flex-row md:justify-between">
+    <div class="flex flex-col gap-4 md:flex-1">
+      <h1 nbDisplay size="lg" class="uppercase">Tokyo City Escape</h1>
+      <p>Explore iconic neighborhoods, savor local flavors…</p>
+    </div>
+    <div class="flex flex-col gap-4 md:items-end">
+      <span nbChip tone="mint">Flight included</span>
+      <span nbChip tone="lavender">Hotel</span>
+      <span nbChip tone="pink">Top pick</span>
+    </div>
+  </div>
+
+  <!-- Features + CTA -->
+  <div class="flex border-t-2 px-6 pt-6 sm:justify-between">
+    <nb-media-item icon="…/central-locations.png" title="Central Locations" />
+    <button nbButton variant="secondary" size="lg">
+      Book Trip
+      <svg nbButtonTrailingIcon>…</svg>
+    </button>
+  </div>
+</nb-card>`;
 }

@@ -192,7 +192,7 @@ body::-webkit-scrollbar-thumb {
   word-break: break-word;
 }
 
-[data-docs-content] h1::after {
+[data-docs-content] h1:not([data-nb-display])::after {
   content: '';
   display: block;
   margin-top: 1.1rem;
