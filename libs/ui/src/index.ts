@@ -149,3 +149,13 @@ export type {
   NbMediaItemTone,
   NbMediaItemVariant,
 } from './lib/media-item';
+export { NbText } from './lib/text';
+export type {
+  NbTextLeading,
+  NbTextMeasure,
+  NbTextSize,
+  NbTextTone,
+  NbTextTracking,
+  NbTextTransform,
+  NbTextWeight,
+} from './lib/text';

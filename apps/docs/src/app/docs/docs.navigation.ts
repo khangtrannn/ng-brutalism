@@ -369,6 +369,24 @@ export const docsNavGroups: readonly DocsNavGroup[] = [
         ],
       },
       {
+        label: 'Text',
+        path: '/components/text',
+        toc: [
+          { label: 'Overview', fragment: 'overview' },
+          { label: 'Preview', fragment: 'preview' },
+          { label: 'Usage', fragment: 'usage' },
+          { label: 'Sizes', fragment: 'sizes' },
+          { label: 'Weights', fragment: 'weights' },
+          { label: 'Tones', fragment: 'tones' },
+          { label: 'Transform', fragment: 'transform' },
+          { label: 'Tracking', fragment: 'tracking' },
+          { label: 'Measure', fragment: 'measure' },
+          { label: 'Leading', fragment: 'leading' },
+          { label: 'Composition', fragment: 'composition' },
+          { label: 'API', fragment: 'api' },
+        ],
+      },
+      {
         label: 'Title',
         path: '/components/title',
         toc: [

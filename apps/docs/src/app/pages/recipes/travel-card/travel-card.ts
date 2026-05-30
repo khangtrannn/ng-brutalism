@@ -15,6 +15,7 @@ import {
   NbStack,
   NbSticker,
   NbSurface,
+  NbText,
 } from '@ng-brutalism/ui';
 
 @Component({
@@ -35,6 +36,7 @@ import {
     NbStack,
     NbSticker,
     NbSurface,
+    NbText,
   ],
   template: `
     <div class="flex justify-center">
@@ -88,12 +90,12 @@ import {
                 class="w-16"
               />
 
-              <span class="text-xl font-extrabold">Roam &amp; Go</span>
+              <span nbText size="xl" weight="extrabold">Roam &amp; Go</span>
             </div>
 
             <h1 nbDisplay class="uppercase mb-0!">Tokyo<br />City Escape</h1>
 
-            <p class="max-w-md text-base font-medium text-(--nb-foreground)/80">
+            <p nbText size="md" weight="medium" tone="muted" measure="md">
               Explore iconic neighborhoods, savor local flavors, and make
               unforgettable memories.
             </p>
