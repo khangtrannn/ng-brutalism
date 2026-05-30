@@ -4,6 +4,7 @@ import {
   NbButtonTrailingIcon,
   NbCallout,
   NbChip,
+  NbCluster,
   NbDisplay,
   NbMediaFrame,
   NbMediaItem,
@@ -21,6 +22,7 @@ import {
     NbButtonTrailingIcon,
     NbCallout,
     NbChip,
+    NbCluster,
     NbDisplay,
     NbMediaFrame,
     NbMediaItem,
@@ -68,7 +70,7 @@ import {
 
         <div class="grid gap-6 p-4 md:grid-cols-[2fr_auto_1fr]">
           <div nbStack gap="lg">
-            <div class="flex items-center gap-3">
+            <div nbCluster gap="md" align="center">
               <img
                 src="/tokyo-city-escape/roam-go-logo.png"
                 alt="Roam & Go logo"
@@ -134,7 +136,10 @@ import {
           class="grid gap-5 border-t-2 border-(--nb-border) px-6 py-6 md:grid-cols-[2fr_1fr]"
         >
           <div
-            class="flex flex-wrap items-center gap-4 **:data-nb-media-item:[--nb-media-item-title-size:12px]"
+            nbCluster
+            gap="lg"
+            align="center"
+            class="**:data-nb-media-item:[--nb-media-item-title-size:12px]"
           >
             <nb-media-item icon="/tokyo-city-escape/central-locations.png">
               <span nbMediaItemTitle>Central<br />Locations</span>

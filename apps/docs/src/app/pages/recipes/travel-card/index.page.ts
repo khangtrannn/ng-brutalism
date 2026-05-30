@@ -25,7 +25,7 @@ import { TravelCard } from './travel-card';
 
         <div class="mt-7 flex flex-wrap items-center gap-3">
           <div class="nb-stat-tile nb-stat-tile--yellow">
-            <span class="nb-stat-tile__value">8</span>
+            <span class="nb-stat-tile__value">9</span>
             <span class="nb-stat-tile__label">Primitives</span>
           </div>
           <div class="nb-stat-tile nb-stat-tile--mint">
@@ -118,6 +118,11 @@ export default class TravelCardRecipePage {
     },
     { name: 'NbCallout', path: '/components/callout', role: 'price callout' },
     {
+      name: 'NbCluster',
+      path: '/components/cluster',
+      role: 'logo row and wrapping feature group',
+    },
+    {
       name: 'NbMediaItem',
       path: '/components/media-item',
       role: 'icon + label trip features',
@@ -134,10 +139,12 @@ export default class TravelCardRecipePage {
   NbButtonTrailingIcon,
   NbCallout,
   NbChip,
+  NbCluster,
   NbDisplay,
   NbMediaFrame,
   NbMediaItem,
   NbMediaItemTitle,
+  NbSeparator,
   NbStack,
   NbSticker,
   NbSurface,
@@ -164,6 +171,10 @@ export default class TravelCardRecipePage {
   <!-- Headline + trip meta -->
   <div class="grid gap-6 p-4 md:grid-cols-[2fr_auto_1fr]">
     <div nbStack gap="lg">
+      <div nbCluster gap="md" align="center">
+        <img src="/tokyo-city-escape/roam-go-logo.png" alt="Roam & Go logo" />
+        <span>Roam &amp; Go</span>
+      </div>
       <h1 nbDisplay size="lg" class="uppercase">Tokyo City Escape</h1>
       <p>Explore iconic neighborhoods, savor local flavors…</p>
     </div>
@@ -180,9 +191,15 @@ export default class TravelCardRecipePage {
 
   <!-- Features + CTA -->
   <div class="grid gap-5 border-t-2 px-6 py-6 md:grid-cols-[2fr_1fr]">
-    <nb-media-item icon="…/central-locations.png">
-      <span nbMediaItemTitle>Central<br />Locations</span>
-    </nb-media-item>
+    <div nbCluster gap="lg" align="center">
+      <nb-media-item icon="…/central-locations.png">
+        <span nbMediaItemTitle>Central<br />Locations</span>
+      </nb-media-item>
+      <hr nbSeparator orientation="vertical" variant="dashed" />
+      <nb-media-item icon="…/guided-experiences.png">
+        <span nbMediaItemTitle>Guided<br />Experiences</span>
+      </nb-media-item>
+    </div>
     <button nbButton variant="secondary" size="lg">
       Book Trip
       <svg nbButtonTrailingIcon>…</svg>

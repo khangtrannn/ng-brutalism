@@ -66,6 +66,8 @@ export const PAGE_DESCRIPTIONS: Record<string, string> = {
     'Neo-brutalist Card component for Angular. Bold content blocks with thick borders and offset shadows.',
   '/components/checkbox':
     'Neo-brutalist Checkbox component for Angular. Accessible checkbox with strong focus states and brutalist styling.',
+  '/components/cluster':
+    'Neo-brutalist Cluster directive for Angular. Compose horizontal, inline, and wrapping groups with typed gap, alignment, justification, and wrap inputs.',
   '/components/dialog':
     'Neo-brutalist Dialog (modal) component for Angular. Accessible native brutalist modal with keyboard focus management.',
   '/components/image-card':

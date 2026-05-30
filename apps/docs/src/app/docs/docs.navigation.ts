@@ -116,6 +116,22 @@ export const docsNavGroups: readonly DocsNavGroup[] = [
           { label: 'API', fragment: 'api' },
         ],
       },
+      {
+        label: 'Cluster',
+        path: '/components/cluster',
+        toc: [
+          { label: 'Overview', fragment: 'overview' },
+          { label: 'Preview', fragment: 'preview' },
+          { label: 'Usage', fragment: 'usage' },
+          { label: 'Gaps', fragment: 'gaps' },
+          { label: 'Alignment', fragment: 'alignment' },
+          { label: 'Justification', fragment: 'justification' },
+          { label: 'Wrapping', fragment: 'wrapping' },
+          { label: 'Composition', fragment: 'composition' },
+          { label: 'Responsive gap', fragment: 'responsive' },
+          { label: 'API', fragment: 'api' },
+        ],
+      },
       { label: 'Dialog', path: '/components/dialog' },
       {
         label: 'Display',

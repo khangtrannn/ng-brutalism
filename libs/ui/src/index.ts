@@ -105,6 +105,13 @@ export type {
   NbStackGap,
   NbStackJustify,
 } from './lib/stack';
+export { NbCluster } from './lib/cluster';
+export type {
+  NbClusterAlign,
+  NbClusterGap,
+  NbClusterJustify,
+  NbClusterWrap,
+} from './lib/cluster';
 export { NbCallout } from './lib/callout';
 export type {
   NbCalloutLayout,
