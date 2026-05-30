@@ -144,7 +144,7 @@ describe('NbMediaItem', () => {
     expect(description.textContent?.trim()).toBe('Economy window');
     expect(item.className).toContain('[--nb-media-item-gap:0.75rem]');
     expect(item.className).toContain(
-      '[&_[data-nb-media-item-title]]:text-[var(--nb-media-item-title-size)]'
+      '[&_[data-nb-media-item-title]]:text-(length:--nb-media-item-title-size)'
     );
   });
 

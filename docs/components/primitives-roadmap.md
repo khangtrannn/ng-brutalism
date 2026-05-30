@@ -60,7 +60,7 @@ The final primitive list was validated against 10 real-world UI scenarios (prici
 |---|---|---|
 | Bounded image container | 6/10 | → `nb-media` |
 | Stat / number display | 6/10 | → `nb-stat` |
-| Compact interactive block | 5/10 | → `nb-tile` |
+| Compact media row | 5/10 | → `nb-media-item` |
 | Attribution row (avatar + name + meta) | 5/10 | Dismissed — just `nb-avatar` + raw HTML |
 | Star / review rating | 4/10 | → `nb-rating` |
 | Icon + text pair | 6/10 | Dismissed — no built-in icon system; use `nb-label` |
@@ -81,7 +81,7 @@ The final primitive list was validated against 10 real-world UI scenarios (prici
 |---|---|---|
 | **`nb-media`** | Bordered, shadowed container for any media — image, logo, icon, screenshot | CSS vars for size, border, shadow, radius; content projected |
 | **`nb-stat`** | Stylized data display — icon (optional) + large value + small label | Icon via optional projected slot; `value` and `label` as inputs or projected |
-| **`nb-tile`** | Compact, opinionated, interactive block — icon + title + optional description | Whole tile is the clickable unit; brutalist hover/active states |
+| **`nb-media-item`** | Compact media row — icon/image + title + optional description | Shared primitive for feature lists, specs, chips, and contact rows |
 | **`nb-rating`** | N filled/unfilled stars + optional count | `value` input (0–5), `max` input, `count` input; read-only display |
 
 ---
@@ -112,7 +112,7 @@ The final primitive list was validated against 10 real-world UI scenarios (prici
 - [ ] Build `nb-rating` (simplest — stars display, value/max inputs)
 - [ ] Build `nb-media` (bordered container, CSS vars for size/border/shadow/radius)
 - [ ] Build `nb-stat` (value + label inputs, optional icon slot, brutalist typography)
-- [ ] Build `nb-tile` (interactive block, icon + title + description slots, hover/active states)
+- [x] Build `nb-media-item` (icon/image + title + description, variants, tones, sizes)
 - [ ] Refactor job board demo to use new components
 - [ ] Write docs composition examples (job card, profile card, etc.)
 - [ ] Release v0.2.0

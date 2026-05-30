@@ -308,17 +308,6 @@ export const docsNavGroups: readonly DocsNavGroup[] = [
         ],
       },
       {
-        label: 'Tile',
-        path: '/components/tile',
-        toc: [
-          { label: 'Overview', fragment: 'overview' },
-          { label: 'Preview', fragment: 'preview' },
-          { label: 'Usage', fragment: 'usage' },
-          { label: 'Feature list', fragment: 'feature-list' },
-          { label: 'Customization', fragment: 'customization' },
-        ],
-      },
-      {
         label: 'Title',
         path: '/components/title',
         toc: [

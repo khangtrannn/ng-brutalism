@@ -63,7 +63,6 @@ export type {
 } from './lib/media-frame';
 export { NbStat } from './lib/stat';
 export { NbRating } from './lib/rating';
-export { NbTile } from './lib/tile';
 export {
   NbDialog,
   NbDialogTitle,
