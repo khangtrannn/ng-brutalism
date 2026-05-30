@@ -1,8 +1,9 @@
 import { Directive, computed, input } from '@angular/core';
 
 import { nbClass } from '../core/class';
+import { nbToneTokens, type NbTone } from '../tokens/tone';
 
-export type NbChipTone = 'default' | 'ink' | 'yellow' | 'pink' | 'mint' | 'lavender' | 'accent' | 'success' | 'warning' | 'danger';
+export type NbChipTone = NbTone | 'ink';
 
 @Directive({
   selector: 'span[nbChip]',
@@ -10,6 +11,8 @@ export type NbChipTone = 'default' | 'ink' | 'yellow' | 'pink' | 'mint' | 'laven
     '[class]': 'classes()',
     '[attr.data-tone]': 'tone()',
     '[attr.data-nb-chip]': '""',
+    '[style.--nb-chip-bg]': 'toneTokens().bg',
+    '[style.--nb-chip-fg]': 'toneTokens().fg',
   },
 })
 export class NbChip {
@@ -22,26 +25,15 @@ export class NbChip {
       'bg-[var(--nb-chip-bg,var(--nb-surface))] text-[var(--nb-chip-fg,var(--nb-foreground))]',
       'rounded-[var(--nb-chip-radius,0px)] shadow-[var(--nb-chip-shadow,2px_2px_0_0_var(--nb-shadow))]',
       'px-2.5 py-0.5 text-xs font-bold',
-      '[&_svg]:size-[var(--nb-chip-icon-size,0.75rem)] [&_svg]:shrink-0',
-      this.toneClass()
+      '[&_svg]:size-[var(--nb-chip-icon-size,0.75rem)] [&_svg]:shrink-0'
     )
   );
 
-  private toneClass(): string {
-    const map: Record<NbChipTone, string> = {
-      default: '',
-      ink: '[--nb-chip-bg:#1a1a1a] [--nb-chip-fg:#ffffff]',
-      yellow: '[--nb-chip-bg:#ffd24a]',
-      pink: '[--nb-chip-bg:#ff7eb6]',
-      mint: '[--nb-chip-bg:#99e8c8]',
-      lavender: '[--nb-chip-bg:#b8a4ff]',
-      accent: '[--nb-chip-bg:var(--nb-accent)] [--nb-chip-fg:var(--nb-accent-foreground)]',
-      success: '[--nb-chip-bg:var(--nb-success)] [--nb-chip-fg:var(--nb-success-foreground)]',
-      warning: '[--nb-chip-bg:var(--nb-warning)] [--nb-chip-fg:var(--nb-warning-foreground)]',
-      danger: '[--nb-chip-bg:var(--nb-danger)] [--nb-chip-fg:var(--nb-danger-foreground)]',
-    };
-    return map[this.tone()];
-  }
+  protected readonly toneTokens = computed(() => {
+    const tone = this.tone();
+
+    return tone === 'ink' ? nbToneTokens('black') : nbToneTokens(tone);
+  });
 }
 
 @Directive({

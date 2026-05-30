@@ -1,20 +1,9 @@
 import { Directive, computed, input } from '@angular/core';
 
 import { nbClass } from '../core/class';
+import { nbToneTokens, type NbTone } from '../tokens/tone';
 
-export type NbMediaFrameTone =
-  | 'default'
-  | 'cream'
-  | 'white'
-  | 'black'
-  | 'yellow'
-  | 'pink'
-  | 'mint'
-  | 'lavender'
-  | 'blue'
-  | 'primary'
-  | 'secondary'
-  | 'accent';
+export type NbMediaFrameTone = NbTone;
 
 export type NbMediaFrameRatio =
   | 'auto'
@@ -30,6 +19,8 @@ export type NbMediaFrameRadius = 'none' | 'sm' | 'md' | 'lg' | 'xl' | 'full';
 
 export type NbMediaFrameShadow = 'none' | 'default' | 'hard';
 
+export type NbMediaFrameBorder = 'none' | 'default' | 'strong';
+
 @Directive({
   selector: '[nbMediaFrame]',
   host: {
@@ -40,6 +31,9 @@ export type NbMediaFrameShadow = 'none' | 'default' | 'hard';
     '[attr.data-fit]': 'fit()',
     '[attr.data-radius]': 'radius()',
     '[attr.data-shadow]': 'shadow()',
+    '[attr.data-border]': 'border()',
+    '[style.--nb-media-frame-bg]': 'toneTokens().bg',
+    '[style.--nb-media-frame-fg]': 'toneTokens().fg',
   },
 })
 export class NbMediaFrame {
@@ -48,6 +42,7 @@ export class NbMediaFrame {
   readonly fit = input<NbMediaFrameFit>('cover');
   readonly radius = input<NbMediaFrameRadius>('lg');
   readonly shadow = input<NbMediaFrameShadow>('none');
+  readonly border = input<NbMediaFrameBorder>('default');
 
   protected readonly classes = computed(() =>
     nbClass(
@@ -60,41 +55,15 @@ export class NbMediaFrame {
       '[&>video]:h-full [&>video]:w-full',
       '[&>picture]:block [&>picture]:h-full [&>picture]:w-full',
       '[&>picture>img]:h-full [&>picture>img]:w-full',
-      this.toneClass(),
       this.ratioClass(),
       this.fitClass(),
       this.radiusClass(),
-      this.shadowClass()
+      this.shadowClass(),
+      this.borderClass()
     )
   );
 
-  private toneClass(): string {
-    const map: Record<NbMediaFrameTone, string> = {
-      default:
-        '[--nb-media-frame-bg:var(--nb-surface)] [--nb-media-frame-fg:var(--nb-surface-foreground)]',
-      cream:
-        '[--nb-media-frame-bg:#fff8e7] [--nb-media-frame-fg:#000000]',
-      white:
-        '[--nb-media-frame-bg:#ffffff] [--nb-media-frame-fg:#000000]',
-      black:
-        '[--nb-media-frame-bg:#000000] [--nb-media-frame-fg:#ffffff]',
-      yellow:
-        '[--nb-media-frame-bg:#ffd84d] [--nb-media-frame-fg:#000000]',
-      pink: '[--nb-media-frame-bg:#ff7eb6] [--nb-media-frame-fg:#000000]',
-      mint: '[--nb-media-frame-bg:#9bf2cf] [--nb-media-frame-fg:#000000]',
-      lavender:
-        '[--nb-media-frame-bg:#b8a4ff] [--nb-media-frame-fg:#000000]',
-      blue: '[--nb-media-frame-bg:#8ae9ff] [--nb-media-frame-fg:#000000]',
-      primary:
-        '[--nb-media-frame-bg:var(--nb-primary)] [--nb-media-frame-fg:var(--nb-primary-foreground)]',
-      secondary:
-        '[--nb-media-frame-bg:var(--nb-secondary)] [--nb-media-frame-fg:var(--nb-secondary-foreground)]',
-      accent:
-        '[--nb-media-frame-bg:var(--nb-accent)] [--nb-media-frame-fg:var(--nb-accent-foreground)]',
-    };
-
-    return map[this.tone()];
-  }
+  protected readonly toneTokens = computed(() => nbToneTokens(this.tone()));
 
   private ratioClass(): string {
     const map: Record<NbMediaFrameRatio, string> = {
@@ -137,14 +106,22 @@ export class NbMediaFrame {
 
   private shadowClass(): string {
     const map: Record<NbMediaFrameShadow, string> = {
-      none:
-        '[--nb-media-frame-shadow:none] [--nb-media-frame-border-width:var(--nb-border-width)]',
+      none: '[--nb-media-frame-shadow:none]',
       default:
-        '[--nb-media-frame-shadow:var(--nb-shadow-offset-x)_var(--nb-shadow-offset-y)_0_0_var(--nb-shadow)] [--nb-media-frame-border-width:var(--nb-border-width)]',
-      hard:
-        '[--nb-media-frame-shadow:6px_6px_0_0_var(--nb-shadow)] [--nb-media-frame-border-width:3px]',
+        '[--nb-media-frame-shadow:var(--nb-shadow-offset-x)_var(--nb-shadow-offset-y)_0_0_var(--nb-shadow)]',
+      hard: '[--nb-media-frame-shadow:6px_6px_0_0_var(--nb-shadow)]',
     };
 
     return map[this.shadow()];
+  }
+
+  private borderClass(): string {
+    const map: Record<NbMediaFrameBorder, string> = {
+      none: '[--nb-media-frame-border-width:0px]',
+      default: '[--nb-media-frame-border-width:var(--nb-border-width)]',
+      strong: '[--nb-media-frame-border-width:3px]',
+    };
+
+    return map[this.border()];
   }
 }

@@ -38,7 +38,7 @@ describe('NbSticker token surface', () => {
     expect(sticker.getAttribute('data-tone')).toBe('mint');
     expect(sticker.getAttribute('role')).toBe('img');
     expect(sticker.style.getPropertyValue('--nb-sticker-fill')).toBe(
-      'var(--nb-mint, #9af7b5)'
+      'var(--nb-mint)'
     );
     expect(shape.getAttribute('d')).toContain('M80 12');
   });
@@ -54,9 +54,9 @@ describe('NbSticker token surface', () => {
 
     expect(sticker.getAttribute('data-shape')).toBe('star');
     expect(sticker.style.getPropertyValue('--nb-sticker-fill')).toBe(
-      'var(--nb-pink, #ff6fc7)'
+      'var(--nb-pink)'
     );
-    expect(svg.getAttribute('viewBox')).toBe('0 0 1024 1024');
+    expect(svg.getAttribute('viewBox')).toBe('65 105 858 780');
     expect(sticker.querySelector('nb-sticker-face')).not.toBeNull();
   });
 

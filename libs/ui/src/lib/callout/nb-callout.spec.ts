@@ -52,7 +52,9 @@ describe('NbCallout', () => {
     expect(callout.className).toContain('rounded-(--nb-callout-radius)');
     expect(callout.className).toContain('shadow-[var(--nb-callout-shadow)]');
     expect(callout.className).toContain('font-black');
-    expect(callout.className).toContain('[--nb-callout-bg:#ffd84d]');
+    expect(callout.style.getPropertyValue('--nb-callout-bg')).toBe(
+      'var(--nb-yellow)'
+    );
     expect(callout.className).toContain('[--nb-callout-border-width:3px]');
     expect(callout.className).toContain(
       '[--nb-callout-shadow:6px_6px_0_0_var(--nb-shadow)]'
@@ -69,7 +71,9 @@ describe('NbCallout', () => {
     expect(callout.getAttribute('data-size')).toBe('xl');
     expect(callout.getAttribute('data-layout')).toBe('between');
     expect(callout.getAttribute('data-shadow')).toBe('default');
-    expect(callout.className).toContain('[--nb-callout-bg:#ff7eb6]');
+    expect(callout.style.getPropertyValue('--nb-callout-bg')).toBe(
+      'var(--nb-pink)'
+    );
     expect(callout.className).toContain('min-h-20');
     expect(callout.className).toContain('text-5xl');
     expect(callout.className).toContain('w-full');
@@ -80,9 +84,9 @@ describe('NbCallout', () => {
   });
 
   it.each([
-    ['mint', '#9bf2cf'],
-    ['lavender', '#b8a4ff'],
-    ['blue', '#8ae9ff'],
+    ['mint', 'var(--nb-mint)'],
+    ['lavender', 'var(--nb-lavender)'],
+    ['blue', 'var(--nb-blue)'],
     ['black', '#000000'],
   ] satisfies readonly [NbCalloutTone, string][])(
     'keeps the %s tone available for generic value emphasis',
@@ -96,7 +100,7 @@ describe('NbCallout', () => {
       ) as HTMLElement;
 
       expect(callout.getAttribute('data-tone')).toBe(tone);
-      expect(callout.className).toContain(`[--nb-callout-bg:${color}]`);
+      expect(callout.style.getPropertyValue('--nb-callout-bg')).toBe(color);
     }
   );
 });

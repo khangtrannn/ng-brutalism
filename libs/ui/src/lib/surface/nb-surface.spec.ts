@@ -95,7 +95,9 @@ describe('NbSurface', () => {
     expect(surface.className).toContain('border-(--nb-surface-border)');
     expect(surface.className).toContain('rounded-(--nb-surface-radius)');
     expect(surface.className).toContain('shadow-[var(--nb-surface-shadow)]');
-    expect(surface.className).toContain('[--nb-surface-bg:var(--nb-surface)]');
+    expect(surface.style.getPropertyValue('--nb-surface-bg')).toBe(
+      'var(--nb-surface)'
+    );
     expect(surface.className).toContain(
       '[--nb-surface-radius:var(--nb-radius)]'
     );
@@ -117,7 +119,9 @@ describe('NbSurface', () => {
     expect(surface.getAttribute('data-shadow')).toBe('heavy');
     expect(surface.getAttribute('data-size')).toBe('lg');
     expect(surface.getAttribute('data-layout')).toBe('center');
-    expect(surface.className).toContain('[--nb-surface-bg:#fff8e7]');
+    expect(surface.style.getPropertyValue('--nb-surface-bg')).toBe(
+      'var(--nb-cream)'
+    );
     expect(surface.className).toContain('[--nb-surface-radius:1.5rem]');
     expect(surface.className).toContain('[--nb-surface-border-width:4px]');
     expect(surface.className).toContain(
@@ -132,10 +136,10 @@ describe('NbSurface', () => {
   });
 
   it.each([
-    ['pink', '#ff6aa2'],
-    ['mint', '#b8f7c5'],
-    ['lavender', '#dcc8ff'],
-    ['blue', '#69b7ff'],
+    ['pink', 'var(--nb-pink)'],
+    ['mint', 'var(--nb-mint)'],
+    ['lavender', 'var(--nb-lavender)'],
+    ['blue', 'var(--nb-blue)'],
   ] satisfies readonly [NbSurfaceTone, string][])(
     'keeps the %s decorative tone visually distinct from semantic tones',
     async (tone, color) => {
@@ -148,7 +152,7 @@ describe('NbSurface', () => {
       ) as HTMLElement;
 
       expect(surface.getAttribute('data-tone')).toBe(tone);
-      expect(surface.className).toContain(`[--nb-surface-bg:${color}]`);
+      expect(surface.style.getPropertyValue('--nb-surface-bg')).toBe(color);
     }
   );
 

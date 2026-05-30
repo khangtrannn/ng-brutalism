@@ -4,6 +4,7 @@ export { provideNgBrutalism } from './lib/core/provide';
 export type { NbConfig } from './lib/core/provide';
 export { NB_THEME_CONFIG } from './lib/tokens/theme.tokens';
 export type { NbThemeConfig } from './lib/tokens/theme.tokens';
+export type { NbTone, NbToneTokens } from './lib/tokens/tone';
 
 // Components
 export { NbCheckbox } from './lib/checkbox';
@@ -60,6 +61,7 @@ export type {
   NbMediaFrameRatio,
   NbMediaFrameShadow,
   NbMediaFrameTone,
+  NbMediaFrameBorder,
 } from './lib/media-frame';
 export { NbStat } from './lib/stat';
 export { NbRating } from './lib/rating';

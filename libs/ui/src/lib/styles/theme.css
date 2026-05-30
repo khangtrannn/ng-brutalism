@@ -11,6 +11,12 @@
   --nb-surface-foreground: #000000;
   --nb-secondary-background: oklch(96% 0 0);
   --nb-field-bg: #faf3d6;
+  --nb-yellow: #ffd24a;
+  --nb-pink: #ff7eb6;
+  --nb-mint: #9bf2cf;
+  --nb-lavender: #b8a4ff;
+  --nb-blue: #8ae9ff;
+  --nb-cream: #faf6f0;
 
   --nb-primary: #ff90e8;
   --nb-primary-foreground: #000000;

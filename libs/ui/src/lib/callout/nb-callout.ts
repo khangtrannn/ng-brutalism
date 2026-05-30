@@ -1,22 +1,9 @@
 import { Directive, computed, input } from '@angular/core';
 
 import { nbClass } from '../core/class';
+import { nbToneTokens, type NbTone } from '../tokens/tone';
 
-export type NbCalloutTone =
-  | 'yellow'
-  | 'pink'
-  | 'mint'
-  | 'lavender'
-  | 'blue'
-  | 'cream'
-  | 'white'
-  | 'black'
-  | 'primary'
-  | 'secondary'
-  | 'accent'
-  | 'success'
-  | 'warning'
-  | 'danger';
+export type NbCalloutTone = NbTone;
 
 export type NbCalloutSize = 'sm' | 'md' | 'lg' | 'xl';
 
@@ -33,6 +20,8 @@ export type NbCalloutShadow = 'none' | 'default' | 'hard';
     '[attr.data-size]': 'size()',
     '[attr.data-layout]': 'layout()',
     '[attr.data-shadow]': 'shadow()',
+    '[style.--nb-callout-bg]': 'toneTokens().bg',
+    '[style.--nb-callout-fg]': 'toneTokens().fg',
   },
 })
 export class NbCallout {
@@ -49,39 +38,13 @@ export class NbCallout {
       'rounded-(--nb-callout-radius)',
       'shadow-[var(--nb-callout-shadow)]',
       'font-black uppercase leading-none',
-      this.toneClass(),
       this.sizeClass(),
       this.layoutClass(),
       this.shadowClass()
     )
   );
 
-  private toneClass(): string {
-    const map: Record<NbCalloutTone, string> = {
-      yellow: '[--nb-callout-bg:#ffd84d] [--nb-callout-fg:#000000]',
-      pink: '[--nb-callout-bg:#ff7eb6] [--nb-callout-fg:#000000]',
-      mint: '[--nb-callout-bg:#9bf2cf] [--nb-callout-fg:#000000]',
-      lavender: '[--nb-callout-bg:#b8a4ff] [--nb-callout-fg:#000000]',
-      blue: '[--nb-callout-bg:#8ae9ff] [--nb-callout-fg:#000000]',
-      cream: '[--nb-callout-bg:#fff8e7] [--nb-callout-fg:#000000]',
-      white: '[--nb-callout-bg:#ffffff] [--nb-callout-fg:#000000]',
-      black: '[--nb-callout-bg:#000000] [--nb-callout-fg:#ffffff]',
-      primary:
-        '[--nb-callout-bg:var(--nb-primary)] [--nb-callout-fg:var(--nb-primary-foreground)]',
-      secondary:
-        '[--nb-callout-bg:var(--nb-secondary)] [--nb-callout-fg:var(--nb-secondary-foreground)]',
-      accent:
-        '[--nb-callout-bg:var(--nb-accent)] [--nb-callout-fg:var(--nb-accent-foreground)]',
-      success:
-        '[--nb-callout-bg:var(--nb-success)] [--nb-callout-fg:var(--nb-success-foreground)]',
-      warning:
-        '[--nb-callout-bg:var(--nb-warning)] [--nb-callout-fg:var(--nb-warning-foreground)]',
-      danger:
-        '[--nb-callout-bg:var(--nb-danger)] [--nb-callout-fg:var(--nb-danger-foreground)]',
-    };
-
-    return map[this.tone()];
-  }
+  protected readonly toneTokens = computed(() => nbToneTokens(this.tone()));
 
   private sizeClass(): string {
     const map: Record<NbCalloutSize, string> = {

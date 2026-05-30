@@ -24,6 +24,7 @@ class DefaultMediaFrameTest {}
       fit="contain"
       radius="xl"
       shadow="hard"
+      border="strong"
     >
       <video src="/demo.mp4"></video>
     </div>
@@ -52,6 +53,7 @@ describe('NbMediaFrame', () => {
     expect(frame.getAttribute('data-fit')).toBe('cover');
     expect(frame.getAttribute('data-radius')).toBe('lg');
     expect(frame.getAttribute('data-shadow')).toBe('none');
+    expect(frame.getAttribute('data-border')).toBe('default');
     expect(frame.className).toContain('relative');
     expect(frame.className).toContain('isolate');
     expect(frame.className).toContain('overflow-hidden');
@@ -66,8 +68,8 @@ describe('NbMediaFrame', () => {
     );
     expect(frame.className).toContain('[&>img]:h-full');
     expect(frame.className).toContain('[&>img]:object-cover');
-    expect(frame.className).toContain(
-      '[--nb-media-frame-bg:var(--nb-surface)]'
+    expect(frame.style.getPropertyValue('--nb-media-frame-bg')).toBe(
+      'var(--nb-surface)'
     );
     expect(frame.className).toContain('[--nb-media-frame-radius:1rem]');
     expect(frame.className).toContain('[--nb-media-frame-shadow:none]');
@@ -84,7 +86,10 @@ describe('NbMediaFrame', () => {
     expect(frame.getAttribute('data-fit')).toBe('contain');
     expect(frame.getAttribute('data-radius')).toBe('xl');
     expect(frame.getAttribute('data-shadow')).toBe('hard');
-    expect(frame.className).toContain('[--nb-media-frame-bg:#b8a4ff]');
+    expect(frame.getAttribute('data-border')).toBe('strong');
+    expect(frame.style.getPropertyValue('--nb-media-frame-bg')).toBe(
+      'var(--nb-lavender)'
+    );
     expect(frame.className).toContain('aspect-[21/9]');
     expect(frame.className).toContain('[&>video]:object-contain');
     expect(frame.className).toContain('[--nb-media-frame-radius:1.5rem]');
@@ -95,9 +100,9 @@ describe('NbMediaFrame', () => {
   });
 
   it.each([
-    ['pink', '#ff7eb6'],
-    ['mint', '#9bf2cf'],
-    ['blue', '#8ae9ff'],
+    ['pink', 'var(--nb-pink)'],
+    ['mint', 'var(--nb-mint)'],
+    ['blue', 'var(--nb-blue)'],
     ['black', '#000000'],
   ] satisfies readonly [NbMediaFrameTone, string][])(
     'keeps the %s tone available for framed visual content',
@@ -111,7 +116,7 @@ describe('NbMediaFrame', () => {
       ) as HTMLElement;
 
       expect(frame.getAttribute('data-tone')).toBe(tone);
-      expect(frame.className).toContain(`[--nb-media-frame-bg:${color}]`);
+      expect(frame.style.getPropertyValue('--nb-media-frame-bg')).toBe(color);
     }
   );
 });

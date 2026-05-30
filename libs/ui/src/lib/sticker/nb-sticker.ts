@@ -9,65 +9,13 @@ import {
 
 import { NB_STICKER_PATHS } from './sticker.paths';
 import type { NbStickerShape, NbStickerTone } from './sticker.types';
+import { nbToneTokens } from '../tokens/tone';
 
 interface NbStickerToneTokens {
   fill: string;
   ink: string;
   shadow: string;
 }
-
-const NB_STICKER_TONE_TOKENS: Record<NbStickerTone, NbStickerToneTokens> = {
-  default: {
-    fill: 'var(--nb-surface, var(--nb-background, #fff))',
-    ink: 'var(--nb-foreground, #050505)',
-    shadow: 'var(--nb-shadow, #050505)',
-  },
-  yellow: {
-    fill: 'var(--nb-yellow, #ffd24a)',
-    ink: '#050505',
-    shadow: 'var(--nb-shadow, #050505)',
-  },
-  pink: {
-    fill: 'var(--nb-pink, #ff6fc7)',
-    ink: '#050505',
-    shadow: 'var(--nb-shadow, #050505)',
-  },
-  mint: {
-    fill: 'var(--nb-mint, #9af7b5)',
-    ink: '#050505',
-    shadow: 'var(--nb-shadow, #050505)',
-  },
-  lavender: {
-    fill: 'var(--nb-lavender, #b8a4ff)',
-    ink: '#050505',
-    shadow: 'var(--nb-shadow, #050505)',
-  },
-  purple: {
-    fill: 'var(--nb-purple, var(--nb-lavender, #b994ff))',
-    ink: '#050505',
-    shadow: 'var(--nb-shadow, #050505)',
-  },
-  accent: {
-    fill: 'var(--nb-accent)',
-    ink: 'var(--nb-accent-foreground)',
-    shadow: 'var(--nb-shadow, #050505)',
-  },
-  success: {
-    fill: 'var(--nb-success)',
-    ink: 'var(--nb-success-foreground)',
-    shadow: 'var(--nb-shadow, #050505)',
-  },
-  warning: {
-    fill: 'var(--nb-warning)',
-    ink: 'var(--nb-warning-foreground)',
-    shadow: 'var(--nb-shadow, #050505)',
-  },
-  danger: {
-    fill: 'var(--nb-danger)',
-    ink: 'var(--nb-danger-foreground)',
-    shadow: 'var(--nb-shadow, #050505)',
-  },
-};
 
 @Component({
   selector: 'nb-sticker',
@@ -236,7 +184,15 @@ export class NbSticker {
 
   protected readonly config = computed(() => NB_STICKER_PATHS[this.shape()]);
   protected readonly toneTokens = computed(
-    () => NB_STICKER_TONE_TOKENS[this.tone()]
+    (): NbStickerToneTokens => {
+      const tokens = nbToneTokens(this.tone());
+
+      return {
+        fill: tokens.bg,
+        ink: tokens.fg,
+        shadow: 'var(--nb-shadow, #050505)',
+      };
+    }
   );
   protected readonly rotateStyle = computed(() => `${this.rotate()}deg`);
 }

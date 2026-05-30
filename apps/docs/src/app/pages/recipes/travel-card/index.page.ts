@@ -25,7 +25,7 @@ import { TravelCard } from './travel-card';
 
         <div class="mt-7 flex flex-wrap items-center gap-3">
           <div class="nb-stat-tile nb-stat-tile--yellow">
-            <span class="nb-stat-tile__value">7</span>
+            <span class="nb-stat-tile__value">8</span>
             <span class="nb-stat-tile__label">Primitives</span>
           </div>
           <div class="nb-stat-tile nb-stat-tile--mint">
@@ -80,11 +80,12 @@ import { TravelCard } from './travel-card';
 })
 export default class TravelCardRecipePage {
   protected readonly primitives = [
-    { name: 'NbCard', path: '/components/card', role: 'bordered card shell' },
+    { name: 'NbSurface', path: '/components/surface', role: 'bordered card shell' },
     { name: 'NbMediaFrame', path: '/components/media-frame', role: 'hero banner image' },
     { name: 'NbSticker', path: '/components/sticker', role: '4D/3N highlight burst' },
     { name: 'NbDisplay', path: '/components/display', role: 'destination mega title' },
     { name: 'NbChip', path: '/components/chip', role: 'flight / hotel / top-pick tags' },
+    { name: 'NbCallout', path: '/components/callout', role: 'price callout' },
     { name: 'NbMediaItem', path: '/components/media-item', role: 'icon + label trip features' },
     { name: 'NbButton', path: '/components/button', role: 'book trip call to action' },
   ];
@@ -92,44 +93,58 @@ export default class TravelCardRecipePage {
   protected readonly importCode = `import {
   NbButton,
   NbButtonTrailingIcon,
-  NbCard,
+  NbCallout,
   NbChip,
   NbDisplay,
   NbMediaFrame,
   NbMediaItem,
+  NbMediaItemTitle,
   NbSticker,
+  NbSurface,
 } from '@ng-brutalism/ui';`;
 
-  protected readonly templateCode = `<nb-card class="relative w-full max-w-220">
+  protected readonly templateCode = `<div nbSurface border="strong" shadow="hard" radius="xl" clip>
   <!-- Hero banner with floating sticker -->
-  <div class="relative px-5">
-    <nb-sticker shape="burst" tone="mint" [size]="0.6"
-      class="absolute -top-7 -left-5 z-20">4D<br />3N</nb-sticker>
-    <div nbMediaFrame ratio="21/9" radius="lg" shadow="hard">
+  <div class="relative">
+    <nb-sticker
+      shape="burst"
+      tone="mint"
+      [rotate]="-12"
+      aria-label="4 days, 3 nights"
+      class="absolute top-2 left-2 z-20"
+    >
+      4D<br />/ 3N
+    </nb-sticker>
+
+    <div nbMediaFrame ratio="21/9" radius="none" shadow="none" border="none">
       <img src="/tokyo-city-escape/hero-illustration.png" alt="Tokyo skyline" />
     </div>
   </div>
 
   <!-- Headline + trip meta -->
-  <div class="flex flex-col gap-6 px-6 md:flex-row md:justify-between">
-    <div class="flex flex-col gap-4 md:flex-1">
+  <div class="grid gap-6 p-4 md:grid-cols-[2fr_auto_1fr]">
+    <div class="flex flex-col gap-4">
       <h1 nbDisplay size="lg" class="uppercase">Tokyo City Escape</h1>
       <p>Explore iconic neighborhoods, savor local flavors…</p>
     </div>
-    <div class="flex flex-col gap-4 md:items-end">
+    <hr nbSeparator orientation="vertical" class="hidden md:block" />
+    <div class="flex flex-col items-start gap-4">
       <span nbChip tone="mint">Flight included</span>
       <span nbChip tone="lavender">Hotel</span>
       <span nbChip tone="pink">Top pick</span>
+      <div nbCallout tone="yellow" size="xl" shadow="hard">$799</div>
     </div>
   </div>
 
   <!-- Features + CTA -->
-  <div class="flex border-t-2 px-6 pt-6 sm:justify-between">
-    <nb-media-item icon="…/central-locations.png" title="Central Locations" />
+  <div class="grid gap-5 border-t-2 px-6 py-6 md:grid-cols-[2fr_1fr]">
+    <nb-media-item icon="…/central-locations.png">
+      <span nbMediaItemTitle>Central<br />Locations</span>
+    </nb-media-item>
     <button nbButton variant="secondary" size="lg">
       Book Trip
       <svg nbButtonTrailingIcon>…</svg>
     </button>
   </div>
-</nb-card>`;
+</div>`;
 }

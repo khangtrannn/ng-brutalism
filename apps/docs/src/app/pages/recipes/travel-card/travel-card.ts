@@ -2,10 +2,12 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 import {
   NbButton,
   NbButtonTrailingIcon,
+  NbCallout,
   NbChip,
   NbDisplay,
   NbMediaFrame,
   NbMediaItem,
+  NbMediaItemTitle,
   NbSeparator,
   NbSticker,
   NbSurface,
@@ -16,10 +18,12 @@ import {
   imports: [
     NbButton,
     NbButtonTrailingIcon,
+    NbCallout,
     NbChip,
     NbDisplay,
     NbMediaFrame,
     NbMediaItem,
+    NbMediaItemTitle,
     NbSeparator,
     NbSticker,
     NbSurface,
@@ -39,13 +43,14 @@ import {
           <nb-sticker
             shape="burst"
             tone="mint"
+            aria-label="4 days, 3 nights"
             class="absolute top-2 left-2 z-20"
-            rotate=-12
+            [rotate]="-12"
           >
             4D<br />/ 3N
           </nb-sticker>
 
-          <div nbMediaFrame ratio="21/9" radius="none" shadow="none">
+          <div nbMediaFrame ratio="21/9" radius="none" shadow="none" border="none">
             <img
               src="/tokyo-city-escape/hero-illustration.png"
               alt="Illustrated Tokyo"
@@ -53,7 +58,7 @@ import {
           </div>
         </div>
 
-        <div class="grid grid-cols-[2fr_auto_1fr] p-4 gap-6">
+        <div class="grid gap-6 p-4 md:grid-cols-[2fr_auto_1fr]">
           <div class="flex flex-col gap-4">
             <div class="flex items-center gap-3">
               <img
@@ -73,56 +78,61 @@ import {
             </p>
           </div>
 
-          <hr nbSeparator orientation="vertical" />
+          <hr nbSeparator orientation="vertical" class="hidden md:block" />
 
           <div class="flex shrink-0 flex-col items-start gap-4">
             <div class="flex flex-col items-start gap-2.5 [--nb-chip-radius:4px] [--nb-chip-shadow:none] uppercase tracking-wide">
               <span nbChip tone="mint">
-                <img src="/tokyo-city-escape/nb-plane-fill.svg" class="size-4" />
+                <img
+                  src="/tokyo-city-escape/nb-plane-fill.svg"
+                  alt=""
+                  aria-hidden="true"
+                  class="size-4"
+                />
                 Flight included
               </span>
 
               <span nbChip tone="lavender">
-                <img src="/tokyo-city-escape/nb-hotel-fill.svg" class="size-4" />
+                <img
+                  src="/tokyo-city-escape/nb-hotel-fill.svg"
+                  alt=""
+                  aria-hidden="true"
+                  class="size-4"
+                />
                 Hotel
               </span>
 
               <span nbChip tone="pink">
-                <img src="/tokyo-city-escape/nb-star-fill.svg" class="size-4" />
+                <img
+                  src="/tokyo-city-escape/nb-star-fill.svg"
+                  alt=""
+                  aria-hidden="true"
+                  class="size-4"
+                />
                 Top pick
               </span>
             </div>
 
-            <div
-              nbSurface
-              tone="yellow"
-              border="strong"
-              shadow="hard"
-              radius="sm"
-              layout="center"
-              class="px-5 py-2"
-            >
-              <h2 nbDisplay>$799</h2>
-            </div>
+            <div nbCallout tone="yellow" size="xl" shadow="hard">$799</div>
           </div>
         </div>
 
         <div
-          class="grid grid-cols-[2fr_1fr] gap-5 border-t-2 border-(--nb-border) px-6 py-6"
+          class="grid gap-5 border-t-2 border-(--nb-border) px-6 py-6 md:grid-cols-[2fr_1fr]"
         >
           <div
             class="flex flex-wrap items-center gap-4 **:data-nb-media-item:[--nb-media-item-title-size:12px]"
           >
             <nb-media-item icon="/tokyo-city-escape/central-locations.png">
-              <span data-nb-media-item-title>Central<br>Locations</span>
+              <span nbMediaItemTitle>Central<br />Locations</span>
             </nb-media-item>
             <hr nbSeparator orientation="vertical" variant="dashed" />
             <nb-media-item icon="/tokyo-city-escape/guided-experiences.png">
-              <span data-nb-media-item-title>Guided<br>Experiences</span>
+              <span nbMediaItemTitle>Guided<br />Experiences</span>
             </nb-media-item>
             <hr nbSeparator orientation="vertical" variant="dashed" />
             <nb-media-item icon="/tokyo-city-escape/24-7-support.png">
-              <span data-nb-media-item-title>24/7<br>Support</span>
+              <span nbMediaItemTitle>24/7<br />Support</span>
             </nb-media-item>
           </div>
 

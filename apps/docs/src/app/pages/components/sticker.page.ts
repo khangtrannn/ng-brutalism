@@ -58,7 +58,7 @@ import { DocsSourceTile } from '../../docs/docs-source-tile';
             <nb-sticker shape="star" tone="pink" aria-label="Happy sticker">
               <nb-sticker-face />
             </nb-sticker>
-            <nb-sticker shape="splat" tone="purple" decorative />
+            <nb-sticker shape="splat" tone="blue" decorative />
           </div>
         </docs-example>
       </section>
@@ -92,7 +92,7 @@ import { DocsSourceTile } from '../../docs/docs-source-tile';
               <span class="font-mono text-xs font-bold">star</span>
             </div>
             <div class="flex flex-col items-center gap-4">
-              <nb-sticker shape="splat" tone="purple" decorative />
+              <nb-sticker shape="splat" tone="blue" decorative />
               <span class="font-mono text-xs font-bold">splat</span>
             </div>
           </div>
@@ -161,12 +161,12 @@ import { DocsSourceTile } from '../../docs/docs-source-tile';
               <nb-sticker
                 class="sticker-tone-face"
                 shape="star"
-                tone="purple"
-                aria-label="Purple smiling sticker"
+                tone="blue"
+                aria-label="Blue smiling sticker"
               >
                 <nb-sticker-face />
               </nb-sticker>
-              <span class="font-mono text-xs font-bold">purple</span>
+              <span class="font-mono text-xs font-bold">blue</span>
             </div>
             <div class="flex flex-col items-center gap-2">
               <nb-sticker
@@ -285,8 +285,9 @@ import { DocsSourceTile } from '../../docs/docs-source-tile';
                 <td
                   class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
                 >
-                  'default' | 'yellow' | 'pink' | 'mint' | 'lavender' | 'purple'
-                  | 'accent' | 'success' | 'warning' | 'danger'
+                  'default' | 'cream' | 'white' | 'black' | 'yellow' | 'pink'
+                  | 'mint' | 'lavender' | 'blue' | 'primary' | 'secondary' |
+                  'accent' | 'success' | 'warning' | 'danger'
                 </td>
                 <td
                   class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
@@ -369,14 +370,14 @@ export default class StickerPage {
 <nb-sticker shape="star" tone="pink" aria-label="Happy sticker">
   <nb-sticker-face />
 </nb-sticker>
-<nb-sticker shape="splat" tone="purple" decorative />`;
+<nb-sticker shape="splat" tone="blue" decorative />`;
 
   protected readonly shapesExampleCode = `<nb-sticker shape="burst" tone="mint">BURST</nb-sticker>
 <nb-sticker shape="burst-wide" tone="yellow">WIDE</nb-sticker>
 <nb-sticker shape="star" tone="pink" aria-label="Face sticker">
   <nb-sticker-face />
 </nb-sticker>
-<nb-sticker shape="splat" tone="purple" decorative />`;
+<nb-sticker shape="splat" tone="blue" decorative />`;
 
   protected readonly tonesExampleCode = `<nb-sticker class="sticker-tone-face" shape="star" aria-label="Default tone smiling sticker">
   <nb-sticker-face />
@@ -393,7 +394,7 @@ export default class StickerPage {
 <nb-sticker class="sticker-tone-face" shape="star" tone="lavender" aria-label="Lavender smiling sticker">
   <nb-sticker-face />
 </nb-sticker>
-<nb-sticker class="sticker-tone-face" shape="star" tone="purple" aria-label="Purple smiling sticker">
+<nb-sticker class="sticker-tone-face" shape="star" tone="blue" aria-label="Blue smiling sticker">
   <nb-sticker-face />
 </nb-sticker>
 <nb-sticker class="sticker-tone-face" shape="star" tone="accent" aria-label="Accent smiling sticker">

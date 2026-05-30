@@ -1,25 +1,12 @@
 import { Directive, booleanAttribute, computed, input } from '@angular/core';
 
 import { nbClass } from '../core/class';
+import { nbToneTokens, type NbTone, type NbToneTokens } from '../tokens/tone';
 
 export type NbSurfaceTone =
-  | 'default'
+  | NbTone
   | 'background'
-  | 'surface'
-  | 'cream'
-  | 'white'
-  | 'black'
-  | 'yellow'
-  | 'pink'
-  | 'mint'
-  | 'lavender'
-  | 'blue'
-  | 'primary'
-  | 'secondary'
-  | 'accent'
-  | 'success'
-  | 'warning'
-  | 'danger';
+  | 'surface';
 
 export type NbSurfaceRadius =
   | 'none'
@@ -66,6 +53,8 @@ export type NbSurfaceEdge = 'none' | 'top' | 'bottom';
     '[attr.data-layout]': 'layout()',
     '[attr.data-padding]': 'padding()',
     '[attr.data-edge]': 'edge()',
+    '[style.--nb-surface-bg]': 'toneTokens().bg',
+    '[style.--nb-surface-fg]': 'toneTokens().fg',
   },
 })
 export class NbSurface {
@@ -87,7 +76,6 @@ export class NbSurface {
       'rounded-(--nb-surface-radius)',
       'shadow-[var(--nb-surface-shadow)]',
       this.clip() && 'overflow-hidden',
-      this.toneClass(),
       this.radiusClass(),
       this.borderClass(),
       this.shadowClass(),
@@ -98,38 +86,22 @@ export class NbSurface {
     )
   );
 
-  private toneClass(): string {
-    const map: Record<NbSurfaceTone, string> = {
-      default:
-        '[--nb-surface-bg:var(--nb-surface)] [--nb-surface-fg:var(--nb-surface-foreground)]',
-      background:
-        '[--nb-surface-bg:var(--nb-background)] [--nb-surface-fg:var(--nb-foreground)]',
-      surface:
-        '[--nb-surface-bg:var(--nb-surface)] [--nb-surface-fg:var(--nb-surface-foreground)]',
-      cream: '[--nb-surface-bg:#fff8e7] [--nb-surface-fg:#000000]',
-      white: '[--nb-surface-bg:#ffffff] [--nb-surface-fg:#000000]',
-      black: '[--nb-surface-bg:#000000] [--nb-surface-fg:#ffffff]',
-      yellow: '[--nb-surface-bg:#ffd24a] [--nb-surface-fg:#000000]',
-      pink: '[--nb-surface-bg:#ff6aa2] [--nb-surface-fg:#000000]',
-      mint: '[--nb-surface-bg:#b8f7c5] [--nb-surface-fg:#000000]',
-      lavender: '[--nb-surface-bg:#dcc8ff] [--nb-surface-fg:#000000]',
-      blue: '[--nb-surface-bg:#69b7ff] [--nb-surface-fg:#000000]',
-      primary:
-        '[--nb-surface-bg:var(--nb-primary)] [--nb-surface-fg:var(--nb-primary-foreground)]',
-      secondary:
-        '[--nb-surface-bg:var(--nb-secondary)] [--nb-surface-fg:var(--nb-secondary-foreground)]',
-      accent:
-        '[--nb-surface-bg:var(--nb-accent)] [--nb-surface-fg:var(--nb-accent-foreground)]',
-      success:
-        '[--nb-surface-bg:var(--nb-success)] [--nb-surface-fg:var(--nb-success-foreground)]',
-      warning:
-        '[--nb-surface-bg:var(--nb-warning)] [--nb-surface-fg:var(--nb-warning-foreground)]',
-      danger:
-        '[--nb-surface-bg:var(--nb-danger)] [--nb-surface-fg:var(--nb-danger-foreground)]',
-    };
+  protected readonly toneTokens = computed<NbToneTokens>(() => {
+    const tone = this.tone();
 
-    return map[this.tone()];
-  }
+    if (tone === 'background') {
+      return {
+        bg: 'var(--nb-background)',
+        fg: 'var(--nb-foreground)',
+      };
+    }
+
+    if (tone === 'surface') {
+      return nbToneTokens('default');
+    }
+
+    return nbToneTokens(tone);
+  });
 
   private radiusClass(): string {
     const map: Record<NbSurfaceRadius, string> = {
