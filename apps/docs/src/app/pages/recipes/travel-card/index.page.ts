@@ -58,19 +58,30 @@ import { TravelCard } from './travel-card';
           >
           for the full implementation.
         </p>
-        <docs-code-block class="block mb-5" title="Imports" [code]="importCode" />
+        <docs-code-block
+          class="block mb-5"
+          title="Imports"
+          [code]="importCode"
+        />
         <docs-code-block title="Template" [code]="templateCode" />
       </section>
 
       <section id="primitives">
-        <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">Primitives used</h2>
+        <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">
+          Primitives used
+        </h2>
         <ul class="space-y-2 text-base font-medium">
           @for (item of primitives; track item.path) {
-            <li class="flex items-center gap-2">
-              <span class="inline-block size-2 border-2 border-(--nb-border) bg-(--nb-yellow)" aria-hidden="true"></span>
-              <a class="underline" [routerLink]="item.path">{{ item.name }}</a>
-              <span class="text-sm font-normal opacity-80">— {{ item.role }}</span>
-            </li>
+          <li class="flex items-center gap-2">
+            <span
+              class="inline-block size-2 border-2 border-(--nb-border) bg-(--nb-yellow)"
+              aria-hidden="true"
+            ></span>
+            <a class="underline" [routerLink]="item.path">{{ item.name }}</a>
+            <span class="text-sm font-normal opacity-80"
+              >— {{ item.role }}</span
+            >
+          </li>
           }
         </ul>
       </section>
@@ -80,14 +91,42 @@ import { TravelCard } from './travel-card';
 })
 export default class TravelCardRecipePage {
   protected readonly primitives = [
-    { name: 'NbSurface', path: '/components/surface', role: 'bordered card shell' },
-    { name: 'NbMediaFrame', path: '/components/media-frame', role: 'hero banner image' },
-    { name: 'NbSticker', path: '/components/sticker', role: '4D/3N highlight burst' },
-    { name: 'NbDisplay', path: '/components/display', role: 'destination mega title' },
-    { name: 'NbChip', path: '/components/chip', role: 'flight / hotel / top-pick tags' },
+    {
+      name: 'NbSurface',
+      path: '/components/surface',
+      role: 'bordered card shell',
+    },
+    {
+      name: 'NbMediaFrame',
+      path: '/components/media-frame',
+      role: 'hero banner image',
+    },
+    {
+      name: 'NbSticker',
+      path: '/components/sticker',
+      role: '4D/3N highlight burst',
+    },
+    {
+      name: 'NbDisplay',
+      path: '/components/display',
+      role: 'destination mega title',
+    },
+    {
+      name: 'NbChip',
+      path: '/components/chip',
+      role: 'flight / hotel / top-pick tags',
+    },
     { name: 'NbCallout', path: '/components/callout', role: 'price callout' },
-    { name: 'NbMediaItem', path: '/components/media-item', role: 'icon + label trip features' },
-    { name: 'NbButton', path: '/components/button', role: 'book trip call to action' },
+    {
+      name: 'NbMediaItem',
+      path: '/components/media-item',
+      role: 'icon + label trip features',
+    },
+    {
+      name: 'NbButton',
+      path: '/components/button',
+      role: 'book trip call to action',
+    },
   ];
 
   protected readonly importCode = `import {
@@ -99,6 +138,7 @@ export default class TravelCardRecipePage {
   NbMediaFrame,
   NbMediaItem,
   NbMediaItemTitle,
+  NbStack,
   NbSticker,
   NbSurface,
 } from '@ng-brutalism/ui';`;
@@ -123,15 +163,17 @@ export default class TravelCardRecipePage {
 
   <!-- Headline + trip meta -->
   <div class="grid gap-6 p-4 md:grid-cols-[2fr_auto_1fr]">
-    <div class="flex flex-col gap-4">
+    <div nbStack gap="lg">
       <h1 nbDisplay size="lg" class="uppercase">Tokyo City Escape</h1>
       <p>Explore iconic neighborhoods, savor local flavors…</p>
     </div>
     <hr nbSeparator orientation="vertical" class="hidden md:block" />
-    <div class="flex flex-col items-start gap-4">
-      <span nbChip tone="mint">Flight included</span>
-      <span nbChip tone="lavender">Hotel</span>
-      <span nbChip tone="pink">Top pick</span>
+    <div nbStack gap="lg" align="start">
+      <div nbStack gap="sm" align="start">
+        <span nbChip tone="mint">Flight included</span>
+        <span nbChip tone="lavender">Hotel</span>
+        <span nbChip tone="pink">Top pick</span>
+      </div>
       <div nbCallout tone="yellow" size="xl" shadow="hard">$799</div>
     </div>
   </div>

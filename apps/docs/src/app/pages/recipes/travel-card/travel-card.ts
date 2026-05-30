@@ -9,6 +9,7 @@ import {
   NbMediaItem,
   NbMediaItemTitle,
   NbSeparator,
+  NbStack,
   NbSticker,
   NbSurface,
 } from '@ng-brutalism/ui';
@@ -25,6 +26,7 @@ import {
     NbMediaItem,
     NbMediaItemTitle,
     NbSeparator,
+    NbStack,
     NbSticker,
     NbSurface,
   ],
@@ -50,7 +52,13 @@ import {
             4D<br />/ 3N
           </nb-sticker>
 
-          <div nbMediaFrame ratio="21/9" radius="none" shadow="none" border="none">
+          <div
+            nbMediaFrame
+            ratio="21/9"
+            radius="none"
+            shadow="none"
+            border="none"
+          >
             <img
               src="/tokyo-city-escape/hero-illustration.png"
               alt="Illustrated Tokyo"
@@ -59,7 +67,7 @@ import {
         </div>
 
         <div class="grid gap-6 p-4 md:grid-cols-[2fr_auto_1fr]">
-          <div class="flex flex-col gap-4">
+          <div nbStack gap="lg">
             <div class="flex items-center gap-3">
               <img
                 src="/tokyo-city-escape/roam-go-logo.png"
@@ -70,7 +78,7 @@ import {
               <span class="text-xl font-extrabold">Roam &amp; Go</span>
             </div>
 
-            <h1 nbDisplay class="uppercase mb-0!">Tokyo<br>City Escape</h1>
+            <h1 nbDisplay class="uppercase mb-0!">Tokyo<br />City Escape</h1>
 
             <p class="max-w-md text-base font-medium text-(--nb-foreground)/80">
               Explore iconic neighborhoods, savor local flavors, and make
@@ -80,8 +88,13 @@ import {
 
           <hr nbSeparator orientation="vertical" class="hidden md:block" />
 
-          <div class="flex shrink-0 flex-col items-start gap-4">
-            <div class="flex flex-col items-start gap-2.5 [--nb-chip-radius:4px] [--nb-chip-shadow:none] uppercase tracking-wide">
+          <div nbStack gap="lg" align="start" class="shrink-0">
+            <div
+              nbStack
+              gap="sm"
+              align="start"
+              class="[--nb-chip-radius:4px] [--nb-chip-shadow:none] uppercase tracking-wide"
+            >
               <span nbChip tone="mint">
                 <img
                   src="/tokyo-city-escape/nb-plane-fill.svg"

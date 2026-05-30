@@ -281,6 +281,21 @@ export const docsNavGroups: readonly DocsNavGroup[] = [
         ],
       },
       {
+        label: 'Stack',
+        path: '/components/stack',
+        toc: [
+          { label: 'Overview', fragment: 'overview' },
+          { label: 'Preview', fragment: 'preview' },
+          { label: 'Usage', fragment: 'usage' },
+          { label: 'Gaps', fragment: 'gaps' },
+          { label: 'Alignment', fragment: 'alignment' },
+          { label: 'Justification', fragment: 'justification' },
+          { label: 'Dividers', fragment: 'dividers' },
+          { label: 'Responsive gap', fragment: 'responsive' },
+          { label: 'API', fragment: 'api' },
+        ],
+      },
+      {
         label: 'Sticker',
         path: '/components/sticker',
         toc: [

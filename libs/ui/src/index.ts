@@ -98,6 +98,13 @@ export type {
   NbSurfaceShadow,
   NbSurfaceTone,
 } from './lib/surface';
+export { NbStack } from './lib/stack';
+export type {
+  NbStackAlign,
+  NbStackDivider,
+  NbStackGap,
+  NbStackJustify,
+} from './lib/stack';
 export { NbCallout } from './lib/callout';
 export type {
   NbCalloutLayout,
