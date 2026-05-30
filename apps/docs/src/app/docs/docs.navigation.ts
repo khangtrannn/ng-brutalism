@@ -159,6 +159,21 @@ export const docsNavGroups: readonly DocsNavGroup[] = [
         ],
       },
       {
+        label: 'Icon',
+        path: '/components/icon',
+        toc: [
+          { label: 'Overview', fragment: 'overview' },
+          { label: 'Preview', fragment: 'preview' },
+          { label: 'Usage', fragment: 'usage' },
+          { label: 'Sizes', fragment: 'sizes' },
+          { label: 'Tones', fragment: 'tones' },
+          { label: 'Modes', fragment: 'modes' },
+          { label: 'Accessibility', fragment: 'accessibility' },
+          { label: 'Composition', fragment: 'composition' },
+          { label: 'API', fragment: 'api' },
+        ],
+      },
+      {
         label: 'Icon Button',
         path: '/components/icon-button',
         toc: [

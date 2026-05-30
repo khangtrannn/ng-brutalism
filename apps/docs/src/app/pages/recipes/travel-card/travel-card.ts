@@ -6,6 +6,7 @@ import {
   NbChip,
   NbCluster,
   NbDisplay,
+  NbIcon,
   NbMediaFrame,
   NbMediaItem,
   NbMediaItemTitle,
@@ -27,6 +28,7 @@ import {
     NbChip,
     NbCluster,
     NbDisplay,
+    NbIcon,
     NbMediaFrame,
     NbMediaItem,
     NbMediaItemTitle,
@@ -109,32 +111,17 @@ import {
               class="[--nb-chip-radius:4px] [--nb-chip-shadow:none] uppercase tracking-wide"
             >
               <span nbChip tone="mint">
-                <img
-                  src="/tokyo-city-escape/nb-plane-fill.svg"
-                  alt=""
-                  aria-hidden="true"
-                  class="size-4"
-                />
+                <span nbIcon src="/tokyo-city-escape/nb-plane-fill.svg" size="sm" decorative></span>
                 Flight included
               </span>
 
               <span nbChip tone="lavender">
-                <img
-                  src="/tokyo-city-escape/nb-hotel-fill.svg"
-                  alt=""
-                  aria-hidden="true"
-                  class="size-4"
-                />
+                <span nbIcon src="/tokyo-city-escape/nb-hotel-fill.svg" size="sm" decorative></span>
                 Hotel
               </span>
 
               <span nbChip tone="pink">
-                <img
-                  src="/tokyo-city-escape/nb-star-fill.svg"
-                  alt=""
-                  aria-hidden="true"
-                  class="size-4"
-                />
+                <span nbIcon src="/tokyo-city-escape/nb-star-fill.svg" size="sm" decorative></span>
                 Top pick
               </span>
             </div>
@@ -166,18 +153,16 @@ import {
 
             <button
               nbButton
-              style="--nb-button-bg: var(--nb-lavender); --nb-button-radius: 0.5rem"
-              class="h-14 px-4 text-[20px] font-black tracking-wide uppercase"
+              tone="lavender"
+              size="xl"
+              radius="md"
+              weight="black"
+              transform="uppercase"
+              tracking="wide"
             >
               Book Trip
-              <span
-                nbButtonTrailingIcon
-                class="inline-flex size-8 items-center justify-center rounded-full bg-(--nb-foreground) text-(--nb-background)"
-              >
-                <span
-                  aria-hidden="true"
-                  class="size-4 bg-current [mask:url(/tokyo-city-escape/nb-arrow-right.svg)_center/contain_no-repeat]"
-                ></span>
+              <span nbButtonTrailingIcon shape="circle" tone="inverse" size="md">
+                <span nbIcon src="/tokyo-city-escape/nb-arrow-right.svg" size="sm" decorative></span>
               </span>
             </button>
           </div>

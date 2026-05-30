@@ -98,10 +98,9 @@ describe('NbButton token surface', () => {
     expect(cls).toContain('focus-visible:ring-2');
     expect(cls).toContain('disabled:opacity-50');
     expect(cls).toContain('aria-disabled:opacity-50');
-    expect(cls).toContain('h-10');
+    expect(cls).toContain('h-11');
     expect(cls).toContain('px-4');
-    expect(cls).toContain('py-2');
-    expect(cls).toContain('text-sm');
+    expect(cls).toContain('text-base');
   });
 });
 

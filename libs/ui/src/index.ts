@@ -18,9 +18,17 @@ export {
 export type { NbAccordionType, NbAccordionValue } from './lib/accordion';
 export { NbButton } from './lib/button';
 export type {
+  NbButtonIconShape,
+  NbButtonIconSize,
+  NbButtonIconTone,
+  NbButtonRadius,
   NbButtonShadow,
   NbButtonSize,
+  NbButtonTone,
+  NbButtonTracking,
+  NbButtonTransform,
   NbButtonVariant,
+  NbButtonWeight,
 } from './lib/button';
 export {
   NbCard,
@@ -159,3 +167,5 @@ export type {
   NbTextTransform,
   NbTextWeight,
 } from './lib/text';
+export { NbIcon } from './lib/icon';
+export type { NbIconMode, NbIconSize, NbIconTone } from './lib/icon';
