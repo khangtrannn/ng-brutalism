@@ -107,7 +107,7 @@ interface AlignDemo {
                 <nb-media-item
                   variant="plain"
                   class="pb-3"
-                  style="--nb-media-item-icon-size: 2.5rem; --nb-media-item-title-size: 3rem; --nb-media-item-title-font-family: var(--font-heading)"
+                  style="--nb-media-item-icon-size: 2.5rem; --nb-media-item-title-size: 2rem; --nb-media-item-title-font-family: var(--font-heading)"
                   icon="/icons/plane.png"
                   iconAlt="Flight"
                   description="Jun 14 &middot; 22:15 &#x2192; 12:45+1"
