@@ -237,8 +237,8 @@ body::-webkit-scrollbar-thumb {
 }
 
 [data-docs-content] section:nth-of-type(5n) h2[data-docs-heading] {
-  background: var(--nb-blue);
-  color: #fff;
+  background: var(--nb-sky);
+  color: #000;
   transform: rotate(-0.5deg);
 }
 
