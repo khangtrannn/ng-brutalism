@@ -116,6 +116,7 @@ export type {
 export { NbCluster } from './lib/cluster';
 export type {
   NbClusterAlign,
+  NbClusterDivider,
   NbClusterGap,
   NbClusterJustify,
   NbClusterWrap,

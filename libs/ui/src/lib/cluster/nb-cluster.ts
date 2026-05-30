@@ -15,6 +15,8 @@ export type NbClusterJustify = 'start' | 'center' | 'end' | 'between';
 
 export type NbClusterWrap = 'wrap' | 'nowrap';
 
+export type NbClusterDivider = 'none' | 'solid' | 'dashed' | 'thick';
+
 @Directive({
   selector: '[nbCluster]',
   host: {
@@ -24,6 +26,7 @@ export type NbClusterWrap = 'wrap' | 'nowrap';
     '[attr.data-align]': 'align()',
     '[attr.data-justify]': 'justify()',
     '[attr.data-wrap]': 'wrap()',
+    '[attr.data-divider]': 'divider()',
   },
 })
 export class NbCluster {
@@ -31,15 +34,16 @@ export class NbCluster {
   readonly align = input<NbClusterAlign>('center');
   readonly justify = input<NbClusterJustify>('start');
   readonly wrap = input<NbClusterWrap>('wrap');
+  readonly divider = input<NbClusterDivider>('none');
 
   protected readonly classes = computed(() =>
     nbClass(
       'flex min-w-0',
-      'gap-[var(--nb-cluster-gap)]',
       this.gapClass(),
       this.alignClass(),
       this.justifyClass(),
-      this.wrapClass()
+      this.wrapClass(),
+      this.dividerClass()
     )
   );
 
@@ -54,7 +58,11 @@ export class NbCluster {
       '2xl': '[--nb-cluster-gap:2rem]',
     };
 
-    return map[this.gap()];
+    if (this.divider() !== 'none') {
+      return nbClass(map[this.gap()], 'gap-y-[var(--nb-cluster-gap)]', 'gap-x-0');
+    }
+
+    return nbClass(map[this.gap()], 'gap-[var(--nb-cluster-gap)]');
   }
 
   private alignClass(): string {
@@ -88,4 +96,32 @@ export class NbCluster {
 
     return map[this.wrap()];
   }
+
+  private dividerClass(): string {
+    const divider = this.divider();
+    if (divider === 'none') return '';
+
+    return nbClass(dividerBaseClass, dividerStyleClass[divider]);
+  }
 }
+
+// Written as module-level constants so Tailwind's static scanner emits the classes.
+const dividerBaseClass = nbClass(
+  '[&>*+*]:[padding-inline-start:var(--nb-cluster-gap)]',
+  '[&>*+*]:[border-inline-start-color:var(--nb-border)]'
+);
+
+const dividerStyleClass: Record<Exclude<NbClusterDivider, 'none'>, string> = {
+  solid: nbClass(
+    '[&>*+*]:[border-inline-start-width:2px]',
+    '[&>*+*]:[border-inline-start-style:solid]'
+  ),
+  dashed: nbClass(
+    '[&>*+*]:[border-inline-start-width:2px]',
+    '[&>*+*]:[border-inline-start-style:dashed]'
+  ),
+  thick: nbClass(
+    '[&>*+*]:[border-inline-start-width:4px]',
+    '[&>*+*]:[border-inline-start-style:solid]'
+  ),
+};

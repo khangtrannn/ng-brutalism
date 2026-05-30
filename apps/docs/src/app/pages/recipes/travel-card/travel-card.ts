@@ -11,7 +11,6 @@ import {
   NbMediaItem,
   NbMediaItemTitle,
   NbSection,
-  NbSeparator,
   NbSplit,
   NbStack,
   NbSticker,
@@ -33,7 +32,6 @@ import {
     NbMediaItem,
     NbMediaItemTitle,
     NbSection,
-    NbSeparator,
     NbSplit,
     NbStack,
     NbSticker,
@@ -136,16 +134,17 @@ import {
               nbCluster
               gap="lg"
               align="center"
+              divider="dashed"
               class="[--nb-media-item-title-size:12px]"
             >
               <nb-media-item icon="/tokyo-city-escape/central-locations.png">
                 <span nbMediaItemTitle>Central<br />Locations</span>
               </nb-media-item>
-              <hr nbSeparator orientation="vertical" variant="dashed" />
+
               <nb-media-item icon="/tokyo-city-escape/guided-experiences.png">
                 <span nbMediaItemTitle>Guided<br />Experiences</span>
               </nb-media-item>
-              <hr nbSeparator orientation="vertical" variant="dashed" />
+
               <nb-media-item icon="/tokyo-city-escape/24-7-support.png">
                 <span nbMediaItemTitle>24/7<br />Support</span>
               </nb-media-item>
