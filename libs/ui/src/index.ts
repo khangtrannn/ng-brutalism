@@ -104,3 +104,16 @@ export type {
   NbCalloutSize,
   NbCalloutTone,
 } from './lib/callout';
+export {
+  NbMediaItem,
+  NbMediaItemDescription,
+  NbMediaItemIcon,
+  NbMediaItemTitle,
+} from './lib/media-item';
+export type {
+  NbMediaItemAlign,
+  NbMediaItemOrientation,
+  NbMediaItemSize,
+  NbMediaItemTone,
+  NbMediaItemVariant,
+} from './lib/media-item';

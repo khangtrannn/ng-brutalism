@@ -78,6 +78,8 @@ export const PAGE_DESCRIPTIONS: Record<string, string> = {
     'Neo-brutalist Label component for Angular. Bold form labels with strong typography and brutalist styling.',
   '/components/marquee':
     'Ng Brutalism Marquee component for Angular. Continuous scrolling ticker with bold borders and configurable speed.',
+  '/components/media-item':
+    'Neo-brutalist Media Item directive for Angular. Pair icons, images, or avatars with a title and optional description — covers feature lists, event details, product specs, status chips, and more.',
   '/components/media-frame':
     'Neo-brutalist Media Frame directive for Angular. Frame images, video, portraits, previews, maps, and media-like blocks with typed ratio, tone, fit, radius, and shadow presets.',
   '/components/select':
