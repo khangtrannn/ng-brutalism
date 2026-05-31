@@ -24,7 +24,7 @@ const LEADING_MAP: Record<NbDisplayLeading, string> = {
 };
 
 @Directive({
-  selector: 'h1[nbDisplay], h2[nbDisplay]',
+  selector: '[nbDisplay]',
   host: {
     class: 'font-black',
     '[style.font-size]': 'fontSize()',

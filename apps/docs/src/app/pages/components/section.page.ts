@@ -114,7 +114,7 @@ interface SectionLayoutDemo {
                 <span class="font-mono text-xs font-black uppercase">
                   Project
                 </span>
-                <h2 nbDisplay class="mb-0! [--nb-display-size:2rem]">
+                <h2 nbDisplay class="[--nb-display-size:2rem]">
                   Alpha Launch
                 </h2>
               </div>
@@ -334,7 +334,7 @@ interface SectionLayoutDemo {
                 <span class="font-mono text-xs font-black uppercase">
                   Pro plan
                 </span>
-                <h2 nbDisplay class="mb-0! [--nb-display-size:2rem]">
+                <h2 nbDisplay class="[--nb-display-size:2rem]">
                   Design Sprint
                 </h2>
               </div>

@@ -215,7 +215,7 @@ export default class PodcastCardRecipePage {
 
   <!-- Hero title -->
   <div nbSection padding="lg">
-    <h1 nbDisplay class="uppercase font-black mb-0!">
+    <h1 nbDisplay class="uppercase">
       Design<br />Systems<br />That Scale
     </h1>
   </div>

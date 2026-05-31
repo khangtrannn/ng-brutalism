@@ -93,7 +93,7 @@ import {
               <span nbText size="xl" weight="extrabold">Roam &amp; Go</span>
             </div>
 
-            <h1 nbDisplay class="uppercase mb-0!">Tokyo<br />City Escape</h1>
+            <h1 nbDisplay class="uppercase">Tokyo<br />City Escape</h1>
 
             <p nbText size="md" weight="medium" tone="muted" measure="md">
               Explore iconic neighborhoods, savor local flavors, and make

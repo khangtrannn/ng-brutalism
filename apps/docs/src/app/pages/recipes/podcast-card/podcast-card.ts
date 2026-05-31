@@ -48,7 +48,6 @@ import {
   `,
   template: `
     <div nbCluster justify="center" class="overflow-visible px-6 py-8">
-      <!-- Plain layout wrapper only. Do not use nbSection here. -->
       <div class="relative w-full overflow-visible">
         <div
           nbSurface
@@ -59,10 +58,8 @@ import {
           class="relative z-10 w-full overflow-hidden"
           style="--nb-surface-bg: #fffaf2"
         >
-          <!-- Main content section -->
           <div nbSection padding="lg" class="relative z-10">
             <div nbStack gap="lg">
-              <!-- Top bar -->
               <div nbCluster gap="md" align="center" justify="between">
                 <span
                   nbChip
@@ -80,7 +77,6 @@ import {
                 </span>
               </div>
 
-              <!-- Brand row -->
               <div nbCluster gap="lg" align="center">
                 <img
                   src="/podcast-card/bfm-logo.png"
@@ -99,12 +95,11 @@ import {
                 </div>
               </div>
 
-              <!-- Episode badge -->
               <div class="relative w-fit">
                 <div
                   nbCallout
                   tone="yellow"
-                  size="xl"
+                  size="lg"
                   shadow="hard"
                   class="w-fit uppercase tracking-tight [--nb-callout-radius:6px]"
                 >
@@ -112,7 +107,6 @@ import {
                 </div>
               </div>
 
-              <!-- Hero title -->
               <div>
                 <h1 nbDisplay size="xl" leading="display">
                   DESIGN<br />SYSTEMS<br />THAT SCALE
@@ -124,7 +118,6 @@ import {
                 ></span>
               </div>
 
-              <!-- Metadata chips -->
               <div nbCluster gap="sm">
                 <span
                   nbChip
@@ -172,7 +165,6 @@ import {
                 </span>
               </div>
 
-              <!-- Description -->
               <div nbSplit ratio="fill:auto">
                 <p
                   nbText
@@ -185,7 +177,6 @@ import {
                   with your product.
                 </p>
 
-                <!-- Small flight doodle -->
                 <img
                   src="/podcast-card/flight-doodle.svg"
                   alt=""
@@ -196,7 +187,6 @@ import {
             </div>
           </div>
 
-          <!-- Host / player / actions section -->
           <div nbSection border="top" padding="lg" class="z-10">
             <div nbStack gap="md" class="relative z-10">
               <div nbCluster gap="lg" align="start">
@@ -289,7 +279,6 @@ import {
             </div>
           </div>
 
-          <!-- Blue sparkle inside the card -->
           <img
             src="/podcast-card/star-burst.svg"
             alt=""
@@ -298,7 +287,6 @@ import {
           />
         </div>
 
-        <!-- Stickers live outside nbSurface so they can overflow safely. -->
         <nb-sticker
           shape="star"
           tone="lavender"
@@ -309,7 +297,6 @@ import {
           <nb-sticker-face />
         </nb-sticker>
 
-        <!-- Pink splat peeks out behind the bottom-left corner. -->
         <nb-sticker
           shape="splat"
           tone="pink"

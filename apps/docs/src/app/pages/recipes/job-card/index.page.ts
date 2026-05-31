@@ -189,7 +189,7 @@ export default class JobCardRecipePage {
         </div>
       </div>
 
-      <h1 nbDisplay class="uppercase mb-0!">
+      <h1 nbDisplay class="uppercase">
         Senior<br />Frontend<br />Engineer
       </h1>
 

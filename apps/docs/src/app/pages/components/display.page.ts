@@ -16,17 +16,18 @@ import { DocsTokens } from '../../docs/docs-tokens';
           <p>Neo-Brutalist Angular Display</p>
           <h1>Display</h1>
           <p class="mt-3 max-w-3xl text-base font-medium sm:text-lg">
-            A directive for mega-sized heading text. Apply it to any
-            <code class="font-mono">h1</code> or <code class="font-mono">h2</code>
-            to get ultra-bold, tight-leading display typography — the dominant
-            visual element in every brutalist card design.
+            A directive for mega-sized display text. Apply it to
+            <strong>any element</strong> — a heading, a
+            <code class="font-mono">span</code>, a stat — to get ultra-bold,
+            tight-leading display typography. It's purely presentational, so
+            keep your semantics correct and let the directive handle the look.
           </p>
         </div>
 
         <div class="mt-7 flex flex-wrap items-center gap-3">
           <div class="nb-stat-tile nb-stat-tile--yellow">
-            <span class="nb-stat-tile__value">h1/h2</span>
-            <span class="nb-stat-tile__label">Host elements</span>
+            <span class="nb-stat-tile__value">any</span>
+            <span class="nb-stat-tile__label">Host element</span>
           </div>
           <div class="nb-stat-tile nb-stat-tile--mint">
             <span class="nb-stat-tile__value">4</span>
@@ -97,6 +98,22 @@ import { DocsTokens } from '../../docs/docs-tokens';
         </docs-example>
       </section>
 
+      <section id="any-element">
+        <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">Any Element</h2>
+        <p class="mb-4 font-medium">
+          <code class="font-mono">nbDisplay</code> is presentational — apply it to a
+          <code class="font-mono">span</code>, <code class="font-mono">div</code>, or
+          anything else when display type isn't a heading (stats, prices, badges).
+          Pick the element for its semantics, not its size.
+        </p>
+        <docs-example [code]="anyElementExampleCode">
+          <div class="flex flex-wrap items-end gap-8">
+            <span nbDisplay size="lg">$2.4M</span>
+            <span nbDisplay size="lg" class="uppercase">24/7</span>
+          </div>
+        </docs-example>
+      </section>
+
       <docs-tokens component="display" />
 
       <section id="api">
@@ -142,4 +159,7 @@ export default class DisplayPage {
   protected readonly customSizeExampleCode = `<h2 nbDisplay class="uppercase" style="--nb-display-size: 2.25rem">
   $29/mo
 </h2>`;
+
+  protected readonly anyElementExampleCode = `<span nbDisplay size="lg">$2.4M</span>
+<span nbDisplay size="lg" class="uppercase">24/7</span>`;
 }

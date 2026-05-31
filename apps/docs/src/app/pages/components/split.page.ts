@@ -110,7 +110,7 @@ interface SplitDividerDemo {
                   class="w-max border-2 border-(--nb-border) bg-(--nb-mint) px-3 py-1 font-mono text-xs font-black uppercase shadow-[3px_3px_0_0_var(--nb-shadow)]"
                   >Main</span
                 >
-                <h2 nbDisplay class="mb-0!">Tokyo City Escape</h2>
+                <h2 nbDisplay>Tokyo City Escape</h2>
                 <p class="max-w-xl text-base font-medium">
                   A flexible content block for descriptions, product stories,
                   profile bios, course details, and event summaries.
