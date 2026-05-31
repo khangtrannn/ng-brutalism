@@ -40,14 +40,15 @@ export const SOFTWARE_KEYWORDS = [
 
 export const PAGE_DESCRIPTIONS: Record<string, string> = {
   // Home
-  '/':
-    'The neo-brutalist Angular UI library. Signals, zoneless, Tailwind v4. Bold borders, offset shadows, and punchy colors — drop in brutalist Angular components and ship loud.',
+  '/': 'The neo-brutalist Angular UI library. Signals, zoneless, Tailwind v4. Bold borders, offset shadows, and punchy colors — drop in brutalist Angular components and ship loud.',
 
   // Getting started
   '/docs/introduction':
     'Get started with Ng Brutalism — a neo-brutalist Angular UI library built with signals, zoneless change detection, and Tailwind v4.',
   '/docs/installation':
     'Install @ng-brutalism/ui in your Angular project. Requires a modern Angular setup, Tailwind v4, and Node 20+.',
+  '/docs/inspired-designs':
+    'Explore the visual references behind Ng Brutalism: loud layouts, chunky borders, bold color, and Angular UI patterns with bite.',
   '/docs/faq':
     'Ng Brutalism FAQ for Angular developers. Learn what the neo-brutalist Angular UI library is, why it uses Tailwind v4, how it compares, and whether it fits your project.',
 
@@ -56,16 +57,32 @@ export const PAGE_DESCRIPTIONS: Record<string, string> = {
     'Neo-brutalist Accordion component for Angular. Dense disclosure panels with keyboard navigation and signal-driven state.',
   '/components/avatar':
     'Neo-brutalist Avatar component for Angular. Bold profile images with hard borders and offset shadow styling.',
+  '/components/avatar-group':
+    'Use Avatar Group to stack Angular avatars with brutalist borders, overflow counts, and compact team or social context.',
   '/components/badge':
     'Neo-brutalist Badge component for Angular. Punchy status labels with thick borders and high-contrast colors.',
   '/components/button':
     'Neo-brutalist Button component for Angular. Hard borders, offset shadows, and multiple variants — built with directive APIs and signals.',
+  '/components/callout':
+    'Use Callout to highlight important messages with chunky borders, loud tones, and sharp Angular-first composition.',
   '/components/card':
     'Neo-brutalist Card component for Angular. Bold content blocks with thick borders and offset shadows.',
   '/components/checkbox':
     'Neo-brutalist Checkbox component for Angular. Accessible checkbox with strong focus states and brutalist styling.',
+  '/components/chip':
+    'Use Chip to compose compact Angular tags, filters, metadata, and icon labels with punchy brutalist tones.',
+  '/components/cluster':
+    'Use Cluster to arrange inline groups, actions, badges, and metadata with flexible wrapping and brutalist spacing.',
   '/components/dialog':
     'Neo-brutalist Dialog (modal) component for Angular. Accessible native brutalist modal with keyboard focus management.',
+  '/components/display':
+    'Use Display for loud Angular hero text, editorial headings, and oversized brutalist type with token-friendly sizing.',
+  '/components/halftone':
+    'Use Halftone to add graphic brutalist texture, dotted overlays, and punchy Angular composition accents.',
+  '/components/icon':
+    'Use Icon to render masked SVG icons with ng-brutalism sizing, tones, and accessibility-friendly labeling.',
+  '/components/icon-button':
+    'Use Icon Button for compact Angular actions with clear labels, sharp shapes, strong focus states, and brutalist variants.',
   '/components/image-card':
     'Neo-brutalist Image Card component for Angular. Bold media cards with thick borders and offset shadows.',
   '/components/input':
@@ -76,12 +93,46 @@ export const PAGE_DESCRIPTIONS: Record<string, string> = {
     'Neo-brutalist Label component for Angular. Bold form labels with strong typography and brutalist styling.',
   '/components/marquee':
     'Ng Brutalism Marquee component for Angular. Continuous scrolling ticker with bold borders and configurable speed.',
+  '/components/media-item':
+    'Use Media Item to compose avatars, thumbnails, content, and actions into reusable brutalist media rows and cards.',
+  '/components/media-frame':
+    'Use Media Frame to wrap images, illustrations, and visual content in bold brutalist frames with controlled ratios.',
+  '/components/progress':
+    'Use Progress to show Angular task completion, loading states, and meter values with bold brutalist tracks and tones.',
+  '/components/rating':
+    'Use Rating to render Angular review scores, stars, and compact social proof with sharp brutalist styling.',
+  '/components/section':
+    'Use Section to structure page regions with Angular-first spacing, surfaces, headers, and brutalist composition.',
   '/components/select':
     'Neo-brutalist Select component for Angular. Custom dropdown with bold styling and full keyboard support.',
+  '/components/separator':
+    'Use Separator to divide Angular content with strong brutalist rules, vertical lines, and token-driven variants.',
+  '/components/split':
+    'Use Split to build responsive two-column layouts with brutalist spacing, ratios, dividers, and collapse behavior.',
+  '/components/stack':
+    'Use Stack to create vertical rhythm, grouped content, forms, panels, and divided brutalist layouts.',
+  '/components/stat':
+    'Use Stat to show Angular metrics, counters, labels, and icon-backed values with loud brutalist emphasis.',
+  '/components/status-dot':
+    'Use Status Dot to mark state, presence, health, and alerts with small but loud brutalist indicators.',
+  '/components/sticker':
+    'Use Sticker to add playful Angular badges, labels, and offset brutalist stamps to cards and feature areas.',
+  '/components/surface':
+    'Use Surface to create reusable brutalist containers with chunky borders, offset shadows, tones, and flexible padding.',
+  '/components/text':
+    'Use Text to apply consistent brutalist typography, tones, sizes, and semantic text styling across Angular UIs.',
   '/components/textarea':
     'Neo-brutalist Textarea component for Angular. Multi-line input with sharp borders and brutalist focus states.',
   '/components/title':
     'Neo-brutalist Title component for Angular. Decorative heading with custom wave underline and mixed content support.',
+
+  // Recipes
+  '/recipes/travel-card':
+    'Build a loud travel card recipe from reusable ng-brutalism primitives like Surface, Stack, Cluster, Split, and Media Item.',
+  '/recipes/job-card':
+    'Build a dense job card recipe from reusable ng-brutalism primitives for Angular listings, actions, and metadata.',
+  '/recipes/podcast-card':
+    'Podcast Card recipe for Ng Brutalism. Compose neo-brutalist Angular primitives into a bold audio episode card with chips, host metadata, waveform player, and CTA.',
 
   // Showcase
   '/showcase/portfolio':
@@ -107,6 +158,7 @@ export function getDocsPageSeo(url: string): DocsPageSeo {
     robots === 'index, follow' &&
     (path.startsWith('/docs/') ||
       path.startsWith('/components/') ||
+      path.startsWith('/recipes/') ||
       path === '/showcase/portfolio');
 
   return {

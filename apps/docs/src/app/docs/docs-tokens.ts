@@ -5,6 +5,7 @@ type DocsTokenComponent =
   | 'avatar'
   | 'badge'
   | 'button'
+  | 'callout'
   | 'card'
   | 'checkbox'
   | 'dialog'
@@ -14,8 +15,10 @@ type DocsTokenComponent =
   | 'input-group'
   | 'label'
   | 'marquee'
+  | 'media-frame'
   | 'select'
   | 'separator'
+  | 'surface'
   | 'theme'
   | 'title'
   | 'textarea';
@@ -195,6 +198,33 @@ const componentTokens: Record<DocsTokenComponent, DocsToken[]> = {
       usage: 'Button box shadow, reassigned by shadow',
     },
   ],
+  callout: [
+    {
+      name: '--nb-callout-bg',
+      defaultValue: '#ffd84d',
+      usage: 'Callout background color. Reassigned by the tone input.',
+    },
+    {
+      name: '--nb-callout-fg',
+      defaultValue: '#000000',
+      usage: 'Callout text color. Reassigned by the tone input.',
+    },
+    {
+      name: '--nb-callout-border-width',
+      defaultValue: '3px',
+      usage: 'Callout border width. Reassigned by the size input.',
+    },
+    {
+      name: '--nb-callout-radius',
+      defaultValue: '0.75rem',
+      usage: 'Callout corner radius. Reassigned by the size input.',
+    },
+    {
+      name: '--nb-callout-shadow',
+      defaultValue: '6px 6px 0 0 var(--nb-shadow)',
+      usage: 'Callout box shadow. Reassigned by the shadow input.',
+    },
+  ],
   card: [
     {
       name: '--nb-card-bg',
@@ -255,6 +285,31 @@ const componentTokens: Record<DocsTokenComponent, DocsToken[]> = {
       name: '--nb-display-color',
       defaultValue: 'currentColor',
       usage: 'Text color. Inherits from the parent by default.',
+    },
+    {
+      name: '--nb-underline-color',
+      defaultValue: 'var(--nb-pink)',
+      usage: 'Accent underline color when underline="bar" | "wave".',
+    },
+    {
+      name: '--nb-underline-width',
+      defaultValue: '7rem (bar)',
+      usage: 'Accent underline width.',
+    },
+    {
+      name: '--nb-underline-height',
+      defaultValue: '0.375rem (bar)',
+      usage: 'Accent underline thickness.',
+    },
+    {
+      name: '--nb-underline-gap',
+      defaultValue: '0.75rem (bar)',
+      usage: 'Space between the text and the accent underline.',
+    },
+    {
+      name: '--nb-underline-radius',
+      defaultValue: '9999px',
+      usage: 'Accent underline corner radius (bar shape only).',
     },
   ],
   dialog: [
@@ -393,6 +448,33 @@ const componentTokens: Record<DocsTokenComponent, DocsToken[]> = {
       name: '--nb-marquee-duration',
       defaultValue: '5s',
       usage: 'Computed animation duration',
+    },
+  ],
+  'media-frame': [
+    {
+      name: '--nb-media-frame-bg',
+      defaultValue: 'var(--nb-surface)',
+      usage: 'Frame background color. Reassigned by the tone input.',
+    },
+    {
+      name: '--nb-media-frame-fg',
+      defaultValue: 'var(--nb-surface-foreground)',
+      usage: 'Frame foreground color. Reassigned by the tone input.',
+    },
+    {
+      name: '--nb-media-frame-border-width',
+      defaultValue: 'var(--nb-border-width)',
+      usage: 'Frame border width. Reassigned by the shadow input.',
+    },
+    {
+      name: '--nb-media-frame-radius',
+      defaultValue: '1rem',
+      usage: 'Frame corner radius. Reassigned by the radius input.',
+    },
+    {
+      name: '--nb-media-frame-shadow',
+      defaultValue: 'none',
+      usage: 'Frame box shadow. Reassigned by the shadow input.',
     },
   ],
   select: [
@@ -584,6 +666,51 @@ const componentTokens: Record<DocsTokenComponent, DocsToken[]> = {
       name: '--nb-separator-thickness',
       defaultValue: '2px (4px for thick)',
       usage: 'Line thickness. Overrides the variant preset when set inline.',
+    },
+  ],
+  surface: [
+    {
+      name: '--nb-surface-bg',
+      defaultValue: 'var(--nb-surface-bg-base)',
+      usage:
+        'Surface background color. Set inline to override; falls back to the tone-driven base.',
+    },
+    {
+      name: '--nb-surface-bg-base',
+      defaultValue: 'var(--nb-surface)',
+      usage: 'Tone-driven background base. Reassigned by the tone input.',
+    },
+    {
+      name: '--nb-surface-fg',
+      defaultValue: 'var(--nb-surface-fg-base)',
+      usage:
+        'Surface foreground color. Set inline to override; falls back to the tone-driven base.',
+    },
+    {
+      name: '--nb-surface-fg-base',
+      defaultValue: 'var(--nb-surface-foreground)',
+      usage: 'Tone-driven foreground base. Reassigned by the tone input.',
+    },
+    {
+      name: '--nb-surface-border',
+      defaultValue: 'var(--nb-border)',
+      usage: 'Surface border color. Reassigned by the border input.',
+    },
+    {
+      name: '--nb-surface-border-width',
+      defaultValue: 'var(--nb-border-width)',
+      usage: 'Surface border width. Reassigned by the border input.',
+    },
+    {
+      name: '--nb-surface-radius',
+      defaultValue: 'var(--nb-radius)',
+      usage: 'Surface corner radius. Reassigned by the radius input.',
+    },
+    {
+      name: '--nb-surface-shadow',
+      defaultValue:
+        'var(--nb-shadow-offset-x) var(--nb-shadow-offset-y) 0 0 var(--nb-shadow)',
+      usage: 'Surface box shadow. Reassigned by the shadow input.',
     },
   ],
   title: [

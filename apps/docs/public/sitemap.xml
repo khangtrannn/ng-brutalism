@@ -8,7 +8,7 @@
   </url>
   <url>
     <loc>https://ngbrutalism.khangtran.dev/docs/introduction/</loc>
-    <lastmod>2026-05-22T15:58:16+07:00</lastmod>
+    <lastmod>2026-05-25T21:06:15+07:00</lastmod>
     <priority>0.9</priority>
     <changefreq>weekly</changefreq>
   </url>
@@ -19,6 +19,12 @@
     <changefreq>weekly</changefreq>
   </url>
   <url>
+    <loc>https://ngbrutalism.khangtran.dev/docs/inspired-designs/</loc>
+    <lastmod>2026-05-24T23:49:04+07:00</lastmod>
+    <priority>0.8</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
     <loc>https://ngbrutalism.khangtran.dev/docs/faq/</loc>
     <lastmod>2026-05-22T17:52:19+07:00</lastmod>
     <priority>0.8</priority>
@@ -26,7 +32,7 @@
   </url>
   <url>
     <loc>https://ngbrutalism.khangtran.dev/components/button/</loc>
-    <lastmod>2026-05-21T23:53:11+07:00</lastmod>
+    <lastmod>2026-05-31T12:29:29+07:00</lastmod>
     <priority>0.8</priority>
     <changefreq>weekly</changefreq>
   </url>
@@ -67,14 +73,62 @@
     <changefreq>weekly</changefreq>
   </url>
   <url>
+    <loc>https://ngbrutalism.khangtran.dev/components/avatar-group/</loc>
+    <lastmod>2026-05-26T14:56:40+07:00</lastmod>
+    <priority>0.7</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
     <loc>https://ngbrutalism.khangtran.dev/components/badge/</loc>
     <lastmod>2026-05-21T23:53:11+07:00</lastmod>
     <priority>0.7</priority>
     <changefreq>weekly</changefreq>
   </url>
   <url>
+    <loc>https://ngbrutalism.khangtran.dev/components/callout/</loc>
+    <lastmod>2026-05-29T22:11:27+07:00</lastmod>
+    <priority>0.7</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
     <loc>https://ngbrutalism.khangtran.dev/components/checkbox/</loc>
     <lastmod>2026-05-21T23:53:11+07:00</lastmod>
+    <priority>0.7</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://ngbrutalism.khangtran.dev/components/chip/</loc>
+    <lastmod>2026-05-28T12:47:03+07:00</lastmod>
+    <priority>0.7</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://ngbrutalism.khangtran.dev/components/cluster/</loc>
+    <lastmod>2026-05-31T13:11:21+07:00</lastmod>
+    <priority>0.7</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://ngbrutalism.khangtran.dev/components/display/</loc>
+    <lastmod>2026-05-25T23:35:46+07:00</lastmod>
+    <priority>0.7</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://ngbrutalism.khangtran.dev/components/halftone/</loc>
+    <lastmod>2026-05-26T14:56:40+07:00</lastmod>
+    <priority>0.7</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://ngbrutalism.khangtran.dev/components/icon/</loc>
+    <lastmod>2026-05-31T12:00:39+07:00</lastmod>
+    <priority>0.7</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://ngbrutalism.khangtran.dev/components/icon-button/</loc>
+    <lastmod>2026-05-31T12:10:19+07:00</lastmod>
     <priority>0.7</priority>
     <changefreq>weekly</changefreq>
   </url>
@@ -97,8 +151,86 @@
     <changefreq>weekly</changefreq>
   </url>
   <url>
+    <loc>https://ngbrutalism.khangtran.dev/components/media-frame/</loc>
+    <lastmod>2026-05-29T23:09:17+07:00</lastmod>
+    <priority>0.7</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://ngbrutalism.khangtran.dev/components/media-item/</loc>
+    <lastmod>2026-05-30T16:07:06+07:00</lastmod>
+    <priority>0.7</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://ngbrutalism.khangtran.dev/components/progress/</loc>
+    <lastmod>2026-05-26T14:56:40+07:00</lastmod>
+    <priority>0.7</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://ngbrutalism.khangtran.dev/components/rating/</loc>
+    <lastmod>2026-05-26T14:56:40+07:00</lastmod>
+    <priority>0.7</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
     <loc>https://ngbrutalism.khangtran.dev/components/select/</loc>
     <lastmod>2026-05-21T23:53:11+07:00</lastmod>
+    <priority>0.7</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://ngbrutalism.khangtran.dev/components/separator/</loc>
+    <lastmod>2026-05-26T00:08:29+07:00</lastmod>
+    <priority>0.7</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://ngbrutalism.khangtran.dev/components/section/</loc>
+    <lastmod>2026-05-30T22:40:29+07:00</lastmod>
+    <priority>0.7</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://ngbrutalism.khangtran.dev/components/split/</loc>
+    <lastmod>2026-05-31T12:29:29+07:00</lastmod>
+    <priority>0.7</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://ngbrutalism.khangtran.dev/components/stack/</loc>
+    <lastmod>2026-05-30T20:00:42+07:00</lastmod>
+    <priority>0.7</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://ngbrutalism.khangtran.dev/components/stat/</loc>
+    <lastmod>2026-05-26T14:56:40+07:00</lastmod>
+    <priority>0.7</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://ngbrutalism.khangtran.dev/components/status-dot/</loc>
+    <lastmod>2026-05-26T14:56:40+07:00</lastmod>
+    <priority>0.7</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://ngbrutalism.khangtran.dev/components/sticker/</loc>
+    <lastmod>2026-05-30T19:48:44+07:00</lastmod>
+    <priority>0.7</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://ngbrutalism.khangtran.dev/components/surface/</loc>
+    <lastmod>2026-05-29T21:43:44+07:00</lastmod>
+    <priority>0.7</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://ngbrutalism.khangtran.dev/components/text/</loc>
+    <lastmod>2026-05-30T23:25:27+07:00</lastmod>
     <priority>0.7</priority>
     <changefreq>weekly</changefreq>
   </url>
@@ -113,6 +245,24 @@
     <lastmod>2026-05-21T23:53:11+07:00</lastmod>
     <priority>0.7</priority>
     <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://ngbrutalism.khangtran.dev/recipes/travel-card/</loc>
+    <lastmod>2026-05-31T10:03:55+07:00</lastmod>
+    <priority>0.6</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://ngbrutalism.khangtran.dev/recipes/job-card/</loc>
+    <lastmod>2026-05-31T12:29:29+07:00</lastmod>
+    <priority>0.6</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://ngbrutalism.khangtran.dev/recipes/podcast-card/</loc>
+    <lastmod>2026-05-31T13:41:06+07:00</lastmod>
+    <priority>0.6</priority>
+    <changefreq>monthly</changefreq>
   </url>
   <url>
     <loc>https://ngbrutalism.khangtran.dev/showcase/portfolio/</loc>

@@ -5,6 +5,7 @@ import tailwindcss from '@tailwindcss/vite';
 import { nxViteTsPaths } from '@nx/vite/plugins/nx-tsconfig-paths.plugin';
 import { resolve } from 'node:path';
 import { defineConfig } from 'vite';
+import { DOCS_PUBLIC_ROUTES } from './src/app/docs/docs-public-routes';
 
 const chromeDevToolsProbePath =
   '/.well-known/appspecific/com.chrome.devtools.json';
@@ -55,30 +56,9 @@ export default defineConfig(({ mode }) => {
       analog({
         prerender: {
           routes: [
-            '/',
+            ...DOCS_PUBLIC_ROUTES.map((route) => route.path),
             '/components',
-            '/components/accordion',
-            '/components/avatar',
-            '/components/badge',
-            '/components/button',
-            '/components/card',
-            '/components/checkbox',
-            '/components/dialog',
-            '/components/display',
-            '/components/image-card',
-            '/components/input',
-            '/components/input-group',
-            '/components/label',
-            '/components/marquee',
-            '/components/select',
-            '/components/separator',
-            '/components/textarea',
-            '/components/title',
             '/docs',
-            '/docs/introduction',
-            '/docs/installation',
-            '/docs/faq',
-            '/showcase/portfolio',
           ],
         },
       }),
@@ -88,7 +68,7 @@ export default defineConfig(({ mode }) => {
       globals: true,
       environment: 'jsdom',
       setupFiles: ['src/test-setup.ts'],
-      include: ['**/*.spec.ts'],
+      include: ['src/**/*.spec.ts'],
       reporters: ['default'],
     },
     define: {

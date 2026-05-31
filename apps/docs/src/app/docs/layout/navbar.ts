@@ -196,6 +196,7 @@ export class NbDocsNavbar {
       return 'home';
     }
     if (url.startsWith('/components')) return 'components';
+    if (url.startsWith('/recipes')) return 'recipes';
     if (url.startsWith('/showcase')) return 'showcase';
     return 'docs';
   });

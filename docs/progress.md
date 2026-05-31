@@ -23,8 +23,9 @@ For history and details, read the domain's own `progress.md`.
 ---
 
 ## Components
-**Status:** v0.1.1 shipped. v0.2.0 plan locked. NbStat, NbRating, NbMedia, NbTile implemented (no docs pages yet). NbDisplay + NbSeparator shipped with docs pages.
-**Next:** Build remaining 8 new primitives: StatusDot → Chip → IconButton → Button trailing icon → Progress → AvatarGroup → Sticker → Halftone. Then 4 already-done docs pages (Stat, Rating, Media, Tile) + 6 recipe pages.
+**Status:** Stabilization pass on `feat/recipes`. Added built-in accent underline to `nbDisplay`/`nbText` (`underline="bar" | "wave"`, token-driven `--nb-underline-*`, default `--nb-pink`); podcast-card recipe uses it instead of manual bar spans. Divider border color classes made explicit. `NbButton.fullWidth` uses `booleanAttribute`. `NbIcon` assigns `--nb-icon-color`. Job card recipe added (P9). All tests pass; build clean.
+**Last action:** Podcast-card recipe audit — removed duplicate `overflow-hidden` (nbSurface `clip` owns it), moved button typography to nested `nbText`, added portable `max-w-[28rem]` wrapper. Documented the ng-brutalism/`nbText`/Tailwind boundary in `docs/components/composition-philosophy.md`. Flagged `NbButton` typography inputs (`fontSize`/`transform`/`tracking`) for deprecation.
+**Next:** Visual QA pass on job card and cluster divider demos, then cut v0.2.0 release.
 **Goal:** All 18 reference designs buildable with v0.2.0 primitives (~90% fidelity).
 → Plan: `docs/release/v0.2.0-plan.md`
 
@@ -47,6 +48,6 @@ For history and details, read the domain's own `progress.md`.
 ---
 
 ## Release
-**Status:** v0.1.0 + v0.1.1 shipped to npm. v0.2.0 plan locked.
-**Next:** Implement 10 new primitives + docs pages for 4 already-done + 6 recipe pages, then batch release.
+**Status:** v0.1.0 + v0.1.1 shipped to npm. v0.2.0 implementation complete: 10 primitives + docs + 6 recipes.
+**Next:** Visual QA, bump version in libs/ui, run `docs/release/RELEASE.md` runbook (tag → GitHub release → npm publish).
 → Plan: `docs/release/v0.2.0-plan.md`

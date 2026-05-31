@@ -16,24 +16,25 @@ import { DocsTokens } from '../../docs/docs-tokens';
           <p>Neo-Brutalist Angular Display</p>
           <h1>Display</h1>
           <p class="mt-3 max-w-3xl text-base font-medium sm:text-lg">
-            A directive for mega-sized heading text. Apply it to any
-            <code class="font-mono">h1</code> or <code class="font-mono">h2</code>
-            to get ultra-bold, tight-leading display typography — the dominant
-            visual element in every brutalist card design.
+            A directive for mega-sized display text. Apply it to
+            <strong>any element</strong> — a heading, a
+            <code class="font-mono">span</code>, a stat — to get ultra-bold,
+            tight-leading display typography. It's purely presentational, so
+            keep your semantics correct and let the directive handle the look.
           </p>
         </div>
 
         <div class="mt-7 flex flex-wrap items-center gap-3">
           <div class="nb-stat-tile nb-stat-tile--yellow">
-            <span class="nb-stat-tile__value">h1/h2</span>
-            <span class="nb-stat-tile__label">Host elements</span>
+            <span class="nb-stat-tile__value">any</span>
+            <span class="nb-stat-tile__label">Host element</span>
           </div>
           <div class="nb-stat-tile nb-stat-tile--mint">
             <span class="nb-stat-tile__value">4</span>
             <span class="nb-stat-tile__label">Size variants</span>
           </div>
           <div class="nb-stat-tile nb-stat-tile--pink">
-            <span class="nb-stat-tile__value">2</span>
+            <span class="nb-stat-tile__value">7</span>
             <span class="nb-stat-tile__label">CSS variables</span>
           </div>
 
@@ -97,6 +98,49 @@ import { DocsTokens } from '../../docs/docs-tokens';
         </docs-example>
       </section>
 
+      <section id="any-element">
+        <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">Any Element</h2>
+        <p class="mb-4 font-medium">
+          <code class="font-mono">nbDisplay</code> is presentational — apply it to a
+          <code class="font-mono">span</code>, <code class="font-mono">div</code>, or
+          anything else when display type isn't a heading (stats, prices, badges).
+          Pick the element for its semantics, not its size.
+        </p>
+        <docs-example [code]="anyElementExampleCode">
+          <div class="flex flex-wrap items-end gap-8">
+            <span nbDisplay size="lg">$2.4M</span>
+            <span nbDisplay size="lg" class="uppercase">24/7</span>
+          </div>
+        </docs-example>
+      </section>
+
+      <section id="underline">
+        <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">Underline</h2>
+        <p class="mb-4 font-medium">
+          <code class="font-mono">underline="bar"</code> draws a built-in accent
+          bar beneath the text — no extra markup. Use
+          <code class="font-mono">"wave"</code> for the squiggly variant. The bar
+          is decorative (rendered as a pseudo-element, kept out of the
+          accessibility tree). Tune it with the
+          <code class="font-mono">--nb-underline-*</code> tokens below.
+        </p>
+        <docs-example [code]="underlineExampleCode">
+          <div class="flex flex-col gap-8">
+            <h2 nbDisplay size="lg" underline="bar" class="uppercase">SHIP IT</h2>
+            <h2 nbDisplay size="lg" underline="wave" class="uppercase">STAY SHARP</h2>
+            <h2
+              nbDisplay
+              size="lg"
+              underline="bar"
+              class="uppercase"
+              style="--nb-underline-color: var(--nb-mint); --nb-underline-width: 100%"
+            >
+              FULL WIDTH
+            </h2>
+          </div>
+        </docs-example>
+      </section>
+
       <docs-tokens component="display" />
 
       <section id="api">
@@ -115,11 +159,17 @@ import { DocsTokens } from '../../docs/docs-tokens';
               </tr>
             </thead>
             <tbody class="font-medium">
-              <tr>
+              <tr class="border-b-2 border-(--nb-border)">
                 <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">size</td>
                 <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">'sm' | 'default' | 'lg' | 'xl'</td>
                 <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">'default'</td>
                 <td class="px-4 py-3">Controls font size via <code class="font-mono">--nb-display-size</code>.</td>
+              </tr>
+              <tr>
+                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">underline</td>
+                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">'none' | 'bar' | 'wave'</td>
+                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">'none'</td>
+                <td class="px-4 py-3">Draws a built-in accent underline beneath the text. Style it with the <code class="font-mono">--nb-underline-*</code> tokens.</td>
               </tr>
             </tbody>
           </table>
@@ -141,5 +191,22 @@ export default class DisplayPage {
 
   protected readonly customSizeExampleCode = `<h2 nbDisplay class="uppercase" style="--nb-display-size: 2.25rem">
   $29/mo
+</h2>`;
+
+  protected readonly anyElementExampleCode = `<span nbDisplay size="lg">$2.4M</span>
+<span nbDisplay size="lg" class="uppercase">24/7</span>`;
+
+  protected readonly underlineExampleCode = `<h2 nbDisplay size="lg" underline="bar" class="uppercase">SHIP IT</h2>
+<h2 nbDisplay size="lg" underline="wave" class="uppercase">STAY SHARP</h2>
+
+<!-- Recolor / resize with tokens -->
+<h2
+  nbDisplay
+  size="lg"
+  underline="bar"
+  class="uppercase"
+  style="--nb-underline-color: var(--nb-mint); --nb-underline-width: 100%"
+>
+  FULL WIDTH
 </h2>`;
 }

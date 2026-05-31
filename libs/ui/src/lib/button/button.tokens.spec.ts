@@ -3,6 +3,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { describe, expect, it } from 'vitest';
 
 import { NbButton } from './nb-button';
+import { NbButtonTrailingIcon } from './nb-button-trailing-icon';
 import type { NbButtonShadow, NbButtonVariant } from './button.types';
 
 @Component({
@@ -16,6 +17,34 @@ class ButtonTokenTest {
   shadow: NbButtonShadow = 'default';
 }
 
+@Component({
+  imports: [NbButton],
+  template: `<button nbButton fullWidth>Save</button>`,
+})
+class FullWidthButtonTest {}
+
+@Component({
+  imports: [NbButton, NbButtonTrailingIcon],
+  template: `
+    <button nbButton>
+      Continue
+      <span nbButtonTrailingIcon size="md">Icon</span>
+    </button>
+  `,
+})
+class TrailingIconDefaultTest {}
+
+@Component({
+  imports: [NbButton, NbButtonTrailingIcon],
+  template: `
+    <button nbButton fullWidth>
+      Continue
+      <span nbButtonTrailingIcon push="end" size="md">Icon</span>
+    </button>
+  `,
+})
+class TrailingIconPushEndTest {}
+
 describe('NbButton token surface', () => {
   it('declares the expected default tokens on the base host', async () => {
     const fixture = await createFixture();
@@ -25,6 +54,9 @@ describe('NbButton token surface', () => {
     expect(cls).toContain('[--nb-button-bg:var(--nb-main)]');
     expect(cls).toContain('[--nb-button-fg:var(--nb-main-foreground)]');
     expect(cls).toContain('[--nb-button-border:var(--nb-border)]');
+    expect(cls).toContain(
+      '[--nb-button-border-width:var(--nb-border-width)]'
+    );
     expect(cls).toContain('[--nb-button-radius:var(--nb-radius)]');
     expect(cls).toContain(
       '[--nb-button-shadow:var(--nb-shadow-offset-x)_var(--nb-shadow-offset-y)_0_var(--nb-shadow)]'
@@ -38,6 +70,7 @@ describe('NbButton token surface', () => {
 
     expect(cls).toContain('bg-(--nb-button-bg)');
     expect(cls).toContain('text-(--nb-button-fg)');
+    expect(cls).toContain('border-(length:--nb-button-border-width)');
     expect(cls).toContain('border-(--nb-button-border)');
     expect(cls).toContain('rounded-(--nb-button-radius)');
     expect(cls).toContain('shadow-[var(--nb-button-shadow)]');
@@ -85,6 +118,44 @@ describe('NbButton token surface', () => {
     );
   });
 
+  it('fullWidth bare attribute makes the button full width', async () => {
+    await TestBed.configureTestingModule({
+      imports: [FullWidthButtonTest],
+    }).compileComponents();
+    const fixture = TestBed.createComponent(FullWidthButtonTest);
+    fixture.detectChanges();
+    const button = fixture.nativeElement.querySelector('button[nbButton]') as HTMLButtonElement;
+
+    expect(button.className).toContain('w-full');
+  });
+
+  it('does not push trailing icons by default', async () => {
+    await TestBed.configureTestingModule({
+      imports: [TrailingIconDefaultTest],
+    }).compileComponents();
+    const fixture = TestBed.createComponent(TrailingIconDefaultTest);
+    fixture.detectChanges();
+    const icon = fixture.nativeElement.querySelector(
+      '[nbButtonTrailingIcon]'
+    ) as HTMLElement;
+
+    expect(icon.className).not.toContain('ml-auto');
+    expect(icon.className).toContain('inline-flex');
+  });
+
+  it('pushes trailing icons to the end when requested', async () => {
+    await TestBed.configureTestingModule({
+      imports: [TrailingIconPushEndTest],
+    }).compileComponents();
+    const fixture = TestBed.createComponent(TrailingIconPushEndTest);
+    fixture.detectChanges();
+    const icon = fixture.nativeElement.querySelector(
+      '[nbButtonTrailingIcon]'
+    ) as HTMLElement;
+
+    expect(icon.className).toContain('ml-auto');
+  });
+
   it('does not regress the default button class shape', async () => {
     const fixture = await createFixture();
     const cls = findButton(fixture).className;
@@ -98,10 +169,9 @@ describe('NbButton token surface', () => {
     expect(cls).toContain('focus-visible:ring-2');
     expect(cls).toContain('disabled:opacity-50');
     expect(cls).toContain('aria-disabled:opacity-50');
-    expect(cls).toContain('h-10');
+    expect(cls).toContain('h-11');
     expect(cls).toContain('px-4');
-    expect(cls).toContain('py-2');
-    expect(cls).toContain('text-sm');
+    expect(cls).toContain('text-base');
   });
 });
 

@@ -18,39 +18,21 @@ const pagesRoot = path.resolve(__dirname, '../src/app/pages');
 const distClientDir = path.resolve(workspaceRoot, 'dist/apps/docs/client');
 const distAnalogPublicDir = path.resolve(
   workspaceRoot,
-  'dist/apps/docs/analog/public',
+  'dist/apps/docs/analog/public'
 );
 const publicDir = path.resolve(__dirname, '../public');
 
 const SITE_URL = 'https://ngbrutalism.khangtran.dev';
 
-const ROUTES = [
-  { path: '/', file: '(home).page.ts', priority: '1.0', changefreq: 'weekly' },
-  { path: '/docs/introduction', file: 'docs/introduction.page.ts', priority: '0.9', changefreq: 'weekly' },
-  { path: '/docs/installation', file: 'docs/installation.page.ts', priority: '0.9', changefreq: 'weekly' },
-  { path: '/docs/faq', file: 'docs/faq.page.ts', priority: '0.8', changefreq: 'weekly' },
-  { path: '/components/button', file: 'components/button.page.ts', priority: '0.8', changefreq: 'weekly' },
-  { path: '/components/card', file: 'components/card.page.ts', priority: '0.8', changefreq: 'weekly' },
-  { path: '/components/dialog', file: 'components/dialog.page.ts', priority: '0.8', changefreq: 'weekly' },
-  { path: '/components/accordion', file: 'components/accordion.page.ts', priority: '0.8', changefreq: 'weekly' },
-  { path: '/components/input', file: 'components/input.page.ts', priority: '0.8', changefreq: 'weekly' },
-  { path: '/components/input-group', file: 'components/input-group.page.ts', priority: '0.7', changefreq: 'weekly' },
-  { path: '/components/avatar', file: 'components/avatar.page.ts', priority: '0.7', changefreq: 'weekly' },
-  { path: '/components/badge', file: 'components/badge.page.ts', priority: '0.7', changefreq: 'weekly' },
-  { path: '/components/checkbox', file: 'components/checkbox.page.ts', priority: '0.7', changefreq: 'weekly' },
-  { path: '/components/image-card', file: 'components/image-card.page.ts', priority: '0.7', changefreq: 'weekly' },
-  { path: '/components/label', file: 'components/label.page.ts', priority: '0.7', changefreq: 'weekly' },
-  { path: '/components/marquee', file: 'components/marquee.page.ts', priority: '0.7', changefreq: 'weekly' },
-  { path: '/components/select', file: 'components/select.page.ts', priority: '0.7', changefreq: 'weekly' },
-  { path: '/components/textarea', file: 'components/textarea.page.ts', priority: '0.7', changefreq: 'weekly' },
-  { path: '/components/title', file: 'components/title.page.ts', priority: '0.7', changefreq: 'weekly' },
-  { path: '/showcase/portfolio', file: 'showcase/portfolio/index.page.ts', priority: '0.6', changefreq: 'monthly' },
-];
-
 const jiti = createJiti(import.meta.url, { interopDefault: true });
-const seoData = await jiti.import(
-  path.resolve(__dirname, '../src/app/docs/docs-seo-data.ts'),
+const { DOCS_PUBLIC_ROUTES } = await jiti.import(
+  path.resolve(__dirname, '../src/app/docs/docs-public-routes.ts')
 );
+const seoData = await jiti.import(
+  path.resolve(__dirname, '../src/app/docs/docs-seo-data.ts')
+);
+
+const ROUTES = DOCS_PUBLIC_ROUTES;
 
 const targets = process.argv.includes('--no-dist')
   ? [publicDir]
@@ -69,7 +51,9 @@ for (const dir of targets) {
 }
 
 console.log(
-  `Wrote sitemap.xml + llms.txt (${ROUTES.length} routes) to: ${targets.join(', ')}`,
+  `Wrote sitemap.xml + llms.txt (${ROUTES.length} routes) to: ${targets.join(
+    ', '
+  )}`
 );
 
 function buildSitemap() {
@@ -122,7 +106,7 @@ function gitLastmod(relPath) {
     const out = execFileSync(
       'git',
       ['log', '-1', '--format=%cI', '--', fullPath],
-      { cwd: workspaceRoot, encoding: 'utf8' },
+      { cwd: workspaceRoot, encoding: 'utf8' }
     ).trim();
     return out || null;
   } catch {

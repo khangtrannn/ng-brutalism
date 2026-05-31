@@ -1,0 +1,60 @@
+import { test, expect } from '@playwright/test';
+
+test.describe('podcast card recipe', () => {
+  test.beforeEach(async ({ page }) => {
+    await page.goto('/recipes/podcast-card');
+  });
+
+  test('renders the podcast card', async ({ page }) => {
+    const card = page.locator('recipe-podcast-card');
+    await expect(card).toBeVisible();
+
+    // Key content from the card template.
+    await expect(card.getByText('Build Loud FM')).toBeVisible();
+    await expect(
+      card.getByRole('heading', { name: /DESIGN.*SYSTEMS.*THAT SCALE/s })
+    ).toBeVisible();
+    await expect(card.getByRole('button', { name: /Listen Now/i })).toBeVisible();
+  });
+
+  test('"Podcast" chip uses padding="lg"', async ({ page }) => {
+    const chip = page.locator('[nbChip]', { hasText: 'Podcast' }).first();
+
+    await expect(chip).toBeVisible();
+    await expect(chip).toHaveAttribute('data-padding', 'lg');
+
+    // padding="lg" maps to px-4 py-2 -> 16px / 8px.
+    const padding = await chip.evaluate((el) => {
+      const s = getComputedStyle(el);
+      return {
+        left: s.paddingLeft,
+        right: s.paddingRight,
+        top: s.paddingTop,
+        bottom: s.paddingBottom,
+      };
+    });
+
+    expect(padding.left).toBe('16px');
+    expect(padding.right).toBe('16px');
+    expect(padding.top).toBe('8px');
+    expect(padding.bottom).toBe('8px');
+  });
+
+  test('default chips render with padding="md" (smaller than lg)', async ({
+    page,
+  }) => {
+    const chip = page.locator('[nbChip]', { hasText: '45 MIN' }).first();
+
+    await expect(chip).toBeVisible();
+    await expect(chip).toHaveAttribute('data-padding', 'md');
+
+    // padding="md" maps to px-2.5 py-0.5 -> 10px / 2px.
+    const padding = await chip.evaluate((el) => {
+      const s = getComputedStyle(el);
+      return { left: s.paddingLeft, top: s.paddingTop };
+    });
+
+    expect(padding.left).toBe('10px');
+    expect(padding.top).toBe('2px');
+  });
+});

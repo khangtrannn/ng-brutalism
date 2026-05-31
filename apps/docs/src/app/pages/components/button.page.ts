@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { NbButton } from '@ng-brutalism/ui';
+import { NbButton, NbButtonTrailingIcon, NbIcon } from '@ng-brutalism/ui';
 
 import { DocsCodeBlock } from '../../docs/docs-code-block';
 import { DocsExample } from '../../docs/docs-example';
@@ -14,6 +14,8 @@ import { DocsTokens } from '../../docs/docs-tokens';
         DocsSourceTile,
         DocsTokens,
         NbButton,
+        NbButtonTrailingIcon,
+        NbIcon,
     ],
     template: `
     <article>
@@ -38,7 +40,7 @@ import { DocsTokens } from '../../docs/docs-tokens';
             <span class="nb-stat-tile__label">Sizes</span>
           </div>
           <div class="nb-stat-tile nb-stat-tile--pink">
-            <span class="nb-stat-tile__value">4</span>
+            <span class="nb-stat-tile__value">9</span>
             <span class="nb-stat-tile__label">Inputs</span>
           </div>
 
@@ -90,8 +92,67 @@ import { DocsTokens } from '../../docs/docs-tokens';
         <docs-example [code]="sizesExampleCode">
           <div class="flex flex-wrap items-center justify-center gap-3">
             <button nbButton size="sm">Small</button>
-            <button nbButton>Default</button>
+            <button nbButton size="md">Medium</button>
             <button nbButton size="lg">Large</button>
+            <button nbButton size="xl">Extra Large</button>
+          </div>
+        </docs-example>
+      </section>
+
+      <section id="cta">
+        <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">CTA</h2>
+        <docs-example [code]="ctaExampleCode">
+          <button
+            nbButton
+            tone="lavender"
+            size="xl"
+            radius="md"
+            weight="black"
+            transform="uppercase"
+            tracking="wide"
+          >
+            Apply Now
+            <span nbButtonTrailingIcon shape="circle" tone="inverse" size="md">
+              <span
+                nbIcon
+                src="/tokyo-city-escape/nb-arrow-right.svg"
+                size="sm"
+                decorative
+              ></span>
+            </span>
+          </button>
+        </docs-example>
+      </section>
+
+      <section id="trailing-icon">
+        <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">
+          Trailing Icon
+        </h2>
+        <docs-example [code]="trailingIconExampleCode">
+          <div class="grid w-full max-w-md gap-3">
+            <button nbButton variant="secondary">
+              Keep Together
+              <span nbButtonTrailingIcon>
+                <span
+                  nbIcon
+                  src="/tokyo-city-escape/nb-arrow-right.svg"
+                  size="sm"
+                  decorative
+                ></span>
+              </span>
+            </button>
+
+            <button nbButton variant="primary" [fullWidth]="true">
+              Push To End
+              <span nbButtonTrailingIcon push="end" shape="square" size="md">
+                <span
+                  nbIcon
+                  src="/tokyo-city-escape/nb-arrow-right.svg"
+                  size="sm"
+                  decorative
+                ></span>
+              </span>
+            </button>
           </div>
         </docs-example>
       </section>
@@ -227,12 +288,114 @@ import { DocsTokens } from '../../docs/docs-tokens';
                 <td
                   class="border-b-2 border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
                 >
-                  'default' | 'sm' | 'lg' | 'icon'
+                  'sm' | 'md' | 'lg' | 'xl'
                 </td>
                 <td
                   class="border-b-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
                 >
-                  'default'
+                  'md'
+                </td>
+              </tr>
+              <tr>
+                <td
+                  class="border-b-2 border-r-2 border-(--nb-border) px-4 py-3"
+                >
+                  fontSize
+                </td>
+                <td
+                  class="border-b-2 border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
+                >
+                  'sm' | 'base' | 'lg' | 'xl' | '2xl' | '3xl'
+                </td>
+                <td
+                  class="border-b-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
+                >
+                  undefined
+                </td>
+              </tr>
+              <tr>
+                <td
+                  class="border-b-2 border-r-2 border-(--nb-border) px-4 py-3"
+                >
+                  tone
+                </td>
+                <td
+                  class="border-b-2 border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
+                >
+                  NbTone
+                </td>
+                <td
+                  class="border-b-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
+                >
+                  undefined
+                </td>
+              </tr>
+              <tr>
+                <td
+                  class="border-b-2 border-r-2 border-(--nb-border) px-4 py-3"
+                >
+                  radius
+                </td>
+                <td
+                  class="border-b-2 border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
+                >
+                  'none' | 'sm' | 'md' | 'lg' | 'xl' | 'full'
+                </td>
+                <td
+                  class="border-b-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
+                >
+                  undefined
+                </td>
+              </tr>
+              <tr>
+                <td
+                  class="border-b-2 border-r-2 border-(--nb-border) px-4 py-3"
+                >
+                  weight
+                </td>
+                <td
+                  class="border-b-2 border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
+                >
+                  'bold' | 'extrabold' | 'black'
+                </td>
+                <td
+                  class="border-b-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
+                >
+                  'bold'
+                </td>
+              </tr>
+              <tr>
+                <td
+                  class="border-b-2 border-r-2 border-(--nb-border) px-4 py-3"
+                >
+                  transform
+                </td>
+                <td
+                  class="border-b-2 border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
+                >
+                  'none' | 'uppercase'
+                </td>
+                <td
+                  class="border-b-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
+                >
+                  'none'
+                </td>
+              </tr>
+              <tr>
+                <td
+                  class="border-b-2 border-r-2 border-(--nb-border) px-4 py-3"
+                >
+                  tracking
+                </td>
+                <td
+                  class="border-b-2 border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
+                >
+                  'normal' | 'wide' | 'wider'
+                </td>
+                <td
+                  class="border-b-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
+                >
+                  'normal'
                 </td>
               </tr>
               <tr>
@@ -249,6 +412,48 @@ import { DocsTokens } from '../../docs/docs-tokens';
             </tbody>
           </table>
         </div>
+
+        <h3 class="mt-8 mb-4 text-xl font-black">Trailing icon API</h3>
+        <div
+          class="overflow-x-auto border-2 border-(--nb-border) bg-nb-surface shadow-[5px_5px_0_0_var(--nb-shadow)]"
+        >
+          <table class="w-full min-w-160 border-collapse text-left">
+            <thead class="bg-nb-secondary text-nb-secondary-fg">
+              <tr>
+                <th class="border-b-2 border-r-2 border-(--nb-border) px-4 py-3 font-bold">Input</th>
+                <th class="border-b-2 border-r-2 border-(--nb-border) px-4 py-3 font-bold">Type</th>
+                <th class="border-b-2 border-(--nb-border) px-4 py-3 font-bold">Default</th>
+              </tr>
+            </thead>
+            <tbody class="font-medium">
+              <tr>
+                <td class="border-b-2 border-r-2 border-(--nb-border) px-4 py-3">size</td>
+                <td class="border-b-2 border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">'sm' | 'md' | 'lg'</td>
+                <td class="border-b-2 border-(--nb-border) px-4 py-3 font-mono text-sm">undefined</td>
+              </tr>
+              <tr>
+                <td class="border-b-2 border-r-2 border-(--nb-border) px-4 py-3">shape</td>
+                <td class="border-b-2 border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">'none' | 'square' | 'circle'</td>
+                <td class="border-b-2 border-(--nb-border) px-4 py-3 font-mono text-sm">undefined</td>
+              </tr>
+              <tr>
+                <td class="border-b-2 border-r-2 border-(--nb-border) px-4 py-3">tone</td>
+                <td class="border-b-2 border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">'default' | 'inverse' | 'current'</td>
+                <td class="border-b-2 border-(--nb-border) px-4 py-3 font-mono text-sm">undefined</td>
+              </tr>
+              <tr>
+                <td class="border-b-2 border-r-2 border-(--nb-border) px-4 py-3">push</td>
+                <td class="border-b-2 border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">'none' | 'end'</td>
+                <td class="border-b-2 border-(--nb-border) px-4 py-3 font-mono text-sm">'none'</td>
+              </tr>
+              <tr>
+                <td class="border-r-2 border-(--nb-border) px-4 py-3">icon</td>
+                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">string</td>
+                <td class="px-4 py-3 font-mono text-sm">undefined</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </section>
     </article>
   `,
@@ -259,7 +464,11 @@ export default class ButtonPage {
   Button
 </button>`;
 
-  protected readonly importCode = `import { NbButton } from '@ng-brutalism/ui';`;
+  protected readonly importCode = `import {
+  NbButton,
+  NbButtonTrailingIcon,
+  NbIcon,
+} from '@ng-brutalism/ui';`;
 
   protected readonly variantsExampleCode = `<div class="flex flex-wrap items-center justify-center gap-3">
   <button nbButton variant="default">Default</button>
@@ -274,9 +483,39 @@ export default class ButtonPage {
 
   protected readonly sizesExampleCode = `<div class="flex flex-wrap items-center justify-center gap-3">
   <button nbButton size="sm">Small</button>
-  <button nbButton>Default</button>
+  <button nbButton size="md">Medium</button>
   <button nbButton size="lg">Large</button>
+  <button nbButton size="xl">Extra Large</button>
 </div>`;
+
+  protected readonly ctaExampleCode = `<button
+  nbButton
+  tone="lavender"
+  size="xl"
+  radius="md"
+  weight="black"
+  transform="uppercase"
+  tracking="wide"
+>
+  Apply Now
+  <span nbButtonTrailingIcon shape="circle" tone="inverse" size="md">
+    <span nbIcon src="/icons/arrow-right.svg" size="sm" decorative></span>
+  </span>
+</button>`;
+
+  protected readonly trailingIconExampleCode = `<button nbButton variant="secondary">
+  Keep Together
+  <span nbButtonTrailingIcon>
+    <span nbIcon src="/icons/arrow-right.svg" size="sm" decorative></span>
+  </span>
+</button>
+
+<button nbButton variant="primary" [fullWidth]="true">
+  Push To End
+  <span nbButtonTrailingIcon push="end" shape="square" size="md">
+    <span nbIcon src="/icons/arrow-right.svg" size="sm" decorative></span>
+  </span>
+</button>`;
 
   protected readonly fullWidthExampleCode = `<div class="w-full max-w-md">
   <button nbButton [fullWidth]="true">
