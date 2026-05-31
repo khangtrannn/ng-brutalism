@@ -278,9 +278,9 @@ interface ClusterDividerDemo {
         <p class="mb-4 font-medium">
           Use <code class="font-mono">divider</code> to render inline separators
           between cluster children. When a divider is active, gap is collapsed to
-          <code class="font-mono">gap-x-0</code> and children receive
-          <code class="font-mono">padding-inline-start</code> from
-          <code class="font-mono">--nb-cluster-gap</code>. Best for
+          <code class="font-mono">gap-x-0</code> and children split
+          <code class="font-mono">--nb-cluster-gap</code> across divider margin
+          and padding. Best for
           single-line clusters — wrapping rows may keep their divider regardless
           of position.
         </p>
@@ -388,7 +388,7 @@ interface ClusterDividerDemo {
                 <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">divider</td>
                 <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">'none' | 'solid' | 'dashed' | 'thick'</td>
                 <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">'none'</td>
-                <td class="px-4 py-3">Inline-start border between each child. When active, <code class="font-mono">gap-x</code> is collapsed and spacing comes from <code class="font-mono">padding-inline-start</code>.</td>
+                <td class="px-4 py-3">Inline-start border between each child. When active, <code class="font-mono">gap-x</code> is collapsed and spacing is split across divider margin and padding.</td>
               </tr>
             </tbody>
           </table>

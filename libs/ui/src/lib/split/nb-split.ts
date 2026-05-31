@@ -132,22 +132,22 @@ const dividerBaseClass = nbClass(
   '[&>*:first-child]:after:pointer-events-none',
   '[&>*:first-child]:after:absolute',
   '[&>*:first-child]:after:inset-y-0',
-  '[&>*:first-child]:after:right-[calc(var(--nb-split-gap)/-2)]',
-  '[&>*:first-child]:after:[border-right-color:var(--nb-border)]',
+  '[&>*:first-child]:after:[inset-inline-end:calc(var(--nb-split-gap)/-2)]',
+  '[&>*:first-child]:after:[border-inline-end-color:var(--nb-border)]',
   '[&>*:first-child]:after:content-[""]'
 );
 
 const dividerStyleClass: Record<Exclude<NbSplitDivider, 'none'>, string> = {
   solid: nbClass(
-    '[&>*:first-child]:after:border-r-(length:--nb-border-width)',
+    '[&>*:first-child]:after:[border-inline-end-width:var(--nb-border-width)]',
     '[&>*:first-child]:after:border-solid'
   ),
   dashed: nbClass(
-    '[&>*:first-child]:after:border-r-(length:--nb-border-width)',
+    '[&>*:first-child]:after:[border-inline-end-width:var(--nb-border-width)]',
     '[&>*:first-child]:after:border-dashed'
   ),
   thick: nbClass(
-    '[&>*:first-child]:after:border-r-[4px]',
+    '[&>*:first-child]:after:[border-inline-end-width:4px]',
     '[&>*:first-child]:after:border-solid'
   ),
 };

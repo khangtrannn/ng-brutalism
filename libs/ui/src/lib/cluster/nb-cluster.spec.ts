@@ -82,9 +82,13 @@ describe('NbCluster', () => {
     expect(cluster.className).toContain('gap-y-[var(--nb-cluster-gap)]');
     expect(cluster.className).toContain('gap-x-0');
     expect(cluster.className).toContain('[--nb-cluster-gap:1rem]');
+    expect(cluster.className).toContain(
+      '[--nb-cluster-divider-gap:calc(var(--nb-cluster-gap)*0.5)]'
+    );
+    expect(cluster.className).toContain('[&>*+*]:[margin-inline-start:var(--nb-cluster-divider-gap)]');
     expect(cluster.className).toContain('[&>*+*]:[border-inline-start-color:var(--nb-border)]');
     expect(cluster.className).toContain('[&>*+*]:[border-inline-start-style:dashed]');
-    expect(cluster.className).toContain('[&>*+*]:[padding-inline-start:var(--nb-cluster-gap)]');
+    expect(cluster.className).toContain('[&>*+*]:[padding-inline-start:var(--nb-cluster-divider-gap)]');
     expect(cluster.className).not.toContain('gap-[var(--nb-cluster-gap)]');
   });
 

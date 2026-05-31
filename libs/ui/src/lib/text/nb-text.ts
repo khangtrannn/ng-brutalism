@@ -1,5 +1,7 @@
 import { booleanAttribute, computed, Directive, input } from '@angular/core';
 
+import type { NbTone } from '../tokens/tone';
+
 export type NbTextSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
 
 export type NbTextWeight =
@@ -15,12 +17,10 @@ export type NbTextTone =
   | 'muted'
   | 'subtle'
   | 'inverse'
-  | 'primary'
-  | 'secondary'
-  | 'accent'
-  | 'danger'
-  | 'success'
-  | 'warning';
+  | Extract<
+      NbTone,
+      'primary' | 'secondary' | 'accent' | 'success' | 'warning' | 'danger'
+    >;
 
 export type NbTextTransform = 'none' | 'uppercase' | 'lowercase' | 'capitalize';
 

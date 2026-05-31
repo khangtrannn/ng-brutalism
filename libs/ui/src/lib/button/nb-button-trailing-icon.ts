@@ -2,6 +2,7 @@ import { Directive, computed, input } from '@angular/core';
 
 import { nbClass } from '../core/class';
 import type {
+  NbButtonIconPush,
   NbButtonIconShape,
   NbButtonIconSize,
   NbButtonIconTone,
@@ -41,6 +42,7 @@ export class NbButtonTrailingIcon {
   readonly size = input<NbButtonIconSize | undefined>(undefined);
   readonly shape = input<NbButtonIconShape | undefined>(undefined);
   readonly tone = input<NbButtonIconTone | undefined>(undefined);
+  readonly push = input<NbButtonIconPush>('none');
 
   protected readonly sizeVal = computed(() => {
     const s = this.size();
@@ -64,7 +66,8 @@ export class NbButtonTrailingIcon {
 
   protected readonly classes = computed(() =>
     nbClass(
-      'ml-auto [&_svg]:pointer-events-none [&_svg]:shrink-0',
+      '[&_svg]:pointer-events-none [&_svg]:shrink-0',
+      this.push() === 'end' && 'ml-auto',
       this.size() !== undefined && 'inline-flex items-center justify-center shrink-0'
     )
   );

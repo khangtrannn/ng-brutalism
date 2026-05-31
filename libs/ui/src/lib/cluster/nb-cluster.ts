@@ -107,7 +107,9 @@ export class NbCluster {
 
 // Written as module-level constants so Tailwind's static scanner emits the classes.
 const dividerBaseClass = nbClass(
-  '[&>*+*]:[padding-inline-start:var(--nb-cluster-gap)]',
+  '[--nb-cluster-divider-gap:calc(var(--nb-cluster-gap)*0.5)]',
+  '[&>*+*]:[margin-inline-start:var(--nb-cluster-divider-gap)]',
+  '[&>*+*]:[padding-inline-start:var(--nb-cluster-divider-gap)]',
   '[&>*+*]:[border-inline-start-color:var(--nb-border)]'
 );
 

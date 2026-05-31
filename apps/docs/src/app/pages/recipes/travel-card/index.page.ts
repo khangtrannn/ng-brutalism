@@ -25,7 +25,7 @@ import { TravelCard } from './travel-card';
 
         <div class="mt-7 flex flex-wrap items-center gap-3">
           <div class="nb-stat-tile nb-stat-tile--yellow">
-            <span class="nb-stat-tile__value">9</span>
+            <span class="nb-stat-tile__value">15</span>
             <span class="nb-stat-tile__label">Primitives</span>
           </div>
           <div class="nb-stat-tile nb-stat-tile--mint">
@@ -112,9 +112,34 @@ export default class TravelCardRecipePage {
       role: 'destination mega title',
     },
     {
+      name: 'NbStack',
+      path: '/components/stack',
+      role: 'vertical rhythm for card regions',
+    },
+    {
+      name: 'NbSplit',
+      path: '/components/split',
+      role: 'responsive main-and-aside layout',
+    },
+    {
+      name: 'NbSection',
+      path: '/components/section',
+      role: 'section border and padding',
+    },
+    {
+      name: 'NbText',
+      path: '/components/text',
+      role: 'body copy and brand text',
+    },
+    {
       name: 'NbChip',
       path: '/components/chip',
       role: 'flight / hotel / top-pick tags',
+    },
+    {
+      name: 'NbIcon',
+      path: '/components/icon',
+      role: 'decorative chip and button icons',
     },
     { name: 'NbCallout', path: '/components/callout', role: 'price callout' },
     {
@@ -131,6 +156,11 @@ export default class TravelCardRecipePage {
       name: 'NbButton',
       path: '/components/button',
       role: 'book trip call to action',
+    },
+    {
+      name: 'NbButtonTrailingIcon',
+      path: '/components/button',
+      role: 'button icon treatment',
     },
   ];
 

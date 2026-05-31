@@ -117,10 +117,10 @@ describe('NbSplit', () => {
 
     expect(split.getAttribute('data-divider')).toBe('solid');
     expect(split.className).toContain(
-      '[&>*:first-child]:after:border-r-(length:--nb-border-width)'
+      '[&>*:first-child]:after:[border-inline-end-width:var(--nb-border-width)]'
     );
     expect(split.className).toContain(
-      '[&>*:first-child]:after:[border-right-color:var(--nb-border)]'
+      '[&>*:first-child]:after:[border-inline-end-color:var(--nb-border)]'
     );
     expect(split.className).toContain(
       '[&>*:first-child]:after:border-solid'
@@ -142,10 +142,10 @@ describe('NbSplit', () => {
     expect(split.getAttribute('data-divider')).toBe('dashed');
     expect(split.className).toContain('[&>*:first-child]:after:border-dashed');
     expect(split.className).toContain(
-      '[&>*:first-child]:after:border-r-(length:--nb-border-width)'
+      '[&>*:first-child]:after:[border-inline-end-width:var(--nb-border-width)]'
     );
     expect(split.className).toContain(
-      '[&>*:first-child]:after:[border-right-color:var(--nb-border)]'
+      '[&>*:first-child]:after:[border-inline-end-color:var(--nb-border)]'
     );
     // collapse="none" means no breakpoint gating.
     expect(classNames(split)).not.toContain('[&>*:first-child]:after:hidden');
@@ -158,10 +158,12 @@ describe('NbSplit', () => {
     ) as HTMLElement;
 
     expect(split.getAttribute('data-divider')).toBe('thick');
-    expect(split.className).toContain('[&>*:first-child]:after:border-r-[4px]');
+    expect(split.className).toContain(
+      '[&>*:first-child]:after:[border-inline-end-width:4px]'
+    );
     expect(split.className).toContain('[&>*:first-child]:after:border-solid');
     expect(split.className).toContain(
-      '[&>*:first-child]:after:[border-right-color:var(--nb-border)]'
+      '[&>*:first-child]:after:[border-inline-end-color:var(--nb-border)]'
     );
     expect(split.className).toContain('lg:[&>*:first-child]:after:block');
     expect(classNames(split)).not.toContain(

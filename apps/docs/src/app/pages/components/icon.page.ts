@@ -97,7 +97,9 @@ interface IconToneDemo {
           <code class="font-mono">&lt;span&gt;</code>. Provide a
           <code class="font-mono">src</code> path and mark the icon as
           <code class="font-mono">decorative</code> or give it a
-          <code class="font-mono">label</code>.
+          <code class="font-mono">label</code>. The
+          <code class="font-mono">src</code> input is intended for trusted local
+          icon/image assets; do not pass unsanitized user-generated URLs.
         </p>
         <docs-code-block class="block mb-5" title="Import" [code]="importCode" />
         <docs-code-block title="Template" [code]="usageCode" />
@@ -254,7 +256,7 @@ interface IconToneDemo {
                 <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">src</td>
                 <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">string</td>
                 <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">required</td>
-                <td class="px-4 py-3">Path to the SVG or image asset.</td>
+                <td class="px-4 py-3">Path to a trusted local SVG or image asset. Do not pass unsanitized user-generated URLs.</td>
               </tr>
               <tr class="border-b-2 border-(--nb-border)">
                 <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">size</td>

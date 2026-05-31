@@ -129,6 +129,9 @@ interface SplitAlignDemo {
           Add <code class="font-mono">nbSplit</code> to the parent that owns two
           regions. Use <code class="font-mono">ratio</code> to size the columns
           and <code class="font-mono">collapse</code> to choose when they stack.
+          Dividers are centered in the split gap, so avoid pairing
+          <code class="font-mono">divider</code> with
+          <code class="font-mono">gap="none"</code>.
         </p>
         <docs-code-block class="block mb-5" title="Import" [code]="importCode" />
         <docs-code-block title="Template" [code]="defaultExampleCode" />
@@ -340,11 +343,17 @@ interface SplitAlignDemo {
                 <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">'md'</td>
                 <td class="px-4 py-3">Breakpoint where the layout switches from stacked to two columns.</td>
               </tr>
-              <tr>
+              <tr class="border-b-2 border-(--nb-border)">
                 <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">align</td>
                 <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">'start' | 'center' | 'end' | 'stretch'</td>
                 <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">'stretch'</td>
                 <td class="px-4 py-3">Cross-axis alignment for the two regions.</td>
+              </tr>
+              <tr>
+                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">divider</td>
+                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">'none' | 'solid' | 'dashed' | 'thick'</td>
+                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">'none'</td>
+                <td class="px-4 py-3">Inline divider between the two regions. Use with a non-zero gap.</td>
               </tr>
             </tbody>
           </table>

@@ -18,6 +18,7 @@ export {
 export type { NbAccordionType, NbAccordionValue } from './lib/accordion';
 export { NbButton } from './lib/button';
 export type {
+  NbButtonIconPush,
   NbButtonIconShape,
   NbButtonIconSize,
   NbButtonIconTone,
