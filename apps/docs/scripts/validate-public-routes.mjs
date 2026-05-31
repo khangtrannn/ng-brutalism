@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-import { existsSync, readFileSync } from 'node:fs';
+import { existsSync, readdirSync, readFileSync, statSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import path from 'node:path';
 import { createJiti } from 'jiti';
@@ -11,6 +11,17 @@ const pagesRoot = path.resolve(__dirname, '../src/app/pages');
 const publicDir = path.resolve(__dirname, '../public');
 
 const SITE_URL = 'https://ngbrutalism.khangtran.dev';
+
+// Index pages that resolve to a section root and intentionally render
+// `noindex, follow` listings — they live outside DOCS_PUBLIC_ROUTES on purpose.
+const INDEX_PAGE_FILES = new Set([
+  'components.page.ts',
+  'docs.page.ts',
+  'recipes.page.ts',
+]);
+
+// Catch-all / private routes that should never appear in DOCS_PUBLIC_ROUTES.
+const PRIVATE_PAGE_FILES = new Set(['[...not-found].page.ts']);
 
 const jiti = createJiti(import.meta.url, { interopDefault: true });
 const { DOCS_PUBLIC_ROUTES } = await jiti.import(
@@ -44,6 +55,17 @@ for (const route of DOCS_PUBLIC_ROUTES) {
   }
 }
 
+const discoveredRoutes = discoverPublicRoutes(pagesRoot);
+const registeredFiles = new Set(DOCS_PUBLIC_ROUTES.map((route) => route.file));
+
+for (const { file, expectedPath } of discoveredRoutes) {
+  if (!registeredFiles.has(file)) {
+    errors.push(
+      `❌ Discovered public page file ${file} (expected route ${expectedPath}) is missing from DOCS_PUBLIC_ROUTES`
+    );
+  }
+}
+
 const sitemapPath = path.resolve(publicDir, 'sitemap.xml');
 if (existsSync(sitemapPath)) {
   const sitemap = readFileSync(sitemapPath, 'utf8');
@@ -51,6 +73,19 @@ if (existsSync(sitemapPath)) {
     const loc = toCanonicalUrl(route.path);
     if (!sitemap.includes(`<loc>${loc}</loc>`)) {
       errors.push(`❌ Route ${route.path}: missing <loc>${loc}</loc> in sitemap.xml`);
+    }
+  }
+
+  const registeredUrls = new Set(
+    DOCS_PUBLIC_ROUTES.map((route) => toCanonicalUrl(route.path))
+  );
+  const locMatches = sitemap.matchAll(/<loc>([^<]+)<\/loc>/g);
+  for (const match of locMatches) {
+    const loc = match[1];
+    if (loc.startsWith(SITE_URL) && !registeredUrls.has(loc)) {
+      errors.push(
+        `❌ sitemap.xml contains <loc>${loc}</loc> with no matching entry in DOCS_PUBLIC_ROUTES`
+      );
     }
   }
 } else {
@@ -75,7 +110,51 @@ if (errors.length > 0) {
   errors.forEach((err) => console.error(err));
   process.exit(1);
 } else {
-  console.log('✅ All route validations passed!');
+  console.log(
+    `✅ All route validations passed (${DOCS_PUBLIC_ROUTES.length} registered, ${discoveredRoutes.length} discovered).`
+  );
+}
+
+function discoverPublicRoutes(root) {
+  const results = [];
+
+  const homePage = '(home).page.ts';
+  if (existsSync(path.resolve(root, homePage))) {
+    results.push({ file: homePage, expectedPath: '/' });
+  }
+
+  for (const section of ['docs', 'components']) {
+    const dir = path.resolve(root, section);
+    if (!existsSync(dir)) continue;
+    for (const entry of readdirSync(dir)) {
+      const full = path.join(dir, entry);
+      if (!statSync(full).isFile()) continue;
+      if (!entry.endsWith('.page.ts')) continue;
+      if (INDEX_PAGE_FILES.has(entry) || PRIVATE_PAGE_FILES.has(entry)) continue;
+      const slug = entry.slice(0, -'.page.ts'.length);
+      results.push({
+        file: `${section}/${entry}`,
+        expectedPath: `/${section}/${slug}`,
+      });
+    }
+  }
+
+  for (const section of ['recipes', 'showcase']) {
+    const dir = path.resolve(root, section);
+    if (!existsSync(dir)) continue;
+    for (const entry of readdirSync(dir)) {
+      const full = path.join(dir, entry);
+      if (!statSync(full).isDirectory()) continue;
+      const indexFile = path.join(full, 'index.page.ts');
+      if (!existsSync(indexFile)) continue;
+      results.push({
+        file: `${section}/${entry}/index.page.ts`,
+        expectedPath: `/${section}/${entry}`,
+      });
+    }
+  }
+
+  return results;
 }
 
 function toCanonicalUrl(routePath) {

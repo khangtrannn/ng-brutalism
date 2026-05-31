@@ -2,6 +2,7 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 import {
   NbButton,
   NbButtonTrailingIcon,
+  NbCallout,
   NbChip,
   NbCluster,
   NbDisplay,
@@ -22,6 +23,7 @@ import {
   imports: [
     NbButton,
     NbButtonTrailingIcon,
+    NbCallout,
     NbChip,
     NbCluster,
     NbDisplay,
@@ -36,275 +38,309 @@ import {
     NbSurface,
     NbText,
   ],
+  styles: `
+    [nbChip] {
+      --nb-chip-radius: 6px;
+      --nb-chip-shadow: none;
+    }
+  `,
   template: `
-    <div class="flex justify-center">
-      <!-- Outer wrapper: hosts decorative stickers that overflow the card edges -->
-      <div class="relative w-full max-w-md">
+    <div class="flex justify-center overflow-visible px-6 py-8">
+      <!-- Plain layout wrapper only. Do not use nbSection here. -->
+      <div class="relative w-full overflow-visible">
         <div
           nbSurface
           clip
           border="strong"
           shadow="hard"
           radius="xl"
-          class="relative w-full"
-          style="--nb-surface-bg: #fef9f5"
+          class="relative z-10 w-full overflow-hidden"
+          style="--nb-surface-bg: #fffaf2"
         >
-          <!-- Header: Podcast chip + menu dots -->
-          <div
-            nbCluster
-            gap="md"
-            align="center"
-            justify="between"
-            padding="lg"
-          >
-            <span nbChip tone="pink" class="uppercase font-bold text-sm">
-              <span
-                nbIcon
-                src="/podcast-card/microphone.svg"
-                size="sm"
-                decorative
-              ></span>
-              Podcast
-            </span>
-
-            <button
-              type="button"
-              aria-label="Episode menu"
-              class="flex items-center gap-1.5 px-1"
-            >
-              <span class="size-1.5 rounded-full bg-black"></span>
-              <span class="size-1.5 rounded-full bg-black"></span>
-              <span class="size-1.5 rounded-full bg-black"></span>
-            </button>
-          </div>
-
-          <!-- Brand row: Logo + text + underline -->
-          <div nbSection border="top" padding="lg" class="pb-0">
-            <div nbCluster gap="md" align="center">
-              <img
-                src="/podcast-card/bfm-logo.png"
-                alt="Build Loud FM logo"
-                class="w-12 h-12 border-2 border-black rounded-lg"
-              />
-              <span nbText size="xl" weight="extrabold">Build Loud FM</span>
-            </div>
-            <div class="h-1.5 w-28 bg-pink-500 mt-2 mb-0!"></div>
-          </div>
-
-          <!-- Episode badge -->
-          <div nbSection padding="lg" class="pt-4 pb-0">
-            <span nbChip tone="yellow" class="uppercase font-black text-xl px-4 py-1">
-              EP 42
-            </span>
-          </div>
-
-          <!-- Hero title -->
-          <div nbSection padding="lg" class="pt-3 pb-0">
-            <h1 nbDisplay class="uppercase font-black leading-[0.95] mb-0!">
-              Design<br />Systems<br />That Scale
-            </h1>
-            <div class="h-1.5 w-28 bg-pink-500 mt-4 mb-0!"></div>
-          </div>
-
-          <!-- Metadata chips -->
-          <div nbSection padding="lg" class="pt-4 pb-0">
-            <div
-              nbCluster
-              gap="sm"
-              class="[--nb-chip-radius:6px] [--nb-chip-shadow:none]"
-            >
-              <span nbChip tone="mint" class="uppercase text-sm font-bold">
+          <!-- Main content section -->
+          <div nbSection padding="lg" class="relative z-10">
+            <div nbStack gap="lg">
+              <!-- Top bar -->
+              <div nbCluster gap="md" align="center" justify="between">
                 <span
-                  nbIcon
-                  src="/podcast-card/clock.svg"
-                  size="sm"
-                  decorative
-                ></span>
-                45 MIN
-              </span>
+                  nbChip
+                  padding="lg"
+                  tone="pink"
+                  class="uppercase font-black tracking-wide"
+                >
+                  <span
+                    nbIcon
+                    src="/podcast-card/microphone.svg"
+                    size="sm"
+                    decorative
+                  ></span>
+                  Podcast
+                </span>
+              </div>
 
-              <span nbChip tone="lavender" class="uppercase text-sm font-bold">
-                <span
-                  nbIcon
-                  src="/podcast-card/sparkle.svg"
-                  size="sm"
-                  decorative
-                ></span>
-                NEW
-              </span>
+              <!-- Brand row -->
+              <div nbCluster gap="lg" align="center">
+                <img
+                  src="/podcast-card/bfm-logo.png"
+                  alt="Build Loud FM logo"
+                  class="size-20"
+                />
 
-              <span nbChip tone="pink" class="uppercase text-sm font-bold">
-                <span
-                  nbIcon
-                  src="/podcast-card/user.svg"
-                  size="sm"
-                  decorative
-                ></span>
-                UX
-              </span>
-            </div>
-          </div>
-
-          <!-- Description -->
-          <div nbSection padding="lg" class="pt-4 pb-0">
-            <p nbText size="md" weight="medium" tone="muted" measure="md">
-              Practical strategies for building design systems that grow with
-              your product.
-            </p>
-          </div>
-
-          <!-- Host section with divider -->
-          <div nbSection border="top" padding="lg" class="relative">
-            <div nbCluster gap="lg" align="center">
-              <img
-                src="/podcast-card/avatar.png"
-                alt="Kai Nguyen"
-                class="w-16 h-16 rounded-lg border-2 border-black shrink-0"
-              />
-
-              <div nbStack gap="xs" align="start">
-                <span nbText size="lg" weight="bold">Kai Nguyen</span>
-                <span nbText size="sm" tone="muted">Host</span>
-                <div class="flex items-center gap-1.5">
-                  <span nbStatusDot state="online"></span>
-                  <span nbText size="xs" weight="bold" class="uppercase tracking-wide"
-                    >On Air</span
+                <div nbStack gap="xs" align="start">
+                  <span
+                    nbText
+                    size="3xl"
+                    weight="extrabold"
                   >
+                    Build Loud FM
+                  </span>
+                  <span
+                    class="block h-1.5 w-28 rounded-full bg-pink-400"
+                    aria-hidden="true"
+                  ></span>
                 </div>
               </div>
-            </div>
 
-            <!-- Halftone flourish -->
+              <!-- Episode badge -->
+              <div class="relative w-fit">
+                <div
+                  nbCallout
+                  tone="yellow"
+                  size="xl"
+                  shadow="hard"
+                  class="w-fit uppercase tracking-tight [--nb-callout-radius:6px]"
+                >
+                  EP 42
+                </div>
+              </div>
+
+              <!-- Hero title -->
+              <div>
+                <h1
+                  nbDisplay
+                  size="xl"
+                  leading="display"
+                >
+                  DESIGN<br />SYSTEMS<br />THAT SCALE
+                </h1>
+
+                <span
+                  class="mt-5 block h-1.5 w-28 rounded-full bg-pink-400"
+                  aria-hidden="true"
+                ></span>
+              </div>
+
+              <!-- Metadata chips -->
+              <div
+                nbCluster
+                gap="sm"
+              >
+                <span nbChip tone="mint" padding="lg" class="uppercase text-sm font-black">
+                  <span
+                    nbIcon
+                    src="/podcast-card/clock.svg"
+                    size="sm"
+                    decorative
+                  ></span>
+                  45 MIN
+                </span>
+
+                <span
+                  nbChip
+                  tone="lavender"
+                  class="uppercase text-sm font-black"
+                  padding="lg"
+                >
+                  <span
+                    nbIcon
+                    src="/podcast-card/sparkle.svg"
+                    size="sm"
+                    decorative
+                  ></span>
+                  NEW
+                </span>
+
+                <span nbChip tone="pink" padding="lg" class="uppercase text-sm font-black">
+                  <span
+                    nbIcon
+                    src="/podcast-card/user.svg"
+                    size="sm"
+                    decorative
+                  ></span>
+                  UX
+                </span>
+              </div>
+
+              <!-- Description -->
+              <p
+                nbText
+                size="md"
+                weight="medium"
+                measure="md"
+                class="text-[1.05rem]! leading-snug!"
+              >
+                Practical strategies for building design systems that grow with
+                your product.
+              </p>
+            </div>
+          </div>
+
+          <!-- Host / player / actions section -->
+          <div nbSection border="top" padding="lg" class="relative z-10">
             <nb-halftone
               position="top-right"
               [rows]="6"
               [cols]="6"
-              class="absolute top-4 right-5 opacity-80"
+              class="absolute right-7 top-14 opacity-90"
             ></nb-halftone>
-          </div>
 
-          <!-- Audio player -->
-          <div nbSection padding="lg" class="pt-0">
-            <img
-              src="/podcast-card/timeline.png"
-              alt="Episode player — playing at 22:15 of 45:00"
-              class="w-full"
-            />
-          </div>
+            <div nbStack gap="md" class="relative z-10">
+              <div nbCluster gap="lg" align="start">
+                <img
+                  src="/podcast-card/avatar.png"
+                  alt="Kai Nguyen"
+                  class="size-30 shrink-0 rounded-full border-2 border-black bg-mint object-cover"
+                />
 
-          <!-- Footer: Listen Now button + bookmark -->
-          <div nbSection padding="lg" class="pt-0">
-            <div nbCluster gap="md" align="center" justify="between">
-              <button
-                nbButton
-                tone="lavender"
-                size="xl"
-                radius="md"
-                weight="black"
-                transform="uppercase"
-                tracking="wide"
-                class="flex-1"
-              >
-                Listen Now
+                <div nbStack gap="sm" align="start" class="min-w-0 flex-1">
+                  <div nbStack gap="xs" align="start">
+                    <span nbText size="xl" weight="extrabold">Kai Nguyen</span>
+                    <span nbText size="md" tone="muted">Host</span>
 
-                <span
-                  nbButtonTrailingIcon
-                  shape="circle"
-                  tone="inverse"
-                  size="md"
+                    <div class="flex items-center gap-2">
+                      <span nbStatusDot state="online"></span>
+                      <span
+                        nbText
+                        size="xs"
+                        weight="bold"
+                        transform="uppercase"
+                        tracking="wide"
+                      >
+                        On Air
+                      </span>
+                    </div>
+                  </div>
+
+                  <img
+                    src="/podcast-card/timeline.png"
+                    alt="Episode player — playing at 22:15 of 45:00"
+                    class="w-full"
+                  />
+                </div>
+              </div>
+
+              <div nbCluster gap="md" align="center" justify="between">
+                <button
+                  nbButton
+                  tone="lavender"
+                  size="xl"
+                  radius="md"
+                  weight="black"
+                  transform="uppercase"
+                  tracking="wide"
+                  class="min-w-0 flex-1 text-3xl!"
+                >
+                  Listen Now
+
+                  <span
+                    nbButtonTrailingIcon
+                    shape="circle"
+                    tone="inverse"
+                    size="md"
+                  >
+                    <span
+                      nbIcon
+                      src="/podcast-card/arrow.svg"
+                      size="sm"
+                      decorative
+                    ></span>
+                  </span>
+                </button>
+
+                <button
+                  nbIconButton
+                  radius="md"
+                  shape="square"
+                  size="lg"
+                  variant="neutral"
+                  type="button"
+                  aria-label="Save episode"
+                  class="shrink-0"
                 >
                   <span
                     nbIcon
-                    src="/podcast-card/arrow.svg"
-                    size="sm"
+                    src="/podcast-card/bookmark.svg"
+                    size="md"
                     decorative
                   ></span>
-                </span>
-              </button>
-
-              <button
-                nbIconButton
-                shape="square"
-                size="lg"
-                variant="neutral"
-                type="button"
-                aria-label="Save episode"
-                class="shrink-0"
-              >
-                <span
-                  nbIcon
-                  src="/podcast-card/bookmark.svg"
-                  size="md"
-                  decorative
-                ></span>
-              </button>
+                </button>
+              </div>
             </div>
           </div>
 
-          <!-- Blue sparkle flourish (no building-block equivalent for a 4-point twinkle) -->
+          <!-- Blue sparkle inside the card -->
           <svg
-            width="28"
-            height="28"
+            width="42"
+            height="42"
             viewBox="0 0 24 24"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
             aria-hidden="true"
-            class="absolute top-[26%] right-7"
+            class="absolute right-10 top-[25%] z-0"
           >
             <path
               d="M12 1 L14.5 9.5 L23 12 L14.5 14.5 L12 23 L9.5 14.5 L1 12 L9.5 9.5 Z"
               fill="#38bdf8"
               stroke="#000"
-              stroke-width="1.5"
+              stroke-width="1.6"
               stroke-linejoin="round"
             />
           </svg>
 
-          <!-- Dashed arrow flourish -->
+          <!-- Small flight doodle -->
           <svg
-            width="70"
-            height="50"
-            viewBox="0 0 70 50"
+            width="108"
+            height="64"
+            viewBox="0 0 108 64"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
             aria-hidden="true"
-            class="absolute right-5 top-[52%]"
+            class="absolute bottom-62 right-6 z-0 hidden sm:block"
           >
             <path
-              d="M 4 30 Q 30 50, 50 18"
-              stroke="#ec4899"
-              stroke-width="2.5"
-              stroke-dasharray="5,5"
-              fill="none"
+              d="M3 45C17 14 32 51 43 36C49 28 35 24 34 37C33 53 62 52 62 27C62 12 79 11 91 9"
+              stroke="#050505"
+              stroke-width="3"
               stroke-linecap="round"
+              stroke-dasharray="6 8"
             />
             <path
-              d="M 44 8 L 54 14 L 47 24"
-              fill="none"
-              stroke="#ec4899"
-              stroke-width="2.5"
-              stroke-linecap="round"
+              d="M86 1 105 15 84 22 89 12 86 1Z"
+              fill="#ff7ac8"
+              stroke="#050505"
+              stroke-width="3"
               stroke-linejoin="round"
             />
           </svg>
         </div>
 
-        <!-- Decorative stickers that overflow the card edges -->
+        <!-- Stickers live outside nbSurface so they can overflow safely. -->
         <nb-sticker
           shape="star"
           tone="lavender"
           aria-label="Happy episode sticker"
-          class="absolute -top-6 -right-6 z-20"
+          class="absolute -right-8 -top-8 z-20"
           [rotate]="10"
         >
           <nb-sticker-face />
         </nb-sticker>
 
+        <!-- Pink splat peeks out behind the bottom-left corner. -->
         <nb-sticker
           shape="splat"
           tone="pink"
           decorative
-          class="absolute -bottom-7 -left-7 z-20"
+          class="absolute bottom-5 -left-9 z-0"
           [rotate]="-12"
         ></nb-sticker>
       </div>
@@ -312,4 +348,4 @@ import {
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class PodcastCard {}
+export class PodcastCard { }

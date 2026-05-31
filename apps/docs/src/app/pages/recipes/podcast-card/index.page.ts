@@ -127,9 +127,14 @@ export default class PodcastCardRecipePage {
       role: 'podcast badge, episode number, and metadata tags',
     },
     {
+      name: 'NbStatusDot',
+      path: '/components/status-dot',
+      role: 'live "on air" indicator next to the host',
+    },
+    {
       name: 'NbIcon',
       path: '/components/icon',
-      role: 'microphone, clock, sparkle, user, and play button icons',
+      role: 'microphone, clock, sparkle, user, bookmark, and arrow icons',
     },
     {
       name: 'NbButton',
@@ -141,6 +146,26 @@ export default class PodcastCardRecipePage {
       path: '/components/button',
       role: 'CTA arrow affordance inside the button',
     },
+    {
+      name: 'NbIconButton',
+      path: '/components/icon-button',
+      role: 'bookmark / save episode action',
+    },
+    {
+      name: 'NbSticker',
+      path: '/components/sticker',
+      role: 'overflowing star and splat decorations',
+    },
+    {
+      name: 'NbStickerFace',
+      path: '/components/sticker',
+      role: 'smiling face inside the star sticker',
+    },
+    {
+      name: 'NbHalftone',
+      path: '/components/halftone',
+      role: 'dotted halftone flourish in the host row',
+    },
   ];
 
   protected readonly importCode = `import {
@@ -149,27 +174,32 @@ export default class PodcastCardRecipePage {
   NbChip,
   NbCluster,
   NbDisplay,
+  NbHalftone,
   NbIcon,
-  NbMediaItem,
-  NbMediaItemTitle,
+  NbIconButton,
   NbSection,
   NbStack,
+  NbStatusDot,
+  NbSticker,
+  NbStickerFace,
   NbSurface,
   NbText,
 } from '@ng-brutalism/ui';`;
 
   protected readonly templateCode = `<div nbSurface clip border="strong" shadow="hard" radius="xl">
   <!-- Header: podcast chip + menu -->
-  <div nbCluster gap="md" align="center" justify="between" padding="lg">
-    <span nbChip tone="pink" class="uppercase font-bold">
-      <span nbIcon src="/podcast-card/microphone.svg" decorative></span>
-      Podcast
-    </span>
-    <button aria-label="Episode menu">•••</button>
+  <div nbSection padding="lg">
+    <div nbCluster gap="md" align="center" justify="between">
+      <span nbChip tone="pink" class="uppercase font-bold [--nb-chip-radius:8px]">
+        <span nbIcon src="/podcast-card/microphone.svg" decorative></span>
+        Podcast
+      </span>
+      <button aria-label="Episode menu">•••</button>
+    </div>
   </div>
 
   <!-- Brand row -->
-  <div nbSection border="top" padding="lg">
+  <div nbSection padding="lg">
     <div nbCluster gap="md" align="center">
       <img src="/podcast-card/bfm-logo.png" alt="Build Loud FM logo" />
       <span nbText weight="extrabold">Build Loud FM</span>
@@ -178,7 +208,7 @@ export default class PodcastCardRecipePage {
 
   <!-- Episode badge -->
   <div nbSection padding="lg">
-    <span nbChip tone="yellow" class="uppercase font-bold">
+    <span nbChip tone="yellow" class="uppercase font-bold [--nb-chip-radius:8px]">
       EP 42
     </span>
   </div>
@@ -219,27 +249,23 @@ export default class PodcastCardRecipePage {
   <div nbSection border="top" padding="lg">
     <div nbCluster gap="lg" align="center">
       <img src="/podcast-card/avatar.png" alt="Kai Nguyen"
-           class="w-16 h-16 rounded-lg border-2 border-black" />
+           class="w-16 h-16 rounded-full" />
       <div nbStack gap="xs">
         <span nbText size="lg" weight="bold">Kai Nguyen</span>
         <span nbText size="sm" tone="muted">Host</span>
-        <span nbText size="xs" tone="muted">● ON AIR</span>
+        <span class="flex items-center gap-1.5">
+          <span nbStatusDot state="online"></span>
+          <span nbText size="xs" weight="bold" class="uppercase">On Air</span>
+        </span>
       </div>
     </div>
+    <nb-halftone position="top-right" [rows]="6" [cols]="6"
+                 class="absolute top-4 right-5"></nb-halftone>
   </div>
 
-  <!-- Audio player -->
+  <!-- Audio player (waveform asset) -->
   <div nbSection padding="lg">
-    <div class="border-2 border-black rounded-lg p-4">
-      <div nbCluster gap="md" align="center">
-        <button aria-label="Play episode"
-                class="w-10 h-10 rounded-full border-2 border-black bg-pink-500">
-          ▶
-        </button>
-        <img src="/podcast-card/timeline.png" alt="Timeline" />
-        <span class="whitespace-nowrap">22:15 / 45:00</span>
-      </div>
-    </div>
+    <img src="/podcast-card/timeline.png" alt="Episode player" class="w-full" />
   </div>
 
   <!-- Footer actions -->
@@ -251,11 +277,17 @@ export default class PodcastCardRecipePage {
           <span nbIcon src="/podcast-card/arrow.svg" decorative></span>
         </span>
       </button>
-      <button aria-label="Save episode"
-              class="w-12 h-12 border-2 border-black rounded-lg">
-        🔖
+      <button nbIconButton shape="square" size="lg" variant="neutral"
+              aria-label="Save episode">
+        <span nbIcon src="/podcast-card/bookmark.svg" decorative></span>
       </button>
     </div>
   </div>
+
+  <!-- Overflowing decorations -->
+  <nb-sticker shape="star" tone="lavender" [rotate]="10">
+    <nb-sticker-face />
+  </nb-sticker>
+  <nb-sticker shape="splat" tone="pink" decorative [rotate]="-12"></nb-sticker>
 </div>`;
 }

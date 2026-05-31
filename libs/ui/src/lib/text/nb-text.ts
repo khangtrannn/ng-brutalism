@@ -2,7 +2,7 @@ import { booleanAttribute, computed, Directive, input } from '@angular/core';
 
 import type { NbTone } from '../tokens/tone';
 
-export type NbTextSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
+export type NbTextSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl' | '3xl';
 
 export type NbTextWeight =
   | 'normal'
@@ -36,6 +36,8 @@ const sizeMap: Record<NbTextSize, string> = {
   md: '1rem',
   lg: '1.125rem',
   xl: '1.25rem',
+  '2xl': '1.5rem',
+  '3xl': '1.875rem',
 };
 
 const defaultLineHeightMap: Record<NbTextSize, string> = {
@@ -44,6 +46,8 @@ const defaultLineHeightMap: Record<NbTextSize, string> = {
   md: '1.5rem',
   lg: '1.75rem',
   xl: '1.875rem',
+  '2xl': '2rem',
+  '3xl': '2.25rem',
 };
 
 const leadingMap: Record<NbTextLeading, string | null> = {
