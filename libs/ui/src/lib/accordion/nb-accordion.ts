@@ -32,7 +32,9 @@ import {
 })
 export class NbAccordion implements NbAccordionController {
   readonly type = input<NbAccordionType>('single');
-  readonly collapsible = input(false, { transform: booleanAttribute });
+  readonly collapsible = input<boolean, unknown>(false, {
+    transform: booleanAttribute,
+  });
   readonly value = model<NbAccordionValue>(null);
 
   readonly items = contentChildren(NbAccordionItem);

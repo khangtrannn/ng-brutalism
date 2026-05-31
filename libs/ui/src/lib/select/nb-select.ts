@@ -76,9 +76,11 @@ export class NbSelect implements NbSelectController {
   private readonly element = inject<ElementRef<HTMLElement>>(ElementRef);
   private readonly group = inject(NB_INPUT_GROUP, { optional: true });
 
-  readonly placeholder = input('Select an option');
+  readonly placeholder = input<string>('Select an option');
   readonly value = model<NbSelectValue | null>(null);
-  readonly disabled = input(false, { transform: booleanAttribute });
+  readonly disabled = input<boolean, unknown>(false, {
+    transform: booleanAttribute,
+  });
   readonly ariaLabel = input<string | null>(null, { alias: 'aria-label' });
   readonly ariaLabelledby = input<string | null>(null, {
     alias: 'aria-labelledby',

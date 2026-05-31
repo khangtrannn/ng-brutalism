@@ -55,8 +55,10 @@ export class NbSelectOption {
 
   readonly id = `neo-select-option-${nextSelectOptionId++}`;
   readonly value = input<NbSelectValue | null>(null);
-  readonly label = input('');
-  readonly disabled = input(false, { transform: booleanAttribute });
+  readonly label = input<string>('');
+  readonly disabled = input<boolean, unknown>(false, {
+    transform: booleanAttribute,
+  });
 
   protected readonly selected = computed(() => {
     const value = this.value();
