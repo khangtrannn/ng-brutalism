@@ -40,12 +40,6 @@ import {
     NbSurface,
     NbText,
   ],
-  styles: `
-    [nbChip] {
-      --nb-chip-radius: 6px;
-      --nb-chip-shadow: none;
-    }
-  `,
   template: `
     <div nbCluster justify="center" padding="lg" class="overflow-visible">
       <div class="relative w-full overflow-visible">
@@ -65,6 +59,8 @@ import {
                   nbChip
                   padding="lg"
                   tone="pink"
+                  radius="sm"
+                  shadow="none"
                   icon="/podcast-card/microphone.svg"
                   class="uppercase font-black tracking-wide"
                 >
@@ -90,7 +86,8 @@ import {
                   tone="yellow"
                   size="lg"
                   shadow="hard"
-                  class="w-fit uppercase tracking-tight [--nb-callout-radius:6px]"
+                  radius="sm"
+                  class="w-fit uppercase tracking-tight"
                 >
                   EP 42
                 </div>
@@ -111,6 +108,8 @@ import {
                   nbChip
                   tone="mint"
                   padding="lg"
+                  radius="sm"
+                  shadow="none"
                   icon="/podcast-card/clock.svg"
                   class="uppercase text-sm font-black"
                 >
@@ -121,6 +120,8 @@ import {
                   nbChip
                   tone="lavender"
                   padding="lg"
+                  radius="sm"
+                  shadow="none"
                   icon="/podcast-card/sparkle.svg"
                   class="uppercase text-sm font-black"
                 >
@@ -131,6 +132,8 @@ import {
                   nbChip
                   tone="pink"
                   padding="lg"
+                  radius="sm"
+                  shadow="none"
                   icon="/podcast-card/user.svg"
                   class="uppercase text-sm font-black"
                 >

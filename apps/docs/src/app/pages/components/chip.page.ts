@@ -144,6 +144,18 @@ import { DocsSourceTile } from '../../docs/docs-source-tile';
                 <td class="px-4 py-3">Inner padding scale.</td>
               </tr>
               <tr>
+                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">radius</td>
+                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">'none' | 'sm' | 'md' | 'lg' | 'full'</td>
+                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">'none'</td>
+                <td class="px-4 py-3">Corner radius scale.</td>
+              </tr>
+              <tr>
+                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">shadow</td>
+                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">'none' | 'sm' | 'default' | 'hard'</td>
+                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">'sm'</td>
+                <td class="px-4 py-3">Drop shadow scale.</td>
+              </tr>
+              <tr>
                 <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">icon</td>
                 <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">string</td>
                 <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">—</td>
