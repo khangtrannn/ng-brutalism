@@ -90,7 +90,7 @@ import {
                 class="w-16"
               />
 
-              <span nbText size="xl" weight="extrabold">Roam &amp; Go</span>
+              <span style="--nb-underline-gap: 0; --nb-underline-width: 4rem;" nbText size="xl" weight="extrabold" underline="bar">Roam &amp; Go</span>
             </div>
 
             <h1 nbDisplay class="uppercase">Tokyo<br />City Escape</h1>
