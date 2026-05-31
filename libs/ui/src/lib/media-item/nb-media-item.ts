@@ -227,7 +227,7 @@ export class NbMediaItem {
   },
 })
 export class NbMediaItemIcon {
-  readonly surface = input(false, { transform: booleanAttribute });
+  readonly surface = input<boolean, unknown>(false, { transform: booleanAttribute });
   readonly background = input<string>('var(--nb-surface)');
 
   protected readonly classes = computed(() =>

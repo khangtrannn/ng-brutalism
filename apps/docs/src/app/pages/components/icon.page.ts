@@ -169,7 +169,10 @@ interface IconToneDemo {
         <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">Accessibility</h2>
         <p class="mb-4 font-medium">
           Icons must be explicitly marked as decorative or meaningful. There is
-          no silent default — you must choose one.
+          no silent default — always provide either
+          <code class="font-mono">decorative</code> or
+          <code class="font-mono">label</code>. Avoid rendering a bare visual
+          icon with neither.
         </p>
         <div nbStack gap="md" class="mb-6">
           <div nbCallout tone="mint" size="sm">
@@ -344,7 +347,10 @@ export default class IconPage {
 <span nbIcon src="/icons/star.svg" size="lg" tone="warning" decorative></span>
 
 <!-- Meaningful — icon stands alone and must be labelled -->
-<span nbIcon src="/icons/star.svg" size="lg" tone="warning" label="Top rated"></span>`;
+<span nbIcon src="/icons/star.svg" size="lg" tone="warning" label="Top rated"></span>
+
+<!-- Avoid — ambiguous accessibility state -->
+<span nbIcon src="/icons/star.svg" size="lg" tone="warning"></span>`;
 
   protected readonly compositionCode = `<!-- Icons inside chips -->
 <div nbChipGroup>

@@ -127,7 +127,7 @@ export class NbText {
    * Reset native paragraph/heading margins.
    * Default true so spacing comes from layout primitives (nbStack, nbCluster, etc.).
    */
-  readonly reset = input(true, { transform: booleanAttribute });
+  readonly reset = input<boolean, unknown>(true, { transform: booleanAttribute });
 
   protected readonly marginValue = computed(() => (this.reset() ? '0' : null));
 

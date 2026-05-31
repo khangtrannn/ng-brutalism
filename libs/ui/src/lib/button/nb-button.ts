@@ -69,7 +69,7 @@ export class NbButton {
   readonly weight = input<NbButtonWeight>('bold');
   readonly transform = input<NbButtonTransform>('none');
   readonly tracking = input<NbButtonTracking>('normal');
-  readonly fullWidth = input(false, { transform: booleanAttribute });
+  readonly fullWidth = input<boolean, unknown>(false, { transform: booleanAttribute });
 
   protected readonly toneBg = computed(() => {
     const t = this.tone();

@@ -81,7 +81,7 @@ export class NbIcon {
   readonly mode = input<NbIconMode>('mask');
   readonly size = input<NbIconSize>('md');
   readonly tone = input<NbIconTone>('current');
-  readonly decorative = input(false, { transform: booleanAttribute });
+  readonly decorative = input<boolean, unknown>(false, { transform: booleanAttribute });
   readonly label = input<string | null>(null);
 
   protected readonly sizeValue = computed(() => sizeMap[this.size()]);
