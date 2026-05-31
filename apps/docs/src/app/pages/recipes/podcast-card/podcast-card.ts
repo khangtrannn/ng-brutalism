@@ -41,14 +41,14 @@ import {
   ],
   template: `
     <div nbCluster justify="center" padding="lg" class="overflow-visible">
-      <div class="relative w-full overflow-visible">
+      <div class="relative mx-auto w-full max-w-[36rem] overflow-visible">
         <div
           nbSurface
           clip
           border="strong"
           shadow="hard"
           radius="xl"
-          class="relative z-10 w-full overflow-hidden"
+          class="relative z-10 w-full"
         >
           <div nbSection padding="lg" class="relative z-10">
             <div nbStack gap="lg">
@@ -102,7 +102,7 @@ import {
               </h1>
 
               <div nbCluster gap="sm">
-                @for (stat of stats; track $index) {
+                @for (stat of stats; track stat.label) {
                   <span
                     nbChip
                     [tone]="stat.tone"
@@ -187,14 +187,18 @@ import {
                   nbButton
                   tone="lavender"
                   size="xl"
-                  fontSize="3xl"
                   radius="md"
-                  weight="black"
-                  transform="uppercase"
-                  tracking="wide"
                   class="flex-1"
                 >
-                  Listen Now
+                  <span
+                    nbText
+                    size="3xl"
+                    weight="black"
+                    transform="uppercase"
+                    tracking="wide"
+                  >
+                    Listen Now
+                  </span>
 
                   <span
                     nbButtonTrailingIcon
@@ -253,18 +257,22 @@ export class PodcastCard {
   protected readonly stats = [
     {
       label: '45 MIN',
-      tone: 'mint' as NbChipTone,
+      tone: 'mint',
       icon: '/podcast-card/clock.svg',
     },
     {
       label: 'NEW',
-      tone: 'lavender' as NbChipTone,
+      tone: 'lavender',
       icon: '/podcast-card/sparkle.svg',
     },
     {
       label: 'UX',
-      tone: 'pink' as NbChipTone,
+      tone: 'pink',
       icon: '/podcast-card/user.svg',
     }
-  ]
+  ] satisfies ReadonlyArray<{
+    label: string;
+    tone: NbChipTone;
+    icon: string;
+  }>;
 }
