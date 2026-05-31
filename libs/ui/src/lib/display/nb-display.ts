@@ -3,6 +3,7 @@ import { booleanAttribute, computed, Directive, input } from '@angular/core';
 export type NbDisplaySize = 'sm' | 'default' | 'lg' | 'xl';
 export type NbDisplayTracking = 'normal' | 'tight' | 'tighter';
 export type NbDisplayLeading = 'none' | 'tight' | 'display';
+export type NbDisplayUnderline = 'none' | 'bar' | 'wave';
 
 const SIZE_MAP: Record<NbDisplaySize, string> = {
   sm: '2rem',
@@ -33,12 +34,14 @@ const LEADING_MAP: Record<NbDisplayLeading, string> = {
     '[style.line-height]': 'leadingValue()',
     '[style.margin]': 'marginValue()',
     '[attr.data-nb-display]': '""',
+    '[attr.data-underline]': 'underlineAttr()',
   },
 })
 export class NbDisplay {
   readonly size = input<NbDisplaySize>('default');
   readonly tracking = input<NbDisplayTracking>('tight');
   readonly leading = input<NbDisplayLeading>('none');
+  readonly underline = input<NbDisplayUnderline>('none');
   readonly reset = input<boolean, unknown>(true, { transform: booleanAttribute });
 
   protected readonly fontSize = computed(
@@ -47,4 +50,8 @@ export class NbDisplay {
   protected readonly trackingValue = computed(() => TRACKING_MAP[this.tracking()]);
   protected readonly leadingValue = computed(() => LEADING_MAP[this.leading()]);
   protected readonly marginValue = computed(() => (this.reset() ? '0' : null));
+  protected readonly underlineAttr = computed(() => {
+    const underline = this.underline();
+    return underline === 'none' ? null : underline;
+  });
 }

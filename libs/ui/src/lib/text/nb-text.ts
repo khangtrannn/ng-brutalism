@@ -30,6 +30,8 @@ export type NbTextMeasure = 'none' | 'xs' | 'sm' | 'md' | 'lg';
 
 export type NbTextLeading = 'none' | 'tight' | 'normal' | 'relaxed';
 
+export type NbTextUnderline = 'none' | 'bar' | 'wave';
+
 const sizeMap: Record<NbTextSize, string> = {
   xs: '0.75rem',
   sm: '0.875rem',
@@ -107,6 +109,7 @@ const measureMap: Record<NbTextMeasure, string> = {
     '[attr.data-tracking]': 'tracking()',
     '[attr.data-measure]': 'measure()',
     '[attr.data-leading]': 'leading()',
+    '[attr.data-underline]': 'underlineAttr()',
 
     '[style.margin]': 'marginValue()',
     '[style.color]': 'colorValue()',
@@ -126,6 +129,7 @@ export class NbText {
   readonly tracking = input<NbTextTracking>('normal');
   readonly measure = input<NbTextMeasure>('none');
   readonly leading = input<NbTextLeading>('normal');
+  readonly underline = input<NbTextUnderline>('none');
 
   /**
    * Reset native paragraph/heading margins.
@@ -134,6 +138,11 @@ export class NbText {
   readonly reset = input<boolean, unknown>(true, { transform: booleanAttribute });
 
   protected readonly marginValue = computed(() => (this.reset() ? '0' : null));
+
+  protected readonly underlineAttr = computed(() => {
+    const underline = this.underline();
+    return underline === 'none' ? null : underline;
+  });
 
   protected readonly sizeValue = computed(() => sizeMap[this.size()]);
 

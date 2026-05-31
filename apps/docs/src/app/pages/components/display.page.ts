@@ -34,7 +34,7 @@ import { DocsTokens } from '../../docs/docs-tokens';
             <span class="nb-stat-tile__label">Size variants</span>
           </div>
           <div class="nb-stat-tile nb-stat-tile--pink">
-            <span class="nb-stat-tile__value">2</span>
+            <span class="nb-stat-tile__value">7</span>
             <span class="nb-stat-tile__label">CSS variables</span>
           </div>
 
@@ -114,6 +114,33 @@ import { DocsTokens } from '../../docs/docs-tokens';
         </docs-example>
       </section>
 
+      <section id="underline">
+        <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">Underline</h2>
+        <p class="mb-4 font-medium">
+          <code class="font-mono">underline="bar"</code> draws a built-in accent
+          bar beneath the text — no extra markup. Use
+          <code class="font-mono">"wave"</code> for the squiggly variant. The bar
+          is decorative (rendered as a pseudo-element, kept out of the
+          accessibility tree). Tune it with the
+          <code class="font-mono">--nb-underline-*</code> tokens below.
+        </p>
+        <docs-example [code]="underlineExampleCode">
+          <div class="flex flex-col gap-8">
+            <h2 nbDisplay size="lg" underline="bar" class="uppercase">SHIP IT</h2>
+            <h2 nbDisplay size="lg" underline="wave" class="uppercase">STAY SHARP</h2>
+            <h2
+              nbDisplay
+              size="lg"
+              underline="bar"
+              class="uppercase"
+              style="--nb-underline-color: var(--nb-mint); --nb-underline-width: 100%"
+            >
+              FULL WIDTH
+            </h2>
+          </div>
+        </docs-example>
+      </section>
+
       <docs-tokens component="display" />
 
       <section id="api">
@@ -132,11 +159,17 @@ import { DocsTokens } from '../../docs/docs-tokens';
               </tr>
             </thead>
             <tbody class="font-medium">
-              <tr>
+              <tr class="border-b-2 border-(--nb-border)">
                 <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">size</td>
                 <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">'sm' | 'default' | 'lg' | 'xl'</td>
                 <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">'default'</td>
                 <td class="px-4 py-3">Controls font size via <code class="font-mono">--nb-display-size</code>.</td>
+              </tr>
+              <tr>
+                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">underline</td>
+                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">'none' | 'bar' | 'wave'</td>
+                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">'none'</td>
+                <td class="px-4 py-3">Draws a built-in accent underline beneath the text. Style it with the <code class="font-mono">--nb-underline-*</code> tokens.</td>
               </tr>
             </tbody>
           </table>
@@ -162,4 +195,18 @@ export default class DisplayPage {
 
   protected readonly anyElementExampleCode = `<span nbDisplay size="lg">$2.4M</span>
 <span nbDisplay size="lg" class="uppercase">24/7</span>`;
+
+  protected readonly underlineExampleCode = `<h2 nbDisplay size="lg" underline="bar" class="uppercase">SHIP IT</h2>
+<h2 nbDisplay size="lg" underline="wave" class="uppercase">STAY SHARP</h2>
+
+<!-- Recolor / resize with tokens -->
+<h2
+  nbDisplay
+  size="lg"
+  underline="bar"
+  class="uppercase"
+  style="--nb-underline-color: var(--nb-mint); --nb-underline-width: 100%"
+>
+  FULL WIDTH
+</h2>`;
 }

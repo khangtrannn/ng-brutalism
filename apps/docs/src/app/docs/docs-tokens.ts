@@ -286,6 +286,31 @@ const componentTokens: Record<DocsTokenComponent, DocsToken[]> = {
       defaultValue: 'currentColor',
       usage: 'Text color. Inherits from the parent by default.',
     },
+    {
+      name: '--nb-underline-color',
+      defaultValue: 'var(--nb-pink)',
+      usage: 'Accent underline color when underline="bar" | "wave".',
+    },
+    {
+      name: '--nb-underline-width',
+      defaultValue: '7rem (bar)',
+      usage: 'Accent underline width.',
+    },
+    {
+      name: '--nb-underline-height',
+      defaultValue: '0.375rem (bar)',
+      usage: 'Accent underline thickness.',
+    },
+    {
+      name: '--nb-underline-gap',
+      defaultValue: '0.75rem (bar)',
+      usage: 'Space between the text and the accent underline.',
+    },
+    {
+      name: '--nb-underline-radius',
+      defaultValue: '9999px',
+      usage: 'Accent underline corner radius (bar shape only).',
+    },
   ],
   dialog: [
     {

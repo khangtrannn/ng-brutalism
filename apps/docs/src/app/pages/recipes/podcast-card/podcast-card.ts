@@ -84,15 +84,9 @@ import {
                   class="size-20"
                 />
 
-                <div nbStack gap="xs" align="start">
-                  <span nbText size="3xl" weight="extrabold">
-                    Build Loud FM
-                  </span>
-                  <span
-                    class="block h-1.5 w-28 rounded-full bg-pink-400"
-                    aria-hidden="true"
-                  ></span>
-                </div>
+                <span nbText size="3xl" weight="extrabold" underline="bar">
+                  Build Loud FM
+                </span>
               </div>
 
               <div class="relative w-fit">
@@ -107,16 +101,15 @@ import {
                 </div>
               </div>
 
-              <div>
-                <h1 nbDisplay size="xl" leading="display">
-                  DESIGN<br />SYSTEMS<br />THAT SCALE
-                </h1>
-
-                <span
-                  class="mt-5 block h-1.5 w-28 rounded-full bg-pink-400"
-                  aria-hidden="true"
-                ></span>
-              </div>
+              <h1
+                nbDisplay
+                size="xl"
+                leading="display"
+                underline="bar"
+                class="[--nb-underline-gap:1.25rem]"
+              >
+                DESIGN<br />SYSTEMS<br />THAT SCALE
+              </h1>
 
               <div nbCluster gap="sm">
                 <span

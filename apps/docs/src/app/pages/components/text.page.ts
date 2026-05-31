@@ -92,7 +92,7 @@ interface TextLeadingDemo {
             <span class="nb-stat-tile__label">Tones</span>
           </div>
           <div class="nb-stat-tile nb-stat-tile--lavender">
-            <span class="nb-stat-tile__value">8</span>
+            <span class="nb-stat-tile__value">9</span>
             <span class="nb-stat-tile__label">Inputs</span>
           </div>
 
@@ -273,6 +273,40 @@ interface TextLeadingDemo {
         </docs-example>
       </section>
 
+      <section id="underline">
+        <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">Underline</h2>
+        <p class="mb-4 font-medium">
+          <code class="font-mono">underline="bar"</code> adds a built-in accent
+          bar beneath the text — handy for brand names and section labels with no
+          extra markup. Use <code class="font-mono">"wave"</code> for the squiggly
+          variant. Recolor and resize it with the
+          <code class="font-mono">--nb-underline-color</code>,
+          <code class="font-mono">--nb-underline-width</code>,
+          <code class="font-mono">--nb-underline-height</code>,
+          <code class="font-mono">--nb-underline-gap</code> and
+          <code class="font-mono">--nb-underline-radius</code> tokens.
+        </p>
+        <docs-example [code]="underlineCode">
+          <div class="p-6 w-full" nbStack gap="lg">
+            <span nbText size="3xl" weight="extrabold" underline="bar">
+              Build Loud FM
+            </span>
+            <span nbText size="2xl" weight="extrabold" underline="wave">
+              Stay Sharp
+            </span>
+            <span
+              nbText
+              size="2xl"
+              weight="extrabold"
+              underline="bar"
+              style="--nb-underline-color: var(--nb-mint)"
+            >
+              Mint Accent
+            </span>
+          </div>
+        </docs-example>
+      </section>
+
       <section id="composition">
         <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">
           Composition
@@ -378,6 +412,12 @@ interface TextLeadingDemo {
                 <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">'none' | 'tight' | 'normal' | 'relaxed'</td>
                 <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">'normal'</td>
                 <td class="px-4 py-3">Line-height override. Defaults to a size-matched value.</td>
+              </tr>
+              <tr class="border-b-2 border-(--nb-border)">
+                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">underline</td>
+                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">'none' | 'bar' | 'wave'</td>
+                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">'none'</td>
+                <td class="px-4 py-3">Built-in accent underline beneath the text. Style it with the <code class="font-mono">--nb-underline-*</code> tokens.</td>
               </tr>
               <tr>
                 <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">reset</td>
@@ -485,6 +525,25 @@ export default class TextPage {
 <p nbText size="md" measure="sm" leading="tight">...</p>
 <p nbText size="md" measure="sm" leading="normal">...</p>
 <p nbText size="md" measure="sm" leading="relaxed">...</p>`;
+
+  protected readonly underlineCode = `<span nbText size="3xl" weight="extrabold" underline="bar">
+  Build Loud FM
+</span>
+
+<span nbText size="2xl" weight="extrabold" underline="wave">
+  Stay Sharp
+</span>
+
+<!-- Recolor with a token -->
+<span
+  nbText
+  size="2xl"
+  weight="extrabold"
+  underline="bar"
+  style="--nb-underline-color: var(--nb-mint)"
+>
+  Mint Accent
+</span>`;
 
   protected readonly compositionCode = `<div nbStack gap="lg">
   <div nbStack gap="xs">

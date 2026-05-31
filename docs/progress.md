@@ -23,7 +23,7 @@ For history and details, read the domain's own `progress.md`.
 ---
 
 ## Components
-**Status:** Stabilization pass complete on `feat/recipes`. Divider border color classes made explicit (`[border-top-color]`, `[border-right-color]`). `NbButton.fullWidth` uses `booleanAttribute`. `NbIcon` assigns `--nb-icon-color` CSS variable. Cluster docs updated with divider section + API row. Job card recipe added (P9 validation). All tests pass; build clean.
+**Status:** Stabilization pass on `feat/recipes`. Added built-in accent underline to `nbDisplay`/`nbText` (`underline="bar" | "wave"`, token-driven `--nb-underline-*`, default `--nb-pink`); podcast-card recipe uses it instead of manual bar spans. Divider border color classes made explicit. `NbButton.fullWidth` uses `booleanAttribute`. `NbIcon` assigns `--nb-icon-color`. Job card recipe added (P9). All tests pass; build clean.
 **Next:** Visual QA pass on job card and cluster divider demos, then cut v0.2.0 release.
 **Goal:** All 18 reference designs buildable with v0.2.0 primitives (~90% fidelity).
 → Plan: `docs/release/v0.2.0-plan.md`
