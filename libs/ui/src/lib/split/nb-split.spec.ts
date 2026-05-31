@@ -24,6 +24,17 @@ class CustomSplitTest {}
 @Component({
   imports: [NbSplit],
   template: `
+    <div nbSplit ratio="fill:auto">
+      <span>Main</span>
+      <span>Aside</span>
+    </div>
+  `,
+})
+class FillAutoSplitTest {}
+
+@Component({
+  imports: [NbSplit],
+  template: `
     <div nbSplit collapse="md" divider="solid">
       <span>Main</span>
       <span>Aside</span>
@@ -106,6 +117,18 @@ describe('NbSplit', () => {
     expect(split.className).toContain('grid-cols-1');
     expect(split.className).toContain(
       'lg:grid-cols-[var(--nb-split-columns)]'
+    );
+  });
+
+  it('sizes the first column to fill and the second to its content', async () => {
+    const fixture = await createFixture(FillAutoSplitTest);
+    const split = fixture.nativeElement.querySelector(
+      '[nbSplit]'
+    ) as HTMLElement;
+
+    expect(split.getAttribute('data-ratio')).toBe('fill:auto');
+    expect(split.className).toContain(
+      '[--nb-split-columns:minmax(0,1fr)_auto]'
     );
   });
 

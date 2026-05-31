@@ -76,7 +76,7 @@ interface SplitDividerDemo {
 
         <div class="mt-7 flex flex-wrap items-center gap-3">
           <div class="nb-stat-tile nb-stat-tile--yellow">
-            <span class="nb-stat-tile__value">5</span>
+            <span class="nb-stat-tile__value">7</span>
             <span class="nb-stat-tile__label">Ratios</span>
           </div>
           <div class="nb-stat-tile nb-stat-tile--mint">
@@ -354,7 +354,7 @@ interface SplitDividerDemo {
             <tbody class="font-medium">
               <tr class="border-b-2 border-(--nb-border)">
                 <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">ratio</td>
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">'1:1' | '2:1' | '3:1' | '1:2' | '1:3'</td>
+                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">'1:1' | '2:1' | '3:1' | '1:2' | '1:3' | 'fill:auto' | 'auto:fill'</td>
                 <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">'1:1'</td>
                 <td class="px-4 py-3">Column relationship between main and aside content.</td>
               </tr>
@@ -415,7 +415,11 @@ export default class SplitPage {
 <div nbSplit ratio="2:1">...</div>
 <div nbSplit ratio="3:1">...</div>
 <div nbSplit ratio="1:2">...</div>
-<div nbSplit ratio="1:3">...</div>`;
+<div nbSplit ratio="1:3">...</div>
+<!-- first column fills, second hugs its content -->
+<div nbSplit ratio="fill:auto">...</div>
+<!-- first column hugs its content, second fills -->
+<div nbSplit ratio="auto:fill">...</div>`;
 
   protected readonly spacingExampleCode = `<div nbSplit gap="xl" padding="lg">
   <div>Main</div>
@@ -463,6 +467,8 @@ export default class SplitPage {
     { value: '3:1', label: '3:1' },
     { value: '1:2', label: '1:2' },
     { value: '1:3', label: '1:3' },
+    { value: 'fill:auto', label: 'fill:auto' },
+    { value: 'auto:fill', label: 'auto:fill' },
   ] satisfies readonly SplitRatioDemo[];
 
   protected readonly gaps = [

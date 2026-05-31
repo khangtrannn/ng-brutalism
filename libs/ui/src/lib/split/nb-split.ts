@@ -2,7 +2,14 @@ import { Directive, computed, input } from '@angular/core';
 
 import { nbClass } from '../core/class';
 
-export type NbSplitRatio = '1:1' | '2:1' | '3:1' | '1:2' | '1:3';
+export type NbSplitRatio =
+  | '1:1'
+  | '2:1'
+  | '3:1'
+  | '1:2'
+  | '1:3'
+  | 'fill:auto'
+  | 'auto:fill';
 
 export type NbSplitGap = 'none' | 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl';
 
@@ -93,6 +100,8 @@ export class NbSplit {
       '3:1': '[--nb-split-columns:minmax(0,3fr)_minmax(0,1fr)]',
       '1:2': '[--nb-split-columns:minmax(0,1fr)_minmax(0,2fr)]',
       '1:3': '[--nb-split-columns:minmax(0,1fr)_minmax(0,3fr)]',
+      'fill:auto': '[--nb-split-columns:minmax(0,1fr)_auto]',
+      'auto:fill': '[--nb-split-columns:auto_minmax(0,1fr)]',
     };
 
     return map[this.ratio()];

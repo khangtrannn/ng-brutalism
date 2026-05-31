@@ -10,6 +10,7 @@ import {
   NbIcon,
   NbIconButton,
   NbSection,
+  NbSplit,
   NbStack,
   NbStatusDot,
   NbSticker,
@@ -31,6 +32,7 @@ import {
     NbIcon,
     NbIconButton,
     NbSection,
+    NbSplit,
     NbStack,
     NbStatusDot,
     NbSticker,
@@ -45,7 +47,7 @@ import {
     }
   `,
   template: `
-    <div class="flex justify-center overflow-visible px-6 py-8">
+    <div nbCluster justify="center" class="overflow-visible px-6 py-8">
       <!-- Plain layout wrapper only. Do not use nbSection here. -->
       <div class="relative w-full overflow-visible">
         <div
@@ -87,11 +89,7 @@ import {
                 />
 
                 <div nbStack gap="xs" align="start">
-                  <span
-                    nbText
-                    size="3xl"
-                    weight="extrabold"
-                  >
+                  <span nbText size="3xl" weight="extrabold">
                     Build Loud FM
                   </span>
                   <span
@@ -116,11 +114,7 @@ import {
 
               <!-- Hero title -->
               <div>
-                <h1
-                  nbDisplay
-                  size="xl"
-                  leading="display"
-                >
+                <h1 nbDisplay size="xl" leading="display">
                   DESIGN<br />SYSTEMS<br />THAT SCALE
                 </h1>
 
@@ -131,11 +125,13 @@ import {
               </div>
 
               <!-- Metadata chips -->
-              <div
-                nbCluster
-                gap="sm"
-              >
-                <span nbChip tone="mint" padding="lg" class="uppercase text-sm font-black">
+              <div nbCluster gap="sm">
+                <span
+                  nbChip
+                  tone="mint"
+                  padding="lg"
+                  class="uppercase text-sm font-black"
+                >
                   <span
                     nbIcon
                     src="/podcast-card/clock.svg"
@@ -160,7 +156,12 @@ import {
                   NEW
                 </span>
 
-                <span nbChip tone="pink" padding="lg" class="uppercase text-sm font-black">
+                <span
+                  nbChip
+                  tone="pink"
+                  padding="lg"
+                  class="uppercase text-sm font-black"
+                >
                   <span
                     nbIcon
                     src="/podcast-card/user.svg"
@@ -172,42 +173,45 @@ import {
               </div>
 
               <!-- Description -->
-              <p
-                nbText
-                size="md"
-                weight="medium"
-                measure="md"
-                class="text-[1.05rem]! leading-snug!"
-              >
-                Practical strategies for building design systems that grow with
-                your product.
-              </p>
+              <div nbSplit ratio="fill:auto">
+                <p
+                  nbText
+                  size="md"
+                  weight="medium"
+                  measure="md"
+                  leading="tight"
+                >
+                  Practical strategies for building design systems that grow
+                  with your product.
+                </p>
+
+                <!-- Small flight doodle -->
+                <img
+                  src="/podcast-card/flight-doodle.svg"
+                  alt=""
+                  aria-hidden="true"
+                  class="z-0 hidden sm:block h-16 w-27"
+                />
+              </div>
             </div>
           </div>
 
           <!-- Host / player / actions section -->
-          <div nbSection border="top" padding="lg" class="relative z-10">
-            <nb-halftone
-              position="top-right"
-              [rows]="6"
-              [cols]="6"
-              class="absolute right-7 top-14 opacity-90"
-            ></nb-halftone>
-
+          <div nbSection border="top" padding="lg" class="z-10">
             <div nbStack gap="md" class="relative z-10">
               <div nbCluster gap="lg" align="start">
                 <img
                   src="/podcast-card/avatar.png"
                   alt="Kai Nguyen"
-                  class="size-30 shrink-0 rounded-full border-2 border-black bg-mint object-cover"
+                  class="size-30"
                 />
 
-                <div nbStack gap="sm" align="start" class="min-w-0 flex-1">
-                  <div nbStack gap="xs" align="start">
+                <div nbStack gap="sm" align="start" class="flex-1">
+                  <div nbStack gap="xs" align="start" class="relative w-full">
                     <span nbText size="xl" weight="extrabold">Kai Nguyen</span>
                     <span nbText size="md" tone="muted">Host</span>
 
-                    <div class="flex items-center gap-2">
+                    <div nbCluster gap="sm" align="center">
                       <span nbStatusDot state="online"></span>
                       <span
                         nbText
@@ -219,6 +223,13 @@ import {
                         On Air
                       </span>
                     </div>
+
+                    <nb-halftone
+                      position="bottom-right"
+                      [rows]="6"
+                      [cols]="6"
+                      class="opacity-90"
+                    />
                   </div>
 
                   <img
@@ -279,49 +290,12 @@ import {
           </div>
 
           <!-- Blue sparkle inside the card -->
-          <svg
-            width="42"
-            height="42"
-            viewBox="0 0 24 24"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
+          <img
+            src="/podcast-card/star-burst.svg"
+            alt=""
             aria-hidden="true"
-            class="absolute right-10 top-[25%] z-0"
-          >
-            <path
-              d="M12 1 L14.5 9.5 L23 12 L14.5 14.5 L12 23 L9.5 14.5 L1 12 L9.5 9.5 Z"
-              fill="#38bdf8"
-              stroke="#000"
-              stroke-width="1.6"
-              stroke-linejoin="round"
-            />
-          </svg>
-
-          <!-- Small flight doodle -->
-          <svg
-            width="108"
-            height="64"
-            viewBox="0 0 108 64"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-            aria-hidden="true"
-            class="absolute bottom-62 right-6 z-0 hidden sm:block"
-          >
-            <path
-              d="M3 45C17 14 32 51 43 36C49 28 35 24 34 37C33 53 62 52 62 27C62 12 79 11 91 9"
-              stroke="#050505"
-              stroke-width="3"
-              stroke-linecap="round"
-              stroke-dasharray="6 8"
-            />
-            <path
-              d="M86 1 105 15 84 22 89 12 86 1Z"
-              fill="#ff7ac8"
-              stroke="#050505"
-              stroke-width="3"
-              stroke-linejoin="round"
-            />
-          </svg>
+            class="absolute right-10 top-[25%] z-0 size-10.5"
+          />
         </div>
 
         <!-- Stickers live outside nbSurface so they can overflow safely. -->
@@ -329,7 +303,7 @@ import {
           shape="star"
           tone="lavender"
           aria-label="Happy episode sticker"
-          class="absolute -right-8 -top-8 z-20"
+          class="absolute top-2 right-2 z-20"
           [rotate]="10"
         >
           <nb-sticker-face />
@@ -348,4 +322,4 @@ import {
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class PodcastCard { }
+export class PodcastCard {}
