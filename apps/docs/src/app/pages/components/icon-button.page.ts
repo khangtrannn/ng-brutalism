@@ -15,9 +15,12 @@ import { DocsSourceTile } from '../../docs/docs-source-tile';
           <p>Neo-Brutalist Angular IconButton</p>
           <h1>IconButton</h1>
           <p class="mt-3 max-w-3xl text-base font-medium sm:text-lg">
-            A directive on <code class="font-mono">&lt;button&gt;</code> for icon-only actions.
-            Supports square and circle shapes, 3 sizes, and all standard color variants.
-            Place your SVG icon via <code class="font-mono">ng-content</code>.
+            A <code class="font-mono">&lt;button&gt;</code> for icon-only actions.
+            Supports square and circle shapes, 4 sizes, tunable corner radius, and
+            all standard color variants. Pass an
+            <code class="font-mono">icon</code> URL to render it internally, or
+            project your own <code class="font-mono">&lt;svg&gt;</code> via
+            <code class="font-mono">ng-content</code>.
           </p>
         </div>
 
@@ -31,7 +34,7 @@ import { DocsSourceTile } from '../../docs/docs-source-tile';
             <span class="nb-stat-tile__label">Shapes</span>
           </div>
           <div class="nb-stat-tile nb-stat-tile--pink">
-            <span class="nb-stat-tile__value">3</span>
+            <span class="nb-stat-tile__value">4</span>
             <span class="nb-stat-tile__label">Sizes</span>
           </div>
 
@@ -147,15 +150,27 @@ import { DocsSourceTile } from '../../docs/docs-source-tile';
               </tr>
               <tr class="border-b-2 border-(--nb-border)">
                 <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">size</td>
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">'sm' | 'default' | 'lg'</td>
+                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">'sm' | 'default' | 'lg' | 'xl'</td>
                 <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">'default'</td>
-                <td class="px-4 py-3">Touch target size (32/40/48px).</td>
+                <td class="px-4 py-3">Touch target size (32/40/48/56px).</td>
               </tr>
-              <tr>
+              <tr class="border-b-2 border-(--nb-border)">
+                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">radius</td>
+                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">'none' | 'sm' | 'md' | 'lg' | 'xl' | 'full'</td>
+                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">'none'</td>
+                <td class="px-4 py-3">Corner radius for square buttons. Ignored when shape is 'circle'.</td>
+              </tr>
+              <tr class="border-b-2 border-(--nb-border)">
                 <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">variant</td>
                 <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">'default' | 'neutral' | 'primary' | 'secondary' | 'accent' | 'danger' | 'success' | 'warning'</td>
                 <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">'default'</td>
                 <td class="px-4 py-3">Background color variant.</td>
+              </tr>
+              <tr>
+                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">icon</td>
+                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">string</td>
+                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">—</td>
+                <td class="px-4 py-3">SVG/image URL rendered internally via nbIcon (mask mode, sized to the button). Omit to project your own icon.</td>
               </tr>
             </tbody>
           </table>

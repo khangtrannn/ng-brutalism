@@ -271,16 +271,13 @@ export default class PodcastCardRecipePage {
   <!-- Footer actions -->
   <div nbSection padding="lg">
     <div nbCluster gap="md" justify="between">
-      <button nbButton tone="lavender" size="xl" class="flex-1">
+      <button nbButton tone="lavender" size="xl" fontSize="3xl" class="flex-1">
         Listen Now
-        <span nbButtonTrailingIcon shape="circle" tone="inverse">
-          <span nbIcon src="/podcast-card/arrow.svg" decorative></span>
-        </span>
+        <span nbButtonTrailingIcon shape="circle" tone="inverse" size="md"
+              icon="/podcast-card/arrow.svg"></span>
       </button>
-      <button nbIconButton shape="square" size="lg" variant="neutral"
-              aria-label="Save episode">
-        <span nbIcon src="/podcast-card/bookmark.svg" decorative></span>
-      </button>
+      <button nbIconButton shape="square" size="xl" radius="md" variant="neutral"
+              icon="/podcast-card/bookmark.svg" aria-label="Save episode"></button>
     </div>
   </div>
 

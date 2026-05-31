@@ -7,7 +7,6 @@ import {
   NbCluster,
   NbDisplay,
   NbHalftone,
-  NbIcon,
   NbIconButton,
   NbSection,
   NbSplit,
@@ -29,7 +28,6 @@ import {
     NbCluster,
     NbDisplay,
     NbHalftone,
-    NbIcon,
     NbIconButton,
     NbSection,
     NbSplit,
@@ -210,11 +208,12 @@ import {
                   nbButton
                   tone="lavender"
                   size="xl"
+                  fontSize="3xl"
                   radius="md"
                   weight="black"
                   transform="uppercase"
                   tracking="wide"
-                  class="min-w-0 flex-1 text-3xl!"
+                  class="min-w-0 flex-1"
                 >
                   Listen Now
 
@@ -223,33 +222,20 @@ import {
                     shape="circle"
                     tone="inverse"
                     size="md"
-                  >
-                    <span
-                      nbIcon
-                      src="/podcast-card/arrow.svg"
-                      size="sm"
-                      decorative
-                    ></span>
-                  </span>
+                    icon="/podcast-card/arrow.svg"
+                  ></span>
                 </button>
 
                 <button
                   nbIconButton
-                  radius="md"
                   shape="square"
-                  size="lg"
+                  size="xl"
+                  radius="md"
                   variant="neutral"
                   type="button"
                   aria-label="Save episode"
-                  class="shrink-0"
-                >
-                  <span
-                    nbIcon
-                    src="/podcast-card/bookmark.svg"
-                    size="md"
-                    decorative
-                  ></span>
-                </button>
+                  icon="/podcast-card/bookmark.svg"
+                ></button>
               </div>
             </div>
           </div>

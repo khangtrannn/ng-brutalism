@@ -3,6 +3,7 @@ import { Directive, booleanAttribute, computed, input } from '@angular/core';
 import { nbClass } from '../core/class';
 import { nbToneTokens } from '../tokens/tone';
 import type {
+  NbButtonFontSize,
   NbButtonRadius,
   NbButtonShadow,
   NbButtonSize,
@@ -18,6 +19,17 @@ const sizeMap: Record<NbButtonSize, string> = {
   md: 'h-11 px-4 text-base gap-2',
   lg: 'h-[3.25rem] px-5 text-lg gap-2.5',
   xl: 'h-14 px-4 text-xl gap-3',
+};
+
+// Optional override for the label text size, independent of the box `size`.
+// Listed after the size class so twMerge keeps it — no `!important` needed.
+const fontSizeMap: Record<NbButtonFontSize, string> = {
+  sm: 'text-sm',
+  base: 'text-base',
+  lg: 'text-lg',
+  xl: 'text-xl',
+  '2xl': 'text-2xl',
+  '3xl': 'text-3xl',
 };
 
 const radiusMap: Record<NbButtonRadius, string> = {
@@ -65,6 +77,7 @@ export class NbButton {
   readonly tone = input<NbButtonTone | undefined>(undefined);
   readonly shadow = input<NbButtonShadow>('default');
   readonly size = input<NbButtonSize>('md');
+  readonly fontSize = input<NbButtonFontSize | undefined>(undefined);
   readonly radius = input<NbButtonRadius | undefined>(undefined);
   readonly weight = input<NbButtonWeight>('bold');
   readonly transform = input<NbButtonTransform>('none');
@@ -107,6 +120,7 @@ export class NbButton {
       this.variantClass(),
       this.shadowClass(),
       this.sizeClass(),
+      this.fontSizeClass(),
       this.weightClass(),
       this.transformClass(),
       this.trackingClass(),
@@ -148,6 +162,11 @@ export class NbButton {
 
   private sizeClass(): string {
     return sizeMap[this.size()];
+  }
+
+  private fontSizeClass(): string {
+    const f = this.fontSize();
+    return f !== undefined ? fontSizeMap[f] : '';
   }
 
   private weightClass(): string {

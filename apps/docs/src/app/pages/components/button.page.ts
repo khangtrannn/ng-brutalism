@@ -300,6 +300,23 @@ import { DocsTokens } from '../../docs/docs-tokens';
                 <td
                   class="border-b-2 border-r-2 border-(--nb-border) px-4 py-3"
                 >
+                  fontSize
+                </td>
+                <td
+                  class="border-b-2 border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
+                >
+                  'sm' | 'base' | 'lg' | 'xl' | '2xl' | '3xl'
+                </td>
+                <td
+                  class="border-b-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
+                >
+                  undefined
+                </td>
+              </tr>
+              <tr>
+                <td
+                  class="border-b-2 border-r-2 border-(--nb-border) px-4 py-3"
+                >
                   tone
                 </td>
                 <td
@@ -425,9 +442,14 @@ import { DocsTokens } from '../../docs/docs-tokens';
                 <td class="border-b-2 border-(--nb-border) px-4 py-3 font-mono text-sm">undefined</td>
               </tr>
               <tr>
-                <td class="border-r-2 border-(--nb-border) px-4 py-3">push</td>
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">'none' | 'end'</td>
-                <td class="px-4 py-3 font-mono text-sm">'none'</td>
+                <td class="border-b-2 border-r-2 border-(--nb-border) px-4 py-3">push</td>
+                <td class="border-b-2 border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">'none' | 'end'</td>
+                <td class="border-b-2 border-(--nb-border) px-4 py-3 font-mono text-sm">'none'</td>
+              </tr>
+              <tr>
+                <td class="border-r-2 border-(--nb-border) px-4 py-3">icon</td>
+                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">string</td>
+                <td class="px-4 py-3 font-mono text-sm">undefined</td>
               </tr>
             </tbody>
           </table>
