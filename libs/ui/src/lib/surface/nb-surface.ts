@@ -66,7 +66,7 @@ export class NbSurface {
   readonly layout = input<NbSurfaceLayout>('block');
   readonly padding = input<NbSurfacePadding>('none');
   readonly edge = input<NbSurfaceEdge>('none');
-  readonly clip = input(false, { transform: booleanAttribute });
+  readonly clip = input<boolean, unknown>(false, { transform: booleanAttribute });
 
   protected readonly classes = computed(() =>
     nbClass(

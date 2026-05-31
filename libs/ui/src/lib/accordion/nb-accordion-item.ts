@@ -30,8 +30,10 @@ let nextAccordionItemId = 0;
 export class NbAccordionItem {
   private readonly id = nextAccordionItemId++;
 
-  readonly value = input(`neo-accordion-item-${this.id}`);
-  readonly disabled = input(false, { transform: booleanAttribute });
+  readonly value = input<string>(`neo-accordion-item-${this.id}`);
+  readonly disabled = input<boolean, unknown>(false, {
+    transform: booleanAttribute,
+  });
 
   private readonly accordion = inject(NB_ACCORDION);
 

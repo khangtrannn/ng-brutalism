@@ -1,5 +1,7 @@
 import { booleanAttribute, computed, Directive, input } from '@angular/core';
 
+import type { NbTone } from '../tokens/tone';
+
 export type NbTextSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
 
 export type NbTextWeight =
@@ -15,12 +17,10 @@ export type NbTextTone =
   | 'muted'
   | 'subtle'
   | 'inverse'
-  | 'primary'
-  | 'secondary'
-  | 'accent'
-  | 'danger'
-  | 'success'
-  | 'warning';
+  | Extract<
+      NbTone,
+      'primary' | 'secondary' | 'accent' | 'success' | 'warning' | 'danger'
+    >;
 
 export type NbTextTransform = 'none' | 'uppercase' | 'lowercase' | 'capitalize';
 
@@ -127,7 +127,7 @@ export class NbText {
    * Reset native paragraph/heading margins.
    * Default true so spacing comes from layout primitives (nbStack, nbCluster, etc.).
    */
-  readonly reset = input(true, { transform: booleanAttribute });
+  readonly reset = input<boolean, unknown>(true, { transform: booleanAttribute });
 
   protected readonly marginValue = computed(() => (this.reset() ? '0' : null));
 

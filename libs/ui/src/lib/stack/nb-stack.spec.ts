@@ -21,6 +21,28 @@ class DefaultStackTest {}
 })
 class DashedStackTest {}
 
+@Component({
+  imports: [NbStack],
+  template: `
+    <div nbStack divider="solid">
+      <span>One</span>
+      <span>Two</span>
+    </div>
+  `,
+})
+class SolidStackTest {}
+
+@Component({
+  imports: [NbStack],
+  template: `
+    <div nbStack divider="thick">
+      <span>One</span>
+      <span>Two</span>
+    </div>
+  `,
+})
+class ThickStackTest {}
+
 describe('NbStack', () => {
   it('applies default vertical rhythm classes and metadata', async () => {
     const fixture = await createFixture(DefaultStackTest);
@@ -60,8 +82,27 @@ describe('NbStack', () => {
       '[&>*+*]:border-t-(length:--nb-border-width)'
     );
     expect(stack.className).toContain('[&>*+*]:border-dashed');
-    expect(stack.className).toContain('[&>*+*]:border-t-[var(--nb-border)]');
+    expect(stack.className).toContain('[&>*+*]:[border-top-color:var(--nb-border)]');
     expect(stack.className).toContain('[&>*+*]:pt-[var(--nb-stack-gap)]');
+  });
+  it('solid divider uses explicit border-solid and explicit color', async () => {
+    const fixture = await createFixture(SolidStackTest);
+    const stack = fixture.nativeElement.querySelector('[nbStack]') as HTMLElement;
+
+    expect(stack.getAttribute('data-divider')).toBe('solid');
+    expect(stack.className).toContain('[&>*+*]:border-solid');
+    expect(stack.className).toContain('[&>*+*]:[border-top-color:var(--nb-border)]');
+    expect(stack.className).not.toContain('[&>*+*]:border-dashed');
+  });
+
+  it('thick divider uses a 4px solid top border', async () => {
+    const fixture = await createFixture(ThickStackTest);
+    const stack = fixture.nativeElement.querySelector('[nbStack]') as HTMLElement;
+
+    expect(stack.getAttribute('data-divider')).toBe('thick');
+    expect(stack.className).toContain('[&>*+*]:border-t-4');
+    expect(stack.className).toContain('[&>*+*]:border-solid');
+    expect(stack.className).toContain('[&>*+*]:[border-top-color:var(--nb-border)]');
   });
 });
 

@@ -97,7 +97,9 @@ interface IconToneDemo {
           <code class="font-mono">&lt;span&gt;</code>. Provide a
           <code class="font-mono">src</code> path and mark the icon as
           <code class="font-mono">decorative</code> or give it a
-          <code class="font-mono">label</code>.
+          <code class="font-mono">label</code>. The
+          <code class="font-mono">src</code> input is intended for trusted local
+          icon/image assets; do not pass unsanitized user-generated URLs.
         </p>
         <docs-code-block class="block mb-5" title="Import" [code]="importCode" />
         <docs-code-block title="Template" [code]="usageCode" />
@@ -167,7 +169,10 @@ interface IconToneDemo {
         <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">Accessibility</h2>
         <p class="mb-4 font-medium">
           Icons must be explicitly marked as decorative or meaningful. There is
-          no silent default — you must choose one.
+          no silent default — always provide either
+          <code class="font-mono">decorative</code> or
+          <code class="font-mono">label</code>. Avoid rendering a bare visual
+          icon with neither.
         </p>
         <div nbStack gap="md" class="mb-6">
           <div nbCallout tone="mint" size="sm">
@@ -254,7 +259,7 @@ interface IconToneDemo {
                 <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">src</td>
                 <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">string</td>
                 <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">required</td>
-                <td class="px-4 py-3">Path to the SVG or image asset.</td>
+                <td class="px-4 py-3">Path to a trusted local SVG or image asset. Do not pass unsanitized user-generated URLs.</td>
               </tr>
               <tr class="border-b-2 border-(--nb-border)">
                 <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">size</td>
@@ -342,7 +347,10 @@ export default class IconPage {
 <span nbIcon src="/icons/star.svg" size="lg" tone="warning" decorative></span>
 
 <!-- Meaningful — icon stands alone and must be labelled -->
-<span nbIcon src="/icons/star.svg" size="lg" tone="warning" label="Top rated"></span>`;
+<span nbIcon src="/icons/star.svg" size="lg" tone="warning" label="Top rated"></span>
+
+<!-- Avoid — ambiguous accessibility state -->
+<span nbIcon src="/icons/star.svg" size="lg" tone="warning"></span>`;
 
   protected readonly compositionCode = `<!-- Icons inside chips -->
 <div nbChipGroup>

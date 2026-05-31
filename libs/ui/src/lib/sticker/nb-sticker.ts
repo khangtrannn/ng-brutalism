@@ -178,9 +178,9 @@ interface NbStickerToneTokens {
 export class NbSticker {
   readonly shape = input<NbStickerShape>('burst');
   readonly tone = input<NbStickerTone>('mint');
-  readonly decorative = input(false, { transform: booleanAttribute });
-  readonly rotate = input(0, { transform: numberAttribute });
-  readonly size = input(1, { transform: numberAttribute });
+  readonly decorative = input<boolean, unknown>(false, { transform: booleanAttribute });
+  readonly rotate = input<number, unknown>(0, { transform: numberAttribute });
+  readonly size = input<number, unknown>(1, { transform: numberAttribute });
 
   protected readonly config = computed(() => NB_STICKER_PATHS[this.shape()]);
   protected readonly toneTokens = computed(

@@ -40,7 +40,7 @@ export class NbSection {
   readonly borderStyle = input<NbSectionBorderStyle>('solid');
   readonly layout = input<NbSectionLayout>('default');
   readonly align = input<NbSectionAlign>('stretch');
-  readonly flush = input(false, { transform: booleanAttribute });
+  readonly flush = input<boolean, unknown>(false, { transform: booleanAttribute });
 
   protected readonly classes = computed(() =>
     nbClass(

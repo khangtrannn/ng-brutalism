@@ -29,3 +29,5 @@ export type NbButtonIconSize = 'sm' | 'md' | 'lg';
 export type NbButtonIconShape = 'none' | 'square' | 'circle';
 
 export type NbButtonIconTone = 'default' | 'inverse' | 'current';
+
+export type NbButtonIconPush = 'none' | 'end';

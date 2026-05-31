@@ -18,6 +18,7 @@ export {
 export type { NbAccordionType, NbAccordionValue } from './lib/accordion';
 export { NbButton } from './lib/button';
 export type {
+  NbButtonIconPush,
   NbButtonIconShape,
   NbButtonIconSize,
   NbButtonIconTone,
@@ -102,8 +103,12 @@ export type { NbHalftonePosition } from './lib/halftone';
 export { NbSurface } from './lib/surface';
 export type {
   NbSurfaceBorder,
+  NbSurfaceEdge,
+  NbSurfaceLayout,
+  NbSurfacePadding,
   NbSurfaceRadius,
   NbSurfaceShadow,
+  NbSurfaceSize,
   NbSurfaceTone,
 } from './lib/surface';
 export { NbStack } from './lib/stack';

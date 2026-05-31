@@ -90,7 +90,7 @@ export class NbMediaItem {
   readonly size = input<NbMediaItemSize>('md');
   readonly tone = input<NbMediaItemTone>('default');
   readonly icon = input<string | undefined>(undefined);
-  readonly iconAlt = input('');
+  readonly iconAlt = input<string>('');
   readonly iconBackground = input<string | undefined>(undefined);
   readonly title = input<string | undefined>(undefined);
   readonly description = input<string | undefined>(undefined);
@@ -227,8 +227,8 @@ export class NbMediaItem {
   },
 })
 export class NbMediaItemIcon {
-  readonly surface = input(false, { transform: booleanAttribute });
-  readonly background = input('var(--nb-surface)');
+  readonly surface = input<boolean, unknown>(false, { transform: booleanAttribute });
+  readonly background = input<string>('var(--nb-surface)');
 
   protected readonly classes = computed(() =>
     nbClass('shrink-0', this.surface() && mediaItemIconClasses())

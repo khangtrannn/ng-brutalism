@@ -21,6 +21,29 @@ class DefaultClusterTest {}
 })
 class CustomClusterTest {}
 
+@Component({
+  imports: [NbCluster],
+  template: `
+    <div nbCluster gap="lg" divider="dashed">
+      <span>A</span>
+      <span>B</span>
+    </div>
+  `,
+})
+class DashedDividerClusterTest {}
+
+@Component({
+  imports: [NbCluster],
+  template: `<div nbCluster divider="solid"><span>A</span><span>B</span></div>`,
+})
+class SolidDividerClusterTest {}
+
+@Component({
+  imports: [NbCluster],
+  template: `<div nbCluster divider="thick"><span>A</span><span>B</span></div>`,
+})
+class ThickDividerClusterTest {}
+
 describe('NbCluster', () => {
   it('applies default horizontal rhythm classes and metadata', async () => {
     const fixture = await createFixture(DefaultClusterTest);
@@ -40,6 +63,64 @@ describe('NbCluster', () => {
     expect(cluster.className).toContain('items-center');
     expect(cluster.className).toContain('justify-start');
     expect(cluster.className).toContain('flex-wrap');
+  });
+
+  it('divider is none by default', async () => {
+    const fixture = await createFixture(DefaultClusterTest);
+    const cluster = fixture.nativeElement.querySelector('[nbCluster]') as HTMLElement;
+
+    expect(cluster.getAttribute('data-divider')).toBe('none');
+    expect(cluster.className).not.toContain('border-inline-start');
+    expect(cluster.className).toContain('gap-[var(--nb-cluster-gap)]');
+  });
+
+  it('dashed divider switches to row-gap-only mode and renders dividers', async () => {
+    const fixture = await createFixture(DashedDividerClusterTest);
+    const cluster = fixture.nativeElement.querySelector('[nbCluster]') as HTMLElement;
+
+    expect(cluster.getAttribute('data-divider')).toBe('dashed');
+    expect(cluster.className).toContain('gap-y-[var(--nb-cluster-gap)]');
+    expect(cluster.className).toContain('gap-x-0');
+    expect(cluster.className).toContain('[--nb-cluster-gap:1rem]');
+    expect(cluster.className).toContain(
+      '[--nb-cluster-divider-gap:calc(var(--nb-cluster-gap)*0.5)]'
+    );
+    expect(cluster.className).toContain('[&>*+*]:[margin-inline-start:var(--nb-cluster-divider-gap)]');
+    expect(cluster.className).toContain('[--nb-cluster-divider-color:var(--nb-border)]');
+    expect(cluster.className).toContain('[--nb-cluster-divider-thickness:2px]');
+    expect(cluster.className).toContain(
+      '[&>*+*]:[border-inline-start-color:var(--nb-cluster-divider-color)]'
+    );
+    expect(cluster.className).toContain('[&>*+*]:[border-inline-start-style:dashed]');
+    expect(cluster.className).toContain(
+      '[&>*+*]:[border-inline-start-width:var(--nb-cluster-divider-thickness)]'
+    );
+    expect(cluster.className).toContain('[&>*+*]:[padding-inline-start:var(--nb-cluster-divider-gap)]');
+    expect(cluster.className).not.toContain('gap-[var(--nb-cluster-gap)]');
+  });
+
+  it('solid divider renders with solid style', async () => {
+    const fixture = await createFixture(SolidDividerClusterTest);
+    const cluster = fixture.nativeElement.querySelector('[nbCluster]') as HTMLElement;
+
+    expect(cluster.getAttribute('data-divider')).toBe('solid');
+    expect(cluster.className).toContain('[&>*+*]:[border-inline-start-style:solid]');
+    expect(cluster.className).toContain('[--nb-cluster-divider-thickness:2px]');
+    expect(cluster.className).toContain(
+      '[&>*+*]:[border-inline-start-width:var(--nb-cluster-divider-thickness)]'
+    );
+  });
+
+  it('thick divider renders with 4px thickness token', async () => {
+    const fixture = await createFixture(ThickDividerClusterTest);
+    const cluster = fixture.nativeElement.querySelector('[nbCluster]') as HTMLElement;
+
+    expect(cluster.getAttribute('data-divider')).toBe('thick');
+    expect(cluster.className).toContain('[--nb-cluster-divider-thickness:4px]');
+    expect(cluster.className).toContain(
+      '[&>*+*]:[border-inline-start-width:var(--nb-cluster-divider-thickness)]'
+    );
+    expect(cluster.className).toContain('[&>*+*]:[border-inline-start-style:solid]');
   });
 
   it('maps gap, alignment, justification, and wrapping', async () => {

@@ -102,9 +102,13 @@ import { nbClass } from '../core/class';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NbMarquee {
-  readonly duration = input('5s');
-  readonly reverse = input(false, { transform: booleanAttribute });
-  readonly pauseOnHover = input(true, { transform: booleanAttribute });
+  readonly duration = input<string>('5s');
+  readonly reverse = input<boolean, unknown>(false, {
+    transform: booleanAttribute,
+  });
+  readonly pauseOnHover = input<boolean, unknown>(true, {
+    transform: booleanAttribute,
+  });
 
   private readonly wrapper =
     viewChild.required<ElementRef<HTMLElement>>('wrapper');

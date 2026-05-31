@@ -8,6 +8,7 @@ import {
   NbSurface,
   type NbSplitAlign,
   type NbSplitCollapse,
+  type NbSplitDivider,
   type NbSplitGap,
   type NbSplitPadding,
   type NbSplitRatio,
@@ -39,6 +40,11 @@ interface SplitCollapseDemo {
 
 interface SplitAlignDemo {
   readonly value: NbSplitAlign;
+  readonly label: string;
+}
+
+interface SplitDividerDemo {
+  readonly value: NbSplitDivider;
   readonly label: string;
 }
 
@@ -129,6 +135,9 @@ interface SplitAlignDemo {
           Add <code class="font-mono">nbSplit</code> to the parent that owns two
           regions. Use <code class="font-mono">ratio</code> to size the columns
           and <code class="font-mono">collapse</code> to choose when they stack.
+          Dividers are centered in the split gap, so avoid pairing
+          <code class="font-mono">divider</code> with
+          <code class="font-mono">gap="none"</code>.
         </p>
         <docs-code-block class="block mb-5" title="Import" [code]="importCode" />
         <docs-code-block title="Template" [code]="defaultExampleCode" />
@@ -256,6 +265,33 @@ interface SplitAlignDemo {
         </docs-example>
       </section>
 
+      <section id="dividers">
+        <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">
+          Dividers
+        </h2>
+        <docs-example [code]="dividerExampleCode">
+          <div class="grid w-full grid-cols-1 gap-4 p-4">
+            @for (divider of dividers; track divider.value) {
+              @if (divider.value !== 'none') {
+                <div nbSurface tone="cream" shadow="sm">
+                  <div
+                    nbSplit
+                    ratio="2:1"
+                    gap="lg"
+                    padding="md"
+                    collapse="none"
+                    [divider]="divider.value"
+                  >
+                    <span class="font-black">{{ divider.label }} main</span>
+                    <span class="font-medium">Aside</span>
+                  </div>
+                </div>
+              }
+            }
+          </div>
+        </docs-example>
+      </section>
+
       <section id="composition">
         <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">
           Composition
@@ -340,11 +376,17 @@ interface SplitAlignDemo {
                 <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">'md'</td>
                 <td class="px-4 py-3">Breakpoint where the layout switches from stacked to two columns.</td>
               </tr>
-              <tr>
+              <tr class="border-b-2 border-(--nb-border)">
                 <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">align</td>
                 <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">'start' | 'center' | 'end' | 'stretch'</td>
                 <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">'stretch'</td>
                 <td class="px-4 py-3">Cross-axis alignment for the two regions.</td>
+              </tr>
+              <tr>
+                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">divider</td>
+                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">'none' | 'solid' | 'dashed' | 'thick'</td>
+                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">'none'</td>
+                <td class="px-4 py-3">Inline divider between the two regions. Use with a non-zero gap.</td>
               </tr>
             </tbody>
           </table>
@@ -389,6 +431,21 @@ export default class SplitPage {
 <div nbSplit align="center">...</div>
 <div nbSplit align="end">...</div>
 <div nbSplit align="stretch">...</div>`;
+
+  protected readonly dividerExampleCode = `<div nbSplit ratio="2:1" gap="lg" divider="solid">
+  <div>Main</div>
+  <div>Aside</div>
+</div>
+
+<div nbSplit ratio="2:1" gap="lg" divider="dashed">
+  <div>Main</div>
+  <div>Aside</div>
+</div>
+
+<div nbSplit ratio="2:1" gap="lg" divider="thick">
+  <div>Main</div>
+  <div>Aside</div>
+</div>`;
 
   protected readonly compositionExampleCode = `<div nbSplit ratio="2:1" gap="xl" padding="lg" collapse="md">
   <div nbStack gap="lg">
@@ -439,4 +496,11 @@ export default class SplitPage {
     { value: 'end', label: 'end' },
     { value: 'stretch', label: 'stretch' },
   ] satisfies readonly SplitAlignDemo[];
+
+  protected readonly dividers = [
+    { value: 'none', label: 'none' },
+    { value: 'solid', label: 'solid' },
+    { value: 'dashed', label: 'dashed' },
+    { value: 'thick', label: 'thick' },
+  ] satisfies readonly SplitDividerDemo[];
 }

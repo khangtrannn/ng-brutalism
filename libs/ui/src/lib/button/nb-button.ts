@@ -1,4 +1,4 @@
-import { Directive, computed, input } from '@angular/core';
+import { Directive, booleanAttribute, computed, input } from '@angular/core';
 
 import { nbClass } from '../core/class';
 import { nbToneTokens } from '../tokens/tone';
@@ -69,7 +69,7 @@ export class NbButton {
   readonly weight = input<NbButtonWeight>('bold');
   readonly transform = input<NbButtonTransform>('none');
   readonly tracking = input<NbButtonTracking>('normal');
-  readonly fullWidth = input(false);
+  readonly fullWidth = input<boolean, unknown>(false, { transform: booleanAttribute });
 
   protected readonly toneBg = computed(() => {
     const t = this.tone();
@@ -92,11 +92,12 @@ export class NbButton {
       '[--nb-button-bg:var(--nb-main)]',
       '[--nb-button-fg:var(--nb-main-foreground)]',
       '[--nb-button-border:var(--nb-border)]',
+      '[--nb-button-border-width:var(--nb-border-width)]',
       '[--nb-button-radius:var(--nb-radius)]',
       '[--nb-button-shadow:var(--nb-shadow-offset-x)_var(--nb-shadow-offset-y)_0_var(--nb-shadow)]',
       'bg-(--nb-button-bg) text-(--nb-button-fg)',
       'rounded-(--nb-button-radius)',
-      'border-2 border-(--nb-button-border)',
+      'border-(length:--nb-button-border-width) border-(--nb-button-border)',
       'shadow-[var(--nb-button-shadow)]',
       'transition-all duration-150 ease-out',
       '[&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0',
