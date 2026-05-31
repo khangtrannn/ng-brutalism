@@ -127,6 +127,7 @@ export const docsNavGroups: readonly DocsNavGroup[] = [
           { label: 'Alignment', fragment: 'alignment' },
           { label: 'Justification', fragment: 'justification' },
           { label: 'Wrapping', fragment: 'wrapping' },
+          { label: 'Dividers', fragment: 'dividers' },
           { label: 'Composition', fragment: 'composition' },
           { label: 'Responsive gap', fragment: 'responsive' },
           { label: 'API', fragment: 'api' },
