@@ -103,8 +103,12 @@ export type { NbHalftonePosition } from './lib/halftone';
 export { NbSurface } from './lib/surface';
 export type {
   NbSurfaceBorder,
+  NbSurfaceEdge,
+  NbSurfaceLayout,
+  NbSurfacePadding,
   NbSurfaceRadius,
   NbSurfaceShadow,
+  NbSurfaceSize,
   NbSurfaceTone,
 } from './lib/surface';
 export { NbStack } from './lib/stack';

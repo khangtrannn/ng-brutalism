@@ -17,7 +17,7 @@ import { JobCard } from './job-card';
           <h1>Job Card</h1>
           <p class="mt-3 max-w-3xl text-base font-medium sm:text-lg">
             A brutalist job-posting card composing the same primitives as the
-            travel card — display, sticker, chip, callout, media item, and CTA
+            travel card — display, icon, chip, callout, media item, and CTA
             — but in a different domain. Validates that the composition layer is
             truly domain-agnostic.
           </p>
@@ -25,7 +25,7 @@ import { JobCard } from './job-card';
 
         <div class="mt-7 flex flex-wrap items-center gap-3">
           <div class="nb-stat-tile nb-stat-tile--yellow">
-            <span class="nb-stat-tile__value">11</span>
+            <span class="nb-stat-tile__value">13</span>
             <span class="nb-stat-tile__label">Primitives</span>
           </div>
           <div class="nb-stat-tile nb-stat-tile--mint">
@@ -137,6 +137,11 @@ export default class JobCardRecipePage {
       role: 'salary callout',
     },
     {
+      name: 'NbIcon',
+      path: '/components/icon',
+      role: 'company logo and supporting icon marks',
+    },
+    {
       name: 'NbMediaItem',
       path: '/components/media-item',
       role: 'icon + label job requirements',
@@ -145,6 +150,11 @@ export default class JobCardRecipePage {
       name: 'NbButton',
       path: '/components/button',
       role: 'apply now call to action',
+    },
+    {
+      name: 'NbButtonTrailingIcon',
+      path: '/components/button',
+      role: 'CTA affordance inside the button',
     },
   ];
 
@@ -161,7 +171,6 @@ export default class JobCardRecipePage {
   NbSection,
   NbSplit,
   NbStack,
-  NbSticker,
   NbSurface,
   NbText,
 } from '@ng-brutalism/ui';`;

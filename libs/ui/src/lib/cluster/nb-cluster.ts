@@ -108,22 +108,26 @@ export class NbCluster {
 // Written as module-level constants so Tailwind's static scanner emits the classes.
 const dividerBaseClass = nbClass(
   '[--nb-cluster-divider-gap:calc(var(--nb-cluster-gap)*0.5)]',
+  '[--nb-cluster-divider-color:var(--nb-border)]',
   '[&>*+*]:[margin-inline-start:var(--nb-cluster-divider-gap)]',
   '[&>*+*]:[padding-inline-start:var(--nb-cluster-divider-gap)]',
-  '[&>*+*]:[border-inline-start-color:var(--nb-border)]'
+  '[&>*+*]:[border-inline-start-color:var(--nb-cluster-divider-color)]'
 );
 
 const dividerStyleClass: Record<Exclude<NbClusterDivider, 'none'>, string> = {
   solid: nbClass(
-    '[&>*+*]:[border-inline-start-width:2px]',
+    '[--nb-cluster-divider-thickness:2px]',
+    '[&>*+*]:[border-inline-start-width:var(--nb-cluster-divider-thickness)]',
     '[&>*+*]:[border-inline-start-style:solid]'
   ),
   dashed: nbClass(
-    '[&>*+*]:[border-inline-start-width:2px]',
+    '[--nb-cluster-divider-thickness:2px]',
+    '[&>*+*]:[border-inline-start-width:var(--nb-cluster-divider-thickness)]',
     '[&>*+*]:[border-inline-start-style:dashed]'
   ),
   thick: nbClass(
-    '[&>*+*]:[border-inline-start-width:4px]',
+    '[--nb-cluster-divider-thickness:4px]',
+    '[&>*+*]:[border-inline-start-width:var(--nb-cluster-divider-thickness)]',
     '[&>*+*]:[border-inline-start-style:solid]'
   ),
 };

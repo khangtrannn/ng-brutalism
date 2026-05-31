@@ -86,8 +86,15 @@ describe('NbCluster', () => {
       '[--nb-cluster-divider-gap:calc(var(--nb-cluster-gap)*0.5)]'
     );
     expect(cluster.className).toContain('[&>*+*]:[margin-inline-start:var(--nb-cluster-divider-gap)]');
-    expect(cluster.className).toContain('[&>*+*]:[border-inline-start-color:var(--nb-border)]');
+    expect(cluster.className).toContain('[--nb-cluster-divider-color:var(--nb-border)]');
+    expect(cluster.className).toContain('[--nb-cluster-divider-thickness:2px]');
+    expect(cluster.className).toContain(
+      '[&>*+*]:[border-inline-start-color:var(--nb-cluster-divider-color)]'
+    );
     expect(cluster.className).toContain('[&>*+*]:[border-inline-start-style:dashed]');
+    expect(cluster.className).toContain(
+      '[&>*+*]:[border-inline-start-width:var(--nb-cluster-divider-thickness)]'
+    );
     expect(cluster.className).toContain('[&>*+*]:[padding-inline-start:var(--nb-cluster-divider-gap)]');
     expect(cluster.className).not.toContain('gap-[var(--nb-cluster-gap)]');
   });
@@ -98,15 +105,21 @@ describe('NbCluster', () => {
 
     expect(cluster.getAttribute('data-divider')).toBe('solid');
     expect(cluster.className).toContain('[&>*+*]:[border-inline-start-style:solid]');
-    expect(cluster.className).toContain('[&>*+*]:[border-inline-start-width:2px]');
+    expect(cluster.className).toContain('[--nb-cluster-divider-thickness:2px]');
+    expect(cluster.className).toContain(
+      '[&>*+*]:[border-inline-start-width:var(--nb-cluster-divider-thickness)]'
+    );
   });
 
-  it('thick divider renders with 4px width', async () => {
+  it('thick divider renders with 4px thickness token', async () => {
     const fixture = await createFixture(ThickDividerClusterTest);
     const cluster = fixture.nativeElement.querySelector('[nbCluster]') as HTMLElement;
 
     expect(cluster.getAttribute('data-divider')).toBe('thick');
-    expect(cluster.className).toContain('[&>*+*]:[border-inline-start-width:4px]');
+    expect(cluster.className).toContain('[--nb-cluster-divider-thickness:4px]');
+    expect(cluster.className).toContain(
+      '[&>*+*]:[border-inline-start-width:var(--nb-cluster-divider-thickness)]'
+    );
     expect(cluster.className).toContain('[&>*+*]:[border-inline-start-style:solid]');
   });
 

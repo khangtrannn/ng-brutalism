@@ -8,7 +8,7 @@ export type NbStackAlign = 'stretch' | 'start' | 'center' | 'end';
 
 export type NbStackJustify = 'start' | 'center' | 'end' | 'between';
 
-export type NbStackDivider = 'none' | 'solid' | 'dashed';
+export type NbStackDivider = 'none' | 'solid' | 'dashed' | 'thick';
 
 @Directive({
   selector: '[nbStack]',
@@ -86,6 +86,12 @@ export class NbStack {
       dashed: nbClass(
         '[&>*+*]:border-t-(length:--nb-border-width)',
         '[&>*+*]:border-dashed',
+        '[&>*+*]:[border-top-color:var(--nb-border)]',
+        '[&>*+*]:pt-[var(--nb-stack-gap)]'
+      ),
+      thick: nbClass(
+        '[&>*+*]:border-t-4',
+        '[&>*+*]:border-solid',
         '[&>*+*]:[border-top-color:var(--nb-border)]',
         '[&>*+*]:pt-[var(--nb-stack-gap)]'
       ),

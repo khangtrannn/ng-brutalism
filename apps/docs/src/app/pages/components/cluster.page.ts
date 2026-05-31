@@ -280,9 +280,9 @@ interface ClusterDividerDemo {
           between cluster children. When a divider is active, gap is collapsed to
           <code class="font-mono">gap-x-0</code> and children split
           <code class="font-mono">--nb-cluster-gap</code> across divider margin
-          and padding. Best for
-          single-line clusters — wrapping rows may keep their divider regardless
-          of position.
+          and padding. Use dividers only for clusters that stay on one visual
+          row; wrapped rows cannot detect line starts, so a wrapped child may
+          still render a leading divider.
         </p>
         <docs-example [code]="dividersExampleCode">
           <div class="grid w-full grid-cols-1 gap-4 p-4">

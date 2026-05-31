@@ -62,11 +62,11 @@ export const docsNavGroups: readonly DocsNavGroup[] = [
         toc: [
           { label: 'Overview', fragment: 'overview' },
           { label: 'Preview', fragment: 'preview' },
-          { label: 'Installation', fragment: 'installation' },
           { label: 'Usage', fragment: 'usage' },
-          { label: 'Examples', fragment: 'examples' },
           { label: 'Variants', fragment: 'variants' },
           { label: 'Sizes', fragment: 'sizes' },
+          { label: 'CTA', fragment: 'cta' },
+          { label: 'Trailing Icon', fragment: 'trailing-icon' },
           { label: 'Full width', fragment: 'full-width' },
           { label: 'Disabled', fragment: 'disabled' },
           { label: 'Anchor usage', fragment: 'anchor-usage' },
@@ -352,6 +352,7 @@ export const docsNavGroups: readonly DocsNavGroup[] = [
           { label: 'Gaps and padding', fragment: 'gaps-padding' },
           { label: 'Collapse', fragment: 'collapse' },
           { label: 'Alignment', fragment: 'alignment' },
+          { label: 'Dividers', fragment: 'dividers' },
           { label: 'Composition', fragment: 'composition' },
           { label: 'API', fragment: 'api' },
         ],
@@ -423,6 +424,16 @@ export const docsNavGroups: readonly DocsNavGroup[] = [
       {
         label: 'Travel Card',
         path: '/recipes/travel-card',
+        toc: [
+          { label: 'Overview', fragment: 'overview' },
+          { label: 'Preview', fragment: 'preview' },
+          { label: 'Code', fragment: 'code' },
+          { label: 'Primitives used', fragment: 'primitives' },
+        ],
+      },
+      {
+        label: 'Job Card',
+        path: '/recipes/job-card',
         toc: [
           { label: 'Overview', fragment: 'overview' },
           { label: 'Preview', fragment: 'preview' },

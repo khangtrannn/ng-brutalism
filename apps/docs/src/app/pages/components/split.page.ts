@@ -8,6 +8,7 @@ import {
   NbSurface,
   type NbSplitAlign,
   type NbSplitCollapse,
+  type NbSplitDivider,
   type NbSplitGap,
   type NbSplitPadding,
   type NbSplitRatio,
@@ -39,6 +40,11 @@ interface SplitCollapseDemo {
 
 interface SplitAlignDemo {
   readonly value: NbSplitAlign;
+  readonly label: string;
+}
+
+interface SplitDividerDemo {
+  readonly value: NbSplitDivider;
   readonly label: string;
 }
 
@@ -259,6 +265,33 @@ interface SplitAlignDemo {
         </docs-example>
       </section>
 
+      <section id="dividers">
+        <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">
+          Dividers
+        </h2>
+        <docs-example [code]="dividerExampleCode">
+          <div class="grid w-full grid-cols-1 gap-4 p-4">
+            @for (divider of dividers; track divider.value) {
+              @if (divider.value !== 'none') {
+                <div nbSurface tone="cream" shadow="sm">
+                  <div
+                    nbSplit
+                    ratio="2:1"
+                    gap="lg"
+                    padding="md"
+                    collapse="none"
+                    [divider]="divider.value"
+                  >
+                    <span class="font-black">{{ divider.label }} main</span>
+                    <span class="font-medium">Aside</span>
+                  </div>
+                </div>
+              }
+            }
+          </div>
+        </docs-example>
+      </section>
+
       <section id="composition">
         <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">
           Composition
@@ -399,6 +432,21 @@ export default class SplitPage {
 <div nbSplit align="end">...</div>
 <div nbSplit align="stretch">...</div>`;
 
+  protected readonly dividerExampleCode = `<div nbSplit ratio="2:1" gap="lg" divider="solid">
+  <div>Main</div>
+  <div>Aside</div>
+</div>
+
+<div nbSplit ratio="2:1" gap="lg" divider="dashed">
+  <div>Main</div>
+  <div>Aside</div>
+</div>
+
+<div nbSplit ratio="2:1" gap="lg" divider="thick">
+  <div>Main</div>
+  <div>Aside</div>
+</div>`;
+
   protected readonly compositionExampleCode = `<div nbSplit ratio="2:1" gap="xl" padding="lg" collapse="md">
   <div nbStack gap="lg">
     ...
@@ -448,4 +496,11 @@ export default class SplitPage {
     { value: 'end', label: 'end' },
     { value: 'stretch', label: 'stretch' },
   ] satisfies readonly SplitAlignDemo[];
+
+  protected readonly dividers = [
+    { value: 'none', label: 'none' },
+    { value: 'solid', label: 'solid' },
+    { value: 'dashed', label: 'dashed' },
+    { value: 'thick', label: 'thick' },
+  ] satisfies readonly SplitDividerDemo[];
 }

@@ -12,7 +12,6 @@ import {
   NbSection,
   NbSplit,
   NbStack,
-  NbSticker,
   NbSurface,
   NbText,
 } from '@ng-brutalism/ui';
@@ -32,7 +31,6 @@ import {
     NbSection,
     NbSplit,
     NbStack,
-    NbSticker,
     NbSurface,
     NbText,
   ],
