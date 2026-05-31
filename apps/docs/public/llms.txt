@@ -52,4 +52,5 @@
 - [Neo-Brutalist Angular Title | Ng Brutalism](https://ngbrutalism.khangtran.dev/components/title/): Neo-brutalist Title component for Angular. Decorative heading with custom wave underline and mixed content support.
 - [Travel Card | Ng Brutalism](https://ngbrutalism.khangtran.dev/recipes/travel-card/): Build a loud travel card recipe from reusable ng-brutalism primitives like Surface, Stack, Cluster, Split, and Media Item.
 - [Job Card | Ng Brutalism](https://ngbrutalism.khangtran.dev/recipes/job-card/): Build a dense job card recipe from reusable ng-brutalism primitives for Angular listings, actions, and metadata.
+- [Podcast Card | Ng Brutalism](https://ngbrutalism.khangtran.dev/recipes/podcast-card/): Podcast Card recipe for Ng Brutalism. Compose neo-brutalist Angular primitives into a bold audio episode card with chips, host metadata, waveform player, and CTA.
 - [Portfolio Showcase | Ng Brutalism](https://ngbrutalism.khangtran.dev/showcase/portfolio/): Portfolio showcase built with Ng Brutalism — see the neo-brutalist Angular UI library in action.

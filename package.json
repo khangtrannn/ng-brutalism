@@ -8,7 +8,8 @@
   "scripts": {
     "analytics:report": "tsx tools/analytics-report/src/index.ts",
     "build:ui": "nx build ui",
-    "build:docs": "nx run docs:build-seo-artifacts",
+    "build:docs": "nx run docs:build-seo-artifacts && pnpm validate:docs-routes",
+    "validate:docs-routes": "node apps/docs/scripts/validate-public-routes.mjs",
     "e2e:docs": "nx e2e docs",
     "serve:docs": "nx serve docs",
     "sync:repo-metadata": "node scripts/sync-repository-metadata.mjs",

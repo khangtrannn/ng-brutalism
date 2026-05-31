@@ -259,6 +259,11 @@
     <changefreq>monthly</changefreq>
   </url>
   <url>
+    <loc>https://ngbrutalism.khangtran.dev/recipes/podcast-card/</loc>
+    <priority>0.6</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
     <loc>https://ngbrutalism.khangtran.dev/showcase/portfolio/</loc>
     <lastmod>2026-05-21T11:30:33+07:00</lastmod>
     <priority>0.6</priority>

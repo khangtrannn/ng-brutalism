@@ -1,53 +1,8 @@
 import { test, expect } from '@playwright/test';
 
-// Public docs routes that should be prerendered and load successfully.
-// Keep in sync with apps/docs/src/app/docs/docs-public-routes.ts
-const PUBLIC_ROUTES = [
-  '/',
-  '/docs/introduction',
-  '/docs/installation',
-  '/docs/inspired-designs',
-  '/docs/faq',
-  '/components/button',
-  '/components/card',
-  '/components/dialog',
-  '/components/accordion',
-  '/components/input',
-  '/components/input-group',
-  '/components/avatar',
-  '/components/avatar-group',
-  '/components/badge',
-  '/components/callout',
-  '/components/checkbox',
-  '/components/chip',
-  '/components/cluster',
-  '/components/display',
-  '/components/halftone',
-  '/components/icon',
-  '/components/icon-button',
-  '/components/image-card',
-  '/components/label',
-  '/components/marquee',
-  '/components/media-frame',
-  '/components/media-item',
-  '/components/progress',
-  '/components/rating',
-  '/components/select',
-  '/components/separator',
-  '/components/section',
-  '/components/split',
-  '/components/stack',
-  '/components/stat',
-  '/components/status-dot',
-  '/components/sticker',
-  '/components/surface',
-  '/components/text',
-  '/components/textarea',
-  '/components/title',
-  '/recipes/travel-card',
-  '/recipes/job-card',
-  '/showcase/portfolio',
-];
+import { DOCS_PUBLIC_ROUTES } from '../src/app/docs/docs-public-routes';
+
+const PUBLIC_ROUTES = DOCS_PUBLIC_ROUTES.map((route) => route.path);
 
 for (const route of PUBLIC_ROUTES) {
   test(`loads ${route}`, async ({ page }) => {

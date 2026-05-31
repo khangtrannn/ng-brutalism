@@ -442,6 +442,16 @@ export const docsNavGroups: readonly DocsNavGroup[] = [
           { label: 'Primitives used', fragment: 'primitives' },
         ],
       },
+      {
+        label: 'Podcast Card',
+        path: '/recipes/podcast-card',
+        toc: [
+          { label: 'Overview', fragment: 'overview' },
+          { label: 'Preview', fragment: 'preview' },
+          { label: 'Code', fragment: 'code' },
+          { label: 'Primitives used', fragment: 'primitives' },
+        ],
+      },
     ],
   },
 ];

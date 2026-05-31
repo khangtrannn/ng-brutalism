@@ -131,6 +131,8 @@ export const PAGE_DESCRIPTIONS: Record<string, string> = {
     'Build a loud travel card recipe from reusable ng-brutalism primitives like Surface, Stack, Cluster, Split, and Media Item.',
   '/recipes/job-card':
     'Build a dense job card recipe from reusable ng-brutalism primitives for Angular listings, actions, and metadata.',
+  '/recipes/podcast-card':
+    'Podcast Card recipe for Ng Brutalism. Compose neo-brutalist Angular primitives into a bold audio episode card with chips, host metadata, waveform player, and CTA.',
 
   // Showcase
   '/showcase/portfolio':
