@@ -4,6 +4,7 @@ import {
   NbButtonTrailingIcon,
   NbCallout,
   NbChip,
+  NbChipTone,
   NbCluster,
   NbDisplay,
   NbHalftone,
@@ -101,41 +102,19 @@ import {
               </h1>
 
               <div nbCluster gap="sm">
-                <span
-                  nbChip
-                  tone="mint"
-                  padding="lg"
-                  radius="sm"
-                  shadow="none"
-                  icon="/podcast-card/clock.svg"
-                  class="uppercase text-sm font-black"
-                >
-                  45 MIN
-                </span>
-
-                <span
-                  nbChip
-                  tone="lavender"
-                  padding="lg"
-                  radius="sm"
-                  shadow="none"
-                  icon="/podcast-card/sparkle.svg"
-                  class="uppercase text-sm font-black"
-                >
-                  NEW
-                </span>
-
-                <span
-                  nbChip
-                  tone="pink"
-                  padding="lg"
-                  radius="sm"
-                  shadow="none"
-                  icon="/podcast-card/user.svg"
-                  class="uppercase text-sm font-black"
-                >
-                  UX
-                </span>
+                @for (stat of stats; track $index) {
+                  <span
+                    nbChip
+                    [tone]="stat.tone"
+                    padding="lg"
+                    radius="sm"
+                    shadow="none"
+                    [icon]="stat.icon"
+                    class="uppercase text-sm font-black"
+                  >
+                    {{ stat.label }}
+                  </span>
+                }
               </div>
 
               <div nbSplit ratio="fill:auto">
@@ -213,7 +192,7 @@ import {
                   weight="black"
                   transform="uppercase"
                   tracking="wide"
-                  class="min-w-0 flex-1"
+                  class="flex-1"
                 >
                   Listen Now
 
@@ -270,4 +249,22 @@ import {
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class PodcastCard {}
+export class PodcastCard {
+  protected readonly stats = [
+    {
+      label: '45 MIN',
+      tone: 'mint' as NbChipTone,
+      icon: '/podcast-card/clock.svg',
+    },
+    {
+      label: 'NEW',
+      tone: 'lavender' as NbChipTone,
+      icon: '/podcast-card/sparkle.svg',
+    },
+    {
+      label: 'UX',
+      tone: 'pink' as NbChipTone,
+      icon: '/podcast-card/user.svg',
+    }
+  ]
+}
