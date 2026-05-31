@@ -39,6 +39,14 @@ class ToneSurfaceTest {
 
 @Component({
   imports: [NbSurface],
+  template: `<div nbSurface style="--nb-surface-bg: #fff1dc">
+    Custom background
+  </div>`,
+})
+class CustomBgSurfaceTest {}
+
+@Component({
+  imports: [NbSurface],
   template: `
     <section
       nbSurface
@@ -87,15 +95,19 @@ describe('NbSurface', () => {
     expect(surface.getAttribute('data-padding')).toBe('none');
     expect(surface.getAttribute('data-edge')).toBe('none');
     expect(surface.className).toContain('relative');
-    expect(surface.className).toContain('bg-(--nb-surface-bg)');
-    expect(surface.className).toContain('text-(--nb-surface-fg)');
+    expect(surface.className).toContain(
+      'bg-[var(--nb-surface-bg,var(--nb-surface-bg-base))]'
+    );
+    expect(surface.className).toContain(
+      'text-[var(--nb-surface-fg,var(--nb-surface-fg-base))]'
+    );
     expect(surface.className).toContain(
       'border-(length:--nb-surface-border-width)'
     );
     expect(surface.className).toContain('border-(--nb-surface-border)');
     expect(surface.className).toContain('rounded-(--nb-surface-radius)');
     expect(surface.className).toContain('shadow-[var(--nb-surface-shadow)]');
-    expect(surface.style.getPropertyValue('--nb-surface-bg')).toBe(
+    expect(surface.style.getPropertyValue('--nb-surface-bg-base')).toBe(
       'var(--nb-surface)'
     );
     expect(surface.className).toContain(
@@ -119,7 +131,7 @@ describe('NbSurface', () => {
     expect(surface.getAttribute('data-shadow')).toBe('heavy');
     expect(surface.getAttribute('data-size')).toBe('lg');
     expect(surface.getAttribute('data-layout')).toBe('center');
-    expect(surface.style.getPropertyValue('--nb-surface-bg')).toBe(
+    expect(surface.style.getPropertyValue('--nb-surface-bg-base')).toBe(
       'var(--nb-cream)'
     );
     expect(surface.className).toContain('[--nb-surface-radius:1.5rem]');
@@ -152,9 +164,24 @@ describe('NbSurface', () => {
       ) as HTMLElement;
 
       expect(surface.getAttribute('data-tone')).toBe(tone);
-      expect(surface.style.getPropertyValue('--nb-surface-bg')).toBe(color);
+      expect(surface.style.getPropertyValue('--nb-surface-bg-base')).toBe(color);
     }
   );
+
+  it('lets a consumer override --nb-surface-bg without it being clobbered by the tone', async () => {
+    const fixture = await createFixture(CustomBgSurfaceTest);
+    const surface = fixture.nativeElement.querySelector(
+      '[nbSurface]'
+    ) as HTMLElement;
+
+    // Tone still drives the base var...
+    expect(surface.style.getPropertyValue('--nb-surface-bg-base')).toBe(
+      'var(--nb-surface)'
+    );
+    // ...but the consumer's inline override survives because the directive
+    // no longer writes --nb-surface-bg itself.
+    expect(surface.style.getPropertyValue('--nb-surface-bg')).toBe('#fff1dc');
+  });
 
   it('supports a base radius between sm and lg for compact icon surfaces', async () => {
     @Component({

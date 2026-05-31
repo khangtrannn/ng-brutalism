@@ -53,8 +53,8 @@ export type NbSurfaceEdge = 'none' | 'top' | 'bottom';
     '[attr.data-layout]': 'layout()',
     '[attr.data-padding]': 'padding()',
     '[attr.data-edge]': 'edge()',
-    '[style.--nb-surface-bg]': 'toneTokens().bg',
-    '[style.--nb-surface-fg]': 'toneTokens().fg',
+    '[style.--nb-surface-bg-base]': 'toneTokens().bg',
+    '[style.--nb-surface-fg-base]': 'toneTokens().fg',
   },
 })
 export class NbSurface {
@@ -71,7 +71,7 @@ export class NbSurface {
   protected readonly classes = computed(() =>
     nbClass(
       'relative',
-      'bg-(--nb-surface-bg) text-(--nb-surface-fg)',
+      'bg-[var(--nb-surface-bg,var(--nb-surface-bg-base))] text-[var(--nb-surface-fg,var(--nb-surface-fg-base))]',
       'border-(length:--nb-surface-border-width) border-(--nb-surface-border)',
       'rounded-(--nb-surface-radius)',
       'shadow-[var(--nb-surface-shadow)]',

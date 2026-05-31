@@ -671,13 +671,25 @@ const componentTokens: Record<DocsTokenComponent, DocsToken[]> = {
   surface: [
     {
       name: '--nb-surface-bg',
+      defaultValue: 'var(--nb-surface-bg-base)',
+      usage:
+        'Surface background color. Set inline to override; falls back to the tone-driven base.',
+    },
+    {
+      name: '--nb-surface-bg-base',
       defaultValue: 'var(--nb-surface)',
-      usage: 'Surface background color. Reassigned by the tone input.',
+      usage: 'Tone-driven background base. Reassigned by the tone input.',
     },
     {
       name: '--nb-surface-fg',
+      defaultValue: 'var(--nb-surface-fg-base)',
+      usage:
+        'Surface foreground color. Set inline to override; falls back to the tone-driven base.',
+    },
+    {
+      name: '--nb-surface-fg-base',
       defaultValue: 'var(--nb-surface-foreground)',
-      usage: 'Surface foreground color. Reassigned by the tone input.',
+      usage: 'Tone-driven foreground base. Reassigned by the tone input.',
     },
     {
       name: '--nb-surface-border',

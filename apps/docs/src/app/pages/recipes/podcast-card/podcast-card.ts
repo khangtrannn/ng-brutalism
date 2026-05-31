@@ -50,7 +50,6 @@ import {
           shadow="hard"
           radius="xl"
           class="relative z-10 w-full overflow-hidden"
-          style="--nb-surface-bg: #fffaf2"
         >
           <div nbSection padding="lg" class="relative z-10">
             <div nbStack gap="lg">
