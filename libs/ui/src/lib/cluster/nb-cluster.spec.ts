@@ -23,6 +23,12 @@ class CustomClusterTest {}
 
 @Component({
   imports: [NbCluster],
+  template: `<div nbCluster padding="lg">Padded cluster</div>`,
+})
+class PaddedClusterTest {}
+
+@Component({
+  imports: [NbCluster],
   template: `
     <div nbCluster gap="lg" divider="dashed">
       <span>A</span>
@@ -56,6 +62,7 @@ describe('NbCluster', () => {
     expect(cluster.getAttribute('data-align')).toBe('center');
     expect(cluster.getAttribute('data-justify')).toBe('start');
     expect(cluster.getAttribute('data-wrap')).toBe('wrap');
+    expect(cluster.getAttribute('data-padding')).toBe('none');
     expect(cluster.className).toContain('flex');
     expect(cluster.className).toContain('min-w-0');
     expect(cluster.className).toContain('gap-[var(--nb-cluster-gap)]');
@@ -121,6 +128,14 @@ describe('NbCluster', () => {
       '[&>*+*]:[border-inline-start-width:var(--nb-cluster-divider-thickness)]'
     );
     expect(cluster.className).toContain('[&>*+*]:[border-inline-start-style:solid]');
+  });
+
+  it('applies padding scale when set', async () => {
+    const fixture = await createFixture(PaddedClusterTest);
+    const cluster = fixture.nativeElement.querySelector('[nbCluster]') as HTMLElement;
+
+    expect(cluster.getAttribute('data-padding')).toBe('lg');
+    expect(cluster.className).toContain('p-6');
   });
 
   it('maps gap, alignment, justification, and wrapping', async () => {

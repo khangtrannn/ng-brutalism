@@ -47,7 +47,7 @@ import {
     }
   `,
   template: `
-    <div nbCluster justify="center" class="overflow-visible px-6 py-8">
+    <div nbCluster justify="center" padding="lg" class="overflow-visible">
       <div class="relative w-full overflow-visible">
         <div
           nbSurface

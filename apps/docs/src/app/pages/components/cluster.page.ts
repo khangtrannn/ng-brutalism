@@ -420,6 +420,26 @@ interface ClusterDividerDemo {
                 <td
                   class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
                 >
+                  padding
+                </td>
+                <td
+                  class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
+                >
+                  'none' | 'xs' | 'sm' | 'md' | 'lg' | 'xl'
+                </td>
+                <td
+                  class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
+                >
+                  'none'
+                </td>
+                <td class="px-4 py-3">
+                  Uniform inner padding around the cluster's children.
+                </td>
+              </tr>
+              <tr class="border-b-2 border-(--nb-border)">
+                <td
+                  class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
+                >
                   align
                 </td>
                 <td
