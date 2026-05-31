@@ -1,4 +1,11 @@
-import { booleanAttribute, computed, Directive, input } from '@angular/core';
+import {
+  booleanAttribute,
+  computed,
+  Directive,
+  effect,
+  input,
+  isDevMode,
+} from '@angular/core';
 
 export type NbIconSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
 
@@ -81,8 +88,12 @@ export class NbIcon {
   readonly mode = input<NbIconMode>('mask');
   readonly size = input<NbIconSize>('md');
   readonly tone = input<NbIconTone>('current');
-  readonly decorative = input<boolean, unknown>(false, { transform: booleanAttribute });
+  readonly decorative = input<boolean, unknown>(false, {
+    transform: booleanAttribute,
+  });
   readonly label = input<string | null>(null);
+
+  private hasWarnedAboutMissingA11y = false;
 
   protected readonly sizeValue = computed(() => sizeMap[this.size()]);
   protected readonly toneValue = computed(() => toneMap[this.tone()]);
@@ -93,50 +104,67 @@ export class NbIcon {
   protected readonly isImageMode = computed(() => this.mode() === 'image');
 
   protected readonly roleValue = computed(() =>
-    !this.decorative() && this.label() ? 'img' : null,
+    !this.decorative() && this.label() ? 'img' : null
   );
 
   protected readonly ariaHiddenValue = computed(() =>
-    this.decorative() ? 'true' : null,
+    this.decorative() ? 'true' : null
   );
 
   protected readonly ariaLabelValue = computed(() =>
-    this.decorative() ? null : this.label(),
+    this.decorative() ? null : this.label()
   );
 
   protected readonly backgroundColorValue = computed(() =>
-    this.isMaskMode() ? 'var(--nb-icon-color, currentColor)' : null,
+    this.isMaskMode() ? 'var(--nb-icon-color, currentColor)' : null
   );
 
   protected readonly backgroundImageValue = computed(() =>
-    this.isImageMode() ? this.srcValue() : null,
+    this.isImageMode() ? this.srcValue() : null
   );
 
   protected readonly backgroundSizeValue = computed(() =>
-    this.isImageMode() ? 'contain' : null,
+    this.isImageMode() ? 'contain' : null
   );
 
   protected readonly backgroundPositionValue = computed(() =>
-    this.isImageMode() ? 'center' : null,
+    this.isImageMode() ? 'center' : null
   );
 
   protected readonly backgroundRepeatValue = computed(() =>
-    this.isImageMode() ? 'no-repeat' : null,
+    this.isImageMode() ? 'no-repeat' : null
   );
 
   protected readonly maskImageValue = computed(() =>
-    this.isMaskMode() ? this.srcValue() : null,
+    this.isMaskMode() ? this.srcValue() : null
   );
 
   protected readonly maskSizeValue = computed(() =>
-    this.isMaskMode() ? 'contain' : null,
+    this.isMaskMode() ? 'contain' : null
   );
 
   protected readonly maskPositionValue = computed(() =>
-    this.isMaskMode() ? 'center' : null,
+    this.isMaskMode() ? 'center' : null
   );
 
   protected readonly maskRepeatValue = computed(() =>
-    this.isMaskMode() ? 'no-repeat' : null,
+    this.isMaskMode() ? 'no-repeat' : null
   );
+
+  constructor() {
+    if (isDevMode()) {
+      effect(() => {
+        if (
+          !this.hasWarnedAboutMissingA11y &&
+          !this.decorative() &&
+          !this.label()
+        ) {
+          console.warn(
+            '[ng-brutalism] nbIcon should be marked decorative or given a label.'
+          );
+          this.hasWarnedAboutMissingA11y = true;
+        }
+      });
+    }
+  }
 }

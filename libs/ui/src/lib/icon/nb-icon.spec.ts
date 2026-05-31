@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { describe, expect, it } from 'vitest';
+import { afterEach, describe, expect, it, vi } from 'vitest';
 
 import { NbIcon } from './nb-icon';
 
@@ -24,17 +24,37 @@ class MaskModeIconTest {}
 
 @Component({
   imports: [NbIcon],
-  template: `<span nbIcon src="/icons/star.png" mode="image" decorative></span>`,
+  template: `<span
+    nbIcon
+    src="/icons/star.png"
+    mode="image"
+    decorative
+  ></span>`,
 })
 class ImageModeIconTest {}
 
 @Component({
   imports: [NbIcon],
-  template: `<span nbIcon src="/icons/star.svg" tone="danger" decorative></span>`,
+  template: `<span
+    nbIcon
+    src="/icons/star.svg"
+    tone="danger"
+    decorative
+  ></span>`,
 })
 class ToneIconTest {}
 
+@Component({
+  imports: [NbIcon],
+  template: `<span nbIcon src="/icons/star.svg"></span>`,
+})
+class BareIconTest {}
+
 describe('NbIcon', () => {
+  afterEach(() => {
+    vi.restoreAllMocks();
+  });
+
   it('decorative icon gets aria-hidden and no role', async () => {
     const fixture = await createFixture(DecorativeIconTest);
     const icon = findIcon(fixture);
@@ -75,6 +95,18 @@ describe('NbIcon', () => {
     const icon = findIcon(fixture);
 
     expect(icon.style.getPropertyValue('--nb-icon-color')).toBeTruthy();
+  });
+
+  it('warns once in dev mode when icon is neither decorative nor labeled', async () => {
+    const warn = vi.spyOn(console, 'warn').mockImplementation(() => undefined);
+    const fixture = await createFixture(BareIconTest);
+
+    fixture.detectChanges();
+
+    expect(warn).toHaveBeenCalledTimes(1);
+    expect(warn).toHaveBeenCalledWith(
+      '[ng-brutalism] nbIcon should be marked decorative or given a label.'
+    );
   });
 });
 

@@ -1,7 +1,6 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import {
   NbButton,
-  NbChip,
   NbCluster,
   NbDisplay,
   NbMediaItem,
@@ -50,7 +49,6 @@ interface ClusterDividerDemo {
     DocsExample,
     DocsSourceTile,
     NbButton,
-    NbChip,
     NbCluster,
     NbDisplay,
     NbMediaItem,
@@ -137,7 +135,9 @@ interface ClusterDividerDemo {
               >
                 Cluster loud.
               </h2>
-              <p class="mx-auto max-w-2xl text-lg font-bold leading-tight sm:text-xl">
+              <p
+                class="mx-auto max-w-2xl text-lg font-bold leading-tight sm:text-xl"
+              >
                 Inline rhythm for logos, actions, badges, and feature rows.
               </p>
             </div>
@@ -152,9 +152,14 @@ interface ClusterDividerDemo {
           the inline group. Use <code class="font-mono">gap</code> for spacing,
           <code class="font-mono">align</code> for cross-axis alignment,
           <code class="font-mono">justify</code> for distribution, and
-          <code class="font-mono">wrap</code> when a row should stay on one line.
+          <code class="font-mono">wrap</code> when a row should stay on one
+          line.
         </p>
-        <docs-code-block class="block mb-5" title="Import" [code]="importCode" />
+        <docs-code-block
+          class="block mb-5"
+          title="Import"
+          [code]="importCode"
+        />
         <docs-code-block title="Template" [code]="defaultExampleCode" />
       </section>
 
@@ -163,22 +168,23 @@ interface ClusterDividerDemo {
         <docs-example [code]="gapsExampleCode">
           <div class="grid w-full grid-cols-1 gap-4 p-4 sm:grid-cols-2">
             @for (gap of gaps; track gap.value) {
-              <div nbSurface shadow="sm" class="p-4">
-                <div nbCluster [gap]="gap.value">
-                  <span class="font-mono text-xs font-black uppercase">{{
-                    gap.label
-                  }}</span>
-                  <span
-                    class="size-10 border-2 border-(--nb-border) bg-(--nb-yellow)"
-                  ></span>
-                  <span
-                    class="size-10 border-2 border-(--nb-border) bg-(--nb-mint)"
-                  ></span>
-                  <span
-                    class="size-10 border-2 border-(--nb-border) bg-(--nb-pink)"
-                  ></span>
-                </div>
+            <div nbSurface shadow="sm" class="p-4">
+              <span class="font-mono text-xs font-bold uppercase mb-2">{{
+                gap.label
+              }}</span>
+
+              <div nbCluster [gap]="gap.value">
+                <span
+                  class="size-10 border-2 border-(--nb-border) bg-(--nb-yellow)"
+                ></span>
+                <span
+                  class="size-10 border-2 border-(--nb-border) bg-(--nb-mint)"
+                ></span>
+                <span
+                  class="size-10 border-2 border-(--nb-border) bg-(--nb-pink)"
+                ></span>
               </div>
+            </div>
             }
           </div>
         </docs-example>
@@ -191,21 +197,22 @@ interface ClusterDividerDemo {
         <docs-example [code]="alignmentExampleCode">
           <div class="grid w-full grid-cols-1 gap-4 p-4 sm:grid-cols-2">
             @for (align of alignments; track align.value) {
-              <div nbSurface tone="cream" shadow="sm" class="p-4">
-                <div nbCluster gap="sm" [align]="align.value">
-                  <span class="font-mono text-xs font-black uppercase">{{
-                    align.label
-                  }}</span>
-                  <span
-                    class="border-2 border-(--nb-border) bg-(--nb-yellow) px-3 py-2 font-black"
-                    >Small</span
-                  >
-                  <span
-                    class="border-2 border-(--nb-border) bg-(--nb-mint) px-4 py-5 font-black"
-                    >Tall</span
-                  >
-                </div>
+            <div nbSurface tone="cream" shadow="sm" class="p-4">
+              <span class="font-mono text-xs font-bold uppercase mb-2">{{
+                align.label
+              }}</span>
+
+              <div nbCluster gap="sm" [align]="align.value">
+                <span
+                  class="border-2 border-(--nb-border) bg-(--nb-yellow) px-3 py-2 font-black"
+                  >Small</span
+                >
+                <span
+                  class="border-2 border-(--nb-border) bg-(--nb-mint) px-4 py-5 font-black"
+                  >Tall</span
+                >
               </div>
+            </div>
             }
           </div>
         </docs-example>
@@ -218,26 +225,27 @@ interface ClusterDividerDemo {
         <docs-example [code]="justificationExampleCode">
           <div class="grid w-full grid-cols-1 gap-4 p-4 sm:grid-cols-2">
             @for (justify of justifications; track justify.value) {
-              <div nbSurface tone="white" shadow="sm" class="p-4">
-                <div
-                  nbCluster
-                  gap="sm"
-                  [justify]="justify.value"
-                  class="min-h-24"
+            <div nbSurface tone="white" shadow="sm" class="p-4">
+              <span class="font-mono text-xs font-bold uppercase mb-2">{{
+                justify.label
+              }}</span>
+
+              <div
+                nbCluster
+                gap="sm"
+                [justify]="justify.value"
+                class="min-h-24"
+              >
+                <span
+                  class="border-2 border-(--nb-border) bg-(--nb-lavender) px-3 py-2 font-black"
+                  >One</span
                 >
-                  <span class="font-mono text-xs font-black uppercase">{{
-                    justify.label
-                  }}</span>
-                  <span
-                    class="border-2 border-(--nb-border) bg-(--nb-lavender) px-3 py-2 font-black"
-                    >One</span
-                  >
-                  <span
-                    class="border-2 border-(--nb-border) bg-(--nb-blue) px-3 py-2 font-black"
-                    >Two</span
-                  >
-                </div>
+                <span
+                  class="border-2 border-(--nb-border) bg-(--nb-blue) px-3 py-2 font-black"
+                  >Two</span
+                >
               </div>
+            </div>
             }
           </div>
         </docs-example>
@@ -256,16 +264,17 @@ interface ClusterDividerDemo {
         <docs-example [code]="wrappingExampleCode">
           <div class="grid w-full grid-cols-1 gap-4 p-4 md:grid-cols-2">
             @for (wrap of wraps; track wrap.value) {
-              <div nbSurface tone="yellow" shadow="sm" class="max-w-88 p-4">
-                <div nbCluster gap="md" [wrap]="wrap.value">
-                  <span class="font-mono text-xs font-black uppercase">{{
-                    wrap.label
-                  }}</span>
-                  <button nbButton size="sm">Flight</button>
-                  <button nbButton size="sm" variant="secondary">Hotel</button>
-                  <button nbButton size="sm">Top pick</button>
-                </div>
+            <div nbSurface tone="yellow" shadow="sm" class="max-w-88 p-4">
+              <span class="font-mono text-xs font-bold uppercase mb-2">{{
+                wrap.label
+              }}</span>
+
+              <div nbCluster gap="md" [wrap]="wrap.value">
+                <button nbButton size="sm">Flight</button>
+                <button nbButton size="sm" variant="secondary">Hotel</button>
+                <button nbButton size="sm">Top pick</button>
               </div>
+            </div>
             }
           </div>
         </docs-example>
@@ -277,34 +286,47 @@ interface ClusterDividerDemo {
         </h2>
         <p class="mb-4 font-medium">
           Use <code class="font-mono">divider</code> to render inline separators
-          between cluster children. When a divider is active, gap is collapsed to
-          <code class="font-mono">gap-x-0</code> and children split
+          between cluster children. When a divider is active, gap is collapsed
+          to <code class="font-mono">gap-x-0</code> and children split
           <code class="font-mono">--nb-cluster-gap</code> across divider margin
-          and padding. Use dividers only for clusters that stay on one visual
-          row; wrapped rows cannot detect line starts, so a wrapped child may
-          still render a leading divider.
+          and padding.
         </p>
+        <div nbSurface tone="yellow" shadow="sm" class="mb-5 p-4 font-medium">
+          <strong>Divider note:</strong> cluster dividers are best for compact,
+          single-row groups like actions, badges, or metadata. When content
+          wraps across rows, CSS cannot reliably detect the first item of each
+          visual row, so a divider may appear at the start of a wrapped line.
+          For heavily wrapping content, prefer
+          <code class="font-mono">divider="none"</code> or switch to
+          <code class="font-mono">nbStack</code>.
+        </div>
         <docs-example [code]="dividersExampleCode">
           <div class="grid w-full grid-cols-1 gap-4 p-4">
-            @for (d of dividers; track d.value) {
-              @if (d.value !== 'none') {
-                <div nbSurface tone="cream" shadow="sm" class="p-4">
-                  <div nbCluster gap="lg" align="center" [divider]="d.value"
-                       class="[--nb-media-item-title-size:12px]">
-                    <nb-media-item icon="/tokyo-city-escape/central-locations.png">
-                      <span nbMediaItemTitle>Central<br />Locations</span>
-                    </nb-media-item>
-                    <nb-media-item icon="/tokyo-city-escape/guided-experiences.png">
-                      <span nbMediaItemTitle>Guided<br />Experiences</span>
-                    </nb-media-item>
-                    <nb-media-item icon="/tokyo-city-escape/24-7-support.png">
-                      <span nbMediaItemTitle>24/7<br />Support</span>
-                    </nb-media-item>
-                  </div>
-                  <p class="mt-3 font-mono text-xs font-black uppercase opacity-50">divider="{{ d.label }}"</p>
-                </div>
-              }
-            }
+            @for (d of dividers; track d.value) { @if (d.value !== 'none') {
+            <div nbSurface tone="cream" shadow="sm" class="p-4">
+              <p class="mb-3 font-mono text-xs font-bold uppercase opacity-50">
+                divider="{{ d.label }}"
+              </p>
+
+              <div
+                nbCluster
+                gap="xl"
+                align="center"
+                [divider]="d.value"
+                class="[--nb-media-item-title-size:12px]"
+              >
+                <nb-media-item icon="/tokyo-city-escape/central-locations.png">
+                  <span nbMediaItemTitle>Central<br />Locations</span>
+                </nb-media-item>
+                <nb-media-item icon="/tokyo-city-escape/guided-experiences.png">
+                  <span nbMediaItemTitle>Guided<br />Experiences</span>
+                </nb-media-item>
+                <nb-media-item icon="/tokyo-city-escape/24-7-support.png">
+                  <span nbMediaItemTitle>24/7<br />Support</span>
+                </nb-media-item>
+              </div>
+            </div>
+            } }
           </div>
         </docs-example>
       </section>
@@ -316,7 +338,7 @@ interface ClusterDividerDemo {
         <docs-example [code]="compositionExampleCode">
           <div
             nbCluster
-            gap="lg"
+            gap="xl"
             align="center"
             divider="dashed"
             class="p-4 [--nb-media-item-title-size:12px]"
@@ -353,42 +375,128 @@ interface ClusterDividerDemo {
           <table class="w-full min-w-180 border-collapse text-left">
             <thead class="bg-nb-secondary text-nb-secondary-fg">
               <tr>
-                <th class="border-b-2 border-r-2 border-(--nb-border) px-4 py-3 font-bold">Input</th>
-                <th class="border-b-2 border-r-2 border-(--nb-border) px-4 py-3 font-bold">Type</th>
-                <th class="border-b-2 border-r-2 border-(--nb-border) px-4 py-3 font-bold">Default</th>
-                <th class="border-b-2 border-(--nb-border) px-4 py-3 font-bold">Description</th>
+                <th
+                  class="border-b-2 border-r-2 border-(--nb-border) px-4 py-3 font-bold"
+                >
+                  Input
+                </th>
+                <th
+                  class="border-b-2 border-r-2 border-(--nb-border) px-4 py-3 font-bold"
+                >
+                  Type
+                </th>
+                <th
+                  class="border-b-2 border-r-2 border-(--nb-border) px-4 py-3 font-bold"
+                >
+                  Default
+                </th>
+                <th class="border-b-2 border-(--nb-border) px-4 py-3 font-bold">
+                  Description
+                </th>
               </tr>
             </thead>
             <tbody class="font-medium">
               <tr class="border-b-2 border-(--nb-border)">
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">gap</td>
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">'none' | 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl'</td>
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">'md'</td>
-                <td class="px-4 py-3">Horizontal and wrapped-row spacing between cluster children.</td>
+                <td
+                  class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
+                >
+                  gap
+                </td>
+                <td
+                  class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
+                >
+                  'none' | 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl'
+                </td>
+                <td
+                  class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
+                >
+                  'md'
+                </td>
+                <td class="px-4 py-3">
+                  Horizontal and wrapped-row spacing between cluster children.
+                </td>
               </tr>
               <tr class="border-b-2 border-(--nb-border)">
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">align</td>
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">'start' | 'center' | 'end' | 'baseline' | 'stretch'</td>
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">'center'</td>
-                <td class="px-4 py-3">Cross-axis alignment for the inline group.</td>
+                <td
+                  class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
+                >
+                  align
+                </td>
+                <td
+                  class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
+                >
+                  'start' | 'center' | 'end' | 'baseline' | 'stretch'
+                </td>
+                <td
+                  class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
+                >
+                  'center'
+                </td>
+                <td class="px-4 py-3">
+                  Cross-axis alignment for the inline group.
+                </td>
               </tr>
               <tr class="border-b-2 border-(--nb-border)">
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">justify</td>
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">'start' | 'center' | 'end' | 'between'</td>
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">'start'</td>
-                <td class="px-4 py-3">Main-axis distribution when the cluster has extra width.</td>
+                <td
+                  class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
+                >
+                  justify
+                </td>
+                <td
+                  class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
+                >
+                  'start' | 'center' | 'end' | 'between'
+                </td>
+                <td
+                  class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
+                >
+                  'start'
+                </td>
+                <td class="px-4 py-3">
+                  Main-axis distribution when the cluster has extra width.
+                </td>
               </tr>
               <tr class="border-b-2 border-(--nb-border)">
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">wrap</td>
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">'wrap' | 'nowrap'</td>
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">'wrap'</td>
-                <td class="px-4 py-3">Controls whether children can wrap onto additional rows.</td>
+                <td
+                  class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
+                >
+                  wrap
+                </td>
+                <td
+                  class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
+                >
+                  'wrap' | 'nowrap'
+                </td>
+                <td
+                  class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
+                >
+                  'wrap'
+                </td>
+                <td class="px-4 py-3">
+                  Controls whether children can wrap onto additional rows.
+                </td>
               </tr>
               <tr>
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">divider</td>
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">'none' | 'solid' | 'dashed' | 'thick'</td>
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">'none'</td>
-                <td class="px-4 py-3">Inline-start border between each child. When active, <code class="font-mono">gap-x</code> is collapsed and spacing is split across divider margin and padding.</td>
+                <td
+                  class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
+                >
+                  divider
+                </td>
+                <td
+                  class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
+                >
+                  'none' | 'solid' | 'dashed' | 'thick'
+                </td>
+                <td
+                  class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
+                >
+                  'none'
+                </td>
+                <td class="px-4 py-3">
+                  Inline-start border between each child. When active,
+                  <code class="font-mono">gap-x</code> is collapsed and spacing
+                  is split across divider margin and padding.
+                </td>
               </tr>
             </tbody>
           </table>
