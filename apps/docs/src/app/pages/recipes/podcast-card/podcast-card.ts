@@ -65,14 +65,9 @@ import {
                   nbChip
                   padding="lg"
                   tone="pink"
+                  icon="/podcast-card/microphone.svg"
                   class="uppercase font-black tracking-wide"
                 >
-                  <span
-                    nbIcon
-                    src="/podcast-card/microphone.svg"
-                    size="sm"
-                    decorative
-                  ></span>
                   Podcast
                 </span>
               </div>
@@ -116,29 +111,19 @@ import {
                   nbChip
                   tone="mint"
                   padding="lg"
+                  icon="/podcast-card/clock.svg"
                   class="uppercase text-sm font-black"
                 >
-                  <span
-                    nbIcon
-                    src="/podcast-card/clock.svg"
-                    size="sm"
-                    decorative
-                  ></span>
                   45 MIN
                 </span>
 
                 <span
                   nbChip
                   tone="lavender"
-                  class="uppercase text-sm font-black"
                   padding="lg"
+                  icon="/podcast-card/sparkle.svg"
+                  class="uppercase text-sm font-black"
                 >
-                  <span
-                    nbIcon
-                    src="/podcast-card/sparkle.svg"
-                    size="sm"
-                    decorative
-                  ></span>
                   NEW
                 </span>
 
@@ -146,14 +131,9 @@ import {
                   nbChip
                   tone="pink"
                   padding="lg"
+                  icon="/podcast-card/user.svg"
                   class="uppercase text-sm font-black"
                 >
-                  <span
-                    nbIcon
-                    src="/podcast-card/user.svg"
-                    size="sm"
-                    decorative
-                  ></span>
                   UX
                 </span>
               </div>

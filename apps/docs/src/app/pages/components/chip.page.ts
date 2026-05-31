@@ -97,24 +97,22 @@ import { DocsSourceTile } from '../../docs/docs-source-tile';
       <section id="with-icon">
         <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">With Icon</h2>
         <p class="mb-4 font-medium">
-          Place any SVG icon inside the chip — it auto-sizes to 12px.
+          Pass an SVG URL to the <code class="font-mono">icon</code> input for a
+          leading icon. It renders through <code class="font-mono">nbIcon</code>
+          in mask mode, so it tints to the chip's foreground color. Use
+          <code class="font-mono">iconSize</code> to scale it.
         </p>
         <docs-example [code]="withIconExampleCode">
           <div nbChipGroup class="p-4">
-            <span nbChip tone="mint">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <polyline points="20 6 9 17 4 12"/>
-              </svg>
-              Done
-            </span>
-            <span nbChip tone="danger">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/>
-              </svg>
-              Error
-            </span>
+            <span nbChip tone="mint" icon="/podcast-card/clock.svg">45 MIN</span>
+            <span nbChip tone="lavender" icon="/podcast-card/sparkle.svg">NEW</span>
           </div>
         </docs-example>
+        <p class="mt-4 font-medium">
+          For full-color or labeled icons, project any element as content
+          instead — the leading slot is only used when
+          <code class="font-mono">icon</code> is set.
+        </p>
       </section>
 
       <section id="api">
@@ -138,6 +136,24 @@ import { DocsSourceTile } from '../../docs/docs-source-tile';
                 <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">'default' | 'ink' | 'yellow' | 'pink' | 'mint' | 'lavender' | 'accent' | 'success' | 'warning' | 'danger'</td>
                 <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">'default'</td>
                 <td class="px-4 py-3">Background color tone.</td>
+              </tr>
+              <tr>
+                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">padding</td>
+                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">'none' | 'sm' | 'md' | 'lg' | 'xl'</td>
+                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">'md'</td>
+                <td class="px-4 py-3">Inner padding scale.</td>
+              </tr>
+              <tr>
+                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">icon</td>
+                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">string</td>
+                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">—</td>
+                <td class="px-4 py-3">URL of a leading SVG icon, tinted to the chip's foreground via nbIcon mask mode.</td>
+              </tr>
+              <tr>
+                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">iconSize</td>
+                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">'xs' | 'sm' | 'md' | 'lg' | 'xl'</td>
+                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">'sm'</td>
+                <td class="px-4 py-3">Size of the <code class="font-mono">icon</code> input's icon.</td>
               </tr>
             </tbody>
           </table>
@@ -226,13 +242,7 @@ export default class ChipPage {
 </span>`;
 
   protected readonly withIconExampleCode = `<div nbChipGroup>
-  <span nbChip tone="mint">
-    <svg ...>...</svg>
-    Done
-  </span>
-  <span nbChip tone="danger">
-    <svg ...>...</svg>
-    Error
-  </span>
+  <span nbChip tone="mint" icon="/podcast-card/clock.svg">45 MIN</span>
+  <span nbChip tone="lavender" icon="/podcast-card/sparkle.svg">NEW</span>
 </div>`;
 }

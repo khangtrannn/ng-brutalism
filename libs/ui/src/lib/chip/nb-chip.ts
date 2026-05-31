@@ -1,6 +1,13 @@
-import { Directive, computed, input } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  Directive,
+  computed,
+  input,
+} from '@angular/core';
 
 import { nbClass } from '../core/class';
+import { NbIcon, type NbIconSize } from '../icon';
 import { nbToneTokens, type NbTone } from '../tokens/tone';
 
 export type NbChipTone = NbTone | 'ink';
@@ -18,8 +25,15 @@ const paddingMap: Record<NbChipPadding, string> = {
   xl: 'px-5 py-2.5',
 };
 
-@Directive({
+@Component({
   selector: 'span[nbChip]',
+  imports: [NbIcon],
+  template: `
+    @if (icon()) {
+      <span nbIcon [src]="icon()!" [size]="iconSize()" decorative></span>
+    }
+    <ng-content />
+  `,
   host: {
     '[class]': 'classes()',
     '[attr.data-tone]': 'tone()',
@@ -28,10 +42,17 @@ const paddingMap: Record<NbChipPadding, string> = {
     '[style.--nb-chip-bg]': 'toneTokens().bg',
     '[style.--nb-chip-fg]': 'toneTokens().fg',
   },
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NbChip {
   readonly tone = input<NbChipTone>('default');
   readonly padding = input<NbChipPadding>('md');
+  // Optional leading icon, given as an SVG/image URL. Rendered through nbIcon
+  // in mask mode so it tints to the chip's foreground color. For full-color
+  // or labeled icons, compose an `nbIcon` (or any element) as projected
+  // content instead — the leading slot is only used when `icon` is set.
+  readonly icon = input<string>();
+  readonly iconSize = input<NbIconSize>('sm');
 
   protected readonly classes = computed(() =>
     nbClass(

@@ -85,7 +85,7 @@ export {
 export { NbStatusDot } from './lib/status-dot';
 export type { NbStatusDotState } from './lib/status-dot';
 export { NbChip, NbChipGroup } from './lib/chip';
-export type { NbChipTone } from './lib/chip';
+export type { NbChipTone, NbChipPadding } from './lib/chip';
 export { NbIconButton } from './lib/icon-button';
 export type {
   NbIconButtonShape,
