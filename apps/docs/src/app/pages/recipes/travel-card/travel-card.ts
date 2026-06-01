@@ -41,7 +41,7 @@ import {
     NbText,
   ],
   template: `
-    <div class="flex justify-center">
+    <div nbCluster justify="center" padding="xl" class="travel-stage w-full">
       <div
         nbSurface
         clip
@@ -182,6 +182,20 @@ import {
         </div>
       </div>
     </div>
+  `,
+  styles: `
+    :host {
+      --travel-paper-grid: #eadfca;
+      display: block;
+    }
+
+    .travel-stage {
+      background-color: #fff8e8;
+      background-image:
+        linear-gradient(to right, var(--travel-paper-grid) 1px, transparent 1px),
+        linear-gradient(to bottom, var(--travel-paper-grid) 1px, transparent 1px);
+      background-size: 28px 28px;
+    }
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

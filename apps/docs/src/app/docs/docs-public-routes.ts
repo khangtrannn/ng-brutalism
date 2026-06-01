@@ -271,6 +271,12 @@ export const DOCS_PUBLIC_ROUTES = [
     changefreq: 'monthly',
   },
   {
+    path: '/recipes/open-to-work-card',
+    file: 'recipes/open-to-work-card/index.page.ts',
+    priority: '0.6',
+    changefreq: 'monthly',
+  },
+  {
     path: '/showcase/portfolio',
     file: 'showcase/portfolio/index.page.ts',
     priority: '0.6',

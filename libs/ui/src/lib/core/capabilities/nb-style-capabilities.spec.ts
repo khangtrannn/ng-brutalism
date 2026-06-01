@@ -488,12 +488,13 @@ class TextNoResetTest {}
 class TextResetDefaultTest {}
 
 describe('NbText + NbDisplay capability composition', () => {
-  it('nbText default: resets margin, sets data-nb-text attribute', () => {
+  it('nbText default: marks for stylesheet margin reset and sets data-nb-text attribute', () => {
     const el = mount(TextDefaultsTest);
     const p = el.querySelector<HTMLElement>('[nbText]')!;
 
     expect(p.getAttribute('data-nb-text')).toBe('');
-    expect(p.style.getPropertyValue('margin')).toBe('0px');
+    expect(p.getAttribute('data-nb-reset-margin')).toBe('');
+    expect(p.style.getPropertyValue('margin')).toBe('');
   });
 
   it('nbText explicit inputs produce correct inline styles', () => {
@@ -522,14 +523,16 @@ describe('NbText + NbDisplay capability composition', () => {
     const el = mount(TextNoResetTest);
     const p = el.querySelector<HTMLElement>('[nbText]')!;
 
+    expect(p.hasAttribute('data-nb-reset-margin')).toBe(false);
     expect(p.style.getPropertyValue('margin')).toBe('');
   });
 
-  it('nbText reset default (true) sets margin 0', () => {
+  it('nbText reset default (true) enables stylesheet margin reset', () => {
     const el = mount(TextResetDefaultTest);
     const p = el.querySelector<HTMLElement>('[nbText]')!;
 
-    expect(p.style.getPropertyValue('margin')).toBe('0px');
+    expect(p.getAttribute('data-nb-reset-margin')).toBe('');
+    expect(p.style.getPropertyValue('margin')).toBe('');
   });
 });
 
@@ -572,12 +575,13 @@ class DisplayNoResetTest {}
 class DisplayCssVarOverrideTest {}
 
 describe('NbDisplay capability composition', () => {
-  it('nbDisplay default: resets margin, sets data-nb-display attribute', () => {
+  it('nbDisplay default: marks for stylesheet margin reset and sets data-nb-display attribute', () => {
     const el = mount(DisplayDefaultsTest);
     const h = el.querySelector<HTMLElement>('[nbDisplay]')!;
 
     expect(h.getAttribute('data-nb-display')).toBe('');
-    expect(h.style.getPropertyValue('margin')).toBe('0px');
+    expect(h.getAttribute('data-nb-reset-margin')).toBe('');
+    expect(h.style.getPropertyValue('margin')).toBe('');
   });
 
   it('nbDisplay explicit size/weight/tracking/leading produce correct styles', () => {
@@ -612,6 +616,7 @@ describe('NbDisplay capability composition', () => {
     const el = mount(DisplayNoResetTest);
     const h = el.querySelector<HTMLElement>('[nbDisplay]')!;
 
+    expect(h.hasAttribute('data-nb-reset-margin')).toBe(false);
     expect(h.style.getPropertyValue('margin')).toBe('');
   });
 

@@ -25,6 +25,7 @@ export type NbMediaFrameBorder = NbBorderStrength;
 export type NbMediaFrameRatio =
   | 'auto'
   | '1/1'
+  | '3/4'
   | '4/3'
   | '3/2'
   | '16/9'
@@ -79,6 +80,7 @@ export class NbMediaFrame {
     const map: Record<NbMediaFrameRatio, string> = {
       auto: '',
       '1/1': 'aspect-square',
+      '3/4': 'aspect-[3/4]',
       '4/3': 'aspect-[4/3]',
       '3/2': 'aspect-[3/2]',
       '16/9': 'aspect-video',

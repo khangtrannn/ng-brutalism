@@ -186,7 +186,8 @@ export default class PodcastCardRecipePage {
   NbText,
 } from '@ng-brutalism/ui';`;
 
-  protected readonly templateCode = `<div nbSurface clip border="strong" shadow="hard" radius="xl">
+  protected readonly templateCode = `<div nbCluster justify="center" padding="lg" class="podcast-stage">
+<div nbSurface clip tone="cream" border="strong" shadow="hard" radius="xl">
   <!-- Header: podcast chip + menu -->
   <div nbSection padding="lg">
     <div nbCluster gap="md" align="center" justify="between">
@@ -288,5 +289,6 @@ export default class PodcastCardRecipePage {
     <nb-sticker-face />
   </nb-sticker>
   <nb-sticker shape="splat" tone="pink" decorative [rotate]="-12"></nb-sticker>
+</div>
 </div>`;
 }

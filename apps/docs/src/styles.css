@@ -177,6 +177,10 @@ body::-webkit-scrollbar-thumb {
 }
 
 [data-docs-content] h1 {
+  font-family: var(--font-display);
+}
+
+[data-docs-content] h1:not([data-nb-display]) {
   position: relative;
   z-index: 2;
   display: block;

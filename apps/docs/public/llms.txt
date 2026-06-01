@@ -41,7 +41,7 @@
 - [Neo-Brutalist Angular Select | Ng Brutalism](https://ngbrutalism.khangtran.dev/components/select/): Neo-brutalist Select component for Angular. Custom dropdown with bold styling and full keyboard support.
 - [Neo-Brutalist Angular Separator | Ng Brutalism](https://ngbrutalism.khangtran.dev/components/separator/): Use Separator to divide Angular content with strong brutalist rules, vertical lines, and token-driven variants.
 - [Neo-Brutalist Angular Section | Ng Brutalism](https://ngbrutalism.khangtran.dev/components/section/): Use Section to structure page regions with Angular-first spacing, surfaces, headers, and brutalist composition.
-- [Neo-Brutalist Angular Split | Ng Brutalism](https://ngbrutalism.khangtran.dev/components/split/): Use Split to build responsive two-column layouts with brutalist spacing, ratios, dividers, and collapse behavior.
+- [Neo-Brutalist Angular Split | Ng Brutalism](https://ngbrutalism.khangtran.dev/components/split/): Use Split to build responsive two-column layouts with brutalist spacing, ratios, separators, and collapse behavior.
 - [Neo-Brutalist Angular Stack | Ng Brutalism](https://ngbrutalism.khangtran.dev/components/stack/): Use Stack to create vertical rhythm, grouped content, forms, panels, and divided brutalist layouts.
 - [Neo-Brutalist Angular Stat | Ng Brutalism](https://ngbrutalism.khangtran.dev/components/stat/): Use Stat to show Angular metrics, counters, labels, and icon-backed values with loud brutalist emphasis.
 - [Neo-Brutalist Angular Status Dot | Ng Brutalism](https://ngbrutalism.khangtran.dev/components/status-dot/): Use Status Dot to mark state, presence, health, and alerts with small but loud brutalist indicators.
@@ -53,4 +53,5 @@
 - [Travel Card | Ng Brutalism](https://ngbrutalism.khangtran.dev/recipes/travel-card/): Build a loud travel card recipe from reusable ng-brutalism primitives like Surface, Stack, Cluster, Split, and Media Item.
 - [Job Card | Ng Brutalism](https://ngbrutalism.khangtran.dev/recipes/job-card/): Build a dense job card recipe from reusable ng-brutalism primitives for Angular listings, actions, and metadata.
 - [Podcast Card | Ng Brutalism](https://ngbrutalism.khangtran.dev/recipes/podcast-card/): Podcast Card recipe for Ng Brutalism. Compose neo-brutalist Angular primitives into a bold audio episode card with chips, host metadata, waveform player, and CTA.
+- [Open to Work Card | Ng Brutalism](https://ngbrutalism.khangtran.dev/recipes/open-to-work-card/): Open to Work Card recipe for Ng Brutalism. Compose surface, media frame, chips, icon actions, button, and sticker primitives into a loud profile card for portfolios and hiring pages.
 - [Portfolio Showcase | Ng Brutalism](https://ngbrutalism.khangtran.dev/showcase/portfolio/): Portfolio showcase built with Ng Brutalism — see the neo-brutalist Angular UI library in action.

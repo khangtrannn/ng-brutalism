@@ -183,7 +183,8 @@ export default class TravelCardRecipePage {
   NbText,
 } from '@ng-brutalism/ui';`;
 
-  protected readonly templateCode = `<div nbSurface clip tone="cream" border="strong" shadow="hard" radius="xl">
+  protected readonly templateCode = `<div nbCluster justify="center" padding="xl" class="travel-stage">
+<div nbSurface clip tone="cream" border="strong" shadow="hard" radius="xl">
   <!-- Hero banner with floating sticker -->
   <div class="relative">
     <nb-sticker
@@ -253,5 +254,6 @@ export default class TravelCardRecipePage {
       </button>
     </div>
   </div>
+</div>
 </div>`;
 }

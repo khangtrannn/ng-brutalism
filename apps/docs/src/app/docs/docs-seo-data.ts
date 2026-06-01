@@ -133,6 +133,8 @@ export const PAGE_DESCRIPTIONS: Record<string, string> = {
     'Build a dense job card recipe from reusable ng-brutalism primitives for Angular listings, actions, and metadata.',
   '/recipes/podcast-card':
     'Podcast Card recipe for Ng Brutalism. Compose neo-brutalist Angular primitives into a bold audio episode card with chips, host metadata, waveform player, and CTA.',
+  '/recipes/open-to-work-card':
+    'Open to Work Card recipe for Ng Brutalism. Compose surface, media frame, chips, icon actions, button, and sticker primitives into a loud profile card for portfolios and hiring pages.',
 
   // Showcase
   '/showcase/portfolio':

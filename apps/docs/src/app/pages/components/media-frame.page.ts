@@ -397,6 +397,10 @@ export default class MediaFramePage {
   <img src="/..." alt="Square" />
 </div>
 
+<div nbMediaFrame ratio="3/4" tone="lavender" shadow="hard">
+  <img src="/..." alt="Portrait" />
+</div>
+
 <div nbMediaFrame ratio="16/9" tone="lavender" shadow="hard">
   <img src="/..." alt="Video" />
 </div>
@@ -439,6 +443,11 @@ export default class MediaFramePage {
       value: '1/1',
       label: '1 / 1',
       description: 'Square — profiles, avatars, album art',
+    },
+    {
+      value: '3/4',
+      label: '3 / 4',
+      description: 'Portrait — headshots, covers, vertical art',
     },
     {
       value: '4/3',

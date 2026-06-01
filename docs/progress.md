@@ -48,6 +48,6 @@ For history and details, read the domain's own `progress.md`.
 ---
 
 ## Release
-**Status:** v0.1.0 + v0.1.1 shipped to npm. v0.2.0 implementation complete: 10 primitives + docs + 6 recipes.
+**Status:** v0.1.0 + v0.1.1 shipped to npm. v0.2.0 implementation complete: 10 primitives + docs + 7 recipes (added Open to Work Card profile recipe).
 **Next:** Visual QA, bump version in libs/ui, run `docs/release/RELEASE.md` runbook (tag → GitHub release → npm publish).
 → Plan: `docs/release/v0.2.0-plan.md`

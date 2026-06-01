@@ -102,6 +102,22 @@ describe('NbMediaFrame', () => {
     );
   });
 
+  it('supports portrait media ratios', async () => {
+    @Component({
+      imports: [NbMediaFrame],
+      template: `<div nbMediaFrame ratio="3/4"></div>`,
+    })
+    class PortraitMediaFrameTest {}
+
+    const fixture = await createFixture(PortraitMediaFrameTest);
+    const frame = fixture.nativeElement.querySelector(
+      '[nbMediaFrame]'
+    ) as HTMLElement;
+
+    expect(frame.getAttribute('data-ratio')).toBe('3/4');
+    expect(frame.className).toContain('aspect-[3/4]');
+  });
+
   it.each([
     ['pink', 'var(--nb-pink)'],
     ['mint', 'var(--nb-mint)'],

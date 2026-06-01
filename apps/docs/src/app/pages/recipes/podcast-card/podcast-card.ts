@@ -42,7 +42,12 @@ import {
     NbText,
   ],
   template: `
-    <div nbCluster justify="center" padding="lg" class="overflow-visible">
+    <div
+      nbCluster
+      justify="center"
+      padding="lg"
+      class="podcast-stage w-full overflow-visible"
+    >
       <div class="relative mx-auto w-full max-w-[36rem] overflow-visible">
         <div
           nbSurface
@@ -257,6 +262,20 @@ import {
         ></nb-sticker>
       </div>
     </div>
+  `,
+  styles: `
+    :host {
+      --podcast-paper-grid: #eadfca;
+      display: block;
+    }
+
+    .podcast-stage {
+      background-color: #fff8e8;
+      background-image:
+        linear-gradient(to right, var(--podcast-paper-grid) 1px, transparent 1px),
+        linear-gradient(to bottom, var(--podcast-paper-grid) 1px, transparent 1px);
+      background-size: 28px 28px;
+    }
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
