@@ -33,8 +33,8 @@ import { DocsTokens } from '../../docs/docs-tokens';
 
         <div class="mt-7 flex flex-wrap items-center gap-3">
           <div class="nb-stat-tile nb-stat-tile--yellow">
-            <span class="nb-stat-tile__value">8</span>
-            <span class="nb-stat-tile__label">Variants</span>
+            <span class="nb-stat-tile__value">15</span>
+            <span class="nb-stat-tile__label">Tones</span>
           </div>
           <div class="nb-stat-tile nb-stat-tile--mint">
             <span class="nb-stat-tile__value">4</span>
@@ -72,18 +72,18 @@ import { DocsTokens } from '../../docs/docs-tokens';
         <docs-code-block title="Template" [code]="defaultExampleCode" />
       </section>
 
-      <section id="variants">
-        <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">Variants</h2>
-        <docs-example [code]="variantsExampleCode">
+      <section id="tones">
+        <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">Tones</h2>
+        <docs-example [code]="tonesExampleCode">
           <div class="flex flex-wrap items-center justify-center gap-3">
-            <button nbButton variant="default">Default</button>
-            <button nbButton variant="neutral">Neutral</button>
-            <button nbButton variant="primary">Primary</button>
-            <button nbButton variant="secondary">Secondary</button>
-            <button nbButton variant="accent">Accent</button>
-            <button nbButton variant="danger">Danger</button>
-            <button nbButton variant="success">Success</button>
-            <button nbButton variant="warning">Warning</button>
+            <button nbButton>Default</button>
+            <button nbButton tone="background">Background</button>
+            <button nbButton tone="primary">Primary</button>
+            <button nbButton tone="secondary">Secondary</button>
+            <button nbButton tone="accent">Accent</button>
+            <button nbButton tone="danger">Danger</button>
+            <button nbButton tone="success">Success</button>
+            <button nbButton tone="warning">Warning</button>
           </div>
         </docs-example>
       </section>
@@ -136,7 +136,7 @@ import { DocsTokens } from '../../docs/docs-tokens';
         </h2>
         <docs-example [code]="trailingIconExampleCode">
           <div class="grid w-full max-w-md gap-3">
-            <button nbButton variant="secondary">
+            <button nbButton tone="secondary">
               Keep Together
               <span nbButtonTrailingIcon>
                 <span
@@ -148,7 +148,7 @@ import { DocsTokens } from '../../docs/docs-tokens';
               </span>
             </button>
 
-            <button nbButton variant="primary" [fullWidth]="true">
+            <button nbButton tone="primary" [fullWidth]="true">
               Push To End
               <span nbButtonTrailingIcon push="end" shape="square" size="md">
                 <span
@@ -254,18 +254,17 @@ import { DocsTokens } from '../../docs/docs-tokens';
                 <td
                   class="border-b-2 border-r-2 border-(--nb-border) px-4 py-3"
                 >
-                  variant
+                  tone
                 </td>
                 <td
                   class="border-b-2 border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
                 >
-                  'default' | 'neutral' | 'primary' | 'secondary' | 'accent' |
-                  'danger' | 'success' | 'warning'
+                  NbToneToken
                 </td>
                 <td
                   class="border-b-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
                 >
-                  'default'
+                  'primary'
                 </td>
               </tr>
               <tr>
@@ -306,17 +305,17 @@ import { DocsTokens } from '../../docs/docs-tokens';
                 <td
                   class="border-b-2 border-r-2 border-(--nb-border) px-4 py-3"
                 >
-                  tone
+                  border
                 </td>
                 <td
                   class="border-b-2 border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
                 >
-                  NbTone
+                  'none' | 'thin' | 'default' | 'strong' | 'thick'
                 </td>
                 <td
                   class="border-b-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
                 >
-                  undefined
+                  'default'
                 </td>
               </tr>
               <tr>
@@ -333,7 +332,7 @@ import { DocsTokens } from '../../docs/docs-tokens';
                 <td
                   class="border-b-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
                 >
-                  undefined
+                  'md'
                 </td>
               </tr>
               <tr>
@@ -408,15 +407,15 @@ export default class ButtonPage {
   NbIcon,
 } from '@ng-brutalism/ui';`;
 
-  protected readonly variantsExampleCode = `<div class="flex flex-wrap items-center justify-center gap-3">
-  <button nbButton variant="default">Default</button>
-  <button nbButton variant="neutral">Neutral</button>
-  <button nbButton variant="primary">Primary</button>
-  <button nbButton variant="secondary">Secondary</button>
-  <button nbButton variant="accent">Accent</button>
-  <button nbButton variant="danger">Danger</button>
-  <button nbButton variant="success">Success</button>
-  <button nbButton variant="warning">Warning</button>
+  protected readonly tonesExampleCode = `<div class="flex flex-wrap items-center justify-center gap-3">
+  <button nbButton>Default</button>
+  <button nbButton tone="background">Background</button>
+  <button nbButton tone="primary">Primary</button>
+  <button nbButton tone="secondary">Secondary</button>
+  <button nbButton tone="accent">Accent</button>
+  <button nbButton tone="danger">Danger</button>
+  <button nbButton tone="success">Success</button>
+  <button nbButton tone="warning">Warning</button>
 </div>`;
 
   protected readonly sizesExampleCode = `<div class="flex flex-wrap items-center justify-center gap-3">
@@ -435,14 +434,14 @@ export default class ButtonPage {
   </span>
 </button>`;
 
-  protected readonly trailingIconExampleCode = `<button nbButton variant="secondary">
+  protected readonly trailingIconExampleCode = `<button nbButton tone="secondary">
   Keep Together
   <span nbButtonTrailingIcon>
     <span nbIcon src="/icons/arrow-right.svg" size="sm" decorative></span>
   </span>
 </button>
 
-<button nbButton variant="primary" [fullWidth]="true">
+<button nbButton tone="primary" [fullWidth]="true">
   Push To End
   <span nbButtonTrailingIcon push="end" shape="square" size="md">
     <span nbIcon src="/icons/arrow-right.svg" size="sm" decorative></span>

@@ -63,7 +63,7 @@ export const docsNavGroups: readonly DocsNavGroup[] = [
           { label: 'Overview', fragment: 'overview' },
           { label: 'Preview', fragment: 'preview' },
           { label: 'Usage', fragment: 'usage' },
-          { label: 'Variants', fragment: 'variants' },
+          { label: 'Tones', fragment: 'tones' },
           { label: 'Sizes', fragment: 'sizes' },
           { label: 'CTA', fragment: 'cta' },
           { label: 'Trailing Icon', fragment: 'trailing-icon' },

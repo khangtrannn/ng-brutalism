@@ -73,7 +73,7 @@ import { DocsCodeBlock } from '../../docs/docs-code-block';
           <a
             class="w-full justify-center sm:w-auto"
             nbButton
-            variant="neutral"
+            tone="background"
             routerLink="/components/accordion"
             style="--nb-button-bg: #fff"
           >

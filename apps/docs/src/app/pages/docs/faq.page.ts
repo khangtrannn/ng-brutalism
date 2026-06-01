@@ -29,7 +29,7 @@ import { NbButton } from '@ng-brutalism/ui';
           <a
             class="w-full justify-center sm:w-auto"
             nbButton
-            variant="neutral"
+            tone="background"
             routerLink="/components/button"
             style="--nb-button-bg: #fff"
           >

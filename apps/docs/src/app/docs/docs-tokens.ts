@@ -173,13 +173,13 @@ const componentTokens: Record<DocsTokenComponent, DocsToken[]> = {
   button: [
     {
       name: '--nb-button-bg',
-      defaultValue: 'var(--nb-main)',
-      usage: 'Button background, reassigned by variant',
+      defaultValue: 'var(--nb-primary)',
+      usage: 'Button background color. Reassigned by the tone input.',
     },
     {
       name: '--nb-button-fg',
-      defaultValue: 'var(--nb-main-foreground)',
-      usage: 'Button text and icon color, reassigned by variant',
+      defaultValue: 'var(--nb-primary-foreground)',
+      usage: 'Button text and icon color. Reassigned by the tone input.',
     },
     {
       name: '--nb-button-border-color',

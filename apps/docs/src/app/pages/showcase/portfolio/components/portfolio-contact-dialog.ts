@@ -12,6 +12,7 @@ import {
   NbDialogContent,
   NbDialogDescription,
   NbDialogTitle,
+  NbIconButton,
   NbInput,
   NbLabel,
   NbTextarea,
@@ -28,6 +29,7 @@ import { DocsPortfolioContactZigzagIcon } from './portfolio-contact-dialog.icons
         NbDialogContent,
         NbDialogDescription,
         NbDialogTitle,
+        NbIconButton,
         NbInput,
         NbLabel,
         NbTextarea,
@@ -48,12 +50,12 @@ import { DocsPortfolioContactZigzagIcon } from './portfolio-contact-dialog.icons
         class="relative bg-(--nb-field-bg) px-6 pt-7 pb-5 sm:px-10 sm:pt-9 sm:pb-6"
       >
         <button
-          nbButton
+          nbIconButton
           nbDialogClose
-          size="icon"
-          variant="neutral"
+          tone="background"
+          radius="md"
           aria-label="Close dialog"
-          style="--nb-button-bg: #fff"
+          style="--nb-icon-button-bg: #fff"
           class="absolute right-6 top-6 text-xl leading-none sm:right-10 sm:top-9"
         >
           &times;
@@ -162,7 +164,7 @@ import { DocsPortfolioContactZigzagIcon } from './portfolio-contact-dialog.icons
       >
         <button
           nbButton
-          variant="neutral"
+          tone="background"
           nbDialogClose
           style="--nb-button-bg: #fff"
           class="min-w-28 font-mono"

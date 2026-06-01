@@ -67,6 +67,23 @@ Custom expressive typography is composed:
 </button>
 ```
 
+### Button color
+
+`nbButton` uses `tone` for color — the same shared visual grammar as the rest of
+the library. There is no separate `variant` color axis.
+
+```html
+<button nbButton tone="primary">Save</button>
+<button nbButton tone="danger">Delete</button>
+<button nbButton tone="lavender">Listen Now</button>
+```
+
+For the default action style, omit `tone` (it resolves to `primary`):
+
+```html
+<button nbButton>Save</button>
+```
+
 ## Component-specific CSS variables
 
 Every primitive's visual tokens resolve to a namespaced variable set

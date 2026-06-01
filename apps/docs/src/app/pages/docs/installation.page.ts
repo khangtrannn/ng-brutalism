@@ -120,7 +120,7 @@ import { NbButton } from '@ng-brutalism/ui';
 @Component({
   selector: 'app-example',
   imports: [NbButton],
-  template: \`<button nbButton variant="neutral" style="--nb-button-bg: #fff">Ship it</button>\`,
+  template: \`<button nbButton tone="background" style="--nb-button-bg: #fff">Ship it</button>\`,
 })
 export class Example {}`;
 }

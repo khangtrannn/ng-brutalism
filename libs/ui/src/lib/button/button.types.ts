@@ -1,17 +1,7 @@
 import type { NbRadius } from '../tokens/radius';
-import type { NbTone } from '../tokens/tone';
+import type { NbToneToken } from '../tokens/tone';
 
-export type NbButtonTone = NbTone;
-
-export type NbButtonVariant =
-  | 'default'
-  | 'neutral'
-  | 'primary'
-  | 'secondary'
-  | 'accent'
-  | 'danger'
-  | 'success'
-  | 'warning';
+export type NbButtonTone = NbToneToken;
 
 export type NbButtonShadow = 'default' | 'none' | 'reverse';
 

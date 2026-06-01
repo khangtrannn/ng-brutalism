@@ -4,17 +4,22 @@ import { describe, expect, it } from 'vitest';
 
 import { NbButton } from './nb-button';
 import { NbButtonTrailingIcon } from './nb-button-trailing-icon';
-import type { NbButtonShadow, NbButtonVariant } from './button.types';
+import type {
+  NbButtonShadow,
+  NbButtonTone,
+  NbButtonSize,
+} from './button.types';
 
 @Component({
   imports: [NbButton],
-  template: `<button nbButton [variant]="variant" [shadow]="shadow">
+  template: `<button nbButton [tone]="tone" [shadow]="shadow" [size]="size">
     Button
   </button>`,
 })
 class ButtonTokenTest {
-  variant: NbButtonVariant = 'default';
+  tone: NbButtonTone | undefined = undefined;
   shadow: NbButtonShadow = 'default';
+  size: NbButtonSize = 'md';
 }
 
 @Component({
@@ -46,28 +51,6 @@ class TrailingIconDefaultTest {}
 class TrailingIconPushEndTest {}
 
 describe('NbButton token surface', () => {
-  it('declares the expected default tokens on the base host', async () => {
-    const fixture = await createFixture();
-    const button = findButton(fixture);
-    const cls = button.className;
-
-    expect(cls).toContain('[--nb-button-bg:var(--nb-main)]');
-    expect(cls).toContain('[--nb-button-fg:var(--nb-main-foreground)]');
-    expect(cls).toContain('[--nb-button-border-color:var(--nb-border)]');
-    // Border width is now written as a component variable by the border
-    // capability (default strength -> var(--nb-border-width)).
-    expect(button.style.getPropertyValue('--nb-button-border-width')).toBe(
-      'var(--nb-border-width)'
-    );
-    // Radius is now written as a component variable by the radius capability.
-    expect(button.style.getPropertyValue('--nb-button-radius')).toBe(
-      'var(--nb-radius)'
-    );
-    expect(cls).toContain(
-      '[--nb-button-shadow:var(--nb-shadow-offset-x)_var(--nb-shadow-offset-y)_0_var(--nb-shadow)]'
-    );
-  });
-
   it('reads its scoped tokens instead of global tokens directly', async () => {
     const fixture = await createFixture();
     const button = findButton(fixture);
@@ -79,27 +62,61 @@ describe('NbButton token surface', () => {
     expect(cls).toContain('border-(--nb-button-border-color)');
     expect(cls).toContain('rounded-(--nb-button-radius)');
     expect(cls).toContain('shadow-[var(--nb-button-shadow)]');
+    expect(cls).toContain(
+      '[--nb-button-shadow:var(--nb-shadow-offset-x)_var(--nb-shadow-offset-y)_0_var(--nb-shadow)]'
+    );
     expect(cls).not.toContain('bg-(--nb-main)');
     expect(cls).not.toContain('rounded-nb');
     expect(cls).not.toContain('shadow-nb');
   });
 
+  it('uses the default tone (primary) when tone is omitted', async () => {
+    const fixture = await createFixture();
+    const button = findButton(fixture);
+
+    expect(button.style.getPropertyValue('--nb-button-bg')).toBe(
+      'var(--nb-primary)'
+    );
+    expect(button.style.getPropertyValue('--nb-button-fg')).toBe(
+      'var(--nb-primary-foreground)'
+    );
+    expect(button.style.getPropertyValue('--nb-button-border-color')).toBe(
+      'var(--nb-border)'
+    );
+  });
+
+  it('writes the default border-width and radius capability variables', async () => {
+    const fixture = await createFixture();
+    const button = findButton(fixture);
+
+    expect(button.style.getPropertyValue('--nb-button-border-width')).toBe(
+      'var(--nb-border-width)'
+    );
+    expect(button.style.getPropertyValue('--nb-button-radius')).toBe(
+      'var(--nb-radius)'
+    );
+  });
+
   it.each([
-    ['neutral', 'var(--nb-background)', 'var(--nb-foreground)'],
+    ['lavender', 'var(--nb-lavender)', '#000000'],
     ['primary', 'var(--nb-primary)', 'var(--nb-primary-foreground)'],
     ['secondary', 'var(--nb-secondary)', 'var(--nb-secondary-foreground)'],
     ['accent', 'var(--nb-accent)', 'var(--nb-accent-foreground)'],
     ['danger', 'var(--nb-danger)', 'var(--nb-danger-foreground)'],
     ['success', 'var(--nb-success)', 'var(--nb-success-foreground)'],
     ['warning', 'var(--nb-warning)', 'var(--nb-warning-foreground)'],
-  ] satisfies Array<[NbButtonVariant, string, string]>)(
-    'variant="%s" reassigns expected color tokens',
-    async (variant, bg, fg) => {
-      const fixture = await createFixture({ variant });
-      const cls = findButton(fixture).className;
+    ['background', 'var(--nb-background)', 'var(--nb-foreground)'],
+  ] satisfies Array<[NbButtonTone, string, string]>)(
+    'tone="%s" writes the shared tone vars under the button namespace',
+    async (tone, bg, fg) => {
+      const fixture = await createFixture({ tone });
+      const button = findButton(fixture);
 
-      expect(cls).toContain(`[--nb-button-bg:${bg}]`);
-      expect(cls).toContain(`[--nb-button-fg:${fg}]`);
+      expect(button.style.getPropertyValue('--nb-button-bg')).toBe(bg);
+      expect(button.style.getPropertyValue('--nb-button-fg')).toBe(fg);
+      expect(button.style.getPropertyValue('--nb-button-border-color')).toBe(
+        'var(--nb-border)'
+      );
     }
   );
 
@@ -181,7 +198,7 @@ describe('NbButton token surface', () => {
 });
 
 async function createFixture(
-  inputs: Partial<Pick<ButtonTokenTest, 'variant' | 'shadow'>> = {}
+  inputs: Partial<Pick<ButtonTokenTest, 'tone' | 'shadow' | 'size'>> = {}
 ): Promise<ComponentFixture<ButtonTokenTest>> {
   await TestBed.configureTestingModule({
     imports: [ButtonTokenTest],

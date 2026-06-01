@@ -81,7 +81,7 @@ import { NbDocsNavbar } from '../docs/layout/navbar';
                     <a
                       class="w-full justify-center sm:w-auto"
                       nbButton
-                      variant="neutral"
+                      tone="background"
                       routerLink="/components/button"
                       style="--nb-button-bg: #fff"
                     >
@@ -90,7 +90,7 @@ import { NbDocsNavbar } from '../docs/layout/navbar';
                     <a
                       class="w-full justify-center sm:w-auto"
                       nbButton
-                      variant="neutral"
+                      tone="background"
                       href="https://github.com/khangtrannn/ng-brutalism"
                       target="_blank"
                       rel="noreferrer"

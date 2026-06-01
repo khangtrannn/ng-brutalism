@@ -214,7 +214,7 @@ import {
                   shape="square"
                   size="xl"
                   radius="md"
-                  variant="neutral"
+                  tone="background"
                   type="button"
                   aria-label="Save episode"
                   icon="/podcast-card/bookmark.svg"

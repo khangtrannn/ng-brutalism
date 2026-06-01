@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import {
   NbButton,
+  NbIconButton,
   NbCard,
   NbCardActions,
   NbCardContent,
@@ -29,6 +30,7 @@ import {
   selector: 'docs-job-listing-card',
   imports: [
     NbButton,
+    NbIconButton,
     NbCard,
     NbCardActions,
     NbCardContent,
@@ -69,11 +71,11 @@ import {
 
             <div class="job-card-action">
               <button
-                nbButton
+                nbIconButton
                 type="button"
-                size="icon"
+                radius="md"
                 shadow="none"
-                style="--nb-button-bg: #fff"
+                style="--nb-icon-button-bg: #fff"
                 aria-label="Save to favorites"
               >
                 <docs-job-card-heart-icon />
@@ -169,8 +171,10 @@ import {
             </div>
 
             <nb-card-actions class="job-card-actions" align="end">
-              <button nbButton type="button" aria-label="Apply">Apply</button>
-              <button nbButton type="button" variant="primary">
+              <button nbButton type="button" tone="yellow" aria-label="Apply">
+                Apply
+              </button>
+              <button nbButton type="button" tone="primary">
                 Save
                 <docs-job-card-bookmark-icon />
               </button>

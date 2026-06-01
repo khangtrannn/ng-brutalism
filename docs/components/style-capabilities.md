@@ -36,7 +36,7 @@ CSS             primitive `classes()`          consume --nb-<ns>-* via Tailwind 
 - **Primitives** provide their namespace + defaults and compose the capabilities
   through Angular `hostDirectives`, forwarding the public input names
   (`inputs: ['tone']`). The primitive keeps only its own anatomy (Surface `clip`,
-  MediaFrame `ratio`/`fit`, Button `variant`/`size`/state, layout
+  MediaFrame `ratio`/`fit`, Button `shadow`/`size`/state, layout
   `align`/`justify`/`separator`, …) and a Tailwind base-class string that *consumes*
   the variables.
 
@@ -49,7 +49,7 @@ and override:
 |---|---|---|
 | nbSurface | `surface` | `--nb-surface-{bg,fg,border-color,radius,border-width,shadow}` |
 | nbMediaFrame | `media-frame` | `--nb-media-frame-{bg,fg,border-color,radius,border-width,shadow}` |
-| nbButton | `button` | `--nb-button-{radius,border-width}` (+ existing `--nb-button-{bg,fg,border-color}`) |
+| nbButton | `button` | `--nb-button-{bg,fg,border-color,radius,border-width}` (+ local `--nb-button-shadow`) |
 | nbIconButton | `icon-button` | `--nb-icon-button-{bg,fg,border-color,border-width,radius,shadow}` |
 | nbChip | `chip` | `--nb-chip-{bg,fg,border-color,border-width,radius,shadow}` |
 | nbMediaItem | `media-item` | `--nb-media-item-{bg,fg,border-color}` (+ local anatomy vars) |
@@ -64,12 +64,12 @@ and override:
 
 ## Why some primitives only partially adopt capabilities
 
-- **Button** composes the **radius** and **border** capabilities. Its color is a
-  `variant`(preset) + `tone`(override) hybrid layered over a `var(--nb-main)`
-  default, and `shadow` encodes hover-translate behavior — neither matches the
-  "always write a resolved value" capability contract, so both stay local. Its
-  existing `--nb-button-bg/-fg` bindings already satisfy the namespaced-variable
-  goal; `--nb-button-border-color` is a static class default (brutalist ink).
+- **Button** now composes the **tone**, **radius**, and **border** capabilities —
+  `tone` is the single color axis (default `primary`), writing
+  `--nb-button-{bg,fg,border-color}` through the shared resolver. Only `shadow`
+  stays local because it still encodes hover/active translate and `reverse` press
+  behavior, which doesn't match the "always write a resolved value" capability
+  contract. Splitting it out is the future `NbPressCapability` pass.
 - **Callout** keeps its size-derived radius/border-width (anatomy), composing only
   tone + shadow.
 - **Surface / Chip** keep their asymmetric padding primitive-local; only the
@@ -120,11 +120,10 @@ Angular requires classes referenced by `hostDirectives` to be reachable
 - **Removed (breaking, pre-1.0):** Surface `radius="base"`, `shadow="lifted"`.
 - **Canonicalized values:** a token (e.g. `radius="lg"`) now resolves to one
   geometry everywhere; primitives whose old value differed shift slightly.
-- **Unchanged:** all other primitive inputs/selectors, Button `variant`/`tone`/
-  `shadow`, and every layout primitive input.
+- **Unchanged:** all other primitive inputs/selectors, Button `shadow`, and every
+  layout primitive input.
 
 ### Follow-ups
-- Revisit folding Button `tone`/`variant` into the tone capability post-1.0.
 - Consider a shared `separator` type/capability across Stack/Cluster/Split (they
   now expose `separator`; Section keeps `divider`/`NbDivider` as placement).
 - Optionally unify Surface/Chip padding onto the padding capability later.
@@ -155,6 +154,10 @@ hover-translate press behavior).
   `NbToneCapability` / `nbToneVars()`, and `NbMediaItemTone` aliases `NbToneToken`.
 - **Chip** and **Button** adopt `NbBorderCapability` for border *width*; border
   *color* comes from tone (`--nb-*-border-color`).
+- **Button** folds `variant` into `tone` — `variant` and `NbButtonVariant` are
+  removed (no alias), Button composes `NbToneCapability`, and color flows through
+  `--nb-button-{bg,fg,border-color}`. Default tone is `primary` (replacing the
+  bespoke `--nb-main`). Only `shadow`/press behavior stays local.
 - Ambiguous `--nb-*-border` variables are normalized to `--nb-*-border-color`
   (color) and `--nb-*-border-width` (width).
 
@@ -164,4 +167,3 @@ hover-translate press behavior).
 - `NbControlSizeCapability`, `NbAlign/NbJustifyCapability` — record only.
 - Generic `NbSizeCapability` — **will not** be built; `size` means different
   anatomy per primitive.
-- Button `variant` → `tone` simplification — post-1.0.

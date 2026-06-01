@@ -117,7 +117,7 @@ In `app.html`, the header uses three ng-brutalism components:
 
 - **`[nbTitle]`** — a directive that adds a wavy underline to any element. Here it highlights the word "dream" in the hero title.
 - **`nb-input-group`** — wraps the search input and its prefix icon into a single bordered unit.
-- **`button[nbButton]`** — the purple filter button with `variant="primary"`.
+- **`button[nbButton]`** — the purple filter button with `tone="primary"`.
 
 ```html
 <header class="site-header">
@@ -132,7 +132,7 @@ In `app.html`, the header uses three ng-brutalism components:
         <span nbInputPrefix align="center">🔍</span>
         <input nbInput placeholder="Search jobs..." aria-label="Search jobs" />
       </nb-input-group>
-      <button nbButton variant="primary" size="lg">Filter ▼</button>
+      <button nbButton tone="primary" size="lg">Filter ▼</button>
     </div>
   </div>
 </header>
@@ -248,7 +248,7 @@ readonly jobs: Job[] = [
 
       <nb-card-actions class="card-actions">
         <button nbButton (click)="openDialog(job.title)">Apply</button>
-        <button nbButton variant="neutral" size="icon" aria-label="Save job">♥</button>
+        <button nbIconButton tone="background" radius="md" aria-label="Save job">♥</button>
       </nb-card-actions>
     </nb-card>
   }
@@ -345,7 +345,7 @@ The dialog template uses six ng-brutalism components inside it — `NbDialog`, `
 
   <nb-dialog-actions>
     <button nbButton nbDialogClose>Cancel</button>
-    <button nbButton variant="primary" [disabled]="!agreed">Submit Application</button>
+    <button nbButton tone="primary" [disabled]="!agreed">Submit Application</button>
   </nb-dialog-actions>
 </nb-dialog>
 ```

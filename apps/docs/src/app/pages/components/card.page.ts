@@ -214,7 +214,7 @@ import JobListingCardExample from './examples/job-listing-card';
               align="end"
               class="gap-2! max-sm:px-3!"
             >
-              <button nbButton size="sm" variant="neutral">
+              <button nbButton size="sm" tone="background">
                 Mark all read
               </button>
               <button nbButton size="sm">Open inbox</button>
@@ -296,7 +296,7 @@ export default class CardPage {
     </p>
   </nb-card-content>
   <nb-card-actions align="end">
-    <button nbButton size="sm" variant="neutral">Mark all read</button>
+    <button nbButton size="sm" tone="background">Mark all read</button>
     <button nbButton size="sm">Open inbox</button>
   </nb-card-actions>
 </nb-card>`;
@@ -318,7 +318,7 @@ export default class CardPage {
     </div>
     <nb-card-actions align="end">
       <button nbButton>Apply</button>
-      <button nbButton variant="primary">Save</button>
+      <button nbButton tone="primary">Save</button>
     </nb-card-actions>
   </nb-card-footer>
 </nb-card>`;

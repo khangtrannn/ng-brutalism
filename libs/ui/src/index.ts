@@ -56,7 +56,6 @@ export type {
   NbButtonShadow,
   NbButtonSize,
   NbButtonTone,
-  NbButtonVariant,
 } from './lib/button';
 export {
   NbCard,

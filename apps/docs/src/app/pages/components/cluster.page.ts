@@ -271,7 +271,7 @@ interface ClusterSeparatorDemo {
 
               <div nbCluster gap="md" [wrap]="wrap.value">
                 <button nbButton size="sm">Flight</button>
-                <button nbButton size="sm" variant="secondary">Hotel</button>
+                <button nbButton size="sm" tone="secondary">Hotel</button>
                 <button nbButton size="sm">Top pick</button>
               </div>
             </div>

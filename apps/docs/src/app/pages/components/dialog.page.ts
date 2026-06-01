@@ -173,6 +173,7 @@ export default class DialogPage {
   NbDialogContent,
   NbDialogActions,
   NbDialogClose,
+  NbIconButton,
   NbTitle,
   NbInput,
   NbInputGroup,
@@ -187,11 +188,12 @@ export default class DialogPage {
 <nb-dialog #dialog>
   <div class="relative bg-(--nb-field-bg) px-6 pt-7 pb-5 sm:px-10 sm:pt-9 sm:pb-6">
     <button
-      nbButton
+      nbIconButton
       nbDialogClose
-      size="icon"
-      variant="neutral"
+      tone="background"
+      radius="md"
       aria-label="Close dialog"
+      style="--nb-icon-button-bg: #fff"
       class="absolute right-6 top-6 text-xl leading-none sm:right-10 sm:top-9"
     >
       &times;
@@ -291,7 +293,7 @@ export default class DialogPage {
     <div class="flex items-center gap-3">
       <span class="hidden h-10 w-px bg-(--nb-border) sm:block" aria-hidden="true"></span>
       <docs-contact-zigzag-icon class="hidden w-9 sm:block" />
-      <button nbButton variant="neutral" nbDialogClose class="min-w-28 font-mono" style="--nb-button-bg: #fff">Cancel</button>
+      <button nbButton tone="background" nbDialogClose class="min-w-28 font-mono" style="--nb-button-bg: #fff">Cancel</button>
       <button nbButton nbDialogClose class="flex min-w-36 items-center justify-center gap-2 font-mono" style="--nb-button-bg: #ffd92e; --nb-button-fg: #000;">
         Send Message
         <docs-contact-send-icon class="size-4" />

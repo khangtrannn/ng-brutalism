@@ -9,5 +9,4 @@ export type {
   NbButtonShadow,
   NbButtonSize,
   NbButtonTone,
-  NbButtonVariant,
 } from './button.types';

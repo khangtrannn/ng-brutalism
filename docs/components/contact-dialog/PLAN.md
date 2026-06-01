@@ -367,7 +367,7 @@ Build clean (`pnpm nx build docs`), lint clean (`pnpm nx lint docs`). Single fil
 | Title decoration | none | inline purple wavy SVG below title |
 | Description | short, pink border-bottom | longer text, no border-bottom |
 | Top-right cluster | `*` + pink zigzag | `*` + pink zigzag + **speech bubble on coral blob with burst marks** (F3 full fidelity, hand-coded per Q12) |
-| **Close `×` button** | `variant="neutral"` (white) | **yellow** via inline `style="--nb-button-bg: #ffd92e; --nb-button-fg: #000;"` matching Send button (Q3) |
+| **Close `×` button** | `tone="background"` (white) | **yellow** via inline `style="--nb-button-bg: #ffd92e; --nb-button-fg: #000;"` matching Send button (Q3) |
 
 ### 1.3 Implementation steps
 1. Replace `<h2 nbDialogTitle>` text content.

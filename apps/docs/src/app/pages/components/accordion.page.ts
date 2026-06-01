@@ -130,7 +130,7 @@ import { DocsTokens } from '../../docs/docs-tokens';
               <button
                 nbButton
                 size="sm"
-                variant="neutral"
+                tone="background"
                 type="button"
                 style="--nb-button-bg: var(--nb-warning)"
                 (click)="controlledValue.set('overview')"
@@ -140,7 +140,7 @@ import { DocsTokens } from '../../docs/docs-tokens';
               <button
                 nbButton
                 size="sm"
-                variant="neutral"
+                tone="background"
                 type="button"
                 style="--nb-button-bg: var(--nb-success)"
                 (click)="controlledValue.set('details')"
@@ -150,7 +150,7 @@ import { DocsTokens } from '../../docs/docs-tokens';
               <button
                 nbButton
                 size="sm"
-                variant="neutral"
+                tone="background"
                 type="button"
                 style="--nb-button-bg: var(--nb-primary)"
                 (click)="controlledValue.set(null)"
@@ -423,7 +423,7 @@ readonly controlledValue = signal<string | string[] | null>('overview');`;
     <button
       nbButton
       size="sm"
-      variant="neutral"
+      tone="background"
       type="button"
       style="--nb-button-bg: var(--nb-warning)"
       (click)="controlledValue.set('overview')"
@@ -433,7 +433,7 @@ readonly controlledValue = signal<string | string[] | null>('overview');`;
     <button
       nbButton
       size="sm"
-      variant="neutral"
+      tone="background"
       type="button"
       style="--nb-button-bg: var(--nb-success)"
       (click)="controlledValue.set('details')"
@@ -443,7 +443,7 @@ readonly controlledValue = signal<string | string[] | null>('overview');`;
     <button
       nbButton
       size="sm"
-      variant="neutral"
+      tone="background"
       type="button"
       style="--nb-button-bg: var(--nb-primary)"
       (click)="controlledValue.set(null)"

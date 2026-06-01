@@ -77,7 +77,7 @@ import {
         <div
           nbSplit
           ratio="2:1"
-          gap="xl"
+          gap="2xl"
           padding="lg"
           collapse="md"
           separator="solid"
@@ -132,7 +132,7 @@ import {
           <div nbSplit ratio="2:1" gap="lg" collapse="md">
             <div
               nbCluster
-              gap="lg"
+              gap="2xl"
               align="center"
               separator="dashed"
               class="[--nb-media-item-title-size:12px]"
