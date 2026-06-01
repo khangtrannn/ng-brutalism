@@ -25,9 +25,9 @@ For history and details, read the domain's own `progress.md`.
 ## Components
 **Status:** Internal style-capability refactor landed on `refactor/internal-style-capabilities`. Shared token contracts + resolvers (`NbRadius`/`NbShadow`/`NbBorderStrength`/`NbSpacing`/`NbPadding`/`NbDivider` + `nbToneVars`) feed 6 internal capability directives composed into 9 primitives via `hostDirectives`. Capabilities write component-specific CSS vars (`--nb-surface-radius`, `--nb-button-radius`, …) through signal-driven `[style]` maps (no `effect()`). Values canonicalized; duplicated maps removed. ui build + 150 tests green.
 **Last action:** Refactored Surface/MediaFrame/Button/Chip/Callout/Section/Stack/Cluster/Split. Renamed `nbSection border`→`divider` (+ `borderStyle`→`dividerStyle`); dropped Surface `radius="base"`/`shadow="lifted"`. Architecture + migration summary in `docs/components/style-capabilities.md`.
-**Next:** Build docs app + visual QA podcast-card; then resume v0.2.0 release. Follow-up: fold Button tone/variant into tone capability post-1.0.
+**Next:** API consistency audit landed (`docs/architecture/api-consistency-audit.md`) — next capability-adoption wave: resolve `divider` collision (Section placement vs layout line-style), rename `size="default"`→`"md"`, move Button typography→`nbText`, widen tone/border capability to IconButton/MediaItem/Chip, kill MediaItem hex map + `NbIconButtonRadius`. Then docs app build + visual QA podcast-card; resume v0.2.0. Post-1.0: fold Button variant into tone.
 **Goal:** All 18 reference designs buildable with v0.2.0 primitives (~90% fidelity).
-→ Plan: `docs/release/v0.2.0-plan.md` · Arch: `docs/components/style-capabilities.md`
+→ Plan: `docs/release/v0.2.0-plan.md` · Arch: `docs/components/style-capabilities.md` · Audit: `docs/architecture/api-consistency-audit.md`
 
 ---
 
