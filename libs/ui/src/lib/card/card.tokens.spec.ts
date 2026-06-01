@@ -43,14 +43,22 @@ describe('NbCard token surface', () => {
   it('declares the expected default tokens on the base host', async () => {
     const fixture = await createFixture();
     const card = findCard(fixture);
-    const cls = card.className;
 
-    expect(cls).toContain('[--nb-card-bg:var(--nb-background)]');
-    expect(cls).toContain('[--nb-card-fg:var(--nb-foreground)]');
-    expect(cls).toContain('[--nb-card-border:var(--nb-border)]');
-    expect(cls).toContain('[--nb-card-radius:18px]');
-    expect(cls).toContain(
-      '[--nb-card-shadow:var(--nb-shadow-offset-x)_var(--nb-shadow-offset-y)_0_var(--nb-shadow)]'
+    expect(card.style.getPropertyValue('--nb-card-bg')).toBe(
+      'var(--nb-background)'
+    );
+    expect(card.style.getPropertyValue('--nb-card-fg')).toBe(
+      'var(--nb-foreground)'
+    );
+    expect(card.style.getPropertyValue('--nb-card-border-color')).toBe(
+      'var(--nb-border)'
+    );
+    expect(card.style.getPropertyValue('--nb-card-radius')).toBe('1rem');
+    expect(card.style.getPropertyValue('--nb-card-shadow')).toBe(
+      'var(--nb-shadow-offset-x) var(--nb-shadow-offset-y) 0 0 var(--nb-shadow)'
+    );
+    expect(card.style.getPropertyValue('--nb-card-border-width')).toBe(
+      'var(--nb-border-width)'
     );
   });
 
@@ -61,7 +69,8 @@ describe('NbCard token surface', () => {
 
     expect(cls).toContain('bg-(--nb-card-bg)');
     expect(cls).toContain('text-(--nb-card-fg)');
-    expect(cls).toContain('border-(--nb-card-border)');
+    expect(cls).toContain('border-(length:--nb-card-border-width)');
+    expect(cls).toContain('border-(--nb-card-border-color)');
     expect(cls).toContain('rounded-(--nb-card-radius)');
     expect(cls).toContain('shadow-[var(--nb-card-shadow)]');
     expect(cls).not.toContain('bg-(--nb-background)');
@@ -80,7 +89,7 @@ describe('NbCard token surface', () => {
     expect(cls).toContain('flex-col');
     expect(cls).toContain('gap-6');
     expect(cls).toContain('py-6');
-    expect(cls).toContain('border-2');
+    expect(cls).toContain('border-(length:--nb-card-border-width)');
     expect(cls).toContain('font-medium');
   });
 

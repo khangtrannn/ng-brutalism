@@ -66,8 +66,20 @@ export {
   NbCardContent,
   NbCardFooter,
 } from './lib/card';
-export type { NbCardActionsAlign } from './lib/card';
+export type {
+  NbCardActionsAlign,
+  NbCardBorder,
+  NbCardRadius,
+  NbCardShadow,
+  NbCardTone,
+} from './lib/card';
 export { NbImageCard, NbImageCardCaption } from './lib/image-card';
+export type {
+  NbImageCardBorder,
+  NbImageCardRadius,
+  NbImageCardShadow,
+  NbImageCardTone,
+} from './lib/image-card';
 export { NbMarquee, NbMarqueeItem } from './lib/marquee';
 export { NbInput } from './lib/input';
 export { NbLabel } from './lib/label';
@@ -87,8 +99,19 @@ export type { NbInputPrefixAlign, NbInputSuffixAlign } from './lib/input-group';
 export { NbNativeSelect, NbSelect, NbSelectOption } from './lib/select';
 export type { NbSelectValue } from './lib/select';
 export { NbBadge } from './lib/badge';
-export type { NbBadgeVariant } from './lib/badge';
+export type {
+  NbBadgeBorder,
+  NbBadgeRadius,
+  NbBadgeShadow,
+  NbBadgeTone,
+} from './lib/badge';
 export { NbAvatar } from './lib/avatar';
+export type {
+  NbAvatarBorder,
+  NbAvatarRadius,
+  NbAvatarShadow,
+  NbAvatarTone,
+} from './lib/avatar';
 export { NbMediaFrame } from './lib/media-frame';
 export type {
   NbMediaFrameFit,

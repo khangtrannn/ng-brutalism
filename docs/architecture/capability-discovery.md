@@ -28,11 +28,11 @@ disabled) is not — yet.
 
 | Capability | Public input | Writes | Adopted by |
 |---|---|---|---|
-| NbToneCapability | `tone` | `--nb-{ns}-{bg,fg,border-color}` | Surface, MediaFrame, Chip, Callout, IconButton, MediaItem |
-| NbRadiusCapability | `radius` | `--nb-{ns}-radius` | Surface, MediaFrame, Button, Chip, IconButton |
-| NbShadowCapability | `shadow` | `--nb-{ns}-shadow` | Surface, MediaFrame, Chip, Callout, IconButton |
-| NbBorderCapability | `border` | `--nb-{ns}-border-width` | Surface, MediaFrame, Chip, Button, IconButton |
-| NbPaddingCapability | `padding` | `--nb-{ns}-padding` | Section, Cluster, Split |
+| NbToneCapability | `tone` | `--nb-{ns}-{bg,fg,border-color}` | Surface, MediaFrame, Button, IconButton, Chip, Callout, MediaItem, Badge, Card, Avatar, ImageCard, Dialog, AccordionItem |
+| NbRadiusCapability | `radius` | `--nb-{ns}-radius` | Surface, MediaFrame, Button, IconButton, Chip, Badge, Card, Avatar, ImageCard, Dialog, AccordionItem |
+| NbShadowCapability | `shadow` | `--nb-{ns}-shadow` | Surface, MediaFrame, IconButton, Chip, Callout, Badge, Card, Avatar, ImageCard, Dialog, AccordionItem |
+| NbBorderCapability | `border` | `--nb-{ns}-border-width` | Surface, MediaFrame, Button, IconButton, Chip, Badge, Card, Avatar, ImageCard, Dialog, AccordionItem |
+| NbPaddingCapability | `padding` | `--nb-{ns}-padding` | Surface, Section, Cluster, Split |
 | NbGapCapability | `gap` | `--nb-{ns}-gap` | Stack, Cluster, Split |
 
 > Tone owns color (`bg` / `fg` / `border-color`); the border capability owns
@@ -40,14 +40,14 @@ disabled) is not — yet.
 
 ## Capability discovery candidates
 
-| Candidate | Repeated in | Why it might exist | Decision |
-|---|---|---|---|
-| NbPressCapability | Button, IconButton | Shared hover/active translate + shadow-shift (brutalist press offset) | **Record only** — interaction semantics need design; do after visual adoption; review with focus/disabled |
-| NbFocusCapability | Button, IconButton, Input, Select, Checkbox | Shared `focus-visible` ring treatment | **Record** for the accessibility chapter |
-| NbDisabledCapability | Button, IconButton, form controls | Shared disabled/`aria-disabled` styling + semantics | **Record** — needs a11y review |
-| NbControlSizeCapability | Button, IconButton, Input, Select, Checkbox | Shared control density naming (`sm/md/lg`) | **Maybe later** — not now; each control's size is its own anatomy today |
-| NbAlign / NbJustifyCapability | Stack, Cluster, Split, Section | Shared layout alignment mapping | **Centralize the types first**, then reconsider a capability |
-| NbSizeCapability (generic) | Many primitives | One `size` to rule them all | **Do not implement** — `size` means different anatomy per primitive (square dims vs control density vs type scale) |
+| Candidate | Seen in | Repeated behavior | Decision | Reason |
+|---|---|---|---|---|
+| NbPressCapability | Button, IconButton | Shared hover/active translate + shadow-shift | Future | Interaction semantics need design; review with focus/disabled |
+| NbFocusCapability | Button, IconButton, Input, Select, Checkbox, Dialog, Accordion | Shared `focus-visible` ring treatment | Future | Needs accessibility chapter |
+| NbDisabledCapability | Button, IconButton, form controls, Accordion | Shared disabled/`aria-disabled` styling + semantics | Future | Native vs ARIA differences |
+| NbControlSizeCapability | Button, IconButton, Input, Select, Checkbox | Shared control density naming (`sm/md/lg`) | Future | Each control's size remains anatomy today |
+| NbAlign / NbJustifyCapability | Stack, Cluster, Split, Section, MediaItem | Shared layout alignment mapping | Record only | CSS targets differ; centralize types first |
+| NbSizeCapability (generic) | Many primitives | One `size` to rule them all | Do not implement | `size` means different anatomy per primitive |
 
 ### Important standing decision
 
@@ -85,6 +85,8 @@ For now, Button/IconButton keep their hover/active behavior **primitive-local**.
 | `focus-visible` ring | every control | Future `NbFocusCapability` |
 | disabled / `aria-disabled` | every control | Future `NbDisabledCapability` |
 | asymmetric pill padding | Chip | Anatomy — a chip is an inline pill, not a uniform container |
+| size-derived callout padding/radius/border | Callout | Anatomy — callout size controls its whole display shell |
 | square dimensions / icon sizing | IconButton | Anatomy specific to the square target |
 | MediaItem layout (orientation/align/size/gap/typography) | MediaItem | Composition anatomy, not shared visual grammar |
+| form-control shell/focus/disabled | Input, Textarea, Select, InputGroup, Checkbox | Future control/focus/disabled capability pass |
 | recipe layout | recipes | Tailwind escape hatch — proves the vocabulary, doesn't extend it |

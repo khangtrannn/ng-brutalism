@@ -14,13 +14,20 @@ describe('NbAvatar token surface', () => {
   it('declares the expected default tokens on the base host', async () => {
     const fixture = await createFixture();
     const avatar = findAvatar(fixture);
-    const cls = avatar.className;
 
-    expect(cls).toContain('[--nb-avatar-bg:var(--nb-secondary-background)]');
-    expect(cls).toContain('[--nb-avatar-fg:var(--nb-foreground)]');
-    expect(cls).toContain('[--nb-avatar-border:var(--nb-border)]');
-    expect(cls).toContain('[--nb-avatar-radius:9999px]');
-    expect(cls).toContain('[--nb-avatar-shadow:2px_2px_0_0_var(--nb-shadow)]');
+    expect(avatar.style.getPropertyValue('--nb-avatar-bg')).toBe(
+      'var(--nb-surface)'
+    );
+    expect(avatar.style.getPropertyValue('--nb-avatar-fg')).toBe(
+      'var(--nb-surface-foreground)'
+    );
+    expect(avatar.style.getPropertyValue('--nb-avatar-border-color')).toBe(
+      'var(--nb-border)'
+    );
+    expect(avatar.style.getPropertyValue('--nb-avatar-radius')).toBe('9999px');
+    expect(avatar.style.getPropertyValue('--nb-avatar-shadow')).toBe(
+      '2px 2px 0 0 var(--nb-shadow)'
+    );
   });
 
   it('reads its scoped tokens instead of global tokens directly', async () => {
@@ -30,7 +37,8 @@ describe('NbAvatar token surface', () => {
 
     expect(cls).toContain('bg-(--nb-avatar-bg)');
     expect(cls).toContain('text-(--nb-avatar-fg)');
-    expect(cls).toContain('border-(--nb-avatar-border)');
+    expect(cls).toContain('border-(length:--nb-avatar-border-width)');
+    expect(cls).toContain('border-(--nb-avatar-border-color)');
     expect(cls).toContain('rounded-(--nb-avatar-radius)');
     expect(cls).toContain('shadow-[var(--nb-avatar-shadow)]');
     expect(cls).not.toContain('bg-(--nb-secondary-background)');
@@ -50,7 +58,7 @@ describe('NbAvatar token surface', () => {
     expect(cls).toContain('w-10');
     expect(cls).toContain('shrink-0');
     expect(cls).toContain('overflow-hidden');
-    expect(cls).toContain('border-2');
+    expect(cls).toContain('border-(length:--nb-avatar-border-width)');
     expect(cls).toContain('font-bold');
     expect(cls).toContain('text-sm');
     expect(cls).toContain('items-center');

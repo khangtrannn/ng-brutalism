@@ -73,7 +73,7 @@ The final primitive list was validated against 10 real-world UI scenarios (prici
 ### v0.1.3 — patch
 | Primitive | Change |
 |---|---|
-| **`nb-badge`** | Add `gap-1.5` for icon+text layout; document `--nb-badge-bg` / `--nb-badge-fg` / `--nb-badge-border` / `--nb-badge-radius` / `--nb-badge-shadow` as public API |
+| **`nb-badge`** | Add `gap-1.5` for icon+text layout; document `--nb-badge-bg` / `--nb-badge-fg` / `--nb-badge-border-color` / `--nb-badge-border-width` / `--nb-badge-radius` / `--nb-badge-shadow` as public API |
 | **CSS variables** | Document all component-scoped tokens as public API across all components |
 
 ### v0.2.0 — minor (new components)

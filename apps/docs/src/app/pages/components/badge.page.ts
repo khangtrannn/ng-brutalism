@@ -23,7 +23,7 @@ import { DocsTokens } from '../../docs/docs-tokens';
           <h1>Badge</h1>
           <p class="mt-3 max-w-3xl text-base font-medium sm:text-lg">
             The neo-brutalist Angular Badge component. A small status indicator
-            with thick borders and flat shadow across five semantic variants.
+            with shared tone, radius, shadow, and border styling.
           </p>
         </div>
 
@@ -52,15 +52,15 @@ import { DocsTokens } from '../../docs/docs-tokens';
         <docs-code-block title="Template" [code]="defaultExampleCode" />
       </section>
 
-      <section id="variants">
-        <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">Variants</h2>
+      <section id="tones">
+        <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">Tones</h2>
         <docs-example [code]="variantsExampleCode">
           <div class="flex flex-wrap items-center gap-3">
             <span nbBadge>Default</span>
-            <span nbBadge variant="secondary">Secondary</span>
-            <span nbBadge variant="success">Success</span>
-            <span nbBadge variant="warning">Warning</span>
-            <span nbBadge variant="danger">Danger</span>
+            <span nbBadge tone="accent">Accent</span>
+            <span nbBadge tone="success">Success</span>
+            <span nbBadge tone="warning">Warning</span>
+            <span nbBadge tone="danger">Danger</span>
           </div>
         </docs-example>
       </section>
@@ -83,11 +83,11 @@ import { DocsTokens } from '../../docs/docs-tokens';
             </thead>
             <tbody class="font-medium">
               <tr>
-                <td class="border-r-2 border-(--nb-border) px-4 py-3">variant</td>
+                <td class="border-r-2 border-(--nb-border) px-4 py-3">tone</td>
                 <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">
-                  'default' | 'secondary' | 'success' | 'warning' | 'danger'
+                  NbToneToken
                 </td>
-                <td class="px-4 py-3 font-mono text-sm">'default'</td>
+                <td class="px-4 py-3 font-mono text-sm">'white'</td>
               </tr>
             </tbody>
           </table>
@@ -104,9 +104,9 @@ export default class BadgePage {
 
   protected readonly variantsExampleCode = `<div class="flex flex-wrap items-center gap-3">
   <span nbBadge>Default</span>
-  <span nbBadge variant="secondary">Secondary</span>
-  <span nbBadge variant="success">Success</span>
-  <span nbBadge variant="warning">Warning</span>
-  <span nbBadge variant="danger">Danger</span>
+  <span nbBadge tone="accent">Accent</span>
+  <span nbBadge tone="success">Success</span>
+  <span nbBadge tone="warning">Warning</span>
+  <span nbBadge tone="danger">Danger</span>
 </div>`;
 }

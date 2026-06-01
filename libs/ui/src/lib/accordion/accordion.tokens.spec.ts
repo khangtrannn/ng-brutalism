@@ -28,25 +28,28 @@ class AccordionTokenTest {}
 describe('NbAccordion token surface', () => {
   it('declares the expected default tokens on the component parts', async () => {
     const fixture = await createFixture();
-    const item = findItemBox(fixture);
+    const itemHost = findItemHost(fixture);
     const trigger = findTrigger(fixture);
     const content = findContent(fixture);
 
-    expect(item.className).toContain(
-      '[--nb-accordion-item-bg:var(--nb-surface)]'
+    expect(itemHost.style.getPropertyValue('--nb-accordion-item-bg')).toBe(
+      'var(--nb-surface)'
     );
-    expect(item.className).toContain(
-      '[--nb-accordion-item-fg:var(--nb-surface-foreground)]'
+    expect(itemHost.style.getPropertyValue('--nb-accordion-item-fg')).toBe(
+      'var(--nb-surface-foreground)'
     );
-    expect(item.className).toContain(
-      '[--nb-accordion-item-border:var(--nb-border)]'
+    expect(
+      itemHost.style.getPropertyValue('--nb-accordion-item-border-color')
+    ).toBe('var(--nb-border)');
+    expect(itemHost.style.getPropertyValue('--nb-accordion-item-radius')).toBe(
+      'var(--nb-radius)'
     );
-    expect(item.className).toContain(
-      '[--nb-accordion-item-radius:var(--nb-radius)]'
+    expect(itemHost.style.getPropertyValue('--nb-accordion-item-shadow')).toBe(
+      'var(--nb-shadow-offset-x) var(--nb-shadow-offset-y) 0 0 var(--nb-shadow)'
     );
-    expect(item.className).toContain(
-      '[--nb-accordion-item-shadow:var(--nb-shadow-offset-x)_var(--nb-shadow-offset-y)_0_var(--nb-shadow)]'
-    );
+    expect(
+      itemHost.style.getPropertyValue('--nb-accordion-item-border-width')
+    ).toBe('var(--nb-border-width)');
     expect(trigger.className).toContain(
       '[--nb-accordion-trigger-bg:var(--nb-main)]'
     );
@@ -69,15 +72,19 @@ describe('NbAccordion token surface', () => {
 
     expect(itemClass).toContain('bg-(--nb-accordion-item-bg)');
     expect(itemClass).toContain('text-(--nb-accordion-item-fg)');
-    expect(itemClass).toContain('border-(--nb-accordion-item-border)');
+    expect(itemClass).toContain('border-(length:--nb-accordion-item-border-width)');
+    expect(itemClass).toContain('border-(--nb-accordion-item-border-color)');
     expect(itemClass).toContain('rounded-(--nb-accordion-item-radius)');
     expect(itemClass).toContain('shadow-[var(--nb-accordion-item-shadow)]');
     expect(triggerClass).toContain('bg-(--nb-accordion-trigger-bg)');
     expect(triggerClass).toContain('text-(--nb-accordion-trigger-fg)');
     expect(triggerClass).toContain(
-      'focus-visible:ring-(--nb-accordion-item-border)'
+      'focus-visible:ring-(--nb-accordion-item-border-color)'
     );
-    expect(triggerClass).toContain('border-(--nb-accordion-item-border)');
+    expect(triggerClass).toContain(
+      'border-b-(length:--nb-accordion-item-border-width)'
+    );
+    expect(triggerClass).toContain('border-b-(--nb-accordion-item-border-color)');
     expect(contentClass).toContain('bg-(--nb-accordion-content-bg)');
     expect(contentClass).toContain('text-(--nb-accordion-content-fg)');
     expect(`${itemClass} ${triggerClass} ${contentClass}`).not.toContain(
@@ -95,7 +102,7 @@ describe('NbAccordion token surface', () => {
     const cls = findItemBox(fixture).className;
 
     expect(cls).toContain('overflow-hidden');
-    expect(cls).toContain('border-2');
+    expect(cls).toContain('border-(length:--nb-accordion-item-border-width)');
   });
 
   it('does not regress the default trigger class shape', async () => {
@@ -114,7 +121,7 @@ describe('NbAccordion token surface', () => {
     expect(cls).toContain('focus-visible:outline-none');
     expect(cls).toContain('focus-visible:ring-2');
     expect(cls).toContain('disabled:opacity-50');
-    expect(cls).toContain('border-b-2');
+    expect(cls).toContain('border-b-(length:--nb-accordion-item-border-width)');
   });
 
   it('does not regress the default content class shape', async () => {
@@ -150,6 +157,14 @@ function findItemBox(
 ): HTMLElement {
   return fixture.nativeElement.querySelector(
     'nb-accordion-item > div'
+  ) as HTMLElement;
+}
+
+function findItemHost(
+  fixture: ComponentFixture<AccordionTokenTest>
+): HTMLElement {
+  return fixture.nativeElement.querySelector(
+    'nb-accordion-item'
   ) as HTMLElement;
 }
 

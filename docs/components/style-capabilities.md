@@ -47,13 +47,19 @@ and override:
 
 | Primitive | namespace | variables written |
 |---|---|---|
-| nbSurface | `surface` | `--nb-surface-{bg,fg,border-color,radius,border-width,shadow}` |
+| nbSurface | `surface` | `--nb-surface-{bg,fg,border-color,radius,border-width,shadow,padding}` |
 | nbMediaFrame | `media-frame` | `--nb-media-frame-{bg,fg,border-color,radius,border-width,shadow}` |
 | nbButton | `button` | `--nb-button-{bg,fg,border-color,radius,border-width}` (+ local `--nb-button-shadow`) |
 | nbIconButton | `icon-button` | `--nb-icon-button-{bg,fg,border-color,border-width,radius,shadow}` |
 | nbChip | `chip` | `--nb-chip-{bg,fg,border-color,border-width,radius,shadow}` |
 | nbMediaItem | `media-item` | `--nb-media-item-{bg,fg,border-color}` (+ local anatomy vars) |
 | nbCallout | `callout` | `--nb-callout-{bg,fg,border-color,shadow}` (radius is size-derived) |
+| nbBadge | `badge` | `--nb-badge-{bg,fg,border-color,border-width,radius,shadow}` |
+| nbCard | `card` | `--nb-card-{bg,fg,border-color,border-width,radius,shadow}` |
+| nbAvatar | `avatar` | `--nb-avatar-{bg,fg,border-color,border-width,radius,shadow}` |
+| nbImageCard | `image-card` | `--nb-image-card-{bg,fg,border-color,border-width,radius,shadow}` |
+| nbDialog | `dialog` | `--nb-dialog-{bg,fg,border-color,border-width,radius,shadow}` |
+| nbAccordionItem | `accordion-item` | `--nb-accordion-item-{bg,fg,border-color,border-width,radius,shadow}` |
 | nbSection | `section` | `--nb-section-padding` |
 | nbStack | `stack` | `--nb-stack-gap` |
 | nbCluster | `cluster` | `--nb-cluster-{gap,padding}` |
@@ -72,9 +78,8 @@ and override:
   contract. Splitting it out is the future `NbPressCapability` pass.
 - **Callout** keeps its size-derived radius/border-width (anatomy), composing only
   tone + shadow.
-- **Surface / Chip** keep their asymmetric padding primitive-local; only the
-  uniform-container primitives (Section / Cluster / Split) use the padding
-  capability.
+- **Surface** uses the padding capability for uniform container padding. **Chip**
+  keeps its asymmetric pill padding primitive-local.
 
 ## Public API export policy
 
@@ -99,9 +104,11 @@ Angular requires classes referenced by `hostDirectives` to be reachable
 - DI tokens: `NB_STYLE_NAMESPACE`, `NB_STYLE_DEFAULTS` (+ `NbStyleDefaults`).
 
 ### Changed
-- `NbSurface`, `NbMediaFrame`, `NbButton`, `NbChip`, `NbCallout`, `NbSection`,
-  `NbStack`, `NbCluster`, `NbSplit` now compose shared capabilities via
-  `hostDirectives` instead of redefining token unions/maps.
+- `NbSurface`, `NbMediaFrame`, `NbButton`, `NbIconButton`, `NbChip`, `NbCallout`,
+  `NbBadge`, `NbCard`, `NbAvatar`, `NbImageCard`, `NbDialog`,
+  `NbAccordionItem`, `NbSection`, `NbStack`, `NbCluster`, and `NbSplit` now
+  compose shared capabilities via `hostDirectives` instead of redefining token
+  unions/maps.
 - Style capabilities write component-specific CSS variables (e.g.
   `--nb-surface-bg`, `--nb-button-radius`) via host `[style]` maps; primitives
   consume them with Tailwind utilities (no new `.nb-*` CSS classes).
@@ -158,6 +165,12 @@ hover-translate press behavior).
   removed (no alias), Button composes `NbToneCapability`, and color flows through
   `--nb-button-{bg,fg,border-color}`. Default tone is `primary` (replacing the
   bespoke `--nb-main`). Only `shadow`/press behavior stays local.
+- **Badge** replaces `variant` with the shared `tone` capability and composes
+  radius/shadow/border as a small visual shell.
+- **Card**, **Avatar**, **ImageCard**, **Dialog**, and **AccordionItem** consume
+  shared visual-shell capabilities; their subpart/layout anatomy stays local.
+- **Surface** padding now writes `--nb-surface-padding` through
+  `NbPaddingCapability`.
 - Ambiguous `--nb-*-border` variables are normalized to `--nb-*-border-color`
   (color) and `--nb-*-border-width` (width).
 

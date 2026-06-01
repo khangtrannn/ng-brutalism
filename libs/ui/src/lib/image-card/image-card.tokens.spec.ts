@@ -21,14 +21,24 @@ describe('NbImageCard token surface', () => {
   it('declares the expected default tokens on the base host', async () => {
     const fixture = await createFixture();
     const imageCard = findImageCard(fixture);
-    const cls = imageCard.className;
 
-    expect(cls).toContain('[--nb-image-card-bg:var(--nb-background)]');
-    expect(cls).toContain('[--nb-image-card-fg:var(--nb-foreground)]');
-    expect(cls).toContain('[--nb-image-card-border:var(--nb-border)]');
-    expect(cls).toContain('[--nb-image-card-radius:var(--nb-radius)]');
-    expect(cls).toContain(
-      '[--nb-image-card-shadow:var(--nb-shadow-offset-x)_var(--nb-shadow-offset-y)_0_var(--nb-shadow)]'
+    expect(imageCard.style.getPropertyValue('--nb-image-card-bg')).toBe(
+      'var(--nb-background)'
+    );
+    expect(imageCard.style.getPropertyValue('--nb-image-card-fg')).toBe(
+      'var(--nb-foreground)'
+    );
+    expect(imageCard.style.getPropertyValue('--nb-image-card-border-color')).toBe(
+      'var(--nb-border)'
+    );
+    expect(imageCard.style.getPropertyValue('--nb-image-card-radius')).toBe(
+      'var(--nb-radius)'
+    );
+    expect(imageCard.style.getPropertyValue('--nb-image-card-shadow')).toBe(
+      'var(--nb-shadow-offset-x) var(--nb-shadow-offset-y) 0 0 var(--nb-shadow)'
+    );
+    expect(imageCard.style.getPropertyValue('--nb-image-card-border-width')).toBe(
+      'var(--nb-border-width)'
     );
   });
 
@@ -39,7 +49,8 @@ describe('NbImageCard token surface', () => {
 
     expect(cls).toContain('bg-(--nb-image-card-bg)');
     expect(cls).toContain('text-(--nb-image-card-fg)');
-    expect(cls).toContain('border-(--nb-image-card-border)');
+    expect(cls).toContain('border-(length:--nb-image-card-border-width)');
+    expect(cls).toContain('border-(--nb-image-card-border-color)');
     expect(cls).toContain('rounded-(--nb-image-card-radius)');
     expect(cls).toContain('shadow-[var(--nb-image-card-shadow)]');
     expect(cls).not.toContain('bg-(--nb-background)');
@@ -66,8 +77,8 @@ describe('NbImageCard token surface', () => {
     const caption = findCaption(fixture);
     const cls = caption.className;
 
-    expect(cls).toContain('border-t-2');
-    expect(cls).toContain('border-(--nb-image-card-border)');
+    expect(cls).toContain('border-t-(length:--nb-image-card-border-width)');
+    expect(cls).toContain('border-t-(--nb-image-card-border-color)');
     expect(cls).not.toContain('border-(--nb-border)');
   });
 
@@ -79,7 +90,7 @@ describe('NbImageCard token surface', () => {
     expect(cls).toContain('flex');
     expect(cls).toContain('flex-col');
     expect(cls).toContain('overflow-hidden');
-    expect(cls).toContain('border-2');
+    expect(cls).toContain('border-(length:--nb-image-card-border-width)');
     expect(cls).toContain('font-medium');
   });
 });

@@ -1,2 +1,7 @@
 export { NbBadge } from './nb-badge';
-export type { NbBadgeVariant } from './badge.types';
+export type {
+  NbBadgeBorder,
+  NbBadgeRadius,
+  NbBadgeShadow,
+  NbBadgeTone,
+} from './nb-badge';

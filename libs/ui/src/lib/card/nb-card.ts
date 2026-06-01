@@ -6,12 +6,47 @@ import {
 } from '@angular/core';
 
 import { nbClass } from '../core/class';
+import {
+  NbBorderCapability,
+  NbRadiusCapability,
+  NbShadowCapability,
+  NbToneCapability,
+  NB_STYLE_DEFAULTS,
+  NB_STYLE_NAMESPACE,
+  type NbStyleDefaults,
+} from '../core/capabilities';
+import type { NbBorderStrength } from '../tokens/border';
+import type { NbRadius } from '../tokens/radius';
+import type { NbShadow } from '../tokens/shadow';
+import type { NbToneToken } from '../tokens/tone';
 
 export type NbCardActionsAlign = 'start' | 'end';
+export type NbCardTone = NbToneToken;
+export type NbCardRadius = NbRadius;
+export type NbCardShadow = NbShadow;
+export type NbCardBorder = NbBorderStrength;
 
 @Component({
   selector: 'nb-card',
   template: `<ng-content />`,
+  providers: [
+    { provide: NB_STYLE_NAMESPACE, useValue: 'card' },
+    {
+      provide: NB_STYLE_DEFAULTS,
+      useValue: {
+        tone: 'background',
+        radius: 'lg',
+        shadow: 'default',
+        border: 'default',
+      } satisfies NbStyleDefaults,
+    },
+  ],
+  hostDirectives: [
+    { directive: NbToneCapability, inputs: ['tone'] },
+    { directive: NbRadiusCapability, inputs: ['radius'] },
+    { directive: NbShadowCapability, inputs: ['shadow'] },
+    { directive: NbBorderCapability, inputs: ['border'] },
+  ],
   host: {
     '[class]': 'classes',
     '[attr.data-slot]': '"card"',
@@ -20,13 +55,9 @@ export type NbCardActionsAlign = 'start' | 'end';
 })
 export class NbCard {
   protected readonly classes = nbClass(
-    '[--nb-card-bg:var(--nb-background)]',
-    '[--nb-card-fg:var(--nb-foreground)]',
-    '[--nb-card-border:var(--nb-border)]',
-    '[--nb-card-radius:18px]',
-    '[--nb-card-shadow:var(--nb-shadow-offset-x)_var(--nb-shadow-offset-y)_0_var(--nb-shadow)]',
     'flex flex-col gap-6 py-6',
-    'rounded-(--nb-card-radius) border-2 border-(--nb-card-border)',
+    'rounded-(--nb-card-radius)',
+    'border-(length:--nb-card-border-width) border-(--nb-card-border-color)',
     'bg-(--nb-card-bg) text-(--nb-card-fg)',
     'shadow-[var(--nb-card-shadow)] font-medium'
   );

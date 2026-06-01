@@ -46,9 +46,10 @@ export class NbAccordionTrigger {
       'w-full bg-(--nb-accordion-trigger-bg) p-4 text-left text-base font-bold',
       'text-(--nb-accordion-trigger-fg) transition-all duration-200',
       'focus-visible:outline-none focus-visible:ring-2',
-      'focus-visible:ring-(--nb-accordion-item-border) focus-visible:ring-offset-2',
+      'focus-visible:ring-(--nb-accordion-item-border-color) focus-visible:ring-offset-2',
       'disabled:pointer-events-none disabled:opacity-50',
-      this.item.open() && 'border-b-2 border-(--nb-accordion-item-border)'
+      this.item.open() &&
+        'border-b-(length:--nb-accordion-item-border-width) border-b-(--nb-accordion-item-border-color)'
     )
   );
 }

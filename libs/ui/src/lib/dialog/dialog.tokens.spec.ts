@@ -32,13 +32,20 @@ class DialogTokenTest {}
 describe('NbDialog token surface', () => {
   it('declares the expected default tokens on the dialog element', async () => {
     const fixture = await createFixture();
-    const cls = findDialog(fixture).className;
+    const host = findDialogHost(fixture);
 
-    expect(cls).toContain('[--nb-dialog-bg:#fff]');
-    expect(cls).toContain('[--nb-dialog-fg:var(--nb-foreground)]');
-    expect(cls).toContain('[--nb-dialog-border:var(--nb-border)]');
-    expect(cls).toContain('[--nb-dialog-radius:0.5rem]');
-    expect(cls).toContain('[--nb-dialog-shadow:8px_8px_0_0_var(--nb-shadow)]');
+    expect(host.style.getPropertyValue('--nb-dialog-bg')).toBe('#ffffff');
+    expect(host.style.getPropertyValue('--nb-dialog-fg')).toBe('#000000');
+    expect(host.style.getPropertyValue('--nb-dialog-border-color')).toBe(
+      'var(--nb-border)'
+    );
+    expect(host.style.getPropertyValue('--nb-dialog-radius')).toBe('0.375rem');
+    expect(host.style.getPropertyValue('--nb-dialog-shadow')).toBe(
+      '6px 6px 0 0 var(--nb-shadow)'
+    );
+    expect(host.style.getPropertyValue('--nb-dialog-border-width')).toBe(
+      'var(--nb-border-width)'
+    );
   });
 
   it('reads its scoped tokens instead of global tokens directly', async () => {
@@ -47,7 +54,8 @@ describe('NbDialog token surface', () => {
 
     expect(cls).toContain('bg-(--nb-dialog-bg)');
     expect(cls).toContain('text-(--nb-dialog-fg)');
-    expect(cls).toContain('border-(--nb-dialog-border)');
+    expect(cls).toContain('border-(length:--nb-dialog-border-width)');
+    expect(cls).toContain('border-(--nb-dialog-border-color)');
     expect(cls).toContain('rounded-(--nb-dialog-radius)');
     expect(cls).toContain('shadow-[var(--nb-dialog-shadow)]');
     expect(cls).not.toContain('bg-white');
@@ -85,7 +93,7 @@ describe('NbDialog token surface', () => {
 
     expect(cls).toContain('w-[calc(100vw-2rem)]');
     expect(cls).toContain('max-w-2xl');
-    expect(cls).toContain('border-2');
+    expect(cls).toContain('border-(length:--nb-dialog-border-width)');
     expect(cls).toContain('m-auto');
     expect(cls).toContain('p-0');
     expect(cls).toContain('max-h-[90vh]');
@@ -112,6 +120,12 @@ function findDialog(
   fixture: ComponentFixture<DialogTokenTest>
 ): HTMLDialogElement {
   return fixture.nativeElement.querySelector('dialog') as HTMLDialogElement;
+}
+
+function findDialogHost(
+  fixture: ComponentFixture<DialogTokenTest>
+): HTMLElement {
+  return fixture.nativeElement.querySelector('nb-dialog') as HTMLElement;
 }
 
 function findSlot(host: HTMLElement, slot: string): HTMLElement {

@@ -5,6 +5,24 @@ import {
 } from '@angular/core';
 
 import { nbClass } from '../core/class';
+import {
+  NbBorderCapability,
+  NbRadiusCapability,
+  NbShadowCapability,
+  NbToneCapability,
+  NB_STYLE_DEFAULTS,
+  NB_STYLE_NAMESPACE,
+  type NbStyleDefaults,
+} from '../core/capabilities';
+import type { NbBorderStrength } from '../tokens/border';
+import type { NbRadius } from '../tokens/radius';
+import type { NbShadow } from '../tokens/shadow';
+import type { NbToneToken } from '../tokens/tone';
+
+export type NbImageCardTone = NbToneToken;
+export type NbImageCardRadius = NbRadius;
+export type NbImageCardShadow = NbShadow;
+export type NbImageCardBorder = NbBorderStrength;
 
 @Component({
   selector: 'nb-image-card',
@@ -18,6 +36,24 @@ import { nbClass } from '../core/class';
     />
     <ng-content select="nb-image-card-caption" />
   `,
+  providers: [
+    { provide: NB_STYLE_NAMESPACE, useValue: 'image-card' },
+    {
+      provide: NB_STYLE_DEFAULTS,
+      useValue: {
+        tone: 'background',
+        radius: 'md',
+        shadow: 'default',
+        border: 'default',
+      } satisfies NbStyleDefaults,
+    },
+  ],
+  hostDirectives: [
+    { directive: NbToneCapability, inputs: ['tone'] },
+    { directive: NbRadiusCapability, inputs: ['radius'] },
+    { directive: NbShadowCapability, inputs: ['shadow'] },
+    { directive: NbBorderCapability, inputs: ['border'] },
+  ],
   host: {
     '[class]': 'classes',
     '[attr.data-slot]': '"image-card"',
@@ -29,13 +65,9 @@ export class NbImageCard {
   readonly alt = input.required<string>();
 
   protected readonly classes = nbClass(
-    '[--nb-image-card-bg:var(--nb-background)]',
-    '[--nb-image-card-fg:var(--nb-foreground)]',
-    '[--nb-image-card-border:var(--nb-border)]',
-    '[--nb-image-card-radius:var(--nb-radius)]',
-    '[--nb-image-card-shadow:var(--nb-shadow-offset-x)_var(--nb-shadow-offset-y)_0_var(--nb-shadow)]',
     'flex flex-col overflow-hidden',
-    'rounded-(--nb-image-card-radius) border-2 border-(--nb-image-card-border)',
+    'rounded-(--nb-image-card-radius)',
+    'border-(length:--nb-image-card-border-width) border-(--nb-image-card-border-color)',
     'bg-(--nb-image-card-bg) text-(--nb-image-card-fg)',
     'shadow-[var(--nb-image-card-shadow)] font-medium'
   );
@@ -54,7 +86,7 @@ export class NbImageCard {
 })
 export class NbImageCardCaption {
   protected readonly classes = nbClass(
-    'border-t-2 border-(--nb-image-card-border)',
+    'border-t-(length:--nb-image-card-border-width) border-t-(--nb-image-card-border-color)',
     'px-6 py-4 text-center font-bold text-base'
   );
 }

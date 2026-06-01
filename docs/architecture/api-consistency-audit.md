@@ -43,10 +43,14 @@
 > - Button `shadow`/press behavior stays local (still encodes hover/active
 >   translate + `reverse`); splitting it is a future `NbPressCapability` pass.
 >
-> Still **follow-ups** (the capability-adoption wave): `NbPressCapability`
-> (Button/IconButton shadow-press split), `NbFocusCapability`,
-> `NbDisabledCapability`, shell-default flip, Surface `size` reconsideration.
-> These remain unshipped below.
+> **Full-library capability adoption sweep — shipped (2026-06-01).** The
+> remaining high-confidence visual shells now use existing capabilities:
+> Surface padding, Badge, Card, Avatar, ImageCard, Dialog shell, and
+> Accordion item shell. Badge `variant` was removed in favor of shared `tone`.
+>
+> Still **follow-ups**: `NbPressCapability` (Button/IconButton shadow-press
+> split), `NbFocusCapability`, `NbDisabledCapability`, control-size review,
+> shell-default flip, Surface `size` reconsideration.
 
 Guiding rule for every decision below:
 
@@ -78,9 +82,8 @@ The remaining drift is concentrated in five places:
 2. **Three color systems for one concept** — the shared `tone` capability;
    ~~Button's `variant` (preset) + `tone` (override) hybrid~~ (resolved — Button
    now uses the tone capability); and hardcoded color
-   maps in IconButton, MediaItem, and StatusDot. MediaItem even hardcodes hex
-   literals (`#ffd84d`) that duplicate the `--nb-yellow` theme token and *will*
-   drift. **High priority.**
+   maps in IconButton, MediaItem, and Badge have been removed. StatusDot keeps
+   semantic state colors. **Mostly resolved; future state-tone review only.**
 3. **`divider` means two different things** — placement (`top/bottom/…`) on
    Section, but line *style* (`solid/dashed/thick`) on Stack/Cluster/Split.
    **High priority (naming collision).**
@@ -105,7 +108,7 @@ composed capabilities) emits; "Class-based only" = no custom-property contract.
 
 | Primitive | Selector | Current inputs | Current defaults | CSS vars written | Capability adoption | Notes |
 |---|---|---|---|---|---|---|
-| Surface | `[nbSurface]` | tone, radius, shadow, border, size, layout, padding, edge, clip | tone `default`, radius `md`, shadow `default`, border `default`, size `auto`, layout `block`, padding `none`, edge `none`, clip `false` | `--nb-surface-{bg,fg,border-color,radius,border-width,shadow}` | tone+radius+shadow+border | `padding` is a **local** 4-step Tailwind map, not the shared scale; `size` = square dimensions; `edge` = top/bottom hairline |
+| Surface | `[nbSurface]` | tone, radius, shadow, border, padding, size, layout, edge, clip | tone `default`, radius `md`, shadow `default`, border `default`, padding `none`, size `auto`, layout `block`, edge `none`, clip `false` | `--nb-surface-{bg,fg,border-color,radius,border-width,shadow,padding}` | tone+radius+shadow+border+padding | `size` = square dimensions; `edge` = top/bottom hairline |
 | MediaFrame | `[nbMediaFrame]` | tone, radius, shadow, border, ratio, fit | tone `default`, radius `lg`, shadow `none`, border `default`, ratio `auto`, fit `cover` | `--nb-media-frame-{bg,fg,border-color,radius,border-width,shadow}` | tone+radius+shadow+border | Clean. `ratio`/`fit` are correct anatomy |
 | Button | `button[nbButton], a[nbButton]` | tone, shadow, size, radius, border, fullWidth | tone `primary`, shadow `default`, size `md`, radius `md`, border `default`, fullWidth `false` | `--nb-button-{bg,fg,border-color,radius,border-width}` (+ local `-shadow`) | tone+radius+border ✓ | `tone` is the single color axis (variant removed); `shadow` still encodes hover-translate (future `NbPressCapability`) |
 | IconButton | `button[nbIconButton]` | shape, size, tone, radius, shadow, border, icon | shape `square`, size `md`, tone `default`, radius `none`, shadow `default`, border `default` | `--nb-icon-button-{bg,fg,border-color,border-width,radius,shadow}` | tone+radius+shadow+border ✓ | Local radius/variant maps removed; `tone` replaces `variant`; border via capability |
@@ -124,11 +127,10 @@ composed capabilities) emits; "Class-based only" = no custom-property contract.
 | Halftone | `nb-halftone` | position, color, size, gap, rows, cols | position `bottom-right`, color `var(--nb-border)`, size `6`, gap `5`, rows `7`, cols `7` | None (SVG attrs) | none | Decorative art; `gap`/`size` here are **numeric SVG geometry**, not tokens |
 
 **Interactive/form components (high-level only):** `nbInput`, `nbTextarea`,
-`nbCheckbox` expose `size` (`default`-based scale); `nbSelect`, `nbInputGroup`
-(`nbInputPrefix` `align`), `nbDialog`, `nbAccordion` are composition components
-with no shared visual-grammar tokens yet. They are out of scope for the
-visual-grammar capability refactor but **must** adopt the canonical `size` scale
-(§4.7) and any future control-tone capability.
+`nbCheckbox` expose local control sizes; `nbSelect` and `nbInputGroup` keep
+their field shell/focus behavior local for a future control-capability pass.
+`nbDialog` and `nbAccordionItem` now use visual shell capabilities, while their
+modal/disclosure behavior and subpart layout stay local.
 
 ---
 
@@ -226,23 +228,26 @@ ownership · capability status · public API decision.
 
 **Current usage.** Shared `NbToneToken` (15-value `NbTone` palette + `surface`/
 `background`/`ink` aliases) flows through `NbToneCapability` into Surface,
-MediaFrame, Chip, Callout — these resolve `bg`/`fg`/`border-color` from the
-single `nbToneVars()` resolver. **Three other systems exist in parallel:**
+MediaFrame, Button, IconButton, Chip, Callout, MediaItem, Badge, Card, Avatar,
+ImageCard, Dialog, and AccordionItem — these resolve `bg`/`fg`/`border-color`
+from the single `nbToneVars()` resolver. **State and typography systems remain
+intentionally separate:**
 
 - **Button**: ~~`variant` (preset enum) **plus** `tone` override, writing
   `--nb-button-bg/-fg` directly via `nbToneTokens()`~~ **resolved (2026-06-01)** —
   `variant` removed; Button now composes `NbToneCapability` with `tone` as the
   single color axis (default `primary`).
-- **IconButton**: `variant` only, hardcoded class map; no `tone`, no capability.
-- **MediaItem**: `tone` with a **hardcoded hex map** (`#ffd84d`, `#ff7eb6`, …)
-  that duplicates the `--nb-yellow`/`--nb-pink`/… theme tokens. `NbMediaItemTone`
-  re-declares the `NbTone` union literally.
+- **IconButton**: ~~`variant` only, hardcoded class map; no `tone`, no capability~~
+  **resolved** — now composes tone/radius/shadow/border capabilities.
+- **MediaItem**: ~~hardcoded hex tone map~~ **resolved** — `tone` now flows
+  through `NbToneCapability`; layout anatomy remains local.
+- **Badge**: ~~`variant` color API~~ **resolved** — `variant` removed; use
+  shared `tone`.
 - **StatusDot**: semantic theme colors keyed off `state`, not `tone`.
 
-**Inconsistencies.** Same concept ("what color is this") under multiple
-implementations; one (MediaItem) holds literal hexes that *will* drift from the
-themeable palette; one type union is duplicated. Button's two-color-axis drift is
-resolved — it now composes the shared tone capability like Surface/Chip.
+**Inconsistencies.** General host color is now unified under `tone`. Text tone,
+display color, icon tone, and state colors remain separate because they are not
+the same host-level paint concept.
 
 **Recommended shared type** (rationalize the existing 15-value `NbTone` into
 documented sub-families; values stay backward compatible):

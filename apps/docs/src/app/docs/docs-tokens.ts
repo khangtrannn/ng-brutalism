@@ -80,9 +80,14 @@ const componentTokens: Record<DocsTokenComponent, DocsToken[]> = {
       usage: 'Accordion item text color',
     },
     {
-      name: '--nb-accordion-item-border',
+      name: '--nb-accordion-item-border-color',
       defaultValue: 'var(--nb-border)',
       usage: 'Accordion item border and trigger focus color',
+    },
+    {
+      name: '--nb-accordion-item-border-width',
+      defaultValue: 'var(--nb-border-width)',
+      usage: 'Accordion item border width',
     },
     {
       name: '--nb-accordion-item-radius',
@@ -119,18 +124,23 @@ const componentTokens: Record<DocsTokenComponent, DocsToken[]> = {
   avatar: [
     {
       name: '--nb-avatar-bg',
-      defaultValue: 'var(--nb-secondary-background)',
+      defaultValue: 'var(--nb-surface)',
       usage: 'Fallback background',
     },
     {
       name: '--nb-avatar-fg',
-      defaultValue: 'var(--nb-foreground)',
+      defaultValue: 'var(--nb-surface-foreground)',
       usage: 'Fallback text color',
     },
     {
-      name: '--nb-avatar-border',
+      name: '--nb-avatar-border-color',
       defaultValue: 'var(--nb-border)',
       usage: 'Avatar border color',
+    },
+    {
+      name: '--nb-avatar-border-width',
+      defaultValue: 'var(--nb-border-width)',
+      usage: 'Avatar border width',
     },
     {
       name: '--nb-avatar-radius',
@@ -146,18 +156,23 @@ const componentTokens: Record<DocsTokenComponent, DocsToken[]> = {
   badge: [
     {
       name: '--nb-badge-bg',
-      defaultValue: '#fff',
-      usage: 'Badge background, reassigned by variant',
+      defaultValue: '#ffffff',
+      usage: 'Badge background, reassigned by tone',
     },
     {
       name: '--nb-badge-fg',
-      defaultValue: 'var(--nb-foreground)',
-      usage: 'Badge text color, reassigned by variant',
+      defaultValue: '#000000',
+      usage: 'Badge text color, reassigned by tone',
     },
     {
-      name: '--nb-badge-border',
+      name: '--nb-badge-border-color',
       defaultValue: 'var(--nb-border)',
       usage: 'Badge border color',
+    },
+    {
+      name: '--nb-badge-border-width',
+      defaultValue: 'var(--nb-border-width)',
+      usage: 'Badge border width',
     },
     {
       name: '--nb-badge-radius',
@@ -242,13 +257,18 @@ const componentTokens: Record<DocsTokenComponent, DocsToken[]> = {
       usage: 'Card text color',
     },
     {
-      name: '--nb-card-border',
+      name: '--nb-card-border-color',
       defaultValue: 'var(--nb-border)',
       usage: 'Card border color',
     },
     {
+      name: '--nb-card-border-width',
+      defaultValue: 'var(--nb-border-width)',
+      usage: 'Card border width',
+    },
+    {
       name: '--nb-card-radius',
-      defaultValue: '18px',
+      defaultValue: '1rem',
       usage: 'Card corner radius',
     },
     {
@@ -329,18 +349,23 @@ const componentTokens: Record<DocsTokenComponent, DocsToken[]> = {
       usage: 'Dialog text color',
     },
     {
-      name: '--nb-dialog-border',
+      name: '--nb-dialog-border-color',
       defaultValue: 'var(--nb-border)',
       usage: 'Dialog border color',
     },
     {
+      name: '--nb-dialog-border-width',
+      defaultValue: 'var(--nb-border-width)',
+      usage: 'Dialog border width',
+    },
+    {
       name: '--nb-dialog-radius',
-      defaultValue: '0.5rem',
+      defaultValue: '0.375rem',
       usage: 'Dialog corner radius',
     },
     {
       name: '--nb-dialog-shadow',
-      defaultValue: '8px 8px 0 0 var(--nb-shadow)',
+      defaultValue: '6px 6px 0 0 var(--nb-shadow)',
       usage: 'Dialog box shadow',
     },
     {
@@ -371,9 +396,14 @@ const componentTokens: Record<DocsTokenComponent, DocsToken[]> = {
       usage: 'Image card text color',
     },
     {
-      name: '--nb-image-card-border',
+      name: '--nb-image-card-border-color',
       defaultValue: 'var(--nb-border)',
       usage: 'Image card border and image divider color',
+    },
+    {
+      name: '--nb-image-card-border-width',
+      defaultValue: 'var(--nb-border-width)',
+      usage: 'Image card border and image divider width',
     },
     {
       name: '--nb-image-card-radius',

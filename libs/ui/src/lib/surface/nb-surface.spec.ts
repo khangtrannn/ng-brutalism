@@ -89,6 +89,7 @@ describe('NbSurface', () => {
     expect(surface.className).toContain('border-(--nb-surface-border-color)');
     expect(surface.className).toContain('rounded-(--nb-surface-radius)');
     expect(surface.className).toContain('shadow-[var(--nb-surface-shadow)]');
+    expect(surface.className).toContain('p-[var(--nb-surface-padding)]');
     expect(surface.className).not.toContain('overflow-hidden');
 
     // Component-specific CSS variables written by the capabilities.
@@ -104,6 +105,7 @@ describe('NbSurface', () => {
     expect(style.getPropertyValue('--nb-surface-border-width')).toBe(
       'var(--nb-border-width)'
     );
+    expect(style.getPropertyValue('--nb-surface-padding')).toBe('0px');
   });
 
   it('maps tone, radius, border, shadow, and bare clip attributes', async () => {
@@ -204,8 +206,8 @@ describe('NbSurface', () => {
     expect(surface.getAttribute('data-shadow')).toBe('none');
     expect(surface.className).toContain('flex');
     expect(surface.className).toContain('items-center');
-    expect(surface.className).toContain('px-4');
-    expect(surface.className).toContain('py-3');
+    expect(surface.className).toContain('p-[var(--nb-surface-padding)]');
+    expect(surface.style.getPropertyValue('--nb-surface-padding')).toBe('1rem');
     expect(surface.style.getPropertyValue('--nb-surface-border-width')).toBe('0px');
     expect(surface.style.getPropertyValue('--nb-surface-shadow')).toBe('none');
     expect(surface.className).toContain('border-b-(length:--nb-surface-edge-width)');

@@ -3,8 +3,11 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { describe, expect, it } from 'vitest';
 
 import { NbButton } from '../../button';
+import { NbBadge } from '../../badge';
+import { NbCard } from '../../card';
 import { NbChip } from '../../chip';
 import { NbIconButton } from '../../icon-button';
+import { NbImageCard } from '../../image-card';
 import { NbMediaFrame } from '../../media-frame';
 import { NbMediaItem } from '../../media-item';
 import { NbStack } from '../../stack';
@@ -76,6 +79,24 @@ class ButtonBorderTest {}
 })
 class MediaItemToneTest {}
 
+@Component({
+  imports: [NbBadge],
+  template: `<span nbBadge tone="danger" border="strong">Hot</span>`,
+})
+class BadgeCapabilitiesTest {}
+
+@Component({
+  imports: [NbCard],
+  template: `<nb-card tone="mint" radius="xl" shadow="heavy" border="thick"></nb-card>`,
+})
+class CardCapabilitiesTest {}
+
+@Component({
+  imports: [NbImageCard],
+  template: `<nb-image-card image="x.jpg" alt="x" tone="pink" border="thin"></nb-image-card>`,
+})
+class ImageCardCapabilitiesTest {}
+
 describe('style capabilities', () => {
   it('nbSurface writes namespaced radius + tone variables from explicit inputs', () => {
     const el = mount(SurfaceExplicitTest);
@@ -102,6 +123,7 @@ describe('style capabilities', () => {
     expect(surface.style.getPropertyValue('--nb-surface-border-width')).toBe(
       'var(--nb-border-width)'
     );
+    expect(surface.style.getPropertyValue('--nb-surface-padding')).toBe('0px');
   });
 
   it('nbButton tone writes --nb-button-bg, not --nb-surface-bg', () => {
@@ -173,5 +195,39 @@ describe('style capabilities', () => {
       'var(--nb-yellow)'
     );
     expect(item.style.getPropertyValue('--nb-media-item-fg')).toBe('#000000');
+  });
+
+  it('nbBadge composes tone and border capabilities', () => {
+    const el = mount(BadgeCapabilitiesTest);
+    const badge = el.querySelector<HTMLElement>('[nbBadge]')!;
+
+    expect(badge.style.getPropertyValue('--nb-badge-bg')).toBe(
+      'var(--nb-danger)'
+    );
+    expect(badge.style.getPropertyValue('--nb-badge-border-width')).toBe('3px');
+  });
+
+  it('nbCard composes the visual shell capabilities', () => {
+    const el = mount(CardCapabilitiesTest);
+    const card = el.querySelector<HTMLElement>('nb-card')!;
+
+    expect(card.style.getPropertyValue('--nb-card-bg')).toBe('var(--nb-mint)');
+    expect(card.style.getPropertyValue('--nb-card-radius')).toBe('1.5rem');
+    expect(card.style.getPropertyValue('--nb-card-shadow')).toBe(
+      '10px 10px 0 0 var(--nb-shadow)'
+    );
+    expect(card.style.getPropertyValue('--nb-card-border-width')).toBe('4px');
+  });
+
+  it('nbImageCard composes tone and border capabilities', () => {
+    const el = mount(ImageCardCapabilitiesTest);
+    const card = el.querySelector<HTMLElement>('nb-image-card')!;
+
+    expect(card.style.getPropertyValue('--nb-image-card-bg')).toBe(
+      'var(--nb-pink)'
+    );
+    expect(card.style.getPropertyValue('--nb-image-card-border-width')).toBe(
+      '1px'
+    );
   });
 });

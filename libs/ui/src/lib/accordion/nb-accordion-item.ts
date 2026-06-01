@@ -8,6 +8,15 @@ import {
 } from '@angular/core';
 
 import { nbClass } from '../core/class';
+import {
+  NbBorderCapability,
+  NbRadiusCapability,
+  NbShadowCapability,
+  NbToneCapability,
+  NB_STYLE_DEFAULTS,
+  NB_STYLE_NAMESPACE,
+  type NbStyleDefaults,
+} from '../core/capabilities';
 import { NB_ACCORDION } from './accordion.types';
 
 let nextAccordionItemId = 0;
@@ -19,6 +28,24 @@ let nextAccordionItemId = 0;
       <ng-content />
     </div>
   `,
+  providers: [
+    { provide: NB_STYLE_NAMESPACE, useValue: 'accordion-item' },
+    {
+      provide: NB_STYLE_DEFAULTS,
+      useValue: {
+        tone: 'surface',
+        radius: 'md',
+        shadow: 'default',
+        border: 'default',
+      } satisfies NbStyleDefaults,
+    },
+  ],
+  hostDirectives: [
+    { directive: NbToneCapability, inputs: ['tone'] },
+    { directive: NbRadiusCapability, inputs: ['radius'] },
+    { directive: NbShadowCapability, inputs: ['shadow'] },
+    { directive: NbBorderCapability, inputs: ['border'] },
+  ],
   host: {
     class: 'block',
     '[attr.data-state]': 'open() ? "open" : "closed"',
@@ -44,13 +71,8 @@ export class NbAccordionItem {
 
   protected readonly classes = computed(() =>
     nbClass(
-      '[--nb-accordion-item-bg:var(--nb-surface)]',
-      '[--nb-accordion-item-fg:var(--nb-surface-foreground)]',
-      '[--nb-accordion-item-border:var(--nb-border)]',
-      '[--nb-accordion-item-radius:var(--nb-radius)]',
-      '[--nb-accordion-item-shadow:var(--nb-shadow-offset-x)_var(--nb-shadow-offset-y)_0_var(--nb-shadow)]',
       'overflow-hidden rounded-(--nb-accordion-item-radius)',
-      'border-2 border-(--nb-accordion-item-border)',
+      'border-(length:--nb-accordion-item-border-width) border-(--nb-accordion-item-border-color)',
       'bg-(--nb-accordion-item-bg) text-(--nb-accordion-item-fg)',
       'shadow-[var(--nb-accordion-item-shadow)]',
       this.disabled() && 'opacity-50'

@@ -1,46 +1,57 @@
-import { Directive, computed, input } from '@angular/core';
+import { Directive } from '@angular/core';
 
 import { nbClass } from '../core/class';
-import type { NbBadgeVariant } from './badge.types';
+import {
+  NbBorderCapability,
+  NbRadiusCapability,
+  NbShadowCapability,
+  NbToneCapability,
+  NB_STYLE_DEFAULTS,
+  NB_STYLE_NAMESPACE,
+  type NbStyleDefaults,
+} from '../core/capabilities';
+import type { NbBorderStrength } from '../tokens/border';
+import type { NbRadius } from '../tokens/radius';
+import type { NbShadow } from '../tokens/shadow';
+import type { NbToneToken } from '../tokens/tone';
+
+export type NbBadgeTone = NbToneToken;
+export type NbBadgeRadius = NbRadius;
+export type NbBadgeShadow = NbShadow;
+export type NbBadgeBorder = NbBorderStrength;
 
 @Directive({
   selector: 'span[nbBadge]',
+  providers: [
+    { provide: NB_STYLE_NAMESPACE, useValue: 'badge' },
+    {
+      provide: NB_STYLE_DEFAULTS,
+      useValue: {
+        tone: 'white',
+        radius: 'full',
+        shadow: 'sm',
+        border: 'default',
+      } satisfies NbStyleDefaults,
+    },
+  ],
+  hostDirectives: [
+    { directive: NbToneCapability, inputs: ['tone'] },
+    { directive: NbRadiusCapability, inputs: ['radius'] },
+    { directive: NbShadowCapability, inputs: ['shadow'] },
+    { directive: NbBorderCapability, inputs: ['border'] },
+  ],
   host: {
-    '[class]': 'classes()',
-    '[attr.data-variant]': 'variant()',
+    '[class]': 'classes',
+    '[attr.data-nb-badge]': '""',
   },
 })
 export class NbBadge {
-  readonly variant = input<NbBadgeVariant>('default');
-
-  protected readonly classes = computed(() =>
-    nbClass(
-      'inline-flex items-center gap-1.5 rounded-(--nb-badge-radius) border-2 border-(--nb-badge-border)',
-      'bg-(--nb-badge-bg) text-(--nb-badge-fg)',
-      '[--nb-badge-bg:#fff]',
-      '[--nb-badge-fg:var(--nb-foreground)]',
-      '[--nb-badge-border:var(--nb-border)]',
-      '[--nb-badge-radius:9999px]',
-      '[--nb-badge-shadow:2px_2px_0_var(--nb-shadow)]',
-      'px-2.5 py-0.5 text-xs font-bold',
-      'shadow-[var(--nb-badge-shadow)]',
-      this.variantClass()
-    )
+  protected readonly classes = nbClass(
+    'inline-flex items-center gap-1.5',
+    'rounded-(--nb-badge-radius)',
+    'border-(length:--nb-badge-border-width) border-(--nb-badge-border-color)',
+    'bg-(--nb-badge-bg) text-(--nb-badge-fg)',
+    'px-2.5 py-0.5 text-xs font-bold',
+    'shadow-[var(--nb-badge-shadow)]'
   );
-
-  private variantClass(): string {
-    const map: Record<NbBadgeVariant, string> = {
-      default: '',
-      secondary:
-        '[--nb-badge-bg:var(--nb-accent)] [--nb-badge-fg:var(--nb-accent-foreground)]',
-      success:
-        '[--nb-badge-bg:var(--nb-success)] [--nb-badge-fg:var(--nb-success-foreground)]',
-      warning:
-        '[--nb-badge-bg:var(--nb-warning)] [--nb-badge-fg:var(--nb-warning-foreground)]',
-      danger:
-        '[--nb-badge-bg:var(--nb-danger)] [--nb-badge-fg:var(--nb-danger-foreground)]',
-    };
-
-    return map[this.variant()];
-  }
 }

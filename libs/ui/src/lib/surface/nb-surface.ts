@@ -3,6 +3,7 @@ import { Directive, booleanAttribute, computed, input } from '@angular/core';
 import { nbClass } from '../core/class';
 import {
   NbBorderCapability,
+  NbPaddingCapability,
   NbRadiusCapability,
   NbShadowCapability,
   NbToneCapability,
@@ -11,6 +12,7 @@ import {
   type NbStyleDefaults,
 } from '../core/capabilities';
 import type { NbBorderStrength } from '../tokens/border';
+import type { NbPadding } from '../tokens/padding';
 import type { NbRadius } from '../tokens/radius';
 import type { NbShadow } from '../tokens/shadow';
 import type { NbToneToken } from '../tokens/tone';
@@ -21,11 +23,11 @@ export type NbSurfaceTone = NbToneToken;
 export type NbSurfaceRadius = NbRadius;
 export type NbSurfaceBorder = NbBorderStrength;
 export type NbSurfaceShadow = NbShadow;
+export type NbSurfacePadding = NbPadding;
 
 // Surface-specific anatomy (not shared tokens).
 export type NbSurfaceSize = 'auto' | 'sm' | 'md' | 'lg' | 'xl';
 export type NbSurfaceLayout = 'block' | 'center' | 'row' | 'stack';
-export type NbSurfacePadding = 'none' | 'sm' | 'md' | 'lg';
 export type NbSurfaceEdge = 'none' | 'top' | 'bottom';
 
 @Directive({
@@ -39,6 +41,7 @@ export type NbSurfaceEdge = 'none' | 'top' | 'bottom';
         radius: 'md',
         shadow: 'default',
         border: 'default',
+        padding: 'none',
       } satisfies NbStyleDefaults,
     },
   ],
@@ -47,6 +50,7 @@ export type NbSurfaceEdge = 'none' | 'top' | 'bottom';
     { directive: NbRadiusCapability, inputs: ['radius'] },
     { directive: NbShadowCapability, inputs: ['shadow'] },
     { directive: NbBorderCapability, inputs: ['border'] },
+    { directive: NbPaddingCapability, inputs: ['padding'] },
   ],
   host: {
     '[class]': 'classes()',
@@ -75,10 +79,10 @@ export class NbSurface {
       'border-(length:--nb-surface-border-width) border-(--nb-surface-border-color)',
       'rounded-(--nb-surface-radius)',
       'shadow-[var(--nb-surface-shadow)]',
+      'p-[var(--nb-surface-padding)]',
       this.clip() && 'overflow-hidden',
       this.sizeClass(),
       this.layoutClass(),
-      this.paddingClass(),
       this.edgeClass()
     )
   );
@@ -104,17 +108,6 @@ export class NbSurface {
     };
 
     return map[this.layout()];
-  }
-
-  private paddingClass(): string {
-    const map: Record<NbSurfacePadding, string> = {
-      none: '',
-      sm: 'px-3 py-2',
-      md: 'px-4 py-3',
-      lg: 'px-6 py-4',
-    };
-
-    return map[this.padding()];
   }
 
   private edgeClass(): string {
