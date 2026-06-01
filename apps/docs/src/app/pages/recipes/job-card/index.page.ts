@@ -99,7 +99,7 @@ export default class JobCardRecipePage {
     {
       name: 'NbSplit',
       path: '/components/split',
-      role: 'two-column layout with divider',
+      role: 'two-column layout with separator',
     },
     {
       name: 'NbStack',
@@ -177,7 +177,7 @@ export default class JobCardRecipePage {
 
   protected readonly templateCode = `<div nbSurface clip border="strong" shadow="hard" radius="xl">
   <!-- Header: company info + salary + type chips -->
-  <div nbSplit ratio="2:1" gap="xl" padding="lg" collapse="md" divider="solid">
+  <div nbSplit ratio="2:1" gap="xl" padding="lg" collapse="md" separator="solid">
     <div nbStack gap="lg">
       <div nbCluster gap="md" align="center">
         <!-- Company logo -->
@@ -211,7 +211,7 @@ export default class JobCardRecipePage {
   <!-- Footer: requirements + CTA -->
   <div nbSection divider="top" padding="lg">
     <div nbSplit ratio="2:1" gap="lg" collapse="md">
-      <div nbCluster gap="lg" align="center" divider="dashed"
+      <div nbCluster gap="lg" align="center" separator="dashed"
            class="[--nb-media-item-title-size:12px]">
         <nb-media-item icon="/icons/location.png">
           <span nbMediaItemTitle>HCMC<br />Remote</span>
@@ -224,9 +224,10 @@ export default class JobCardRecipePage {
         </nb-media-item>
       </div>
 
-      <button nbButton tone="lavender" size="xl" radius="md"
-              weight="black" transform="uppercase" tracking="wide">
-        Apply Now
+      <button nbButton tone="lavender" size="xl" radius="md">
+        <span nbText size="xl" weight="black" transform="uppercase" tracking="wide">
+          Apply Now
+        </span>
         <span nbButtonTrailingIcon shape="circle" tone="inverse" size="md">
           <span nbIcon src="/icons/arrow-right.svg" size="sm" decorative></span>
         </span>

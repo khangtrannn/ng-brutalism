@@ -80,7 +80,7 @@ import {
           gap="xl"
           padding="lg"
           collapse="md"
-          divider="solid"
+          separator="solid"
         >
           <div nbStack gap="lg">
             <div nbCluster gap="md" align="center">
@@ -134,7 +134,7 @@ import {
               nbCluster
               gap="lg"
               align="center"
-              divider="dashed"
+              separator="dashed"
               class="[--nb-media-item-title-size:12px]"
             >
               <nb-media-item icon="/tokyo-city-escape/central-locations.png">
@@ -150,16 +150,16 @@ import {
               </nb-media-item>
             </div>
 
-            <button
-              nbButton
-              tone="lavender"
-              size="xl"
-              radius="md"
-              weight="black"
-              transform="uppercase"
-              tracking="wide"
-            >
-              Book Trip
+            <button nbButton tone="lavender" size="xl" radius="md">
+              <span
+                nbText
+                size="xl"
+                weight="black"
+                transform="uppercase"
+                tracking="wide"
+              >
+                Book Trip
+              </span>
               <span nbButtonTrailingIcon shape="circle" tone="inverse" size="md">
                 <span nbIcon src="/tokyo-city-escape/nb-arrow-right.svg" size="sm" decorative></span>
               </span>

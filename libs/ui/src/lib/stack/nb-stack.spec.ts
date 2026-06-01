@@ -13,7 +13,7 @@ class DefaultStackTest {}
 @Component({
   imports: [NbStack],
   template: `
-    <div nbStack gap="xl" align="start" justify="center" divider="dashed">
+    <div nbStack gap="xl" align="start" justify="center" separator="dashed">
       <span>One</span>
       <span>Two</span>
     </div>
@@ -24,7 +24,7 @@ class DashedStackTest {}
 @Component({
   imports: [NbStack],
   template: `
-    <div nbStack divider="solid">
+    <div nbStack separator="solid">
       <span>One</span>
       <span>Two</span>
     </div>
@@ -35,7 +35,7 @@ class SolidStackTest {}
 @Component({
   imports: [NbStack],
   template: `
-    <div nbStack divider="thick">
+    <div nbStack separator="thick">
       <span>One</span>
       <span>Two</span>
     </div>
@@ -54,7 +54,7 @@ describe('NbStack', () => {
     expect(stack.getAttribute('data-gap')).toBe('md');
     expect(stack.getAttribute('data-align')).toBe('stretch');
     expect(stack.getAttribute('data-justify')).toBe('start');
-    expect(stack.getAttribute('data-divider')).toBe('none');
+    expect(stack.getAttribute('data-separator')).toBe('none');
     expect(stack.className).toContain('flex');
     expect(stack.className).toContain('min-w-0');
     expect(stack.className).toContain('flex-col');
@@ -65,7 +65,7 @@ describe('NbStack', () => {
     expect(stack.className).not.toContain('[&>*+*]:border-t');
   });
 
-  it('maps gap, alignment, justification, and dashed dividers', async () => {
+  it('maps gap, alignment, justification, and dashed separators', async () => {
     const fixture = await createFixture(DashedStackTest);
     const stack = fixture.nativeElement.querySelector(
       '[nbStack]'
@@ -74,7 +74,7 @@ describe('NbStack', () => {
     expect(stack.getAttribute('data-gap')).toBe('xl');
     expect(stack.getAttribute('data-align')).toBe('start');
     expect(stack.getAttribute('data-justify')).toBe('center');
-    expect(stack.getAttribute('data-divider')).toBe('dashed');
+    expect(stack.getAttribute('data-separator')).toBe('dashed');
     expect(stack.style.getPropertyValue('--nb-stack-gap')).toBe('1.5rem');
     expect(stack.className).toContain('items-start');
     expect(stack.className).toContain('justify-center');
@@ -85,21 +85,21 @@ describe('NbStack', () => {
     expect(stack.className).toContain('[&>*+*]:[border-top-color:var(--nb-border)]');
     expect(stack.className).toContain('[&>*+*]:pt-[var(--nb-stack-gap)]');
   });
-  it('solid divider uses explicit border-solid and explicit color', async () => {
+  it('solid separator uses explicit border-solid and explicit color', async () => {
     const fixture = await createFixture(SolidStackTest);
     const stack = fixture.nativeElement.querySelector('[nbStack]') as HTMLElement;
 
-    expect(stack.getAttribute('data-divider')).toBe('solid');
+    expect(stack.getAttribute('data-separator')).toBe('solid');
     expect(stack.className).toContain('[&>*+*]:border-solid');
     expect(stack.className).toContain('[&>*+*]:[border-top-color:var(--nb-border)]');
     expect(stack.className).not.toContain('[&>*+*]:border-dashed');
   });
 
-  it('thick divider uses a 4px solid top border', async () => {
+  it('thick separator uses a 4px solid top border', async () => {
     const fixture = await createFixture(ThickStackTest);
     const stack = fixture.nativeElement.querySelector('[nbStack]') as HTMLElement;
 
-    expect(stack.getAttribute('data-divider')).toBe('thick');
+    expect(stack.getAttribute('data-separator')).toBe('thick');
     expect(stack.className).toContain('[&>*+*]:border-t-4');
     expect(stack.className).toContain('[&>*+*]:border-solid');
     expect(stack.className).toContain('[&>*+*]:[border-top-color:var(--nb-border)]');

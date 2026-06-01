@@ -11,6 +11,29 @@
 > (how the capability layer works) and
 > [`composition-philosophy.md`](../components/composition-philosophy.md)
 > (ng-brutalism vs `nbText` vs Tailwind boundaries).
+>
+> **API language cleanup — shipped (2026-06-01).** The public-vocabulary half of
+> this audit landed in the API-language-cleanup PR:
+>
+> - `size` middle rung renamed `default` → **`md`** on IconButton, Display, Input,
+>   Textarea, Checkbox (Button/Callout already used `md`). No `size="default"`
+>   remains.
+> - Layout child line style renamed `divider` → **`separator`** on Stack, Cluster,
+>   Split (types `NbStackSeparator` / `NbClusterSeparator` / `NbSplitSeparator`;
+>   CSS vars `--nb-cluster-separator-*`; `data-separator` attribute). Section keeps
+>   `divider` / `dividerStyle` as **placement**.
+> - Button typography inputs (`fontSize`, `weight`, `transform`, `tracking`) and
+>   their types (`NbButtonFontSize` / `NbButtonWeight` / `NbButtonTransform` /
+>   `NbButtonTracking`) **removed**; expressive labels compose a nested `nbText`.
+>   Button keeps a default `font-bold`.
+> - Recipes (Podcast/Job/Travel cards) + docs updated; no backward-compatible
+>   aliases were kept.
+>
+> Still **follow-ups** (the capability-adoption wave): IconButton tone/radius/
+> shadow/border adoption, MediaItem tone capability + hex-map removal,
+> `NbIconButtonRadius` deletion, Chip/Button/IconButton border capability, Button
+> `variant`→`tone` fold, `NbPressCapability`, shell-default flip, Surface `size`
+> reconsideration. These remain unshipped below.
 
 Guiding rule for every decision below:
 
@@ -638,14 +661,14 @@ Rules: capabilities stay internal; primitives expose public inputs; resolution i
 
 | Change | Reason | Impact | Priority |
 |---|---|---|---|
-| Resolve `divider` collision (Stack/Cluster/Split line-style vs Section placement) | One name, two meanings | Rename layout `divider`→`separator` (or unify vocab); update recipes/docs | **High** |
-| Rename `size="default"`→`"md"` (IconButton, Display) | Middle-rung name drift | Update usages + recipes | **High** |
-| Deprecate Button `fontSize/weight/transform/tracking` | Typography belongs to nbText | Migrate recipes to nested `nbText` | **High** |
+| Resolve `divider` collision (Stack/Cluster/Split line-style vs Section placement) | One name, two meanings | Renamed layout `divider`→`separator`; recipes/docs updated | ✅ **Shipped** |
+| Rename `size="default"`→`"md"` (IconButton, Display) | Middle-rung name drift | Updated usages + recipes | ✅ **Shipped** |
+| Remove Button `fontSize/weight/transform/tracking` | Typography belongs to nbText | Removed inputs + types; recipes use nested `nbText` | ✅ **Shipped** |
 | MediaItem: replace hex tone map with `nbToneVars()` + adopt tone capability | Hardcoded hex drifts from theme tokens | Visual parity expected; verify | **High** |
 | Delete `NbIconButtonRadius`; adopt `NbRadiusCapability` | Duplicate type + mismatched `md` value | `md` value changes (`0.5rem`→`var(--nb-radius)`) | **High** |
 | Alias `NbMediaItemTone = NbTone` | Duplicate union | Type-only, no runtime change | Medium |
 | Chip/Button/IconButton adopt `NbBorderCapability` | `border` strength should be uniform/overridable | New input surface; default `default`/strength 2px parity | Medium |
-| `size="default"`→`"md"` (Input/Textarea/Checkbox) | Same drift, forms | Update form usages | Medium |
+| `size="default"`→`"md"` (Input/Textarea/Checkbox) | Same drift, forms | Updated form usages + docs | ✅ **Shipped** |
 | Fold Button `variant` into `tone` | Two color axes for one concept | Large; post-1.0 | Medium (post-1.0) |
 | Surface padding: adopt shared `NbPadding` scale | `none\|sm\|md\|lg` ≠ shared `none\|xs\|sm\|md\|lg\|xl` | Add `xs/xl`; values may shift | Medium |
 | Flip shell defaults to `radius xl / shadow hard / border strong` | House style; louder brutalism | Visual change across Surface/MediaFrame | Medium (verify vs reference designs) |

@@ -52,15 +52,11 @@ export type {
   NbButtonIconShape,
   NbButtonIconSize,
   NbButtonIconTone,
-  NbButtonFontSize,
   NbButtonRadius,
   NbButtonShadow,
   NbButtonSize,
   NbButtonTone,
-  NbButtonTracking,
-  NbButtonTransform,
   NbButtonVariant,
-  NbButtonWeight,
 } from './lib/button';
 export {
   NbCard,
@@ -146,26 +142,26 @@ export type {
 export { NbStack } from './lib/stack';
 export type {
   NbStackAlign,
-  NbStackDivider,
   NbStackGap,
   NbStackJustify,
+  NbStackSeparator,
 } from './lib/stack';
 export { NbCluster } from './lib/cluster';
 export type {
   NbClusterAlign,
-  NbClusterDivider,
   NbClusterGap,
   NbClusterJustify,
+  NbClusterSeparator,
   NbClusterWrap,
 } from './lib/cluster';
 export { NbSplit } from './lib/split';
 export type {
   NbSplitAlign,
   NbSplitCollapse,
-  NbSplitDivider,
   NbSplitGap,
   NbSplitPadding,
   NbSplitRatio,
+  NbSplitSeparator,
 } from './lib/split';
 export { NbSection } from './lib/section';
 export type {

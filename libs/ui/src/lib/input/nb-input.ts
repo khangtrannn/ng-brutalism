@@ -12,7 +12,7 @@ import type { NbInputSize } from './input.types';
   },
 })
 export class NbInput {
-  readonly size = input<NbInputSize>('default');
+  readonly size = input<NbInputSize>('md');
 
   private readonly group = inject(NB_INPUT_GROUP, { optional: true });
 

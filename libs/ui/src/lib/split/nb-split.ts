@@ -28,7 +28,7 @@ export type NbSplitCollapse = 'none' | 'sm' | 'md' | 'lg';
 
 export type NbSplitAlign = 'start' | 'center' | 'end' | 'stretch';
 
-export type NbSplitDivider = 'none' | 'solid' | 'dashed' | 'thick';
+export type NbSplitSeparator = 'none' | 'solid' | 'dashed' | 'thick';
 
 @Directive({
   selector: '[nbSplit]',
@@ -49,14 +49,14 @@ export type NbSplitDivider = 'none' | 'solid' | 'dashed' | 'thick';
     '[attr.data-ratio]': 'ratio()',
     '[attr.data-collapse]': 'collapse()',
     '[attr.data-align]': 'align()',
-    '[attr.data-divider]': 'divider()',
+    '[attr.data-separator]': 'separator()',
   },
 })
 export class NbSplit {
   readonly ratio = input<NbSplitRatio>('1:1');
   readonly collapse = input<NbSplitCollapse>('md');
   readonly align = input<NbSplitAlign>('stretch');
-  readonly divider = input<NbSplitDivider>('none');
+  readonly separator = input<NbSplitSeparator>('none');
 
   protected readonly classes = computed(() =>
     nbClass(
@@ -66,7 +66,7 @@ export class NbSplit {
       this.alignClass(),
       this.ratioClass(),
       this.collapseClass(),
-      this.dividerClass()
+      this.separatorClass()
     )
   );
 
@@ -106,17 +106,17 @@ export class NbSplit {
     return map[this.collapse()];
   }
 
-  private dividerClass(): string {
-    const divider = this.divider();
+  private separatorClass(): string {
+    const separator = this.separator();
 
-    if (divider === 'none') {
+    if (separator === 'none') {
       return '';
     }
 
     return nbClass(
-      dividerBaseClass,
-      dividerStyleClass[divider],
-      dividerVisibilityClass[this.collapse()]
+      separatorBaseClass,
+      separatorStyleClass[separator],
+      separatorVisibilityClass[this.collapse()]
     );
   }
 }
@@ -124,7 +124,7 @@ export class NbSplit {
 // A `::after` pseudo-element on the first column draws the vertical line,
 // centered in the gap. These class strings are written out literally (rather
 // than assembled at runtime) so Tailwind's static scanner can emit them.
-const dividerBaseClass = nbClass(
+const separatorBaseClass = nbClass(
   '[&>*:first-child]:relative',
   '[&>*:first-child]:after:pointer-events-none',
   '[&>*:first-child]:after:absolute',
@@ -134,7 +134,7 @@ const dividerBaseClass = nbClass(
   '[&>*:first-child]:after:content-[""]'
 );
 
-const dividerStyleClass: Record<Exclude<NbSplitDivider, 'none'>, string> = {
+const separatorStyleClass: Record<Exclude<NbSplitSeparator, 'none'>, string> = {
   solid: nbClass(
     '[&>*:first-child]:after:[border-inline-end-width:var(--nb-border-width)]',
     '[&>*:first-child]:after:border-solid'
@@ -149,10 +149,10 @@ const dividerStyleClass: Record<Exclude<NbSplitDivider, 'none'>, string> = {
   ),
 };
 
-// Hide the divider while the split is stacked into a single column, then reveal
-// it at the same breakpoint where the columns appear, so the line stays in sync
-// with `collapse` (and tracks Tailwind's breakpoint config).
-const dividerVisibilityClass: Record<NbSplitCollapse, string> = {
+// Hide the separator while the split is stacked into a single column, then
+// reveal it at the same breakpoint where the columns appear, so the line stays
+// in sync with `collapse` (and tracks Tailwind's breakpoint config).
+const separatorVisibilityClass: Record<NbSplitCollapse, string> = {
   none: '',
   sm: '[&>*:first-child]:after:hidden sm:[&>*:first-child]:after:block',
   md: '[&>*:first-child]:after:hidden md:[&>*:first-child]:after:block',

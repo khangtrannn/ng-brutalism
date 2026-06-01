@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { NbButton, NbButtonTrailingIcon, NbIcon } from '@ng-brutalism/ui';
+import { NbButton, NbButtonTrailingIcon, NbIcon, NbText } from '@ng-brutalism/ui';
 
 import { DocsCodeBlock } from '../../docs/docs-code-block';
 import { DocsExample } from '../../docs/docs-example';
@@ -16,6 +16,7 @@ import { DocsTokens } from '../../docs/docs-tokens';
         NbButton,
         NbButtonTrailingIcon,
         NbIcon,
+        NbText,
     ],
     template: `
     <article>
@@ -40,7 +41,7 @@ import { DocsTokens } from '../../docs/docs-tokens';
             <span class="nb-stat-tile__label">Sizes</span>
           </div>
           <div class="nb-stat-tile nb-stat-tile--pink">
-            <span class="nb-stat-tile__value">9</span>
+            <span class="nb-stat-tile__value">6</span>
             <span class="nb-stat-tile__label">Inputs</span>
           </div>
 
@@ -101,17 +102,22 @@ import { DocsTokens } from '../../docs/docs-tokens';
 
       <section id="cta">
         <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">CTA</h2>
+        <p class="mb-4 max-w-3xl font-medium">
+          Button provides default typography for normal actions. For expressive
+          button labels, compose <code class="font-mono">nbText</code> inside
+          <code class="font-mono">nbButton</code>.
+        </p>
         <docs-example [code]="ctaExampleCode">
-          <button
-            nbButton
-            tone="lavender"
-            size="xl"
-            radius="md"
-            weight="black"
-            transform="uppercase"
-            tracking="wide"
-          >
-            Apply Now
+          <button nbButton tone="lavender" size="xl" radius="md">
+            <span
+              nbText
+              size="xl"
+              weight="black"
+              transform="uppercase"
+              tracking="wide"
+            >
+              Apply Now
+            </span>
             <span nbButtonTrailingIcon shape="circle" tone="inverse" size="md">
               <span
                 nbIcon
@@ -300,23 +306,6 @@ import { DocsTokens } from '../../docs/docs-tokens';
                 <td
                   class="border-b-2 border-r-2 border-(--nb-border) px-4 py-3"
                 >
-                  fontSize
-                </td>
-                <td
-                  class="border-b-2 border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
-                >
-                  'sm' | 'base' | 'lg' | 'xl' | '2xl' | '3xl'
-                </td>
-                <td
-                  class="border-b-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
-                >
-                  undefined
-                </td>
-              </tr>
-              <tr>
-                <td
-                  class="border-b-2 border-r-2 border-(--nb-border) px-4 py-3"
-                >
                   tone
                 </td>
                 <td
@@ -345,57 +334,6 @@ import { DocsTokens } from '../../docs/docs-tokens';
                   class="border-b-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
                 >
                   undefined
-                </td>
-              </tr>
-              <tr>
-                <td
-                  class="border-b-2 border-r-2 border-(--nb-border) px-4 py-3"
-                >
-                  weight
-                </td>
-                <td
-                  class="border-b-2 border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
-                >
-                  'bold' | 'extrabold' | 'black'
-                </td>
-                <td
-                  class="border-b-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
-                >
-                  'bold'
-                </td>
-              </tr>
-              <tr>
-                <td
-                  class="border-b-2 border-r-2 border-(--nb-border) px-4 py-3"
-                >
-                  transform
-                </td>
-                <td
-                  class="border-b-2 border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
-                >
-                  'none' | 'uppercase'
-                </td>
-                <td
-                  class="border-b-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
-                >
-                  'none'
-                </td>
-              </tr>
-              <tr>
-                <td
-                  class="border-b-2 border-r-2 border-(--nb-border) px-4 py-3"
-                >
-                  tracking
-                </td>
-                <td
-                  class="border-b-2 border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
-                >
-                  'normal' | 'wide' | 'wider'
-                </td>
-                <td
-                  class="border-b-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
-                >
-                  'normal'
                 </td>
               </tr>
               <tr>
@@ -488,16 +426,10 @@ export default class ButtonPage {
   <button nbButton size="xl">Extra Large</button>
 </div>`;
 
-  protected readonly ctaExampleCode = `<button
-  nbButton
-  tone="lavender"
-  size="xl"
-  radius="md"
-  weight="black"
-  transform="uppercase"
-  tracking="wide"
->
-  Apply Now
+  protected readonly ctaExampleCode = `<button nbButton tone="lavender" size="xl" radius="md">
+  <span nbText size="xl" weight="black" transform="uppercase" tracking="wide">
+    Apply Now
+  </span>
   <span nbButtonTrailingIcon shape="circle" tone="inverse" size="md">
     <span nbIcon src="/icons/arrow-right.svg" size="sm" decorative></span>
   </span>

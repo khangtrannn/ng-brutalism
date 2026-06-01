@@ -15,7 +15,7 @@ export type NbStackAlign = 'stretch' | 'start' | 'center' | 'end';
 
 export type NbStackJustify = 'start' | 'center' | 'end' | 'between';
 
-export type NbStackDivider = 'none' | 'solid' | 'dashed' | 'thick';
+export type NbStackSeparator = 'none' | 'solid' | 'dashed' | 'thick';
 
 @Directive({
   selector: '[nbStack]',
@@ -32,13 +32,13 @@ export type NbStackDivider = 'none' | 'solid' | 'dashed' | 'thick';
     '[attr.data-nb-stack]': '""',
     '[attr.data-align]': 'align()',
     '[attr.data-justify]': 'justify()',
-    '[attr.data-divider]': 'divider()',
+    '[attr.data-separator]': 'separator()',
   },
 })
 export class NbStack {
   readonly align = input<NbStackAlign>('stretch');
   readonly justify = input<NbStackJustify>('start');
-  readonly divider = input<NbStackDivider>('none');
+  readonly separator = input<NbStackSeparator>('none');
 
   protected readonly classes = computed(() =>
     nbClass(
@@ -46,7 +46,7 @@ export class NbStack {
       'gap-[var(--nb-stack-gap)]',
       this.alignClass(),
       this.justifyClass(),
-      this.dividerClass()
+      this.separatorClass()
     )
   );
 
@@ -72,8 +72,8 @@ export class NbStack {
     return map[this.justify()];
   }
 
-  private dividerClass(): string {
-    const map: Record<NbStackDivider, string> = {
+  private separatorClass(): string {
+    const map: Record<NbStackSeparator, string> = {
       none: '',
       solid: nbClass(
         '[&>*+*]:border-t-(length:--nb-border-width)',
@@ -95,6 +95,6 @@ export class NbStack {
       ),
     };
 
-    return map[this.divider()];
+    return map[this.separator()];
   }
 }

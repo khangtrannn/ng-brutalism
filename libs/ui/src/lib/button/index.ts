@@ -5,13 +5,9 @@ export type {
   NbButtonIconShape,
   NbButtonIconSize,
   NbButtonIconTone,
-  NbButtonFontSize,
   NbButtonRadius,
   NbButtonShadow,
   NbButtonSize,
   NbButtonTone,
-  NbButtonTracking,
-  NbButtonTransform,
   NbButtonVariant,
-  NbButtonWeight,
 } from './button.types';

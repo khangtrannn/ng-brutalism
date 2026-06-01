@@ -2,8 +2,8 @@ export { NbCluster } from './nb-cluster';
 
 export type {
   NbClusterAlign,
-  NbClusterDivider,
   NbClusterGap,
   NbClusterJustify,
+  NbClusterSeparator,
   NbClusterWrap,
 } from './nb-cluster';

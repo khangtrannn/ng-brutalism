@@ -8,7 +8,7 @@ import {
   NbSurface,
   type NbSplitAlign,
   type NbSplitCollapse,
-  type NbSplitDivider,
+  type NbSplitSeparator,
   type NbSplitGap,
   type NbSplitPadding,
   type NbSplitRatio,
@@ -43,8 +43,8 @@ interface SplitAlignDemo {
   readonly label: string;
 }
 
-interface SplitDividerDemo {
-  readonly value: NbSplitDivider;
+interface SplitSeparatorDemo {
+  readonly value: NbSplitSeparator;
   readonly label: string;
 }
 
@@ -135,8 +135,8 @@ interface SplitDividerDemo {
           Add <code class="font-mono">nbSplit</code> to the parent that owns two
           regions. Use <code class="font-mono">ratio</code> to size the columns
           and <code class="font-mono">collapse</code> to choose when they stack.
-          Dividers are centered in the split gap, so avoid pairing
-          <code class="font-mono">divider</code> with
+          Separators are centered in the split gap, so avoid pairing
+          <code class="font-mono">separator</code> with
           <code class="font-mono">gap="none"</code>.
         </p>
         <docs-code-block class="block mb-5" title="Import" [code]="importCode" />
@@ -265,14 +265,14 @@ interface SplitDividerDemo {
         </docs-example>
       </section>
 
-      <section id="dividers">
+      <section id="separators">
         <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">
-          Dividers
+          Separators
         </h2>
-        <docs-example [code]="dividerExampleCode">
+        <docs-example [code]="separatorExampleCode">
           <div class="grid w-full grid-cols-1 gap-4 p-4">
-            @for (divider of dividers; track divider.value) {
-              @if (divider.value !== 'none') {
+            @for (separator of separators; track separator.value) {
+              @if (separator.value !== 'none') {
                 <div nbSurface tone="cream" shadow="sm">
                   <div
                     nbSplit
@@ -280,9 +280,9 @@ interface SplitDividerDemo {
                     gap="lg"
                     padding="md"
                     collapse="none"
-                    [divider]="divider.value"
+                    [separator]="separator.value"
                   >
-                    <span class="font-black">{{ divider.label }} main</span>
+                    <span class="font-black">{{ separator.label }} main</span>
                     <span class="font-medium">Aside</span>
                   </div>
                 </div>
@@ -383,10 +383,10 @@ interface SplitDividerDemo {
                 <td class="px-4 py-3">Cross-axis alignment for the two regions.</td>
               </tr>
               <tr>
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">divider</td>
+                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">separator</td>
                 <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">'none' | 'solid' | 'dashed' | 'thick'</td>
                 <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">'none'</td>
-                <td class="px-4 py-3">Inline divider between the two regions. Use with a non-zero gap.</td>
+                <td class="px-4 py-3">Inline separator between the two regions. Use with a non-zero gap.</td>
               </tr>
             </tbody>
           </table>
@@ -436,17 +436,17 @@ export default class SplitPage {
 <div nbSplit align="end">...</div>
 <div nbSplit align="stretch">...</div>`;
 
-  protected readonly dividerExampleCode = `<div nbSplit ratio="2:1" gap="lg" divider="solid">
+  protected readonly separatorExampleCode = `<div nbSplit ratio="2:1" gap="lg" separator="solid">
   <div>Main</div>
   <div>Aside</div>
 </div>
 
-<div nbSplit ratio="2:1" gap="lg" divider="dashed">
+<div nbSplit ratio="2:1" gap="lg" separator="dashed">
   <div>Main</div>
   <div>Aside</div>
 </div>
 
-<div nbSplit ratio="2:1" gap="lg" divider="thick">
+<div nbSplit ratio="2:1" gap="lg" separator="thick">
   <div>Main</div>
   <div>Aside</div>
 </div>`;
@@ -503,10 +503,10 @@ export default class SplitPage {
     { value: 'stretch', label: 'stretch' },
   ] satisfies readonly SplitAlignDemo[];
 
-  protected readonly dividers = [
+  protected readonly separators = [
     { value: 'none', label: 'none' },
     { value: 'solid', label: 'solid' },
     { value: 'dashed', label: 'dashed' },
     { value: 'thick', label: 'thick' },
-  ] satisfies readonly SplitDividerDemo[];
+  ] satisfies readonly SplitSeparatorDemo[];
 }

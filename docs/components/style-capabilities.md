@@ -37,7 +37,7 @@ CSS             primitive `classes()`          consume --nb-<ns>-* via Tailwind 
   through Angular `hostDirectives`, forwarding the public input names
   (`inputs: ['tone']`). The primitive keeps only its own anatomy (Surface `clip`,
   MediaFrame `ratio`/`fit`, Button `variant`/`size`/state, layout
-  `align`/`justify`/`divider`, …) and a Tailwind base-class string that *consumes*
+  `align`/`justify`/`separator`, …) and a Tailwind base-class string that *consumes*
   the variables.
 
 ## Component variable contract
@@ -122,5 +122,6 @@ Angular requires classes referenced by `hostDirectives` to be reachable
 
 ### Follow-ups
 - Revisit folding Button `tone`/`variant` into the tone capability post-1.0.
-- Consider sharing `NbDivider` placement logic across Stack/Cluster/Split dividers.
+- Consider a shared `separator` type/capability across Stack/Cluster/Split (they
+  now expose `separator`; Section keeps `divider`/`NbDivider` as placement).
 - Optionally unify Surface/Chip padding onto the padding capability later.

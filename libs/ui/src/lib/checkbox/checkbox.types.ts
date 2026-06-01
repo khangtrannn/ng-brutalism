@@ -1,1 +1,1 @@
-export type NbCheckboxSize = 'default' | 'sm' | 'lg';
+export type NbCheckboxSize = 'md' | 'sm' | 'lg';

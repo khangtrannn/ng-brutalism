@@ -9,7 +9,7 @@ import { nbClass } from '../core/class';
 import { NbIcon, type NbIconSize } from '../icon';
 
 export type NbIconButtonShape = 'square' | 'circle';
-export type NbIconButtonSize = 'sm' | 'default' | 'lg' | 'xl';
+export type NbIconButtonSize = 'sm' | 'md' | 'lg' | 'xl';
 export type NbIconButtonRadius = 'none' | 'sm' | 'md' | 'lg' | 'xl' | 'full';
 export type NbIconButtonVariant = 'default' | 'neutral' | 'primary' | 'secondary' | 'accent' | 'danger' | 'success' | 'warning';
 
@@ -18,14 +18,14 @@ export type NbIconButtonVariant = 'default' | 'neutral' | 'primary' | 'secondary
 // `nbIcon` (via `iconSize`) so the two authoring styles render identically.
 const sizeMap: Record<NbIconButtonSize, string> = {
   sm: 'size-8 [&_svg]:size-4',
-  default: 'size-10 [&_svg]:size-5',
+  md: 'size-10 [&_svg]:size-5',
   lg: 'size-12 [&_svg]:size-6',
   xl: 'size-14 [&_svg]:size-8',
 };
 
 const iconSizeMap: Record<NbIconButtonSize, NbIconSize> = {
   sm: 'sm',
-  default: 'md',
+  md: 'md',
   lg: 'lg',
   xl: 'xl',
 };
@@ -60,7 +60,7 @@ const radiusMap: Record<NbIconButtonRadius, string> = {
 })
 export class NbIconButton {
   readonly shape = input<NbIconButtonShape>('square');
-  readonly size = input<NbIconButtonSize>('default');
+  readonly size = input<NbIconButtonSize>('md');
   readonly radius = input<NbIconButtonRadius>('none');
   readonly variant = input<NbIconButtonVariant>('default');
   // Optional icon, given as an SVG/image URL. Rendered through nbIcon in mask

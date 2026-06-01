@@ -150,8 +150,8 @@ import { DocsSourceTile } from '../../docs/docs-source-tile';
               </tr>
               <tr class="border-b-2 border-(--nb-border)">
                 <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">size</td>
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">'sm' | 'default' | 'lg' | 'xl'</td>
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">'default'</td>
+                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">'sm' | 'md' | 'lg' | 'xl'</td>
+                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">'md'</td>
                 <td class="px-4 py-3">Touch target size (32/40/48/56px).</td>
               </tr>
               <tr class="border-b-2 border-(--nb-border)">

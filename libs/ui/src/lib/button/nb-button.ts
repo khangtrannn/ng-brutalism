@@ -9,14 +9,10 @@ import {
 } from '../core/capabilities';
 import { nbToneTokens } from '../tokens/tone';
 import type {
-  NbButtonFontSize,
   NbButtonShadow,
   NbButtonSize,
   NbButtonTone,
-  NbButtonTracking,
-  NbButtonTransform,
   NbButtonVariant,
-  NbButtonWeight,
 } from './button.types';
 
 const sizeMap: Record<NbButtonSize, string> = {
@@ -24,34 +20,6 @@ const sizeMap: Record<NbButtonSize, string> = {
   md: 'h-11 px-4 text-base gap-2',
   lg: 'h-[3.25rem] px-5 text-lg gap-2.5',
   xl: 'h-14 px-4 text-xl gap-3',
-};
-
-// Optional override for the label text size, independent of the box `size`.
-// Listed after the size class so twMerge keeps it — no `!important` needed.
-const fontSizeMap: Record<NbButtonFontSize, string> = {
-  sm: 'text-sm',
-  base: 'text-base',
-  lg: 'text-lg',
-  xl: 'text-xl',
-  '2xl': 'text-2xl',
-  '3xl': 'text-3xl',
-};
-
-const weightMap: Record<NbButtonWeight, string> = {
-  bold: 'font-bold',
-  extrabold: 'font-extrabold',
-  black: 'font-black',
-};
-
-const transformMap: Record<NbButtonTransform, string> = {
-  none: '',
-  uppercase: 'uppercase',
-};
-
-const trackingMap: Record<NbButtonTracking, string> = {
-  normal: '',
-  wide: 'tracking-wide',
-  wider: 'tracking-wider',
 };
 
 @Directive({
@@ -80,10 +48,6 @@ export class NbButton {
   readonly tone = input<NbButtonTone | undefined>(undefined);
   readonly shadow = input<NbButtonShadow>('default');
   readonly size = input<NbButtonSize>('md');
-  readonly fontSize = input<NbButtonFontSize | undefined>(undefined);
-  readonly weight = input<NbButtonWeight>('bold');
-  readonly transform = input<NbButtonTransform>('none');
-  readonly tracking = input<NbButtonTracking>('normal');
   readonly fullWidth = input<boolean, unknown>(false, { transform: booleanAttribute });
 
   protected readonly toneBg = computed(() => {
@@ -98,7 +62,7 @@ export class NbButton {
 
   protected readonly classes = computed(() =>
     nbClass(
-      'inline-flex items-center justify-center whitespace-nowrap select-none',
+      'inline-flex items-center justify-center whitespace-nowrap select-none font-bold',
       '[--nb-button-bg:var(--nb-main)]',
       '[--nb-button-fg:var(--nb-main-foreground)]',
       '[--nb-button-border:var(--nb-border)]',
@@ -116,10 +80,6 @@ export class NbButton {
       this.variantClass(),
       this.shadowClass(),
       this.sizeClass(),
-      this.fontSizeClass(),
-      this.weightClass(),
-      this.transformClass(),
-      this.trackingClass(),
       this.fullWidth() && 'w-full'
     )
   );
@@ -158,22 +118,5 @@ export class NbButton {
 
   private sizeClass(): string {
     return sizeMap[this.size()];
-  }
-
-  private fontSizeClass(): string {
-    const f = this.fontSize();
-    return f !== undefined ? fontSizeMap[f] : '';
-  }
-
-  private weightClass(): string {
-    return weightMap[this.weight()];
-  }
-
-  private transformClass(): string {
-    return transformMap[this.transform()];
-  }
-
-  private trackingClass(): string {
-    return trackingMap[this.tracking()];
   }
 }

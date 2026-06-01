@@ -17,15 +17,7 @@ export type NbButtonShadow = 'default' | 'none' | 'reverse';
 
 export type NbButtonSize = 'sm' | 'md' | 'lg' | 'xl';
 
-export type NbButtonFontSize = 'sm' | 'base' | 'lg' | 'xl' | '2xl' | '3xl';
-
 export type NbButtonRadius = NbRadius;
-
-export type NbButtonWeight = 'bold' | 'extrabold' | 'black';
-
-export type NbButtonTransform = 'none' | 'uppercase';
-
-export type NbButtonTracking = 'normal' | 'wide' | 'wider';
 
 export type NbButtonIconSize = 'sm' | 'md' | 'lg';
 

@@ -129,9 +129,9 @@ import { DocsTokens } from '../../docs/docs-tokens';
                 <td
                   class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
                 >
-                  'default' | 'sm' | 'lg'
+                  'md' | 'sm' | 'lg'
                 </td>
-                <td class="px-4 py-3 font-mono text-sm">'default'</td>
+                <td class="px-4 py-3 font-mono text-sm">'md'</td>
               </tr>
             </tbody>
           </table>

@@ -6,7 +6,7 @@ import {
   NbStack,
   NbSurface,
   type NbStackAlign,
-  type NbStackDivider,
+  type NbStackSeparator,
   type NbStackGap,
   type NbStackJustify,
 } from '@ng-brutalism/ui';
@@ -30,8 +30,8 @@ interface StackJustifyDemo {
   readonly label: string;
 }
 
-interface StackDividerDemo {
-  readonly value: NbStackDivider;
+interface StackSeparatorDemo {
+  readonly value: NbStackSeparator;
   readonly label: string;
 }
 
@@ -72,7 +72,7 @@ interface StackDividerDemo {
           </div>
           <div class="nb-stat-tile nb-stat-tile--pink">
             <span class="nb-stat-tile__value">2</span>
-            <span class="nb-stat-tile__label">Dividers</span>
+            <span class="nb-stat-tile__label">Separators</span>
           </div>
 
           <docs-source-tile
@@ -200,19 +200,19 @@ interface StackDividerDemo {
         </docs-example>
       </section>
 
-      <section id="dividers">
+      <section id="separators">
         <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">
-          Dividers
+          Separators
         </h2>
         <p class="mb-4 font-medium">
-          Use <code class="font-mono">divider</code> for simple separated lists.
-          The divider padding follows the stack gap.
+          Use <code class="font-mono">separator</code> for simple separated lists.
+          The separator padding follows the stack gap.
         </p>
-        <docs-example [code]="dividerExampleCode">
+        <docs-example [code]="separatorExampleCode">
           <div class="grid w-full grid-cols-1 gap-4 p-4 md:grid-cols-2">
-            @for (divider of dividers; track divider.value) {
+            @for (separator of separators; track separator.value) {
             <div nbSurface tone="yellow" radius="lg" shadow="hard" class="p-4">
-              <div nbStack gap="md" [divider]="divider.value">
+              <div nbStack gap="md" [separator]="separator.value">
                 <nb-media-item
                   icon="/tokyo-city-escape/central-locations.png"
                   title="Central Locations"
@@ -336,7 +336,7 @@ interface StackDividerDemo {
                 <td
                   class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
                 >
-                  divider
+                  separator
                 </td>
                 <td
                   class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
@@ -392,7 +392,7 @@ export default class StackPage {
 <div nbStack justify="end" class="h-56">...</div>
 <div nbStack justify="between" class="h-56">...</div>`;
 
-  protected readonly dividerExampleCode = `<div nbStack gap="md" divider="dashed">
+  protected readonly separatorExampleCode = `<div nbStack gap="md" separator="dashed">
   <nb-media-item icon="/icons/location.svg" title="Central Locations" />
   <nb-media-item icon="/icons/camera.svg" title="Guided Experiences" />
   <nb-media-item icon="/icons/support.svg" title="24/7 Support" />
@@ -430,8 +430,8 @@ export default class StackPage {
     { value: 'between', label: 'between' },
   ] satisfies readonly StackJustifyDemo[];
 
-  protected readonly dividers = [
+  protected readonly separators = [
     { value: 'solid', label: 'solid' },
     { value: 'dashed', label: 'dashed' },
-  ] satisfies readonly StackDividerDemo[];
+  ] satisfies readonly StackSeparatorDemo[];
 }

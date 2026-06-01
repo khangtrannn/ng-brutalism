@@ -26,7 +26,7 @@ export type NbClusterJustify = 'start' | 'center' | 'end' | 'between';
 
 export type NbClusterWrap = 'wrap' | 'nowrap';
 
-export type NbClusterDivider = 'none' | 'solid' | 'dashed' | 'thick';
+export type NbClusterSeparator = 'none' | 'solid' | 'dashed' | 'thick';
 
 @Directive({
   selector: '[nbCluster]',
@@ -47,14 +47,14 @@ export type NbClusterDivider = 'none' | 'solid' | 'dashed' | 'thick';
     '[attr.data-align]': 'align()',
     '[attr.data-justify]': 'justify()',
     '[attr.data-wrap]': 'wrap()',
-    '[attr.data-divider]': 'divider()',
+    '[attr.data-separator]': 'separator()',
   },
 })
 export class NbCluster {
   readonly align = input<NbClusterAlign>('center');
   readonly justify = input<NbClusterJustify>('start');
   readonly wrap = input<NbClusterWrap>('wrap');
-  readonly divider = input<NbClusterDivider>('none');
+  readonly separator = input<NbClusterSeparator>('none');
 
   protected readonly classes = computed(() =>
     nbClass(
@@ -64,14 +64,14 @@ export class NbCluster {
       this.alignClass(),
       this.justifyClass(),
       this.wrapClass(),
-      this.dividerClass()
+      this.separatorClass()
     )
   );
 
   private gapClass(): string {
-    // With a divider, gap collapses on the inline axis (the divider owns the
-    // inline spacing) and survives only on the block axis for wrapped rows.
-    if (this.divider() !== 'none') {
+    // With a separator, gap collapses on the inline axis (the separator owns
+    // the inline spacing) and survives only on the block axis for wrapped rows.
+    if (this.separator() !== 'none') {
       return 'gap-y-[var(--nb-cluster-gap)] gap-x-0';
     }
 
@@ -110,37 +110,37 @@ export class NbCluster {
     return map[this.wrap()];
   }
 
-  private dividerClass(): string {
-    const divider = this.divider();
-    if (divider === 'none') return '';
+  private separatorClass(): string {
+    const separator = this.separator();
+    if (separator === 'none') return '';
 
-    return nbClass(dividerBaseClass, dividerStyleClass[divider]);
+    return nbClass(separatorBaseClass, separatorStyleClass[separator]);
   }
 }
 
 // Written as module-level constants so Tailwind's static scanner emits the classes.
-const dividerBaseClass = nbClass(
-  '[--nb-cluster-divider-gap:calc(var(--nb-cluster-gap)*0.5)]',
-  '[--nb-cluster-divider-color:var(--nb-border)]',
-  '[&>*+*]:[margin-inline-start:var(--nb-cluster-divider-gap)]',
-  '[&>*+*]:[padding-inline-start:var(--nb-cluster-divider-gap)]',
-  '[&>*+*]:[border-inline-start-color:var(--nb-cluster-divider-color)]'
+const separatorBaseClass = nbClass(
+  '[--nb-cluster-separator-gap:calc(var(--nb-cluster-gap)*0.5)]',
+  '[--nb-cluster-separator-color:var(--nb-border)]',
+  '[&>*+*]:[margin-inline-start:var(--nb-cluster-separator-gap)]',
+  '[&>*+*]:[padding-inline-start:var(--nb-cluster-separator-gap)]',
+  '[&>*+*]:[border-inline-start-color:var(--nb-cluster-separator-color)]'
 );
 
-const dividerStyleClass: Record<Exclude<NbClusterDivider, 'none'>, string> = {
+const separatorStyleClass: Record<Exclude<NbClusterSeparator, 'none'>, string> = {
   solid: nbClass(
-    '[--nb-cluster-divider-thickness:2px]',
-    '[&>*+*]:[border-inline-start-width:var(--nb-cluster-divider-thickness)]',
+    '[--nb-cluster-separator-thickness:2px]',
+    '[&>*+*]:[border-inline-start-width:var(--nb-cluster-separator-thickness)]',
     '[&>*+*]:[border-inline-start-style:solid]'
   ),
   dashed: nbClass(
-    '[--nb-cluster-divider-thickness:2px]',
-    '[&>*+*]:[border-inline-start-width:var(--nb-cluster-divider-thickness)]',
+    '[--nb-cluster-separator-thickness:2px]',
+    '[&>*+*]:[border-inline-start-width:var(--nb-cluster-separator-thickness)]',
     '[&>*+*]:[border-inline-start-style:dashed]'
   ),
   thick: nbClass(
-    '[--nb-cluster-divider-thickness:4px]',
-    '[&>*+*]:[border-inline-start-width:var(--nb-cluster-divider-thickness)]',
+    '[--nb-cluster-separator-thickness:4px]',
+    '[&>*+*]:[border-inline-start-width:var(--nb-cluster-separator-thickness)]',
     '[&>*+*]:[border-inline-start-style:solid]'
   ),
 };

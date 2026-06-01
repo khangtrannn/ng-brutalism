@@ -12,7 +12,7 @@ import type { NbTextareaSize } from './textarea.types';
   },
 })
 export class NbTextarea {
-  readonly size = input<NbTextareaSize>('default');
+  readonly size = input<NbTextareaSize>('md');
 
   private readonly group = inject(NB_INPUT_GROUP, { optional: true });
 

@@ -1,1 +1,1 @@
-export type NbInputSize = 'default' | 'sm' | 'lg';
+export type NbInputSize = 'md' | 'sm' | 'lg';

@@ -1,13 +1,13 @@
 import { booleanAttribute, computed, Directive, input } from '@angular/core';
 
-export type NbDisplaySize = 'sm' | 'default' | 'lg' | 'xl';
+export type NbDisplaySize = 'sm' | 'md' | 'lg' | 'xl';
 export type NbDisplayTracking = 'normal' | 'tight' | 'tighter';
 export type NbDisplayLeading = 'none' | 'tight' | 'display';
 export type NbDisplayUnderline = 'none' | 'bar' | 'wave';
 
 const SIZE_MAP: Record<NbDisplaySize, string> = {
   sm: '2rem',
-  default: '3rem',
+  md: '3rem',
   lg: '3.75rem',
   xl: '4.75rem',
 };
@@ -38,7 +38,7 @@ const LEADING_MAP: Record<NbDisplayLeading, string> = {
   },
 })
 export class NbDisplay {
-  readonly size = input<NbDisplaySize>('default');
+  readonly size = input<NbDisplaySize>('md');
   readonly tracking = input<NbDisplayTracking>('tight');
   readonly leading = input<NbDisplayLeading>('none');
   readonly underline = input<NbDisplayUnderline>('none');

@@ -30,7 +30,7 @@ class PaddedClusterTest {}
 @Component({
   imports: [NbCluster],
   template: `
-    <div nbCluster gap="lg" divider="dashed">
+    <div nbCluster gap="lg" separator="dashed">
       <span>A</span>
       <span>B</span>
     </div>
@@ -40,13 +40,13 @@ class DashedDividerClusterTest {}
 
 @Component({
   imports: [NbCluster],
-  template: `<div nbCluster divider="solid"><span>A</span><span>B</span></div>`,
+  template: `<div nbCluster separator="solid"><span>A</span><span>B</span></div>`,
 })
 class SolidDividerClusterTest {}
 
 @Component({
   imports: [NbCluster],
-  template: `<div nbCluster divider="thick"><span>A</span><span>B</span></div>`,
+  template: `<div nbCluster separator="thick"><span>A</span><span>B</span></div>`,
 })
 class ThickDividerClusterTest {}
 
@@ -72,60 +72,60 @@ describe('NbCluster', () => {
     expect(cluster.className).toContain('flex-wrap');
   });
 
-  it('divider is none by default', async () => {
+  it('separator is none by default', async () => {
     const fixture = await createFixture(DefaultClusterTest);
     const cluster = fixture.nativeElement.querySelector('[nbCluster]') as HTMLElement;
 
-    expect(cluster.getAttribute('data-divider')).toBe('none');
+    expect(cluster.getAttribute('data-separator')).toBe('none');
     expect(cluster.className).not.toContain('border-inline-start');
     expect(cluster.className).toContain('gap-[var(--nb-cluster-gap)]');
   });
 
-  it('dashed divider switches to row-gap-only mode and renders dividers', async () => {
+  it('dashed separator switches to row-gap-only mode and renders separators', async () => {
     const fixture = await createFixture(DashedDividerClusterTest);
     const cluster = fixture.nativeElement.querySelector('[nbCluster]') as HTMLElement;
 
-    expect(cluster.getAttribute('data-divider')).toBe('dashed');
+    expect(cluster.getAttribute('data-separator')).toBe('dashed');
     expect(cluster.className).toContain('gap-y-[var(--nb-cluster-gap)]');
     expect(cluster.className).toContain('gap-x-0');
     expect(cluster.style.getPropertyValue('--nb-cluster-gap')).toBe('1rem');
     expect(cluster.className).toContain(
-      '[--nb-cluster-divider-gap:calc(var(--nb-cluster-gap)*0.5)]'
+      '[--nb-cluster-separator-gap:calc(var(--nb-cluster-gap)*0.5)]'
     );
-    expect(cluster.className).toContain('[&>*+*]:[margin-inline-start:var(--nb-cluster-divider-gap)]');
-    expect(cluster.className).toContain('[--nb-cluster-divider-color:var(--nb-border)]');
-    expect(cluster.className).toContain('[--nb-cluster-divider-thickness:2px]');
+    expect(cluster.className).toContain('[&>*+*]:[margin-inline-start:var(--nb-cluster-separator-gap)]');
+    expect(cluster.className).toContain('[--nb-cluster-separator-color:var(--nb-border)]');
+    expect(cluster.className).toContain('[--nb-cluster-separator-thickness:2px]');
     expect(cluster.className).toContain(
-      '[&>*+*]:[border-inline-start-color:var(--nb-cluster-divider-color)]'
+      '[&>*+*]:[border-inline-start-color:var(--nb-cluster-separator-color)]'
     );
     expect(cluster.className).toContain('[&>*+*]:[border-inline-start-style:dashed]');
     expect(cluster.className).toContain(
-      '[&>*+*]:[border-inline-start-width:var(--nb-cluster-divider-thickness)]'
+      '[&>*+*]:[border-inline-start-width:var(--nb-cluster-separator-thickness)]'
     );
-    expect(cluster.className).toContain('[&>*+*]:[padding-inline-start:var(--nb-cluster-divider-gap)]');
+    expect(cluster.className).toContain('[&>*+*]:[padding-inline-start:var(--nb-cluster-separator-gap)]');
     expect(cluster.className).not.toContain('gap-[var(--nb-cluster-gap)]');
   });
 
-  it('solid divider renders with solid style', async () => {
+  it('solid separator renders with solid style', async () => {
     const fixture = await createFixture(SolidDividerClusterTest);
     const cluster = fixture.nativeElement.querySelector('[nbCluster]') as HTMLElement;
 
-    expect(cluster.getAttribute('data-divider')).toBe('solid');
+    expect(cluster.getAttribute('data-separator')).toBe('solid');
     expect(cluster.className).toContain('[&>*+*]:[border-inline-start-style:solid]');
-    expect(cluster.className).toContain('[--nb-cluster-divider-thickness:2px]');
+    expect(cluster.className).toContain('[--nb-cluster-separator-thickness:2px]');
     expect(cluster.className).toContain(
-      '[&>*+*]:[border-inline-start-width:var(--nb-cluster-divider-thickness)]'
+      '[&>*+*]:[border-inline-start-width:var(--nb-cluster-separator-thickness)]'
     );
   });
 
-  it('thick divider renders with 4px thickness token', async () => {
+  it('thick separator renders with 4px thickness token', async () => {
     const fixture = await createFixture(ThickDividerClusterTest);
     const cluster = fixture.nativeElement.querySelector('[nbCluster]') as HTMLElement;
 
-    expect(cluster.getAttribute('data-divider')).toBe('thick');
-    expect(cluster.className).toContain('[--nb-cluster-divider-thickness:4px]');
+    expect(cluster.getAttribute('data-separator')).toBe('thick');
+    expect(cluster.className).toContain('[--nb-cluster-separator-thickness:4px]');
     expect(cluster.className).toContain(
-      '[&>*+*]:[border-inline-start-width:var(--nb-cluster-divider-thickness)]'
+      '[&>*+*]:[border-inline-start-width:var(--nb-cluster-separator-thickness)]'
     );
     expect(cluster.className).toContain('[&>*+*]:[border-inline-start-style:solid]');
   });

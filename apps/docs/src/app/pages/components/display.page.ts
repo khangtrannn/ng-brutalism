@@ -66,8 +66,8 @@ import { DocsTokens } from '../../docs/docs-tokens';
               <h2 nbDisplay size="sm" class="uppercase">PRO PLAN</h2>
             </div>
             <div>
-              <p class="mb-1 font-mono text-xs font-bold uppercase text-(--nb-border)">size="default" — 3rem</p>
-              <h2 nbDisplay class="uppercase">INDIE CUP</h2>
+              <p class="mb-1 font-mono text-xs font-bold uppercase text-(--nb-border)">size="md" — 3rem</p>
+              <h2 nbDisplay size="md" class="uppercase">INDIE CUP</h2>
             </div>
             <div>
               <p class="mb-1 font-mono text-xs font-bold uppercase text-(--nb-border)">size="lg" — 3.75rem</p>
@@ -161,8 +161,8 @@ import { DocsTokens } from '../../docs/docs-tokens';
             <tbody class="font-medium">
               <tr class="border-b-2 border-(--nb-border)">
                 <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">size</td>
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">'sm' | 'default' | 'lg' | 'xl'</td>
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">'default'</td>
+                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">'sm' | 'md' | 'lg' | 'xl'</td>
+                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">'md'</td>
                 <td class="px-4 py-3">Controls font size via <code class="font-mono">--nb-display-size</code>.</td>
               </tr>
               <tr>
@@ -185,7 +185,7 @@ export default class DisplayPage {
   protected readonly defaultExampleCode = `<h2 nbDisplay class="uppercase">SENIOR ANGULAR ENGINEER</h2>`;
 
   protected readonly sizesExampleCode = `<h2 nbDisplay size="sm" class="uppercase">PRO PLAN</h2>
-<h2 nbDisplay class="uppercase">INDIE CUP</h2>
+<h2 nbDisplay size="md" class="uppercase">INDIE CUP</h2>
 <h2 nbDisplay size="lg" class="uppercase">NORA CHEN</h2>
 <h2 nbDisplay size="xl" class="uppercase">GO</h2>`;
 

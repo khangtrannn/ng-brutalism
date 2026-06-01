@@ -48,9 +48,10 @@ In this pattern:
 > The text decides how the label looks.
 > Tailwind decides where the button sits.
 
-`size` stays on `nbButton` (it controls box height/padding/density — anatomy). But
-`fontSize`, `transform`, `tracking`, and expressive `weight` belong on a nested
-`nbText`, not on the button. Default typography for ordinary buttons is fine:
+`size` stays on `nbButton` (it controls box height/padding/density — anatomy). The
+button no longer exposes any text-treatment inputs: label `size`, `weight`,
+`transform`, and `tracking` belong on a nested `nbText`. `nbButton` keeps a
+sensible default (`font-bold`) so ordinary buttons need no extra markup:
 
 ```html
 <button nbButton tone="mint">Subscribe</button>
@@ -77,7 +78,10 @@ inspect them in devtools, document them, and override per token. The vocabulary
 See [style-capabilities.md](./style-capabilities.md) for the internal architecture.
 
 > Note: `border` means **outline strength** library-wide. Line placement between
-> layout regions is `divider` (e.g. `nbSection divider="top"`).
+> layout regions is `divider` (e.g. `nbSection divider="top"`); the line style
+> between adjacent children of a layout primitive is `separator` (e.g.
+> `nbStack separator="solid"`). The middle rung of every `size` scale is `md`
+> (never `default`).
 
 ## Don't duplicate what a primitive already owns
 

@@ -11,7 +11,7 @@ import type { NbCheckboxSize } from './checkbox.types';
   },
 })
 export class NbCheckbox {
-  readonly size = input<NbCheckboxSize>('default');
+  readonly size = input<NbCheckboxSize>('md');
 
   protected readonly classes = computed(() =>
     nbClass(
@@ -30,7 +30,7 @@ export class NbCheckbox {
 
   private sizeClass(): string {
     const map: Record<NbCheckboxSize, string> = {
-      default: 'size-4',
+      md: 'size-4',
       sm: 'size-3.5',
       lg: 'size-5',
     };

@@ -2,7 +2,7 @@ export { NbStack } from './nb-stack';
 
 export type {
   NbStackAlign,
-  NbStackDivider,
   NbStackGap,
   NbStackJustify,
+  NbStackSeparator,
 } from './nb-stack';

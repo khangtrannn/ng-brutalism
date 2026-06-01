@@ -108,7 +108,7 @@ export const PAGE_DESCRIPTIONS: Record<string, string> = {
   '/components/separator':
     'Use Separator to divide Angular content with strong brutalist rules, vertical lines, and token-driven variants.',
   '/components/split':
-    'Use Split to build responsive two-column layouts with brutalist spacing, ratios, dividers, and collapse behavior.',
+    'Use Split to build responsive two-column layouts with brutalist spacing, ratios, separators, and collapse behavior.',
   '/components/stack':
     'Use Stack to create vertical rhythm, grouped content, forms, panels, and divided brutalist layouts.',
   '/components/stat':

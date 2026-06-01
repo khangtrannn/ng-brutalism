@@ -202,7 +202,7 @@ export default class TravelCardRecipePage {
   </div>
 
   <!-- Headline + trip meta -->
-  <div nbSplit ratio="2:1" gap="xl" padding="lg" collapse="md" divider="solid">
+  <div nbSplit ratio="2:1" gap="xl" padding="lg" collapse="md" separator="solid">
     <div nbStack gap="lg">
       <div nbCluster gap="md" align="center">
         <img src="/tokyo-city-escape/roam-go-logo.png" alt="Roam & Go logo" class="w-16" />
@@ -230,7 +230,7 @@ export default class TravelCardRecipePage {
   <!-- Features + CTA -->
   <div nbSection divider="top" padding="lg">
     <div nbSplit ratio="2:1" gap="lg" collapse="md">
-      <div nbCluster gap="lg" align="center" divider="dashed"
+      <div nbCluster gap="lg" align="center" separator="dashed"
            class="[--nb-media-item-title-size:12px]">
         <nb-media-item icon="/tokyo-city-escape/central-locations.png">
           <span nbMediaItemTitle>Central<br />Locations</span>
@@ -243,9 +243,10 @@ export default class TravelCardRecipePage {
         </nb-media-item>
       </div>
 
-      <button nbButton tone="lavender" size="xl" radius="md"
-              weight="black" transform="uppercase" tracking="wide">
-        Book Trip
+      <button nbButton tone="lavender" size="xl" radius="md">
+        <span nbText size="xl" weight="black" transform="uppercase" tracking="wide">
+          Book Trip
+        </span>
         <span nbButtonTrailingIcon shape="circle" tone="inverse" size="md">
           <span nbIcon src="/tokyo-city-escape/nb-arrow-right.svg" size="sm" decorative></span>
         </span>

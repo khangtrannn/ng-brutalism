@@ -35,7 +35,7 @@ class FillAutoSplitTest {}
 @Component({
   imports: [NbSplit],
   template: `
-    <div nbSplit collapse="md" divider="solid">
+    <div nbSplit collapse="md" separator="solid">
       <span>Main</span>
       <span>Aside</span>
     </div>
@@ -46,7 +46,7 @@ class SolidDividerSplitTest {}
 @Component({
   imports: [NbSplit],
   template: `
-    <div nbSplit collapse="none" divider="dashed">
+    <div nbSplit collapse="none" separator="dashed">
       <span>Main</span>
       <span>Aside</span>
     </div>
@@ -57,7 +57,7 @@ class DashedDividerSplitTest {}
 @Component({
   imports: [NbSplit],
   template: `
-    <div nbSplit collapse="lg" divider="thick">
+    <div nbSplit collapse="lg" separator="thick">
       <span>Main</span>
       <span>Aside</span>
     </div>
@@ -78,7 +78,7 @@ describe('NbSplit', () => {
     expect(split.getAttribute('data-padding')).toBe('none');
     expect(split.getAttribute('data-collapse')).toBe('md');
     expect(split.getAttribute('data-align')).toBe('stretch');
-    expect(split.getAttribute('data-divider')).toBe('none');
+    expect(split.getAttribute('data-separator')).toBe('none');
     expect(split.className).toContain('grid');
     expect(split.className).toContain('min-w-0');
     expect(split.className).toContain('gap-[var(--nb-split-gap)]');
@@ -107,7 +107,7 @@ describe('NbSplit', () => {
     expect(split.getAttribute('data-padding')).toBe('xl');
     expect(split.getAttribute('data-collapse')).toBe('lg');
     expect(split.getAttribute('data-align')).toBe('end');
-    expect(split.getAttribute('data-divider')).toBe('none');
+    expect(split.getAttribute('data-separator')).toBe('none');
     expect(split.style.getPropertyValue('--nb-split-gap')).toBe('2rem');
     expect(split.style.getPropertyValue('--nb-split-padding')).toBe('2rem');
     expect(split.className).toContain('items-end');
@@ -132,13 +132,13 @@ describe('NbSplit', () => {
     );
   });
 
-  it('draws a solid divider, hidden until the collapse breakpoint', async () => {
+  it('draws a solid separator, hidden until the collapse breakpoint', async () => {
     const fixture = await createFixture(SolidDividerSplitTest);
     const split = fixture.nativeElement.querySelector(
       '[nbSplit]'
     ) as HTMLElement;
 
-    expect(split.getAttribute('data-divider')).toBe('solid');
+    expect(split.getAttribute('data-separator')).toBe('solid');
     expect(split.className).toContain(
       '[&>*:first-child]:after:[border-inline-end-width:var(--nb-border-width)]'
     );
@@ -156,13 +156,13 @@ describe('NbSplit', () => {
     );
   });
 
-  it('draws a dashed divider that is always visible when it never collapses', async () => {
+  it('draws a dashed separator that is always visible when it never collapses', async () => {
     const fixture = await createFixture(DashedDividerSplitTest);
     const split = fixture.nativeElement.querySelector(
       '[nbSplit]'
     ) as HTMLElement;
 
-    expect(split.getAttribute('data-divider')).toBe('dashed');
+    expect(split.getAttribute('data-separator')).toBe('dashed');
     expect(split.className).toContain('[&>*:first-child]:after:border-dashed');
     expect(split.className).toContain(
       '[&>*:first-child]:after:[border-inline-end-width:var(--nb-border-width)]'
@@ -174,13 +174,13 @@ describe('NbSplit', () => {
     expect(classNames(split)).not.toContain('[&>*:first-child]:after:hidden');
   });
 
-  it('draws a thick divider, revealed at the lg breakpoint', async () => {
+  it('draws a thick separator, revealed at the lg breakpoint', async () => {
     const fixture = await createFixture(ThickDividerSplitTest);
     const split = fixture.nativeElement.querySelector(
       '[nbSplit]'
     ) as HTMLElement;
 
-    expect(split.getAttribute('data-divider')).toBe('thick');
+    expect(split.getAttribute('data-separator')).toBe('thick');
     expect(split.className).toContain(
       '[&>*:first-child]:after:[border-inline-end-width:4px]'
     );

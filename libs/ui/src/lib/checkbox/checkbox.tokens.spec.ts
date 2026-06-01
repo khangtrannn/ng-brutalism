@@ -10,7 +10,7 @@ import type { NbCheckboxSize } from './checkbox.types';
   template: `<input type="checkbox" nbCheckbox [size]="size" />`,
 })
 class CheckboxTokenTest {
-  size: NbCheckboxSize = 'default';
+  size: NbCheckboxSize = 'md';
 }
 
 describe('NbCheckbox token surface', () => {
@@ -42,7 +42,7 @@ describe('NbCheckbox token surface', () => {
 
   it.each([
     ['sm', 'size-3.5'],
-    ['default', 'size-4'],
+    ['md', 'size-4'],
     ['lg', 'size-5'],
   ] satisfies Array<[NbCheckboxSize, string]>)(
     'size="%s" keeps its expected size class',

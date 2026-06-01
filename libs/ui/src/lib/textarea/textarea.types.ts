@@ -1,1 +1,1 @@
-export type NbTextareaSize = 'default' | 'sm' | 'lg';
+export type NbTextareaSize = 'md' | 'sm' | 'lg';
