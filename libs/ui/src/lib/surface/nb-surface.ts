@@ -76,9 +76,9 @@ export class NbSurface {
     nbClass(
       'relative',
       'bg-(--nb-surface-bg) text-(--nb-surface-fg)',
-      'border-(length:--nb-surface-border-width) border-(--nb-surface-border-color)',
-      'rounded-(--nb-surface-radius)',
-      'shadow-[var(--nb-surface-shadow)]',
+      'border-[length:var(--nb-surface-border-width,var(--nb-surface-border-width-default))] border-(--nb-surface-border-color)',
+      'rounded-[var(--nb-surface-radius,var(--nb-surface-radius-default))]',
+      'shadow-[var(--nb-surface-shadow,var(--nb-surface-shadow-default))]',
       'p-[var(--nb-surface-padding)]',
       this.clip() && 'overflow-hidden',
       this.sizeClass(),

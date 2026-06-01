@@ -36,7 +36,7 @@ CSS             primitive `classes()`          consume --nb-<ns>-* via Tailwind 
 - **Primitives** provide their namespace + defaults and compose the capabilities
   through Angular `hostDirectives`, forwarding the public input names
   (`inputs: ['tone']`). The primitive keeps only its own anatomy (Surface `clip`,
-  MediaFrame `ratio`/`fit`, Button `shadow`/`size`/state, layout
+  MediaFrame `ratio`/`fit`, Button `press`/`size`/state, layout
   `align`/`justify`/`separator`, …) and a Tailwind base-class string that *consumes*
   the variables.
 
@@ -49,7 +49,7 @@ and override:
 |---|---|---|
 | nbSurface | `surface` | `--nb-surface-{bg,fg,border-color,radius,border-width,shadow,padding}` |
 | nbMediaFrame | `media-frame` | `--nb-media-frame-{bg,fg,border-color,radius,border-width,shadow}` |
-| nbButton | `button` | `--nb-button-{bg,fg,border-color,radius,border-width}` (+ local `--nb-button-shadow`) |
+| nbButton | `button` | `--nb-button-{bg,fg,border-color,radius,border-width,shadow}` |
 | nbIconButton | `icon-button` | `--nb-icon-button-{bg,fg,border-color,border-width,radius,shadow}` |
 | nbChip | `chip` | `--nb-chip-{bg,fg,border-color,border-width,radius,shadow}` |
 | nbMediaItem | `media-item` | `--nb-media-item-{bg,fg,border-color}` (+ local anatomy vars) |
@@ -70,12 +70,10 @@ and override:
 
 ## Why some primitives only partially adopt capabilities
 
-- **Button** now composes the **tone**, **radius**, and **border** capabilities —
-  `tone` is the single color axis (default `primary`), writing
-  `--nb-button-{bg,fg,border-color}` through the shared resolver. Only `shadow`
-  stays local because it still encodes hover/active translate and `reverse` press
-  behavior, which doesn't match the "always write a resolved value" capability
-  contract. Splitting it out is the future `NbPressCapability` pass.
+- **Button** composes **tone**, **radius**, **shadow**, and **border** capabilities.
+  `tone` is the single color axis (default `primary`), and `shadow` is purely
+  visual depth. The hover/active translate behavior is intentionally separate as
+  `press` so `variant` never means color and `shadow` never means behavior.
 - **Callout** keeps its size-derived radius/border-width (anatomy), composing only
   tone + shadow.
 - **Surface** uses the padding capability for uniform container padding. **Chip**
@@ -87,7 +85,8 @@ Public: the primitives, their type aliases, and the shared token types +
 resolvers (`NbRadius`, `nbRadiusValue`, …). The capability directives and
 `NB_STYLE_*` DI tokens are exported from the package entry **only** because
 Angular requires classes referenced by `hostDirectives` to be reachable
-(NG3001); they are marked INTERNAL and are not meant for direct use.
+(NG3001). They are re-exported with Angular private `ɵ` names and are not meant
+for direct use.
 
 ---
 
@@ -127,8 +126,9 @@ Angular requires classes referenced by `hostDirectives` to be reachable
 - **Removed (breaking, pre-1.0):** Surface `radius="base"`, `shadow="lifted"`.
 - **Canonicalized values:** a token (e.g. `radius="lg"`) now resolves to one
   geometry everywhere; primitives whose old value differed shift slightly.
-- **Unchanged:** all other primitive inputs/selectors, Button `shadow`, and every
-  layout primitive input.
+- **Changed:** Button `shadow="reverse"` moved to `press="reverse"`; `shadow`
+  now accepts the shared shadow token scale.
+- **Unchanged:** all primitive selectors and every layout primitive input.
 
 ### Follow-ups
 - Consider a shared `separator` type/capability across Stack/Cluster/Split (they
@@ -164,7 +164,8 @@ hover-translate press behavior).
 - **Button** folds `variant` into `tone` — `variant` and `NbButtonVariant` are
   removed (no alias), Button composes `NbToneCapability`, and color flows through
   `--nb-button-{bg,fg,border-color}`. Default tone is `primary` (replacing the
-  bespoke `--nb-main`). Only `shadow`/press behavior stays local.
+  bespoke `--nb-main`). `shadow` now composes `NbShadowCapability`; pressed motion
+  is separated into `press`.
 - **Badge** replaces `variant` with the shared `tone` capability and composes
   radius/shadow/border as a small visual shell.
 - **Card**, **Avatar**, **ImageCard**, **Dialog**, and **AccordionItem** consume

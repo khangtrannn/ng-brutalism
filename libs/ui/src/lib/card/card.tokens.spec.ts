@@ -53,11 +53,11 @@ describe('NbCard token surface', () => {
     expect(card.style.getPropertyValue('--nb-card-border-color')).toBe(
       'var(--nb-border)'
     );
-    expect(card.style.getPropertyValue('--nb-card-radius')).toBe('1rem');
-    expect(card.style.getPropertyValue('--nb-card-shadow')).toBe(
+    expect(card.style.getPropertyValue('--nb-card-radius-default')).toBe('1rem');
+    expect(card.style.getPropertyValue('--nb-card-shadow-default')).toBe(
       'var(--nb-shadow-offset-x) var(--nb-shadow-offset-y) 0 0 var(--nb-shadow)'
     );
-    expect(card.style.getPropertyValue('--nb-card-border-width')).toBe(
+    expect(card.style.getPropertyValue('--nb-card-border-width-default')).toBe(
       'var(--nb-border-width)'
     );
   });
@@ -69,10 +69,10 @@ describe('NbCard token surface', () => {
 
     expect(cls).toContain('bg-(--nb-card-bg)');
     expect(cls).toContain('text-(--nb-card-fg)');
-    expect(cls).toContain('border-(length:--nb-card-border-width)');
+    expect(cls).toContain('border-[length:var(--nb-card-border-width,var(--nb-card-border-width-default))]');
     expect(cls).toContain('border-(--nb-card-border-color)');
-    expect(cls).toContain('rounded-(--nb-card-radius)');
-    expect(cls).toContain('shadow-[var(--nb-card-shadow)]');
+    expect(cls).toContain('rounded-[var(--nb-card-radius,var(--nb-card-radius-default))]');
+    expect(cls).toContain('shadow-[var(--nb-card-shadow,var(--nb-card-shadow-default))]');
     expect(cls).not.toContain('bg-(--nb-background)');
     expect(cls).not.toContain('text-(--nb-foreground)');
     expect(cls).not.toContain('border-(--nb-border)');
@@ -89,7 +89,7 @@ describe('NbCard token surface', () => {
     expect(cls).toContain('flex-col');
     expect(cls).toContain('gap-6');
     expect(cls).toContain('py-6');
-    expect(cls).toContain('border-(length:--nb-card-border-width)');
+    expect(cls).toContain('border-[length:var(--nb-card-border-width,var(--nb-card-border-width-default))]');
     expect(cls).toContain('font-medium');
   });
 

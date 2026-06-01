@@ -24,8 +24,10 @@ describe('NbAvatar token surface', () => {
     expect(avatar.style.getPropertyValue('--nb-avatar-border-color')).toBe(
       'var(--nb-border)'
     );
-    expect(avatar.style.getPropertyValue('--nb-avatar-radius')).toBe('9999px');
-    expect(avatar.style.getPropertyValue('--nb-avatar-shadow')).toBe(
+    expect(avatar.style.getPropertyValue('--nb-avatar-radius-default')).toBe(
+      '9999px'
+    );
+    expect(avatar.style.getPropertyValue('--nb-avatar-shadow-default')).toBe(
       '2px 2px 0 0 var(--nb-shadow)'
     );
   });
@@ -37,10 +39,10 @@ describe('NbAvatar token surface', () => {
 
     expect(cls).toContain('bg-(--nb-avatar-bg)');
     expect(cls).toContain('text-(--nb-avatar-fg)');
-    expect(cls).toContain('border-(length:--nb-avatar-border-width)');
+    expect(cls).toContain('border-[length:var(--nb-avatar-border-width,var(--nb-avatar-border-width-default))]');
     expect(cls).toContain('border-(--nb-avatar-border-color)');
-    expect(cls).toContain('rounded-(--nb-avatar-radius)');
-    expect(cls).toContain('shadow-[var(--nb-avatar-shadow)]');
+    expect(cls).toContain('rounded-[var(--nb-avatar-radius,var(--nb-avatar-radius-default))]');
+    expect(cls).toContain('shadow-[var(--nb-avatar-shadow,var(--nb-avatar-shadow-default))]');
     expect(cls).not.toContain('bg-(--nb-secondary-background)');
     expect(cls).not.toContain('text-(--nb-foreground)');
     expect(cls).not.toContain('border-(--nb-border)');
@@ -58,7 +60,7 @@ describe('NbAvatar token surface', () => {
     expect(cls).toContain('w-10');
     expect(cls).toContain('shrink-0');
     expect(cls).toContain('overflow-hidden');
-    expect(cls).toContain('border-(length:--nb-avatar-border-width)');
+    expect(cls).toContain('border-[length:var(--nb-avatar-border-width,var(--nb-avatar-border-width-default))]');
     expect(cls).toContain('font-bold');
     expect(cls).toContain('text-sm');
     expect(cls).toContain('items-center');

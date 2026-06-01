@@ -26,8 +26,8 @@ import { DocsTokens } from '../../docs/docs-tokens';
           <h1>Button</h1>
           <p class="mt-3 max-w-3xl text-base font-medium sm:text-lg">
             The neo-brutalist Angular Button component. Displays a button or
-            link that looks like a button, with hard borders, offset shadows,
-            strong colors, keyboard focus states, and native disabled behavior.
+            link that looks like a button, with hard borders, shared tone and
+            shadow tokens, keyboard focus states, and native disabled behavior.
           </p>
         </div>
 
@@ -276,12 +276,29 @@ import { DocsTokens } from '../../docs/docs-tokens';
                 <td
                   class="border-b-2 border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
                 >
-                  'default' | 'none' | 'reverse'
+                  'none' | 'sm' | 'default' | 'hard' | 'heavy'
                 </td>
                 <td
                   class="border-b-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
                 >
                   'default'
+                </td>
+              </tr>
+              <tr>
+                <td
+                  class="border-b-2 border-r-2 border-(--nb-border) px-4 py-3"
+                >
+                  press
+                </td>
+                <td
+                  class="border-b-2 border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
+                >
+                  'push' | 'reverse' | 'none'
+                </td>
+                <td
+                  class="border-b-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
+                >
+                  'push'
                 </td>
               </tr>
               <tr>

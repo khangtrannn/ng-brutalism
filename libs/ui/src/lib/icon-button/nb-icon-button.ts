@@ -86,9 +86,9 @@ export class NbIconButton {
     nbClass(
       'inline-flex items-center justify-center shrink-0 select-none',
       'bg-(--nb-icon-button-bg) text-(--nb-icon-button-fg)',
-      'border-(length:--nb-icon-button-border-width) border-(--nb-icon-button-border-color)',
-      'rounded-(--nb-icon-button-radius)',
-      'shadow-[var(--nb-icon-button-shadow)]',
+      'border-[length:var(--nb-icon-button-border-width,var(--nb-icon-button-border-width-default))] border-(--nb-icon-button-border-color)',
+      'rounded-[var(--nb-icon-button-radius,var(--nb-icon-button-radius-default))]',
+      'shadow-[var(--nb-icon-button-shadow,var(--nb-icon-button-shadow-default))]',
       'hover:translate-x-(--nb-shadow-offset-x) hover:translate-y-(--nb-shadow-offset-y) hover:shadow-none',
       'transition-all duration-150 ease-out',
       '[&_svg]:pointer-events-none [&_svg]:shrink-0',

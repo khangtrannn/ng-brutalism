@@ -17,8 +17,8 @@ describe('NbBadge', () => {
       'span[nbBadge]'
     ) as HTMLSpanElement;
 
-    expect(badge.className).toContain('rounded-(--nb-badge-radius)');
-    expect(badge.style.getPropertyValue('--nb-badge-radius')).toBe('9999px');
+    expect(badge.className).toContain('rounded-[var(--nb-badge-radius,var(--nb-badge-radius-default))]');
+    expect(badge.style.getPropertyValue('--nb-badge-radius-default')).toBe('9999px');
     expect(badge.className).not.toContain('rounded-nb');
   });
 });

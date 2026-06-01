@@ -20,21 +20,21 @@ export type { NbPadding } from './lib/tokens/padding';
 export { nbPaddingValue } from './lib/tokens/padding';
 export type { NbDivider } from './lib/tokens/divider';
 
-// INTERNAL — exported only because Angular requires classes referenced by
-// `hostDirectives` to be reachable from the package entrypoint (NG3001). These
-// are an internal composition mechanism: compose the public primitives
-// (nbSurface, nbButton, …) instead of applying these capabilities directly.
+// Angular private internals — exported only because Angular requires classes
+// referenced by `hostDirectives` to be reachable from the package entrypoint
+// (NG3001). These ɵ-prefixed names are not public API and must not be imported
+// by application code; compose public primitives such as nbSurface/nbButton.
 export {
-  NbToneCapability,
-  NbRadiusCapability,
-  NbShadowCapability,
-  NbBorderCapability,
-  NbPaddingCapability,
-  NbGapCapability,
-  NB_STYLE_NAMESPACE,
-  NB_STYLE_DEFAULTS,
-  type NbStyleDefaults,
+  NbToneCapability as ɵNbToneCapability,
+  NbRadiusCapability as ɵNbRadiusCapability,
+  NbShadowCapability as ɵNbShadowCapability,
+  NbBorderCapability as ɵNbBorderCapability,
+  NbPaddingCapability as ɵNbPaddingCapability,
+  NbGapCapability as ɵNbGapCapability,
+  NB_STYLE_NAMESPACE as ɵNB_STYLE_NAMESPACE,
+  NB_STYLE_DEFAULTS as ɵNB_STYLE_DEFAULTS,
 } from './lib/core/capabilities';
+export type { NbStyleDefaults as ɵNbStyleDefaults } from './lib/core/capabilities';
 
 // Components
 export { NbCheckbox } from './lib/checkbox';
@@ -54,6 +54,7 @@ export type {
   NbButtonIconTone,
   NbButtonRadius,
   NbButtonShadow,
+  NbButtonPress,
   NbButtonSize,
   NbButtonTone,
 } from './lib/button';

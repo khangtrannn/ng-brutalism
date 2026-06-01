@@ -60,10 +60,10 @@ export class NbDialog implements NbDialogController {
     viewChild.required<ElementRef<HTMLDialogElement>>('dialogEl');
 
   protected readonly classes = nbClass(
-    'w-[calc(100vw-2rem)] max-w-2xl rounded-(--nb-dialog-radius)',
-    'border-(length:--nb-dialog-border-width) border-(--nb-dialog-border-color)',
+    'w-[calc(100vw-2rem)] max-w-2xl rounded-[var(--nb-dialog-radius,var(--nb-dialog-radius-default))]',
+    'border-[length:var(--nb-dialog-border-width,var(--nb-dialog-border-width-default))] border-(--nb-dialog-border-color)',
     'bg-(--nb-dialog-bg) text-(--nb-dialog-fg)',
-    'shadow-[var(--nb-dialog-shadow)]',
+    'shadow-[var(--nb-dialog-shadow,var(--nb-dialog-shadow-default))]',
     'm-auto p-0 max-h-[90vh] overflow-x-hidden',
     'open:flex open:flex-col'
   );

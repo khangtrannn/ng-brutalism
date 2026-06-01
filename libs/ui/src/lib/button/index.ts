@@ -5,6 +5,7 @@ export type {
   NbButtonIconShape,
   NbButtonIconSize,
   NbButtonIconTone,
+  NbButtonPress,
   NbButtonRadius,
   NbButtonShadow,
   NbButtonSize,

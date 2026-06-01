@@ -5,6 +5,7 @@ import { describe, expect, it } from 'vitest';
 import { NbButton } from './nb-button';
 import { NbButtonTrailingIcon } from './nb-button-trailing-icon';
 import type {
+  NbButtonPress,
   NbButtonShadow,
   NbButtonTone,
   NbButtonSize,
@@ -20,6 +21,14 @@ class ButtonTokenTest {
   tone: NbButtonTone | undefined = undefined;
   shadow: NbButtonShadow = 'default';
   size: NbButtonSize = 'md';
+}
+
+@Component({
+  imports: [NbButton],
+  template: `<button nbButton [press]="press">Button</button>`,
+})
+class ButtonPressTest {
+  press: NbButtonPress = 'push';
 }
 
 @Component({
@@ -58,12 +67,11 @@ describe('NbButton token surface', () => {
 
     expect(cls).toContain('bg-(--nb-button-bg)');
     expect(cls).toContain('text-(--nb-button-fg)');
-    expect(cls).toContain('border-(length:--nb-button-border-width)');
+    expect(cls).toContain('border-[length:var(--nb-button-border-width,var(--nb-button-border-width-default))]');
     expect(cls).toContain('border-(--nb-button-border-color)');
-    expect(cls).toContain('rounded-(--nb-button-radius)');
-    expect(cls).toContain('shadow-[var(--nb-button-shadow)]');
+    expect(cls).toContain('rounded-[var(--nb-button-radius,var(--nb-button-radius-default))]');
     expect(cls).toContain(
-      '[--nb-button-shadow:var(--nb-shadow-offset-x)_var(--nb-shadow-offset-y)_0_var(--nb-shadow)]'
+      'shadow-[var(--nb-button-shadow,var(--nb-button-shadow-default))]'
     );
     expect(cls).not.toContain('bg-(--nb-main)');
     expect(cls).not.toContain('rounded-nb');
@@ -85,15 +93,18 @@ describe('NbButton token surface', () => {
     );
   });
 
-  it('writes the default border-width and radius capability variables', async () => {
+  it('writes the default border-width, radius, and shadow capability variables', async () => {
     const fixture = await createFixture();
     const button = findButton(fixture);
 
-    expect(button.style.getPropertyValue('--nb-button-border-width')).toBe(
+    expect(button.style.getPropertyValue('--nb-button-border-width-default')).toBe(
       'var(--nb-border-width)'
     );
-    expect(button.style.getPropertyValue('--nb-button-radius')).toBe(
+    expect(button.style.getPropertyValue('--nb-button-radius-default')).toBe(
       'var(--nb-radius)'
+    );
+    expect(button.style.getPropertyValue('--nb-button-shadow-default')).toBe(
+      'var(--nb-shadow-offset-x) var(--nb-shadow-offset-y) 0 0 var(--nb-shadow)'
     );
   });
 
@@ -120,24 +131,42 @@ describe('NbButton token surface', () => {
     }
   );
 
-  it('shadow="none" reassigns the button shadow token', async () => {
+  it('shadow="none" resolves through the shared shadow capability', async () => {
     const fixture = await createFixture({ shadow: 'none' });
-    const cls = findButton(fixture).className;
+    const button = findButton(fixture);
 
-    expect(cls).toContain('[--nb-button-shadow:none]');
-    expect(cls).not.toContain('hover:translate-x-(--nb-shadow-offset-x)');
+    expect(button.getAttribute('data-shadow')).toBe('none');
+    expect(button.style.getPropertyValue('--nb-button-shadow')).toBe('none');
   });
 
-  it('shadow="reverse" reassigns shadow and hover behavior', async () => {
-    const fixture = await createFixture({ shadow: 'reverse' });
-    const cls = findButton(fixture).className;
+  it('shadow="hard" resolves through the shared shadow capability', async () => {
+    const fixture = await createFixture({ shadow: 'hard' });
+    const button = findButton(fixture);
 
-    expect(cls).toContain('[--nb-button-shadow:none]');
+    expect(button.getAttribute('data-shadow')).toBe('hard');
+    expect(button.style.getPropertyValue('--nb-button-shadow')).toBe(
+      '6px 6px 0 0 var(--nb-shadow)'
+    );
+  });
+
+  it('press="reverse" changes only the interaction direction', async () => {
+    const fixture = await createPressFixture('reverse');
+    const button = findPressButton(fixture);
+    const cls = button.className;
+
+    expect(button.getAttribute('data-press')).toBe('reverse');
     expect(cls).toContain('hover:-translate-x-(--nb-reverse-shadow-offset-x)');
     expect(cls).toContain('hover:-translate-y-(--nb-reverse-shadow-offset-y)');
-    expect(cls).toContain(
-      'hover:shadow-[var(--nb-shadow-offset-x)_var(--nb-shadow-offset-y)_0_var(--nb-shadow)]'
-    );
+  });
+
+  it('press="none" disables hover translation', async () => {
+    const fixture = await createPressFixture('none');
+    const button = findPressButton(fixture);
+    const cls = button.className;
+
+    expect(button.getAttribute('data-press')).toBe('none');
+    expect(cls).not.toContain('hover:translate-x-(--nb-shadow-offset-x)');
+    expect(cls).not.toContain('hover:-translate-x-(--nb-reverse-shadow-offset-x)');
   });
 
   it('fullWidth bare attribute makes the button full width', async () => {
@@ -211,8 +240,30 @@ async function createFixture(
   return fixture;
 }
 
+async function createPressFixture(
+  press: NbButtonPress
+): Promise<ComponentFixture<ButtonPressTest>> {
+  await TestBed.configureTestingModule({
+    imports: [ButtonPressTest],
+  }).compileComponents();
+
+  const fixture = TestBed.createComponent(ButtonPressTest);
+  fixture.componentInstance.press = press;
+  fixture.detectChanges();
+
+  return fixture;
+}
+
 function findButton(
   fixture: ComponentFixture<ButtonTokenTest>
+): HTMLButtonElement {
+  return fixture.nativeElement.querySelector(
+    'button[nbButton]'
+  ) as HTMLButtonElement;
+}
+
+function findPressButton(
+  fixture: ComponentFixture<ButtonPressTest>
 ): HTMLButtonElement {
   return fixture.nativeElement.querySelector(
     'button[nbButton]'

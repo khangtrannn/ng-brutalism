@@ -41,14 +41,16 @@ describe('NbAccordion token surface', () => {
     expect(
       itemHost.style.getPropertyValue('--nb-accordion-item-border-color')
     ).toBe('var(--nb-border)');
-    expect(itemHost.style.getPropertyValue('--nb-accordion-item-radius')).toBe(
-      'var(--nb-radius)'
-    );
-    expect(itemHost.style.getPropertyValue('--nb-accordion-item-shadow')).toBe(
+    expect(
+      itemHost.style.getPropertyValue('--nb-accordion-item-radius-default')
+    ).toBe('var(--nb-radius)');
+    expect(
+      itemHost.style.getPropertyValue('--nb-accordion-item-shadow-default')
+    ).toBe(
       'var(--nb-shadow-offset-x) var(--nb-shadow-offset-y) 0 0 var(--nb-shadow)'
     );
     expect(
-      itemHost.style.getPropertyValue('--nb-accordion-item-border-width')
+      itemHost.style.getPropertyValue('--nb-accordion-item-border-width-default')
     ).toBe('var(--nb-border-width)');
     expect(trigger.className).toContain(
       '[--nb-accordion-trigger-bg:var(--nb-main)]'
@@ -72,17 +74,17 @@ describe('NbAccordion token surface', () => {
 
     expect(itemClass).toContain('bg-(--nb-accordion-item-bg)');
     expect(itemClass).toContain('text-(--nb-accordion-item-fg)');
-    expect(itemClass).toContain('border-(length:--nb-accordion-item-border-width)');
+    expect(itemClass).toContain('border-[length:var(--nb-accordion-item-border-width,var(--nb-accordion-item-border-width-default))]');
     expect(itemClass).toContain('border-(--nb-accordion-item-border-color)');
-    expect(itemClass).toContain('rounded-(--nb-accordion-item-radius)');
-    expect(itemClass).toContain('shadow-[var(--nb-accordion-item-shadow)]');
+    expect(itemClass).toContain('rounded-[var(--nb-accordion-item-radius,var(--nb-accordion-item-radius-default))]');
+    expect(itemClass).toContain('shadow-[var(--nb-accordion-item-shadow,var(--nb-accordion-item-shadow-default))]');
     expect(triggerClass).toContain('bg-(--nb-accordion-trigger-bg)');
     expect(triggerClass).toContain('text-(--nb-accordion-trigger-fg)');
     expect(triggerClass).toContain(
       'focus-visible:ring-(--nb-accordion-item-border-color)'
     );
     expect(triggerClass).toContain(
-      'border-b-(length:--nb-accordion-item-border-width)'
+      'border-b-[length:var(--nb-accordion-item-border-width,var(--nb-accordion-item-border-width-default))]'
     );
     expect(triggerClass).toContain('border-b-(--nb-accordion-item-border-color)');
     expect(contentClass).toContain('bg-(--nb-accordion-content-bg)');
@@ -102,7 +104,7 @@ describe('NbAccordion token surface', () => {
     const cls = findItemBox(fixture).className;
 
     expect(cls).toContain('overflow-hidden');
-    expect(cls).toContain('border-(length:--nb-accordion-item-border-width)');
+    expect(cls).toContain('border-[length:var(--nb-accordion-item-border-width,var(--nb-accordion-item-border-width-default))]');
   });
 
   it('does not regress the default trigger class shape', async () => {
@@ -121,7 +123,7 @@ describe('NbAccordion token surface', () => {
     expect(cls).toContain('focus-visible:outline-none');
     expect(cls).toContain('focus-visible:ring-2');
     expect(cls).toContain('disabled:opacity-50');
-    expect(cls).toContain('border-b-(length:--nb-accordion-item-border-width)');
+    expect(cls).toContain('border-b-[length:var(--nb-accordion-item-border-width,var(--nb-accordion-item-border-width-default))]');
   });
 
   it('does not regress the default content class shape', async () => {

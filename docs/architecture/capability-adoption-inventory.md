@@ -13,7 +13,7 @@ Working inventory for the 2026-06-01 full-library style-capability sweep.
 | Split | child gap, uniform padding, ratio/collapse/align, optional separator | gap/padding | none | ratio/collapse/align, separator anatomy | Already clean |
 | MediaFrame | host shell tone/radius/shadow/border, media ratio/fit | tone/radius/shadow/border | none | ratio, fit | Already clean |
 | MediaItem | host color for boxed/chip variants, local layout anatomy | tone | none | variant, orientation, align, size-derived gap/padding/icon anatomy | Already clean after tone adoption |
-| Button | host color/radius/border, local size and press shadow behavior | tone/radius/border | future press | size, fullWidth, shadow press/reverse behavior | Already normalized; keep shadow local |
+| Button | host color/radius/shadow/border, local size and press behavior | tone/radius/shadow/border | future press | size, fullWidth, press behavior | Migrated shadow to shared capability; press stays local |
 | IconButton | host color/radius/shadow/border, local square size/shape | tone/radius/shadow/border | future press | size, shape, icon, hover/focus/disabled | Already clean |
 | Chip | host color/radius/shadow/border, asymmetric pill padding | tone/radius/shadow/border | none | padding, icon, iconSize | Already clean; keep pill padding local |
 | Callout | host tone/shadow, size-derived radius/border/padding | tone/shadow | none | size-derived radius, border width, padding, layout | Keep local anatomy |

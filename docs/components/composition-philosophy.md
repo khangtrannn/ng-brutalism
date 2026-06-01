@@ -8,13 +8,13 @@ blurring their responsibilities.
 
 | Layer | Owns | Examples |
 |---|---|---|
-| **ng-brutalism primitives** | Brutalist visual grammar + component anatomy | `tone`, `radius`, `shadow`, `border`, `variant`, `state`, layout `gap`/`padding`/`align`/`justify`, interaction & accessibility behavior |
+| **ng-brutalism primitives** | Brutalist visual grammar + component anatomy | `tone`, `radius`, `shadow`, `border`, `press`, `state`, layout `gap`/`padding`/`align`/`justify`, interaction & accessibility behavior |
 | **`nbText`** (and `nbDisplay`) | Expressive typography | `size`, `weight`, `tracking`, `transform`, `leading`, `measure`, underline treatment |
 | **Tailwind** | Page-specific layout & art direction | `relative`, `absolute`, `z-*`, `w-full`, `max-w-*`, `mx-auto`, `hidden sm:block`, `top-[25%]`, `size-*`, `flex-1`, arbitrary geometry |
 
-> Use ng-brutalism inputs for visual grammar.
-> Use `nbText` for custom typography.
-> Use Tailwind for composition, responsive tweaks, and recipe-specific art direction.
+> Use ng-brutalism inputs for common design decisions.
+> Use CSS variables for local art direction.
+> Use Tailwind classes for layout escape hatches.
 
 ## Recommended pattern
 
@@ -82,6 +82,31 @@ For the default action style, omit `tone` (it resolves to `primary`):
 
 ```html
 <button nbButton>Save</button>
+```
+
+## Inputs, CSS Variables, And Classes
+
+Inputs are the shared vocabulary. Reach for them when the decision should read
+the same everywhere:
+
+```html
+<div nbSurface tone="cream" radius="xl" shadow="hard"></div>
+```
+
+CSS variables are the local art-direction layer. Use them when a recipe needs a
+specific color, spacing, or mark treatment without adding a one-off public API:
+
+```html
+<div nbSurface style="--nb-surface-bg: #faf6f0"></div>
+<h1 nbDisplay underline="bar" class="[--nb-underline-gap:1.25rem]"></h1>
+```
+
+Classes are for layout escape hatches and recipe composition:
+
+```html
+<img src="/podcast-card/avatar.png" alt="Kai Nguyen" class="size-30 shrink-0" />
+<div nbMediaFrame ratio="1/1" radius="lg"><img src="/trip.jpg" alt="" /></div>
+<nb-media-item icon="/icons/clock.svg">45 MIN</nb-media-item>
 ```
 
 ## Component-specific CSS variables

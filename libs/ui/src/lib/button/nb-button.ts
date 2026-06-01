@@ -4,12 +4,13 @@ import { nbClass } from '../core/class';
 import {
   NbBorderCapability,
   NbRadiusCapability,
+  NbShadowCapability,
   NbToneCapability,
   NB_STYLE_DEFAULTS,
   NB_STYLE_NAMESPACE,
   type NbStyleDefaults,
 } from '../core/capabilities';
-import type { NbButtonShadow, NbButtonSize } from './button.types';
+import type { NbButtonPress, NbButtonSize } from './button.types';
 
 const sizeMap: Record<NbButtonSize, string> = {
   sm: 'h-9 px-3 text-sm gap-1.5',
@@ -27,6 +28,7 @@ const sizeMap: Record<NbButtonSize, string> = {
       useValue: {
         tone: 'primary',
         radius: 'md',
+        shadow: 'default',
         border: 'default',
       } satisfies NbStyleDefaults,
     },
@@ -34,28 +36,28 @@ const sizeMap: Record<NbButtonSize, string> = {
   hostDirectives: [
     { directive: NbToneCapability, inputs: ['tone'] },
     { directive: NbRadiusCapability, inputs: ['radius'] },
+    { directive: NbShadowCapability, inputs: ['shadow'] },
     { directive: NbBorderCapability, inputs: ['border'] },
   ],
   host: {
     '[class]': 'classes()',
-    '[attr.data-shadow]': 'shadow()',
+    '[attr.data-press]': 'press()',
     '[attr.data-size]': 'size()',
     '[attr.data-full-width]': 'fullWidth() ? "" : null',
   },
 })
 export class NbButton {
-  readonly shadow = input<NbButtonShadow>('default');
+  readonly press = input<NbButtonPress>('push');
   readonly size = input<NbButtonSize>('md');
   readonly fullWidth = input<boolean, unknown>(false, { transform: booleanAttribute });
 
   protected readonly classes = computed(() =>
     nbClass(
       'inline-flex items-center justify-center whitespace-nowrap select-none font-bold',
-      '[--nb-button-shadow:var(--nb-shadow-offset-x)_var(--nb-shadow-offset-y)_0_var(--nb-shadow)]',
       'bg-(--nb-button-bg) text-(--nb-button-fg)',
-      'rounded-(--nb-button-radius)',
-      'border-(length:--nb-button-border-width) border-(--nb-button-border-color)',
-      'shadow-[var(--nb-button-shadow)]',
+      'rounded-[var(--nb-button-radius,var(--nb-button-radius-default))]',
+      'border-[length:var(--nb-button-border-width,var(--nb-button-border-width-default))] border-(--nb-button-border-color)',
+      'shadow-[var(--nb-button-shadow,var(--nb-button-shadow-default))]',
       'transition-all duration-150 ease-out',
       '[&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0',
       'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--nb-border) focus-visible:ring-offset-2',
@@ -68,14 +70,14 @@ export class NbButton {
   );
 
   private shadowClass(): string {
-    const map: Record<NbButtonShadow, string> = {
-      default:
+    const map: Record<NbButtonPress, string> = {
+      push:
         'hover:translate-x-(--nb-shadow-offset-x) hover:translate-y-(--nb-shadow-offset-y) hover:shadow-none',
-      none: '[--nb-button-shadow:none]',
       reverse:
-        '[--nb-button-shadow:none] hover:-translate-x-(--nb-reverse-shadow-offset-x) hover:-translate-y-(--nb-reverse-shadow-offset-y) hover:shadow-[var(--nb-shadow-offset-x)_var(--nb-shadow-offset-y)_0_var(--nb-shadow)]',
+        'hover:-translate-x-(--nb-reverse-shadow-offset-x) hover:-translate-y-(--nb-reverse-shadow-offset-y)',
+      none: '',
     };
-    return map[this.shadow()];
+    return map[this.press()];
   }
 
   private sizeClass(): string {

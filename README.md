@@ -94,25 +94,28 @@ bootstrapApplication(AppComponent, {
 
 [Full installation guide →](https://ngbrutalism.khangtran.dev/docs/installation)
 
-## Components
+## Primitive System
 
-| Component | Description | Docs |
-| --- | --- | --- |
-| Accordion | Vertically stacked, collapsible content panels with single or multi-expand modes. | [Docs](https://ngbrutalism.khangtran.dev/components/accordion) |
-| Avatar | Compact avatar with image and fallback support. | [Docs](https://ngbrutalism.khangtran.dev/components/avatar) |
-| Badge | Inline status pill with multiple variants. | [Docs](https://ngbrutalism.khangtran.dev/components/badge) |
-| Button | Directive-driven button with size, variant, and shadow controls. | [Docs](https://ngbrutalism.khangtran.dev/components/button) |
-| Card | Container with header, title, description, content, actions, and footer slots. | [Docs](https://ngbrutalism.khangtran.dev/components/card) |
-| Checkbox | Form checkbox with size variants and signal-friendly bindings. | [Docs](https://ngbrutalism.khangtran.dev/components/checkbox) |
-| Dialog | Modal dialog with title, description, content, actions, and close slots. | [Docs](https://ngbrutalism.khangtran.dev/components/dialog) |
-| Image Card | Image-led card with caption overlay for portfolios and galleries. | [Docs](https://ngbrutalism.khangtran.dev/components/image-card) |
-| Input | Single-line text input with size variants. | [Docs](https://ngbrutalism.khangtran.dev/components/input) |
-| Input Group | Input wrapper with prefix and suffix slots for icons, addons, or units. | [Docs](https://ngbrutalism.khangtran.dev/components/input-group) |
-| Label | Accessible label tied to form controls. | [Docs](https://ngbrutalism.khangtran.dev/components/label) |
-| Marquee | Looping horizontal scroller for logos, tags, or announcements. | [Docs](https://ngbrutalism.khangtran.dev/components/marquee) |
-| Select | Native or custom dropdown select with option templating. | [Docs](https://ngbrutalism.khangtran.dev/components/select) |
-| Textarea | Multi-line text input with size variants. | [Docs](https://ngbrutalism.khangtran.dev/components/textarea) |
-| Title | Typographic heading primitive with brutalist defaults. | [Docs](https://ngbrutalism.khangtran.dev/components/title) |
+ng-brutalism is a composition system, not just a component list. Use primitives
+like `nbSurface`, `nbSection`, `nbSplit`, `nbStack`, and `nbCluster` as the
+layout grammar. Add emphasis with `nbChip`, `nbCallout`, `nbSticker`, and
+`nbStatusDot`. Finish with typography, media, forms, and action primitives.
+
+Inputs are for common design decisions. CSS variables are for local art
+direction. Classes are for layout escape hatches.
+
+| Group | Primitives |
+| --- | --- |
+| Foundation | Tokens, theme provider, CSS variables, `nbClass` |
+| Layout | Stack, Cluster, Split, Section, Separator |
+| Surfaces | Surface, Card, Image Card, Media Frame |
+| Typography | Text, Display, Title |
+| Emphasis | Badge, Chip, Callout, Sticker, Status Dot, Rating, Progress |
+| Actions | Button, Icon Button, Button Trailing Icon |
+| Media | Avatar, Avatar Group, Icon, Media Item |
+| Forms | Input, Input Group, Textarea, Checkbox, Select, Label |
+| Overlays / Interaction | Accordion, Dialog, Marquee |
+| Recipes | Podcast Card, Travel Card, Job Card |
 
 ## What it looks like
 

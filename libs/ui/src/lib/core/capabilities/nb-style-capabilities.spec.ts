@@ -117,12 +117,12 @@ describe('style capabilities', () => {
     const surface = el.querySelector<HTMLElement>('[nbSurface]')!;
 
     // default radius 'md' -> var(--nb-radius); default border 'default' -> var(--nb-border-width)
-    expect(surface.style.getPropertyValue('--nb-surface-radius')).toBe(
+    expect(surface.style.getPropertyValue('--nb-surface-radius-default')).toBe(
       'var(--nb-radius)'
     );
-    expect(surface.style.getPropertyValue('--nb-surface-border-width')).toBe(
-      'var(--nb-border-width)'
-    );
+    expect(
+      surface.style.getPropertyValue('--nb-surface-border-width-default')
+    ).toBe('var(--nb-border-width)');
     expect(surface.style.getPropertyValue('--nb-surface-padding')).toBe('0px');
   });
 

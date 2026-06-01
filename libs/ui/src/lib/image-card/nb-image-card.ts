@@ -66,10 +66,10 @@ export class NbImageCard {
 
   protected readonly classes = nbClass(
     'flex flex-col overflow-hidden',
-    'rounded-(--nb-image-card-radius)',
-    'border-(length:--nb-image-card-border-width) border-(--nb-image-card-border-color)',
+    'rounded-[var(--nb-image-card-radius,var(--nb-image-card-radius-default))]',
+    'border-[length:var(--nb-image-card-border-width,var(--nb-image-card-border-width-default))] border-(--nb-image-card-border-color)',
     'bg-(--nb-image-card-bg) text-(--nb-image-card-fg)',
-    'shadow-[var(--nb-image-card-shadow)] font-medium'
+    'shadow-[var(--nb-image-card-shadow,var(--nb-image-card-shadow-default))] font-medium'
   );
 
   protected readonly imageClasses = nbClass('block w-full h-auto');
@@ -86,7 +86,7 @@ export class NbImageCard {
 })
 export class NbImageCardCaption {
   protected readonly classes = nbClass(
-    'border-t-(length:--nb-image-card-border-width) border-t-(--nb-image-card-border-color)',
+    'border-t-[length:var(--nb-image-card-border-width,var(--nb-image-card-border-width-default))] border-t-(--nb-image-card-border-color)',
     'px-6 py-4 text-center font-bold text-base'
   );
 }

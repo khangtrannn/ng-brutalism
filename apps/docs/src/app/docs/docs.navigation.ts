@@ -40,7 +40,7 @@ export const docsNavGroups: readonly DocsNavGroup[] = [
     ],
   },
   {
-    label: 'Components',
+    label: 'Primitives',
     items: [
       {
         label: 'Accordion',

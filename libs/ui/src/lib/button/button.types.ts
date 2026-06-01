@@ -1,9 +1,12 @@
 import type { NbRadius } from '../tokens/radius';
+import type { NbShadow } from '../tokens/shadow';
 import type { NbToneToken } from '../tokens/tone';
 
 export type NbButtonTone = NbToneToken;
 
-export type NbButtonShadow = 'default' | 'none' | 'reverse';
+export type NbButtonShadow = NbShadow;
+
+export type NbButtonPress = 'push' | 'reverse' | 'none';
 
 export type NbButtonSize = 'sm' | 'md' | 'lg' | 'xl';
 

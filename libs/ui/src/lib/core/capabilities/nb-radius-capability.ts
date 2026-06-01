@@ -1,10 +1,15 @@
 import { Directive, computed, inject, input } from '@angular/core';
 
 import { nbRadiusValue, type NbRadius } from '../../tokens/radius';
-import { NB_STYLE_DEFAULTS, NB_STYLE_NAMESPACE } from './nb-style-tokens';
+import {
+  NB_STYLE_DEFAULTS,
+  NB_STYLE_NAMESPACE,
+  nbCapabilityVars,
+} from './nb-style-tokens';
 
 /**
- * INTERNAL capability — not part of the public API. Writes `--nb-<ns>-radius`.
+ * INTERNAL capability — not part of the public API. Writes the cascade-aware
+ * `--nb-<ns>-radius` (only on explicit input) and `--nb-<ns>-radius-default`.
  */
 @Directive({
   selector: '[nbRadiusCapability]',
@@ -19,11 +24,16 @@ export class NbRadiusCapability {
 
   readonly radius = input<NbRadius | undefined>(undefined);
 
-  protected readonly resolved = computed(
-    () => this.radius() ?? this.defaults.radius ?? 'md',
-  );
+  private readonly fallback = computed(() => this.defaults.radius ?? 'md');
+  protected readonly resolved = computed(() => this.radius() ?? this.fallback());
 
-  protected readonly styleVars = computed(() => ({
-    [`--nb-${this.namespace}-radius`]: nbRadiusValue(this.resolved()),
-  }));
+  protected readonly styleVars = computed(() =>
+    nbCapabilityVars(
+      this.namespace,
+      'radius',
+      nbRadiusValue,
+      this.radius(),
+      this.fallback(),
+    ),
+  );
 }

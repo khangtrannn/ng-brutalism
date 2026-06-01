@@ -57,7 +57,7 @@ import { DocsCodeBlock } from '../../docs/docs-code-block';
 
         <p class="mt-8 max-w-4xl text-base font-medium sm:text-lg">
           &#64;ng-brutalism/ui gives modern Angular apps a token-driven
-          component system with directive-first APIs, keyboard-ready
+          primitive composition system with directive-first APIs, keyboard-ready
           interactions, hard-edged visuals, and Tailwind v4 ergonomics from the
           first import.
         </p>
@@ -159,8 +159,8 @@ import { DocsCodeBlock } from '../../docs/docs-code-block';
           Start exploring
         </h2>
         <p class="mb-5 text-base font-medium">
-          Jump straight into the pieces that shape the most visible moments:
-          setup, layout, overlays, actions, and forms.
+          Jump straight into the composition layers: setup, layout grammar,
+          surfaces, emphasis, actions, forms, and recipes.
         </p>
 
         <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
@@ -209,6 +209,25 @@ import { DocsCodeBlock } from '../../docs/docs-code-block';
         </div>
       </section>
 
+      <section id="composition">
+        <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">
+          Composition system
+        </h2>
+        <p class="mb-5 text-base font-medium">
+          Use primitives like <code class="font-mono">nbSurface</code>,
+          <code class="font-mono">nbSection</code>,
+          <code class="font-mono">nbSplit</code>,
+          <code class="font-mono">nbStack</code>, and
+          <code class="font-mono">nbCluster</code> as the layout grammar. Add
+          emphasis with <code class="font-mono">nbChip</code>,
+          <code class="font-mono">nbCallout</code>,
+          <code class="font-mono">nbSticker</code>, and
+          <code class="font-mono">nbStatusDot</code>. Finish with typography,
+          media, and action primitives.
+        </p>
+        <docs-code-block title="Art direction" [code]="compositionCode" />
+      </section>
+
       <section id="utilities">
         <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">
           Utility included
@@ -241,4 +260,8 @@ import { NbButton } from '@ng-brutalism/ui';
   \`,
 })
 export class ShipButton {}`;
+
+  protected readonly compositionCode = `<div nbSurface tone="cream"></div>
+<div nbSurface style="--nb-surface-bg: #faf6f0"></div>
+<h1 nbDisplay underline="bar" class="[--nb-underline-gap:1.25rem]"></h1>`;
 }

@@ -56,7 +56,7 @@ export class NbCallout {
       'bg-(--nb-callout-bg) text-(--nb-callout-fg)',
       'border-(length:--nb-callout-border-width) border-(--nb-callout-border-color)',
       'rounded-(--nb-callout-radius)',
-      'shadow-[var(--nb-callout-shadow)]',
+      'shadow-[var(--nb-callout-shadow,var(--nb-callout-shadow-default))]',
       'font-black uppercase leading-none',
       this.sizeClass(),
       this.layoutClass()
