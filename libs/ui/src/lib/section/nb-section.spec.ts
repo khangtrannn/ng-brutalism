@@ -64,8 +64,8 @@ describe('NbSection', () => {
     expect(section.className).toContain('box-border');
     expect(section.className).toContain('min-w-0');
     expect(section.className).toContain('block');
-    expect(section.className).toContain('p-[var(--nb-section-padding)]');
-    expect(section.style.getPropertyValue('--nb-section-padding')).toBe('1rem');
+    expect(section.className).toContain('nb-padding');
+    expect(section.style.getPropertyValue('--_nb-padding-default')).toBe('1rem');
     expect(section.className).not.toContain('border-t-');
     expect(section.className).not.toContain('items-stretch');
   });
@@ -78,7 +78,7 @@ describe('NbSection', () => {
 
     expect(section.getAttribute('data-padding')).toBe('lg');
     expect(section.getAttribute('data-divider')).toBe('top');
-    expect(section.style.getPropertyValue('--nb-section-padding')).toBe('1.5rem');
+    expect(section.style.getPropertyValue('padding')).toBe('1.5rem');
     expect(section.className).toContain('border-t-(length:--nb-border-width)');
     expect(section.className).toContain('border-(--nb-border)');
     expect(section.className).toContain('border-solid');
@@ -92,7 +92,7 @@ describe('NbSection', () => {
 
     expect(section.getAttribute('data-divider')).toBe('block');
     expect(section.getAttribute('data-divider-style')).toBe('dashed');
-    expect(section.style.getPropertyValue('--nb-section-padding')).toBe('2rem');
+    expect(section.style.getPropertyValue('padding')).toBe('2rem');
     expect(section.className).toContain('border-y-(length:--nb-border-width)');
     expect(section.className).toContain('border-dashed');
     expect(section.className).not.toContain('border-solid');
@@ -120,7 +120,7 @@ describe('NbSection', () => {
 
     expect(section.getAttribute('data-flush')).toBe('');
     expect(section.className).toContain(
-      'mx-[calc(var(--nb-section-padding)*-1)]'
+      'mx-[calc(var(--nb-padding-token,var(--_nb-padding-default))*-1)]'
     );
   });
 });

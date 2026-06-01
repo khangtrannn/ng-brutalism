@@ -43,7 +43,6 @@ export class NbStack {
   protected readonly classes = computed(() =>
     nbClass(
       'flex min-w-0 flex-col',
-      'gap-[var(--nb-stack-gap)]',
       this.alignClass(),
       this.justifyClass(),
       this.separatorClass()

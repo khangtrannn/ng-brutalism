@@ -22,13 +22,13 @@ describe('NbBadge token surface', () => {
     expect(badge.style.getPropertyValue('--nb-badge-border-color')).toBe(
       'var(--nb-border)'
     );
-    expect(badge.style.getPropertyValue('--nb-badge-radius-default')).toBe(
+    expect(badge.style.getPropertyValue('--_nb-radius-default')).toBe(
       '9999px'
     );
-    expect(badge.style.getPropertyValue('--nb-badge-shadow-default')).toBe(
+    expect(badge.style.getPropertyValue('--_nb-shadow-default')).toBe(
       '2px 2px 0 0 var(--nb-shadow)'
     );
-    expect(badge.style.getPropertyValue('--nb-badge-border-width-default')).toBe(
+    expect(badge.style.getPropertyValue('--_nb-border-width-default')).toBe(
       'var(--nb-border-width)'
     );
   });
@@ -40,10 +40,10 @@ describe('NbBadge token surface', () => {
 
     expect(cls).toContain('bg-(--nb-badge-bg)');
     expect(cls).toContain('text-(--nb-badge-fg)');
-    expect(cls).toContain('border-[length:var(--nb-badge-border-width,var(--nb-badge-border-width-default))]');
+    expect(cls).toContain('nb-border-width');
     expect(cls).toContain('border-(--nb-badge-border-color)');
-    expect(cls).toContain('rounded-[var(--nb-badge-radius,var(--nb-badge-radius-default))]');
-    expect(cls).toContain('shadow-[var(--nb-badge-shadow,var(--nb-badge-shadow-default))]');
+    expect(cls).toContain('nb-radius');
+    expect(cls).toContain('nb-shadow');
     expect(cls).not.toContain('bg-(--nb-accent)');
     expect(cls).not.toContain('border-(--nb-border)');
     expect(cls).not.toContain('rounded-nb');
@@ -72,7 +72,7 @@ describe('NbBadge token surface', () => {
 
     expect(cls).toContain('inline-flex');
     expect(cls).toContain('items-center');
-    expect(cls).toContain('border-[length:var(--nb-badge-border-width,var(--nb-badge-border-width-default))]');
+    expect(cls).toContain('nb-border-width');
     expect(cls).toContain('px-2.5');
     expect(cls).toContain('py-0.5');
     expect(cls).toContain('text-xs');

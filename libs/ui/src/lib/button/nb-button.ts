@@ -55,9 +55,7 @@ export class NbButton {
     nbClass(
       'inline-flex items-center justify-center whitespace-nowrap select-none font-bold',
       'bg-(--nb-button-bg) text-(--nb-button-fg)',
-      'rounded-[var(--nb-button-radius,var(--nb-button-radius-default))]',
-      'border-[length:var(--nb-button-border-width,var(--nb-button-border-width-default))] border-(--nb-button-border-color)',
-      'shadow-[var(--nb-button-shadow,var(--nb-button-shadow-default))]',
+      'border-(--nb-button-border-color)',
       'transition-all duration-150 ease-out',
       '[&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0',
       'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--nb-border) focus-visible:ring-offset-2',

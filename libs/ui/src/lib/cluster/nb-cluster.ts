@@ -59,7 +59,6 @@ export class NbCluster {
   protected readonly classes = computed(() =>
     nbClass(
       'flex min-w-0',
-      'p-[var(--nb-cluster-padding)]',
       this.gapClass(),
       this.alignClass(),
       this.justifyClass(),
@@ -72,10 +71,10 @@ export class NbCluster {
     // With a separator, gap collapses on the inline axis (the separator owns
     // the inline spacing) and survives only on the block axis for wrapped rows.
     if (this.separator() !== 'none') {
-      return 'gap-y-[var(--nb-cluster-gap)] gap-x-0';
+      return 'gap-x-0';
     }
 
-    return 'gap-[var(--nb-cluster-gap)]';
+    return '';
   }
 
   private alignClass(): string {
@@ -120,7 +119,7 @@ export class NbCluster {
 
 // Written as module-level constants so Tailwind's static scanner emits the classes.
 const separatorBaseClass = nbClass(
-  '[--nb-cluster-separator-gap:calc(var(--nb-cluster-gap)*0.5)]',
+  '[--nb-cluster-separator-gap:calc(var(--nb-gap-token,var(--_nb-gap-default))*0.5)]',
   '[--nb-cluster-separator-color:var(--nb-border)]',
   '[&>*+*]:[margin-inline-start:var(--nb-cluster-separator-gap)]',
   '[&>*+*]:[padding-inline-start:var(--nb-cluster-separator-gap)]',

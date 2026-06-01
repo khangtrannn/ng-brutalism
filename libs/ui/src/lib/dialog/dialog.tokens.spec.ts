@@ -39,13 +39,13 @@ describe('NbDialog token surface', () => {
     expect(host.style.getPropertyValue('--nb-dialog-border-color')).toBe(
       'var(--nb-border)'
     );
-    expect(host.style.getPropertyValue('--nb-dialog-radius-default')).toBe(
+    expect(host.style.getPropertyValue('--_nb-radius-default')).toBe(
       '0.375rem'
     );
-    expect(host.style.getPropertyValue('--nb-dialog-shadow-default')).toBe(
+    expect(host.style.getPropertyValue('--_nb-shadow-default')).toBe(
       '6px 6px 0 0 var(--nb-shadow)'
     );
-    expect(host.style.getPropertyValue('--nb-dialog-border-width-default')).toBe(
+    expect(host.style.getPropertyValue('--_nb-border-width-default')).toBe(
       'var(--nb-border-width)'
     );
   });
@@ -56,10 +56,10 @@ describe('NbDialog token surface', () => {
 
     expect(cls).toContain('bg-(--nb-dialog-bg)');
     expect(cls).toContain('text-(--nb-dialog-fg)');
-    expect(cls).toContain('border-[length:var(--nb-dialog-border-width,var(--nb-dialog-border-width-default))]');
     expect(cls).toContain('border-(--nb-dialog-border-color)');
-    expect(cls).toContain('rounded-[var(--nb-dialog-radius,var(--nb-dialog-radius-default))]');
-    expect(cls).toContain('shadow-[var(--nb-dialog-shadow,var(--nb-dialog-shadow-default))]');
+    expect(findDialogHost(fixture).className).toContain('nb-border-width');
+    expect(findDialogHost(fixture).className).toContain('nb-radius');
+    expect(findDialogHost(fixture).className).toContain('nb-shadow');
     expect(cls).not.toContain('bg-white');
     expect(cls).not.toContain('text-(--nb-foreground)');
     expect(cls).not.toContain('border-(--nb-border)');
@@ -95,7 +95,6 @@ describe('NbDialog token surface', () => {
 
     expect(cls).toContain('w-[calc(100vw-2rem)]');
     expect(cls).toContain('max-w-2xl');
-    expect(cls).toContain('border-[length:var(--nb-dialog-border-width,var(--nb-dialog-border-width-default))]');
     expect(cls).toContain('m-auto');
     expect(cls).toContain('p-0');
     expect(cls).toContain('max-h-[90vh]');

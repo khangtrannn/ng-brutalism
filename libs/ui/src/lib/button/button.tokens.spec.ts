@@ -67,12 +67,10 @@ describe('NbButton token surface', () => {
 
     expect(cls).toContain('bg-(--nb-button-bg)');
     expect(cls).toContain('text-(--nb-button-fg)');
-    expect(cls).toContain('border-[length:var(--nb-button-border-width,var(--nb-button-border-width-default))]');
+    expect(cls).toContain('nb-border-width');
     expect(cls).toContain('border-(--nb-button-border-color)');
-    expect(cls).toContain('rounded-[var(--nb-button-radius,var(--nb-button-radius-default))]');
-    expect(cls).toContain(
-      'shadow-[var(--nb-button-shadow,var(--nb-button-shadow-default))]'
-    );
+    expect(cls).toContain('nb-radius');
+    expect(cls).toContain('nb-shadow');
     expect(cls).not.toContain('bg-(--nb-main)');
     expect(cls).not.toContain('rounded-nb');
     expect(cls).not.toContain('shadow-nb');
@@ -93,17 +91,17 @@ describe('NbButton token surface', () => {
     );
   });
 
-  it('writes the default border-width, radius, and shadow capability variables', async () => {
+  it('writes private default border-width, radius, and shadow capability variables', async () => {
     const fixture = await createFixture();
     const button = findButton(fixture);
 
-    expect(button.style.getPropertyValue('--nb-button-border-width-default')).toBe(
+    expect(button.style.getPropertyValue('--_nb-border-width-default')).toBe(
       'var(--nb-border-width)'
     );
-    expect(button.style.getPropertyValue('--nb-button-radius-default')).toBe(
+    expect(button.style.getPropertyValue('--_nb-radius-default')).toBe(
       'var(--nb-radius)'
     );
-    expect(button.style.getPropertyValue('--nb-button-shadow-default')).toBe(
+    expect(button.style.getPropertyValue('--_nb-shadow-default')).toBe(
       'var(--nb-shadow-offset-x) var(--nb-shadow-offset-y) 0 0 var(--nb-shadow)'
     );
   });
@@ -136,7 +134,8 @@ describe('NbButton token surface', () => {
     const button = findButton(fixture);
 
     expect(button.getAttribute('data-shadow')).toBe('none');
-    expect(button.style.getPropertyValue('--nb-button-shadow')).toBe('none');
+    expect(button.style.getPropertyValue('box-shadow')).toBe('none');
+    expect(button.style.getPropertyValue('--nb-button-shadow')).toBe('');
   });
 
   it('shadow="hard" resolves through the shared shadow capability', async () => {
@@ -144,7 +143,7 @@ describe('NbButton token surface', () => {
     const button = findButton(fixture);
 
     expect(button.getAttribute('data-shadow')).toBe('hard');
-    expect(button.style.getPropertyValue('--nb-button-shadow')).toBe(
+    expect(button.style.getPropertyValue('box-shadow')).toBe(
       '6px 6px 0 0 var(--nb-shadow)'
     );
   });

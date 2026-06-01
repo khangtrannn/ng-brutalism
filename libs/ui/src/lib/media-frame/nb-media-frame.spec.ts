@@ -57,24 +57,20 @@ describe('NbMediaFrame', () => {
     expect(frame.className).toContain('relative');
     expect(frame.className).toContain('isolate');
     expect(frame.className).toContain('overflow-hidden');
-    expect(frame.className).toContain(
-      'border-[length:var(--nb-media-frame-border-width,var(--nb-media-frame-border-width-default))]'
-    );
+    expect(frame.className).toContain('nb-border-width');
     expect(frame.className).toContain('bg-(--nb-media-frame-bg)');
     expect(frame.className).toContain('text-(--nb-media-frame-fg)');
-    expect(frame.className).toContain('rounded-[var(--nb-media-frame-radius,var(--nb-media-frame-radius-default))]');
-    expect(frame.className).toContain(
-      'shadow-[var(--nb-media-frame-shadow,var(--nb-media-frame-shadow-default))]'
-    );
+    expect(frame.className).toContain('nb-radius');
+    expect(frame.className).toContain('nb-shadow');
     expect(frame.className).toContain('[&>img]:h-full');
     expect(frame.className).toContain('[&>img]:object-cover');
     expect(frame.style.getPropertyValue('--nb-media-frame-bg')).toBe(
       'var(--nb-surface)'
     );
-    expect(frame.style.getPropertyValue('--nb-media-frame-radius-default')).toBe(
+    expect(frame.style.getPropertyValue('--_nb-radius-default')).toBe(
       '1rem'
     );
-    expect(frame.style.getPropertyValue('--nb-media-frame-shadow-default')).toBe(
+    expect(frame.style.getPropertyValue('--_nb-shadow-default')).toBe(
       'none'
     );
   });
@@ -96,13 +92,13 @@ describe('NbMediaFrame', () => {
     );
     expect(frame.className).toContain('aspect-[21/9]');
     expect(frame.className).toContain('[&>video]:object-contain');
-    expect(frame.style.getPropertyValue('--nb-media-frame-radius')).toBe(
+    expect(frame.style.getPropertyValue('border-radius')).toBe(
       '1.5rem'
     );
-    expect(frame.style.getPropertyValue('--nb-media-frame-shadow')).toBe(
+    expect(frame.style.getPropertyValue('box-shadow')).toBe(
       '6px 6px 0 0 var(--nb-shadow)'
     );
-    expect(frame.style.getPropertyValue('--nb-media-frame-border-width')).toBe(
+    expect(frame.style.getPropertyValue('border-width')).toBe(
       '3px'
     );
   });

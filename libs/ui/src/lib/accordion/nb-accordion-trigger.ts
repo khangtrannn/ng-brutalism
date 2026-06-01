@@ -49,7 +49,7 @@ export class NbAccordionTrigger {
       'focus-visible:ring-(--nb-accordion-item-border-color) focus-visible:ring-offset-2',
       'disabled:pointer-events-none disabled:opacity-50',
       this.item.open() &&
-        'border-b-[length:var(--nb-accordion-item-border-width,var(--nb-accordion-item-border-width-default))] border-b-(--nb-accordion-item-border-color)'
+        'border-b-[length:var(--nb-border-width-token,var(--_nb-border-width-default))] border-b-(--nb-accordion-item-border-color)'
     )
   );
 }

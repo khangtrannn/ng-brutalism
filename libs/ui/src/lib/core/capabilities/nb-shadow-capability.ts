@@ -1,20 +1,19 @@
 import { Directive, computed, inject, input } from '@angular/core';
 
 import { nbShadowValue, type NbShadow } from '../../tokens/shadow';
-import {
-  NB_STYLE_DEFAULTS,
-  NB_STYLE_NAMESPACE,
-  nbCapabilityVars,
-} from './nb-style-tokens';
+import { NB_STYLE_DEFAULTS, NB_STYLE_NAMESPACE } from './nb-style-tokens';
 
 /**
- * INTERNAL capability — not part of the public API. Writes the cascade-aware
- * `--nb-<ns>-shadow` (only on explicit input) and `--nb-<ns>-shadow-default`.
+ * INTERNAL capability — not part of the public API. Defaults and scoped public
+ * tokens flow through marker CSS; explicit inputs write the final property.
  */
 @Directive({
   selector: '[nbShadowCapability]',
   host: {
-    '[style]': 'styleVars()',
+    class: 'nb-shadow',
+    '[style.--_nb-shadow-default]': 'shadowDefaultVar()',
+    '[style.--nb-shadow-token]': 'shadowTokenVar()',
+    '[style.box-shadow]': 'shadowInputStyle()',
     '[attr.data-shadow]': 'resolved()',
   },
 })
@@ -27,13 +26,15 @@ export class NbShadowCapability {
   private readonly fallback = computed(() => this.defaults.shadow ?? 'default');
   protected readonly resolved = computed(() => this.shadow() ?? this.fallback());
 
-  protected readonly styleVars = computed(() =>
-    nbCapabilityVars(
-      this.namespace,
-      'shadow',
-      nbShadowValue,
-      this.shadow(),
-      this.fallback(),
-    ),
+  protected readonly shadowDefaultVar = computed(() =>
+    nbShadowValue(this.fallback()),
   );
+  protected readonly shadowTokenVar = computed(
+    () => `var(--nb-${this.namespace}-shadow, var(--_nb-shadow-default))`,
+  );
+  protected readonly shadowInputStyle = computed(() => {
+    const shadow = this.shadow();
+
+    return shadow ? nbShadowValue(shadow) : null;
+  });
 }

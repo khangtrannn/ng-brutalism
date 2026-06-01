@@ -86,18 +86,14 @@ export class NbIconButton {
     nbClass(
       'inline-flex items-center justify-center shrink-0 select-none',
       'bg-(--nb-icon-button-bg) text-(--nb-icon-button-fg)',
-      'border-[length:var(--nb-icon-button-border-width,var(--nb-icon-button-border-width-default))] border-(--nb-icon-button-border-color)',
-      'rounded-[var(--nb-icon-button-radius,var(--nb-icon-button-radius-default))]',
-      'shadow-[var(--nb-icon-button-shadow,var(--nb-icon-button-shadow-default))]',
+      'border-(--nb-icon-button-border-color)',
       'hover:translate-x-(--nb-shadow-offset-x) hover:translate-y-(--nb-shadow-offset-y) hover:shadow-none',
       'transition-all duration-150 ease-out',
       '[&_svg]:pointer-events-none [&_svg]:shrink-0',
       'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--nb-border) focus-visible:ring-offset-2',
       'disabled:opacity-50 disabled:cursor-not-allowed disabled:pointer-events-none',
       sizeMap[this.size()],
-      // A circle is just a fully-rounded square: override the radius variable
-      // so it wins over the radius capability output (inline style wins).
-      this.shape() === 'circle' && '[--nb-icon-button-radius:9999px]',
+      this.shape() === 'circle' && 'rounded-full',
     )
   );
 }

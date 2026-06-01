@@ -85,11 +85,11 @@ describe('NbSurface', () => {
     expect(surface.className).toContain('relative');
     expect(surface.className).toContain('bg-(--nb-surface-bg)');
     expect(surface.className).toContain('text-(--nb-surface-fg)');
-    expect(surface.className).toContain('border-[length:var(--nb-surface-border-width,var(--nb-surface-border-width-default))]');
+    expect(surface.className).toContain('nb-border-width');
     expect(surface.className).toContain('border-(--nb-surface-border-color)');
-    expect(surface.className).toContain('rounded-[var(--nb-surface-radius,var(--nb-surface-radius-default))]');
-    expect(surface.className).toContain('shadow-[var(--nb-surface-shadow,var(--nb-surface-shadow-default))]');
-    expect(surface.className).toContain('p-[var(--nb-surface-padding)]');
+    expect(surface.className).toContain('nb-radius');
+    expect(surface.className).toContain('nb-shadow');
+    expect(surface.className).toContain('nb-padding');
     expect(surface.className).not.toContain('overflow-hidden');
 
     // Component-specific CSS variables written by the capabilities.
@@ -101,13 +101,14 @@ describe('NbSurface', () => {
     expect(style.getPropertyValue('--nb-surface-border-color')).toBe(
       'var(--nb-border)'
     );
-    expect(style.getPropertyValue('--nb-surface-radius-default')).toBe(
+    expect(style.getPropertyValue('--_nb-radius-default')).toBe(
       'var(--nb-radius)'
     );
-    expect(style.getPropertyValue('--nb-surface-border-width-default')).toBe(
+    expect(style.getPropertyValue('--_nb-border-width-default')).toBe(
       'var(--nb-border-width)'
     );
-    expect(style.getPropertyValue('--nb-surface-padding')).toBe('0px');
+    expect(style.getPropertyValue('--_nb-padding-default')).toBe('0px');
+    expect(style.getPropertyValue('--nb-surface-padding')).toBe('');
   });
 
   it('maps tone, radius, border, shadow, and bare clip attributes', async () => {
@@ -126,9 +127,9 @@ describe('NbSurface', () => {
     expect(surface.style.getPropertyValue('--nb-surface-bg')).toBe(
       'var(--nb-cream)'
     );
-    expect(surface.style.getPropertyValue('--nb-surface-radius')).toBe('1.5rem');
-    expect(surface.style.getPropertyValue('--nb-surface-border-width')).toBe('4px');
-    expect(surface.style.getPropertyValue('--nb-surface-shadow')).toBe(
+    expect(surface.style.getPropertyValue('border-radius')).toBe('1.5rem');
+    expect(surface.style.getPropertyValue('border-width')).toBe('4px');
+    expect(surface.style.getPropertyValue('box-shadow')).toBe(
       '10px 10px 0 0 var(--nb-shadow)'
     );
     expect(surface.className).toContain('size-11');
@@ -184,11 +185,11 @@ describe('NbSurface', () => {
     expect(surface.getAttribute('data-layout')).toBe('stack');
     expect(surface.getAttribute('data-radius')).toBe('lg');
     expect(surface.getAttribute('data-shadow')).toBe('hard');
-    expect(surface.style.getPropertyValue('--nb-surface-border-width')).toBe('3px');
-    expect(surface.style.getPropertyValue('--nb-surface-shadow')).toBe(
+    expect(surface.style.getPropertyValue('border-width')).toBe('3px');
+    expect(surface.style.getPropertyValue('box-shadow')).toBe(
       '6px 6px 0 0 var(--nb-shadow)'
     );
-    expect(surface.style.getPropertyValue('--nb-surface-radius')).toBe('1rem');
+    expect(surface.style.getPropertyValue('border-radius')).toBe('1rem');
     expect(surface.className).toContain('flex');
     expect(surface.className).toContain('flex-col');
     expect(surface.className).toContain('overflow-hidden');
@@ -208,10 +209,10 @@ describe('NbSurface', () => {
     expect(surface.getAttribute('data-shadow')).toBe('none');
     expect(surface.className).toContain('flex');
     expect(surface.className).toContain('items-center');
-    expect(surface.className).toContain('p-[var(--nb-surface-padding)]');
-    expect(surface.style.getPropertyValue('--nb-surface-padding')).toBe('1rem');
-    expect(surface.style.getPropertyValue('--nb-surface-border-width')).toBe('0px');
-    expect(surface.style.getPropertyValue('--nb-surface-shadow')).toBe('none');
+    expect(surface.className).toContain('nb-padding');
+    expect(surface.style.getPropertyValue('padding')).toBe('1rem');
+    expect(surface.style.getPropertyValue('border-width')).toBe('0px');
+    expect(surface.style.getPropertyValue('box-shadow')).toBe('none');
     expect(surface.className).toContain('border-b-(length:--nb-surface-edge-width)');
     expect(surface.className).toContain('border-b-(--nb-surface-edge-color)');
   });
