@@ -85,8 +85,6 @@ export class NbIconButton {
   protected readonly classes = computed(() =>
     nbClass(
       'inline-flex items-center justify-center shrink-0 select-none',
-      'bg-(--nb-icon-button-bg) text-(--nb-icon-button-fg)',
-      'border-(--nb-icon-button-border-color)',
       'hover:translate-x-(--nb-shadow-offset-x) hover:translate-y-(--nb-shadow-offset-y) hover:shadow-none',
       'transition-all duration-150 ease-out',
       '[&_svg]:pointer-events-none [&_svg]:shrink-0',

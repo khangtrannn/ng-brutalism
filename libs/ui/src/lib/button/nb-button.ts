@@ -54,8 +54,6 @@ export class NbButton {
   protected readonly classes = computed(() =>
     nbClass(
       'inline-flex items-center justify-center whitespace-nowrap select-none font-bold',
-      'bg-(--nb-button-bg) text-(--nb-button-fg)',
-      'border-(--nb-button-border-color)',
       'transition-all duration-150 ease-out',
       '[&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0',
       'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--nb-border) focus-visible:ring-offset-2',

@@ -75,8 +75,6 @@ export class NbSurface {
   protected readonly classes = computed(() =>
     nbClass(
       'relative',
-      'bg-(--nb-surface-bg) text-(--nb-surface-fg)',
-      'border-(--nb-surface-border-color)',
       this.clip() && 'overflow-hidden',
       this.sizeClass(),
       this.layoutClass(),

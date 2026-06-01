@@ -72,8 +72,8 @@ export class NbAccordionItem {
   protected readonly classes = computed(() =>
     nbClass(
       'overflow-hidden rounded-[var(--nb-radius-token,var(--_nb-radius-default))]',
-      'border-[length:var(--nb-border-width-token,var(--_nb-border-width-default))] border-(--nb-accordion-item-border-color)',
-      'bg-(--nb-accordion-item-bg) text-(--nb-accordion-item-fg)',
+      'border-[length:var(--nb-border-width-token,var(--_nb-border-width-default))]',
+      'nb-tone',
       'shadow-[var(--nb-shadow-token,var(--_nb-shadow-default))]',
       this.disabled() && 'opacity-50'
     )

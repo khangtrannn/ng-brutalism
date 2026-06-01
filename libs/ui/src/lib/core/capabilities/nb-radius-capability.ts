@@ -26,9 +26,11 @@ export class NbRadiusCapability {
   private readonly fallback = computed(() => this.defaults.radius ?? 'md');
   protected readonly resolved = computed(() => this.radius() ?? this.fallback());
 
-  protected readonly radiusDefaultVar = computed(() =>
-    nbRadiusValue(this.fallback()),
-  );
+  protected readonly radiusDefaultVar = computed(() => {
+    const radius = this.fallback();
+
+    return radius === 'md' ? 'var(--nb-radius)' : nbRadiusValue(radius);
+  });
   protected readonly radiusTokenVar = computed(
     () => `var(--nb-${this.namespace}-radius, var(--_nb-radius-default))`,
   );

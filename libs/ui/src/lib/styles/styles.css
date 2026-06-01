@@ -179,6 +179,18 @@ body {
     border-radius: var(--nb-radius-token, var(--_nb-radius-default));
   }
 
+  :where(.nb-tone) {
+    background-color: var(
+      --_nb-tone-bg-token,
+      var(--_nb-tone-bg-default)
+    );
+    color: var(--_nb-tone-fg-token, var(--_nb-tone-fg-default));
+    border-color: var(
+      --_nb-tone-border-color-token,
+      var(--_nb-tone-border-color-default)
+    );
+  }
+
   :where(.nb-shadow) {
     box-shadow: var(--nb-shadow-token, var(--_nb-shadow-default));
   }
@@ -188,7 +200,7 @@ body {
   }
 
   :where(.nb-gap) {
-    gap: var(--nb-gap-token, var(--_nb-gap-default));
+    gap: var(--_nb-gap-resolved, var(--_nb-gap-default));
   }
 
   :where(.nb-border-width) {

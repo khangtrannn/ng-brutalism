@@ -61,8 +61,6 @@ export class NbAvatar {
 
   protected readonly classes = nbClass(
     'relative inline-flex h-10 w-10 shrink-0 overflow-hidden',
-    'border-(--nb-avatar-border-color)',
-    'bg-(--nb-avatar-bg) text-(--nb-avatar-fg)',
     'font-bold text-sm items-center justify-center'
   );
 }

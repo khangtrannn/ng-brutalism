@@ -48,6 +48,7 @@ export type NbClusterSeparator = 'none' | 'solid' | 'dashed' | 'thick';
     '[attr.data-justify]': 'justify()',
     '[attr.data-wrap]': 'wrap()',
     '[attr.data-separator]': 'separator()',
+    '[style.column-gap]': 'separatorColumnGapStyle()',
   },
 })
 export class NbCluster {
@@ -55,6 +56,10 @@ export class NbCluster {
   readonly justify = input<NbClusterJustify>('start');
   readonly wrap = input<NbClusterWrap>('wrap');
   readonly separator = input<NbClusterSeparator>('none');
+
+  protected readonly separatorColumnGapStyle = computed(() =>
+    this.separator() === 'none' ? null : '0px',
+  );
 
   protected readonly classes = computed(() =>
     nbClass(
@@ -119,7 +124,7 @@ export class NbCluster {
 
 // Written as module-level constants so Tailwind's static scanner emits the classes.
 const separatorBaseClass = nbClass(
-  '[--nb-cluster-separator-gap:calc(var(--nb-gap-token,var(--_nb-gap-default))*0.5)]',
+  '[--nb-cluster-separator-gap:calc(var(--_nb-gap-resolved)*0.5)]',
   '[--nb-cluster-separator-color:var(--nb-border)]',
   '[&>*+*]:[margin-inline-start:var(--nb-cluster-separator-gap)]',
   '[&>*+*]:[padding-inline-start:var(--nb-cluster-separator-gap)]',

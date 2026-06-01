@@ -22,15 +22,16 @@ describe('NbImageCard token surface', () => {
     const fixture = await createFixture();
     const imageCard = findImageCard(fixture);
 
-    expect(imageCard.style.getPropertyValue('--nb-image-card-bg')).toBe(
+    expect(imageCard.style.getPropertyValue('--_nb-tone-bg-default')).toBe(
       'var(--nb-background)'
     );
-    expect(imageCard.style.getPropertyValue('--nb-image-card-fg')).toBe(
+    expect(imageCard.style.getPropertyValue('--_nb-tone-fg-default')).toBe(
       'var(--nb-foreground)'
     );
-    expect(imageCard.style.getPropertyValue('--nb-image-card-border-color')).toBe(
+    expect(imageCard.style.getPropertyValue('--_nb-tone-border-color-default')).toBe(
       'var(--nb-border)'
     );
+    expect(imageCard.style.getPropertyValue('--nb-image-card-bg')).toBe('');
     expect(imageCard.style.getPropertyValue('--_nb-radius-default')).toBe(
       'var(--nb-radius)'
     );
@@ -47,12 +48,13 @@ describe('NbImageCard token surface', () => {
     const imageCard = findImageCard(fixture);
     const cls = imageCard.className;
 
-    expect(cls).toContain('bg-(--nb-image-card-bg)');
-    expect(cls).toContain('text-(--nb-image-card-fg)');
+    expect(cls).toContain('nb-tone');
     expect(cls).toContain('nb-border-width');
-    expect(cls).toContain('border-(--nb-image-card-border-color)');
     expect(cls).toContain('nb-radius');
     expect(cls).toContain('nb-shadow');
+    expect(cls).not.toContain('bg-(--nb-image-card-bg)');
+    expect(cls).not.toContain('text-(--nb-image-card-fg)');
+    expect(cls).not.toContain('border-(--nb-image-card-border-color)');
     expect(cls).not.toContain('bg-(--nb-background)');
     expect(cls).not.toContain('text-(--nb-foreground)');
     expect(cls).not.toContain('border-(--nb-border)');
@@ -78,7 +80,7 @@ describe('NbImageCard token surface', () => {
     const cls = caption.className;
 
     expect(cls).toContain('border-t-[length:var(--nb-border-width-token,var(--_nb-border-width-default))]');
-    expect(cls).toContain('border-t-(--nb-image-card-border-color)');
+    expect(cls).toContain('border-t-[var(--_nb-tone-border-color-token,var(--_nb-tone-border-color-default))]');
     expect(cls).not.toContain('border-(--nb-border)');
   });
 

@@ -43,18 +43,20 @@ describe('NbCallout', () => {
     expect(callout.getAttribute('data-shadow')).toBe('hard');
     expect(callout.className).toContain('relative');
     expect(callout.className).toContain('inline-flex');
-    expect(callout.className).toContain('bg-(--nb-callout-bg)');
-    expect(callout.className).toContain('text-(--nb-callout-fg)');
+    expect(callout.className).toContain('nb-tone');
+    expect(callout.className).not.toContain('bg-(--nb-callout-bg)');
+    expect(callout.className).not.toContain('text-(--nb-callout-fg)');
     expect(callout.className).toContain(
       'border-(length:--nb-callout-border-width)'
     );
-    expect(callout.className).toContain('border-(--nb-callout-border-color)');
+    expect(callout.className).not.toContain('border-(--nb-callout-border-color)');
     expect(callout.className).toContain('rounded-(--nb-callout-radius)');
     expect(callout.className).toContain('nb-shadow');
     expect(callout.className).toContain('font-black');
-    expect(callout.style.getPropertyValue('--nb-callout-bg')).toBe(
+    expect(callout.style.getPropertyValue('--_nb-tone-bg-default')).toBe(
       'var(--nb-yellow)'
     );
+    expect(callout.style.getPropertyValue('--nb-callout-bg')).toBe('');
     // Border width still derives from `size` (size lg -> 3px) via the class.
     expect(callout.className).toContain('[--nb-callout-border-width:3px]');
     expect(callout.style.getPropertyValue('--_nb-shadow-default')).toBe(
@@ -72,7 +74,7 @@ describe('NbCallout', () => {
     expect(callout.getAttribute('data-size')).toBe('xl');
     expect(callout.getAttribute('data-layout')).toBe('between');
     expect(callout.getAttribute('data-shadow')).toBe('default');
-    expect(callout.style.getPropertyValue('--nb-callout-bg')).toBe(
+    expect(callout.style.getPropertyValue('background-color')).toBe(
       'var(--nb-pink)'
     );
     expect(callout.className).toContain('min-h-20');
@@ -88,7 +90,7 @@ describe('NbCallout', () => {
     ['mint', 'var(--nb-mint)'],
     ['lavender', 'var(--nb-lavender)'],
     ['blue', 'var(--nb-blue)'],
-    ['black', '#000000'],
+    ['black', 'rgb(0, 0, 0)'],
   ] satisfies readonly [NbCalloutTone, string][])(
     'keeps the %s tone available for generic value emphasis',
     async (tone, color) => {
@@ -101,7 +103,8 @@ describe('NbCallout', () => {
       ) as HTMLElement;
 
       expect(callout.getAttribute('data-tone')).toBe(tone);
-      expect(callout.style.getPropertyValue('--nb-callout-bg')).toBe(color);
+      expect(callout.style.getPropertyValue('background-color')).toBe(color);
+      expect(callout.style.getPropertyValue('--nb-callout-bg')).toBe('');
     }
   );
 });

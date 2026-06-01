@@ -56,8 +56,6 @@ export type NbCardBorder = NbBorderStrength;
 export class NbCard {
   protected readonly classes = nbClass(
     'flex flex-col gap-6 py-6',
-    'border-(--nb-card-border-color)',
-    'bg-(--nb-card-bg) text-(--nb-card-fg)',
     'font-medium'
   );
 }

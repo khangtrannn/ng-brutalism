@@ -53,8 +53,7 @@ export class NbCallout {
   protected readonly classes = computed(() =>
     nbClass(
       'relative inline-flex items-center gap-3',
-      'bg-(--nb-callout-bg) text-(--nb-callout-fg)',
-      'border-(length:--nb-callout-border-width) border-(--nb-callout-border-color)',
+      'border-(length:--nb-callout-border-width)',
       'rounded-(--nb-callout-radius)',
       'font-black uppercase leading-none',
       this.sizeClass(),

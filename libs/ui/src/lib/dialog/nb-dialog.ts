@@ -61,8 +61,7 @@ export class NbDialog implements NbDialogController {
 
   protected readonly classes = nbClass(
     'w-[calc(100vw-2rem)] max-w-2xl',
-    'border-(--nb-dialog-border-color)',
-    'bg-(--nb-dialog-bg) text-(--nb-dialog-fg)',
+    'nb-tone',
     'm-auto p-0 max-h-[90vh] overflow-x-hidden',
     'open:flex open:flex-col'
   );

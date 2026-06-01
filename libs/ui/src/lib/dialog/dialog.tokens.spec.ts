@@ -34,14 +34,13 @@ describe('NbDialog token surface', () => {
     const fixture = await createFixture();
     const host = findDialogHost(fixture);
 
-    expect(host.style.getPropertyValue('--nb-dialog-bg')).toBe('#ffffff');
-    expect(host.style.getPropertyValue('--nb-dialog-fg')).toBe('#000000');
-    expect(host.style.getPropertyValue('--nb-dialog-border-color')).toBe(
+    expect(host.style.getPropertyValue('--_nb-tone-bg-default')).toBe('#ffffff');
+    expect(host.style.getPropertyValue('--_nb-tone-fg-default')).toBe('#000000');
+    expect(host.style.getPropertyValue('--_nb-tone-border-color-default')).toBe(
       'var(--nb-border)'
     );
-    expect(host.style.getPropertyValue('--_nb-radius-default')).toBe(
-      '0.375rem'
-    );
+    expect(host.style.getPropertyValue('--nb-dialog-bg')).toBe('');
+    expect(host.style.getPropertyValue('--_nb-radius-default')).toBe('0.25rem');
     expect(host.style.getPropertyValue('--_nb-shadow-default')).toBe(
       '6px 6px 0 0 var(--nb-shadow)'
     );
@@ -54,9 +53,10 @@ describe('NbDialog token surface', () => {
     const fixture = await createFixture();
     const cls = findDialog(fixture).className;
 
-    expect(cls).toContain('bg-(--nb-dialog-bg)');
-    expect(cls).toContain('text-(--nb-dialog-fg)');
-    expect(cls).toContain('border-(--nb-dialog-border-color)');
+    expect(cls).toContain('nb-tone');
+    expect(cls).not.toContain('bg-(--nb-dialog-bg)');
+    expect(cls).not.toContain('text-(--nb-dialog-fg)');
+    expect(cls).not.toContain('border-(--nb-dialog-border-color)');
     expect(findDialogHost(fixture).className).toContain('nb-border-width');
     expect(findDialogHost(fixture).className).toContain('nb-radius');
     expect(findDialogHost(fixture).className).toContain('nb-shadow');

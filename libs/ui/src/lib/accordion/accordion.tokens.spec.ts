@@ -32,15 +32,16 @@ describe('NbAccordion token surface', () => {
     const trigger = findTrigger(fixture);
     const content = findContent(fixture);
 
-    expect(itemHost.style.getPropertyValue('--nb-accordion-item-bg')).toBe(
+    expect(itemHost.style.getPropertyValue('--_nb-tone-bg-default')).toBe(
       'var(--nb-surface)'
     );
-    expect(itemHost.style.getPropertyValue('--nb-accordion-item-fg')).toBe(
+    expect(itemHost.style.getPropertyValue('--_nb-tone-fg-default')).toBe(
       'var(--nb-surface-foreground)'
     );
     expect(
-      itemHost.style.getPropertyValue('--nb-accordion-item-border-color')
+      itemHost.style.getPropertyValue('--_nb-tone-border-color-default')
     ).toBe('var(--nb-border)');
+    expect(itemHost.style.getPropertyValue('--nb-accordion-item-bg')).toBe('');
     expect(
       itemHost.style.getPropertyValue('--_nb-radius-default')
     ).toBe('var(--nb-radius)');
@@ -72,21 +73,22 @@ describe('NbAccordion token surface', () => {
     const triggerClass = findTrigger(fixture).className;
     const contentClass = findContent(fixture).className;
 
-    expect(itemClass).toContain('bg-(--nb-accordion-item-bg)');
-    expect(itemClass).toContain('text-(--nb-accordion-item-fg)');
+    expect(itemClass).toContain('nb-tone');
+    expect(itemClass).not.toContain('bg-(--nb-accordion-item-bg)');
+    expect(itemClass).not.toContain('text-(--nb-accordion-item-fg)');
     expect(itemClass).toContain('border-[length:var(--nb-border-width-token,var(--_nb-border-width-default))]');
-    expect(itemClass).toContain('border-(--nb-accordion-item-border-color)');
+    expect(itemClass).not.toContain('border-(--nb-accordion-item-border-color)');
     expect(itemClass).toContain('rounded-[var(--nb-radius-token,var(--_nb-radius-default))]');
     expect(itemClass).toContain('shadow-[var(--nb-shadow-token,var(--_nb-shadow-default))]');
     expect(triggerClass).toContain('bg-(--nb-accordion-trigger-bg)');
     expect(triggerClass).toContain('text-(--nb-accordion-trigger-fg)');
     expect(triggerClass).toContain(
-      'focus-visible:ring-(--nb-accordion-item-border-color)'
+      'focus-visible:ring-[var(--_nb-tone-border-color-token,var(--_nb-tone-border-color-default))]'
     );
     expect(triggerClass).toContain(
       'border-b-[length:var(--nb-border-width-token,var(--_nb-border-width-default))]'
     );
-    expect(triggerClass).toContain('border-b-(--nb-accordion-item-border-color)');
+    expect(triggerClass).toContain('border-b-[var(--_nb-tone-border-color-token,var(--_nb-tone-border-color-default))]');
     expect(contentClass).toContain('bg-(--nb-accordion-content-bg)');
     expect(contentClass).toContain('text-(--nb-accordion-content-fg)');
     expect(`${itemClass} ${triggerClass} ${contentClass}`).not.toContain(

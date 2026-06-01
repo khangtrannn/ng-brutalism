@@ -92,7 +92,7 @@ import {
                 type="button"
                 size="sm"
                 shadow="none"
-                style="--nb-button-bg: var(--job-pill-green-bg)"
+                class="job-card-pill job-card-pill-remote"
               >
                 <docs-job-card-remote-icon />
                 Remote
@@ -102,7 +102,7 @@ import {
                 type="button"
                 size="sm"
                 shadow="none"
-                style="--nb-button-bg: var(--job-pill-purple-bg)"
+                class="job-card-pill job-card-pill-full-time"
               >
                 <docs-job-card-briefcase-icon />
                 Full-time
@@ -112,7 +112,7 @@ import {
                 type="button"
                 size="sm"
                 shadow="none"
-                style="--nb-button-bg: var(--job-pill-yellow-bg)"
+                class="job-card-pill job-card-pill-negotiable"
               >
                 <docs-job-card-salary-icon />
                 Negotiable
@@ -122,7 +122,7 @@ import {
                 type="button"
                 size="sm"
                 shadow="none"
-                style="--nb-button-bg: var(--job-pill-blue-bg)"
+                class="job-card-pill job-card-pill-experience"
               >
                 <docs-job-card-experience-icon />
                 5+ years
@@ -132,7 +132,7 @@ import {
                 type="button"
                 size="sm"
                 shadow="none"
-                style="--nb-button-bg: var(--job-pill-pink-bg)"
+                class="job-card-pill job-card-pill-urgent"
               >
                 <docs-job-card-urgent-icon />
                 Urgent
@@ -171,10 +171,10 @@ import {
             </div>
 
             <nb-card-actions class="job-card-actions" align="end">
-              <button nbButton type="button" tone="yellow" aria-label="Apply">
+              <button nbButton type="button" class="job-card-apply" aria-label="Apply">
                 Apply
               </button>
-              <button nbButton type="button" tone="primary">
+              <button nbButton type="button" class="job-card-save">
                 Save
                 <docs-job-card-bookmark-icon />
               </button>
@@ -323,6 +323,33 @@ import {
         margin-top: clamp(22px, 5cqw, 26px);
       }
 
+      .job-card-pill,
+      .job-card-apply,
+      .job-card-save {
+        --nb-button-fg: var(--job-ink);
+        --nb-button-border-color: var(--job-ink);
+      }
+
+      .job-card-pill-remote {
+        --nb-button-bg: var(--job-pill-green-bg);
+      }
+
+      .job-card-pill-full-time {
+        --nb-button-bg: var(--job-pill-purple-bg);
+      }
+
+      .job-card-pill-negotiable {
+        --nb-button-bg: var(--job-pill-yellow-bg);
+      }
+
+      .job-card-pill-experience {
+        --nb-button-bg: var(--job-pill-blue-bg);
+      }
+
+      .job-card-pill-urgent {
+        --nb-button-bg: var(--job-pill-pink-bg);
+      }
+
       .job-card-tagline {
         margin-top: 22px;
         color: var(--job-ink);
@@ -405,10 +432,10 @@ import {
 
       .job-card-footer {
         display: flex;
-        flex-wrap: wrap;
+        flex-wrap: nowrap;
         align-items: center;
         justify-content: space-between;
-        gap: 16px;
+        gap: 8px;
         margin-top: 24px;
         padding: 14px 0 0;
         border-top: 2.5px dashed var(--job-ink);
@@ -439,8 +466,18 @@ import {
 
       .job-card-actions {
         display: flex;
+        flex-shrink: 0;
         align-items: center;
         gap: 12px;
+        margin-left: auto;
+      }
+
+      .job-card-apply {
+        --nb-button-bg: #ffd24a;
+      }
+
+      .job-card-save {
+        --nb-button-bg: #f472d0;
       }
 
       @container (max-width: 430px) {
@@ -454,13 +491,7 @@ import {
           flex-basis: 100%;
         }
 
-        .job-card-actions {
-          width: 100%;
-          flex-wrap: wrap;
-        }
-
         .job-card-actions button {
-          flex: 1 1 0;
           min-width: 0;
         }
       }

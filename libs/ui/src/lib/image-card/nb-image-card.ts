@@ -66,8 +66,6 @@ export class NbImageCard {
 
   protected readonly classes = nbClass(
     'flex flex-col overflow-hidden',
-    'border-(--nb-image-card-border-color)',
-    'bg-(--nb-image-card-bg) text-(--nb-image-card-fg)',
     'font-medium'
   );
 
@@ -85,7 +83,7 @@ export class NbImageCard {
 })
 export class NbImageCardCaption {
   protected readonly classes = nbClass(
-    'border-t-[length:var(--nb-border-width-token,var(--_nb-border-width-default))] border-t-(--nb-image-card-border-color)',
+    'border-t-[length:var(--nb-border-width-token,var(--_nb-border-width-default))] border-t-[var(--_nb-tone-border-color-token,var(--_nb-tone-border-color-default))]',
     'px-6 py-4 text-center font-bold text-base'
   );
 }

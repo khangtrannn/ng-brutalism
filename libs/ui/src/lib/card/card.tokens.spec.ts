@@ -44,16 +44,17 @@ describe('NbCard token surface', () => {
     const fixture = await createFixture();
     const card = findCard(fixture);
 
-    expect(card.style.getPropertyValue('--nb-card-bg')).toBe(
+    expect(card.style.getPropertyValue('--_nb-tone-bg-default')).toBe(
       'var(--nb-background)'
     );
-    expect(card.style.getPropertyValue('--nb-card-fg')).toBe(
+    expect(card.style.getPropertyValue('--_nb-tone-fg-default')).toBe(
       'var(--nb-foreground)'
     );
-    expect(card.style.getPropertyValue('--nb-card-border-color')).toBe(
+    expect(card.style.getPropertyValue('--_nb-tone-border-color-default')).toBe(
       'var(--nb-border)'
     );
-    expect(card.style.getPropertyValue('--_nb-radius-default')).toBe('1rem');
+    expect(card.style.getPropertyValue('--nb-card-bg')).toBe('');
+    expect(card.style.getPropertyValue('--_nb-radius-default')).toBe('0.75rem');
     expect(card.style.getPropertyValue('--_nb-shadow-default')).toBe(
       'var(--nb-shadow-offset-x) var(--nb-shadow-offset-y) 0 0 var(--nb-shadow)'
     );
@@ -67,12 +68,13 @@ describe('NbCard token surface', () => {
     const card = findCard(fixture);
     const cls = card.className;
 
-    expect(cls).toContain('bg-(--nb-card-bg)');
-    expect(cls).toContain('text-(--nb-card-fg)');
+    expect(cls).toContain('nb-tone');
     expect(cls).toContain('nb-border-width');
-    expect(cls).toContain('border-(--nb-card-border-color)');
     expect(cls).toContain('nb-radius');
     expect(cls).toContain('nb-shadow');
+    expect(cls).not.toContain('bg-(--nb-card-bg)');
+    expect(cls).not.toContain('text-(--nb-card-fg)');
+    expect(cls).not.toContain('border-(--nb-card-border-color)');
     expect(cls).not.toContain('bg-(--nb-background)');
     expect(cls).not.toContain('text-(--nb-foreground)');
     expect(cls).not.toContain('border-(--nb-border)');

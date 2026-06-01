@@ -89,8 +89,9 @@ describe('NbCluster', () => {
     expect(cluster.getAttribute('data-separator')).toBe('dashed');
     expect(cluster.className).toContain('gap-x-0');
     expect(cluster.style.getPropertyValue('gap')).toBe('1rem');
+    expect(cluster.style.getPropertyValue('column-gap')).toBe('0px');
     expect(cluster.className).toContain(
-      '[--nb-cluster-separator-gap:calc(var(--nb-gap-token,var(--_nb-gap-default))*0.5)]'
+      '[--nb-cluster-separator-gap:calc(var(--_nb-gap-resolved)*0.5)]'
     );
     expect(cluster.className).toContain('[&>*+*]:[margin-inline-start:var(--nb-cluster-separator-gap)]');
     expect(cluster.className).toContain('[--nb-cluster-separator-color:var(--nb-border)]');

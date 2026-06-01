@@ -66,8 +66,6 @@ export class NbMediaFrame {
   protected readonly classes = computed(() =>
     nbClass(
       'relative isolate block overflow-hidden',
-      'border-(--nb-media-frame-border-color)',
-      'bg-(--nb-media-frame-bg) text-(--nb-media-frame-fg)',
       '[&>img]:h-full [&>img]:w-full',
       '[&>video]:h-full [&>video]:w-full',
       '[&>picture]:block [&>picture]:h-full [&>picture]:w-full',

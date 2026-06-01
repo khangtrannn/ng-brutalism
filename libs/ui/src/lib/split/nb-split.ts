@@ -127,7 +127,7 @@ const separatorBaseClass = nbClass(
   '[&>*:first-child]:after:pointer-events-none',
   '[&>*:first-child]:after:absolute',
   '[&>*:first-child]:after:inset-y-0',
-  '[&>*:first-child]:after:[inset-inline-end:calc(var(--nb-gap-token,var(--_nb-gap-default))/-2)]',
+  '[&>*:first-child]:after:[inset-inline-end:calc(var(--_nb-gap-resolved)/-2)]',
   '[&>*:first-child]:after:[border-inline-end-color:var(--nb-border)]',
   '[&>*:first-child]:after:content-[""]'
 );
