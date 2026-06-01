@@ -43,7 +43,7 @@ import {
         shadow="hard"
         radius="xl"
         class="relative w-full"
-        style="--nb-surface-bg: #faf8ff"
+        style="--nb-surface-bg: #faf6f0"
       >
         <div
           nbSplit

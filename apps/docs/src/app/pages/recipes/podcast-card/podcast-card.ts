@@ -40,7 +40,7 @@ import {
     NbText,
   ],
   template: `
-    <div nbCluster justify="center" padding="lg" class="overflow-visible">
+    <div nbCluster justify="center" padding="lg" style="--nb-surface-bg: #faf6f0" class="overflow-visible">
       <div class="relative mx-auto w-full max-w-[36rem] overflow-visible">
         <div
           nbSurface

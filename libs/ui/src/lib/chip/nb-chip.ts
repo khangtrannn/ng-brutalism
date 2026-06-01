@@ -85,9 +85,6 @@ export class NbChip {
   protected readonly classes = computed(() =>
     nbClass(
       'inline-flex items-center gap-1.5',
-      'border-[length:var(--nb-chip-border-width,var(--nb-chip-border-width-default))] border-(--nb-chip-border-color)',
-      'bg-(--nb-chip-bg) text-(--nb-chip-fg)',
-      'rounded-[var(--nb-chip-radius,var(--nb-chip-radius-default))] shadow-[var(--nb-chip-shadow,var(--nb-chip-shadow-default))]',
       'text-xs font-bold',
       paddingMap[this.padding()],
       '[&_svg]:size-[var(--nb-chip-icon-size,0.75rem)] [&_svg]:shrink-0'

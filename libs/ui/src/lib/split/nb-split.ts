@@ -61,8 +61,6 @@ export class NbSplit {
   protected readonly classes = computed(() =>
     nbClass(
       'grid min-w-0',
-      'gap-[var(--nb-split-gap)]',
-      'p-[var(--nb-split-padding)]',
       this.alignClass(),
       this.ratioClass(),
       this.collapseClass(),
@@ -129,7 +127,7 @@ const separatorBaseClass = nbClass(
   '[&>*:first-child]:after:pointer-events-none',
   '[&>*:first-child]:after:absolute',
   '[&>*:first-child]:after:inset-y-0',
-  '[&>*:first-child]:after:[inset-inline-end:calc(var(--nb-split-gap)/-2)]',
+  '[&>*:first-child]:after:[inset-inline-end:calc(var(--_nb-gap-resolved)/-2)]',
   '[&>*:first-child]:after:[border-inline-end-color:var(--nb-border)]',
   '[&>*:first-child]:after:content-[""]'
 );

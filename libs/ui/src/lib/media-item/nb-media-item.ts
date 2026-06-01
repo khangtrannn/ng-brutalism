@@ -100,7 +100,6 @@ export class NbMediaItem {
     nbClass(
       'relative min-w-0',
       'inline-flex font-bold leading-tight',
-      'text-[var(--nb-media-item-fg)]',
       '[--nb-media-item-description-opacity:0.7]',
       '[&_svg]:shrink-0 [&_img]:shrink-0 [&_[data-nb-media-item-icon]]:shrink-0 [&_[nbSurface]]:shrink-0',
       '[&_svg]:rounded-[calc(var(--nb-media-item-radius)-0.25rem)]',
@@ -129,7 +128,7 @@ export class NbMediaItem {
 
   private variantClass(): string {
     const map: Record<NbMediaItemVariant, string> = {
-      plain: '[--nb-media-item-radius:var(--nb-radius)]',
+      plain: '[--nb-media-item-radius:var(--nb-radius)] bg-transparent',
       boxed:
         'border-[var(--nb-border-width)] border-[var(--nb-media-item-border-color)] bg-[var(--nb-media-item-bg)] shadow-[var(--nb-shadow-offset-x)_var(--nb-shadow-offset-y)_0_0_var(--nb-shadow)] [--nb-media-item-radius:var(--nb-radius)] rounded-[var(--nb-media-item-radius)]',
       chip: 'border-[var(--nb-border-width)] border-[var(--nb-media-item-border-color)] bg-[var(--nb-media-item-bg)] [--nb-media-item-radius:9999px] rounded-[var(--nb-media-item-radius)]',

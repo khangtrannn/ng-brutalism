@@ -48,10 +48,6 @@ export type NbBadgeBorder = NbBorderStrength;
 export class NbBadge {
   protected readonly classes = nbClass(
     'inline-flex items-center gap-1.5',
-    'rounded-[var(--nb-badge-radius,var(--nb-badge-radius-default))]',
-    'border-[length:var(--nb-badge-border-width,var(--nb-badge-border-width-default))] border-(--nb-badge-border-color)',
-    'bg-(--nb-badge-bg) text-(--nb-badge-fg)',
-    'px-2.5 py-0.5 text-xs font-bold',
-    'shadow-[var(--nb-badge-shadow,var(--nb-badge-shadow-default))]'
+    'px-2.5 py-0.5 text-xs font-bold'
   );
 }

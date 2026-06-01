@@ -58,8 +58,8 @@ describe('NbStack', () => {
     expect(stack.className).toContain('flex');
     expect(stack.className).toContain('min-w-0');
     expect(stack.className).toContain('flex-col');
-    expect(stack.className).toContain('gap-[var(--nb-stack-gap)]');
-    expect(stack.style.getPropertyValue('--nb-stack-gap')).toBe('0.75rem');
+    expect(stack.className).toContain('nb-gap');
+    expect(stack.style.getPropertyValue('--_nb-gap-default')).toBe('0.75rem');
     expect(stack.className).toContain('items-stretch');
     expect(stack.className).toContain('justify-start');
     expect(stack.className).not.toContain('[&>*+*]:border-t');
@@ -75,7 +75,7 @@ describe('NbStack', () => {
     expect(stack.getAttribute('data-align')).toBe('start');
     expect(stack.getAttribute('data-justify')).toBe('center');
     expect(stack.getAttribute('data-separator')).toBe('dashed');
-    expect(stack.style.getPropertyValue('--nb-stack-gap')).toBe('1.5rem');
+    expect(stack.style.getPropertyValue('gap')).toBe('1.5rem');
     expect(stack.className).toContain('items-start');
     expect(stack.className).toContain('justify-center');
     expect(stack.className).toContain(

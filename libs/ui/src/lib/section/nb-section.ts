@@ -56,11 +56,11 @@ export class NbSection {
   protected readonly classes = computed(() =>
     nbClass(
       'box-border min-w-0',
-      'p-[var(--nb-section-padding)]',
       this.layoutClass(),
       this.alignClass(),
       this.dividerClass(),
-      this.flush() && 'mx-[calc(var(--nb-section-padding)*-1)]'
+      this.flush() &&
+        'mx-[calc(var(--nb-padding-token,var(--_nb-padding-default))*-1)]'
     )
   );
 

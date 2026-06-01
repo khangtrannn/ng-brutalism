@@ -81,10 +81,10 @@ describe('NbSplit', () => {
     expect(split.getAttribute('data-separator')).toBe('none');
     expect(split.className).toContain('grid');
     expect(split.className).toContain('min-w-0');
-    expect(split.className).toContain('gap-[var(--nb-split-gap)]');
-    expect(split.className).toContain('p-[var(--nb-split-padding)]');
-    expect(split.style.getPropertyValue('--nb-split-gap')).toBe('1rem');
-    expect(split.style.getPropertyValue('--nb-split-padding')).toBe('0px');
+    expect(split.className).toContain('nb-gap');
+    expect(split.className).toContain('nb-padding');
+    expect(split.style.getPropertyValue('--_nb-gap-default')).toBe('1rem');
+    expect(split.style.getPropertyValue('--_nb-padding-default')).toBe('0px');
     expect(split.className).toContain('items-stretch');
     expect(split.className).toContain(
       '[--nb-split-columns:minmax(0,1fr)_minmax(0,1fr)]'
@@ -108,8 +108,8 @@ describe('NbSplit', () => {
     expect(split.getAttribute('data-collapse')).toBe('lg');
     expect(split.getAttribute('data-align')).toBe('end');
     expect(split.getAttribute('data-separator')).toBe('none');
-    expect(split.style.getPropertyValue('--nb-split-gap')).toBe('2rem');
-    expect(split.style.getPropertyValue('--nb-split-padding')).toBe('2rem');
+    expect(split.style.getPropertyValue('gap')).toBe('2rem');
+    expect(split.style.getPropertyValue('padding')).toBe('2rem');
     expect(split.className).toContain('items-end');
     expect(split.className).toContain(
       '[--nb-split-columns:minmax(0,3fr)_minmax(0,1fr)]'

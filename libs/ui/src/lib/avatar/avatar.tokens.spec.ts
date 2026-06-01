@@ -15,19 +15,20 @@ describe('NbAvatar token surface', () => {
     const fixture = await createFixture();
     const avatar = findAvatar(fixture);
 
-    expect(avatar.style.getPropertyValue('--nb-avatar-bg')).toBe(
+    expect(avatar.style.getPropertyValue('--_nb-tone-bg-default')).toBe(
       'var(--nb-surface)'
     );
-    expect(avatar.style.getPropertyValue('--nb-avatar-fg')).toBe(
+    expect(avatar.style.getPropertyValue('--_nb-tone-fg-default')).toBe(
       'var(--nb-surface-foreground)'
     );
-    expect(avatar.style.getPropertyValue('--nb-avatar-border-color')).toBe(
+    expect(avatar.style.getPropertyValue('--_nb-tone-border-color-default')).toBe(
       'var(--nb-border)'
     );
-    expect(avatar.style.getPropertyValue('--nb-avatar-radius-default')).toBe(
+    expect(avatar.style.getPropertyValue('--nb-avatar-bg')).toBe('');
+    expect(avatar.style.getPropertyValue('--_nb-radius-default')).toBe(
       '9999px'
     );
-    expect(avatar.style.getPropertyValue('--nb-avatar-shadow-default')).toBe(
+    expect(avatar.style.getPropertyValue('--_nb-shadow-default')).toBe(
       '2px 2px 0 0 var(--nb-shadow)'
     );
   });
@@ -37,12 +38,13 @@ describe('NbAvatar token surface', () => {
     const avatar = findAvatar(fixture);
     const cls = avatar.className;
 
-    expect(cls).toContain('bg-(--nb-avatar-bg)');
-    expect(cls).toContain('text-(--nb-avatar-fg)');
-    expect(cls).toContain('border-[length:var(--nb-avatar-border-width,var(--nb-avatar-border-width-default))]');
-    expect(cls).toContain('border-(--nb-avatar-border-color)');
-    expect(cls).toContain('rounded-[var(--nb-avatar-radius,var(--nb-avatar-radius-default))]');
-    expect(cls).toContain('shadow-[var(--nb-avatar-shadow,var(--nb-avatar-shadow-default))]');
+    expect(cls).toContain('nb-tone');
+    expect(cls).toContain('nb-border-width');
+    expect(cls).toContain('nb-radius');
+    expect(cls).toContain('nb-shadow');
+    expect(cls).not.toContain('bg-(--nb-avatar-bg)');
+    expect(cls).not.toContain('text-(--nb-avatar-fg)');
+    expect(cls).not.toContain('border-(--nb-avatar-border-color)');
     expect(cls).not.toContain('bg-(--nb-secondary-background)');
     expect(cls).not.toContain('text-(--nb-foreground)');
     expect(cls).not.toContain('border-(--nb-border)');
@@ -60,7 +62,7 @@ describe('NbAvatar token surface', () => {
     expect(cls).toContain('w-10');
     expect(cls).toContain('shrink-0');
     expect(cls).toContain('overflow-hidden');
-    expect(cls).toContain('border-[length:var(--nb-avatar-border-width,var(--nb-avatar-border-width-default))]');
+    expect(cls).toContain('nb-border-width');
     expect(cls).toContain('font-bold');
     expect(cls).toContain('text-sm');
     expect(cls).toContain('items-center');

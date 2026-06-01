@@ -174,6 +174,58 @@ body {
   }
 }
 
+@layer components {
+  :where(.nb-radius) {
+    border-radius: var(--nb-radius-token, var(--_nb-radius-default));
+  }
+
+  :where(.nb-tone) {
+    background-color: var(
+      --_nb-tone-bg-token,
+      var(--_nb-tone-bg-default)
+    );
+    color: var(--_nb-tone-fg-token, var(--_nb-tone-fg-default));
+    border-color: var(
+      --_nb-tone-border-color-token,
+      var(--_nb-tone-border-color-default)
+    );
+  }
+
+  :where(.nb-shadow) {
+    box-shadow: var(--nb-shadow-token, var(--_nb-shadow-default));
+  }
+
+  :where(.nb-padding) {
+    padding: var(--nb-padding-token, var(--_nb-padding-default));
+  }
+
+  :where(.nb-gap) {
+    gap: var(--_nb-gap-resolved, var(--_nb-gap-default));
+  }
+
+  :where(.nb-border-width) {
+    border-width: var(
+      --nb-border-width-token,
+      var(--_nb-border-width-default)
+    );
+  }
+
+  :where(.nb-radius [data-nb-dialog]) {
+    border-radius: var(--nb-radius-token, var(--_nb-radius-default));
+  }
+
+  :where(.nb-shadow [data-nb-dialog]) {
+    box-shadow: var(--nb-shadow-token, var(--_nb-shadow-default));
+  }
+
+  :where(.nb-border-width [data-nb-dialog]) {
+    border-width: var(
+      --nb-border-width-token,
+      var(--_nb-border-width-default)
+    );
+  }
+}
+
 /* Focus visible utility class */
 .nb-focus-visible:focus-visible {
   outline: var(--nb-focus-ring);

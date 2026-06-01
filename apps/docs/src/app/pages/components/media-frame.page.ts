@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import {
   NbMediaFrame,
+  NbCluster,
   type NbMediaFrameFit,
   type NbMediaFrameRadius,
   type NbMediaFrameRatio,
@@ -35,7 +36,14 @@ interface MediaFrameShapeDemo {
 
 @Component({
   selector: 'docs-media-frame-page',
-  imports: [DocsCodeBlock, DocsExample, DocsSourceTile, DocsTokens, NbMediaFrame],
+  imports: [
+    DocsCodeBlock,
+    DocsExample,
+    DocsSourceTile,
+    DocsTokens,
+    NbMediaFrame,
+    NbCluster,
+  ],
   template: `
     <article>
       <header id="overview" class="relative mb-10 scroll-mt-32">
@@ -79,17 +87,31 @@ interface MediaFrameShapeDemo {
                 alt="Neo-brutalist media frame landscape"
               />
             </div>
-            <div nbMediaFrame ratio="1/1" tone="pink" radius="full" class="w-48">
-              <img
-                src="/assets/images/media-frame-demo.png"
-                alt="Neo-brutalist media frame circle"
-              />
-            </div>
-            <div nbMediaFrame ratio="1/1" tone="mint" shadow="hard" class="w-48">
-              <img
-                src="/assets/images/media-frame-demo.png"
-                alt="Neo-brutalist media frame square"
-              />
+            <div nbCluster justify="center">
+              <div
+                nbMediaFrame
+                ratio="1/1"
+                tone="pink"
+                radius="full"
+                class="w-48"
+              >
+                <img
+                  src="/assets/images/media-frame-demo.png"
+                  alt="Neo-brutalist media frame circle"
+                />
+              </div>
+              <div
+                nbMediaFrame
+                ratio="1/1"
+                tone="mint"
+                shadow="hard"
+                class="w-48"
+              >
+                <img
+                  src="/assets/images/media-frame-demo.png"
+                  alt="Neo-brutalist media frame square"
+                />
+              </div>
             </div>
           </div>
         </docs-example>
@@ -101,7 +123,11 @@ interface MediaFrameShapeDemo {
           Add the directive to the element that owns the frame. Captions,
           labels, badges, and actions belong outside the primitive.
         </p>
-        <docs-code-block class="block mb-5" title="Import" [code]="importCode" />
+        <docs-code-block
+          class="block mb-5"
+          title="Import"
+          [code]="importCode"
+        />
         <docs-code-block title="Template" [code]="usageCode" />
       </section>
 
@@ -110,24 +136,26 @@ interface MediaFrameShapeDemo {
         <docs-example [code]="ratiosExampleCode">
           <div class="flex flex-col divide-y-2 divide-(--nb-border) p-4">
             @for (ratio of ratios; track ratio.value) {
-              <div class="py-5 first:pt-0 last:pb-0">
-                <div class="mb-3 flex items-baseline gap-3">
-                  <span class="font-black uppercase">{{ ratio.label }}</span>
-                  <span class="text-sm font-medium opacity-60">{{ ratio.description }}</span>
-                </div>
-                <div
-                  nbMediaFrame
-                  [ratio]="ratio.value"
-                  tone="lavender"
-                  shadow="hard"
-                  [class]="ratio.value === 'auto' ? 'min-h-48' : ''"
-                >
-                  <img
-                    src="/assets/images/media-frame-demo.png"
-                    [alt]="ratio.label + ' ratio demo'"
-                  />
-                </div>
+            <div class="py-5 first:pt-0 last:pb-0">
+              <div class="mb-3 flex items-baseline gap-3">
+                <span class="font-black uppercase">{{ ratio.label }}</span>
+                <span class="text-sm font-medium opacity-60">{{
+                  ratio.description
+                }}</span>
               </div>
+              <div
+                nbMediaFrame
+                [ratio]="ratio.value"
+                tone="lavender"
+                shadow="hard"
+                [class]="ratio.value === 'auto' ? 'min-h-48' : ''"
+              >
+                <img
+                  src="/assets/images/media-frame-demo.png"
+                  [alt]="ratio.label + ' ratio demo'"
+                />
+              </div>
+            </div>
             }
           </div>
         </docs-example>
@@ -138,18 +166,20 @@ interface MediaFrameShapeDemo {
         <docs-example [code]="fitExampleCode">
           <div class="flex flex-col divide-y-2 divide-(--nb-border) p-4">
             @for (fit of fits; track fit.value) {
-              <div class="py-5 first:pt-0 last:pb-0">
-                <div class="mb-3 flex items-baseline gap-3">
-                  <span class="font-black uppercase">{{ fit.label }}</span>
-                  <span class="text-sm font-medium opacity-60">{{ fit.description }}</span>
-                </div>
-                <div nbMediaFrame ratio="16/9" tone="mint" [fit]="fit.value">
-                  <img
-                    src="/assets/images/media-frame-demo.png"
-                    [alt]="fit.label + ' fit demo'"
-                  />
-                </div>
+            <div class="py-5 first:pt-0 last:pb-0">
+              <div class="mb-3 flex items-baseline gap-3">
+                <span class="font-black uppercase">{{ fit.label }}</span>
+                <span class="text-sm font-medium opacity-60">{{
+                  fit.description
+                }}</span>
               </div>
+              <div nbMediaFrame ratio="16/9" tone="mint" [fit]="fit.value">
+                <img
+                  src="/assets/images/media-frame-demo.png"
+                  [alt]="fit.label + ' fit demo'"
+                />
+              </div>
+            </div>
             }
           </div>
         </docs-example>
@@ -160,25 +190,27 @@ interface MediaFrameShapeDemo {
         <docs-example [code]="shapeExampleCode">
           <div class="flex flex-col divide-y-2 divide-(--nb-border) p-4">
             @for (shape of shapes; track shape.label) {
-              <div class="py-5 first:pt-0 last:pb-0">
-                <div class="mb-3 flex items-baseline gap-3">
-                  <span class="font-black uppercase">{{ shape.label }}</span>
-                  <span class="text-sm font-medium opacity-60">{{ shape.description }}</span>
-                </div>
-                <div
-                  nbMediaFrame
-                  ratio="1/1"
-                  [tone]="shape.tone"
-                  [radius]="shape.radius"
-                  [shadow]="shape.shadow"
-                  class="w-48"
-                >
-                  <img
-                    src="/assets/images/media-frame-demo.png"
-                    [alt]="shape.label + ' shape demo'"
-                  />
-                </div>
+            <div class="py-5 first:pt-0 last:pb-0">
+              <div class="mb-3 flex items-baseline gap-3">
+                <span class="font-black uppercase">{{ shape.label }}</span>
+                <span class="text-sm font-medium opacity-60">{{
+                  shape.description
+                }}</span>
               </div>
+              <div
+                nbMediaFrame
+                ratio="1/1"
+                [tone]="shape.tone"
+                [radius]="shape.radius"
+                [shadow]="shape.shadow"
+                class="w-48"
+              >
+                <img
+                  src="/assets/images/media-frame-demo.png"
+                  [alt]="shape.label + ' shape demo'"
+                />
+              </div>
+            </div>
             }
           </div>
         </docs-example>
@@ -194,42 +226,137 @@ interface MediaFrameShapeDemo {
           <table class="w-full min-w-180 border-collapse text-left">
             <thead class="bg-nb-secondary text-nb-secondary-fg">
               <tr>
-                <th class="border-b-2 border-r-2 border-(--nb-border) px-4 py-3 font-bold">Input</th>
-                <th class="border-b-2 border-r-2 border-(--nb-border) px-4 py-3 font-bold">Type</th>
-                <th class="border-b-2 border-r-2 border-(--nb-border) px-4 py-3 font-bold">Default</th>
-                <th class="border-b-2 border-(--nb-border) px-4 py-3 font-bold">Description</th>
+                <th
+                  class="border-b-2 border-r-2 border-(--nb-border) px-4 py-3 font-bold"
+                >
+                  Input
+                </th>
+                <th
+                  class="border-b-2 border-r-2 border-(--nb-border) px-4 py-3 font-bold"
+                >
+                  Type
+                </th>
+                <th
+                  class="border-b-2 border-r-2 border-(--nb-border) px-4 py-3 font-bold"
+                >
+                  Default
+                </th>
+                <th class="border-b-2 border-(--nb-border) px-4 py-3 font-bold">
+                  Description
+                </th>
               </tr>
             </thead>
             <tbody class="font-medium">
               <tr class="border-b-2 border-(--nb-border)">
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">tone</td>
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">'default' | 'cream' | 'white' | 'black' | 'yellow' | 'pink' | 'mint' | 'lavender' | 'blue' | 'primary' | 'secondary' | 'accent'</td>
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">'default'</td>
-                <td class="px-4 py-3">Background color shown when content doesn't fill the frame.</td>
+                <td
+                  class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
+                >
+                  tone
+                </td>
+                <td
+                  class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
+                >
+                  'default' | 'cream' | 'white' | 'black' | 'yellow' | 'pink' |
+                  'mint' | 'lavender' | 'blue' | 'primary' | 'secondary' |
+                  'accent'
+                </td>
+                <td
+                  class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
+                >
+                  'default'
+                </td>
+                <td class="px-4 py-3">
+                  Background color shown when content doesn't fill the frame.
+                </td>
               </tr>
               <tr class="border-b-2 border-(--nb-border)">
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">ratio</td>
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">'auto' | '1/1' | '4/3' | '3/2' | '16/9' | '21/9'</td>
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">'auto'</td>
-                <td class="px-4 py-3">Locks the frame to the given aspect ratio. <code class="font-mono">'auto'</code> lets content define the height.</td>
+                <td
+                  class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
+                >
+                  ratio
+                </td>
+                <td
+                  class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
+                >
+                  'auto' | '1/1' | '4/3' | '3/2' | '16/9' | '21/9'
+                </td>
+                <td
+                  class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
+                >
+                  'auto'
+                </td>
+                <td class="px-4 py-3">
+                  Locks the frame to the given aspect ratio.
+                  <code class="font-mono">'auto'</code> lets content define the
+                  height.
+                </td>
               </tr>
               <tr class="border-b-2 border-(--nb-border)">
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">fit</td>
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">'cover' | 'contain' | 'fill'</td>
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">'cover'</td>
-                <td class="px-4 py-3">Object-fit applied to direct <code class="font-mono">img</code>, <code class="font-mono">video</code>, and <code class="font-mono">picture</code> children.</td>
+                <td
+                  class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
+                >
+                  fit
+                </td>
+                <td
+                  class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
+                >
+                  'cover' | 'contain' | 'fill'
+                </td>
+                <td
+                  class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
+                >
+                  'cover'
+                </td>
+                <td class="px-4 py-3">
+                  Object-fit applied to direct
+                  <code class="font-mono">img</code>,
+                  <code class="font-mono">video</code>, and
+                  <code class="font-mono">picture</code> children.
+                </td>
               </tr>
               <tr class="border-b-2 border-(--nb-border)">
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">radius</td>
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">'none' | 'sm' | 'md' | 'lg' | 'xl' | 'full'</td>
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">'lg'</td>
-                <td class="px-4 py-3">Corner radius preset. Use <code class="font-mono">'full'</code> for circular portrait frames.</td>
+                <td
+                  class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
+                >
+                  radius
+                </td>
+                <td
+                  class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
+                >
+                  'none' | 'sm' | 'md' | 'lg' | 'xl' | 'full'
+                </td>
+                <td
+                  class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
+                >
+                  'lg'
+                </td>
+                <td class="px-4 py-3">
+                  Corner radius preset. Use
+                  <code class="font-mono">'full'</code> for circular portrait
+                  frames.
+                </td>
               </tr>
               <tr>
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">shadow</td>
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">'none' | 'default' | 'hard'</td>
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">'none'</td>
-                <td class="px-4 py-3">Offset shadow preset. <code class="font-mono">'hard'</code> adds a bold 6 px brutalist drop shadow.</td>
+                <td
+                  class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
+                >
+                  shadow
+                </td>
+                <td
+                  class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
+                >
+                  'none' | 'default' | 'hard'
+                </td>
+                <td
+                  class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
+                >
+                  'none'
+                </td>
+                <td class="px-4 py-3">
+                  Offset shadow preset.
+                  <code class="font-mono">'hard'</code> adds a bold 6 px
+                  brutalist drop shadow.
+                </td>
               </tr>
             </tbody>
           </table>
@@ -303,23 +430,77 @@ export default class MediaFramePage {
 </div>`;
 
   protected readonly ratios = [
-    { value: 'auto', label: 'Auto', description: 'No ratio enforced — content defines the height' },
-    { value: '1/1', label: '1 / 1', description: 'Square — profiles, avatars, album art' },
-    { value: '4/3', label: '4 / 3', description: 'Classic photo — product cards, listings' },
-    { value: '3/2', label: '3 / 2', description: 'Editorial — standard photography ratio' },
-    { value: '16/9', label: '16 / 9', description: 'Video — presentations, hero images' },
-    { value: '21/9', label: '21 / 9', description: 'Cinematic — immersive panoramic banners' },
+    {
+      value: 'auto',
+      label: 'Auto',
+      description: 'No ratio enforced — content defines the height',
+    },
+    {
+      value: '1/1',
+      label: '1 / 1',
+      description: 'Square — profiles, avatars, album art',
+    },
+    {
+      value: '4/3',
+      label: '4 / 3',
+      description: 'Classic photo — product cards, listings',
+    },
+    {
+      value: '3/2',
+      label: '3 / 2',
+      description: 'Editorial — standard photography ratio',
+    },
+    {
+      value: '16/9',
+      label: '16 / 9',
+      description: 'Video — presentations, hero images',
+    },
+    {
+      value: '21/9',
+      label: '21 / 9',
+      description: 'Cinematic — immersive panoramic banners',
+    },
   ] satisfies readonly MediaFrameRatioDemo[];
 
   protected readonly fits = [
-    { value: 'cover', label: 'Cover', description: 'Fills the frame and crops to fit — best for hero images' },
-    { value: 'contain', label: 'Contain', description: 'Shows the full image, may reveal the background tone' },
-    { value: 'fill', label: 'Fill', description: 'Stretches to fill the exact frame dimensions' },
+    {
+      value: 'cover',
+      label: 'Cover',
+      description: 'Fills the frame and crops to fit — best for hero images',
+    },
+    {
+      value: 'contain',
+      label: 'Contain',
+      description: 'Shows the full image, may reveal the background tone',
+    },
+    {
+      value: 'fill',
+      label: 'Fill',
+      description: 'Stretches to fill the exact frame dimensions',
+    },
   ] satisfies readonly MediaFrameFitDemo[];
 
   protected readonly shapes = [
-    { label: 'Sharp', description: 'Hard edges, no shadow — raw brutalist style', radius: 'none', shadow: 'none', tone: 'yellow' },
-    { label: 'Poster', description: 'Rounded corners with a soft offset shadow', radius: 'lg', shadow: 'default', tone: 'lavender' },
-    { label: 'Portrait', description: 'Fully circular with a bold brutalist drop shadow', radius: 'full', shadow: 'hard', tone: 'pink' },
+    {
+      label: 'Sharp',
+      description: 'Hard edges, no shadow — raw brutalist style',
+      radius: 'none',
+      shadow: 'none',
+      tone: 'yellow',
+    },
+    {
+      label: 'Poster',
+      description: 'Rounded corners with a soft offset shadow',
+      radius: 'lg',
+      shadow: 'default',
+      tone: 'lavender',
+    },
+    {
+      label: 'Portrait',
+      description: 'Fully circular with a bold brutalist drop shadow',
+      radius: 'full',
+      shadow: 'hard',
+      tone: 'pink',
+    },
   ] satisfies readonly MediaFrameShapeDemo[];
 }

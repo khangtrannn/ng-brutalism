@@ -22,23 +22,24 @@ describe('NbImageCard token surface', () => {
     const fixture = await createFixture();
     const imageCard = findImageCard(fixture);
 
-    expect(imageCard.style.getPropertyValue('--nb-image-card-bg')).toBe(
+    expect(imageCard.style.getPropertyValue('--_nb-tone-bg-default')).toBe(
       'var(--nb-background)'
     );
-    expect(imageCard.style.getPropertyValue('--nb-image-card-fg')).toBe(
+    expect(imageCard.style.getPropertyValue('--_nb-tone-fg-default')).toBe(
       'var(--nb-foreground)'
     );
-    expect(imageCard.style.getPropertyValue('--nb-image-card-border-color')).toBe(
+    expect(imageCard.style.getPropertyValue('--_nb-tone-border-color-default')).toBe(
       'var(--nb-border)'
     );
-    expect(imageCard.style.getPropertyValue('--nb-image-card-radius-default')).toBe(
+    expect(imageCard.style.getPropertyValue('--nb-image-card-bg')).toBe('');
+    expect(imageCard.style.getPropertyValue('--_nb-radius-default')).toBe(
       'var(--nb-radius)'
     );
-    expect(imageCard.style.getPropertyValue('--nb-image-card-shadow-default')).toBe(
+    expect(imageCard.style.getPropertyValue('--_nb-shadow-default')).toBe(
       'var(--nb-shadow-offset-x) var(--nb-shadow-offset-y) 0 0 var(--nb-shadow)'
     );
     expect(
-      imageCard.style.getPropertyValue('--nb-image-card-border-width-default')
+      imageCard.style.getPropertyValue('--_nb-border-width-default')
     ).toBe('var(--nb-border-width)');
   });
 
@@ -47,12 +48,13 @@ describe('NbImageCard token surface', () => {
     const imageCard = findImageCard(fixture);
     const cls = imageCard.className;
 
-    expect(cls).toContain('bg-(--nb-image-card-bg)');
-    expect(cls).toContain('text-(--nb-image-card-fg)');
-    expect(cls).toContain('border-[length:var(--nb-image-card-border-width,var(--nb-image-card-border-width-default))]');
-    expect(cls).toContain('border-(--nb-image-card-border-color)');
-    expect(cls).toContain('rounded-[var(--nb-image-card-radius,var(--nb-image-card-radius-default))]');
-    expect(cls).toContain('shadow-[var(--nb-image-card-shadow,var(--nb-image-card-shadow-default))]');
+    expect(cls).toContain('nb-tone');
+    expect(cls).toContain('nb-border-width');
+    expect(cls).toContain('nb-radius');
+    expect(cls).toContain('nb-shadow');
+    expect(cls).not.toContain('bg-(--nb-image-card-bg)');
+    expect(cls).not.toContain('text-(--nb-image-card-fg)');
+    expect(cls).not.toContain('border-(--nb-image-card-border-color)');
     expect(cls).not.toContain('bg-(--nb-background)');
     expect(cls).not.toContain('text-(--nb-foreground)');
     expect(cls).not.toContain('border-(--nb-border)');
@@ -77,8 +79,8 @@ describe('NbImageCard token surface', () => {
     const caption = findCaption(fixture);
     const cls = caption.className;
 
-    expect(cls).toContain('border-t-[length:var(--nb-image-card-border-width,var(--nb-image-card-border-width-default))]');
-    expect(cls).toContain('border-t-(--nb-image-card-border-color)');
+    expect(cls).toContain('border-t-[length:var(--nb-border-width-token,var(--_nb-border-width-default))]');
+    expect(cls).toContain('border-t-[var(--_nb-tone-border-color-token,var(--_nb-tone-border-color-default))]');
     expect(cls).not.toContain('border-(--nb-border)');
   });
 
@@ -90,7 +92,7 @@ describe('NbImageCard token surface', () => {
     expect(cls).toContain('flex');
     expect(cls).toContain('flex-col');
     expect(cls).toContain('overflow-hidden');
-    expect(cls).toContain('border-[length:var(--nb-image-card-border-width,var(--nb-image-card-border-width-default))]');
+    expect(cls).toContain('nb-border-width');
     expect(cls).toContain('font-medium');
   });
 });
