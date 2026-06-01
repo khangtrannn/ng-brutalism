@@ -330,9 +330,9 @@ interface AlignDemo {
               </tr>
               <tr>
                 <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">tone</td>
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">'default' | 'cream' | 'white' | 'black' | 'yellow' | 'pink' | 'mint' | 'lavender' | 'blue' | 'primary' | 'secondary' | 'accent' | 'success' | 'warning' | 'danger'</td>
+                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">NbToneToken</td>
                 <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">'default'</td>
-                <td class="px-4 py-3">Background and foreground color pair applied to <code class="font-mono">boxed</code> and <code class="font-mono">chip</code> variants.</td>
+                <td class="px-4 py-3">Shared color tone — writes background, foreground, and border color. Background paint applies to <code class="font-mono">boxed</code> and <code class="font-mono">chip</code> variants.</td>
               </tr>
               <tr class="border-t-2 border-(--nb-border)">
                 <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">icon</td>

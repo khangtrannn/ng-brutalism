@@ -117,8 +117,6 @@ export { NbIconButton } from './lib/icon-button';
 export type {
   NbIconButtonShape,
   NbIconButtonSize,
-  NbIconButtonRadius,
-  NbIconButtonVariant,
 } from './lib/icon-button';
 export { NbButtonTrailingIcon } from './lib/button/nb-button-trailing-icon';
 export { NbProgress } from './lib/progress';

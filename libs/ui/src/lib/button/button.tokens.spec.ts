@@ -53,9 +53,11 @@ describe('NbButton token surface', () => {
 
     expect(cls).toContain('[--nb-button-bg:var(--nb-main)]');
     expect(cls).toContain('[--nb-button-fg:var(--nb-main-foreground)]');
-    expect(cls).toContain('[--nb-button-border:var(--nb-border)]');
-    expect(cls).toContain(
-      '[--nb-button-border-width:var(--nb-border-width)]'
+    expect(cls).toContain('[--nb-button-border-color:var(--nb-border)]');
+    // Border width is now written as a component variable by the border
+    // capability (default strength -> var(--nb-border-width)).
+    expect(button.style.getPropertyValue('--nb-button-border-width')).toBe(
+      'var(--nb-border-width)'
     );
     // Radius is now written as a component variable by the radius capability.
     expect(button.style.getPropertyValue('--nb-button-radius')).toBe(
@@ -74,7 +76,7 @@ describe('NbButton token surface', () => {
     expect(cls).toContain('bg-(--nb-button-bg)');
     expect(cls).toContain('text-(--nb-button-fg)');
     expect(cls).toContain('border-(length:--nb-button-border-width)');
-    expect(cls).toContain('border-(--nb-button-border)');
+    expect(cls).toContain('border-(--nb-button-border-color)');
     expect(cls).toContain('rounded-(--nb-button-radius)');
     expect(cls).toContain('shadow-[var(--nb-button-shadow)]');
     expect(cls).not.toContain('bg-(--nb-main)');

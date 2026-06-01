@@ -278,7 +278,7 @@ export default class PodcastCardRecipePage {
         <span nbButtonTrailingIcon shape="circle" tone="inverse" size="md"
               icon="/podcast-card/arrow.svg"></span>
       </button>
-      <button nbIconButton shape="square" size="xl" radius="md" variant="neutral"
+      <button nbIconButton shape="square" size="xl" radius="md" tone="background"
               icon="/podcast-card/bookmark.svg" aria-label="Save episode"></button>
     </div>
   </div>

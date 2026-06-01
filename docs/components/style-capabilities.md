@@ -49,8 +49,10 @@ and override:
 |---|---|---|
 | nbSurface | `surface` | `--nb-surface-{bg,fg,border-color,radius,border-width,shadow}` |
 | nbMediaFrame | `media-frame` | `--nb-media-frame-{bg,fg,border-color,radius,border-width,shadow}` |
-| nbButton | `button` | `--nb-button-radius` (+ existing `--nb-button-{bg,fg}`) |
-| nbChip | `chip` | `--nb-chip-{bg,fg,border-color,radius,shadow}` |
+| nbButton | `button` | `--nb-button-{radius,border-width}` (+ existing `--nb-button-{bg,fg,border-color}`) |
+| nbIconButton | `icon-button` | `--nb-icon-button-{bg,fg,border-color,border-width,radius,shadow}` |
+| nbChip | `chip` | `--nb-chip-{bg,fg,border-color,border-width,radius,shadow}` |
+| nbMediaItem | `media-item` | `--nb-media-item-{bg,fg,border-color}` (+ local anatomy vars) |
 | nbCallout | `callout` | `--nb-callout-{bg,fg,border-color,shadow}` (radius is size-derived) |
 | nbSection | `section` | `--nb-section-padding` |
 | nbStack | `stack` | `--nb-stack-gap` |
@@ -62,11 +64,12 @@ and override:
 
 ## Why some primitives only partially adopt capabilities
 
-- **Button** composes the **radius** capability only. Its color is a
+- **Button** composes the **radius** and **border** capabilities. Its color is a
   `variant`(preset) + `tone`(override) hybrid layered over a `var(--nb-main)`
   default, and `shadow` encodes hover-translate behavior — neither matches the
-  "always write a resolved value" capability contract. Its existing
-  `--nb-button-bg/-fg` bindings already satisfy the namespaced-variable goal.
+  "always write a resolved value" capability contract, so both stay local. Its
+  existing `--nb-button-bg/-fg` bindings already satisfy the namespaced-variable
+  goal; `--nb-button-border-color` is a static class default (brutalist ink).
 - **Callout** keeps its size-derived radius/border-width (anatomy), composing only
   tone + shadow.
 - **Surface / Chip** keep their asymmetric padding primitive-local; only the
@@ -125,3 +128,40 @@ Angular requires classes referenced by `hostDirectives` to be reachable
 - Consider a shared `separator` type/capability across Stack/Cluster/Split (they
   now expose `separator`; Section keeps `divider`/`NbDivider` as placement).
 - Optionally unify Surface/Chip padding onto the padding capability later.
+
+---
+
+## Capability adoption follow-up
+
+The visual grammar now flows through internal capabilities across the major
+primitives. IconButton, MediaItem, Chip, and Button all consume the shared
+vocabulary instead of redefining it:
+
+- `tone` writes `--nb-{namespace}-bg`, `--nb-{namespace}-fg`, and
+  `--nb-{namespace}-border-color`.
+- `radius` writes `--nb-{namespace}-radius`.
+- `shadow` writes `--nb-{namespace}-shadow`.
+- `border` writes `--nb-{namespace}-border-width`.
+
+Component-specific behavior remains inside each primitive (IconButton square
+dimensions/shape, Chip pill padding, MediaItem layout anatomy, Button/IconButton
+hover-translate press behavior).
+
+### Shipped in this pass
+- **IconButton** adopts tone/radius/shadow/border capabilities. Local
+  `NbIconButtonRadius` map and `NbIconButtonVariant` color map removed — `variant`
+  is replaced by the shared `tone`; `md` radius now means `var(--nb-radius)`.
+- **MediaItem** drops its hardcoded hex tone map; `tone` resolves through
+  `NbToneCapability` / `nbToneVars()`, and `NbMediaItemTone` aliases `NbToneToken`.
+- **Chip** and **Button** adopt `NbBorderCapability` for border *width*; border
+  *color* comes from tone (`--nb-*-border-color`).
+- Ambiguous `--nb-*-border` variables are normalized to `--nb-*-border-color`
+  (color) and `--nb-*-border-width` (width).
+
+### Deferred (see `docs/architecture/capability-discovery.md`)
+- `NbPressCapability` — Button/IconButton hover-translate stays local.
+- `NbFocusCapability`, `NbDisabledCapability` — accessibility chapter.
+- `NbControlSizeCapability`, `NbAlign/NbJustifyCapability` — record only.
+- Generic `NbSizeCapability` — **will not** be built; `size` means different
+  anatomy per primitive.
+- Button `variant` → `tone` simplification — post-1.0.

@@ -8,6 +8,7 @@ import {
 
 import { nbClass } from '../core/class';
 import {
+  NbBorderCapability,
   NbRadiusCapability,
   NbShadowCapability,
   NbToneCapability,
@@ -49,6 +50,7 @@ const paddingMap: Record<NbChipPadding, string> = {
         tone: 'default',
         radius: 'none',
         shadow: 'sm',
+        border: 'default',
       } satisfies NbStyleDefaults,
     },
   ],
@@ -56,6 +58,7 @@ const paddingMap: Record<NbChipPadding, string> = {
     { directive: NbToneCapability, inputs: ['tone'] },
     { directive: NbRadiusCapability, inputs: ['radius'] },
     { directive: NbShadowCapability, inputs: ['shadow'] },
+    { directive: NbBorderCapability, inputs: ['border'] },
   ],
   template: `
     @if (icon()) {
@@ -82,7 +85,7 @@ export class NbChip {
   protected readonly classes = computed(() =>
     nbClass(
       'inline-flex items-center gap-1.5',
-      'border-2 border-(--nb-chip-border-color)',
+      'border-(length:--nb-chip-border-width) border-(--nb-chip-border-color)',
       'bg-(--nb-chip-bg) text-(--nb-chip-fg)',
       'rounded-(--nb-chip-radius) shadow-[var(--nb-chip-shadow)]',
       'text-xs font-bold',

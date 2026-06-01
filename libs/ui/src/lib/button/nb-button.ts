@@ -2,6 +2,7 @@ import { Directive, booleanAttribute, computed, input } from '@angular/core';
 
 import { nbClass } from '../core/class';
 import {
+  NbBorderCapability,
   NbRadiusCapability,
   NB_STYLE_DEFAULTS,
   NB_STYLE_NAMESPACE,
@@ -28,10 +29,13 @@ const sizeMap: Record<NbButtonSize, string> = {
     { provide: NB_STYLE_NAMESPACE, useValue: 'button' },
     {
       provide: NB_STYLE_DEFAULTS,
-      useValue: { radius: 'md' } satisfies NbStyleDefaults,
+      useValue: { radius: 'md', border: 'default' } satisfies NbStyleDefaults,
     },
   ],
-  hostDirectives: [{ directive: NbRadiusCapability, inputs: ['radius'] }],
+  hostDirectives: [
+    { directive: NbRadiusCapability, inputs: ['radius'] },
+    { directive: NbBorderCapability, inputs: ['border'] },
+  ],
   host: {
     '[class]': 'classes()',
     '[attr.data-variant]': 'variant()',
@@ -65,12 +69,11 @@ export class NbButton {
       'inline-flex items-center justify-center whitespace-nowrap select-none font-bold',
       '[--nb-button-bg:var(--nb-main)]',
       '[--nb-button-fg:var(--nb-main-foreground)]',
-      '[--nb-button-border:var(--nb-border)]',
-      '[--nb-button-border-width:var(--nb-border-width)]',
+      '[--nb-button-border-color:var(--nb-border)]',
       '[--nb-button-shadow:var(--nb-shadow-offset-x)_var(--nb-shadow-offset-y)_0_var(--nb-shadow)]',
       'bg-(--nb-button-bg) text-(--nb-button-fg)',
       'rounded-(--nb-button-radius)',
-      'border-(length:--nb-button-border-width) border-(--nb-button-border)',
+      'border-(length:--nb-button-border-width) border-(--nb-button-border-color)',
       'shadow-[var(--nb-button-shadow)]',
       'transition-all duration-150 ease-out',
       '[&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0',

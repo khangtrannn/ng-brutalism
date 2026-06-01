@@ -182,9 +182,14 @@ const componentTokens: Record<DocsTokenComponent, DocsToken[]> = {
       usage: 'Button text and icon color, reassigned by variant',
     },
     {
-      name: '--nb-button-border',
+      name: '--nb-button-border-color',
       defaultValue: 'var(--nb-border)',
       usage: 'Button border color',
+    },
+    {
+      name: '--nb-button-border-width',
+      defaultValue: 'var(--nb-border-width)',
+      usage: 'Button border width, set by the border capability',
     },
     {
       name: '--nb-button-radius',

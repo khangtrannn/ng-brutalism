@@ -17,7 +17,7 @@ import { DocsSourceTile } from '../../docs/docs-source-tile';
           <p class="mt-3 max-w-3xl text-base font-medium sm:text-lg">
             A <code class="font-mono">&lt;button&gt;</code> for icon-only actions.
             Supports square and circle shapes, 4 sizes, tunable corner radius, and
-            all standard color variants. Pass an
+            the shared <code class="font-mono">tone</code> color palette. Pass an
             <code class="font-mono">icon</code> URL to render it internally, or
             project your own <code class="font-mono">&lt;svg&gt;</code> via
             <code class="font-mono">ng-content</code>.
@@ -54,7 +54,7 @@ import { DocsSourceTile } from '../../docs/docs-source-tile';
             <button nbIconButton shape="circle" aria-label="Like">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
             </button>
-            <button nbIconButton variant="danger" aria-label="Delete">
+            <button nbIconButton tone="danger" aria-label="Delete">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14H6L5 6"/><path d="M10 11v6"/><path d="M14 11v6"/><path d="M9 6V4h6v2"/></svg>
             </button>
           </div>
@@ -104,23 +104,23 @@ import { DocsSourceTile } from '../../docs/docs-source-tile';
         </docs-example>
       </section>
 
-      <section id="variants">
-        <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">Variants</h2>
-        <docs-example [code]="variantsExampleCode">
+      <section id="tones">
+        <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">Tones</h2>
+        <docs-example [code]="tonesExampleCode">
           <div class="flex flex-wrap items-center gap-3 p-4">
             <button nbIconButton aria-label="Default">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
             </button>
-            <button nbIconButton variant="primary" aria-label="Primary">
+            <button nbIconButton tone="primary" aria-label="Primary">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
             </button>
-            <button nbIconButton variant="accent" aria-label="Accent">
+            <button nbIconButton tone="accent" aria-label="Accent">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
             </button>
-            <button nbIconButton variant="danger" aria-label="Danger">
+            <button nbIconButton tone="danger" aria-label="Danger">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
             </button>
-            <button nbIconButton variant="success" aria-label="Success">
+            <button nbIconButton tone="success" aria-label="Success">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
             </button>
           </div>
@@ -155,16 +155,28 @@ import { DocsSourceTile } from '../../docs/docs-source-tile';
                 <td class="px-4 py-3">Touch target size (32/40/48/56px).</td>
               </tr>
               <tr class="border-b-2 border-(--nb-border)">
+                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">tone</td>
+                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">NbToneToken</td>
+                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">'default'</td>
+                <td class="px-4 py-3">Shared color tone — writes background, foreground, and border color.</td>
+              </tr>
+              <tr class="border-b-2 border-(--nb-border)">
                 <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">radius</td>
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">'none' | 'sm' | 'md' | 'lg' | 'xl' | 'full'</td>
+                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">NbRadius</td>
                 <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">'none'</td>
                 <td class="px-4 py-3">Corner radius for square buttons. Ignored when shape is 'circle'.</td>
               </tr>
               <tr class="border-b-2 border-(--nb-border)">
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">variant</td>
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">'default' | 'neutral' | 'primary' | 'secondary' | 'accent' | 'danger' | 'success' | 'warning'</td>
+                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">shadow</td>
+                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">NbShadow</td>
                 <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">'default'</td>
-                <td class="px-4 py-3">Background color variant.</td>
+                <td class="px-4 py-3">Brutalist drop shadow depth.</td>
+              </tr>
+              <tr class="border-b-2 border-(--nb-border)">
+                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">border</td>
+                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">NbBorderStrength</td>
+                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">'default'</td>
+                <td class="px-4 py-3">Outline strength — writes the border width.</td>
               </tr>
               <tr>
                 <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">icon</td>
@@ -189,7 +201,7 @@ export default class IconButtonPage {
 <button nbIconButton shape="circle" aria-label="Like">
   <svg ...>...</svg>
 </button>
-<button nbIconButton variant="danger" aria-label="Delete">
+<button nbIconButton tone="danger" aria-label="Delete">
   <svg ...>...</svg>
 </button>`;
 
@@ -210,9 +222,9 @@ export default class IconButtonPage {
   <svg ...>...</svg>
 </button>`;
 
-  protected readonly variantsExampleCode = `<button nbIconButton aria-label="Default"><svg ...>...</svg></button>
-<button nbIconButton variant="primary" aria-label="Primary"><svg ...>...</svg></button>
-<button nbIconButton variant="accent" aria-label="Accent"><svg ...>...</svg></button>
-<button nbIconButton variant="danger" aria-label="Danger"><svg ...>...</svg></button>
-<button nbIconButton variant="success" aria-label="Success"><svg ...>...</svg></button>`;
+  protected readonly tonesExampleCode = `<button nbIconButton aria-label="Default"><svg ...>...</svg></button>
+<button nbIconButton tone="primary" aria-label="Primary"><svg ...>...</svg></button>
+<button nbIconButton tone="accent" aria-label="Accent"><svg ...>...</svg></button>
+<button nbIconButton tone="danger" aria-label="Danger"><svg ...>...</svg></button>
+<button nbIconButton tone="success" aria-label="Success"><svg ...>...</svg></button>`;
 }

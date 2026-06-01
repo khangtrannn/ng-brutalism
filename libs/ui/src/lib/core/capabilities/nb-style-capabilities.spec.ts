@@ -3,7 +3,10 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { describe, expect, it } from 'vitest';
 
 import { NbButton } from '../../button';
+import { NbChip } from '../../chip';
+import { NbIconButton } from '../../icon-button';
 import { NbMediaFrame } from '../../media-frame';
+import { NbMediaItem } from '../../media-item';
 import { NbStack } from '../../stack';
 import { NbSurface } from '../../surface';
 
@@ -42,6 +45,36 @@ class MediaFrameTest {}
   template: `<div nbStack gap="lg"></div>`,
 })
 class StackTest {}
+
+@Component({
+  imports: [NbIconButton],
+  template: `<button
+    nbIconButton
+    tone="mint"
+    radius="md"
+    shadow="hard"
+    border="strong"
+  ></button>`,
+})
+class IconButtonCapabilitiesTest {}
+
+@Component({
+  imports: [NbChip],
+  template: `<span nbChip border="strong">New</span>`,
+})
+class ChipBorderTest {}
+
+@Component({
+  imports: [NbButton],
+  template: `<button nbButton border="strong">Save</button>`,
+})
+class ButtonBorderTest {}
+
+@Component({
+  imports: [NbMediaItem],
+  template: `<nb-media-item tone="yellow" title="Hi"></nb-media-item>`,
+})
+class MediaItemToneTest {}
 
 describe('style capabilities', () => {
   it('nbSurface writes namespaced radius + tone variables from explicit inputs', () => {
@@ -95,5 +128,50 @@ describe('style capabilities', () => {
     const stack = el.querySelector<HTMLElement>('[nbStack]')!;
 
     expect(stack.style.getPropertyValue('--nb-stack-gap')).toBe('1rem');
+  });
+
+  it('nbIconButton composes tone/radius/shadow/border into namespaced vars', () => {
+    const el = mount(IconButtonCapabilitiesTest);
+    const button = el.querySelector<HTMLElement>('[nbIconButton]')!;
+
+    expect(button.style.getPropertyValue('--nb-icon-button-bg')).toBe(
+      'var(--nb-mint)'
+    );
+    expect(button.style.getPropertyValue('--nb-icon-button-radius')).toBe(
+      'var(--nb-radius)'
+    );
+    expect(button.style.getPropertyValue('--nb-icon-button-shadow')).toBe(
+      '6px 6px 0 0 var(--nb-shadow)'
+    );
+    expect(
+      button.style.getPropertyValue('--nb-icon-button-border-width')
+    ).toBe('3px');
+  });
+
+  it('nbChip border writes --nb-chip-border-width', () => {
+    const el = mount(ChipBorderTest);
+    const chip = el.querySelector<HTMLElement>('[nbChip]')!;
+
+    expect(chip.style.getPropertyValue('--nb-chip-border-width')).toBe('3px');
+  });
+
+  it('nbButton border writes --nb-button-border-width', () => {
+    const el = mount(ButtonBorderTest);
+    const button = el.querySelector<HTMLElement>('[nbButton]')!;
+
+    expect(button.style.getPropertyValue('--nb-button-border-width')).toBe(
+      '3px'
+    );
+  });
+
+  it('nbMediaItem tone resolves --nb-media-item-bg from the shared resolver', () => {
+    const el = mount(MediaItemToneTest);
+    const item = el.querySelector<HTMLElement>('nb-media-item')!;
+
+    // Shared tone token, not a hardcoded hex literal.
+    expect(item.style.getPropertyValue('--nb-media-item-bg')).toBe(
+      'var(--nb-yellow)'
+    );
+    expect(item.style.getPropertyValue('--nb-media-item-fg')).toBe('#000000');
   });
 });
