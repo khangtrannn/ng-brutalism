@@ -1,13 +1,15 @@
-import { booleanAttribute, computed, Directive, input } from '@angular/core';
+import { computed, Directive, input } from '@angular/core';
 
+import {
+  NbResetMarginCapability,
+  NbUnderlineCapability,
+} from '../core/capabilities';
 import type { NbTone } from '../tokens/tone';
 import {
   nbFontWeightValue,
-  nbUnderlineGapValue,
-  nbUnderlineWidthValue,
   type NbFontWeight,
-  type NbUnderlineGap,
-  type NbUnderlineWidth,
+  type NbTextTracking,
+  type NbUnderlineVariant,
 } from '../tokens/typography';
 
 export type NbTextSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl' | '3xl';
@@ -28,13 +30,16 @@ export type NbTextTone =
 
 export type NbTextTransform = 'none' | 'uppercase' | 'lowercase' | 'capitalize';
 
-export type NbTextTracking = 'tight' | 'normal' | 'wide' | 'wider';
+// NbTextTracking is defined in tokens/typography and re-exported here to keep
+// the public type path stable.
+export type { NbTextTracking } from '../tokens/typography';
 
 export type NbTextMeasure = 'none' | 'xs' | 'sm' | 'md' | 'lg';
 
 export type NbTextLeading = 'none' | 'tight' | 'normal' | 'relaxed';
 
-export type NbTextUnderline = 'none' | 'bar' | 'wave';
+// Alias of the shared underline variant — keeps the public type name stable.
+export type NbTextUnderline = NbUnderlineVariant;
 
 const sizeMap: Record<NbTextSize, string> = {
   xs: '0.75rem',
@@ -78,6 +83,7 @@ const toneMap: Record<NbTextTone, string> = {
 
 const trackingMap: Record<NbTextTracking, string> = {
   tight: '-0.025em',
+  // Explicit 'normal' resets any inherited letter-spacing; do not collapse to null.
   normal: 'normal',
   wide: '0.025em',
   wider: '0.05em',
@@ -95,6 +101,15 @@ const measureMap: Record<NbTextMeasure, string> = {
   selector: '[nbText]',
   standalone: true,
   exportAs: 'nbText',
+  hostDirectives: [
+    // underline variant + optional gap/width overrides → data-underline + CSS vars
+    {
+      directive: NbUnderlineCapability,
+      inputs: ['underline', 'underlineGap', 'underlineWidth'],
+    },
+    // reset input → margin: 0 (removes native paragraph/heading margin)
+    { directive: NbResetMarginCapability, inputs: ['reset'] },
+  ],
   host: {
     '[attr.data-nb-text]': '""',
     '[attr.data-size]': 'size()',
@@ -104,11 +119,7 @@ const measureMap: Record<NbTextMeasure, string> = {
     '[attr.data-tracking]': 'tracking()',
     '[attr.data-measure]': 'measure()',
     '[attr.data-leading]': 'leading()',
-    '[attr.data-underline]': 'underlineAttr()',
 
-    '[style.--nb-underline-gap]': 'underlineGapValue()',
-    '[style.--nb-underline-width]': 'underlineWidthValue()',
-    '[style.margin]': 'marginValue()',
     '[style.color]': 'colorValue()',
     '[style.font-size]': 'sizeValue()',
     '[style.line-height]': 'lineHeightValue()',
@@ -126,32 +137,7 @@ export class NbText {
   readonly tracking = input<NbTextTracking>('normal');
   readonly measure = input<NbTextMeasure>('none');
   readonly leading = input<NbTextLeading>('normal');
-  readonly underline = input<NbTextUnderline>('none');
-  readonly underlineGap = input<NbUnderlineGap | undefined>(undefined);
-  readonly underlineWidth = input<NbUnderlineWidth | undefined>(undefined);
-
-  /**
-   * Reset native paragraph/heading margins.
-   * Default true so spacing comes from layout primitives (nbStack, nbCluster, etc.).
-   */
-  readonly reset = input<boolean, unknown>(true, { transform: booleanAttribute });
-
-  protected readonly marginValue = computed(() => (this.reset() ? '0' : null));
-
-  protected readonly underlineAttr = computed(() => {
-    const underline = this.underline();
-    return underline === 'none' ? null : underline;
-  });
-
-  protected readonly underlineGapValue = computed(() => {
-    const gap = this.underlineGap();
-    return gap ? nbUnderlineGapValue(gap) : null;
-  });
-
-  protected readonly underlineWidthValue = computed(() => {
-    const width = this.underlineWidth();
-    return width ? nbUnderlineWidthValue(width) : null;
-  });
+  // underline / underlineGap / underlineWidth / reset → composed capabilities
 
   protected readonly sizeValue = computed(() => sizeMap[this.size()]);
 
@@ -163,9 +149,7 @@ export class NbText {
   protected readonly weightValue = computed(() => nbFontWeightValue(this.weight()));
   protected readonly colorValue = computed(() => toneMap[this.tone()]);
   protected readonly transformValue = computed(() => this.transform());
-  protected readonly trackingValue = computed(
-    () => trackingMap[this.tracking()],
-  );
+  protected readonly trackingValue = computed(() => trackingMap[this.tracking()]);
   protected readonly measureValue = computed(() => {
     const val = measureMap[this.measure()];
     return val === 'none' ? null : val;

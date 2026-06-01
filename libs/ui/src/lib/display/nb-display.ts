@@ -1,19 +1,22 @@
 import { booleanAttribute, computed, Directive, input } from '@angular/core';
 
 import {
+  NbResetMarginCapability,
+  NbUnderlineCapability,
+} from '../core/capabilities';
+import {
   nbFontWeightValue,
-  nbUnderlineGapValue,
-  nbUnderlineWidthValue,
   type NbFontWeight,
-  type NbUnderlineGap,
-  type NbUnderlineWidth,
+  type NbUnderlineVariant,
 } from '../tokens/typography';
 
 export type NbDisplaySize = 'sm' | 'md' | 'lg' | 'xl';
 export type NbDisplayWeight = NbFontWeight;
 export type NbDisplayTracking = 'normal' | 'tight' | 'tighter';
 export type NbDisplayLeading = 'none' | 'tight' | 'display';
-export type NbDisplayUnderline = 'none' | 'bar' | 'wave';
+
+// Alias of the shared underline variant — keeps the public type name stable.
+export type NbDisplayUnderline = NbUnderlineVariant;
 
 const SIZE_MAP: Record<NbDisplaySize, string> = {
   sm: '2rem',
@@ -47,17 +50,22 @@ const LEADING_MAP: Record<NbDisplayLeading, string> = {
 
 @Directive({
   selector: '[nbDisplay]',
+  hostDirectives: [
+    // underline variant + optional gap/width overrides → data-underline + CSS vars
+    {
+      directive: NbUnderlineCapability,
+      inputs: ['underline', 'underlineGap', 'underlineWidth'],
+    },
+    // reset input → margin: 0 (removes native heading margin)
+    { directive: NbResetMarginCapability, inputs: ['reset'] },
+  ],
   host: {
     '[style.font-size]': 'fontSize()',
     '[style.font-weight]': 'weightValue()',
     '[style.color]': '"var(--nb-display-color, currentColor)"',
     '[style.letter-spacing]': 'trackingValue()',
     '[style.line-height]': 'leadingValue()',
-    '[style.margin]': 'marginValue()',
-    '[style.--nb-underline-gap]': 'underlineGapValue()',
-    '[style.--nb-underline-width]': 'underlineWidthValue()',
     '[attr.data-nb-display]': '""',
-    '[attr.data-underline]': 'underlineAttr()',
   },
 })
 export class NbDisplay {
@@ -68,10 +76,7 @@ export class NbDisplay {
   });
   readonly tracking = input<NbDisplayTracking>('tight');
   readonly leading = input<NbDisplayLeading>('none');
-  readonly underline = input<NbDisplayUnderline>('none');
-  readonly underlineGap = input<NbUnderlineGap | undefined>(undefined);
-  readonly underlineWidth = input<NbUnderlineWidth | undefined>(undefined);
-  readonly reset = input<boolean, unknown>(true, { transform: booleanAttribute });
+  // underline / underlineGap / underlineWidth / reset → composed capabilities
 
   protected readonly fontSize = computed(() => {
     const base = this.fluid() ? FLUID_MAP[this.size()] : SIZE_MAP[this.size()];
@@ -82,17 +87,4 @@ export class NbDisplay {
   );
   protected readonly trackingValue = computed(() => TRACKING_MAP[this.tracking()]);
   protected readonly leadingValue = computed(() => LEADING_MAP[this.leading()]);
-  protected readonly marginValue = computed(() => (this.reset() ? '0' : null));
-  protected readonly underlineAttr = computed(() => {
-    const underline = this.underline();
-    return underline === 'none' ? null : underline;
-  });
-  protected readonly underlineGapValue = computed(() => {
-    const gap = this.underlineGap();
-    return gap ? nbUnderlineGapValue(gap) : null;
-  });
-  protected readonly underlineWidthValue = computed(() => {
-    const width = this.underlineWidth();
-    return width ? nbUnderlineWidthValue(width) : null;
-  });
 }

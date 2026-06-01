@@ -1,8 +1,21 @@
 /**
  * Shared typography vocabulary. One source of truth for the font-weight scale,
- * the font-role contract, and underline customization so a token means the same
- * thing across nbText / nbDisplay / nbTypography / nbChipGroup.
+ * the font-role contract, underline customization, and the text-tracking scale
+ * so a token means the same thing across nbText / nbDisplay / nbTypography /
+ * nbChipGroup.
  */
+
+/**
+ * Shared underline variant used by both nbText and nbDisplay.
+ * `NbTextUnderline` and `NbDisplayUnderline` are public aliases of this type.
+ */
+export type NbUnderlineVariant = 'none' | 'bar' | 'wave';
+
+/**
+ * Letter-spacing scale shared by nbText and nbChipGroup.
+ * Exported publicly as `NbTextTracking` from the text barrel.
+ */
+export type NbTextTracking = 'tight' | 'normal' | 'wide' | 'wider';
 
 /** Font-weight scale shared by nbText and nbDisplay. */
 export type NbFontWeight =

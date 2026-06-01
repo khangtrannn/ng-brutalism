@@ -21,7 +21,8 @@ import { nbRadiusValue, type NbRadius } from '../tokens/radius';
 import { nbShadowValue, type NbShadow } from '../tokens/shadow';
 import { nbSpacingValue, type NbSpacing } from '../tokens/spacing';
 import type { NbToneToken } from '../tokens/tone';
-import type { NbTextTracking, NbTextTransform } from '../text';
+import type { NbTextTracking } from '../tokens/typography';
+import type { NbTextTransform } from '../text';
 
 export type NbChipTone = NbToneToken;
 export type NbChipRadius = NbRadius;

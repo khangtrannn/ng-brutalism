@@ -97,9 +97,12 @@ for direct use.
   `NbShadow`/`nbShadowValue`, `NbBorderStrength`/`nbBorderWidthValue`,
   `NbSpacing`/`nbSpacingValue`, `NbPadding`/`nbPaddingValue`, `NbDivider`, and
   `nbToneVars()` (+ `NbToneToken` neutral aliases `surface`/`background`/`ink`).
+- Shared typography types in `tokens/typography.ts`: `NbUnderlineVariant`
+  (`none|bar|wave`, shared alias for `NbTextUnderline` and `NbDisplayUnderline`)
+  and `NbTextTracking` (`tight|normal|wide|wider`, shared by nbText + nbChipGroup).
 - Internal capabilities: `NbToneCapability`, `NbRadiusCapability`,
   `NbShadowCapability`, `NbBorderCapability`, `NbPaddingCapability`,
-  `NbGapCapability`.
+  `NbGapCapability`, `NbUnderlineCapability`, `NbResetMarginCapability`.
 - DI tokens: `NB_STYLE_NAMESPACE`, `NB_STYLE_DEFAULTS` (+ `NbStyleDefaults`).
 
 ### Changed
@@ -174,6 +177,19 @@ hover-translate press behavior).
   `NbPaddingCapability`.
 - Ambiguous `--nb-*-border` variables are normalized to `--nb-*-border-color`
   (color) and `--nb-*-border-width` (width).
+
+### Typography capability sweep (2026-06-01)
+- `NbUnderlineCapability` — handles `underline/underlineGap/underlineWidth`
+  inputs and writes `data-underline`, `--nb-underline-gap`,
+  `--nb-underline-width` on the host. No namespace injection needed (the vars
+  are global, not primitive-scoped).
+- `NbResetMarginCapability` — handles `reset` input and writes `margin: 0`
+  when true (default). Removes native `<p>`/`<h*>` margins so layout primitives
+  control spacing.
+- Both composed into `NbText` and `NbDisplay` via `hostDirectives`; the 12
+  lines of duplicated `computed()` calls and host bindings in each primitive are gone.
+- `NbChipGroup` decoupled from `../text` — now imports `NbTextTracking` from
+  `tokens/typography` directly.
 
 ### Deferred (see `docs/architecture/capability-discovery.md`)
 - `NbPressCapability` — Button/IconButton hover-translate stays local.

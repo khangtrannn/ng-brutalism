@@ -7,12 +7,14 @@ import { NbBadge } from '../../badge';
 import { NbCard } from '../../card';
 import { NbChip } from '../../chip';
 import { NbCluster } from '../../cluster';
+import { NbDisplay } from '../../display';
 import { NbIconButton } from '../../icon-button';
 import { NbImageCard } from '../../image-card';
 import { NbMediaFrame } from '../../media-frame';
 import { NbMediaItem } from '../../media-item';
 import { NbStack } from '../../stack';
 import { NbSurface } from '../../surface';
+import { NbText } from '../../text';
 
 function mount<T>(type: new () => T): HTMLElement {
   const fixture: ComponentFixture<T> = TestBed.createComponent(type);
@@ -450,5 +452,175 @@ describe('style capabilities', () => {
     const button = el.querySelector<HTMLElement>('[nbButton]')!;
 
     expect(button.style.getPropertyValue('border-radius')).toBe('0.5rem');
+  });
+});
+
+// ─── NbText capability composition ───────────────────────────────────────────
+
+@Component({
+  imports: [NbText],
+  template: `<p nbText>Default</p>`,
+})
+class TextDefaultsTest {}
+
+@Component({
+  imports: [NbText],
+  template: `<p nbText size="xl" weight="bold" tone="muted" tracking="wide" leading="relaxed" measure="md">Styled</p>`,
+})
+class TextExplicitTest {}
+
+@Component({
+  imports: [NbText],
+  template: `<p nbText underline="bar" underlineGap="md" underlineWidth="lg">Underlined</p>`,
+})
+class TextUnderlineTest {}
+
+@Component({
+  imports: [NbText],
+  template: `<p nbText [reset]="false">No reset</p>`,
+})
+class TextNoResetTest {}
+
+@Component({
+  imports: [NbText],
+  template: `<p nbText reset>Reset default</p>`,
+})
+class TextResetDefaultTest {}
+
+describe('NbText + NbDisplay capability composition', () => {
+  it('nbText default: resets margin, sets data-nb-text attribute', () => {
+    const el = mount(TextDefaultsTest);
+    const p = el.querySelector<HTMLElement>('[nbText]')!;
+
+    expect(p.getAttribute('data-nb-text')).toBe('');
+    expect(p.style.getPropertyValue('margin')).toBe('0px');
+  });
+
+  it('nbText explicit inputs produce correct inline styles', () => {
+    const el = mount(TextExplicitTest);
+    const p = el.querySelector<HTMLElement>('[nbText]')!;
+
+    expect(p.style.getPropertyValue('font-size')).toBe('1.25rem');
+    expect(p.style.getPropertyValue('font-weight')).toBe('700');
+    expect(p.style.getPropertyValue('letter-spacing')).toBe('0.025em');
+    expect(p.style.getPropertyValue('line-height')).toBe('1.65');
+    expect(p.style.getPropertyValue('max-width')).toBe('36rem');
+    // muted tone
+    expect(p.style.getPropertyValue('color')).toContain('var(--nb-foreground)');
+  });
+
+  it('nbText underline capability writes data attribute and CSS vars', () => {
+    const el = mount(TextUnderlineTest);
+    const p = el.querySelector<HTMLElement>('[nbText]')!;
+
+    expect(p.getAttribute('data-underline')).toBe('bar');
+    expect(p.style.getPropertyValue('--nb-underline-gap')).toBe('0.75rem');
+    expect(p.style.getPropertyValue('--nb-underline-width')).toBe('12rem');
+  });
+
+  it('nbText reset=false leaves margin unset', () => {
+    const el = mount(TextNoResetTest);
+    const p = el.querySelector<HTMLElement>('[nbText]')!;
+
+    expect(p.style.getPropertyValue('margin')).toBe('');
+  });
+
+  it('nbText reset default (true) sets margin 0', () => {
+    const el = mount(TextResetDefaultTest);
+    const p = el.querySelector<HTMLElement>('[nbText]')!;
+
+    expect(p.style.getPropertyValue('margin')).toBe('0px');
+  });
+});
+
+// ─── NbDisplay capability composition ────────────────────────────────────────
+
+@Component({
+  imports: [NbDisplay],
+  template: `<h1 nbDisplay>Default</h1>`,
+})
+class DisplayDefaultsTest {}
+
+@Component({
+  imports: [NbDisplay],
+  template: `<h1 nbDisplay size="lg" weight="black" tracking="tighter" leading="display">Styled</h1>`,
+})
+class DisplayExplicitTest {}
+
+@Component({
+  imports: [NbDisplay],
+  template: `<h1 nbDisplay fluid size="xl">Fluid</h1>`,
+})
+class DisplayFluidTest {}
+
+@Component({
+  imports: [NbDisplay],
+  template: `<h1 nbDisplay underline="wave" underlineGap="sm" underlineWidth="md">Underlined</h1>`,
+})
+class DisplayUnderlineTest {}
+
+@Component({
+  imports: [NbDisplay],
+  template: `<h1 nbDisplay [reset]="false">No reset</h1>`,
+})
+class DisplayNoResetTest {}
+
+@Component({
+  imports: [NbDisplay],
+  template: `<h1 nbDisplay style="--nb-display-size: 6rem">Override</h1>`,
+})
+class DisplayCssVarOverrideTest {}
+
+describe('NbDisplay capability composition', () => {
+  it('nbDisplay default: resets margin, sets data-nb-display attribute', () => {
+    const el = mount(DisplayDefaultsTest);
+    const h = el.querySelector<HTMLElement>('[nbDisplay]')!;
+
+    expect(h.getAttribute('data-nb-display')).toBe('');
+    expect(h.style.getPropertyValue('margin')).toBe('0px');
+  });
+
+  it('nbDisplay explicit size/weight/tracking/leading produce correct styles', () => {
+    const el = mount(DisplayExplicitTest);
+    const h = el.querySelector<HTMLElement>('[nbDisplay]')!;
+
+    expect(h.style.getPropertyValue('font-size')).toBe('var(--nb-display-size, 3.75rem)');
+    expect(h.style.getPropertyValue('font-weight')).toBe('900');
+    expect(h.style.getPropertyValue('letter-spacing')).toBe('-0.08em');
+    expect(h.style.getPropertyValue('line-height')).toBe('0.84');
+  });
+
+  it('nbDisplay fluid wraps size in a clamp', () => {
+    const el = mount(DisplayFluidTest);
+    const h = el.querySelector<HTMLElement>('[nbDisplay]')!;
+
+    expect(h.style.getPropertyValue('font-size')).toBe(
+      'var(--nb-display-size, clamp(3.25rem, 2rem + 6.25vw, 4.75rem))',
+    );
+  });
+
+  it('nbDisplay underline capability writes data attribute and CSS vars', () => {
+    const el = mount(DisplayUnderlineTest);
+    const h = el.querySelector<HTMLElement>('[nbDisplay]')!;
+
+    expect(h.getAttribute('data-underline')).toBe('wave');
+    expect(h.style.getPropertyValue('--nb-underline-gap')).toBe('0.5rem');
+    expect(h.style.getPropertyValue('--nb-underline-width')).toBe('7rem');
+  });
+
+  it('nbDisplay reset=false leaves margin unset', () => {
+    const el = mount(DisplayNoResetTest);
+    const h = el.querySelector<HTMLElement>('[nbDisplay]')!;
+
+    expect(h.style.getPropertyValue('margin')).toBe('');
+  });
+
+  it('nbDisplay --nb-display-size CSS var override is respected', () => {
+    const el = mount(DisplayCssVarOverrideTest);
+    const h = el.querySelector<HTMLElement>('[nbDisplay]')!;
+
+    // The inline font-size binding wraps the base value; Angular does not
+    // override an explicit inline custom-property set by the user.
+    expect(h.style.getPropertyValue('--nb-display-size')).toBe('6rem');
   });
 });

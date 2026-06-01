@@ -12,3 +12,5 @@ export { NbShadowCapability } from './nb-shadow-capability';
 export { NbBorderCapability } from './nb-border-capability';
 export { NbPaddingCapability } from './nb-padding-capability';
 export { NbGapCapability } from './nb-gap-capability';
+export { NbUnderlineCapability } from './nb-underline-capability';
+export { NbResetMarginCapability } from './nb-reset-margin-capability';

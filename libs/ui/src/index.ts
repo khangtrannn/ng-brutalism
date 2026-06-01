@@ -22,6 +22,7 @@ export type { NbDivider } from './lib/tokens/divider';
 export type {
   NbFontWeight,
   NbTypographyFont,
+  NbUnderlineVariant,
   NbUnderlineGap,
   NbUnderlineWidth,
 } from './lib/tokens/typography';
@@ -43,6 +44,8 @@ export {
   NbBorderCapability as ɵNbBorderCapability,
   NbPaddingCapability as ɵNbPaddingCapability,
   NbGapCapability as ɵNbGapCapability,
+  NbUnderlineCapability as ɵNbUnderlineCapability,
+  NbResetMarginCapability as ɵNbResetMarginCapability,
   NB_STYLE_NAMESPACE as ɵNB_STYLE_NAMESPACE,
   NB_STYLE_DEFAULTS as ɵNB_STYLE_DEFAULTS,
 } from './lib/core/capabilities';
