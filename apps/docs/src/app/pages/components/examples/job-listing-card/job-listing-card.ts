@@ -1,15 +1,19 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import {
   NbButton,
+  NbButtonTrailingIcon,
+  NbChip,
+  NbCluster,
+  NbDisplay,
   NbIconButton,
-  NbCard,
-  NbCardActions,
-  NbCardContent,
-  NbCardDescription,
-  NbCardFooter,
-  NbCardHeader,
-  NbCardTitle,
-  NbTitle,
+  NbMediaItem,
+  NbMediaItemIcon,
+  NbMediaItemTitle,
+  NbSection,
+  NbSplit,
+  NbStack,
+  NbSurface,
+  NbText,
 } from '@ng-brutalism/ui';
 
 import {
@@ -28,17 +32,22 @@ import {
 
 @Component({
   selector: 'docs-job-listing-card',
+  host: { class: 'block w-full' },
   imports: [
     NbButton,
+    NbButtonTrailingIcon,
+    NbChip,
+    NbCluster,
+    NbDisplay,
     NbIconButton,
-    NbCard,
-    NbCardActions,
-    NbCardContent,
-    NbCardDescription,
-    NbCardFooter,
-    NbCardHeader,
-    NbCardTitle,
-    NbTitle,
+    NbMediaItem,
+    NbMediaItemIcon,
+    NbMediaItemTitle,
+    NbSection,
+    NbSplit,
+    NbStack,
+    NbSurface,
+    NbText,
     JobCardBookmarkIcon,
     JobCardBriefcaseIcon,
     JobCardClockIcon,
@@ -52,485 +61,318 @@ import {
     JobCardUrgentIcon,
   ],
   template: `
-    <div class="job-card-demo" role="group" aria-label="Job posting">
-      <nb-card class="job-card-shell">
-        <nb-card-header class="job-card-section">
-          <div class="job-card-header">
-            <div class="job-card-logo" aria-hidden="true">
-              <docs-job-card-logo-icon />
-            </div>
+    <div nbCluster justify="center" padding="lg" class="overflow-visible">
+      <article
+        nbSurface
+        tone="cream"
+        border="strong"
+        shadow="heavy"
+        radius="xl"
+        class="w-full max-w-120 overflow-visible"
+        style="
+          container-type: inline-size;
+          font-family: 'Patrick Hand', 'Comic Sans MS', 'Bradley Hand',
+            'Segoe Print', cursive;
+        "
+        role="group"
+        aria-label="Job posting"
+      >
+        <div nbSection padding="lg">
+          <div nbStack gap="lg">
+            <header
+              nbSplit
+              ratio="fill:auto"
+              collapse="none"
+              align="start"
+              gap="md"
+            >
+              <div nbCluster gap="md" align="start" wrap="nowrap">
+                <div
+                  nbSurface
+                  layout="center"
+                  border="strong"
+                  shadow="default"
+                  radius="lg"
+                  class="shrink-0"
+                  style="
+                    width: clamp(3.125rem, 11.2cqw, 3.5rem);
+                    height: clamp(3.125rem, 11.2cqw, 3.5rem);
+                    --nb-surface-bg: #0e47df;
+                    --nb-surface-fg: #fff;
+                    --job-card-icon-size: clamp(1.5rem, 5.6cqw, 1.75rem);
+                  "
+                  aria-hidden="true"
+                >
+                  <docs-job-card-logo-icon />
+                </div>
 
-            <div class="job-card-title-block">
-              <nb-card-title class="job-card-title">
-                Senior Frontend <span nbTitle>Engineer</span>
-              </nb-card-title>
-              <nb-card-description class="job-card-subtitle">
-                Inspectorio
-              </nb-card-description>
-            </div>
+                <div nbStack gap="xs">
+                  <h2 class="m-0">
+                    <span
+                      nbDisplay
+                      class="block"
+                      style="
+                      --nb-display-size: clamp(2rem, 7.4cqw, 2.35rem);
+                      font-family: inherit;
+                      font-weight: 400;
+                    "
+                    >
+                      Senior Frontend
+                    </span>
 
-            <div class="job-card-action">
+                    <span
+                      nbDisplay
+                      underline="wave"
+                      class="inline-block"
+                      style="
+                      --nb-display-size: clamp(2rem, 7.4cqw, 2.35rem);
+                      --nb-underline-color: #0e47df;
+                      font-family: inherit;
+                      font-weight: 400;
+                    "
+                    >
+                      Engineer
+                    </span>
+                  </h2>
+
+                  <span
+                    nbText
+                    size="2xl"
+                    weight="bold"
+                    leading="none"
+                    style="font-family: inherit"
+                  >
+                    Inspectorio
+                  </span>
+                </div>
+              </div>
+
               <button
                 nbIconButton
                 type="button"
-                radius="md"
+                tone="white"
+                size="lg"
+                shape="square"
+                radius="none"
                 shadow="none"
-                style="--nb-icon-button-bg: #fff"
+                style="--job-card-icon-size: 1.5rem"
                 aria-label="Save to favorites"
               >
                 <docs-job-card-heart-icon />
               </button>
-            </div>
-          </div>
-        </nb-card-header>
+            </header>
 
-        <nb-card-content class="job-card-section">
-          <div class="job-card-content">
-            <div class="job-card-pills">
-              <button
-                nbButton
-                type="button"
-                size="sm"
-                shadow="none"
-                class="job-card-pill job-card-pill-remote"
-              >
+            <div
+              nbCluster
+              gap="sm"
+              align="center"
+              wrap="wrap"
+              style="
+                --job-card-icon-size: 1.1rem;
+                --nb-chip-icon-size: 1.1rem;
+              "
+            >
+              <span nbChip tone="mint" padding="lg" radius="none" shadow="none">
                 <docs-job-card-remote-icon />
                 Remote
-              </button>
-              <button
-                nbButton
-                type="button"
-                size="sm"
+              </span>
+
+              <span
+                nbChip
+                tone="lavender"
+                padding="lg"
+                radius="none"
                 shadow="none"
-                class="job-card-pill job-card-pill-full-time"
               >
                 <docs-job-card-briefcase-icon />
                 Full-time
-              </button>
-              <button
-                nbButton
-                type="button"
-                size="sm"
+              </span>
+
+              <span
+                nbChip
+                tone="yellow"
+                padding="lg"
+                radius="none"
                 shadow="none"
-                class="job-card-pill job-card-pill-negotiable"
               >
                 <docs-job-card-salary-icon />
                 Negotiable
-              </button>
-              <button
-                nbButton
-                type="button"
-                size="sm"
-                shadow="none"
-                class="job-card-pill job-card-pill-experience"
-              >
+              </span>
+
+              <span nbChip tone="blue" padding="lg" radius="none" shadow="none">
                 <docs-job-card-experience-icon />
                 5+ years
-              </button>
-              <button
-                nbButton
-                type="button"
-                size="sm"
-                shadow="none"
-                class="job-card-pill job-card-pill-urgent"
-              >
+              </span>
+
+              <span nbChip tone="pink" padding="lg" radius="none" shadow="none">
                 <docs-job-card-urgent-icon />
                 Urgent
-              </button>
+              </span>
             </div>
 
-            <p class="job-card-tagline">
+            <p
+              nbText
+              weight="normal"
+              leading="tight"
+              measure="sm"
+              style="
+                font-family: inherit;
+                font-size: clamp(1.25rem, 4cqw, 1.5rem);
+              "
+            >
               Build delightful UI systems and scalable web experiences.
             </p>
 
-            <div class="job-card-highlights">
-              <div class="job-card-star" aria-hidden="true">
-                <docs-job-card-star-icon />
-              </div>
-              <span class="job-card-highlights-label">Highlights</span>
-              <div class="job-card-highlights-items">
-                <span class="job-card-highlight-item">Angular + TypeScript</span>
-                <span class="job-card-highlight-item">Design system</span>
-                <span class="job-card-highlight-item">International team</span>
+            <div
+              nbSurface
+              tone="yellow"
+              border="strong"
+              shadow="default"
+              radius="xl"
+              padding="lg"
+              style="--nb-surface-bg: #fff3c4"
+            >
+              <div nbStack gap="md">
+                <div nbCluster gap="md" align="center" wrap="nowrap">
+                  <div
+                    nbSurface
+                    tone="yellow"
+                    layout="center"
+                    border="strong"
+                    shadow="none"
+                    radius="full"
+                    style="
+                      width: 3rem;
+                      height: 3rem;
+                      --job-card-icon-size: 1.5rem;
+                    "
+                    aria-hidden="true"
+                  >
+                    <docs-job-card-star-icon />
+                  </div>
+
+                  <span
+                    nbText
+                    size="3xl"
+                    weight="normal"
+                    leading="none"
+                    style="font-family: inherit"
+                  >
+                    Highlights
+                  </span>
+                </div>
+
+                <div
+                  nbCluster
+                  gap="lg"
+                  align="start"
+                  wrap="nowrap"
+                  separator="solid"
+                  class="max-[420px]:flex-col max-[420px]:[&>*+*]:border-l-0 max-[420px]:[&>*+*]:pl-0 max-[420px]:[&>*+*]:ml-0"
+                >
+                  <span
+                    nbCluster
+                    gap="sm"
+                    align="start"
+                    wrap="nowrap"
+                    class="flex-1"
+                  >
+                    <span
+                      aria-hidden="true"
+                      class="mt-1.5 size-2.5 shrink-0 rounded-full bg-[#0e47df]"
+                    ></span>
+                    <span nbText size="lg" weight="normal" leading="tight">
+                      Angular + TypeScript
+                    </span>
+                  </span>
+
+                  <span
+                    nbCluster
+                    gap="sm"
+                    align="start"
+                    wrap="nowrap"
+                    class="flex-1"
+                  >
+                    <span
+                      aria-hidden="true"
+                      class="mt-1.5 size-2.5 shrink-0 rounded-full bg-[#0e47df]"
+                    ></span>
+                    <span nbText size="lg" weight="normal" leading="tight">
+                      Design system
+                    </span>
+                  </span>
+
+                  <span
+                    nbCluster
+                    gap="sm"
+                    align="start"
+                    wrap="nowrap"
+                    class="flex-1"
+                  >
+                    <span
+                      aria-hidden="true"
+                      class="mt-1.5 size-2.5 shrink-0 rounded-full bg-[#0e47df]"
+                    ></span>
+                    <span nbText size="lg" weight="normal" leading="tight">
+                      International team
+                    </span>
+                  </span>
+                </div>
               </div>
             </div>
           </div>
-        </nb-card-content>
+        </div>
 
-        <nb-card-footer class="job-card-section">
-          <div class="job-card-footer">
-            <div class="job-card-meta">
-              <div class="job-card-meta-row">
-                <docs-job-card-location-icon />
-                Ho Chi Minh City / Remote
-              </div>
-              <div class="job-card-meta-row">
-                <docs-job-card-clock-icon />
-                Posted 2 days ago
-              </div>
+        <div nbSection divider="top" dividerStyle="dashed" padding="lg">
+          <div nbSplit ratio="fill:auto" collapse="none" align="end" gap="sm">
+            <div
+              nbStack
+              gap="sm"
+              style="
+                --job-card-icon-size: 1rem;
+                --nb-media-item-title-font-family: inherit;
+                --nb-media-item-title-size: 1rem;
+                white-space: nowrap;
+              "
+            >
+              <nb-media-item size="sm">
+                <span nbMediaItemIcon>
+                  <docs-job-card-location-icon />
+                </span>
+                <span nbMediaItemTitle>Ho Chi Minh City / Remote</span>
+              </nb-media-item>
+
+              <nb-media-item size="sm">
+                <span nbMediaItemIcon>
+                  <docs-job-card-clock-icon />
+                </span>
+                <span nbMediaItemTitle>Posted 2 days ago</span>
+              </nb-media-item>
             </div>
 
-            <nb-card-actions class="job-card-actions" align="end">
-              <button nbButton type="button" class="job-card-apply" aria-label="Apply">
+            <div nbCluster gap="md" align="center" justify="end" wrap="nowrap">
+              <button nbButton type="button" tone="yellow" radius="none">
                 Apply
               </button>
-              <button nbButton type="button" class="job-card-save">
+
+              <button nbButton type="button" tone="pink" radius="none">
                 Save
-                <docs-job-card-bookmark-icon />
+                <span
+                  nbButtonTrailingIcon
+                  size="sm"
+                  shape="none"
+                  tone="default"
+                  style="--job-card-icon-size: 1.25rem"
+                >
+                  <docs-job-card-bookmark-icon />
+                </span>
               </button>
-            </nb-card-actions>
+            </div>
           </div>
-        </nb-card-footer>
-      </nb-card>
+        </div>
+      </article>
     </div>
   `,
-  styles: [
-    `
-      :host {
-        display: block;
-        width: min(100%, 480px);
-        container-type: inline-size;
-        zoom: 0.9;
-      }
-
-      .job-card-demo {
-        --job-ink: #1a1a1a;
-        --job-paper: #ffffff;
-        --job-accent-purple: #8b5cf6;
-        --job-inspectorio-blue: #0e47df;
-        --job-inspectorio-ink: #232323;
-        --job-tile-purple: #e6d6fb;
-        --job-pill-green-bg: #d4f5dc;
-        --job-pill-purple-bg: #ead9fb;
-        --job-pill-yellow-bg: #fdf5b8;
-        --job-pill-blue-bg: #d6e8fb;
-        --job-pill-pink-bg: #fbd9d9;
-        --job-highlights-bg: #fdf3c4;
-        --job-highlights-star: #f7c531;
-        --job-shadow: #1a1a1a;
-
-        position: relative;
-        width: 100%;
-        gap: 0;
-        padding: clamp(18px, 4.8cqw, 24px);
-        border: 3px solid var(--job-ink);
-        border-radius: 18px;
-        background: var(--job-paper);
-        box-shadow: 8px 10px 0 0 var(--job-shadow);
-        color: var(--job-ink);
-        font-family: 'Patrick Hand', 'Comic Sans MS', 'Bradley Hand',
-          'Segoe Print', cursive;
-      }
-
-      .job-card-shell {
-        display: block;
-        gap: 0;
-        padding: 0;
-        border: 0;
-        border-radius: 0;
-        background: transparent;
-        box-shadow: none;
-        color: inherit;
-        font: inherit;
-      }
-
-      .job-card-demo .job-card-section {
-        display: block;
-        padding: 0;
-      }
-
-      .job-card-header {
-        display: grid;
-        grid-template-columns: auto minmax(0, 1fr) auto;
-        gap: clamp(12px, 3cqw, 16px);
-        align-items: flex-start;
-        padding: 0;
-      }
-
-      .job-card-logo {
-        display: flex;
-        width: clamp(50px, 11.2cqw, 56px);
-        height: clamp(50px, 11.2cqw, 56px);
-        flex-shrink: 0;
-        align-items: center;
-        justify-content: center;
-        border: 2.5px solid var(--job-ink);
-        border-radius: 14px;
-        background: var(--job-inspectorio-blue);
-        box-shadow: 4px 5px 0 0 var(--job-shadow);
-        color: var(--job-paper);
-      }
-
-      .job-card-logo docs-job-card-logo-icon {
-        --job-card-icon-size: clamp(24px, 5.6cqw, 28px);
-      }
-
-      .job-card-action docs-job-card-heart-icon {
-        --job-card-icon-size: 22px;
-      }
-
-      .job-card-pills docs-job-card-remote-icon,
-      .job-card-pills docs-job-card-briefcase-icon,
-      .job-card-pills docs-job-card-salary-icon,
-      .job-card-pills docs-job-card-experience-icon,
-      .job-card-pills docs-job-card-urgent-icon {
-        --job-card-icon-size: 18px;
-      }
-
-      .job-card-title-block {
-        min-width: 0;
-        padding-top: 2px;
-      }
-
-      .job-card-title {
-        display: block;
-        color: var(--job-ink);
-        font-size: clamp(26px, 7.4cqw, 37px);
-        font-weight: 400;
-        letter-spacing: 0;
-        line-height: 1.05;
-      }
-
-      .job-card-title span {
-        position: relative;
-        display: inline-block;
-        --nb-title-wave-color: var(--job-inspectorio-blue);
-      }
-
-      .job-card-subtitle {
-        display: block;
-        margin-top: 12px;
-        padding-left: 2px;
-        color: var(--job-ink);
-        font-size: clamp(20px, 4.6cqw, 23px);
-        font-weight: 400;
-        line-height: 1;
-      }
-
-      .job-card-action {
-        align-self: start;
-        justify-self: end;
-      }
-
-      .job-card-content {
-        padding: 0;
-      }
-
-      .job-card-pills {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 10px 12px;
-        margin-top: clamp(22px, 5cqw, 26px);
-      }
-
-      .job-card-pill,
-      .job-card-apply,
-      .job-card-save {
-        --nb-button-fg: var(--job-ink);
-        --nb-button-border-color: var(--job-ink);
-      }
-
-      .job-card-pill-remote {
-        --nb-button-bg: var(--job-pill-green-bg);
-      }
-
-      .job-card-pill-full-time {
-        --nb-button-bg: var(--job-pill-purple-bg);
-      }
-
-      .job-card-pill-negotiable {
-        --nb-button-bg: var(--job-pill-yellow-bg);
-      }
-
-      .job-card-pill-experience {
-        --nb-button-bg: var(--job-pill-blue-bg);
-      }
-
-      .job-card-pill-urgent {
-        --nb-button-bg: var(--job-pill-pink-bg);
-      }
-
-      .job-card-tagline {
-        margin-top: 22px;
-        color: var(--job-ink);
-        font-size: clamp(18px, 4cqw, 21px);
-        line-height: 1.25;
-      }
-
-      .job-card-highlights {
-        display: grid;
-        grid-template-columns: auto 1fr;
-        align-items: center;
-        gap: 12px 14px;
-        margin-top: 18px;
-        padding: 14px 16px;
-        border: 2.5px solid var(--job-ink);
-        border-radius: 15px;
-        background: var(--job-highlights-bg);
-        box-shadow: 4px 5px 0 0 var(--job-shadow);
-        overflow: hidden;
-      }
-
-      .job-card-star {
-        display: flex;
-        width: 44px;
-        height: 44px;
-        flex-shrink: 0;
-        align-items: center;
-        justify-content: center;
-        border: 2.5px solid var(--job-ink);
-        border-radius: 50%;
-        background: var(--job-highlights-star);
-      }
-
-      .job-card-star docs-job-card-star-icon {
-        --job-card-icon-size: 24px;
-      }
-
-      .job-card-highlights-label {
-        color: var(--job-ink);
-        font-size: clamp(20px, 4.4cqw, 23px);
-        line-height: 1;
-      }
-
-      .job-card-highlights-items {
-        display: flex;
-        grid-column: 1 / -1;
-        align-items: stretch;
-        min-width: 0;
-      }
-
-      .job-card-highlight-item {
-        display: flex;
-        flex: 1 1 0;
-        min-width: 0;
-        align-items: flex-start;
-        gap: 7px;
-        padding: 0 8px;
-        border-left: 1.5px solid rgba(26, 26, 26, 0.25);
-        color: var(--job-ink);
-        font-size: clamp(14px, 3.2cqw, 17px);
-        line-height: 1.15;
-        word-break: break-word;
-      }
-
-      .job-card-highlight-item:first-child {
-        border-left: 0;
-        padding-left: 4px;
-      }
-
-      .job-card-highlight-item::before {
-        content: '';
-        display: inline-block;
-        width: 8px;
-        height: 12px;
-        flex-shrink: 0;
-        margin-top: 4px;
-        border-radius: 8px;
-        background: var(--job-inspectorio-blue);
-      }
-
-      .job-card-footer {
-        display: flex;
-        flex-wrap: nowrap;
-        align-items: center;
-        justify-content: space-between;
-        gap: 8px;
-        margin-top: 24px;
-        padding: 14px 0 0;
-        border-top: 2.5px dashed var(--job-ink);
-      }
-
-      .job-card-meta {
-        display: flex;
-        flex-direction: column;
-        gap: 5px;
-        color: var(--job-ink);
-        font-size: clamp(15px, 3.5cqw, 18px);
-      }
-
-      .job-card-meta-row {
-        display: flex;
-        align-items: center;
-        gap: 8px;
-      }
-
-      .job-card-meta-row docs-job-card-location-icon,
-      .job-card-meta-row docs-job-card-clock-icon {
-        --job-card-icon-size: 16px;
-      }
-
-      .job-card-actions docs-job-card-bookmark-icon {
-        --job-card-icon-size: 20px;
-      }
-
-      .job-card-actions {
-        display: flex;
-        flex-shrink: 0;
-        align-items: center;
-        gap: 12px;
-        margin-left: auto;
-      }
-
-      .job-card-apply {
-        --nb-button-bg: #ffd24a;
-      }
-
-      .job-card-save {
-        --nb-button-bg: #f472d0;
-      }
-
-      @container (max-width: 430px) {
-        .job-card-highlights {
-          flex-wrap: wrap;
-          align-items: flex-start;
-        }
-
-        .job-card-highlights-items {
-          width: 100%;
-          flex-basis: 100%;
-        }
-
-        .job-card-actions button {
-          min-width: 0;
-        }
-      }
-
-      @container (max-width: 380px) {
-        .job-card-highlights-items {
-          flex-direction: column;
-          align-items: stretch;
-          gap: 8px;
-        }
-
-        .job-card-highlight-item {
-          padding: 0;
-          padding-left: 4px;
-          border-left: 0;
-          font-size: 16px;
-        }
-
-        .job-card-highlights-label {
-          font-size: 18px;
-        }
-      }
-
-      @container (max-width: 460px) {
-        .job-card-header {
-          grid-template-columns: auto 1fr;
-        }
-
-        .job-card-action {
-          grid-column: 2;
-          grid-row: 1;
-        }
-
-        .job-card-title-block {
-          grid-column: 1 / -1;
-        }
-      }
-    `,
-  ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export default class JobListingCard {}

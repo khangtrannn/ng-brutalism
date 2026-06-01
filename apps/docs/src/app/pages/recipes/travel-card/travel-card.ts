@@ -124,7 +124,7 @@ import {
               </span>
             </div>
 
-            <div nbCallout tone="yellow" size="xl" shadow="hard">$799</div>
+            <div nbCallout tone="yellow" radius="sm" size="xl" shadow="hard">$799</div>
           </div>
         </div>
 

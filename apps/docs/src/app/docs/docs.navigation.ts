@@ -40,6 +40,41 @@ export const docsNavGroups: readonly DocsNavGroup[] = [
     ],
   },
   {
+    label: 'Recipes',
+    items: [
+      {
+        label: 'Travel Card',
+        path: '/recipes/travel-card',
+        toc: [
+          { label: 'Overview', fragment: 'overview' },
+          { label: 'Preview', fragment: 'preview' },
+          { label: 'Code', fragment: 'code' },
+          { label: 'Primitives used', fragment: 'primitives' },
+        ],
+      },
+      {
+        label: 'Podcast Card',
+        path: '/recipes/podcast-card',
+        toc: [
+          { label: 'Overview', fragment: 'overview' },
+          { label: 'Preview', fragment: 'preview' },
+          { label: 'Code', fragment: 'code' },
+          { label: 'Primitives used', fragment: 'primitives' },
+        ],
+      },
+      {
+        label: 'Job Card',
+        path: '/recipes/job-card',
+        toc: [
+          { label: 'Overview', fragment: 'overview' },
+          { label: 'Preview', fragment: 'preview' },
+          { label: 'Code', fragment: 'code' },
+          { label: 'Primitives used', fragment: 'primitives' },
+        ],
+      },
+    ],
+  },
+  {
     label: 'Primitives',
     items: [
       {
@@ -417,41 +452,6 @@ export const docsNavGroups: readonly DocsNavGroup[] = [
         ],
       },
       { label: 'Textarea', path: '/components/textarea' },
-    ],
-  },
-  {
-    label: 'Recipes',
-    items: [
-      {
-        label: 'Travel Card',
-        path: '/recipes/travel-card',
-        toc: [
-          { label: 'Overview', fragment: 'overview' },
-          { label: 'Preview', fragment: 'preview' },
-          { label: 'Code', fragment: 'code' },
-          { label: 'Primitives used', fragment: 'primitives' },
-        ],
-      },
-      {
-        label: 'Job Card',
-        path: '/recipes/job-card',
-        toc: [
-          { label: 'Overview', fragment: 'overview' },
-          { label: 'Preview', fragment: 'preview' },
-          { label: 'Code', fragment: 'code' },
-          { label: 'Primitives used', fragment: 'primitives' },
-        ],
-      },
-      {
-        label: 'Podcast Card',
-        path: '/recipes/podcast-card',
-        toc: [
-          { label: 'Overview', fragment: 'overview' },
-          { label: 'Preview', fragment: 'preview' },
-          { label: 'Code', fragment: 'code' },
-          { label: 'Primitives used', fragment: 'primitives' },
-        ],
-      },
     ],
   },
 ];
