@@ -183,7 +183,7 @@ export default class TravelCardRecipePage {
   NbText,
 } from '@ng-brutalism/ui';`;
 
-  protected readonly templateCode = `<div nbSurface clip border="strong" shadow="hard" radius="xl">
+  protected readonly templateCode = `<div nbSurface clip tone="cream" border="strong" shadow="hard" radius="xl">
   <!-- Hero banner with floating sticker -->
   <div class="relative">
     <nb-sticker
@@ -215,7 +215,8 @@ export default class TravelCardRecipePage {
     </div>
 
     <div nbStack gap="lg" align="start">
-      <div nbStack gap="sm" align="start">
+      <div nbChipGroup direction="vertical" gap="sm" align="start"
+           radius="sm" shadow="none" transform="uppercase" tracking="wide">
         <span nbChip tone="mint">
           <span nbIcon src="/tokyo-city-escape/nb-plane-fill.svg" size="sm" decorative></span>
           Flight included
@@ -230,15 +231,14 @@ export default class TravelCardRecipePage {
   <!-- Features + CTA -->
   <div nbSection divider="top" padding="lg">
     <div nbSplit ratio="2:1" gap="lg" collapse="md">
-      <div nbCluster gap="lg" align="center" separator="dashed"
-           class="[--nb-media-item-title-size:12px]">
-        <nb-media-item icon="/tokyo-city-escape/central-locations.png">
+      <div nbCluster gap="lg" align="center" separator="dashed">
+        <nb-media-item size="xs" icon="/tokyo-city-escape/central-locations.png">
           <span nbMediaItemTitle>Central<br />Locations</span>
         </nb-media-item>
-        <nb-media-item icon="/tokyo-city-escape/guided-experiences.png">
+        <nb-media-item size="xs" icon="/tokyo-city-escape/guided-experiences.png">
           <span nbMediaItemTitle>Guided<br />Experiences</span>
         </nb-media-item>
-        <nb-media-item icon="/tokyo-city-escape/24-7-support.png">
+        <nb-media-item size="xs" icon="/tokyo-city-escape/24-7-support.png">
           <span nbMediaItemTitle>24/7<br />Support</span>
         </nb-media-item>
       </div>

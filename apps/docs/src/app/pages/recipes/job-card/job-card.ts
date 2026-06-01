@@ -4,6 +4,7 @@ import {
   NbButtonTrailingIcon,
   NbCallout,
   NbChip,
+  NbChipGroup,
   NbCluster,
   NbDisplay,
   NbIcon,
@@ -23,6 +24,7 @@ import {
     NbButtonTrailingIcon,
     NbCallout,
     NbChip,
+    NbChipGroup,
     NbCluster,
     NbDisplay,
     NbIcon,
@@ -39,11 +41,11 @@ import {
       <div
         nbSurface
         clip
+        tone="cream"
         border="strong"
         shadow="hard"
         radius="xl"
         class="relative w-full"
-        style="--nb-surface-bg: #faf6f0"
       >
         <div
           nbSplit
@@ -86,10 +88,14 @@ import {
 
           <div nbStack gap="lg" align="start" class="shrink-0">
             <div
-              nbStack
+              nbChipGroup
+              direction="vertical"
               gap="sm"
               align="start"
-              class="[--nb-chip-radius:4px] [--nb-chip-shadow:none] uppercase tracking-wide"
+              radius="sm"
+              shadow="none"
+              transform="uppercase"
+              tracking="wide"
             >
               <span nbChip tone="mint">
                 <span
@@ -128,22 +134,16 @@ import {
 
         <div nbSection divider="top" padding="lg">
           <div nbSplit ratio="2:1" gap="lg" collapse="md">
-            <div
-              nbCluster
-              gap="lg"
-              align="center"
-              separator="dashed"
-              class="[--nb-media-item-title-size:12px]"
-            >
-              <nb-media-item icon="/icons/location.png">
+            <div nbCluster gap="lg" align="center" separator="dashed">
+              <nb-media-item size="xs" icon="/icons/location.png">
                 <span nbMediaItemTitle>HCMC<br />Remote</span>
               </nb-media-item>
 
-              <nb-media-item icon="/icons/star.png">
+              <nb-media-item size="xs" icon="/icons/star.png">
                 <span nbMediaItemTitle>5+<br />Years Exp</span>
               </nb-media-item>
 
-              <nb-media-item icon="/icons/world.png">
+              <nb-media-item size="xs" icon="/icons/world.png">
                 <span nbMediaItemTitle>International<br />Team</span>
               </nb-media-item>
             </div>

@@ -19,6 +19,18 @@ export { nbSpacingValue } from './lib/tokens/spacing';
 export type { NbPadding } from './lib/tokens/padding';
 export { nbPaddingValue } from './lib/tokens/padding';
 export type { NbDivider } from './lib/tokens/divider';
+export type {
+  NbFontWeight,
+  NbTypographyFont,
+  NbUnderlineGap,
+  NbUnderlineWidth,
+} from './lib/tokens/typography';
+export {
+  nbFontWeightValue,
+  nbTypographyFontValue,
+  nbUnderlineGapValue,
+  nbUnderlineWidthValue,
+} from './lib/tokens/typography';
 
 // Angular private internals — exported only because Angular requires classes
 // referenced by `hostDirectives` to be reachable from the package entrypoint
@@ -86,7 +98,14 @@ export { NbInput } from './lib/input';
 export { NbLabel } from './lib/label';
 export { NbTitle } from './lib/title';
 export { NbDisplay } from './lib/display';
-export type { NbDisplaySize } from './lib/display';
+export type {
+  NbDisplayLeading,
+  NbDisplaySize,
+  NbDisplayTracking,
+  NbDisplayUnderline,
+  NbDisplayWeight,
+} from './lib/display';
+export { NbTypography } from './lib/typography';
 export { NbSeparator } from './lib/separator';
 export type {
   NbSeparatorOrientation,
@@ -135,7 +154,12 @@ export {
 export { NbStatusDot } from './lib/status-dot';
 export type { NbStatusDotState } from './lib/status-dot';
 export { NbChip, NbChipGroup } from './lib/chip';
-export type { NbChipTone, NbChipPadding } from './lib/chip';
+export type {
+  NbChipTone,
+  NbChipPadding,
+  NbChipGroupAlign,
+  NbChipGroupDirection,
+} from './lib/chip';
 export { NbIconButton } from './lib/icon-button';
 export type {
   NbIconButtonShape,

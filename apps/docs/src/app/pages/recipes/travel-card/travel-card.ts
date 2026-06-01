@@ -4,6 +4,7 @@ import {
   NbButtonTrailingIcon,
   NbCallout,
   NbChip,
+  NbChipGroup,
   NbCluster,
   NbDisplay,
   NbIcon,
@@ -25,6 +26,7 @@ import {
     NbButtonTrailingIcon,
     NbCallout,
     NbChip,
+    NbChipGroup,
     NbCluster,
     NbDisplay,
     NbIcon,
@@ -43,11 +45,11 @@ import {
       <div
         nbSurface
         clip
+        tone="cream"
         border="strong"
         shadow="hard"
         radius="xl"
         class="relative w-full"
-        style="--nb-surface-bg: #faf6f0"
       >
         <div class="relative">
           <nb-sticker
@@ -90,7 +92,15 @@ import {
                 class="w-16"
               />
 
-              <span style="--nb-underline-gap: 0; --nb-underline-width: 4rem;" nbText size="xl" weight="extrabold" underline="bar">Roam &amp; Go</span>
+              <span
+                nbText
+                size="xl"
+                weight="extrabold"
+                underline="bar"
+                underlineGap="none"
+                underlineWidth="sm"
+                >Roam &amp; Go</span
+              >
             </div>
 
             <h1 nbDisplay class="uppercase">Tokyo<br />City Escape</h1>
@@ -103,10 +113,14 @@ import {
 
           <div nbStack gap="lg" align="start" class="shrink-0">
             <div
-              nbStack
+              nbChipGroup
+              direction="vertical"
               gap="sm"
               align="start"
-              class="[--nb-chip-radius:4px] [--nb-chip-shadow:none] uppercase tracking-wide"
+              radius="sm"
+              shadow="none"
+              transform="uppercase"
+              tracking="wide"
             >
               <span nbChip tone="mint">
                 <span nbIcon src="/tokyo-city-escape/nb-plane-fill.svg" size="sm" decorative></span>
@@ -130,22 +144,22 @@ import {
 
         <div nbSection divider="top" padding="lg">
           <div nbSplit ratio="2:1" gap="lg" collapse="md">
-            <div
-              nbCluster
-              gap="2xl"
-              align="center"
-              separator="dashed"
-              class="[--nb-media-item-title-size:12px]"
-            >
-              <nb-media-item icon="/tokyo-city-escape/central-locations.png">
+            <div nbCluster gap="2xl" align="center" separator="dashed">
+              <nb-media-item
+                size="xs"
+                icon="/tokyo-city-escape/central-locations.png"
+              >
                 <span nbMediaItemTitle>Central<br />Locations</span>
               </nb-media-item>
 
-              <nb-media-item icon="/tokyo-city-escape/guided-experiences.png">
+              <nb-media-item
+                size="xs"
+                icon="/tokyo-city-escape/guided-experiences.png"
+              >
                 <span nbMediaItemTitle>Guided<br />Experiences</span>
               </nb-media-item>
 
-              <nb-media-item icon="/tokyo-city-escape/24-7-support.png">
+              <nb-media-item size="xs" icon="/tokyo-city-escape/24-7-support.png">
                 <span nbMediaItemTitle>24/7<br />Support</span>
               </nb-media-item>
             </div>

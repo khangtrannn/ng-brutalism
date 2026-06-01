@@ -3,6 +3,7 @@ import {
   NbButton,
   NbButtonTrailingIcon,
   NbChip,
+  NbChipGroup,
   NbCluster,
   NbDisplay,
   NbIconButton,
@@ -37,6 +38,7 @@ import {
     NbButton,
     NbButtonTrailingIcon,
     NbChip,
+    NbChipGroup,
     NbCluster,
     NbDisplay,
     NbIconButton,
@@ -65,13 +67,14 @@ import {
       <article
         nbSurface
         tone="cream"
+        typography="accent"
         border="strong"
         shadow="heavy"
         radius="xl"
         class="w-full max-w-120 overflow-visible"
         style="
           container-type: inline-size;
-          font-family: 'Patrick Hand', 'Comic Sans MS', 'Bradley Hand',
+          --nb-font-accent: 'Patrick Hand', 'Comic Sans MS', 'Bradley Hand',
             'Segoe Print', cursive;
         "
         role="group"
@@ -99,7 +102,7 @@ import {
                     height: clamp(3.125rem, 11.2cqw, 3.5rem);
                     --nb-surface-bg: #0e47df;
                     --nb-surface-fg: #fff;
-                    --job-card-icon-size: clamp(1.5rem, 5.6cqw, 1.75rem);
+                    --nb-icon-size: clamp(1.5rem, 5.6cqw, 1.75rem);
                   "
                   aria-hidden="true"
                 >
@@ -108,40 +111,24 @@ import {
 
                 <div nbStack gap="xs">
                   <h2 class="m-0">
-                    <span
-                      nbDisplay
-                      class="block"
-                      style="
-                      --nb-display-size: clamp(2rem, 7.4cqw, 2.35rem);
-                      font-family: inherit;
-                      font-weight: 400;
-                    "
-                    >
+                    <span nbDisplay size="sm" fluid weight="normal" class="block">
                       Senior Frontend
                     </span>
 
                     <span
                       nbDisplay
+                      size="sm"
+                      fluid
+                      weight="normal"
                       underline="wave"
                       class="inline-block"
-                      style="
-                      --nb-display-size: clamp(2rem, 7.4cqw, 2.35rem);
-                      --nb-underline-color: #0e47df;
-                      font-family: inherit;
-                      font-weight: 400;
-                    "
+                      style="--nb-underline-color: #0e47df"
                     >
                       Engineer
                     </span>
                   </h2>
 
-                  <span
-                    nbText
-                    size="2xl"
-                    weight="bold"
-                    leading="none"
-                    style="font-family: inherit"
-                  >
+                  <span nbText size="2xl" weight="bold" leading="none">
                     Inspectorio
                   </span>
                 </div>
@@ -155,7 +142,7 @@ import {
                 shape="square"
                 radius="none"
                 shadow="none"
-                style="--job-card-icon-size: 1.5rem"
+                style="--nb-icon-size: 1.5rem"
                 aria-label="Save to favorites"
               >
                 <docs-job-card-heart-icon />
@@ -163,48 +150,37 @@ import {
             </header>
 
             <div
-              nbCluster
+              nbChipGroup
               gap="sm"
               align="center"
-              wrap="wrap"
+              radius="none"
+              shadow="none"
               style="
-                --job-card-icon-size: 1.1rem;
+                --nb-icon-size: 1.1rem;
                 --nb-chip-icon-size: 1.1rem;
               "
             >
-              <span nbChip tone="mint" padding="lg" radius="none" shadow="none">
+              <span nbChip tone="mint" padding="lg">
                 <docs-job-card-remote-icon />
                 Remote
               </span>
 
-              <span
-                nbChip
-                tone="lavender"
-                padding="lg"
-                radius="none"
-                shadow="none"
-              >
+              <span nbChip tone="lavender" padding="lg">
                 <docs-job-card-briefcase-icon />
                 Full-time
               </span>
 
-              <span
-                nbChip
-                tone="yellow"
-                padding="lg"
-                radius="none"
-                shadow="none"
-              >
+              <span nbChip tone="yellow" padding="lg">
                 <docs-job-card-salary-icon />
                 Negotiable
               </span>
 
-              <span nbChip tone="blue" padding="lg" radius="none" shadow="none">
+              <span nbChip tone="blue" padding="lg">
                 <docs-job-card-experience-icon />
                 5+ years
               </span>
 
-              <span nbChip tone="pink" padding="lg" radius="none" shadow="none">
+              <span nbChip tone="pink" padding="lg">
                 <docs-job-card-urgent-icon />
                 Urgent
               </span>
@@ -215,10 +191,7 @@ import {
               weight="normal"
               leading="tight"
               measure="sm"
-              style="
-                font-family: inherit;
-                font-size: clamp(1.25rem, 4cqw, 1.5rem);
-              "
+              style="font-size: clamp(1.25rem, 4cqw, 1.5rem)"
             >
               Build delightful UI systems and scalable web experiences.
             </p>
@@ -244,20 +217,14 @@ import {
                     style="
                       width: 3rem;
                       height: 3rem;
-                      --job-card-icon-size: 1.5rem;
+                      --nb-icon-size: 1.5rem;
                     "
                     aria-hidden="true"
                   >
                     <docs-job-card-star-icon />
                   </div>
 
-                  <span
-                    nbText
-                    size="3xl"
-                    weight="normal"
-                    leading="none"
-                    style="font-family: inherit"
-                  >
+                  <span nbText size="3xl" weight="normal" leading="none">
                     Highlights
                   </span>
                 </div>
@@ -329,8 +296,7 @@ import {
               nbStack
               gap="sm"
               style="
-                --job-card-icon-size: 1rem;
-                --nb-media-item-title-font-family: inherit;
+                --nb-icon-size: 1rem;
                 --nb-media-item-title-size: 1rem;
                 white-space: nowrap;
               "
@@ -362,7 +328,7 @@ import {
                   size="sm"
                   shape="none"
                   tone="default"
-                  style="--job-card-icon-size: 1.25rem"
+                  style="--nb-icon-size: 1.25rem"
                 >
                   <docs-job-card-bookmark-icon />
                 </span>

@@ -62,16 +62,16 @@ export const docsNavGroups: readonly DocsNavGroup[] = [
           { label: 'Primitives used', fragment: 'primitives' },
         ],
       },
-      {
-        label: 'Job Card',
-        path: '/recipes/job-card',
-        toc: [
-          { label: 'Overview', fragment: 'overview' },
-          { label: 'Preview', fragment: 'preview' },
-          { label: 'Code', fragment: 'code' },
-          { label: 'Primitives used', fragment: 'primitives' },
-        ],
-      },
+      // {
+      //   label: 'Job Card',
+      //   path: '/recipes/job-card',
+      //   toc: [
+      //     { label: 'Overview', fragment: 'overview' },
+      //     { label: 'Preview', fragment: 'preview' },
+      //     { label: 'Code', fragment: 'code' },
+      //     { label: 'Primitives used', fragment: 'primitives' },
+      //   ],
+      // },
     ],
   },
   {

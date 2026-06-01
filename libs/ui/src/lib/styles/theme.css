@@ -47,6 +47,11 @@
   /* Typography */
   --nb-font-sans: system-ui, sans-serif;
   --nb-font-mono: monospace;
+  /* Font roles — resolved by nbTypography / nbSurface[typography]. Override any
+     role to retheme its primitives without touching templates. */
+  --nb-font-body: var(--nb-font-sans);
+  --nb-font-display: var(--nb-font-sans);
+  --nb-font-accent: var(--nb-font-sans);
   --nb-font-weight-normal: 500;
   --nb-font-weight-bold: 700;
 

@@ -98,6 +98,11 @@ The final primitive list was validated against 10 real-world UI scenarios (prici
 | Icon + text pair | Dismissed — not a primitive | No built-in icon system; users bring their own icon + `nb-label` |
 | nb-stat icon | Optional projected slot, not a built-in | Consistent with no-built-in-icon policy |
 | Primitive list scope | Lock at 4 new components for v0.2.0, expand in v0.2.1+ based on real usage | Avoid scope creep; validate with job board refactor first |
+| Typography as font-family escape hatch | Promote to a font-*role* API: `NbTypography` directive + `nbSurface typography="…"`, roles resolve `--nb-font-{body,display,accent,mono}` | Type-safe + themeable; never accept raw font-family strings in the API |
+| Repeated chip styling | Promote `NbChipGroup` to own layout (direction/gap/align) + broadcast chip context tokens (radius/shadow/transform/tracking); single `nbChip` still standalone | Removes `[--nb-chip-radius]`/`[--nb-chip-shadow]`/`uppercase` wrapper classes without forcing per-chip repetition |
+| Compact feature rows | Add `NbMediaItem size="xs"` (full compact rhythm) instead of `[--nb-media-item-title-size]` overrides; title font-family now inherits | Common compact row shouldn't need token overrides; inheriting font lets typography context reach the title |
+| Projected icon sizing | Standardize recipe/projected icons on `--nb-icon-size` (drop `--<recipe>-icon-size`); `NbIcon size` input unchanged | One token contract for projected SVGs, button trailing icons, and icon tiles |
+| **NbIconTile — deferred** | NOT built for v0.2.0 | Centered square/circle icon-tile pattern appears only 2× and in a single recipe (job-listing-card) — below the repetition bar. Recommended composition: `nbSurface layout="center"` + width/height utility + `--nb-icon-size`/`--nb-surface-bg` tokens (use the defined tone set, never `tone="custom"`). Revisit if it recurs across ≥2 recipes. |
 
 ---
 

@@ -108,6 +108,7 @@ import { DocsTokens } from '../../docs/docs-tokens';
             <input nbInput placeholder="Email" class="w-75" />
             <button
               nbButton
+              tone="yellow"
             >
               Subscribe
             </button>

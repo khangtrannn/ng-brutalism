@@ -1,16 +1,20 @@
 import { booleanAttribute, computed, Directive, input } from '@angular/core';
 
 import type { NbTone } from '../tokens/tone';
+import {
+  nbFontWeightValue,
+  nbUnderlineGapValue,
+  nbUnderlineWidthValue,
+  type NbFontWeight,
+  type NbUnderlineGap,
+  type NbUnderlineWidth,
+} from '../tokens/typography';
 
 export type NbTextSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl' | '3xl';
 
-export type NbTextWeight =
-  | 'normal'
-  | 'medium'
-  | 'semibold'
-  | 'bold'
-  | 'extrabold'
-  | 'black';
+// Weight reuses the shared font-weight scale so it stays in lockstep with
+// nbDisplay and any future typographic primitive.
+export type NbTextWeight = NbFontWeight;
 
 export type NbTextTone =
   | 'default'
@@ -59,15 +63,6 @@ const leadingMap: Record<NbTextLeading, string | null> = {
   relaxed: '1.65',
 };
 
-const weightMap: Record<NbTextWeight, string> = {
-  normal: '400',
-  medium: '500',
-  semibold: '600',
-  bold: '700',
-  extrabold: '800',
-  black: '900',
-};
-
 const toneMap: Record<NbTextTone, string> = {
   default: 'var(--nb-foreground)',
   muted: 'color-mix(in srgb, var(--nb-foreground) 80%, transparent)',
@@ -111,6 +106,8 @@ const measureMap: Record<NbTextMeasure, string> = {
     '[attr.data-leading]': 'leading()',
     '[attr.data-underline]': 'underlineAttr()',
 
+    '[style.--nb-underline-gap]': 'underlineGapValue()',
+    '[style.--nb-underline-width]': 'underlineWidthValue()',
     '[style.margin]': 'marginValue()',
     '[style.color]': 'colorValue()',
     '[style.font-size]': 'sizeValue()',
@@ -130,6 +127,8 @@ export class NbText {
   readonly measure = input<NbTextMeasure>('none');
   readonly leading = input<NbTextLeading>('normal');
   readonly underline = input<NbTextUnderline>('none');
+  readonly underlineGap = input<NbUnderlineGap | undefined>(undefined);
+  readonly underlineWidth = input<NbUnderlineWidth | undefined>(undefined);
 
   /**
    * Reset native paragraph/heading margins.
@@ -144,6 +143,16 @@ export class NbText {
     return underline === 'none' ? null : underline;
   });
 
+  protected readonly underlineGapValue = computed(() => {
+    const gap = this.underlineGap();
+    return gap ? nbUnderlineGapValue(gap) : null;
+  });
+
+  protected readonly underlineWidthValue = computed(() => {
+    const width = this.underlineWidth();
+    return width ? nbUnderlineWidthValue(width) : null;
+  });
+
   protected readonly sizeValue = computed(() => sizeMap[this.size()]);
 
   protected readonly lineHeightValue = computed(() => {
@@ -151,7 +160,7 @@ export class NbText {
     return explicitLeading ?? defaultLineHeightMap[this.size()];
   });
 
-  protected readonly weightValue = computed(() => weightMap[this.weight()]);
+  protected readonly weightValue = computed(() => nbFontWeightValue(this.weight()));
   protected readonly colorValue = computed(() => toneMap[this.tone()]);
   protected readonly transformValue = computed(() => this.transform());
   protected readonly trackingValue = computed(

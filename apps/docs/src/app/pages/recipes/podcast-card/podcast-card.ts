@@ -4,6 +4,7 @@ import {
   NbButtonTrailingIcon,
   NbCallout,
   NbChip,
+  NbChipGroup,
   NbChipTone,
   NbCluster,
   NbDisplay,
@@ -26,6 +27,7 @@ import {
     NbButtonTrailingIcon,
     NbCallout,
     NbChip,
+    NbChipGroup,
     NbCluster,
     NbDisplay,
     NbHalftone,
@@ -40,11 +42,12 @@ import {
     NbText,
   ],
   template: `
-    <div nbCluster justify="center" padding="lg" style="--nb-surface-bg: #faf6f0" class="overflow-visible">
+    <div nbCluster justify="center" padding="lg" class="overflow-visible">
       <div class="relative mx-auto w-full max-w-[36rem] overflow-visible">
         <div
           nbSurface
           clip
+          tone="cream"
           border="strong"
           shadow="hard"
           radius="xl"
@@ -96,21 +99,25 @@ import {
                 size="xl"
                 leading="display"
                 underline="bar"
-                class="[--nb-underline-gap:1.25rem]"
+                underlineGap="lg"
               >
                 DESIGN<br />SYSTEMS<br />THAT SCALE
               </h1>
 
-              <div nbCluster gap="sm">
+              <div
+                nbChipGroup
+                gap="sm"
+                radius="sm"
+                shadow="none"
+                transform="uppercase"
+              >
                 @for (stat of stats; track stat.label) {
                   <span
                     nbChip
                     [tone]="stat.tone"
                     padding="lg"
-                    radius="sm"
-                    shadow="none"
                     [icon]="stat.icon"
-                    class="uppercase text-sm font-black"
+                    class="text-sm font-black"
                   >
                     {{ stat.label }}
                   </span>

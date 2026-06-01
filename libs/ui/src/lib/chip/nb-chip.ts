@@ -17,9 +17,11 @@ import {
   type NbStyleDefaults,
 } from '../core/capabilities';
 import { NbIcon, type NbIconSize } from '../icon';
-import type { NbRadius } from '../tokens/radius';
-import type { NbShadow } from '../tokens/shadow';
+import { nbRadiusValue, type NbRadius } from '../tokens/radius';
+import { nbShadowValue, type NbShadow } from '../tokens/shadow';
+import { nbSpacingValue, type NbSpacing } from '../tokens/spacing';
 import type { NbToneToken } from '../tokens/tone';
+import type { NbTextTracking, NbTextTransform } from '../text';
 
 export type NbChipTone = NbToneToken;
 export type NbChipRadius = NbRadius;
@@ -92,11 +94,77 @@ export class NbChip {
   );
 }
 
+export type NbChipGroupDirection = 'horizontal' | 'vertical';
+export type NbChipGroupAlign = 'start' | 'center' | 'end' | 'stretch';
+
+const chipGroupAlignMap: Record<NbChipGroupAlign, string> = {
+  start: 'items-start',
+  center: 'items-center',
+  end: 'items-end',
+  stretch: 'items-stretch',
+};
+
+const chipGroupTrackingMap: Record<NbTextTracking, string | null> = {
+  tight: '-0.025em',
+  normal: null,
+  wide: '0.025em',
+  wider: '0.05em',
+};
+
+/**
+ * Layout + shared style context for a set of chips. Owns the row/column layout
+ * (direction, gap, align) and broadcasts chip-level styling — radius, shadow,
+ * text transform, tracking — to every child `nbChip` through CSS variables and
+ * inherited text properties, so chips don't repeat the same inputs. Individual
+ * `nbChip` inputs still override the group (explicit input beats context token).
+ */
 @Directive({
   selector: '[nbChipGroup]',
   host: {
-    class: 'flex flex-wrap gap-2',
+    '[class]': 'classes()',
+    '[style.gap]': 'gapValue()',
+    '[style.--nb-chip-radius]': 'chipRadiusValue()',
+    '[style.--nb-chip-shadow]': 'chipShadowValue()',
+    '[style.text-transform]': 'transformValue()',
+    '[style.letter-spacing]': 'trackingValue()',
     '[attr.data-nb-chip-group]': '""',
   },
 })
-export class NbChipGroup {}
+export class NbChipGroup {
+  readonly direction = input<NbChipGroupDirection>('horizontal');
+  readonly gap = input<NbSpacing>('sm');
+  readonly align = input<NbChipGroupAlign>('stretch');
+  readonly radius = input<NbRadius | undefined>(undefined);
+  readonly shadow = input<NbShadow | undefined>(undefined);
+  readonly transform = input<NbTextTransform>('none');
+  readonly tracking = input<NbTextTracking>('normal');
+
+  protected readonly classes = computed(() =>
+    nbClass(
+      'flex min-w-0',
+      this.direction() === 'vertical' ? 'flex-col' : 'flex-wrap',
+      chipGroupAlignMap[this.align()]
+    )
+  );
+
+  protected readonly gapValue = computed(() => nbSpacingValue(this.gap()));
+
+  protected readonly chipRadiusValue = computed(() => {
+    const radius = this.radius();
+    return radius ? nbRadiusValue(radius) : null;
+  });
+
+  protected readonly chipShadowValue = computed(() => {
+    const shadow = this.shadow();
+    return shadow ? nbShadowValue(shadow) : null;
+  });
+
+  protected readonly transformValue = computed(() => {
+    const transform = this.transform();
+    return transform === 'none' ? null : transform;
+  });
+
+  protected readonly trackingValue = computed(
+    () => chipGroupTrackingMap[this.tracking()],
+  );
+}

@@ -21,7 +21,7 @@ export type NbMediaItemOrientation = 'horizontal' | 'vertical';
 
 export type NbMediaItemAlign = 'start' | 'center' | 'between';
 
-export type NbMediaItemSize = 'sm' | 'md' | 'lg';
+export type NbMediaItemSize = 'xs' | 'sm' | 'md' | 'lg';
 
 // Tone is the shared color vocabulary; MediaItem does not redefine it. The tone
 // capability writes `--nb-media-item-{bg,fg,border-color}` from the same resolver
@@ -107,7 +107,7 @@ export class NbMediaItem {
       '[&_svg]:h-[var(--nb-media-item-icon-size)] [&_svg]:max-w-[var(--nb-media-item-icon-size)] [&_svg]:w-auto',
       '[&_img]:h-[var(--nb-media-item-icon-size)] [&_img]:max-w-[var(--nb-media-item-icon-size)] [&_img]:w-auto [&_img]:object-contain',
       '[&_[data-nb-media-item-title]]:block',
-      '[&_[data-nb-media-item-title]]:[font-family:var(--nb-media-item-title-font-family,var(--font-sans))]',
+      '[&_[data-nb-media-item-title]]:[font-family:var(--nb-media-item-title-font-family,inherit)]',
       '[&_[data-nb-media-item-title]]:font-black',
       '[&_[data-nb-media-item-title]]:leading-none',
       '[&_[data-nb-media-item-title]]:text-[length:var(--nb-media-item-title-size,var(--nb-media-item-title-default-size))]',
@@ -155,6 +155,15 @@ export class NbMediaItem {
 
   private sizeClass(): string {
     const map: Record<NbMediaItemSize, string> = {
+      xs: nbClass(
+        'gap-[var(--nb-media-item-gap)] text-[0.6875rem]',
+        '[--nb-media-item-gap:0.375rem]',
+        '[--nb-media-item-icon-size:1rem]',
+        '[--nb-media-item-surface-size:2rem]',
+        '[--nb-media-item-title-default-size:0.75rem]',
+        '[--nb-media-item-description-default-size:0.5625rem]',
+        this.variant() === 'plain' ? '' : 'px-2 py-1'
+      ),
       sm: nbClass(
         'gap-[var(--nb-media-item-gap)] text-xs',
         '[--nb-media-item-gap:0.5rem]',

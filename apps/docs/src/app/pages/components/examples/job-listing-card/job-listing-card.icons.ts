@@ -3,12 +3,12 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 const iconHostStyles = `
   :host {
     display: inline-flex;
-    width: var(--job-card-icon-size, 1em);
-    height: var(--job-card-icon-size, 1em);
+    width: var(--nb-icon-size, 1em);
+    height: var(--nb-icon-size, 1em);
     flex-shrink: 0;
     align-items: center;
     justify-content: center;
-    color: var(--job-card-icon-color, currentColor);
+    color: var(--nb-icon-color, currentColor);
   }
 
   svg {

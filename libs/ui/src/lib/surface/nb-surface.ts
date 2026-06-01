@@ -16,6 +16,7 @@ import type { NbPadding } from '../tokens/padding';
 import type { NbRadius } from '../tokens/radius';
 import type { NbShadow } from '../tokens/shadow';
 import type { NbToneToken } from '../tokens/tone';
+import { NbTypography } from '../typography';
 
 // Public type aliases — kept for API stability. They now point at the shared
 // token contracts so a token means the same thing across every primitive.
@@ -51,6 +52,8 @@ export type NbSurfaceEdge = 'none' | 'top' | 'bottom';
     { directive: NbShadowCapability, inputs: ['shadow'] },
     { directive: NbBorderCapability, inputs: ['border'] },
     { directive: NbPaddingCapability, inputs: ['padding'] },
+    // Typography context — exposes nbTypography's `font` input as `typography`.
+    { directive: NbTypography, inputs: ['font: typography'] },
   ],
   host: {
     '[class]': 'classes()',

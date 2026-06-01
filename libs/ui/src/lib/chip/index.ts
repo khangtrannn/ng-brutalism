@@ -4,4 +4,6 @@ export type {
   NbChipPadding,
   NbChipRadius,
   NbChipShadow,
+  NbChipGroupAlign,
+  NbChipGroupDirection,
 } from './nb-chip';

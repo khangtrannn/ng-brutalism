@@ -175,7 +175,7 @@ export default class JobCardRecipePage {
   NbText,
 } from '@ng-brutalism/ui';`;
 
-  protected readonly templateCode = `<div nbSurface clip border="strong" shadow="hard" radius="xl">
+  protected readonly templateCode = `<div nbSurface clip tone="cream" border="strong" shadow="hard" radius="xl">
   <!-- Header: company info + salary + type chips -->
   <div nbSplit ratio="2:1" gap="xl" padding="lg" collapse="md" separator="solid">
     <div nbStack gap="lg">
@@ -199,7 +199,8 @@ export default class JobCardRecipePage {
     </div>
 
     <div nbStack gap="lg" align="start">
-      <div nbStack gap="sm" align="start">
+      <div nbChipGroup direction="vertical" gap="sm" align="start"
+           radius="sm" shadow="none" transform="uppercase" tracking="wide">
         <span nbChip tone="mint">Remote</span>
         <span nbChip tone="lavender">Full-time</span>
         <span nbChip tone="pink">Urgent</span>
@@ -211,15 +212,14 @@ export default class JobCardRecipePage {
   <!-- Footer: requirements + CTA -->
   <div nbSection divider="top" padding="lg">
     <div nbSplit ratio="2:1" gap="lg" collapse="md">
-      <div nbCluster gap="lg" align="center" separator="dashed"
-           class="[--nb-media-item-title-size:12px]">
-        <nb-media-item icon="/icons/location.png">
+      <div nbCluster gap="lg" align="center" separator="dashed">
+        <nb-media-item size="xs" icon="/icons/location.png">
           <span nbMediaItemTitle>HCMC<br />Remote</span>
         </nb-media-item>
-        <nb-media-item icon="/icons/star.png">
+        <nb-media-item size="xs" icon="/icons/star.png">
           <span nbMediaItemTitle>5+<br />Years Exp</span>
         </nb-media-item>
-        <nb-media-item icon="/icons/world.png">
+        <nb-media-item size="xs" icon="/icons/world.png">
           <span nbMediaItemTitle>International<br />Team</span>
         </nb-media-item>
       </div>

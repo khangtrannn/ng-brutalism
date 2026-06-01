@@ -190,7 +190,7 @@ export default class PodcastCardRecipePage {
   <!-- Header: podcast chip + menu -->
   <div nbSection padding="lg">
     <div nbCluster gap="md" align="center" justify="between">
-      <span nbChip tone="pink" class="uppercase font-bold [--nb-chip-radius:8px]">
+      <span nbChip tone="pink" radius="md" class="uppercase font-bold">
         <span nbIcon src="/podcast-card/microphone.svg" decorative></span>
         Podcast
       </span>
@@ -208,7 +208,7 @@ export default class PodcastCardRecipePage {
 
   <!-- Episode badge -->
   <div nbSection padding="lg">
-    <span nbChip tone="yellow" class="uppercase font-bold [--nb-chip-radius:8px]">
+    <span nbChip tone="yellow" radius="md" class="uppercase font-bold">
       EP 42
     </span>
   </div>
@@ -222,16 +222,16 @@ export default class PodcastCardRecipePage {
 
   <!-- Metadata chips -->
   <div nbSection padding="lg">
-    <div nbCluster gap="sm">
-      <span nbChip tone="mint" class="uppercase text-xs">
+    <div nbChipGroup gap="sm" radius="sm" shadow="none" transform="uppercase">
+      <span nbChip tone="mint" class="text-xs">
         <span nbIcon src="/podcast-card/clock.svg" decorative></span>
         45 MIN
       </span>
-      <span nbChip tone="lavender" class="uppercase text-xs">
+      <span nbChip tone="lavender" class="text-xs">
         <span nbIcon src="/podcast-card/sparkle.svg" decorative></span>
         NEW
       </span>
-      <span nbChip tone="pink" class="uppercase text-xs">
+      <span nbChip tone="pink" class="text-xs">
         <span nbIcon src="/podcast-card/user.svg" decorative></span>
         UX
       </span>
