@@ -14,7 +14,7 @@ import {
   imports: [NbMediaItem, NbMediaItemTitle, NbMediaItemDescription, NbSurface],
   template: `
     <div nbMediaItem variant="plain" size="md">
-      <span nbSurface tone="yellow" radius="base" shadow="none" size="lg" layout="center">
+      <span nbSurface tone="yellow" radius="sm" shadow="none" size="lg" layout="center">
         <img src="/icons/calendar.png" alt="Date" />
       </span>
       <div>

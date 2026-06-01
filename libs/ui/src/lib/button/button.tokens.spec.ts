@@ -57,7 +57,10 @@ describe('NbButton token surface', () => {
     expect(cls).toContain(
       '[--nb-button-border-width:var(--nb-border-width)]'
     );
-    expect(cls).toContain('[--nb-button-radius:var(--nb-radius)]');
+    // Radius is now written as a component variable by the radius capability.
+    expect(button.style.getPropertyValue('--nb-button-radius')).toBe(
+      'var(--nb-radius)'
+    );
     expect(cls).toContain(
       '[--nb-button-shadow:var(--nb-shadow-offset-x)_var(--nb-shadow-offset-y)_0_var(--nb-shadow)]'
     );

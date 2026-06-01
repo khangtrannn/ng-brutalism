@@ -66,7 +66,7 @@ describe('NbCluster', () => {
     expect(cluster.className).toContain('flex');
     expect(cluster.className).toContain('min-w-0');
     expect(cluster.className).toContain('gap-[var(--nb-cluster-gap)]');
-    expect(cluster.className).toContain('[--nb-cluster-gap:0.75rem]');
+    expect(cluster.style.getPropertyValue('--nb-cluster-gap')).toBe('0.75rem');
     expect(cluster.className).toContain('items-center');
     expect(cluster.className).toContain('justify-start');
     expect(cluster.className).toContain('flex-wrap');
@@ -88,7 +88,7 @@ describe('NbCluster', () => {
     expect(cluster.getAttribute('data-divider')).toBe('dashed');
     expect(cluster.className).toContain('gap-y-[var(--nb-cluster-gap)]');
     expect(cluster.className).toContain('gap-x-0');
-    expect(cluster.className).toContain('[--nb-cluster-gap:1rem]');
+    expect(cluster.style.getPropertyValue('--nb-cluster-gap')).toBe('1rem');
     expect(cluster.className).toContain(
       '[--nb-cluster-divider-gap:calc(var(--nb-cluster-gap)*0.5)]'
     );
@@ -135,7 +135,8 @@ describe('NbCluster', () => {
     const cluster = fixture.nativeElement.querySelector('[nbCluster]') as HTMLElement;
 
     expect(cluster.getAttribute('data-padding')).toBe('lg');
-    expect(cluster.className).toContain('p-6');
+    expect(cluster.className).toContain('p-[var(--nb-cluster-padding)]');
+    expect(cluster.style.getPropertyValue('--nb-cluster-padding')).toBe('1.5rem');
   });
 
   it('maps gap, alignment, justification, and wrapping', async () => {
@@ -148,7 +149,7 @@ describe('NbCluster', () => {
     expect(cluster.getAttribute('data-align')).toBe('baseline');
     expect(cluster.getAttribute('data-justify')).toBe('between');
     expect(cluster.getAttribute('data-wrap')).toBe('nowrap');
-    expect(cluster.className).toContain('[--nb-cluster-gap:1.5rem]');
+    expect(cluster.style.getPropertyValue('--nb-cluster-gap')).toBe('1.5rem');
     expect(cluster.className).toContain('items-baseline');
     expect(cluster.className).toContain('justify-between');
     expect(cluster.className).toContain('flex-nowrap');

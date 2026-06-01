@@ -1,9 +1,17 @@
 import { Directive, computed, input } from '@angular/core';
 
 import { nbClass } from '../core/class';
-import { nbToneTokens, type NbTone } from '../tokens/tone';
+import {
+  NbShadowCapability,
+  NbToneCapability,
+  NB_STYLE_DEFAULTS,
+  NB_STYLE_NAMESPACE,
+  type NbStyleDefaults,
+} from '../core/capabilities';
+import { nbRadiusValue, type NbRadius } from '../tokens/radius';
+import type { NbToneToken } from '../tokens/tone';
 
-export type NbCalloutTone = NbTone;
+export type NbCalloutTone = NbToneToken;
 
 export type NbCalloutSize = 'sm' | 'md' | 'lg' | 'xl';
 
@@ -13,61 +21,54 @@ export type NbCalloutShadow = 'none' | 'default' | 'hard';
 
 // Optional radius override. When unset, the radius is derived from `size`
 // (larger callouts get rounder corners). Set this to opt out of that scaling.
-export type NbCalloutRadius = 'none' | 'sm' | 'md' | 'lg' | 'xl' | 'full';
-
-const radiusMap: Record<NbCalloutRadius, string> = {
-  none: '0px',
-  sm: '0.375rem',
-  md: '0.5rem',
-  lg: '0.75rem',
-  xl: '0.875rem',
-  full: '9999px',
-};
+export type NbCalloutRadius = NbRadius;
 
 @Directive({
   selector: '[nbCallout]',
+  providers: [
+    { provide: NB_STYLE_NAMESPACE, useValue: 'callout' },
+    {
+      provide: NB_STYLE_DEFAULTS,
+      useValue: { tone: 'yellow', shadow: 'hard' } satisfies NbStyleDefaults,
+    },
+  ],
+  hostDirectives: [
+    { directive: NbToneCapability, inputs: ['tone'] },
+    { directive: NbShadowCapability, inputs: ['shadow'] },
+  ],
   host: {
     '[class]': 'classes()',
     '[attr.data-nb-callout]': '""',
-    '[attr.data-tone]': 'tone()',
     '[attr.data-size]': 'size()',
     '[attr.data-layout]': 'layout()',
-    '[attr.data-shadow]': 'shadow()',
-    '[attr.data-radius]': 'radius()',
-    '[style.--nb-callout-bg]': 'toneTokens().bg',
-    '[style.--nb-callout-fg]': 'toneTokens().fg',
+    '[attr.data-radius]': 'radius() ?? null',
     '[style.--nb-callout-radius]': 'radiusStyle()',
   },
 })
 export class NbCallout {
-  readonly tone = input<NbCalloutTone>('yellow');
   readonly size = input<NbCalloutSize>('lg');
   readonly layout = input<NbCalloutLayout>('inline');
-  readonly shadow = input<NbCalloutShadow>('hard');
   readonly radius = input<NbCalloutRadius | undefined>(undefined);
 
   protected readonly classes = computed(() =>
     nbClass(
       'relative inline-flex items-center gap-3',
       'bg-(--nb-callout-bg) text-(--nb-callout-fg)',
-      'border-(length:--nb-callout-border-width) border-(--nb-border)',
+      'border-(length:--nb-callout-border-width) border-(--nb-callout-border-color)',
       'rounded-(--nb-callout-radius)',
       'shadow-[var(--nb-callout-shadow)]',
       'font-black uppercase leading-none',
       this.sizeClass(),
-      this.layoutClass(),
-      this.shadowClass()
+      this.layoutClass()
     )
   );
-
-  protected readonly toneTokens = computed(() => nbToneTokens(this.tone()));
 
   // Inline style wins over the size-derived `--nb-callout-radius` class, so an
   // explicit `radius` always takes precedence; null leaves the size default.
   protected readonly radiusStyle = computed(() => {
     const r = this.radius();
 
-    return r !== undefined ? radiusMap[r] : null;
+    return r !== undefined ? nbRadiusValue(r) : null;
   });
 
   private sizeClass(): string {
@@ -89,16 +90,5 @@ export class NbCallout {
     };
 
     return map[this.layout()];
-  }
-
-  private shadowClass(): string {
-    const map: Record<NbCalloutShadow, string> = {
-      none: '[--nb-callout-shadow:none]',
-      default:
-        '[--nb-callout-shadow:var(--nb-shadow-offset-x)_var(--nb-shadow-offset-y)_0_0_var(--nb-shadow)]',
-      hard: '[--nb-callout-shadow:6px_6px_0_0_var(--nb-shadow)]',
-    };
-
-    return map[this.shadow()];
   }
 }

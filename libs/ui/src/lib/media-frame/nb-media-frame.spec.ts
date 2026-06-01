@@ -71,8 +71,8 @@ describe('NbMediaFrame', () => {
     expect(frame.style.getPropertyValue('--nb-media-frame-bg')).toBe(
       'var(--nb-surface)'
     );
-    expect(frame.className).toContain('[--nb-media-frame-radius:1rem]');
-    expect(frame.className).toContain('[--nb-media-frame-shadow:none]');
+    expect(frame.style.getPropertyValue('--nb-media-frame-radius')).toBe('1rem');
+    expect(frame.style.getPropertyValue('--nb-media-frame-shadow')).toBe('none');
   });
 
   it('maps tone, ratio, fit, radius, and shadow attributes', async () => {
@@ -92,11 +92,13 @@ describe('NbMediaFrame', () => {
     );
     expect(frame.className).toContain('aspect-[21/9]');
     expect(frame.className).toContain('[&>video]:object-contain');
-    expect(frame.className).toContain('[--nb-media-frame-radius:1.5rem]');
-    expect(frame.className).toContain(
-      '[--nb-media-frame-shadow:6px_6px_0_0_var(--nb-shadow)]'
+    expect(frame.style.getPropertyValue('--nb-media-frame-radius')).toBe('1.5rem');
+    expect(frame.style.getPropertyValue('--nb-media-frame-shadow')).toBe(
+      '6px 6px 0 0 var(--nb-shadow)'
     );
-    expect(frame.className).toContain('[--nb-media-frame-border-width:3px]');
+    expect(frame.style.getPropertyValue('--nb-media-frame-border-width')).toBe(
+      '3px'
+    );
   });
 
   it.each([

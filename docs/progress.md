@@ -23,11 +23,11 @@ For history and details, read the domain's own `progress.md`.
 ---
 
 ## Components
-**Status:** Stabilization pass on `feat/recipes`. Added built-in accent underline to `nbDisplay`/`nbText` (`underline="bar" | "wave"`, token-driven `--nb-underline-*`, default `--nb-pink`); podcast-card recipe uses it instead of manual bar spans. Divider border color classes made explicit. `NbButton.fullWidth` uses `booleanAttribute`. `NbIcon` assigns `--nb-icon-color`. Job card recipe added (P9). All tests pass; build clean.
-**Last action:** Podcast-card recipe audit — removed duplicate `overflow-hidden` (nbSurface `clip` owns it), moved button typography to nested `nbText`, added portable `max-w-[28rem]` wrapper. Documented the ng-brutalism/`nbText`/Tailwind boundary in `docs/components/composition-philosophy.md`. Flagged `NbButton` typography inputs (`fontSize`/`transform`/`tracking`) for deprecation.
-**Next:** Visual QA pass on job card and cluster divider demos, then cut v0.2.0 release.
+**Status:** Internal style-capability refactor landed on `refactor/internal-style-capabilities`. Shared token contracts + resolvers (`NbRadius`/`NbShadow`/`NbBorderStrength`/`NbSpacing`/`NbPadding`/`NbDivider` + `nbToneVars`) feed 6 internal capability directives composed into 9 primitives via `hostDirectives`. Capabilities write component-specific CSS vars (`--nb-surface-radius`, `--nb-button-radius`, …) through signal-driven `[style]` maps (no `effect()`). Values canonicalized; duplicated maps removed. ui build + 150 tests green.
+**Last action:** Refactored Surface/MediaFrame/Button/Chip/Callout/Section/Stack/Cluster/Split. Renamed `nbSection border`→`divider` (+ `borderStyle`→`dividerStyle`); dropped Surface `radius="base"`/`shadow="lifted"`. Architecture + migration summary in `docs/components/style-capabilities.md`.
+**Next:** Build docs app + visual QA podcast-card; then resume v0.2.0 release. Follow-up: fold Button tone/variant into tone capability post-1.0.
 **Goal:** All 18 reference designs buildable with v0.2.0 primitives (~90% fidelity).
-→ Plan: `docs/release/v0.2.0-plan.md`
+→ Plan: `docs/release/v0.2.0-plan.md` · Arch: `docs/components/style-capabilities.md`
 
 ---
 

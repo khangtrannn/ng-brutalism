@@ -95,8 +95,8 @@ interface AlignDemo {
               nbSurface
               border="strong"
               layout="stack"
-              radius="base"
-              shadow="lifted"
+              radius="sm"
+              shadow="hard"
               clip
             >
               <div class="border-b-2 border-(--nb-border) bg-(--nb-accent) px-4 py-3 text-(--nb-accent-foreground)">
@@ -440,7 +440,7 @@ interface AlignDemo {
 export default class MediaItemPage {
   protected readonly importCode = `import { NbMediaItem, NbMediaItemTitle, NbSeparator, NbSurface } from '@ng-brutalism/ui';`;
 
-  protected readonly defaultExampleCode = `<div nbSurface border="strong" layout="stack" radius="base" shadow="lifted" clip>
+  protected readonly defaultExampleCode = `<div nbSurface border="strong" layout="stack" radius="sm" shadow="hard" clip>
   <div class="border-b-2 border-(--nb-border) bg-(--nb-accent) px-4 py-3 text-(--nb-accent-foreground)">
     <span class="font-heading text-2xl uppercase leading-none">Your Flight</span>
   </div>

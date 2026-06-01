@@ -66,6 +66,19 @@ Custom expressive typography is composed:
 </button>
 ```
 
+## Component-specific CSS variables
+
+Every primitive's visual tokens resolve to a namespaced variable set
+(`--nb-surface-bg`, `--nb-button-radius`, `--nb-media-frame-shadow`, …) written
+by internal style capabilities. These are the customization/debug contract:
+inspect them in devtools, document them, and override per token. The vocabulary
+(`tone`, `radius`, `shadow`, `border`, `gap`, `padding`) is defined once in
+`libs/ui/src/lib/tokens/` so a token means the same thing across every primitive.
+See [style-capabilities.md](./style-capabilities.md) for the internal architecture.
+
+> Note: `border` means **outline strength** library-wide. Line placement between
+> layout regions is `divider` (e.g. `nbSection divider="top"`).
+
 ## Don't duplicate what a primitive already owns
 
 If `nbSurface clip` already applies `overflow: hidden`, don't add `overflow-hidden`

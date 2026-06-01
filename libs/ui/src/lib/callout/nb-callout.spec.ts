@@ -48,16 +48,18 @@ describe('NbCallout', () => {
     expect(callout.className).toContain(
       'border-(length:--nb-callout-border-width)'
     );
-    expect(callout.className).toContain('border-(--nb-border)');
+    expect(callout.className).toContain('border-(--nb-callout-border-color)');
     expect(callout.className).toContain('rounded-(--nb-callout-radius)');
     expect(callout.className).toContain('shadow-[var(--nb-callout-shadow)]');
     expect(callout.className).toContain('font-black');
     expect(callout.style.getPropertyValue('--nb-callout-bg')).toBe(
       'var(--nb-yellow)'
     );
+    // Border width still derives from `size` (size lg -> 3px) via the class.
     expect(callout.className).toContain('[--nb-callout-border-width:3px]');
-    expect(callout.className).toContain(
-      '[--nb-callout-shadow:6px_6px_0_0_var(--nb-shadow)]'
+    // Shadow now comes from the shadow capability as a component variable.
+    expect(callout.style.getPropertyValue('--nb-callout-shadow')).toBe(
+      '6px 6px 0 0 var(--nb-shadow)'
     );
   });
 
@@ -78,8 +80,8 @@ describe('NbCallout', () => {
     expect(callout.className).toContain('text-5xl');
     expect(callout.className).toContain('w-full');
     expect(callout.className).toContain('justify-between');
-    expect(callout.className).toContain(
-      '[--nb-callout-shadow:var(--nb-shadow-offset-x)_var(--nb-shadow-offset-y)_0_0_var(--nb-shadow)]'
+    expect(callout.style.getPropertyValue('--nb-callout-shadow')).toBe(
+      'var(--nb-shadow-offset-x) var(--nb-shadow-offset-y) 0 0 var(--nb-shadow)'
     );
   });
 

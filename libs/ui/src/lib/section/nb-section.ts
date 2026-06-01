@@ -1,20 +1,23 @@
 import { Directive, booleanAttribute, computed, input } from '@angular/core';
 
 import { nbClass } from '../core/class';
+import {
+  NbPaddingCapability,
+  NB_STYLE_DEFAULTS,
+  NB_STYLE_NAMESPACE,
+  type NbStyleDefaults,
+} from '../core/capabilities';
+import type { NbDivider } from '../tokens/divider';
+import type { NbPadding } from '../tokens/padding';
 
-export type NbSectionPadding = 'none' | 'xs' | 'sm' | 'md' | 'lg' | 'xl';
+export type NbSectionPadding = NbPadding;
 
-export type NbSectionBorder =
-  | 'none'
-  | 'top'
-  | 'right'
-  | 'bottom'
-  | 'left'
-  | 'block'
-  | 'inline'
-  | 'all';
+// `divider` is line placement between regions — distinct from `border`
+// (outline strength) elsewhere in the library. Renamed from the former
+// `border` input so `border` means strength library-wide.
+export type NbSectionDivider = NbDivider;
 
-export type NbSectionBorderStyle = 'solid' | 'dashed' | 'dotted';
+export type NbSectionDividerStyle = 'solid' | 'dashed' | 'dotted';
 
 export type NbSectionLayout = 'default' | 'center' | 'between';
 
@@ -23,49 +26,43 @@ export type NbSectionAlign = 'stretch' | 'start' | 'center' | 'end';
 @Directive({
   selector: '[nbSection]',
   exportAs: 'nbSection',
+  providers: [
+    { provide: NB_STYLE_NAMESPACE, useValue: 'section' },
+    {
+      provide: NB_STYLE_DEFAULTS,
+      useValue: { padding: 'md' } satisfies NbStyleDefaults,
+    },
+  ],
+  hostDirectives: [{ directive: NbPaddingCapability, inputs: ['padding'] }],
   host: {
     '[class]': 'classes()',
     '[attr.data-nb-section]': '""',
-    '[attr.data-padding]': 'padding()',
-    '[attr.data-border]': 'border()',
-    '[attr.data-border-style]': 'borderStyle()',
+    '[attr.data-divider]': 'divider()',
+    '[attr.data-divider-style]': 'dividerStyle()',
     '[attr.data-layout]': 'layout()',
     '[attr.data-align]': 'align()',
     '[attr.data-flush]': 'flush() ? "" : null',
   },
 })
 export class NbSection {
-  readonly padding = input<NbSectionPadding>('md');
-  readonly border = input<NbSectionBorder>('none');
-  readonly borderStyle = input<NbSectionBorderStyle>('solid');
+  readonly divider = input<NbSectionDivider>('none');
+  readonly dividerStyle = input<NbSectionDividerStyle>('solid');
   readonly layout = input<NbSectionLayout>('default');
   readonly align = input<NbSectionAlign>('stretch');
-  readonly flush = input<boolean, unknown>(false, { transform: booleanAttribute });
+  readonly flush = input<boolean, unknown>(false, {
+    transform: booleanAttribute,
+  });
 
   protected readonly classes = computed(() =>
     nbClass(
       'box-border min-w-0',
       'p-[var(--nb-section-padding)]',
-      this.paddingClass(),
       this.layoutClass(),
       this.alignClass(),
-      this.borderClass(),
+      this.dividerClass(),
       this.flush() && 'mx-[calc(var(--nb-section-padding)*-1)]'
     )
   );
-
-  private paddingClass(): string {
-    const map: Record<NbSectionPadding, string> = {
-      none: '[--nb-section-padding:0px]',
-      xs: '[--nb-section-padding:0.5rem]',
-      sm: '[--nb-section-padding:0.75rem]',
-      md: '[--nb-section-padding:1rem]',
-      lg: '[--nb-section-padding:1.5rem]',
-      xl: '[--nb-section-padding:2rem]',
-    };
-
-    return map[this.padding()];
-  }
 
   private layoutClass(): string {
     const map: Record<NbSectionLayout, string> = {
@@ -92,16 +89,16 @@ export class NbSection {
     return map[this.align()];
   }
 
-  private borderClass(): string {
-    const side = this.border();
+  private dividerClass(): string {
+    const side = this.divider();
 
     if (side === 'none') {
       return '';
     }
 
-    const style = this.borderStyleClass();
+    const style = this.dividerStyleClass();
 
-    const widthMap: Record<Exclude<NbSectionBorder, 'none'>, string> = {
+    const widthMap: Record<Exclude<NbSectionDivider, 'none'>, string> = {
       top: 'border-t-(length:--nb-border-width)',
       right: 'border-r-(length:--nb-border-width)',
       bottom: 'border-b-(length:--nb-border-width)',
@@ -114,13 +111,13 @@ export class NbSection {
     return nbClass(widthMap[side], 'border-(--nb-border)', style);
   }
 
-  private borderStyleClass(): string {
-    const map: Record<NbSectionBorderStyle, string> = {
+  private dividerStyleClass(): string {
+    const map: Record<NbSectionDividerStyle, string> = {
       solid: 'border-solid',
       dashed: 'border-dashed',
       dotted: 'border-dotted',
     };
 
-    return map[this.borderStyle()];
+    return map[this.dividerStyle()];
   }
 }
