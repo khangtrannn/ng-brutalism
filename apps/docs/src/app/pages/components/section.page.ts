@@ -9,8 +9,8 @@ import {
   NbStack,
   NbSurface,
   type NbSectionAlign,
-  type NbSectionBorder,
-  type NbSectionBorderStyle,
+  type NbSectionDivider,
+  type NbSectionDividerStyle,
   type NbSectionLayout,
   type NbSectionPadding,
 } from '@ng-brutalism/ui';
@@ -24,14 +24,14 @@ interface SectionPaddingDemo {
   readonly label: string;
 }
 
-interface SectionBorderDemo {
-  readonly value: NbSectionBorder;
+interface SectionDividerDemo {
+  readonly value: NbSectionDivider;
   readonly label: string;
   readonly hint: string;
 }
 
-interface SectionBorderStyleDemo {
-  readonly value: NbSectionBorderStyle;
+interface SectionDividerStyleDemo {
+  readonly value: NbSectionDividerStyle;
   readonly label: string;
 }
 
@@ -105,7 +105,7 @@ interface SectionLayoutDemo {
           >
             <div
               nbSection
-              border="bottom"
+              divider="bottom"
               padding="lg"
               layout="between"
               align="center"
@@ -131,7 +131,7 @@ interface SectionLayoutDemo {
 
             <div
               nbSection
-              border="top"
+              divider="top"
               padding="lg"
               layout="between"
               align="center"
@@ -240,8 +240,8 @@ interface SectionLayoutDemo {
                   <div
                     nbSection
                     padding="md"
-                    border="all"
-                    [borderStyle]="style.value"
+                    divider="all"
+                    [dividerStyle]="style.value"
                   >
                     <div
                       class="grid h-12 place-items-center border-2 border-(--nb-border) bg-(--nb-lavender) px-3 font-mono text-xs font-black uppercase"
@@ -325,7 +325,7 @@ interface SectionLayoutDemo {
             <div
               nbSection
               padding="lg"
-              border="bottom"
+              divider="bottom"
               layout="between"
               align="center"
               class="bg-(--nb-cream)"
@@ -357,7 +357,7 @@ interface SectionLayoutDemo {
 
             <div
               nbSection
-              border="top"
+              divider="top"
               padding="lg"
               layout="between"
               align="center"
@@ -406,7 +406,7 @@ interface SectionLayoutDemo {
               </tr>
               <tr class="border-b-2 border-(--nb-border)">
                 <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">
-                  border
+                  divider
                 </td>
                 <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">
                   'none' | 'top' | 'right' | 'bottom' | 'left' | 'block' |
@@ -416,14 +416,14 @@ interface SectionLayoutDemo {
                   'none'
                 </td>
                 <td class="px-4 py-3">
-                  Which side(s) render a border. Uses
+                  Which side(s) render a divider line. Uses
                   <code class="font-mono">--nb-border</code> and
                   <code class="font-mono">--nb-border-width</code>.
                 </td>
               </tr>
               <tr class="border-b-2 border-(--nb-border)">
                 <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">
-                  borderStyle
+                  dividerStyle
                 </td>
                 <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">
                   'solid' | 'dashed' | 'dotted'
@@ -496,7 +496,7 @@ export default class SectionPage {
   protected readonly importCode = `import { NbSection } from '@ng-brutalism/ui';`;
 
   protected readonly defaultExampleCode = `<div nbSurface tone="cream" shadow="hard" radius="lg" clip>
-  <div nbSection border="bottom" padding="lg" layout="between" align="center">
+  <div nbSection divider="bottom" padding="lg" layout="between" align="center">
     <h2 nbDisplay>Alpha Launch</h2>
     <span nbChip tone="mint">Active</span>
   </div>
@@ -505,7 +505,7 @@ export default class SectionPage {
     <p>Section owns the inner regions of a card.</p>
   </div>
 
-  <div nbSection border="top" padding="lg" layout="between" align="center">
+  <div nbSection divider="top" padding="lg" layout="between" align="center">
     <span>12 collaborators</span>
     <button nbButton>Open project</button>
   </div>
@@ -518,24 +518,24 @@ export default class SectionPage {
 <div nbSection padding="lg">...</div>
 <div nbSection padding="xl">...</div>`;
 
-  protected readonly bordersExampleCode = `<div nbSection border="top">...</div>
-<div nbSection border="right">...</div>
-<div nbSection border="bottom">...</div>
-<div nbSection border="left">...</div>
-<div nbSection border="block">...</div>
-<div nbSection border="inline">...</div>
-<div nbSection border="all">...</div>`;
+  protected readonly bordersExampleCode = `<div nbSection divider="top">...</div>
+<div nbSection divider="right">...</div>
+<div nbSection divider="bottom">...</div>
+<div nbSection divider="left">...</div>
+<div nbSection divider="block">...</div>
+<div nbSection divider="inline">...</div>
+<div nbSection divider="all">...</div>`;
 
-  protected readonly borderStylesExampleCode = `<div nbSection border="all" borderStyle="solid">...</div>
-<div nbSection border="all" borderStyle="dashed">...</div>
-<div nbSection border="all" borderStyle="dotted">...</div>`;
+  protected readonly borderStylesExampleCode = `<div nbSection divider="all" dividerStyle="solid">...</div>
+<div nbSection divider="all" dividerStyle="dashed">...</div>
+<div nbSection divider="all" dividerStyle="dotted">...</div>`;
 
   protected readonly layoutsExampleCode = `<div nbSection layout="default">...</div>
 <div nbSection layout="center" align="center">...</div>
 <div nbSection layout="between" align="center">...</div>`;
 
   protected readonly compositionExampleCode = `<div nbSurface tone="white" shadow="hard" radius="lg" clip>
-  <div nbSection padding="lg" border="bottom" layout="between" align="center">
+  <div nbSection padding="lg" divider="bottom" layout="between" align="center">
     <h2 nbDisplay>Design Sprint</h2>
     <span nbChip tone="lavender">Annual</span>
   </div>
@@ -544,7 +544,7 @@ export default class SectionPage {
     <p>Three weeks of guided sessions and a final brutalist showcase.</p>
   </div>
 
-  <div nbSection border="top" padding="lg" layout="between" align="center">
+  <div nbSection divider="top" padding="lg" layout="between" align="center">
     <div nbCallout tone="yellow" shadow="hard">$799</div>
     <button nbButton>Enroll</button>
   </div>
@@ -567,13 +567,13 @@ export default class SectionPage {
     { value: 'block', label: 'block', hint: 'top + bottom' },
     { value: 'inline', label: 'inline', hint: 'left + right' },
     { value: 'all', label: 'all', hint: 'fully outlined' },
-  ] satisfies readonly SectionBorderDemo[];
+  ] satisfies readonly SectionDividerDemo[];
 
   protected readonly borderStyles = [
     { value: 'solid', label: 'solid' },
     { value: 'dashed', label: 'dashed' },
     { value: 'dotted', label: 'dotted' },
-  ] satisfies readonly SectionBorderStyleDemo[];
+  ] satisfies readonly SectionDividerStyleDemo[];
 
   protected readonly layouts = [
     {

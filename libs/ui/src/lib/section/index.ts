@@ -2,8 +2,8 @@ export { NbSection } from './nb-section';
 
 export type {
   NbSectionAlign,
-  NbSectionBorder,
-  NbSectionBorderStyle,
+  NbSectionDivider,
+  NbSectionDividerStyle,
   NbSectionLayout,
   NbSectionPadding,
 } from './nb-section';

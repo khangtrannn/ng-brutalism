@@ -1,10 +1,15 @@
 import { Directive, booleanAttribute, computed, input } from '@angular/core';
 
 import { nbClass } from '../core/class';
+import {
+  NbRadiusCapability,
+  NB_STYLE_DEFAULTS,
+  NB_STYLE_NAMESPACE,
+  type NbStyleDefaults,
+} from '../core/capabilities';
 import { nbToneTokens } from '../tokens/tone';
 import type {
   NbButtonFontSize,
-  NbButtonRadius,
   NbButtonShadow,
   NbButtonSize,
   NbButtonTone,
@@ -32,15 +37,6 @@ const fontSizeMap: Record<NbButtonFontSize, string> = {
   '3xl': 'text-3xl',
 };
 
-const radiusMap: Record<NbButtonRadius, string> = {
-  none: '0',
-  sm: '0.25rem',
-  md: '0.5rem',
-  lg: '0.75rem',
-  xl: '1rem',
-  full: '999px',
-};
-
 const weightMap: Record<NbButtonWeight, string> = {
   bold: 'font-bold',
   extrabold: 'font-extrabold',
@@ -60,6 +56,14 @@ const trackingMap: Record<NbButtonTracking, string> = {
 
 @Directive({
   selector: 'button[nbButton], a[nbButton]',
+  providers: [
+    { provide: NB_STYLE_NAMESPACE, useValue: 'button' },
+    {
+      provide: NB_STYLE_DEFAULTS,
+      useValue: { radius: 'md' } satisfies NbStyleDefaults,
+    },
+  ],
+  hostDirectives: [{ directive: NbRadiusCapability, inputs: ['radius'] }],
   host: {
     '[class]': 'classes()',
     '[attr.data-variant]': 'variant()',
@@ -69,7 +73,6 @@ const trackingMap: Record<NbButtonTracking, string> = {
     '[attr.data-full-width]': 'fullWidth() ? "" : null',
     '[style.--nb-button-bg]': 'toneBg()',
     '[style.--nb-button-fg]': 'toneFg()',
-    '[style.--nb-button-radius]': 'radiusStyle()',
   },
 })
 export class NbButton {
@@ -78,7 +81,6 @@ export class NbButton {
   readonly shadow = input<NbButtonShadow>('default');
   readonly size = input<NbButtonSize>('md');
   readonly fontSize = input<NbButtonFontSize | undefined>(undefined);
-  readonly radius = input<NbButtonRadius | undefined>(undefined);
   readonly weight = input<NbButtonWeight>('bold');
   readonly transform = input<NbButtonTransform>('none');
   readonly tracking = input<NbButtonTracking>('normal');
@@ -94,11 +96,6 @@ export class NbButton {
     return t !== undefined ? nbToneTokens(t).fg : null;
   });
 
-  protected readonly radiusStyle = computed(() => {
-    const r = this.radius();
-    return r !== undefined ? radiusMap[r] : null;
-  });
-
   protected readonly classes = computed(() =>
     nbClass(
       'inline-flex items-center justify-center whitespace-nowrap select-none',
@@ -106,7 +103,6 @@ export class NbButton {
       '[--nb-button-fg:var(--nb-main-foreground)]',
       '[--nb-button-border:var(--nb-border)]',
       '[--nb-button-border-width:var(--nb-border-width)]',
-      '[--nb-button-radius:var(--nb-radius)]',
       '[--nb-button-shadow:var(--nb-shadow-offset-x)_var(--nb-shadow-offset-y)_0_var(--nb-shadow)]',
       'bg-(--nb-button-bg) text-(--nb-button-fg)',
       'rounded-(--nb-button-radius)',

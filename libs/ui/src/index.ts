@@ -4,7 +4,37 @@ export { provideNgBrutalism } from './lib/core/provide';
 export type { NbConfig } from './lib/core/provide';
 export { NB_THEME_CONFIG } from './lib/tokens/theme.tokens';
 export type { NbThemeConfig } from './lib/tokens/theme.tokens';
-export type { NbTone, NbToneTokens } from './lib/tokens/tone';
+export type { NbTone, NbToneTokens, NbToneToken, NbToneVars } from './lib/tokens/tone';
+export { nbToneTokens, nbToneVars } from './lib/tokens/tone';
+
+// Shared design tokens — one vocabulary for every primitive's visual grammar.
+export type { NbRadius } from './lib/tokens/radius';
+export { nbRadiusValue } from './lib/tokens/radius';
+export type { NbShadow } from './lib/tokens/shadow';
+export { nbShadowValue } from './lib/tokens/shadow';
+export type { NbBorderStrength } from './lib/tokens/border';
+export { nbBorderWidthValue } from './lib/tokens/border';
+export type { NbSpacing } from './lib/tokens/spacing';
+export { nbSpacingValue } from './lib/tokens/spacing';
+export type { NbPadding } from './lib/tokens/padding';
+export { nbPaddingValue } from './lib/tokens/padding';
+export type { NbDivider } from './lib/tokens/divider';
+
+// INTERNAL — exported only because Angular requires classes referenced by
+// `hostDirectives` to be reachable from the package entrypoint (NG3001). These
+// are an internal composition mechanism: compose the public primitives
+// (nbSurface, nbButton, …) instead of applying these capabilities directly.
+export {
+  NbToneCapability,
+  NbRadiusCapability,
+  NbShadowCapability,
+  NbBorderCapability,
+  NbPaddingCapability,
+  NbGapCapability,
+  NB_STYLE_NAMESPACE,
+  NB_STYLE_DEFAULTS,
+  type NbStyleDefaults,
+} from './lib/core/capabilities';
 
 // Components
 export { NbCheckbox } from './lib/checkbox';
@@ -140,8 +170,8 @@ export type {
 export { NbSection } from './lib/section';
 export type {
   NbSectionAlign,
-  NbSectionBorder,
-  NbSectionBorderStyle,
+  NbSectionDivider,
+  NbSectionDividerStyle,
   NbSectionLayout,
   NbSectionPadding,
 } from './lib/section';

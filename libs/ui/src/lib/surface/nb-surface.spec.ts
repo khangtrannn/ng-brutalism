@@ -39,23 +39,8 @@ class ToneSurfaceTest {
 
 @Component({
   imports: [NbSurface],
-  template: `<div nbSurface style="--nb-surface-bg: #fff1dc">
-    Custom background
-  </div>`,
-})
-class CustomBgSurfaceTest {}
-
-@Component({
-  imports: [NbSurface],
   template: `
-    <section
-      nbSurface
-      border="strong"
-      layout="stack"
-      radius="base"
-      shadow="lifted"
-      clip
-    >
+    <section nbSurface border="strong" layout="stack" radius="lg" shadow="hard" clip>
       Flight card
     </section>
   `,
@@ -81,12 +66,13 @@ class FlightCardSurfaceTest {}
 class HeaderBandSurfaceTest {}
 
 describe('NbSurface', () => {
-  it('applies default brutalist surface classes and metadata', async () => {
+  it('applies default brutalist surface classes, metadata, and component variables', async () => {
     const fixture = await createFixture(DefaultSurfaceTest);
     const surface = fixture.nativeElement.querySelector(
       '[nbSurface]'
     ) as HTMLElement;
 
+    // Resolved tokens are reflected as data-* by the composed capabilities.
     expect(surface.getAttribute('data-nb-surface')).toBe('');
     expect(surface.getAttribute('data-tone')).toBe('default');
     expect(surface.getAttribute('data-radius')).toBe('md');
@@ -94,29 +80,30 @@ describe('NbSurface', () => {
     expect(surface.getAttribute('data-shadow')).toBe('default');
     expect(surface.getAttribute('data-padding')).toBe('none');
     expect(surface.getAttribute('data-edge')).toBe('none');
+
+    // Consumption-only classes — the variables come from the capabilities.
     expect(surface.className).toContain('relative');
-    expect(surface.className).toContain(
-      'bg-[var(--nb-surface-bg,var(--nb-surface-bg-base))]'
-    );
-    expect(surface.className).toContain(
-      'text-[var(--nb-surface-fg,var(--nb-surface-fg-base))]'
-    );
-    expect(surface.className).toContain(
-      'border-(length:--nb-surface-border-width)'
-    );
-    expect(surface.className).toContain('border-(--nb-surface-border)');
+    expect(surface.className).toContain('bg-(--nb-surface-bg)');
+    expect(surface.className).toContain('text-(--nb-surface-fg)');
+    expect(surface.className).toContain('border-(length:--nb-surface-border-width)');
+    expect(surface.className).toContain('border-(--nb-surface-border-color)');
     expect(surface.className).toContain('rounded-(--nb-surface-radius)');
     expect(surface.className).toContain('shadow-[var(--nb-surface-shadow)]');
-    expect(surface.style.getPropertyValue('--nb-surface-bg-base')).toBe(
-      'var(--nb-surface)'
-    );
-    expect(surface.className).toContain(
-      '[--nb-surface-radius:var(--nb-radius)]'
-    );
-    expect(surface.className).toContain(
-      '[--nb-surface-border-width:var(--nb-border-width)]'
-    );
     expect(surface.className).not.toContain('overflow-hidden');
+
+    // Component-specific CSS variables written by the capabilities.
+    const style = surface.style;
+    expect(style.getPropertyValue('--nb-surface-bg')).toBe('var(--nb-surface)');
+    expect(style.getPropertyValue('--nb-surface-fg')).toBe(
+      'var(--nb-surface-foreground)'
+    );
+    expect(style.getPropertyValue('--nb-surface-border-color')).toBe(
+      'var(--nb-border)'
+    );
+    expect(style.getPropertyValue('--nb-surface-radius')).toBe('var(--nb-radius)');
+    expect(style.getPropertyValue('--nb-surface-border-width')).toBe(
+      'var(--nb-border-width)'
+    );
   });
 
   it('maps tone, radius, border, shadow, and bare clip attributes', async () => {
@@ -131,13 +118,14 @@ describe('NbSurface', () => {
     expect(surface.getAttribute('data-shadow')).toBe('heavy');
     expect(surface.getAttribute('data-size')).toBe('lg');
     expect(surface.getAttribute('data-layout')).toBe('center');
-    expect(surface.style.getPropertyValue('--nb-surface-bg-base')).toBe(
+
+    expect(surface.style.getPropertyValue('--nb-surface-bg')).toBe(
       'var(--nb-cream)'
     );
-    expect(surface.className).toContain('[--nb-surface-radius:1.5rem]');
-    expect(surface.className).toContain('[--nb-surface-border-width:4px]');
-    expect(surface.className).toContain(
-      '[--nb-surface-shadow:10px_10px_0_0_var(--nb-shadow)]'
+    expect(surface.style.getPropertyValue('--nb-surface-radius')).toBe('1.5rem');
+    expect(surface.style.getPropertyValue('--nb-surface-border-width')).toBe('4px');
+    expect(surface.style.getPropertyValue('--nb-surface-shadow')).toBe(
+      '10px 10px 0 0 var(--nb-shadow)'
     );
     expect(surface.className).toContain('size-11');
     expect(surface.className).toContain('shrink-0');
@@ -164,39 +152,22 @@ describe('NbSurface', () => {
       ) as HTMLElement;
 
       expect(surface.getAttribute('data-tone')).toBe(tone);
-      expect(surface.style.getPropertyValue('--nb-surface-bg-base')).toBe(color);
+      expect(surface.style.getPropertyValue('--nb-surface-bg')).toBe(color);
     }
   );
 
-  it('lets a consumer override --nb-surface-bg without it being clobbered by the tone', async () => {
-    const fixture = await createFixture(CustomBgSurfaceTest);
+  it('writes the namespaced --nb-surface-bg from the tone capability', async () => {
+    const fixture = await createFixture(ToneSurfaceTest, (instance) => {
+      instance.tone = 'mint';
+    });
     const surface = fixture.nativeElement.querySelector(
       '[nbSurface]'
     ) as HTMLElement;
 
-    // Tone still drives the base var...
-    expect(surface.style.getPropertyValue('--nb-surface-bg-base')).toBe(
-      'var(--nb-surface)'
+    // Tone owns the surface-namespaced background variable directly.
+    expect(surface.style.getPropertyValue('--nb-surface-bg')).toBe(
+      'var(--nb-mint)'
     );
-    // ...but the consumer's inline override survives because the directive
-    // no longer writes --nb-surface-bg itself.
-    expect(surface.style.getPropertyValue('--nb-surface-bg')).toBe('#fff1dc');
-  });
-
-  it('supports a base radius between sm and lg for compact icon surfaces', async () => {
-    @Component({
-      imports: [NbSurface],
-      template: `<span nbSurface radius="base">Icon</span>`,
-    })
-    class BaseRadiusSurfaceTest {}
-
-    const fixture = await createFixture(BaseRadiusSurfaceTest);
-    const surface = fixture.nativeElement.querySelector(
-      '[nbSurface]'
-    ) as HTMLElement;
-
-    expect(surface.getAttribute('data-radius')).toBe('base');
-    expect(surface.className).toContain('[--nb-surface-radius:0.5rem]');
   });
 
   it('supports strong stacked surfaces for compact card shells', async () => {
@@ -207,12 +178,13 @@ describe('NbSurface', () => {
 
     expect(surface.getAttribute('data-border')).toBe('strong');
     expect(surface.getAttribute('data-layout')).toBe('stack');
-    expect(surface.getAttribute('data-radius')).toBe('base');
-    expect(surface.getAttribute('data-shadow')).toBe('lifted');
-    expect(surface.className).toContain('[--nb-surface-border-width:3px]');
-    expect(surface.className).toContain(
-      '[--nb-surface-shadow:7px_7px_0_0_var(--nb-shadow)]'
+    expect(surface.getAttribute('data-radius')).toBe('lg');
+    expect(surface.getAttribute('data-shadow')).toBe('hard');
+    expect(surface.style.getPropertyValue('--nb-surface-border-width')).toBe('3px');
+    expect(surface.style.getPropertyValue('--nb-surface-shadow')).toBe(
+      '6px 6px 0 0 var(--nb-shadow)'
     );
+    expect(surface.style.getPropertyValue('--nb-surface-radius')).toBe('1rem');
     expect(surface.className).toContain('flex');
     expect(surface.className).toContain('flex-col');
     expect(surface.className).toContain('overflow-hidden');
@@ -234,7 +206,8 @@ describe('NbSurface', () => {
     expect(surface.className).toContain('items-center');
     expect(surface.className).toContain('px-4');
     expect(surface.className).toContain('py-3');
-    expect(surface.className).toContain('[--nb-surface-border-width:0px]');
+    expect(surface.style.getPropertyValue('--nb-surface-border-width')).toBe('0px');
+    expect(surface.style.getPropertyValue('--nb-surface-shadow')).toBe('none');
     expect(surface.className).toContain('border-b-(length:--nb-surface-edge-width)');
     expect(surface.className).toContain('border-b-(--nb-surface-edge-color)');
   });

@@ -1,10 +1,19 @@
 import { Directive, computed, input } from '@angular/core';
 
 import { nbClass } from '../core/class';
+import {
+  NbGapCapability,
+  NbPaddingCapability,
+  NB_STYLE_DEFAULTS,
+  NB_STYLE_NAMESPACE,
+  type NbStyleDefaults,
+} from '../core/capabilities';
+import type { NbPadding } from '../tokens/padding';
+import type { NbSpacing } from '../tokens/spacing';
 
-export type NbClusterGap = 'none' | 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl';
+export type NbClusterGap = NbSpacing;
 
-export type NbClusterPadding = 'none' | 'xs' | 'sm' | 'md' | 'lg' | 'xl';
+export type NbClusterPadding = NbPadding;
 
 export type NbClusterAlign =
   | 'start'
@@ -21,11 +30,20 @@ export type NbClusterDivider = 'none' | 'solid' | 'dashed' | 'thick';
 
 @Directive({
   selector: '[nbCluster]',
+  providers: [
+    { provide: NB_STYLE_NAMESPACE, useValue: 'cluster' },
+    {
+      provide: NB_STYLE_DEFAULTS,
+      useValue: { gap: 'md', padding: 'none' } satisfies NbStyleDefaults,
+    },
+  ],
+  hostDirectives: [
+    { directive: NbGapCapability, inputs: ['gap'] },
+    { directive: NbPaddingCapability, inputs: ['padding'] },
+  ],
   host: {
     '[class]': 'classes()',
     '[attr.data-nb-cluster]': '""',
-    '[attr.data-gap]': 'gap()',
-    '[attr.data-padding]': 'padding()',
     '[attr.data-align]': 'align()',
     '[attr.data-justify]': 'justify()',
     '[attr.data-wrap]': 'wrap()',
@@ -33,8 +51,6 @@ export type NbClusterDivider = 'none' | 'solid' | 'dashed' | 'thick';
   },
 })
 export class NbCluster {
-  readonly gap = input<NbClusterGap>('md');
-  readonly padding = input<NbClusterPadding>('none');
   readonly align = input<NbClusterAlign>('center');
   readonly justify = input<NbClusterJustify>('start');
   readonly wrap = input<NbClusterWrap>('wrap');
@@ -43,8 +59,8 @@ export class NbCluster {
   protected readonly classes = computed(() =>
     nbClass(
       'flex min-w-0',
+      'p-[var(--nb-cluster-padding)]',
       this.gapClass(),
-      this.paddingClass(),
       this.alignClass(),
       this.justifyClass(),
       this.wrapClass(),
@@ -53,34 +69,13 @@ export class NbCluster {
   );
 
   private gapClass(): string {
-    const map: Record<NbClusterGap, string> = {
-      none: '[--nb-cluster-gap:0px]',
-      xs: '[--nb-cluster-gap:0.25rem]',
-      sm: '[--nb-cluster-gap:0.5rem]',
-      md: '[--nb-cluster-gap:0.75rem]',
-      lg: '[--nb-cluster-gap:1rem]',
-      xl: '[--nb-cluster-gap:1.5rem]',
-      '2xl': '[--nb-cluster-gap:2rem]',
-    };
-
+    // With a divider, gap collapses on the inline axis (the divider owns the
+    // inline spacing) and survives only on the block axis for wrapped rows.
     if (this.divider() !== 'none') {
-      return nbClass(map[this.gap()], 'gap-y-[var(--nb-cluster-gap)]', 'gap-x-0');
+      return 'gap-y-[var(--nb-cluster-gap)] gap-x-0';
     }
 
-    return nbClass(map[this.gap()], 'gap-[var(--nb-cluster-gap)]');
-  }
-
-  private paddingClass(): string {
-    const map: Record<NbClusterPadding, string> = {
-      none: '',
-      xs: 'p-2',
-      sm: 'p-3',
-      md: 'p-4',
-      lg: 'p-6',
-      xl: 'p-8',
-    };
-
-    return map[this.padding()];
+    return 'gap-[var(--nb-cluster-gap)]';
   }
 
   private alignClass(): string {

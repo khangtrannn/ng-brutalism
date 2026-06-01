@@ -1,3 +1,4 @@
+import type { NbRadius } from '../tokens/radius';
 import type { NbTone } from '../tokens/tone';
 
 export type NbButtonTone = NbTone;
@@ -18,7 +19,7 @@ export type NbButtonSize = 'sm' | 'md' | 'lg' | 'xl';
 
 export type NbButtonFontSize = 'sm' | 'base' | 'lg' | 'xl' | '2xl' | '3xl';
 
-export type NbButtonRadius = 'none' | 'sm' | 'md' | 'lg' | 'xl' | 'full';
+export type NbButtonRadius = NbRadius;
 
 export type NbButtonWeight = 'bold' | 'extrabold' | 'black';
 

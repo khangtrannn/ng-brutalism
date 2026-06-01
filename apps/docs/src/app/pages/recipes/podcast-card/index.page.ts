@@ -246,7 +246,7 @@ export default class PodcastCardRecipePage {
   </div>
 
   <!-- Host section -->
-  <div nbSection border="top" padding="lg">
+  <div nbSection divider="top" padding="lg">
     <div nbCluster gap="lg" align="center">
       <img src="/podcast-card/avatar.png" alt="Kai Nguyen"
            class="w-16 h-16 rounded-full" />

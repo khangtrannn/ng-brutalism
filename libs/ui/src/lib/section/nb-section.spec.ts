@@ -13,17 +13,17 @@ class DefaultSectionTest {}
 @Component({
   imports: [NbSection],
   template: `
-    <div nbSection padding="lg" border="top">
+    <div nbSection padding="lg" divider="top">
       <span>Footer</span>
     </div>
   `,
 })
-class TopBorderSectionTest {}
+class TopDividerSectionTest {}
 
 @Component({
   imports: [NbSection],
   template: `
-    <div nbSection border="block" borderStyle="dashed" padding="xl">
+    <div nbSection divider="block" dividerStyle="dashed" padding="xl">
       <span>Block dashed</span>
     </div>
   `,
@@ -56,8 +56,8 @@ describe('NbSection', () => {
 
     expect(section.getAttribute('data-nb-section')).toBe('');
     expect(section.getAttribute('data-padding')).toBe('md');
-    expect(section.getAttribute('data-border')).toBe('none');
-    expect(section.getAttribute('data-border-style')).toBe('solid');
+    expect(section.getAttribute('data-divider')).toBe('none');
+    expect(section.getAttribute('data-divider-style')).toBe('solid');
     expect(section.getAttribute('data-layout')).toBe('default');
     expect(section.getAttribute('data-align')).toBe('stretch');
     expect(section.getAttribute('data-flush')).toBeNull();
@@ -65,39 +65,35 @@ describe('NbSection', () => {
     expect(section.className).toContain('min-w-0');
     expect(section.className).toContain('block');
     expect(section.className).toContain('p-[var(--nb-section-padding)]');
-    expect(section.className).toContain('[--nb-section-padding:1rem]');
+    expect(section.style.getPropertyValue('--nb-section-padding')).toBe('1rem');
     expect(section.className).not.toContain('border-t-');
     expect(section.className).not.toContain('items-stretch');
   });
 
-  it('renders a top border with the configured padding', async () => {
-    const fixture = await createFixture(TopBorderSectionTest);
+  it('renders a top divider with the configured padding', async () => {
+    const fixture = await createFixture(TopDividerSectionTest);
     const section = fixture.nativeElement.querySelector(
       '[nbSection]'
     ) as HTMLElement;
 
     expect(section.getAttribute('data-padding')).toBe('lg');
-    expect(section.getAttribute('data-border')).toBe('top');
-    expect(section.className).toContain('[--nb-section-padding:1.5rem]');
-    expect(section.className).toContain(
-      'border-t-(length:--nb-border-width)'
-    );
+    expect(section.getAttribute('data-divider')).toBe('top');
+    expect(section.style.getPropertyValue('--nb-section-padding')).toBe('1.5rem');
+    expect(section.className).toContain('border-t-(length:--nb-border-width)');
     expect(section.className).toContain('border-(--nb-border)');
     expect(section.className).toContain('border-solid');
   });
 
-  it('maps block border with dashed style', async () => {
+  it('maps block divider with dashed style', async () => {
     const fixture = await createFixture(DashedBlockSectionTest);
     const section = fixture.nativeElement.querySelector(
       '[nbSection]'
     ) as HTMLElement;
 
-    expect(section.getAttribute('data-border')).toBe('block');
-    expect(section.getAttribute('data-border-style')).toBe('dashed');
-    expect(section.className).toContain('[--nb-section-padding:2rem]');
-    expect(section.className).toContain(
-      'border-y-(length:--nb-border-width)'
-    );
+    expect(section.getAttribute('data-divider')).toBe('block');
+    expect(section.getAttribute('data-divider-style')).toBe('dashed');
+    expect(section.style.getPropertyValue('--nb-section-padding')).toBe('2rem');
+    expect(section.className).toContain('border-y-(length:--nb-border-width)');
     expect(section.className).toContain('border-dashed');
     expect(section.className).not.toContain('border-solid');
   });

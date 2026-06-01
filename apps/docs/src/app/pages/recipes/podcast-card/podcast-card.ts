@@ -139,7 +139,7 @@ import {
             </div>
           </div>
 
-          <div nbSection border="top" padding="lg" class="z-10">
+          <div nbSection divider="top" padding="lg" class="z-10">
             <div nbStack gap="md" class="relative z-10">
               <div nbCluster gap="lg" align="start">
                 <img

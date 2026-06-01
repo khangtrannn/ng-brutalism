@@ -59,6 +59,8 @@ Agent session protocol:
 |---|---|---|
 | `docs/components/primitives-roadmap.md` | Brutalist primitives roadmap — failure modes, decisions, candidate primitives, next steps | Yes |
 | `docs/components/composition-philosophy.md` | ng-brutalism + `nbText` + Tailwind boundary — when to add an input vs. reach for Tailwind | Yes |
+| `docs/components/style-capabilities.md` | Internal style-capability architecture (tokens → capabilities → hostDirectives → component CSS vars) + migration summary | Yes |
+| `docs/architecture/api-consistency-audit.md` | API consistency audit — shared token rules, primitive responsibility matrix, naming/default/CSS-var decisions, capability candidates, breaking changes + migration order | Yes |
 | `docs/components/contact-dialog/PLAN.md` | Contact dialog redesign — status + design decisions | Yes |
 | `docs/adr/0001-dialog-native-element.md` | ADR: why native `<dialog>` over overlay approach | No |
 | `CONTEXT.md` (root) | Project glossary — `Nb` prefix, v0.x contract, CSS transform patterns | Yes |

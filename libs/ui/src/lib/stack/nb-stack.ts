@@ -1,8 +1,15 @@
 import { Directive, computed, input } from '@angular/core';
 
 import { nbClass } from '../core/class';
+import {
+  NbGapCapability,
+  NB_STYLE_DEFAULTS,
+  NB_STYLE_NAMESPACE,
+  type NbStyleDefaults,
+} from '../core/capabilities';
+import type { NbSpacing } from '../tokens/spacing';
 
-export type NbStackGap = 'none' | 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl';
+export type NbStackGap = NbSpacing;
 
 export type NbStackAlign = 'stretch' | 'start' | 'center' | 'end';
 
@@ -12,17 +19,23 @@ export type NbStackDivider = 'none' | 'solid' | 'dashed' | 'thick';
 
 @Directive({
   selector: '[nbStack]',
+  providers: [
+    { provide: NB_STYLE_NAMESPACE, useValue: 'stack' },
+    {
+      provide: NB_STYLE_DEFAULTS,
+      useValue: { gap: 'md' } satisfies NbStyleDefaults,
+    },
+  ],
+  hostDirectives: [{ directive: NbGapCapability, inputs: ['gap'] }],
   host: {
     '[class]': 'classes()',
     '[attr.data-nb-stack]': '""',
-    '[attr.data-gap]': 'gap()',
     '[attr.data-align]': 'align()',
     '[attr.data-justify]': 'justify()',
     '[attr.data-divider]': 'divider()',
   },
 })
 export class NbStack {
-  readonly gap = input<NbStackGap>('md');
   readonly align = input<NbStackAlign>('stretch');
   readonly justify = input<NbStackJustify>('start');
   readonly divider = input<NbStackDivider>('none');
@@ -31,26 +44,11 @@ export class NbStack {
     nbClass(
       'flex min-w-0 flex-col',
       'gap-[var(--nb-stack-gap)]',
-      this.gapClass(),
       this.alignClass(),
       this.justifyClass(),
       this.dividerClass()
     )
   );
-
-  private gapClass(): string {
-    const map: Record<NbStackGap, string> = {
-      none: '[--nb-stack-gap:0px]',
-      xs: '[--nb-stack-gap:0.25rem]',
-      sm: '[--nb-stack-gap:0.5rem]',
-      md: '[--nb-stack-gap:0.75rem]',
-      lg: '[--nb-stack-gap:1rem]',
-      xl: '[--nb-stack-gap:1.5rem]',
-      '2xl': '[--nb-stack-gap:2rem]',
-    };
-
-    return map[this.gap()];
-  }
 
   private alignClass(): string {
     const map: Record<NbStackAlign, string> = {

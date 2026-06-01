@@ -1,6 +1,15 @@
 import { Directive, computed, input } from '@angular/core';
 
 import { nbClass } from '../core/class';
+import {
+  NbGapCapability,
+  NbPaddingCapability,
+  NB_STYLE_DEFAULTS,
+  NB_STYLE_NAMESPACE,
+  type NbStyleDefaults,
+} from '../core/capabilities';
+import type { NbPadding } from '../tokens/padding';
+import type { NbSpacing } from '../tokens/spacing';
 
 export type NbSplitRatio =
   | '1:1'
@@ -11,9 +20,9 @@ export type NbSplitRatio =
   | 'fill:auto'
   | 'auto:fill';
 
-export type NbSplitGap = 'none' | 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl';
+export type NbSplitGap = NbSpacing;
 
-export type NbSplitPadding = 'none' | 'sm' | 'md' | 'lg' | 'xl';
+export type NbSplitPadding = NbPadding;
 
 export type NbSplitCollapse = 'none' | 'sm' | 'md' | 'lg';
 
@@ -23,12 +32,21 @@ export type NbSplitDivider = 'none' | 'solid' | 'dashed' | 'thick';
 
 @Directive({
   selector: '[nbSplit]',
+  providers: [
+    { provide: NB_STYLE_NAMESPACE, useValue: 'split' },
+    {
+      provide: NB_STYLE_DEFAULTS,
+      useValue: { gap: 'lg', padding: 'none' } satisfies NbStyleDefaults,
+    },
+  ],
+  hostDirectives: [
+    { directive: NbGapCapability, inputs: ['gap'] },
+    { directive: NbPaddingCapability, inputs: ['padding'] },
+  ],
   host: {
     '[class]': 'classes()',
     '[attr.data-nb-split]': '""',
     '[attr.data-ratio]': 'ratio()',
-    '[attr.data-gap]': 'gap()',
-    '[attr.data-padding]': 'padding()',
     '[attr.data-collapse]': 'collapse()',
     '[attr.data-align]': 'align()',
     '[attr.data-divider]': 'divider()',
@@ -36,8 +54,6 @@ export type NbSplitDivider = 'none' | 'solid' | 'dashed' | 'thick';
 })
 export class NbSplit {
   readonly ratio = input<NbSplitRatio>('1:1');
-  readonly gap = input<NbSplitGap>('lg');
-  readonly padding = input<NbSplitPadding>('none');
   readonly collapse = input<NbSplitCollapse>('md');
   readonly align = input<NbSplitAlign>('stretch');
   readonly divider = input<NbSplitDivider>('none');
@@ -47,40 +63,12 @@ export class NbSplit {
       'grid min-w-0',
       'gap-[var(--nb-split-gap)]',
       'p-[var(--nb-split-padding)]',
-      this.gapClass(),
-      this.paddingClass(),
       this.alignClass(),
       this.ratioClass(),
       this.collapseClass(),
       this.dividerClass()
     )
   );
-
-  private gapClass(): string {
-    const map: Record<NbSplitGap, string> = {
-      none: '[--nb-split-gap:0px]',
-      xs: '[--nb-split-gap:0.25rem]',
-      sm: '[--nb-split-gap:0.5rem]',
-      md: '[--nb-split-gap:0.75rem]',
-      lg: '[--nb-split-gap:1rem]',
-      xl: '[--nb-split-gap:1.5rem]',
-      '2xl': '[--nb-split-gap:2rem]',
-    };
-
-    return map[this.gap()];
-  }
-
-  private paddingClass(): string {
-    const map: Record<NbSplitPadding, string> = {
-      none: '[--nb-split-padding:0px]',
-      sm: '[--nb-split-padding:0.75rem]',
-      md: '[--nb-split-padding:1rem]',
-      lg: '[--nb-split-padding:1.5rem]',
-      xl: '[--nb-split-padding:2rem]',
-    };
-
-    return map[this.padding()];
-  }
 
   private alignClass(): string {
     const map: Record<NbSplitAlign, string> = {

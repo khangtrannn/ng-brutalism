@@ -1,150 +1,87 @@
 import { Directive, booleanAttribute, computed, input } from '@angular/core';
 
 import { nbClass } from '../core/class';
-import { nbToneTokens, type NbTone, type NbToneTokens } from '../tokens/tone';
+import {
+  NbBorderCapability,
+  NbRadiusCapability,
+  NbShadowCapability,
+  NbToneCapability,
+  NB_STYLE_DEFAULTS,
+  NB_STYLE_NAMESPACE,
+  type NbStyleDefaults,
+} from '../core/capabilities';
+import type { NbBorderStrength } from '../tokens/border';
+import type { NbRadius } from '../tokens/radius';
+import type { NbShadow } from '../tokens/shadow';
+import type { NbToneToken } from '../tokens/tone';
 
-export type NbSurfaceTone =
-  | NbTone
-  | 'background'
-  | 'surface';
+// Public type aliases — kept for API stability. They now point at the shared
+// token contracts so a token means the same thing across every primitive.
+export type NbSurfaceTone = NbToneToken;
+export type NbSurfaceRadius = NbRadius;
+export type NbSurfaceBorder = NbBorderStrength;
+export type NbSurfaceShadow = NbShadow;
 
-export type NbSurfaceRadius =
-  | 'none'
-  | 'sm'
-  | 'base'
-  | 'md'
-  | 'lg'
-  | 'xl'
-  | 'full';
-
-export type NbSurfaceBorder =
-  | 'none'
-  | 'thin'
-  | 'default'
-  | 'strong'
-  | 'thick';
-
-export type NbSurfaceShadow =
-  | 'none'
-  | 'sm'
-  | 'default'
-  | 'hard'
-  | 'lifted'
-  | 'heavy';
-
+// Surface-specific anatomy (not shared tokens).
 export type NbSurfaceSize = 'auto' | 'sm' | 'md' | 'lg' | 'xl';
-
 export type NbSurfaceLayout = 'block' | 'center' | 'row' | 'stack';
-
 export type NbSurfacePadding = 'none' | 'sm' | 'md' | 'lg';
-
 export type NbSurfaceEdge = 'none' | 'top' | 'bottom';
 
 @Directive({
   selector: '[nbSurface]',
+  providers: [
+    { provide: NB_STYLE_NAMESPACE, useValue: 'surface' },
+    {
+      provide: NB_STYLE_DEFAULTS,
+      useValue: {
+        tone: 'default',
+        radius: 'md',
+        shadow: 'default',
+        border: 'default',
+      } satisfies NbStyleDefaults,
+    },
+  ],
+  hostDirectives: [
+    { directive: NbToneCapability, inputs: ['tone'] },
+    { directive: NbRadiusCapability, inputs: ['radius'] },
+    { directive: NbShadowCapability, inputs: ['shadow'] },
+    { directive: NbBorderCapability, inputs: ['border'] },
+  ],
   host: {
     '[class]': 'classes()',
     '[attr.data-nb-surface]': '""',
-    '[attr.data-tone]': 'tone()',
-    '[attr.data-radius]': 'radius()',
-    '[attr.data-border]': 'border()',
-    '[attr.data-shadow]': 'shadow()',
     '[attr.data-size]': 'size()',
     '[attr.data-layout]': 'layout()',
     '[attr.data-padding]': 'padding()',
     '[attr.data-edge]': 'edge()',
-    '[style.--nb-surface-bg-base]': 'toneTokens().bg',
-    '[style.--nb-surface-fg-base]': 'toneTokens().fg',
   },
 })
 export class NbSurface {
-  readonly tone = input<NbSurfaceTone>('default');
-  readonly radius = input<NbSurfaceRadius>('md');
-  readonly border = input<NbSurfaceBorder>('default');
-  readonly shadow = input<NbSurfaceShadow>('default');
   readonly size = input<NbSurfaceSize>('auto');
   readonly layout = input<NbSurfaceLayout>('block');
   readonly padding = input<NbSurfacePadding>('none');
   readonly edge = input<NbSurfaceEdge>('none');
-  readonly clip = input<boolean, unknown>(false, { transform: booleanAttribute });
+  readonly clip = input<boolean, unknown>(false, {
+    transform: booleanAttribute,
+  });
 
+  // Tone, radius, shadow, and border-width are written as `--nb-surface-*`
+  // variables by the composed capabilities; here we only *consume* them.
   protected readonly classes = computed(() =>
     nbClass(
       'relative',
-      'bg-[var(--nb-surface-bg,var(--nb-surface-bg-base))] text-[var(--nb-surface-fg,var(--nb-surface-fg-base))]',
-      'border-(length:--nb-surface-border-width) border-(--nb-surface-border)',
+      'bg-(--nb-surface-bg) text-(--nb-surface-fg)',
+      'border-(length:--nb-surface-border-width) border-(--nb-surface-border-color)',
       'rounded-(--nb-surface-radius)',
       'shadow-[var(--nb-surface-shadow)]',
       this.clip() && 'overflow-hidden',
-      this.radiusClass(),
-      this.borderClass(),
-      this.shadowClass(),
       this.sizeClass(),
       this.layoutClass(),
       this.paddingClass(),
       this.edgeClass()
     )
   );
-
-  protected readonly toneTokens = computed<NbToneTokens>(() => {
-    const tone = this.tone();
-
-    if (tone === 'background') {
-      return {
-        bg: 'var(--nb-background)',
-        fg: 'var(--nb-foreground)',
-      };
-    }
-
-    if (tone === 'surface') {
-      return nbToneTokens('default');
-    }
-
-    return nbToneTokens(tone);
-  });
-
-  private radiusClass(): string {
-    const map: Record<NbSurfaceRadius, string> = {
-      none: '[--nb-surface-radius:0px]',
-      sm: '[--nb-surface-radius:0.375rem]',
-      base: '[--nb-surface-radius:0.5rem]',
-      md: '[--nb-surface-radius:var(--nb-radius)]',
-      lg: '[--nb-surface-radius:1rem]',
-      xl: '[--nb-surface-radius:1.5rem]',
-      full: '[--nb-surface-radius:9999px]',
-    };
-
-    return map[this.radius()];
-  }
-
-  private borderClass(): string {
-    const map: Record<NbSurfaceBorder, string> = {
-      none: '[--nb-surface-border-width:0px] [--nb-surface-border:transparent]',
-      thin: '[--nb-surface-border-width:1px] [--nb-surface-border:var(--nb-border)]',
-      default:
-        '[--nb-surface-border-width:var(--nb-border-width)] [--nb-surface-border:var(--nb-border)]',
-      strong:
-        '[--nb-surface-border-width:3px] [--nb-surface-border:var(--nb-border)]',
-      thick:
-        '[--nb-surface-border-width:4px] [--nb-surface-border:var(--nb-border)]',
-    };
-
-    return map[this.border()];
-  }
-
-  private shadowClass(): string {
-    const map: Record<NbSurfaceShadow, string> = {
-      none: '[--nb-surface-shadow:none]',
-      sm: '[--nb-surface-shadow:2px_2px_0_0_var(--nb-shadow)]',
-      default:
-        '[--nb-surface-shadow:var(--nb-shadow-offset-x)_var(--nb-shadow-offset-y)_0_0_var(--nb-shadow)]',
-      hard: '[--nb-surface-shadow:6px_6px_0_0_var(--nb-shadow)]',
-      lifted: '[--nb-surface-shadow:7px_7px_0_0_var(--nb-shadow)]',
-      heavy: '[--nb-surface-shadow:10px_10px_0_0_var(--nb-shadow)]',
-    };
-
-    return map[this.shadow()];
-  }
 
   private sizeClass(): string {
     const map: Record<NbSurfaceSize, string> = {

@@ -209,7 +209,7 @@ export default class JobCardRecipePage {
   </div>
 
   <!-- Footer: requirements + CTA -->
-  <div nbSection border="top" padding="lg">
+  <div nbSection divider="top" padding="lg">
     <div nbSplit ratio="2:1" gap="lg" collapse="md">
       <div nbCluster gap="lg" align="center" divider="dashed"
            class="[--nb-media-item-title-size:12px]">
