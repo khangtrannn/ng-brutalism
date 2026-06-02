@@ -18,7 +18,15 @@ If you like shadcn/ui or daisyUI, but for Angular and built around brutalism.
 [npm](https://www.npmjs.com/package/@ng-brutalism/ui) ·
 [GitHub](https://github.com/khangtrannn/ng-brutalism)
 
-![ng-brutalism Angular primitive library demo — buttons, cards, dialogs in neo-brutalist style](docs/assets/introduction.gif)
+![ng-brutalism v0.2.0 — composable brutalist primitives for bold Angular interfaces](docs/assets/compositions/v0.2.0.png)
+
+## What's new in v0.2.0
+
+v0.2.0 ships a full composition system. The new layout grammar — **Surface, Section, Stack, Cluster, and Split** — lets you compose complete card layouts, multi-column pages, and recipe UIs entirely from library primitives with consistent token-driven spacing, border, shadow, and typography.
+
+New primitives: `NbSurface`, `NbSection`, `NbStack`, `NbCluster`, `NbSplit`, `NbMediaFrame`, `NbText`, `NbDisplay`, `NbStat`, `NbRating`, `NbProgress`, `NbStatusDot`, `NbCallout`, `NbMediaItem`, `NbAvatarGroup`, `NbChip`, `NbChipGroup`, `NbIconButton`, `NbSticker`, `NbHalftone`, `NbSeparator` — plus three ready-made composition recipes.
+
+See [CHANGELOG.md](CHANGELOG.md) for full details and [migration notes](#migrating-from-v01x).
 
 ## Install
 
@@ -105,22 +113,28 @@ layout grammar. Add emphasis with `nbChip`, `nbCallout`, `nbSticker`, and
 Inputs are for common design decisions. CSS variables are for local art
 direction. Classes are for layout escape hatches.
 
-| Group                  | Primitives                                                  |
-| ---------------------- | ----------------------------------------------------------- |
-| Foundation             | Tokens, theme provider, CSS variables, `nbClass`            |
-| Layout                 | Stack, Cluster, Split, Section, Separator                   |
-| Surfaces               | Surface, Card, Image Card, Media Frame                      |
-| Typography             | Text, Display, Title                                        |
-| Emphasis               | Badge, Chip, Callout, Sticker, Status Dot, Rating, Progress |
-| Actions                | Button, Icon Button, Button Trailing Icon                   |
-| Media                  | Avatar, Avatar Group, Icon, Media Item                      |
-| Forms                  | Input, Input Group, Textarea, Checkbox, Select, Label       |
-| Overlays / Interaction | Accordion, Dialog, Marquee                                  |
-| Recipes                | Travel Card, Podcast Card, Open to Work Card                |
+| Group                  | Primitives                                                              |
+| ---------------------- | ----------------------------------------------------------------------- |
+| Foundation             | Tokens, theme provider, CSS variables, `nbClass`                        |
+| Layout                 | Stack, Cluster, Split, Section, Separator                               |
+| Surfaces               | Surface, Card, Image Card, Media Frame                                  |
+| Typography             | Text, Display, Title                                                    |
+| Emphasis               | Badge, Chip, Callout, Sticker, Status Dot, Rating, Progress, Halftone  |
+| Actions                | Button, Icon Button, Button Trailing Icon                               |
+| Media                  | Avatar, Avatar Group, Icon, Media Item, Stat                            |
+| Forms                  | Input, Input Group, Textarea, Checkbox, Select, Label                   |
+| Overlays / Interaction | Accordion, Dialog, Marquee                                              |
+| Recipes                | Travel Card, Podcast Card, Open to Work Card                            |
 
-## What it looks like
+## Compositions
 
-![ng-brutalism component showcase — accordion, badge, button, card, checkbox, dialog, input, select rendered in brutalist design](docs/assets/showcase-portfolio.png)
+Three ready-made recipes ship with v0.2.0, each assembled entirely from library primitives:
+
+<p>
+  <img src="docs/assets/compositions/personal-profile.png" width="32%" alt="Open to Work Card — personal profile composition built from Surface, Split, Chip, and MediaFrame primitives" />
+  <img src="docs/assets/compositions/podcast-promo.png" width="32%" alt="Podcast Card — audio episode composition built from Surface, Section, Badge, and Avatar primitives" />
+  <img src="docs/assets/compositions/travel-compaign.png" width="32%" alt="Travel Card — campaign-style composition built from Surface, MediaFrame, Display, and Sticker primitives" />
+</p>
 
 ## FAQ
 
@@ -141,6 +155,12 @@ All visual tokens are exposed as CSS custom properties (`--nb-*`). A subset of t
 
 **Is ng-brutalism ready for production?**
 It is pre-1.0. Component APIs are usable today, but minor versions may include breaking changes while the library settles.
+
+## Migrating from v0.1.x
+
+v0.2.0 contains breaking changes. The `Component`/`Directive` suffix was dropped from all exported names: `NbCardComponent` → `NbCard`, `NbButtonDirective` → `NbButton`, `NbSelectComponent` → `NbSelect`, etc. The `defaultValue` / `defaultOpen` inputs on `<nb-accordion>` and `<nb-select>` were removed in favour of `[value]` / `[(value)]` bindings. `NbSection`'s `border` input was renamed to `divider`.
+
+See [CHANGELOG.md](CHANGELOG.md) for the complete list.
 
 ## Author
 

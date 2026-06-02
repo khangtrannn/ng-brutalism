@@ -1,10 +1,11 @@
-# ng-brutalism — Neo-brutalist Angular UI Component Library
+# ng-brutalism — Neo-brutalist Angular UI Primitive Library
 
 Build loud. Stay sharp.
 
-ng-brutalism is a neo-brutalist Angular UI component library — token-driven,
-signals-first, zoneless, with directive APIs, keyboard-ready interactions, and
-Tailwind v4 ergonomics from the first import.
+ng-brutalism is a neo-brutalist Angular UI primitive library and composition
+system for building loud, token-driven Angular interfaces with directive-first
+APIs, signals, zoneless-friendly patterns, Tailwind CSS v4, chunky borders,
+offset shadows, and punchy colors.
 
 If you like shadcn/ui or daisyUI, but for Angular and built around brutalism.
 
@@ -17,7 +18,15 @@ If you like shadcn/ui or daisyUI, but for Angular and built around brutalism.
 [npm](https://www.npmjs.com/package/@ng-brutalism/ui) ·
 [GitHub](https://github.com/khangtrannn/ng-brutalism)
 
-![ng-brutalism Angular component library demo — buttons, cards, dialogs in neo-brutalist style](https://raw.githubusercontent.com/khangtrannn/ng-brutalism/main/docs/assets/introduction.gif)
+![ng-brutalism v0.2.0 — composable brutalist primitives for bold Angular interfaces](https://raw.githubusercontent.com/khangtrannn/ng-brutalism/main/docs/assets/compositions/v0.2.0.png)
+
+## What's new in v0.2.0
+
+v0.2.0 ships a full composition system. The new layout grammar — **Surface, Section, Stack, Cluster, and Split** — lets you compose complete card layouts, multi-column pages, and recipe UIs entirely from library primitives with consistent token-driven spacing, border, shadow, and typography.
+
+New primitives: `NbSurface`, `NbSection`, `NbStack`, `NbCluster`, `NbSplit`, `NbMediaFrame`, `NbText`, `NbDisplay`, `NbStat`, `NbRating`, `NbProgress`, `NbStatusDot`, `NbCallout`, `NbMediaItem`, `NbAvatarGroup`, `NbChip`, `NbChipGroup`, `NbIconButton`, `NbSticker`, `NbHalftone`, `NbSeparator` — plus three ready-made composition recipes.
+
+See the [full changelog](https://github.com/khangtrannn/ng-brutalism/blob/main/CHANGELOG.md) for details and migration notes.
 
 ## Install
 
@@ -108,16 +117,22 @@ direction. Classes are for layout escape hatches.
 | Layout | Stack, Cluster, Split, Section, Separator |
 | Surfaces | Surface, Card, Image Card, Media Frame |
 | Typography | Text, Display, Title |
-| Emphasis | Badge, Chip, Callout, Sticker, Status Dot, Rating, Progress |
+| Emphasis | Badge, Chip, Callout, Sticker, Status Dot, Rating, Progress, Halftone |
 | Actions | Button, Icon Button, Button Trailing Icon |
-| Media | Avatar, Avatar Group, Icon, Media Item |
+| Media | Avatar, Avatar Group, Icon, Media Item, Stat |
 | Forms | Input, Input Group, Textarea, Checkbox, Select, Label |
 | Overlays / Interaction | Accordion, Dialog, Marquee |
-| Recipes | Podcast Card, Travel Card, Job Card |
+| Recipes | Travel Card, Podcast Card, Open to Work Card |
 
-## What it looks like
+## Compositions
 
-![ng-brutalism component showcase — accordion, badge, button, card, checkbox, dialog, input, select rendered in brutalist design](https://raw.githubusercontent.com/khangtrannn/ng-brutalism/main/docs/assets/showcase-portfolio.png)
+Three ready-made recipes ship with v0.2.0, each assembled entirely from library primitives:
+
+<p>
+  <img src="https://raw.githubusercontent.com/khangtrannn/ng-brutalism/main/docs/assets/compositions/personal-profile.png" width="32%" alt="Open to Work Card — personal profile composition built from Surface, Split, Chip, and MediaFrame primitives" />
+  <img src="https://raw.githubusercontent.com/khangtrannn/ng-brutalism/main/docs/assets/compositions/podcast-promo.png" width="32%" alt="Podcast Card — audio episode composition built from Surface, Section, Badge, and Avatar primitives" />
+  <img src="https://raw.githubusercontent.com/khangtrannn/ng-brutalism/main/docs/assets/compositions/travel-compaign.png" width="32%" alt="Travel Card — campaign-style composition built from Surface, MediaFrame, Display, and Sticker primitives" />
+</p>
 
 ## Documentation
 
@@ -143,6 +158,12 @@ All visual tokens are exposed as CSS custom properties (`--nb-*`). A subset of t
 
 **Is ng-brutalism ready for production?**
 It is pre-1.0. Component APIs are usable today, but minor versions may include breaking changes while the library settles.
+
+## Migrating from v0.1.x
+
+v0.2.0 contains breaking changes. The `Component`/`Directive` suffix was dropped from all exported names: `NbCardComponent` → `NbCard`, `NbButtonDirective` → `NbButton`, `NbSelectComponent` → `NbSelect`, etc. The `defaultValue` / `defaultOpen` inputs on `<nb-accordion>` and `<nb-select>` were removed in favour of `[value]` / `[(value)]` bindings. `NbSection`'s `border` input was renamed to `divider`.
+
+See the [full changelog](https://github.com/khangtrannn/ng-brutalism/blob/main/CHANGELOG.md) for the complete list.
 
 ## Author
 
