@@ -1,10 +1,9 @@
 name: Deploy Docs
 
 on:
-  # Temporarily disabled auto-deploy on push to main.
-  # push:
-  #   branches:
-  #     - main
+  push:
+    branches:
+      - main
   workflow_dispatch:
 
 permissions:
