@@ -39,7 +39,7 @@ body {
   :where([data-nb-title])::after {
     content: "";
     display: block;
-    width: var(--nb-title-wave-width, min(18rem, 100%));
+    width: var(--nb-title-wave-width, min(9rem, 100%));
     height: var(--nb-title-wave-height, 0.625rem);
     margin-top: var(--nb-title-wave-gap, 0);
     background-color: var(--nb-title-wave-color, #a78bfa);
@@ -52,12 +52,15 @@ body {
   /* Built-in accent underline for nbDisplay / nbText (underline="bar" | "wave").
      Drawn as an ::after so it stays out of the accessibility tree. Shape, size,
      gap and color are all token-driven public API. */
-  :where([data-nb-text][data-underline]) {
+  :where([data-nb-display][data-underline], [data-nb-text][data-underline]) {
     /* Column flex so the underline sits beneath the text and stays left-aligned,
-       regardless of any inherited text-align or shrink-to-fit width. */
+       regardless of any inherited text-align or shrink-to-fit width. Align to
+       start so percentage underline widths are based on the text box instead of
+       a stretched flex parent. */
     display: inline-flex;
     flex-direction: column;
     align-items: flex-start;
+    align-self: flex-start;
   }
 
   :where([data-nb-display][data-underline="bar"], [data-nb-text][data-underline="bar"])::after {
@@ -179,6 +182,14 @@ body {
 }
 
 @layer components {
+  :where([data-nb-title]) {
+    display: inline-block;
+    max-width: 100%;
+    font-size: var(--nb-title-font-size, 1.75rem);
+    font-weight: var(--nb-title-font-weight, 900);
+    line-height: var(--nb-title-line-height, 1.05);
+  }
+
   :where(.nb-radius) {
     border-radius: var(--nb-radius-token, var(--_nb-radius-default));
   }

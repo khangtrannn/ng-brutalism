@@ -214,18 +214,41 @@ import { DocsCodeBlock } from '../../docs/docs-code-block';
           Composition system
         </h2>
         <p class="mb-5 text-base font-medium">
-          Use primitives like <code class="font-mono">nbSurface</code>,
-          <code class="font-mono">nbSection</code>,
-          <code class="font-mono">nbSplit</code>,
-          <code class="font-mono">nbStack</code>, and
-          <code class="font-mono">nbCluster</code> as the layout grammar. Add
-          emphasis with <code class="font-mono">nbChip</code>,
-          <code class="font-mono">nbCallout</code>,
-          <code class="font-mono">nbSticker</code>, and
-          <code class="font-mono">nbStatusDot</code>. Finish with typography,
-          media, and action primitives.
+          v0.2.0 introduces a stronger composition system for building
+          loud, token-driven, Angular-first brutalist UIs. Small primitives
+          that lock together like LEGO — each primitive owns one job.
         </p>
-        <docs-code-block title="Art direction" [code]="compositionCode" />
+        <p class="mb-5 text-base font-medium">
+          <code class="font-mono">nbSurface</code> creates the panel.
+          <code class="font-mono">nbSection</code> creates regions inside the
+          panel.
+          <code class="font-mono">nbStack</code> controls vertical rhythm.
+          <code class="font-mono">nbCluster</code> controls horizontal wrapping
+          groups.
+          <code class="font-mono">nbSplit</code> creates main/aside layouts.
+          Layer in <code class="font-mono">nbButton</code>,
+          <code class="font-mono">nbChip</code>,
+          <code class="font-mono">nbText</code>, and
+          <code class="font-mono">nbDisplay</code> to build complete product UIs.
+        </p>
+        <docs-code-block title="Composition example" [code]="compositionCode" />
+
+        <div class="mt-6 grid gap-3 sm:grid-cols-2">
+          <a
+            class="nb-stat-tile nb-stat-tile--interactive nb-stat-tile--yellow"
+            routerLink="/composition/overview"
+          >
+            <span class="nb-stat-tile__value">Overview</span>
+            <span class="nb-stat-tile__label">Mental model + decision guide</span>
+          </a>
+          <a
+            class="nb-stat-tile nb-stat-tile--interactive nb-stat-tile--mint"
+            routerLink="/composition/common-patterns"
+          >
+            <span class="nb-stat-tile__value">Patterns</span>
+            <span class="nb-stat-tile__label">Copy-pasteable compositions</span>
+          </a>
+        </div>
       </section>
 
       <section id="utilities">
@@ -261,7 +284,29 @@ import { NbButton } from '@ng-brutalism/ui';
 })
 export class ShipButton {}`;
 
-  protected readonly compositionCode = `<div nbSurface tone="cream"></div>
-<div nbSurface style="--nb-surface-bg: #faf6f0"></div>
-<h1 nbDisplay underline="bar" class="[--nb-underline-gap:1.25rem]"></h1>`;
+  protected readonly compositionCode = `<!-- Surface wraps. Section divides. Stack and Cluster compose. -->
+<article nbSurface tone="cream" radius="xl" shadow="hard" border="strong" clip>
+  <header nbSection padding="lg" divider="bottom">
+    <div nbCluster gap="sm" align="center" justify="between">
+      <h2 nbTitle>Launch checklist</h2>
+      <span nbChip tone="yellow">v0.2.0</span>
+    </div>
+  </header>
+
+  <div nbSection padding="lg">
+    <div nbStack gap="md">
+      <p nbText>Build loud UIs with composable primitives.</p>
+      <div nbCluster gap="xs">
+        <span nbChip tone="mint">Surface</span>
+        <span nbChip tone="pink">Section</span>
+        <span nbChip tone="lavender">Stack</span>
+      </div>
+    </div>
+  </div>
+
+  <footer nbSection padding="lg" divider="top" layout="between" align="center">
+    <span nbText tone="muted">Ready for release</span>
+    <button nbButton tone="black">Ship it</button>
+  </footer>
+</article>`;
 }

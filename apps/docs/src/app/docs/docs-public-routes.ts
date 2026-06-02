@@ -37,6 +37,36 @@ export const DOCS_PUBLIC_ROUTES = [
     changefreq: 'weekly',
   },
   {
+    path: '/composition/overview',
+    file: 'composition/overview.page.ts',
+    priority: '0.8',
+    changefreq: 'weekly',
+  },
+  {
+    path: '/composition/surface-and-section',
+    file: 'composition/surface-and-section.page.ts',
+    priority: '0.8',
+    changefreq: 'weekly',
+  },
+  {
+    path: '/composition/stack-and-cluster',
+    file: 'composition/stack-and-cluster.page.ts',
+    priority: '0.8',
+    changefreq: 'weekly',
+  },
+  {
+    path: '/composition/split-layouts',
+    file: 'composition/split-layouts.page.ts',
+    priority: '0.8',
+    changefreq: 'weekly',
+  },
+  {
+    path: '/composition/common-patterns',
+    file: 'composition/common-patterns.page.ts',
+    priority: '0.8',
+    changefreq: 'weekly',
+  },
+  {
     path: '/components/button',
     file: 'components/button.page.ts',
     priority: '0.8',

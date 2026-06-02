@@ -574,6 +574,12 @@ class DisplayNoResetTest {}
 })
 class DisplayCssVarOverrideTest {}
 
+@Component({
+  imports: [NbDisplay],
+  template: `<h1 nbDisplay underline="bar" style="--nb-underline-width: 45%; --nb-underline-gap: 0.125rem">Override</h1>`,
+})
+class DisplayUnderlineCssVarOverrideTest {}
+
 describe('NbDisplay capability composition', () => {
   it('nbDisplay default: marks for stylesheet margin reset and sets data-nb-display attribute', () => {
     const el = mount(DisplayDefaultsTest);
@@ -627,5 +633,14 @@ describe('NbDisplay capability composition', () => {
     // The inline font-size binding wraps the base value; Angular does not
     // override an explicit inline custom-property set by the user.
     expect(h.style.getPropertyValue('--nb-display-size')).toBe('6rem');
+  });
+
+  it('nbDisplay underline CSS var overrides are respected when inputs are omitted', () => {
+    const el = mount(DisplayUnderlineCssVarOverrideTest);
+    const h = el.querySelector<HTMLElement>('[nbDisplay]')!;
+
+    expect(h.getAttribute('data-underline')).toBe('bar');
+    expect(h.style.getPropertyValue('--nb-underline-width')).toBe('45%');
+    expect(h.style.getPropertyValue('--nb-underline-gap')).toBe('0.125rem');
   });
 });

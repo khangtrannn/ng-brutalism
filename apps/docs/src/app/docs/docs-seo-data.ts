@@ -52,6 +52,18 @@ export const PAGE_DESCRIPTIONS: Record<string, string> = {
   '/docs/faq':
     'Ng Brutalism FAQ for Angular developers. Learn what the neo-brutalist Angular UI library is, why it uses Tailwind v4, how it compares, and whether it fits your project.',
 
+  // Composition
+  '/composition/overview':
+    'Learn the Ng Brutalism composition system: Surface, Section, Stack, Cluster, Split, Button, Chip, Text, and Title working together.',
+  '/composition/surface-and-section':
+    'Compose Angular card shells and panel regions with nbSurface and nbSection, including headers, bodies, footers, dividers, and clipping.',
+  '/composition/stack-and-cluster':
+    'Use nbStack and nbCluster to build vertical rhythm, inline groups, responsive chips, action rows, and composed brutalist Angular cards.',
+  '/composition/split-layouts':
+    'Build responsive two-column Angular layouts with nbSplit, including hero splits, media/content pairs, ratios, collapse points, and split APIs.',
+  '/composition/common-patterns':
+    'Copy-paste Ng Brutalism composition patterns for card shells, toolbars, feature stacks, callout panels, two-column cards, and primitives-used panels.',
+
   // Components — /components/* (demo pages)
   '/components/accordion':
     'Neo-brutalist Accordion component for Angular. Dense disclosure panels with keyboard navigation and signal-driven state.',
@@ -159,6 +171,7 @@ export function getDocsPageSeo(url: string): DocsPageSeo {
   const isTechArticle =
     robots === 'index, follow' &&
     (path.startsWith('/docs/') ||
+      path.startsWith('/composition/') ||
       path.startsWith('/components/') ||
       path.startsWith('/recipes/') ||
       path === '/showcase/portfolio');

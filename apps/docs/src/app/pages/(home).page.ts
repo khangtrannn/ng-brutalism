@@ -82,21 +82,19 @@ import { NbDocsNavbar } from '../docs/layout/navbar';
                       class="w-full justify-center sm:w-auto"
                       nbButton
                       tone="background"
-                      routerLink="/components/button"
+                      routerLink="/composition/overview"
                       style="--nb-button-bg: #fff"
                     >
-                      Browse components
+                      Composition system
                     </a>
                     <a
                       class="w-full justify-center sm:w-auto"
                       nbButton
                       tone="background"
-                      href="https://github.com/khangtrannn/ng-brutalism"
-                      target="_blank"
-                      rel="noreferrer"
+                      routerLink="/components/button"
                       style="--nb-button-bg: #fff"
                     >
-                      GitHub
+                      Browse primitives
                     </a>
                   </div>
 
@@ -256,13 +254,20 @@ import { NbDocsNavbar } from '../docs/layout/navbar';
                 </a>
                 <a
                   class="nb-stat-tile nb-stat-tile--interactive nb-stat-tile--mint"
-                  routerLink="/components/button"
+                  routerLink="/composition/overview"
                 >
-                  <span class="nb-stat-tile__value">Primitives</span>
-                  <span class="nb-stat-tile__label">Composition-first</span>
+                  <span class="nb-stat-tile__value">Composition</span>
+                  <span class="nb-stat-tile__label">Surface, Stack, Cluster, Split</span>
                 </a>
                 <a
                   class="nb-stat-tile nb-stat-tile--interactive nb-stat-tile--pink"
+                  routerLink="/components/button"
+                >
+                  <span class="nb-stat-tile__value">Primitives</span>
+                  <span class="nb-stat-tile__label">45+ components</span>
+                </a>
+                <a
+                  class="nb-stat-tile nb-stat-tile--interactive nb-stat-tile--lavender"
                   routerLink="/showcase/portfolio"
                 >
                   <span class="nb-stat-tile__value">Showcase</span>

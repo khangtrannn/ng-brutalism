@@ -40,6 +40,70 @@ export const docsNavGroups: readonly DocsNavGroup[] = [
     ],
   },
   {
+    label: 'Composition',
+    items: [
+      {
+        label: 'Overview',
+        path: '/composition/overview',
+        toc: [
+          { label: 'Mental model', fragment: 'mental-model' },
+          { label: 'Decision guide', fragment: 'decision-guide' },
+          { label: 'Rendered example', fragment: 'example' },
+          { label: 'Before / after', fragment: 'before-after' },
+          { label: 'API language', fragment: 'api-language' },
+          { label: 'Customization', fragment: 'customization' },
+        ],
+      },
+      {
+        label: 'Surface & Section',
+        path: '/composition/surface-and-section',
+        toc: [
+          { label: 'How they relate', fragment: 'relationship' },
+          { label: 'Basic panel', fragment: 'basic-panel' },
+          { label: 'Header / body / footer', fragment: 'header-body-footer' },
+          { label: 'The clip input', fragment: 'clip' },
+          { label: 'When to use', fragment: 'when-to-use' },
+          { label: 'Key inputs', fragment: 'api' },
+        ],
+      },
+      {
+        label: 'Stack & Cluster',
+        path: '/composition/stack-and-cluster',
+        toc: [
+          { label: 'When to use each', fragment: 'when-each' },
+          { label: 'Stack example', fragment: 'stack-example' },
+          { label: 'Cluster example', fragment: 'cluster-example' },
+          { label: 'Combined', fragment: 'combined-example' },
+          { label: 'Gap values', fragment: 'gap-values' },
+          { label: 'Key inputs', fragment: 'api' },
+        ],
+      },
+      {
+        label: 'Split Layouts',
+        path: '/composition/split-layouts',
+        toc: [
+          { label: 'How it works', fragment: 'how-it-works' },
+          { label: 'Hero split', fragment: 'hero-split' },
+          { label: 'Media / content', fragment: 'media-content' },
+          { label: 'Key inputs', fragment: 'api' },
+          { label: 'When to use', fragment: 'when-to-use' },
+        ],
+      },
+      {
+        label: 'Common Patterns',
+        path: '/composition/common-patterns',
+        toc: [
+          { label: 'Card shell', fragment: 'card-shell' },
+          { label: 'Toolbar row', fragment: 'toolbar-row' },
+          { label: 'Feature stack', fragment: 'feature-stack' },
+          { label: 'Callout panel', fragment: 'callout-panel' },
+          { label: 'Two-column card', fragment: 'two-column-card' },
+          { label: 'Primitives used panel', fragment: 'primitives-used-panel' },
+        ],
+      },
+    ],
+  },
+  {
     label: 'Recipes',
     items: [
       {
@@ -50,6 +114,7 @@ export const docsNavGroups: readonly DocsNavGroup[] = [
           { label: 'Preview', fragment: 'preview' },
           { label: 'Code', fragment: 'code' },
           { label: 'Primitives used', fragment: 'primitives' },
+          { label: 'Layout breakdown', fragment: 'layout-breakdown' },
         ],
       },
       {
@@ -60,6 +125,7 @@ export const docsNavGroups: readonly DocsNavGroup[] = [
           { label: 'Preview', fragment: 'preview' },
           { label: 'Code', fragment: 'code' },
           { label: 'Primitives used', fragment: 'primitives' },
+          { label: 'Layout breakdown', fragment: 'layout-breakdown' },
         ],
       },
       {
@@ -70,6 +136,7 @@ export const docsNavGroups: readonly DocsNavGroup[] = [
           { label: 'Preview', fragment: 'preview' },
           { label: 'Code', fragment: 'code' },
           { label: 'Primitives used', fragment: 'primitives' },
+          { label: 'Layout breakdown', fragment: 'layout-breakdown' },
         ],
       },
       // {

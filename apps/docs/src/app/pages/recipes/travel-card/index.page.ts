@@ -85,6 +85,27 @@ import { TravelCard } from './travel-card';
           }
         </ul>
       </section>
+
+      <section id="layout-breakdown">
+        <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">
+          Layout breakdown
+        </h2>
+        <div
+          class="border-4 border-(--nb-border) bg-black text-white shadow-[6px_6px_0_0_var(--nb-shadow)]"
+        >
+          <div
+            class="border-b border-white/20 px-5 py-3 font-mono text-xs font-bold uppercase tracking-widest text-white/60"
+          >
+            How it is composed
+          </div>
+          @for (step of layoutBreakdown; track step.primitive) {
+            <div class="flex flex-wrap gap-x-6 gap-y-1 border-b border-white/10 px-5 py-3 last:border-none">
+              <code class="shrink-0 font-mono text-sm font-black" style="color: var(--nb-yellow)">{{ step.primitive }}</code>
+              <span class="text-sm font-medium">{{ step.description }}</span>
+            </div>
+          }
+        </div>
+      </section>
     </article>
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -182,6 +203,19 @@ export default class TravelCardRecipePage {
   NbSurface,
   NbText,
 } from '@ng-brutalism/ui';`;
+
+  protected readonly layoutBreakdown = [
+    { primitive: 'nbSurface', description: 'Outer card shell — owns tone, radius, shadow, border, and clip.' },
+    { primitive: 'nbMediaFrame', description: 'Hero banner image filling the full card width at the top.' },
+    { primitive: 'nbSticker', description: '4D / 3N highlight burst floating over the hero image.' },
+    { primitive: 'nbSplit', description: 'Two-column responsive layout separating headline/description from tags/price.' },
+    { primitive: 'nbStack', description: 'Vertical rhythm within the headline column and the tag/price column.' },
+    { primitive: 'nbCluster', description: 'Logo row and wrapping chip group for trip features.' },
+    { primitive: 'nbSection', description: 'Feature strip at the bottom — padded with a top divider.' },
+    { primitive: 'nbCallout', description: 'Price highlight — large, loud, and offset-shadowed.' },
+    { primitive: 'nbChip', description: 'Flight, hotel, and top-pick metadata tags.' },
+    { primitive: 'nbButton', description: 'Book Trip call-to-action at the bottom.' },
+  ];
 
   protected readonly templateCode = `<div nbCluster justify="center" padding="xl" class="travel-stage">
 <div nbSurface clip tone="cream" border="strong" shadow="hard" radius="xl">

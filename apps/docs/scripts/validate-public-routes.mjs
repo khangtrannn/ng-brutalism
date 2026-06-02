@@ -123,7 +123,7 @@ function discoverPublicRoutes(root) {
     results.push({ file: homePage, expectedPath: '/' });
   }
 
-  for (const section of ['docs', 'components']) {
+  for (const section of ['docs', 'composition', 'components']) {
     const dir = path.resolve(root, section);
     if (!existsSync(dir)) continue;
     for (const entry of readdirSync(dir)) {

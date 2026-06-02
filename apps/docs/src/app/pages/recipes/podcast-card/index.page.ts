@@ -85,6 +85,27 @@ import { PodcastCard } from './podcast-card';
           }
         </ul>
       </section>
+
+      <section id="layout-breakdown">
+        <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">
+          Layout breakdown
+        </h2>
+        <div
+          class="border-4 border-(--nb-border) bg-black text-white shadow-[6px_6px_0_0_var(--nb-shadow)]"
+        >
+          <div
+            class="border-b border-white/20 px-5 py-3 font-mono text-xs font-bold uppercase tracking-widest text-white/60"
+          >
+            How it is composed
+          </div>
+          @for (step of layoutBreakdown; track step.primitive) {
+            <div class="flex flex-wrap gap-x-6 gap-y-1 border-b border-white/10 px-5 py-3 last:border-none">
+              <code class="shrink-0 font-mono text-sm font-black" style="color: var(--nb-pink)">{{ step.primitive }}</code>
+              <span class="text-sm font-medium">{{ step.description }}</span>
+            </div>
+          }
+        </div>
+      </section>
     </article>
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -166,6 +187,18 @@ export default class PodcastCardRecipePage {
       path: '/components/halftone',
       role: 'dotted halftone flourish in the host row',
     },
+  ];
+
+  protected readonly layoutBreakdown = [
+    { primitive: 'nbSurface', description: 'Outer card shell and inner audio player panel — cream tone, hard shadow, clip.' },
+    { primitive: 'nbSection', description: 'Each distinct content band (header, brand, episode badge, title, meta, host, player, footer) is a padded section. The host and footer sections use top dividers.' },
+    { primitive: 'nbStack', description: 'Vertical rhythm for host identity (name, role, on-air status).' },
+    { primitive: 'nbCluster', description: 'Inline metadata chips, host identity row, and footer action row.' },
+    { primitive: 'nbDisplay', description: 'Episode title mega heading.' },
+    { primitive: 'nbChip', description: 'Podcast badge, episode number, and metadata tags (duration, new, category).' },
+    { primitive: 'nbButton', description: 'Listen Now primary call to action.' },
+    { primitive: 'nbSticker', description: 'Overflowing star and splat decorative elements.' },
+    { primitive: 'nbHalftone', description: 'Dotted halftone flourish behind the host row.' },
   ];
 
   protected readonly importCode = `import {

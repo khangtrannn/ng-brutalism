@@ -86,6 +86,27 @@ import { OpenToWorkCard } from './open-to-work-card';
           }
         </ul>
       </section>
+
+      <section id="layout-breakdown">
+        <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">
+          Layout breakdown
+        </h2>
+        <div
+          class="border-4 border-(--nb-border) bg-black text-white shadow-[6px_6px_0_0_var(--nb-shadow)]"
+        >
+          <div
+            class="border-b border-white/20 px-5 py-3 font-mono text-xs font-bold uppercase tracking-widest text-white/60"
+          >
+            How it is composed
+          </div>
+          @for (step of layoutBreakdown; track step.primitive) {
+            <div class="flex flex-wrap gap-x-6 gap-y-1 border-b border-white/10 px-5 py-3 last:border-none">
+              <code class="shrink-0 font-mono text-sm font-black" style="color: var(--nb-mint)">{{ step.primitive }}</code>
+              <span class="text-sm font-medium">{{ step.description }}</span>
+            </div>
+          }
+        </div>
+      </section>
     </article>
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -157,6 +178,19 @@ export default class OpenToWorkCardRecipePage {
       path: '/components/sticker',
       role: 'overflowing star decoration with a smiling face',
     },
+  ];
+
+  protected readonly layoutBreakdown = [
+    { primitive: 'nbSurface', description: 'Outer card shell — cream tone, xl radius, hard shadow, and clip.' },
+    { primitive: 'nbSplit', description: 'Two-column layout: portrait frame on the left, identity stack on the right. Also used in the footer for socials vs CTA.' },
+    { primitive: 'nbStack', description: 'Vertical rhythm for name, role label, and skill/bio content.' },
+    { primitive: 'nbCluster', description: 'Wrapping row for social icon buttons.' },
+    { primitive: 'nbSection', description: 'Padded skill/bio region and divided footer region.' },
+    { primitive: 'nbMediaFrame', description: 'Pink portrait frame with object-fit cover ratio.' },
+    { primitive: 'nbDisplay', description: 'Large uppercase name heading.' },
+    { primitive: 'nbChip', description: 'Open-to-work status badge and skill tags.' },
+    { primitive: 'nbButton', description: 'View Profile primary call to action.' },
+    { primitive: 'nbSticker', description: 'Overflowing star decoration with a smiling face.' },
   ];
 
   protected readonly importCode = `import {
