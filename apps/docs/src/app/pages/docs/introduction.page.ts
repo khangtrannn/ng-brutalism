@@ -181,7 +181,7 @@ import { DocsCodeBlock } from '../../docs/docs-code-block';
           >
             <span class="nb-stat-tile__value">Composition Overview</span>
             <span class="nb-stat-tile__label"
-              >Mental model + decision guide</span
+              >Mental model & decision guide</span
             >
           </a>
           <a
@@ -275,7 +275,7 @@ import { DocsCodeBlock } from '../../docs/docs-code-block';
           >
             <span class="nb-stat-tile__value">Overview</span>
             <span class="nb-stat-tile__label"
-              >Mental model + decision guide</span
+              >Mental model & decision guide</span
             >
           </a>
           <a
