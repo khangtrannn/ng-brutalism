@@ -260,8 +260,9 @@ export default class PodcastCardRecipePage {
         </span>
       </div>
     </div>
-    <nb-halftone position="top-right" [rows]="6" [cols]="6"
-                 class="absolute top-4 right-5"></nb-halftone>
+    <div nbHalftone shape="rectangle" [rows]="3" [columns]="13"
+         [size]="8" [gapX]="28" [gapY]="27"
+         class="absolute left-6 top-6 -z-10"></div>
   </div>
 
   <!-- Audio player (waveform asset) -->

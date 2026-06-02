@@ -16,8 +16,9 @@ import { DocsSourceTile } from '../../docs/docs-source-tile';
           <h1>Halftone</h1>
           <p class="mt-3 max-w-3xl text-base font-medium sm:text-lg">
             A decorative dot-grid component that anchors to card corners via absolute
-            positioning. The classic halftone pattern borrowed from print design — adds
-            depth and texture to brutalist cards without cluttering the layout.
+            positioning or renders as a clean rectangular strip. The classic halftone
+            pattern borrowed from print design adds depth and texture to brutalist cards
+            without cluttering the layout.
           </p>
         </div>
 
@@ -27,8 +28,8 @@ import { DocsSourceTile } from '../../docs/docs-source-tile';
             <span class="nb-stat-tile__label">Positions</span>
           </div>
           <div class="nb-stat-tile nb-stat-tile--mint">
-            <span class="nb-stat-tile__value">SVG</span>
-            <span class="nb-stat-tile__label">Inline dot grid</span>
+            <span class="nb-stat-tile__value">CSS</span>
+            <span class="nb-stat-tile__label">Rectangle strip</span>
           </div>
 
           <docs-source-tile
@@ -41,7 +42,7 @@ import { DocsSourceTile } from '../../docs/docs-source-tile';
         <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">Preview</h2>
         <docs-example [code]="defaultExampleCode">
           <div class="relative overflow-hidden border-2 border-(--nb-border) bg-nb-paper p-8 shadow-[5px_5px_0_0_var(--nb-shadow)]" style="min-height: 140px;">
-            <nb-halftone position="bottom-right" />
+            <div nbHalftone position="bottom-right"></div>
             <p class="font-bold text-lg">Card with halftone</p>
             <p class="font-medium text-sm mt-1">Dot grid anchors to the bottom-right corner.</p>
           </div>
@@ -51,7 +52,7 @@ import { DocsSourceTile } from '../../docs/docs-source-tile';
       <section id="usage">
         <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">Usage</h2>
         <p class="mb-4 font-medium">
-          Place <code class="font-mono">&lt;nb-halftone&gt;</code> inside a
+          Place <code class="font-mono">&lt;div nbHalftone&gt;</code> inside a
           <code class="font-mono">relative overflow-hidden</code> container. It uses
           <code class="font-mono">position: absolute</code> and is decorative
           (<code class="font-mono">aria-hidden="true"</code>).
@@ -69,7 +70,7 @@ import { DocsSourceTile } from '../../docs/docs-source-tile';
                 class="relative overflow-hidden border-2 border-(--nb-border) bg-nb-paper shadow-[3px_3px_0_0_var(--nb-shadow)] flex items-center justify-center"
                 style="min-height: 160px;"
               >
-                <nb-halftone [position]="pos" />
+                <div nbHalftone [position]="pos"></div>
                 <span class="font-mono text-sm font-bold">{{ pos }}</span>
               </div>
             }
@@ -81,9 +82,48 @@ import { DocsSourceTile } from '../../docs/docs-source-tile';
         <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">Custom Color</h2>
         <docs-example [code]="customColorCode">
           <div class="relative overflow-hidden border-2 border-(--nb-border) bg-nb-paper p-8 shadow-[5px_5px_0_0_var(--nb-shadow)]" style="min-height: 140px;">
-            <nb-halftone position="top-right" color="#ff90e8" />
-            <nb-halftone position="bottom-left" color="#8ae9ff" />
+            <div nbHalftone position="top-right" color="#ff90e8"></div>
+            <div nbHalftone position="bottom-left" color="#8ae9ff"></div>
             <p class="font-bold">Custom dot colors</p>
+          </div>
+        </docs-example>
+      </section>
+
+      <section id="rectangle">
+        <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">Rectangle</h2>
+        <p class="mb-4 max-w-3xl font-medium">
+          Use rectangle halftone as a decorative strip behind headings, badges, image
+          cards, recipe accents, and banner edges. Rows and columns give you a
+          predictable dot count, while size and gap inputs tune the visual rhythm.
+        </p>
+
+        <docs-example [code]="rectangleExampleCode">
+          <div class="relative overflow-hidden border-2 border-(--nb-border) bg-nb-paper p-8 shadow-[5px_5px_0_0_var(--nb-shadow)]">
+            <div
+              nbHalftone
+              shape="rectangle"
+              [rows]="3"
+              [columns]="13"
+              class="mb-5"
+            ></div>
+            <p class="font-bold text-lg">Graphic strip accent</p>
+            <p class="font-medium text-sm mt-1">
+              A rectangular dot matrix with a predictable 3 by 13 count.
+            </p>
+          </div>
+        </docs-example>
+
+        <docs-example [code]="customRectangleExampleCode">
+          <div class="relative overflow-hidden border-2 border-(--nb-border) bg-nb-paper p-8 shadow-[5px_5px_0_0_var(--nb-shadow)]">
+            <div
+              nbHalftone
+              shape="rectangle"
+              [rows]="3"
+              [columns]="13"
+              [size]="8"
+              [gapX]="28"
+              [gapY]="27"
+            ></div>
           </div>
         </docs-example>
       </section>
@@ -104,6 +144,12 @@ import { DocsSourceTile } from '../../docs/docs-source-tile';
             </thead>
             <tbody class="font-medium">
               <tr class="border-b-2 border-(--nb-border)">
+                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">shape</td>
+                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">'square' | 'circle' | 'rectangle'</td>
+                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">'square'</td>
+                <td class="px-4 py-3">Visual shape. Rectangle renders a CSS background strip.</td>
+              </tr>
+              <tr class="border-b-2 border-(--nb-border)">
                 <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">position</td>
                 <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">'top-left' | 'top-right' | 'bottom-left' | 'bottom-right'</td>
                 <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">'bottom-right'</td>
@@ -118,26 +164,44 @@ import { DocsSourceTile } from '../../docs/docs-source-tile';
               <tr class="border-b-2 border-(--nb-border)">
                 <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">rows</td>
                 <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">number</td>
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">7</td>
+                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">7 / 3 rectangle</td>
                 <td class="px-4 py-3">Number of dot rows.</td>
+              </tr>
+              <tr class="border-b-2 border-(--nb-border)">
+                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">columns</td>
+                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">number</td>
+                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">7 / 13 rectangle</td>
+                <td class="px-4 py-3">Number of dot columns.</td>
               </tr>
               <tr class="border-b-2 border-(--nb-border)">
                 <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">cols</td>
                 <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">number</td>
                 <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">7</td>
-                <td class="px-4 py-3">Number of dot columns.</td>
+                <td class="px-4 py-3">Legacy column alias kept for existing corner halftones.</td>
               </tr>
               <tr class="border-b-2 border-(--nb-border)">
                 <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">size</td>
                 <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">number</td>
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">6</td>
+                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">6 / 8 rectangle</td>
                 <td class="px-4 py-3">Dot diameter in px.</td>
               </tr>
-              <tr>
+              <tr class="border-b-2 border-(--nb-border)">
                 <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">gap</td>
                 <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">number</td>
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">5</td>
-                <td class="px-4 py-3">Gap between dots in px.</td>
+                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">5 / rectangle rhythm</td>
+                <td class="px-4 py-3">Gap between dots in px. Rectangle strips use this as both axes unless gapX or gapY is set.</td>
+              </tr>
+              <tr class="border-b-2 border-(--nb-border)">
+                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">gapX</td>
+                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">number</td>
+                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">28 rectangle</td>
+                <td class="px-4 py-3">Horizontal rectangle dot rhythm in px.</td>
+              </tr>
+              <tr>
+                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">gapY</td>
+                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">number</td>
+                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">27 rectangle</td>
+                <td class="px-4 py-3">Vertical rectangle dot rhythm in px.</td>
               </tr>
             </tbody>
           </table>
@@ -152,18 +216,59 @@ export default class HalftonePage {
 
   protected readonly importCode = `import { NbHalftone } from '@ng-brutalism/ui';`;
 
-  protected readonly defaultExampleCode = `<div class="relative overflow-hidden ...">
-  <nb-halftone position="bottom-right" />
-  <p>Card content</p>
+  protected readonly defaultExampleCode = `<div
+  class="relative overflow-hidden border-2 border-(--nb-border) bg-nb-paper p-8 shadow-[5px_5px_0_0_var(--nb-shadow)]"
+  style="min-height: 140px;"
+>
+  <div nbHalftone position="bottom-right"></div>
+  <p class="font-bold text-lg">Card with halftone</p>
+  <p class="font-medium text-sm mt-1">Dot grid anchors to the bottom-right corner.</p>
 </div>`;
 
-  protected readonly positionsExampleCode = `<div class="relative overflow-hidden ...">
-  <nb-halftone position="top-left" />
-  <!-- ... -->
+  protected readonly positionsExampleCode = `<div class="grid grid-cols-2 gap-4 p-4">
+  @for (pos of positions; track pos) {
+    <div
+      class="relative overflow-hidden border-2 border-(--nb-border) bg-nb-paper shadow-[3px_3px_0_0_var(--nb-shadow)] flex items-center justify-center"
+      style="min-height: 160px;"
+    >
+      <div nbHalftone [position]="pos"></div>
+      <span class="font-mono text-sm font-bold">{{ pos }}</span>
+    </div>
+  }
 </div>`;
 
-  protected readonly customColorCode = `<div class="relative overflow-hidden ...">
-  <nb-halftone position="top-right" color="#ff90e8" />
-  <nb-halftone position="bottom-left" color="#8ae9ff" />
+  protected readonly customColorCode = `<div
+  class="relative overflow-hidden border-2 border-(--nb-border) bg-nb-paper p-8 shadow-[5px_5px_0_0_var(--nb-shadow)]"
+  style="min-height: 140px;"
+>
+  <div nbHalftone position="top-right" color="#ff90e8"></div>
+  <div nbHalftone position="bottom-left" color="#8ae9ff"></div>
+  <p class="font-bold">Custom dot colors</p>
+</div>`;
+
+  protected readonly rectangleExampleCode = `<div class="relative overflow-hidden border-2 border-(--nb-border) bg-nb-paper p-8 shadow-[5px_5px_0_0_var(--nb-shadow)]">
+  <div
+    nbHalftone
+    shape="rectangle"
+    [rows]="3"
+    [columns]="13"
+    class="mb-5"
+  ></div>
+  <p class="font-bold text-lg">Graphic strip accent</p>
+  <p class="font-medium text-sm mt-1">
+    A rectangular dot matrix with a predictable 3 by 13 count.
+  </p>
+</div>`;
+
+  protected readonly customRectangleExampleCode = `<div class="relative overflow-hidden border-2 border-(--nb-border) bg-nb-paper p-8 shadow-[5px_5px_0_0_var(--nb-shadow)]">
+  <div
+    nbHalftone
+    shape="rectangle"
+    [rows]="3"
+    [columns]="13"
+    [size]="8"
+    [gapX]="28"
+    [gapY]="27"
+  ></div>
 </div>`;
 }

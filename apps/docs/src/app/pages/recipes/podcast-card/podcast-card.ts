@@ -178,12 +178,7 @@ import {
                       </span>
                     </div>
 
-                    <nb-halftone
-                      position="bottom-right"
-                      [rows]="6"
-                      [cols]="6"
-                      class="opacity-90"
-                    />
+                    <div nbHalftone position="bottom-right"></div>
                   </div>
 
                   <img

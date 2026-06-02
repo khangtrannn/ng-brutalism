@@ -17,6 +17,7 @@ import {
   NbSurface,
   NbText,
   NbTypography,
+  NbHalftone,
   type NbChipTone,
 } from '@ng-brutalism/ui';
 
@@ -52,16 +53,16 @@ interface OtwLink {
     NbSurface,
     NbText,
     NbTypography,
+    NbHalftone,
   ],
   template: `
     <div nbCluster justify="center" padding="xl" class="otw-stage w-full">
       <article
         nbSurface
-        tone="cream"
         border="strong"
         shadow="hard"
         radius="xl"
-        class="relative w-full max-w-215"
+        class="relative w-full max-w-215 [--nb-surface-bg:#fff0d9]"
       >
         <!-- Decorative star sticker overflowing the top-right corner -->
         <nb-sticker
@@ -97,22 +98,17 @@ interface OtwLink {
             />
           </div>
 
-          <div nbStack gap="none" align="start">
+          <div nbStack gap="none" align="start" justify="end" class="h-full">
             <span nbChip tone="mint" radius="md" class="font-bold uppercase">
-              <span nbStatusDot state="online"></span>
+              <span nbStatusDot state="online" class="[--nb-status-dot-size:14px]"></span>
               {{ profile.status }}
             </span>
 
-            <h1
-              nbDisplay
-              size="lg"
-              fluid
-              class="mt-8 mb-2 uppercase"
-            >
+            <h1 nbDisplay size="lg" fluid class="mt-8 mb-2 uppercase">
               Khang<br />Tran
             </h1>
 
-            <div nbStack gap="xs" align="start">
+            <div nbStack class="mb-6" gap="xs" align="start">
               <span
                 nbText
                 size="2xl"
@@ -126,7 +122,16 @@ interface OtwLink {
               </span>
             </div>
 
-            <!-- nbHalfTone -->
+            <div
+              nbHalftone
+              shape="rectangle"
+              [rows]="3"
+              [columns]="11"
+              [size]="7"
+              [gapX]="25"
+              [gapY]="20"
+              class="opacity-70"
+            ></div>
           </div>
         </div>
 
@@ -142,9 +147,9 @@ interface OtwLink {
               tracking="wide"
             >
               @for (skill of profile.skills; track skill.label) {
-                <span nbChip nbTypography font="display" [tone]="skill.tone">{{
-                  skill.label
-                }}</span>
+              <span nbChip nbTypography font="display" [tone]="skill.tone">{{
+                skill.label
+              }}</span>
               }
             </div>
 
@@ -159,15 +164,15 @@ interface OtwLink {
           <div nbSplit ratio="1:1" gap="lg" collapse="sm" align="center">
             <div nbCluster gap="sm" align="center">
               @for (link of profile.links; track link.label) {
-                <button
-                  nbIconButton
-                  shape="circle"
-                  size="lg"
-                  shadow="none"
-                  [tone]="link.tone"
-                  [icon]="link.icon"
-                  [attr.aria-label]="link.label"
-                ></button>
+              <button
+                nbIconButton
+                shape="circle"
+                size="lg"
+                shadow="none"
+                [tone]="link.tone"
+                [icon]="link.icon"
+                [attr.aria-label]="link.label"
+              ></button>
               }
             </div>
 
