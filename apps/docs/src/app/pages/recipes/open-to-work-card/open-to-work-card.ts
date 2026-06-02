@@ -62,7 +62,7 @@ interface OtwLink {
         border="strong"
         shadow="hard"
         radius="xl"
-        class="relative w-full max-w-215 [--nb-surface-bg:#fff6e8]"
+        class="relative w-full max-w-215 [--nb-surface-bg:#fff3e0]"
       >
         <!-- Decorative star sticker overflowing the top-right corner -->
         <nb-sticker
@@ -70,7 +70,7 @@ interface OtwLink {
           tone="pink"
           decorative
           [rotate]="10"
-          class="absolute -top-7 -right-4 z-20 sm:-top-9 sm:-right-7"
+          class="absolute -top-10 right-1.25 z-20"
         >
           <nb-sticker-face />
         </nb-sticker>
@@ -89,7 +89,7 @@ interface OtwLink {
             ratio="3/4"
             tone="pink"
             border="strong"
-            radius="none"
+            radius="lg"
             shadow="none"
           >
             <img

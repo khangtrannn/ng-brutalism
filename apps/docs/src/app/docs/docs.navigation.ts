@@ -53,8 +53,8 @@ export const docsNavGroups: readonly DocsNavGroup[] = [
         ],
       },
       {
-        label: 'Podcast Card',
-        path: '/recipes/podcast-card',
+        label: 'Open to Work Card',
+        path: '/recipes/open-to-work-card',
         toc: [
           { label: 'Overview', fragment: 'overview' },
           { label: 'Preview', fragment: 'preview' },
@@ -63,8 +63,8 @@ export const docsNavGroups: readonly DocsNavGroup[] = [
         ],
       },
       {
-        label: 'Open to Work Card',
-        path: '/recipes/open-to-work-card',
+        label: 'Podcast Card',
+        path: '/recipes/podcast-card',
         toc: [
           { label: 'Overview', fragment: 'overview' },
           { label: 'Preview', fragment: 'preview' },
