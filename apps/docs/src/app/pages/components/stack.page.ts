@@ -71,7 +71,7 @@ interface StackSeparatorDemo {
             <span class="nb-stat-tile__label">Alignments</span>
           </div>
           <div class="nb-stat-tile nb-stat-tile--pink">
-            <span class="nb-stat-tile__value">2</span>
+            <span class="nb-stat-tile__value">3</span>
             <span class="nb-stat-tile__label">Separators</span>
           </div>
 
@@ -341,7 +341,7 @@ interface StackSeparatorDemo {
                 <td
                   class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
                 >
-                  'none' | 'solid' | 'dashed'
+                  'none' | 'solid' | 'dashed' | 'thick'
                 </td>
                 <td
                   class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"

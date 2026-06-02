@@ -41,7 +41,7 @@ import { DocsTokens } from '../../docs/docs-tokens';
             <span class="nb-stat-tile__label">Sizes</span>
           </div>
           <div class="nb-stat-tile nb-stat-tile--pink">
-            <span class="nb-stat-tile__value">6</span>
+            <span class="nb-stat-tile__value">7</span>
             <span class="nb-stat-tile__label">Inputs</span>
           </div>
 

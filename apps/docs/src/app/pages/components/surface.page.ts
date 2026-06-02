@@ -206,7 +206,7 @@ interface SurfaceShapeDemo {
               </tr>
               <tr class="border-b-2 border-(--nb-border)">
                 <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">border</td>
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">'none' | 'thin' | 'default' | 'thick'</td>
+                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">'none' | 'thin' | 'default' | 'strong' | 'thick'</td>
                 <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">'default'</td>
                 <td class="px-4 py-3">Border width preset.</td>
               </tr>
@@ -216,11 +216,41 @@ interface SurfaceShapeDemo {
                 <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">'default'</td>
                 <td class="px-4 py-3">Offset shadow preset.</td>
               </tr>
+              <tr class="border-b-2 border-(--nb-border)">
+                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">padding</td>
+                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">'none' | 'xs' | 'sm' | 'md' | 'lg' | 'xl'</td>
+                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">'none'</td>
+                <td class="px-4 py-3">Uniform inner padding. Prefer <code class="font-mono">nbSection</code> for region-specific padding inside a surface.</td>
+              </tr>
+              <tr class="border-b-2 border-(--nb-border)">
+                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">size</td>
+                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">'auto' | 'sm' | 'md' | 'lg' | 'xl'</td>
+                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">'auto'</td>
+                <td class="px-4 py-3">Fixed square size. Use for avatar containers or icon-sized surfaces. <code class="font-mono">'auto'</code> lets content define the dimensions.</td>
+              </tr>
+              <tr class="border-b-2 border-(--nb-border)">
+                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">layout</td>
+                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">'block' | 'center' | 'row' | 'stack'</td>
+                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">'block'</td>
+                <td class="px-4 py-3">Inner display mode. <code class="font-mono">center</code> centers content both axes, <code class="font-mono">row</code> aligns children in a row, <code class="font-mono">stack</code> stacks them vertically.</td>
+              </tr>
+              <tr class="border-b-2 border-(--nb-border)">
+                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">edge</td>
+                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">'none' | 'top' | 'bottom'</td>
+                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">'none'</td>
+                <td class="px-4 py-3">Adds a 2 px accent border on the top or bottom edge using the tone's border color. Useful for callout or notification panels.</td>
+              </tr>
+              <tr class="border-b-2 border-(--nb-border)">
+                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">typography</td>
+                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">'inherit' | 'body' | 'display' | 'accent' | 'mono'</td>
+                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">'inherit'</td>
+                <td class="px-4 py-3">Sets a font-family role for the surface and all descendant primitives via the cascade. Composes <code class="font-mono">nbTypography</code>.</td>
+              </tr>
               <tr>
                 <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">clip</td>
                 <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">boolean</td>
                 <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">false</td>
-                <td class="px-4 py-3">Adds overflow hidden to the surface.</td>
+                <td class="px-4 py-3">Adds overflow hidden to the surface so child media and decorations respect the surface radius.</td>
               </tr>
             </tbody>
           </table>

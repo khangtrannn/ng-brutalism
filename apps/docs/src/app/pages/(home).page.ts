@@ -102,8 +102,8 @@ import { NbDocsNavbar } from '../docs/layout/navbar';
 
                   <div class="mt-8 flex flex-wrap items-center gap-3">
                     <div class="nb-stat-tile nb-stat-tile--yellow">
-                      <span class="nb-stat-tile__value">15</span>
-                      <span class="nb-stat-tile__label">Components</span>
+                      <span class="nb-stat-tile__value">v0.2</span>
+                      <span class="nb-stat-tile__label">Composition system</span>
                     </div>
                     <div class="nb-stat-tile nb-stat-tile--mint">
                       <span class="nb-stat-tile__value">NG</span>
@@ -258,8 +258,8 @@ import { NbDocsNavbar } from '../docs/layout/navbar';
                   class="nb-stat-tile nb-stat-tile--interactive nb-stat-tile--mint"
                   routerLink="/components/button"
                 >
-                  <span class="nb-stat-tile__value">Components</span>
-                  <span class="nb-stat-tile__label">15 brutalist primitives</span>
+                  <span class="nb-stat-tile__value">Primitives</span>
+                  <span class="nb-stat-tile__label">Composition-first</span>
                 </a>
                 <a
                   class="nb-stat-tile nb-stat-tile--interactive nb-stat-tile--pink"

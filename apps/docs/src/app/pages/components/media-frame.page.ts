@@ -63,7 +63,7 @@ interface MediaFrameShapeDemo {
             <span class="nb-stat-tile__label">Tones</span>
           </div>
           <div class="nb-stat-tile nb-stat-tile--mint">
-            <span class="nb-stat-tile__value">6</span>
+            <span class="nb-stat-tile__value">7</span>
             <span class="nb-stat-tile__label">Ratios</span>
           </div>
           <div class="nb-stat-tile nb-stat-tile--pink">
@@ -278,7 +278,7 @@ interface MediaFrameShapeDemo {
                 <td
                   class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
                 >
-                  'auto' | '1/1' | '4/3' | '3/2' | '16/9' | '21/9'
+                  'auto' | '1/1' | '3/4' | '4/3' | '3/2' | '16/9' | '21/9'
                 </td>
                 <td
                   class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"

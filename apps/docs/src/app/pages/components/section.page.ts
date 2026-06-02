@@ -209,7 +209,7 @@ interface SectionLayoutDemo {
                   border {{ border.label }}
                 </div>
                 <div class="p-4">
-                  <div nbSection padding="md" [border]="border.value">
+                  <div nbSection padding="md" [divider]="border.value">
                     <div
                       class="grid h-12 place-items-center border-2 border-(--nb-border) bg-(--nb-mint) px-3 font-mono text-xs font-black uppercase"
                     >

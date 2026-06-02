@@ -175,7 +175,7 @@ export { NbAvatarGroup } from './lib/avatar-group';
 export { NbSticker, NbStickerFace } from './lib/sticker';
 export type { NbStickerShape, NbStickerTone } from './lib/sticker';
 export { NbHalftone } from './lib/halftone';
-export type { NbHalftonePosition, NbHalftoneShape } from './lib/halftone';
+export type { NbHalftoneShape } from './lib/halftone';
 export { NbSurface } from './lib/surface';
 export type {
   NbSurfaceBorder,
