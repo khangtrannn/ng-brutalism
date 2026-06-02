@@ -23,10 +23,6 @@ import { DocsSourceTile } from '../../docs/docs-source-tile';
         </div>
 
         <div class="mt-7 flex flex-wrap items-center gap-3">
-          <div class="nb-stat-tile nb-stat-tile--yellow">
-            <span class="nb-stat-tile__value">4</span>
-            <span class="nb-stat-tile__label">Positions</span>
-          </div>
           <div class="nb-stat-tile nb-stat-tile--mint">
             <span class="nb-stat-tile__value">CSS</span>
             <span class="nb-stat-tile__label">Rectangle strip</span>
@@ -42,7 +38,7 @@ import { DocsSourceTile } from '../../docs/docs-source-tile';
         <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">Preview</h2>
         <docs-example [code]="defaultExampleCode">
           <div class="relative overflow-hidden border-2 border-(--nb-border) bg-nb-paper p-8 shadow-[5px_5px_0_0_var(--nb-shadow)]" style="min-height: 140px;">
-            <div nbHalftone position="bottom-right"></div>
+            <div nbHalftone class="absolute bottom-0 right-0"></div>
             <p class="font-bold text-lg">Card with halftone</p>
             <p class="font-medium text-sm mt-1">Dot grid anchors to the bottom-right corner.</p>
           </div>
@@ -53,37 +49,21 @@ import { DocsSourceTile } from '../../docs/docs-source-tile';
         <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">Usage</h2>
         <p class="mb-4 font-medium">
           Place <code class="font-mono">&lt;div nbHalftone&gt;</code> inside a
-          <code class="font-mono">relative overflow-hidden</code> container. It uses
-          <code class="font-mono">position: absolute</code> and is decorative
+          <code class="font-mono">relative overflow-hidden</code> container. Position it with
+          Tailwind classes (<code class="font-mono">absolute</code>, <code class="font-mono">top-*</code>,
+          <code class="font-mono">right-*</code>, etc). The component is decorative
           (<code class="font-mono">aria-hidden="true"</code>).
         </p>
         <docs-code-block class="block mb-5" title="Import" [code]="importCode" />
         <docs-code-block title="Template" [code]="defaultExampleCode" />
       </section>
 
-      <section id="positions">
-        <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">Positions</h2>
-        <docs-example [code]="positionsExampleCode">
-          <div class="grid grid-cols-2 gap-4 p-4">
-            @for (pos of positions; track pos) {
-              <div
-                class="relative overflow-hidden border-2 border-(--nb-border) bg-nb-paper shadow-[3px_3px_0_0_var(--nb-shadow)] flex items-center justify-center"
-                style="min-height: 160px;"
-              >
-                <div nbHalftone [position]="pos"></div>
-                <span class="font-mono text-sm font-bold">{{ pos }}</span>
-              </div>
-            }
-          </div>
-        </docs-example>
-      </section>
-
       <section id="custom-color">
-        <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">Custom Color</h2>
+        <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">Custom Color & Positioning</h2>
         <docs-example [code]="customColorCode">
           <div class="relative overflow-hidden border-2 border-(--nb-border) bg-nb-paper p-8 shadow-[5px_5px_0_0_var(--nb-shadow)]" style="min-height: 140px;">
-            <div nbHalftone position="top-right" color="#ff90e8"></div>
-            <div nbHalftone position="bottom-left" color="#8ae9ff"></div>
+            <div nbHalftone color="#ff90e8" class="absolute top-0 right-0"></div>
+            <div nbHalftone color="#8ae9ff" class="absolute bottom-0 left-0"></div>
             <p class="font-bold">Custom dot colors</p>
           </div>
         </docs-example>
@@ -150,12 +130,6 @@ import { DocsSourceTile } from '../../docs/docs-source-tile';
                 <td class="px-4 py-3">Visual shape. Rectangle renders a CSS background strip.</td>
               </tr>
               <tr class="border-b-2 border-(--nb-border)">
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">position</td>
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">'top-left' | 'top-right' | 'bottom-left' | 'bottom-right'</td>
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">'bottom-right'</td>
-                <td class="px-4 py-3">Which corner to anchor the dot grid.</td>
-              </tr>
-              <tr class="border-b-2 border-(--nb-border)">
                 <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">color</td>
                 <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">string</td>
                 <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">var(--nb-border)</td>
@@ -172,12 +146,6 @@ import { DocsSourceTile } from '../../docs/docs-source-tile';
                 <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">number</td>
                 <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">7 / 13 rectangle</td>
                 <td class="px-4 py-3">Number of dot columns.</td>
-              </tr>
-              <tr class="border-b-2 border-(--nb-border)">
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">cols</td>
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">number</td>
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">7</td>
-                <td class="px-4 py-3">Legacy column alias kept for existing corner halftones.</td>
               </tr>
               <tr class="border-b-2 border-(--nb-border)">
                 <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">size</td>
@@ -212,37 +180,23 @@ import { DocsSourceTile } from '../../docs/docs-source-tile';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export default class HalftonePage {
-  protected readonly positions = ['top-left', 'top-right', 'bottom-left', 'bottom-right'] as const;
-
   protected readonly importCode = `import { NbHalftone } from '@ng-brutalism/ui';`;
 
   protected readonly defaultExampleCode = `<div
   class="relative overflow-hidden border-2 border-(--nb-border) bg-nb-paper p-8 shadow-[5px_5px_0_0_var(--nb-shadow)]"
   style="min-height: 140px;"
 >
-  <div nbHalftone position="bottom-right"></div>
+  <div nbHalftone class="absolute bottom-0 right-0"></div>
   <p class="font-bold text-lg">Card with halftone</p>
   <p class="font-medium text-sm mt-1">Dot grid anchors to the bottom-right corner.</p>
-</div>`;
-
-  protected readonly positionsExampleCode = `<div class="grid grid-cols-2 gap-4 p-4">
-  @for (pos of positions; track pos) {
-    <div
-      class="relative overflow-hidden border-2 border-(--nb-border) bg-nb-paper shadow-[3px_3px_0_0_var(--nb-shadow)] flex items-center justify-center"
-      style="min-height: 160px;"
-    >
-      <div nbHalftone [position]="pos"></div>
-      <span class="font-mono text-sm font-bold">{{ pos }}</span>
-    </div>
-  }
 </div>`;
 
   protected readonly customColorCode = `<div
   class="relative overflow-hidden border-2 border-(--nb-border) bg-nb-paper p-8 shadow-[5px_5px_0_0_var(--nb-shadow)]"
   style="min-height: 140px;"
 >
-  <div nbHalftone position="top-right" color="#ff90e8"></div>
-  <div nbHalftone position="bottom-left" color="#8ae9ff"></div>
+  <div nbHalftone color="#ff90e8" class="absolute top-0 right-0"></div>
+  <div nbHalftone color="#8ae9ff" class="absolute bottom-0 left-0"></div>
   <p class="font-bold">Custom dot colors</p>
 </div>`;
 

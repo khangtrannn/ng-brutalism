@@ -48,7 +48,7 @@ import {
       padding="lg"
       class="podcast-stage w-full overflow-visible"
     >
-      <div class="relative mx-auto w-full max-w-[36rem] overflow-visible">
+      <div class="relative mx-auto w-full max-w-xl overflow-visible">
         <div
           nbSurface
           clip
@@ -178,7 +178,7 @@ import {
                       </span>
                     </div>
 
-                    <div nbHalftone position="bottom-right"></div>
+                    <div nbHalftone class="absolute bottom-0 right-0"></div>
                   </div>
 
                   <img

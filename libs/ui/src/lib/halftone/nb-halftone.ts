@@ -6,7 +6,6 @@ import {
   numberAttribute,
 } from '@angular/core';
 
-export type NbHalftonePosition = 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right';
 export type NbHalftoneShape = 'square' | 'circle' | 'rectangle';
 
 const DEFAULT_SHAPE: NbHalftoneShape = 'square';
@@ -31,30 +30,6 @@ const RECTANGLE_DEFAULT_COLUMNS = 13;
   styles: `
     :host {
       pointer-events: none;
-    }
-
-    :host(.nb-halftone:not(.nb-halftone--rectangle)) {
-      position: absolute;
-    }
-
-    :host(.nb-halftone:not(.nb-halftone--rectangle)[data-position='top-left']) {
-      top: 0;
-      left: 0;
-    }
-
-    :host(.nb-halftone:not(.nb-halftone--rectangle)[data-position='top-right']) {
-      top: 0;
-      right: 0;
-    }
-
-    :host(.nb-halftone:not(.nb-halftone--rectangle)[data-position='bottom-left']) {
-      bottom: 0;
-      left: 0;
-    }
-
-    :host(.nb-halftone:not(.nb-halftone--rectangle)[data-position='bottom-right']) {
-      right: 0;
-      bottom: 0;
     }
 
     :host(.nb-halftone--rectangle) {
@@ -89,7 +64,6 @@ const RECTANGLE_DEFAULT_COLUMNS = 13;
     '[class.nb-halftone--circle]': 'shape() === "circle"',
     '[class.nb-halftone--rectangle]': 'shape() === "rectangle"',
     '[attr.aria-hidden]': '"true"',
-    '[attr.data-position]': 'position()',
     '[attr.data-shape]': 'shape()',
     '[attr.data-nb-halftone]': '""',
     '[style.--nb-halftone-color]': 'color()',
@@ -102,7 +76,6 @@ const RECTANGLE_DEFAULT_COLUMNS = 13;
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NbHalftone {
-  readonly position = input<NbHalftonePosition>('bottom-right');
   readonly shape = input<NbHalftoneShape>(DEFAULT_SHAPE);
   readonly color = input<string | null>(null);
   readonly size = input<number | null, unknown>(null, { transform: numberAttribute });
@@ -110,7 +83,6 @@ export class NbHalftone {
   readonly gapX = input<number | null, unknown>(null, { transform: numberAttribute });
   readonly gapY = input<number | null, unknown>(null, { transform: numberAttribute });
   readonly rows = input<number | null, unknown>(null, { transform: numberAttribute });
-  readonly cols = input<number | null, unknown>(null, { transform: numberAttribute });
   readonly columns = input<number | null, unknown>(null, { transform: numberAttribute });
 
   protected readonly resolvedColor = computed(() => this.color() ?? 'var(--nb-border)');
@@ -126,7 +98,6 @@ export class NbHalftone {
   protected readonly resolvedColumns = computed(
     () =>
       this.columns() ??
-      this.cols() ??
       (this.shape() === 'rectangle' ? RECTANGLE_DEFAULT_COLUMNS : DEFAULT_COLUMNS)
   );
 
@@ -148,26 +119,13 @@ export class NbHalftone {
     const g = this.resolvedGap();
     const rows = this.resolvedRows();
     const cols = this.resolvedColumns();
-    const pos = this.position();
     const total = s + g;
     const r = s / 2;
-
-    const isBottom = pos.startsWith('bottom');
-    const isRight = pos.endsWith('right');
-
-    // Manhattan distance from corner determines the triangle cutoff.
-    // threshold = min(rows, cols) - 1 creates a clean 45° diagonal edge.
-    const threshold = Math.min(rows, cols) - 1;
     const result: { cx: number; cy: number }[] = [];
 
     for (let row = 0; row < rows; row++) {
       for (let col = 0; col < cols; col++) {
-        const rowDist = isBottom ? rows - 1 - row : row;
-        const colDist = isRight ? cols - 1 - col : col;
-
-        if (rowDist + colDist <= threshold) {
-          result.push({ cx: col * total + r, cy: row * total + r });
-        }
+        result.push({ cx: col * total + r, cy: row * total + r });
       }
     }
 
