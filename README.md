@@ -133,7 +133,7 @@ Three ready-made recipes ship with v0.2.0, each assembled entirely from library 
 <p>
   <img src="docs/assets/compositions/personal-profile.png" width="32%" alt="Open to Work Card — personal profile composition built from Surface, Split, Chip, and MediaFrame primitives" />
   <img src="docs/assets/compositions/podcast-promo.png" width="32%" alt="Podcast Card — audio episode composition built from Surface, Section, Badge, and Avatar primitives" />
-  <img src="docs/assets/compositions/travel-compaign.png" width="32%" alt="Travel Card — campaign-style composition built from Surface, MediaFrame, Display, and Sticker primitives" />
+  <img src="docs/assets/compositions/travel-campaign.png" width="32%" alt="Travel Card — campaign-style composition built from Surface, MediaFrame, Display, and Sticker primitives" />
 </p>
 
 ## FAQ
