@@ -104,6 +104,18 @@ import { DocsSourceTile } from '../../docs/docs-source-tile';
                 <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">'online'</td>
                 <td class="px-4 py-3">The visual state of the indicator.</td>
               </tr>
+              <tr>
+                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">size</td>
+                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">'xs' | 'sm' | 'md' | 'lg'</td>
+                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">'md'</td>
+                <td class="px-4 py-3">The size of the indicator dot.</td>
+              </tr>
+              <tr>
+                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">radius</td>
+                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">NbRadius</td>
+                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">'md'</td>
+                <td class="px-4 py-3">The border radius of the indicator.</td>
+              </tr>
             </tbody>
           </table>
         </div>

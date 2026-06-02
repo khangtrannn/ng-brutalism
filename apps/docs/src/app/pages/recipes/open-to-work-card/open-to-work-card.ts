@@ -100,7 +100,7 @@ interface OtwLink {
 
           <div nbStack gap="none" align="start" justify="end" class="h-full">
             <span nbChip tone="mint" radius="md" class="font-bold uppercase">
-              <span nbStatusDot state="online" class="[--nb-status-dot-size:14px]"></span>
+              <span nbStatusDot state="online" size="sm"></span>
               {{ profile.status }}
             </span>
 
