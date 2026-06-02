@@ -63,20 +63,20 @@ interface AlignDemo {
 
         <div class="mt-7 flex flex-wrap items-center gap-3">
           <div class="nb-stat-tile nb-stat-tile--yellow">
-            <span class="nb-stat-tile__value">15</span>
-            <span class="nb-stat-tile__label">Tones</span>
+            <span class="nb-stat-tile__value">Tone</span>
+            <span class="nb-stat-tile__label">Shared vocabulary</span>
           </div>
           <div class="nb-stat-tile nb-stat-tile--mint">
-            <span class="nb-stat-tile__value">3</span>
-            <span class="nb-stat-tile__label">Variants</span>
+            <span class="nb-stat-tile__value">Style</span>
+            <span class="nb-stat-tile__label">Variant API</span>
           </div>
           <div class="nb-stat-tile nb-stat-tile--pink">
-            <span class="nb-stat-tile__value">3</span>
-            <span class="nb-stat-tile__label">Sizes</span>
+            <span class="nb-stat-tile__value">Size</span>
+            <span class="nb-stat-tile__label">Compact to roomy</span>
           </div>
           <div class="nb-stat-tile nb-stat-tile--lavender">
-            <span class="nb-stat-tile__value">2</span>
-            <span class="nb-stat-tile__label">Orientations</span>
+            <span class="nb-stat-tile__value">Flow</span>
+            <span class="nb-stat-tile__label">Row or column</span>
           </div>
 
           <docs-source-tile
@@ -89,7 +89,6 @@ interface AlignDemo {
         <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">Preview</h2>
         <docs-example [code]="defaultExampleCode">
           <div class="grid w-full max-w-100 grid-cols-1 gap-6 p-4">
-
             <!-- YOUR FLIGHT card -->
             <div
               nbSurface
@@ -99,8 +98,12 @@ interface AlignDemo {
               shadow="hard"
               clip
             >
-              <div class="border-b-2 border-(--nb-border) bg-(--nb-accent) px-4 py-3 text-(--nb-accent-foreground)">
-                <span class="font-heading text-2xl uppercase leading-none">Your Flight</span>
+              <div
+                class="border-b-2 border-(--nb-border) bg-(--nb-accent) px-4 py-3 text-(--nb-accent-foreground)"
+              >
+                <span class="font-heading text-2xl uppercase leading-none"
+                  >Your Flight</span
+                >
               </div>
 
               <div class="flex flex-col p-4">
@@ -140,7 +143,6 @@ interface AlignDemo {
                 </div>
               </div>
             </div>
-
           </div>
         </docs-example>
       </section>
@@ -149,65 +151,80 @@ interface AlignDemo {
         <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">Usage</h2>
         <p class="mb-4 font-medium">
           Use inputs for icon, title, and description in the common case.
-          Project custom content with <code class="font-mono">nb-media-item-icon</code>,
+          Project custom content with
+          <code class="font-mono">nb-media-item-icon</code>,
           <code class="font-mono">nb-media-item-title</code>, and
           <code class="font-mono">nb-media-item-description</code> when you need
           custom markup.
         </p>
-        <docs-code-block class="block mb-5" title="Import" [code]="importCode" />
+        <docs-code-block
+          class="block mb-5"
+          title="Import"
+          [code]="importCode"
+        />
         <docs-code-block title="Template" [code]="defaultExampleCode" />
       </section>
 
       <section id="variants">
-        <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">Variants</h2>
+        <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">
+          Variants
+        </h2>
         <docs-example [code]="variantsExampleCode">
           <div class="flex flex-col divide-y-2 divide-(--nb-border) p-4">
             @for (variant of variants; track variant.value) {
-              <div class="py-5 first:pt-0 last:pb-0">
-                <div class="mb-3 flex items-baseline gap-3">
-                  <span class="font-black uppercase">{{ variant.label }}</span>
-                  <span class="text-sm font-medium opacity-60">{{ variant.description }}</span>
-                </div>
-                <nb-media-item
-                  [variant]="variant.value"
-                  size="md"
-                  tone="yellow"
-                  icon="/icons/star.png"
-                  iconAlt="Star"
-                  title="Premium Access"
-                  description="Unlimited features"
-                />
+            <div class="py-5 first:pt-0 last:pb-0">
+              <div class="mb-3 flex items-baseline gap-3">
+                <span class="font-black uppercase">{{ variant.label }}</span>
+                <span class="text-sm font-medium opacity-60">{{
+                  variant.description
+                }}</span>
               </div>
+              <nb-media-item
+                [variant]="variant.value"
+                size="md"
+                tone="yellow"
+                icon="/icons/star.png"
+                iconAlt="Star"
+                title="Premium Access"
+                description="Unlimited features"
+              />
+            </div>
             }
           </div>
         </docs-example>
       </section>
 
       <section id="orientations">
-        <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">Orientations</h2>
+        <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">
+          Orientations
+        </h2>
         <docs-example [code]="orientationsExampleCode">
           <div class="flex flex-wrap gap-8 p-4">
             @for (orientation of orientations; track orientation.value) {
-              <div class="flex flex-col gap-2">
-                <span class="text-xs font-black uppercase opacity-60">{{ orientation.label }}</span>
-                <nb-media-item
-                  [orientation]="orientation.value"
-                  variant="boxed"
-                  size="md"
-                  tone="lavender"
-                  icon="/icons/camera.png"
-                  iconAlt="Camera"
-                  title="Travel Photos"
-                  description="128 shots"
-                />
-              </div>
+            <div class="flex flex-col gap-2">
+              <span class="text-xs font-black uppercase opacity-60">{{
+                orientation.label
+              }}</span>
+              <nb-media-item
+                [orientation]="orientation.value"
+                variant="boxed"
+                size="md"
+                tone="lavender"
+                icon="/icons/camera.png"
+                iconAlt="Camera"
+                title="Travel Photos"
+                description="128 shots"
+              />
+            </div>
             }
           </div>
         </docs-example>
       </section>
 
       <section id="with-description">
-        <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">With description</h2>
+        <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">
+          With description
+        </h2>
         <p class="mb-4 font-medium">
           Add <code class="font-mono">description</code> for secondary context.
           It renders below the title with reduced opacity and follows the
@@ -250,38 +267,42 @@ interface AlignDemo {
         <docs-example [code]="sizesExampleCode">
           <div class="flex flex-col gap-4 p-4">
             @for (size of sizes; track size.value) {
-              <nb-media-item
-                variant="boxed"
-                [size]="size.value"
-                tone="cream"
-                icon="/icons/baggage.png"
-                iconAlt="Baggage"
-                [title]="size.label + ' — Checked Baggage'"
-                description="Up to 23kg included"
-              />
+            <nb-media-item
+              variant="boxed"
+              [size]="size.value"
+              tone="cream"
+              icon="/icons/baggage.png"
+              iconAlt="Baggage"
+              [title]="size.label + ' — Checked Baggage'"
+              description="Up to 23kg included"
+            />
             }
           </div>
         </docs-example>
       </section>
 
       <section id="alignment">
-        <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">Alignment</h2>
+        <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">
+          Alignment
+        </h2>
         <docs-example [code]="alignmentExampleCode">
           <div class="flex flex-col gap-4 p-4">
             @for (align of alignments; track align.value) {
-              <div class="flex flex-col gap-2">
-                <span class="text-xs font-black uppercase opacity-60">{{ align.label }} — {{ align.description }}</span>
-                <nb-media-item
-                  variant="boxed"
-                  size="md"
-                  tone="yellow"
-                  [align]="align.value"
-                  icon="/icons/world.png"
-                  iconAlt="World"
-                  title="Global Network"
-                  description="140+ destinations"
-                />
-              </div>
+            <div class="flex flex-col gap-2">
+              <span class="text-xs font-black uppercase opacity-60"
+                >{{ align.label }} — {{ align.description }}</span
+              >
+              <nb-media-item
+                variant="boxed"
+                size="md"
+                tone="yellow"
+                [align]="align.value"
+                icon="/icons/world.png"
+                iconAlt="World"
+                title="Global Network"
+                description="140+ destinations"
+              />
+            </div>
             }
           </div>
         </docs-example>
@@ -297,72 +318,238 @@ interface AlignDemo {
           <table class="w-full min-w-180 border-collapse text-left">
             <thead class="bg-nb-secondary text-nb-secondary-fg">
               <tr>
-                <th class="border-b-2 border-r-2 border-(--nb-border) px-4 py-3 font-bold">Input</th>
-                <th class="border-b-2 border-r-2 border-(--nb-border) px-4 py-3 font-bold">Type</th>
-                <th class="border-b-2 border-r-2 border-(--nb-border) px-4 py-3 font-bold">Default</th>
-                <th class="border-b-2 border-(--nb-border) px-4 py-3 font-bold">Description</th>
+                <th
+                  class="border-b-2 border-r-2 border-(--nb-border) px-4 py-3 font-bold"
+                >
+                  Input
+                </th>
+                <th
+                  class="border-b-2 border-r-2 border-(--nb-border) px-4 py-3 font-bold"
+                >
+                  Type
+                </th>
+                <th
+                  class="border-b-2 border-r-2 border-(--nb-border) px-4 py-3 font-bold"
+                >
+                  Default
+                </th>
+                <th class="border-b-2 border-(--nb-border) px-4 py-3 font-bold">
+                  Description
+                </th>
               </tr>
             </thead>
             <tbody class="font-medium">
               <tr class="border-b-2 border-(--nb-border)">
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">variant</td>
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">'plain' | 'boxed' | 'chip'</td>
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">'plain'</td>
-                <td class="px-4 py-3">Visual container style. <code class="font-mono">boxed</code> adds a border and shadow; <code class="font-mono">chip</code> uses a fully-rounded pill shape.</td>
+                <td
+                  class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
+                >
+                  variant
+                </td>
+                <td
+                  class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
+                >
+                  'plain' | 'boxed' | 'chip'
+                </td>
+                <td
+                  class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
+                >
+                  'plain'
+                </td>
+                <td class="px-4 py-3">
+                  Visual container style.
+                  <code class="font-mono">boxed</code> adds a border and shadow;
+                  <code class="font-mono">chip</code> uses a fully-rounded pill
+                  shape.
+                </td>
               </tr>
               <tr class="border-b-2 border-(--nb-border)">
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">orientation</td>
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">'horizontal' | 'vertical'</td>
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">'horizontal'</td>
-                <td class="px-4 py-3">Controls whether the media and text stack side-by-side or top-to-bottom.</td>
+                <td
+                  class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
+                >
+                  orientation
+                </td>
+                <td
+                  class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
+                >
+                  'horizontal' | 'vertical'
+                </td>
+                <td
+                  class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
+                >
+                  'horizontal'
+                </td>
+                <td class="px-4 py-3">
+                  Controls whether the media and text stack side-by-side or
+                  top-to-bottom.
+                </td>
               </tr>
               <tr class="border-b-2 border-(--nb-border)">
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">align</td>
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">'start' | 'center' | 'between'</td>
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">'start'</td>
-                <td class="px-4 py-3">Horizontal distribution of children. <code class="font-mono">between</code> stretches the item to full width.</td>
+                <td
+                  class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
+                >
+                  align
+                </td>
+                <td
+                  class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
+                >
+                  'start' | 'center' | 'between'
+                </td>
+                <td
+                  class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
+                >
+                  'start'
+                </td>
+                <td class="px-4 py-3">
+                  Horizontal distribution of children.
+                  <code class="font-mono">between</code> stretches the item to
+                  full width.
+                </td>
               </tr>
               <tr class="border-b-2 border-(--nb-border)">
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">size</td>
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">'sm' | 'md' | 'lg'</td>
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">'md'</td>
-                <td class="px-4 py-3">Sets gap, padding, icon size, and font size together.</td>
+                <td
+                  class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
+                >
+                  size
+                </td>
+                <td
+                  class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
+                >
+                  'sm' | 'md' | 'lg'
+                </td>
+                <td
+                  class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
+                >
+                  'md'
+                </td>
+                <td class="px-4 py-3">
+                  Sets gap, padding, icon size, and font size together.
+                </td>
               </tr>
               <tr>
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">tone</td>
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">NbToneToken</td>
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">'default'</td>
-                <td class="px-4 py-3">Shared color tone — writes background, foreground, and border color. Background paint applies to <code class="font-mono">boxed</code> and <code class="font-mono">chip</code> variants.</td>
+                <td
+                  class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
+                >
+                  tone
+                </td>
+                <td
+                  class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
+                >
+                  NbToneToken
+                </td>
+                <td
+                  class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
+                >
+                  'default'
+                </td>
+                <td class="px-4 py-3">
+                  Shared color tone — writes background, foreground, and border
+                  color. Background paint applies to
+                  <code class="font-mono">boxed</code> and
+                  <code class="font-mono">chip</code> variants.
+                </td>
               </tr>
               <tr class="border-t-2 border-(--nb-border)">
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">icon</td>
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">string</td>
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">undefined</td>
+                <td
+                  class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
+                >
+                  icon
+                </td>
+                <td
+                  class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
+                >
+                  string
+                </td>
+                <td
+                  class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
+                >
+                  undefined
+                </td>
                 <td class="px-4 py-3">Image source for the media icon.</td>
               </tr>
               <tr class="border-t-2 border-(--nb-border)">
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">iconAlt</td>
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">string</td>
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">''</td>
-                <td class="px-4 py-3">Accessible alternative text for the input icon.</td>
+                <td
+                  class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
+                >
+                  iconAlt
+                </td>
+                <td
+                  class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
+                >
+                  string
+                </td>
+                <td
+                  class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
+                >
+                  ''
+                </td>
+                <td class="px-4 py-3">
+                  Accessible alternative text for the input icon.
+                </td>
               </tr>
               <tr class="border-t-2 border-(--nb-border)">
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">iconBackground</td>
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">string</td>
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">undefined</td>
-                <td class="px-4 py-3">Wraps the input icon in a framed surface with the provided fill.</td>
+                <td
+                  class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
+                >
+                  iconBackground
+                </td>
+                <td
+                  class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
+                >
+                  string
+                </td>
+                <td
+                  class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
+                >
+                  undefined
+                </td>
+                <td class="px-4 py-3">
+                  Wraps the input icon in a framed surface with the provided
+                  fill.
+                </td>
               </tr>
               <tr class="border-t-2 border-(--nb-border)">
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">title</td>
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">string</td>
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">undefined</td>
-                <td class="px-4 py-3">Primary label. Use <code class="font-mono">nbMediaItemTitle</code> for custom title markup.</td>
+                <td
+                  class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
+                >
+                  title
+                </td>
+                <td
+                  class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
+                >
+                  string
+                </td>
+                <td
+                  class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
+                >
+                  undefined
+                </td>
+                <td class="px-4 py-3">
+                  Primary label. Use
+                  <code class="font-mono">nbMediaItemTitle</code> for custom
+                  title markup.
+                </td>
               </tr>
               <tr class="border-t-2 border-(--nb-border)">
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">description</td>
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">string</td>
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">undefined</td>
-                <td class="px-4 py-3">Secondary label. Use <code class="font-mono">nbMediaItemDescription</code> for custom description markup.</td>
+                <td
+                  class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
+                >
+                  description
+                </td>
+                <td
+                  class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
+                >
+                  string
+                </td>
+                <td
+                  class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
+                >
+                  undefined
+                </td>
+                <td class="px-4 py-3">
+                  Secondary label. Use
+                  <code class="font-mono">nbMediaItemDescription</code> for
+                  custom description markup.
+                </td>
               </tr>
             </tbody>
           </table>
@@ -375,30 +562,71 @@ interface AlignDemo {
           <table class="w-full min-w-140 border-collapse text-left">
             <thead class="bg-nb-secondary text-nb-secondary-fg">
               <tr>
-                <th class="border-b-2 border-r-2 border-(--nb-border) px-4 py-3 font-bold">Token</th>
-                <th class="border-b-2 border-r-2 border-(--nb-border) px-4 py-3 font-bold">Default</th>
-                <th class="border-b-2 border-(--nb-border) px-4 py-3 font-bold">Description</th>
+                <th
+                  class="border-b-2 border-r-2 border-(--nb-border) px-4 py-3 font-bold"
+                >
+                  Token
+                </th>
+                <th
+                  class="border-b-2 border-r-2 border-(--nb-border) px-4 py-3 font-bold"
+                >
+                  Default
+                </th>
+                <th class="border-b-2 border-(--nb-border) px-4 py-3 font-bold">
+                  Description
+                </th>
               </tr>
             </thead>
             <tbody class="font-medium">
               <tr class="border-b-2 border-(--nb-border)">
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">--nb-media-item-icon-size</td>
-                <td class="border-r-2 border-(--nb-border) px-4 py-3">Depends on <code class="font-mono">size</code></td>
-                <td class="px-4 py-3">Controls projected and input icon dimensions.</td>
+                <td
+                  class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
+                >
+                  --nb-media-item-icon-size
+                </td>
+                <td class="border-r-2 border-(--nb-border) px-4 py-3">
+                  Depends on <code class="font-mono">size</code>
+                </td>
+                <td class="px-4 py-3">
+                  Controls projected and input icon dimensions.
+                </td>
               </tr>
               <tr class="border-b-2 border-(--nb-border)">
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">--nb-media-item-title-size</td>
-                <td class="border-r-2 border-(--nb-border) px-4 py-3">Depends on <code class="font-mono">size</code></td>
-                <td class="px-4 py-3">Controls title text size for input and projected titles.</td>
+                <td
+                  class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
+                >
+                  --nb-media-item-title-size
+                </td>
+                <td class="border-r-2 border-(--nb-border) px-4 py-3">
+                  Depends on <code class="font-mono">size</code>
+                </td>
+                <td class="px-4 py-3">
+                  Controls title text size for input and projected titles.
+                </td>
               </tr>
               <tr class="border-b-2 border-(--nb-border)">
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">--nb-media-item-title-font-family</td>
-                <td class="border-r-2 border-(--nb-border) px-4 py-3">var(--font-sans)</td>
-                <td class="px-4 py-3">Controls title font family without adding utility classes to the title slot.</td>
+                <td
+                  class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
+                >
+                  --nb-media-item-title-font-family
+                </td>
+                <td class="border-r-2 border-(--nb-border) px-4 py-3">
+                  var(--font-sans)
+                </td>
+                <td class="px-4 py-3">
+                  Controls title font family without adding utility classes to
+                  the title slot.
+                </td>
               </tr>
               <tr>
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">--nb-media-item-description-size</td>
-                <td class="border-r-2 border-(--nb-border) px-4 py-3">Depends on <code class="font-mono">size</code></td>
+                <td
+                  class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
+                >
+                  --nb-media-item-description-size
+                </td>
+                <td class="border-r-2 border-(--nb-border) px-4 py-3">
+                  Depends on <code class="font-mono">size</code>
+                </td>
                 <td class="px-4 py-3">Controls secondary label text size.</td>
               </tr>
             </tbody>
@@ -412,22 +640,51 @@ interface AlignDemo {
           <table class="w-full min-w-120 border-collapse text-left">
             <thead class="bg-nb-secondary text-nb-secondary-fg">
               <tr>
-                <th class="border-b-2 border-r-2 border-(--nb-border) px-4 py-3 font-bold">Directive</th>
-                <th class="border-b-2 border-(--nb-border) px-4 py-3 font-bold">Description</th>
+                <th
+                  class="border-b-2 border-r-2 border-(--nb-border) px-4 py-3 font-bold"
+                >
+                  Directive
+                </th>
+                <th class="border-b-2 border-(--nb-border) px-4 py-3 font-bold">
+                  Description
+                </th>
               </tr>
             </thead>
             <tbody class="font-medium">
               <tr class="border-b-2 border-(--nb-border)">
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">nbMediaItemIcon</td>
-                <td class="px-4 py-3">Media slot for an icon or image. Add <code class="font-mono">surface</code> to use the built-in icon frame and <code class="font-mono">background</code> to adjust its fill.</td>
+                <td
+                  class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
+                >
+                  nbMediaItemIcon
+                </td>
+                <td class="px-4 py-3">
+                  Media slot for an icon or image. Add
+                  <code class="font-mono">surface</code> to use the built-in
+                  icon frame and <code class="font-mono">background</code> to
+                  adjust its fill.
+                </td>
               </tr>
               <tr class="border-b-2 border-(--nb-border)">
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">nbMediaItemTitle</td>
-                <td class="px-4 py-3">Primary label. Rendered in black font weight with tight leading.</td>
+                <td
+                  class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
+                >
+                  nbMediaItemTitle
+                </td>
+                <td class="px-4 py-3">
+                  Primary label. Rendered in black font weight with tight
+                  leading.
+                </td>
               </tr>
               <tr>
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">nbMediaItemDescription</td>
-                <td class="px-4 py-3">Secondary label below the title. Rendered at 75% size with reduced opacity.</td>
+                <td
+                  class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
+                >
+                  nbMediaItemDescription
+                </td>
+                <td class="px-4 py-3">
+                  Secondary label below the title. Rendered at 75% size with
+                  reduced opacity.
+                </td>
               </tr>
             </tbody>
           </table>
@@ -623,9 +880,21 @@ export default class MediaItemPage {
 />`;
 
   protected readonly variants = [
-    { value: 'plain', label: 'Plain', description: 'No container — just gap, icon size, and typography' },
-    { value: 'boxed', label: 'Boxed', description: 'Hard border with offset shadow and tone fill' },
-    { value: 'chip', label: 'Chip', description: 'Fully-rounded pill — great for status or tags' },
+    {
+      value: 'plain',
+      label: 'Plain',
+      description: 'No container — just gap, icon size, and typography',
+    },
+    {
+      value: 'boxed',
+      label: 'Boxed',
+      description: 'Hard border with offset shadow and tone fill',
+    },
+    {
+      value: 'chip',
+      label: 'Chip',
+      description: 'Fully-rounded pill — great for status or tags',
+    },
   ] satisfies readonly VariantDemo[];
 
   protected readonly orientations = [
@@ -640,9 +909,16 @@ export default class MediaItemPage {
   ] satisfies readonly SizeDemo[];
 
   protected readonly alignments = [
-    { value: 'start', label: 'Start', description: 'default, left-aligned content' },
+    {
+      value: 'start',
+      label: 'Start',
+      description: 'default, left-aligned content',
+    },
     { value: 'center', label: 'Center', description: 'centered content' },
-    { value: 'between', label: 'Between', description: 'stretches to full width' },
+    {
+      value: 'between',
+      label: 'Between',
+      description: 'stretches to full width',
+    },
   ] satisfies readonly AlignDemo[];
-
 }

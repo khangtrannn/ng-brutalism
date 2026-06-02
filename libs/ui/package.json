@@ -1,7 +1,7 @@
 {
   "name": "@ng-brutalism/ui",
-  "version": "0.1.2",
-  "description": "Neo-brutalist Angular UI library — brutalist Angular components with signals, zoneless, and Tailwind v4. Install: ng add @ng-brutalism/ui",
+  "version": "0.2.0",
+  "description": "Neo-brutalist Angular UI primitive library and composition system with directive APIs, signals, zoneless-friendly patterns, and Tailwind v4. Install: ng add @ng-brutalism/ui",
   "license": "MIT",
   "author": "Khang Tran <khangtrann8198@gmail.com>",
   "repository": {
@@ -24,9 +24,12 @@
     "angular",
     "angular-ui",
     "angular-components",
+    "angular-primitives",
+    "angular-composition",
     "angular-brutalism",
     "ui-library",
     "component-library",
+    "primitive-library",
     "design-system",
     "tailwindcss",
     "signals",

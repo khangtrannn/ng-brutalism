@@ -36,8 +36,8 @@ interface SurfaceShapeDemo {
           <p>Neo-Brutalist Angular Surface</p>
           <h1>Surface</h1>
           <p class="mt-3 max-w-3xl text-base font-medium sm:text-lg">
-            A directive for turning any host element into a brutalist panel.
-            Use <code class="font-mono">nbSurface</code> for layout shells,
+            A directive for turning any host element into a brutalist panel. Use
+            <code class="font-mono">nbSurface</code> for layout shells,
             callouts, recipe containers, and custom compositions that need the
             same borders, tones, radius, and offset shadow system as the
             packaged components.
@@ -50,8 +50,8 @@ interface SurfaceShapeDemo {
             <span class="nb-stat-tile__label">Any host</span>
           </div>
           <div class="nb-stat-tile nb-stat-tile--mint">
-            <span class="nb-stat-tile__value">17</span>
-            <span class="nb-stat-tile__label">Tones</span>
+            <span class="nb-stat-tile__value">Tone</span>
+            <span class="nb-stat-tile__label">Shared vocabulary</span>
           </div>
           <div class="nb-stat-tile nb-stat-tile--pink">
             <span class="nb-stat-tile__value">CSS</span>
@@ -76,7 +76,9 @@ interface SurfaceShapeDemo {
             clip
             class="w-full max-w-md"
           >
-            <div class="border-b-2 border-(--nb-border) bg-nb-primary px-5 py-3 text-nb-primary-fg">
+            <div
+              class="border-b-2 border-(--nb-border) bg-nb-primary px-5 py-3 text-nb-primary-fg"
+            >
               <p class="font-mono text-xs font-black uppercase">Launch deck</p>
             </div>
             <div class="p-5">
@@ -94,10 +96,16 @@ interface SurfaceShapeDemo {
         <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">Usage</h2>
         <p class="mb-4 font-medium">
           Add <code class="font-mono">nbSurface</code> to the element that owns
-          the panel. Spacing and internal layout stay in your template via
-          normal classes.
+          the outer panel. Use <code class="font-mono">nbSection</code> for
+          internal regions, <code class="font-mono">nbStack</code> for vertical
+          rhythm, <code class="font-mono">nbCluster</code> for inline groups,
+          and <code class="font-mono">nbSplit</code> for two-region layouts.
         </p>
-        <docs-code-block class="block mb-5" title="Import" [code]="importCode" />
+        <docs-code-block
+          class="block mb-5"
+          title="Import"
+          [code]="importCode"
+        />
         <docs-code-block title="Template" [code]="defaultExampleCode" />
       </section>
 
@@ -106,12 +114,12 @@ interface SurfaceShapeDemo {
         <docs-example [code]="tonesExampleCode">
           <div class="grid w-full grid-cols-1 gap-3 p-4 sm:grid-cols-2">
             @for (tone of tones; track tone.value) {
-              <div nbSurface [tone]="tone.value" shadow="sm" class="p-4">
-                <p class="font-mono text-xs font-black uppercase opacity-75">
-                  {{ tone.label }}
-                </p>
-                <p class="mt-1 text-sm font-bold">{{ tone.description }}</p>
-              </div>
+            <div nbSurface [tone]="tone.value" shadow="sm" class="p-4">
+              <p class="font-mono text-xs font-black uppercase opacity-75">
+                {{ tone.label }}
+              </p>
+              <p class="mt-1 text-sm font-bold">{{ tone.description }}</p>
+            </div>
             }
           </div>
         </docs-example>
@@ -128,19 +136,19 @@ interface SurfaceShapeDemo {
         <docs-example [code]="shapeExampleCode">
           <div class="grid w-full grid-cols-1 gap-4 p-4 sm:grid-cols-3">
             @for (shape of shapes; track shape.label) {
-              <div
-                nbSurface
-                [tone]="shape.tone"
-                [radius]="shape.radius"
-                [border]="shape.border"
-                [shadow]="shape.shadow"
-                class="min-h-32 p-4"
-              >
-                <p class="font-black">{{ shape.label }}</p>
-                <p class="mt-2 font-mono text-xs">
-                  {{ shape.radius }} / {{ shape.border }} / {{ shape.shadow }}
-                </p>
-              </div>
+            <div
+              nbSurface
+              [tone]="shape.tone"
+              [radius]="shape.radius"
+              [border]="shape.border"
+              [shadow]="shape.shadow"
+              class="min-h-32 p-4"
+            >
+              <p class="font-black">{{ shape.label }}</p>
+              <p class="mt-2 font-mono text-xs">
+                {{ shape.radius }} / {{ shape.border }} / {{ shape.shadow }}
+              </p>
+            </div>
             }
           </div>
         </docs-example>
@@ -154,7 +162,14 @@ interface SurfaceShapeDemo {
           respect the surface radius.
         </p>
         <docs-example [code]="clipExampleCode">
-          <article nbSurface tone="white" radius="xl" shadow="hard" clip class="relative w-full max-w-sm">
+          <article
+            nbSurface
+            tone="white"
+            radius="xl"
+            shadow="hard"
+            clip
+            class="relative w-full max-w-sm"
+          >
             <div class="relative h-44 bg-(--nb-blue) text-white">
               <div
                 class="absolute -right-10 -top-10 size-28 rounded-full border-2 border-(--nb-border) bg-(--nb-yellow)"
@@ -185,72 +200,234 @@ interface SurfaceShapeDemo {
           <table class="w-full min-w-180 border-collapse text-left">
             <thead class="bg-nb-secondary text-nb-secondary-fg">
               <tr>
-                <th class="border-b-2 border-r-2 border-(--nb-border) px-4 py-3 font-bold">Input</th>
-                <th class="border-b-2 border-r-2 border-(--nb-border) px-4 py-3 font-bold">Type</th>
-                <th class="border-b-2 border-r-2 border-(--nb-border) px-4 py-3 font-bold">Default</th>
-                <th class="border-b-2 border-(--nb-border) px-4 py-3 font-bold">Description</th>
+                <th
+                  class="border-b-2 border-r-2 border-(--nb-border) px-4 py-3 font-bold"
+                >
+                  Input
+                </th>
+                <th
+                  class="border-b-2 border-r-2 border-(--nb-border) px-4 py-3 font-bold"
+                >
+                  Type
+                </th>
+                <th
+                  class="border-b-2 border-r-2 border-(--nb-border) px-4 py-3 font-bold"
+                >
+                  Default
+                </th>
+                <th class="border-b-2 border-(--nb-border) px-4 py-3 font-bold">
+                  Description
+                </th>
               </tr>
             </thead>
             <tbody class="font-medium">
               <tr class="border-b-2 border-(--nb-border)">
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">tone</td>
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">'default' | 'background' | 'surface' | 'cream' | 'white' | 'black' | 'yellow' | 'pink' | 'mint' | 'lavender' | 'blue' | 'primary' | 'secondary' | 'accent' | 'success' | 'warning' | 'danger'</td>
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">'default'</td>
+                <td
+                  class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
+                >
+                  tone
+                </td>
+                <td
+                  class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
+                >
+                  'default' | 'background' | 'surface' | 'cream' | 'white' |
+                  'black' | 'yellow' | 'pink' | 'mint' | 'lavender' | 'blue' |
+                  'primary' | 'secondary' | 'accent' | 'success' | 'warning' |
+                  'danger'
+                </td>
+                <td
+                  class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
+                >
+                  'default'
+                </td>
                 <td class="px-4 py-3">Background and foreground color pair.</td>
               </tr>
               <tr class="border-b-2 border-(--nb-border)">
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">radius</td>
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">'none' | 'sm' | 'md' | 'lg' | 'xl' | 'full'</td>
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">'md'</td>
+                <td
+                  class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
+                >
+                  radius
+                </td>
+                <td
+                  class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
+                >
+                  'none' | 'sm' | 'md' | 'lg' | 'xl' | 'full'
+                </td>
+                <td
+                  class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
+                >
+                  'md'
+                </td>
                 <td class="px-4 py-3">Corner radius preset.</td>
               </tr>
               <tr class="border-b-2 border-(--nb-border)">
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">border</td>
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">'none' | 'thin' | 'default' | 'strong' | 'thick'</td>
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">'default'</td>
+                <td
+                  class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
+                >
+                  border
+                </td>
+                <td
+                  class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
+                >
+                  'none' | 'thin' | 'default' | 'strong' | 'thick'
+                </td>
+                <td
+                  class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
+                >
+                  'default'
+                </td>
                 <td class="px-4 py-3">Border width preset.</td>
               </tr>
               <tr class="border-b-2 border-(--nb-border)">
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">shadow</td>
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">'none' | 'sm' | 'default' | 'hard' | 'heavy'</td>
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">'default'</td>
+                <td
+                  class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
+                >
+                  shadow
+                </td>
+                <td
+                  class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
+                >
+                  'none' | 'sm' | 'default' | 'hard' | 'heavy'
+                </td>
+                <td
+                  class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
+                >
+                  'default'
+                </td>
                 <td class="px-4 py-3">Offset shadow preset.</td>
               </tr>
               <tr class="border-b-2 border-(--nb-border)">
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">padding</td>
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">'none' | 'xs' | 'sm' | 'md' | 'lg' | 'xl'</td>
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">'none'</td>
-                <td class="px-4 py-3">Uniform inner padding. Prefer <code class="font-mono">nbSection</code> for region-specific padding inside a surface.</td>
+                <td
+                  class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
+                >
+                  padding
+                </td>
+                <td
+                  class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
+                >
+                  'none' | 'xs' | 'sm' | 'md' | 'lg' | 'xl'
+                </td>
+                <td
+                  class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
+                >
+                  'none'
+                </td>
+                <td class="px-4 py-3">
+                  Uniform inner padding. Prefer
+                  <code class="font-mono">nbSection</code> for region-specific
+                  padding inside a surface.
+                </td>
               </tr>
               <tr class="border-b-2 border-(--nb-border)">
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">size</td>
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">'auto' | 'sm' | 'md' | 'lg' | 'xl'</td>
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">'auto'</td>
-                <td class="px-4 py-3">Fixed square size. Use for avatar containers or icon-sized surfaces. <code class="font-mono">'auto'</code> lets content define the dimensions.</td>
+                <td
+                  class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
+                >
+                  size
+                </td>
+                <td
+                  class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
+                >
+                  'auto' | 'sm' | 'md' | 'lg' | 'xl'
+                </td>
+                <td
+                  class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
+                >
+                  'auto'
+                </td>
+                <td class="px-4 py-3">
+                  Fixed square size. Use for avatar containers or icon-sized
+                  surfaces. <code class="font-mono">'auto'</code> lets content
+                  define the dimensions.
+                </td>
               </tr>
               <tr class="border-b-2 border-(--nb-border)">
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">layout</td>
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">'block' | 'center' | 'row' | 'stack'</td>
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">'block'</td>
-                <td class="px-4 py-3">Inner display mode. <code class="font-mono">center</code> centers content both axes, <code class="font-mono">row</code> aligns children in a row, <code class="font-mono">stack</code> stacks them vertically.</td>
+                <td
+                  class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
+                >
+                  layout
+                </td>
+                <td
+                  class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
+                >
+                  'block' | 'center' | 'row' | 'stack'
+                </td>
+                <td
+                  class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
+                >
+                  'block'
+                </td>
+                <td class="px-4 py-3">
+                  Inner display mode.
+                  <code class="font-mono">center</code> centers content both
+                  axes, <code class="font-mono">row</code> aligns children in a
+                  row, <code class="font-mono">stack</code> stacks them
+                  vertically.
+                </td>
               </tr>
               <tr class="border-b-2 border-(--nb-border)">
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">edge</td>
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">'none' | 'top' | 'bottom'</td>
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">'none'</td>
-                <td class="px-4 py-3">Adds a 2 px accent border on the top or bottom edge using the tone's border color. Useful for callout or notification panels.</td>
+                <td
+                  class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
+                >
+                  edge
+                </td>
+                <td
+                  class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
+                >
+                  'none' | 'top' | 'bottom'
+                </td>
+                <td
+                  class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
+                >
+                  'none'
+                </td>
+                <td class="px-4 py-3">
+                  Adds a 2 px accent border on the top or bottom edge using the
+                  tone's border color. Useful for callout or notification
+                  panels.
+                </td>
               </tr>
               <tr class="border-b-2 border-(--nb-border)">
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">typography</td>
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">'inherit' | 'body' | 'display' | 'accent' | 'mono'</td>
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">'inherit'</td>
-                <td class="px-4 py-3">Sets a font-family role for the surface and all descendant primitives via the cascade. Composes <code class="font-mono">nbTypography</code>.</td>
+                <td
+                  class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
+                >
+                  typography
+                </td>
+                <td
+                  class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
+                >
+                  'inherit' | 'body' | 'display' | 'accent' | 'mono'
+                </td>
+                <td
+                  class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
+                >
+                  'inherit'
+                </td>
+                <td class="px-4 py-3">
+                  Sets a font-family role for the surface and all descendant
+                  primitives via the cascade. Composes
+                  <code class="font-mono">nbTypography</code>.
+                </td>
               </tr>
               <tr>
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">clip</td>
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">boolean</td>
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">false</td>
-                <td class="px-4 py-3">Adds overflow hidden to the surface so child media and decorations respect the surface radius.</td>
+                <td
+                  class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
+                >
+                  clip
+                </td>
+                <td
+                  class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
+                >
+                  boolean
+                </td>
+                <td
+                  class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
+                >
+                  false
+                </td>
+                <td class="px-4 py-3">
+                  Adds overflow hidden to the surface so child media and
+                  decorations respect the surface radius.
+                </td>
               </tr>
             </tbody>
           </table>
@@ -316,11 +493,19 @@ export default class SurfacePage {
     },
     { value: 'cream', label: 'cream', description: 'Warm editorial panel.' },
     { value: 'white', label: 'white', description: 'Crisp white panel.' },
-    { value: 'black', label: 'black', description: 'High contrast black panel.' },
+    {
+      value: 'black',
+      label: 'black',
+      description: 'High contrast black panel.',
+    },
     { value: 'yellow', label: 'yellow', description: 'Main brutalist yellow.' },
     { value: 'pink', label: 'pink', description: 'Punchy pink accent.' },
     { value: 'mint', label: 'mint', description: 'Soft pastel mint.' },
-    { value: 'lavender', label: 'lavender', description: 'Pale lavender surface.' },
+    {
+      value: 'lavender',
+      label: 'lavender',
+      description: 'Pale lavender surface.',
+    },
     { value: 'blue', label: 'blue', description: 'Clear sky blue surface.' },
     { value: 'primary', label: 'primary', description: 'Theme primary color.' },
     {
@@ -329,8 +514,16 @@ export default class SurfacePage {
       description: 'Theme secondary color.',
     },
     { value: 'accent', label: 'accent', description: 'Theme accent color.' },
-    { value: 'success', label: 'success', description: 'Semantic success tone.' },
-    { value: 'warning', label: 'warning', description: 'Semantic warning tone.' },
+    {
+      value: 'success',
+      label: 'success',
+      description: 'Semantic success tone.',
+    },
+    {
+      value: 'warning',
+      label: 'warning',
+      description: 'Semantic warning tone.',
+    },
     { value: 'danger', label: 'danger', description: 'Semantic danger tone.' },
   ] satisfies readonly SurfaceToneDemo[];
 

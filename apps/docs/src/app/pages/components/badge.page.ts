@@ -7,15 +7,9 @@ import { DocsSourceTile } from '../../docs/docs-source-tile';
 import { DocsTokens } from '../../docs/docs-tokens';
 
 @Component({
-    selector: 'docs-badge-page',
-    imports: [
-        DocsCodeBlock,
-        DocsExample,
-        DocsSourceTile,
-        DocsTokens,
-        NbBadge,
-    ],
-    template: `
+  selector: 'docs-badge-page',
+  imports: [DocsCodeBlock, DocsExample, DocsSourceTile, DocsTokens, NbBadge],
+  template: `
     <article>
       <header id="overview" class="relative mb-10 scroll-mt-32">
         <div class="mb-5">
@@ -30,7 +24,7 @@ import { DocsTokens } from '../../docs/docs-tokens';
         <div class="mt-7 flex flex-wrap items-center gap-3">
           <div class="nb-stat-tile nb-stat-tile--yellow">
             <span class="nb-stat-tile__value">5</span>
-            <span class="nb-stat-tile__label">Variants</span>
+            <span class="nb-stat-tile__label">Tone-driven</span>
           </div>
 
           <docs-source-tile
@@ -48,7 +42,11 @@ import { DocsTokens } from '../../docs/docs-tokens';
 
       <section id="usage">
         <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">Usage</h2>
-        <docs-code-block class="block mb-5" title="Import" [code]="importCode" />
+        <docs-code-block
+          class="block mb-5"
+          title="Import"
+          [code]="importCode"
+        />
         <docs-code-block title="Template" [code]="defaultExampleCode" />
       </section>
 
@@ -76,15 +74,27 @@ import { DocsTokens } from '../../docs/docs-tokens';
           <table class="w-full min-w-160 border-collapse text-left">
             <thead class="bg-nb-secondary text-nb-secondary-fg">
               <tr>
-                <th class="border-b-2 border-r-2 border-(--nb-border) px-4 py-3 font-bold">Input</th>
-                <th class="border-b-2 border-r-2 border-(--nb-border) px-4 py-3 font-bold">Type</th>
-                <th class="border-b-2 border-(--nb-border) px-4 py-3 font-bold">Default</th>
+                <th
+                  class="border-b-2 border-r-2 border-(--nb-border) px-4 py-3 font-bold"
+                >
+                  Input
+                </th>
+                <th
+                  class="border-b-2 border-r-2 border-(--nb-border) px-4 py-3 font-bold"
+                >
+                  Type
+                </th>
+                <th class="border-b-2 border-(--nb-border) px-4 py-3 font-bold">
+                  Default
+                </th>
               </tr>
             </thead>
             <tbody class="font-medium">
               <tr>
                 <td class="border-r-2 border-(--nb-border) px-4 py-3">tone</td>
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">
+                <td
+                  class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
+                >
                   NbToneToken
                 </td>
                 <td class="px-4 py-3 font-mono text-sm">'white'</td>
@@ -95,7 +105,7 @@ import { DocsTokens } from '../../docs/docs-tokens';
       </section>
     </article>
   `,
-    changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export default class BadgePage {
   protected readonly defaultExampleCode = `<span nbBadge>Default</span>`;

@@ -25,8 +25,8 @@ import { TravelCard } from './travel-card';
 
         <div class="mt-7 flex flex-wrap items-center gap-3">
           <div class="nb-stat-tile nb-stat-tile--yellow">
-            <span class="nb-stat-tile__value">15</span>
-            <span class="nb-stat-tile__label">Primitives</span>
+            <span class="nb-stat-tile__value">{{ primitives.length }}</span>
+            <span class="nb-stat-tile__label">primitives</span>
           </div>
           <div class="nb-stat-tile nb-stat-tile--mint">
             <span class="nb-stat-tile__value">100%</span>
@@ -62,6 +62,11 @@ import { TravelCard } from './travel-card';
           class="block mb-5"
           title="Imports"
           [code]="importCode"
+        />
+        <docs-code-block
+          class="block mb-5"
+          title="Composition skeleton"
+          [code]="skeletonCode"
         />
         <docs-code-block title="Template" [code]="templateCode" />
       </section>
@@ -99,10 +104,16 @@ import { TravelCard } from './travel-card';
             How it is composed
           </div>
           @for (step of layoutBreakdown; track step.primitive) {
-            <div class="flex flex-wrap gap-x-6 gap-y-1 border-b border-white/10 px-5 py-3 last:border-none">
-              <code class="shrink-0 font-mono text-sm font-black" style="color: var(--nb-yellow)">{{ step.primitive }}</code>
-              <span class="text-sm font-medium">{{ step.description }}</span>
-            </div>
+          <div
+            class="flex flex-wrap gap-x-6 gap-y-1 border-b border-white/10 px-5 py-3 last:border-none"
+          >
+            <code
+              class="shrink-0 font-mono text-sm font-black"
+              style="color: var(--nb-yellow)"
+              >{{ step.primitive }}</code
+            >
+            <span class="text-sm font-medium">{{ step.description }}</span>
+          </div>
           }
         </div>
       </section>
@@ -113,73 +124,73 @@ import { TravelCard } from './travel-card';
 export default class TravelCardRecipePage {
   protected readonly primitives = [
     {
-      name: 'NbSurface',
+      name: 'nbSurface',
       path: '/components/surface',
       role: 'bordered card shell',
     },
     {
-      name: 'NbMediaFrame',
+      name: 'nbMediaFrame',
       path: '/components/media-frame',
       role: 'hero banner image',
     },
     {
-      name: 'NbSticker',
+      name: 'nbSticker',
       path: '/components/sticker',
       role: '4D/3N highlight burst',
     },
     {
-      name: 'NbDisplay',
+      name: 'nbDisplay',
       path: '/components/display',
       role: 'destination mega title',
     },
     {
-      name: 'NbStack',
+      name: 'nbStack',
       path: '/components/stack',
       role: 'vertical rhythm for card regions',
     },
     {
-      name: 'NbSplit',
+      name: 'nbSplit',
       path: '/components/split',
       role: 'responsive main-and-aside layout',
     },
     {
-      name: 'NbSection',
+      name: 'nbSection',
       path: '/components/section',
       role: 'section border and padding',
     },
     {
-      name: 'NbText',
+      name: 'nbText',
       path: '/components/text',
       role: 'body copy and brand text',
     },
     {
-      name: 'NbChip',
+      name: 'nbChip',
       path: '/components/chip',
       role: 'flight / hotel / top-pick tags',
     },
     {
-      name: 'NbIcon',
+      name: 'nbIcon',
       path: '/components/icon',
       role: 'decorative chip and button icons',
     },
-    { name: 'NbCallout', path: '/components/callout', role: 'price callout' },
+    { name: 'nbCallout', path: '/components/callout', role: 'price callout' },
     {
-      name: 'NbCluster',
+      name: 'nbCluster',
       path: '/components/cluster',
       role: 'logo row and wrapping feature group',
     },
     {
-      name: 'NbMediaItem',
+      name: 'nbMediaItem',
       path: '/components/media-item',
       role: 'icon + label trip features',
     },
     {
-      name: 'NbButton',
+      name: 'nbButton',
       path: '/components/button',
       role: 'book trip call to action',
     },
     {
-      name: 'NbButtonTrailingIcon',
+      name: 'nbButtonTrailingIcon',
       path: '/components/button',
       role: 'button icon treatment',
     },
@@ -204,17 +215,72 @@ export default class TravelCardRecipePage {
   NbText,
 } from '@ng-brutalism/ui';`;
 
+  protected readonly skeletonCode = `<article nbSurface>
+  <div nbMediaFrame>
+    ...
+  </div>
+
+  <div nbSplit>
+    <section nbStack>
+      ...
+    </section>
+
+    <aside nbStack>
+      ...
+    </aside>
+  </div>
+
+  <footer nbSection divider="top">
+    <div nbSplit>
+      ...
+    </div>
+  </footer>
+</article>`;
+
   protected readonly layoutBreakdown = [
-    { primitive: 'nbSurface', description: 'Outer card shell — owns tone, radius, shadow, border, and clip.' },
-    { primitive: 'nbMediaFrame', description: 'Hero banner image filling the full card width at the top.' },
-    { primitive: 'nbSticker', description: '4D / 3N highlight burst floating over the hero image.' },
-    { primitive: 'nbSplit', description: 'Two-column responsive layout separating headline/description from tags/price.' },
-    { primitive: 'nbStack', description: 'Vertical rhythm within the headline column and the tag/price column.' },
-    { primitive: 'nbCluster', description: 'Logo row and wrapping chip group for trip features.' },
-    { primitive: 'nbSection', description: 'Feature strip at the bottom — padded with a top divider.' },
-    { primitive: 'nbCallout', description: 'Price highlight — large, loud, and offset-shadowed.' },
-    { primitive: 'nbChip', description: 'Flight, hotel, and top-pick metadata tags.' },
-    { primitive: 'nbButton', description: 'Book Trip call-to-action at the bottom.' },
+    {
+      primitive: 'nbSurface',
+      description:
+        'Outer card shell — owns tone, radius, shadow, border, and clip.',
+    },
+    {
+      primitive: 'nbMediaFrame',
+      description: 'Hero banner image filling the full card width at the top.',
+    },
+    {
+      primitive: 'nbSticker',
+      description: '4D / 3N highlight burst floating over the hero image.',
+    },
+    {
+      primitive: 'nbSplit',
+      description:
+        'Two-column responsive layout separating headline/description from tags/price.',
+    },
+    {
+      primitive: 'nbStack',
+      description:
+        'Vertical rhythm within the headline column and the tag/price column.',
+    },
+    {
+      primitive: 'nbCluster',
+      description: 'Logo row and wrapping chip group for trip features.',
+    },
+    {
+      primitive: 'nbSection',
+      description: 'Feature strip at the bottom — padded with a top divider.',
+    },
+    {
+      primitive: 'nbCallout',
+      description: 'Price highlight — large, loud, and offset-shadowed.',
+    },
+    {
+      primitive: 'nbChip',
+      description: 'Flight, hotel, and top-pick metadata tags.',
+    },
+    {
+      primitive: 'nbButton',
+      description: 'Book Trip call-to-action at the bottom.',
+    },
   ];
 
   protected readonly templateCode = `<div nbCluster justify="center" padding="xl" class="travel-stage">

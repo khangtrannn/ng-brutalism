@@ -10,7 +10,7 @@ export const OG_IMAGE_URL = `${SITE_URL}/og.png`;
 export const OG_IMAGE_ALT = 'Ng Brutalism — Neo-Brutalist Angular UI Library';
 export const OG_LOCALE = 'en_US';
 export const DEFAULT_DESCRIPTION =
-  'Neo-brutalist Angular component library. Signals, zoneless, Tailwind v4. Bold borders, offset shadows, and punchy colors — drop it in and ship loud.';
+  'Neo-brutalist Angular UI primitive library and composition system. Build loud Angular interfaces with Surface, Section, Stack, Cluster, Split, directive APIs, signals, Tailwind v4, chunky borders, crisp shadows, and punchy colors.';
 
 export const AUTHOR_NAME = 'Khang Tran';
 export const AUTHOR_URL = 'https://github.com/khangtrannn';
@@ -19,7 +19,7 @@ export const AUTHOR_LINKEDIN_URL = 'https://www.linkedin.com/in/khangtrann';
 export const REPO_URL = 'https://github.com/khangtrannn/ng-brutalism';
 export const NPM_URL = 'https://www.npmjs.com/package/@ng-brutalism/ui';
 // Kept in sync with libs/ui/package.json by the release flow.
-export const LIB_VERSION = '0.1.1';
+export const LIB_VERSION = '0.2.0';
 // Coarse fallback dates for TechArticle JSON-LD. Could be replaced by a
 // build-time per-page manifest later; for now they apply uniformly.
 export const PUBLISHED_DATE = '2025-10-01';
@@ -32,7 +32,8 @@ export const SOFTWARE_KEYWORDS = [
   'neobrutalism angular',
   'neo-brutalist angular ui library',
   'brutalist angular components',
-  'angular component library',
+  'angular ui primitive library',
+  'angular composition system',
   'tailwindcss',
   'signals',
   'zoneless',
@@ -40,17 +41,17 @@ export const SOFTWARE_KEYWORDS = [
 
 export const PAGE_DESCRIPTIONS: Record<string, string> = {
   // Home
-  '/': 'The neo-brutalist Angular UI library. Signals, zoneless, Tailwind v4. Bold borders, offset shadows, and punchy colors — drop in brutalist Angular components and ship loud.',
+  '/': 'Ng Brutalism is a neo-brutalist Angular UI primitive library and composition system for building loud Angular interfaces with Surface, Section, Stack, Cluster, Split, actions, forms, media, and recipes.',
 
   // Getting started
   '/docs/introduction':
-    'Get started with Ng Brutalism — a neo-brutalist Angular UI library built with signals, zoneless change detection, and Tailwind v4.',
+    'Get started with Ng Brutalism — a neo-brutalist Angular UI primitive library and composition system built with signals, zoneless change detection, and Tailwind v4.',
   '/docs/installation':
     'Install @ng-brutalism/ui in your Angular project. Requires a modern Angular setup, Tailwind v4, and Node 20+.',
   '/docs/inspired-designs':
     'Explore the visual references behind Ng Brutalism: loud layouts, chunky borders, bold color, and Angular UI patterns with bite.',
   '/docs/faq':
-    'Ng Brutalism FAQ for Angular developers. Learn what the neo-brutalist Angular UI library is, why it uses Tailwind v4, how it compares, and whether it fits your project.',
+    'Ng Brutalism FAQ for Angular developers. Learn what the neo-brutalist Angular primitive library and composition system is, why it uses Tailwind v4, how it compares, and whether it fits your project.',
 
   // Composition
   '/composition/overview':
@@ -74,7 +75,7 @@ export const PAGE_DESCRIPTIONS: Record<string, string> = {
   '/components/badge':
     'Neo-brutalist Badge component for Angular. Punchy status labels with thick borders and high-contrast colors.',
   '/components/button':
-    'Neo-brutalist Button component for Angular. Hard borders, offset shadows, and multiple variants — built with directive APIs and signals.',
+    'Neo-brutalist Button primitive for Angular. Hard borders, offset shadows, and tone-driven styling — built with directive APIs and signals.',
   '/components/callout':
     'Use Callout to highlight important messages with chunky borders, loud tones, and sharp Angular-first composition.',
   '/components/card':
@@ -94,7 +95,7 @@ export const PAGE_DESCRIPTIONS: Record<string, string> = {
   '/components/icon':
     'Use Icon to render masked SVG icons with ng-brutalism sizing, tones, and accessibility-friendly labeling.',
   '/components/icon-button':
-    'Use Icon Button for compact Angular actions with clear labels, sharp shapes, strong focus states, and brutalist variants.',
+    'Use Icon Button for compact Angular actions with clear labels, sharp shapes, strong focus states, and tone-driven styling.',
   '/components/image-card':
     'Neo-brutalist Image Card component for Angular. Bold media cards with thick borders and offset shadows.',
   '/components/input':
@@ -118,7 +119,7 @@ export const PAGE_DESCRIPTIONS: Record<string, string> = {
   '/components/select':
     'Neo-brutalist Select component for Angular. Custom dropdown with bold styling and full keyboard support.',
   '/components/separator':
-    'Use Separator to divide Angular content with strong brutalist rules, vertical lines, and token-driven variants.',
+    'Use Separator to divide Angular content with strong brutalist rules, vertical lines, and token-driven visual styles.',
   '/components/split':
     'Use Split to build responsive two-column layouts with brutalist spacing, ratios, separators, and collapse behavior.',
   '/components/stack':
@@ -141,8 +142,6 @@ export const PAGE_DESCRIPTIONS: Record<string, string> = {
   // Recipes
   '/recipes/travel-card':
     'Build a loud travel card recipe from reusable ng-brutalism primitives like Surface, Stack, Cluster, Split, and Media Item.',
-  '/recipes/job-card':
-    'Build a dense job card recipe from reusable ng-brutalism primitives for Angular listings, actions, and metadata.',
   '/recipes/podcast-card':
     'Podcast Card recipe for Ng Brutalism. Compose neo-brutalist Angular primitives into a bold audio episode card with chips, host metadata, waveform player, and CTA.',
   '/recipes/open-to-work-card':
@@ -150,7 +149,7 @@ export const PAGE_DESCRIPTIONS: Record<string, string> = {
 
   // Showcase
   '/showcase/portfolio':
-    'Portfolio showcase built with Ng Brutalism — see the neo-brutalist Angular UI library in action.',
+    'Portfolio showcase built with Ng Brutalism — see the neo-brutalist Angular primitive library and composition system in action.',
 };
 
 export interface DocsPageSeo {
@@ -195,7 +194,7 @@ export function getDocsPageTitle(url: string): string {
   const path = normalizePath(url);
 
   if (path === '/') {
-    return 'Neo-Brutalist Angular UI Library';
+    return 'Neo-Brutalist Angular UI Primitive Library';
   }
 
   if (path === '/docs') {
@@ -231,10 +230,10 @@ function getDocsPageDescription(path: string): string {
   }
 
   if (path === '/components') {
-    return 'Browse Ng Brutalism Angular components, including buttons, cards, dialogs, inputs, selects, and other neo-brutalist UI primitives.';
+    return 'Browse Ng Brutalism Angular primitives, including composition, actions, forms, media, emphasis, and interaction patterns.';
   }
 
-  return 'This Ng Brutalism docs page could not be found. Return to the Angular component library documentation or component examples.';
+  return 'This Ng Brutalism docs page could not be found. Return to the Angular primitive library documentation or examples.';
 }
 
 function getRobotsDirective(path: string): DocsPageSeo['robots'] {
@@ -291,7 +290,7 @@ export const FAQ_ITEMS: Array<{ question: string; answer: string }> = [
   {
     question: 'What is Ng Brutalism?',
     answer:
-      'Ng Brutalism is a neo-brutalist Angular UI component library published as @ng-brutalism/ui. It gives modern Angular apps directive-first components with hard borders, offset shadows, punchy colors, and Tailwind CSS v4 styling ergonomics. It ships with loud defaults, directive-first primitives, and CSS tokens you can tune so the brutalist style still fits your brand.',
+      'Ng Brutalism is a neo-brutalist Angular UI primitive library and composition system published as @ng-brutalism/ui. It gives modern Angular apps directive-first primitives — Surface, Section, Stack, Cluster, Split, Button, Chip, and more — with hard borders, offset shadows, punchy colors, and Tailwind CSS v4 styling ergonomics.',
   },
   {
     question: 'Why build it for Angular?',
@@ -322,7 +321,7 @@ export const FAQ_ITEMS: Array<{ question: string; answer: string }> = [
   {
     question: 'What components are included?',
     answer:
-      'The current public preview includes Button, Card, Dialog, Input, Select, and Accordion — common UI primitives for actions, layout, content, forms, and overlays.',
+      'v0.2.0 includes a full primitive composition system: Composition (Surface, Section, Stack, Cluster, Split); Actions (Button, Icon Button); Typography (Text, Title, Display); Forms (Input, Textarea, Checkbox, Select, Label, Input Group); Media (Avatar, Avatar Group, Icon, Media Frame, Media Item); Emphasis (Badge, Chip, Callout, Sticker, Status Dot, Rating, Progress); Interaction (Accordion, Dialog, Marquee); Recipes (Travel Card, Podcast Card, Open to Work Card).',
   },
   {
     question: 'Does it work with SSR?',

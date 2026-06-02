@@ -75,10 +75,10 @@ import { Section, TOP_SECTIONS } from './sections';
 
         <div class="flex items-center gap-2 sm:gap-3">
           <span
-            class="hidden h-10 items-center border-3 border-(--nb-border) bg-(--nb-mint) px-3 text-xs font-black tracking-wider uppercase shadow-[3px_3px_0_0_var(--nb-shadow)] md:inline-flex"
+            class="hidden h-11 items-center border-4 border-(--nb-border) bg-(--nb-mint) px-3 text-sm font-black tracking-wider uppercase shadow-[5px_5px_0_0_var(--nb-shadow)] sm:h-12 sm:text-base md:inline-flex"
             style="font-family: var(--font-mono);"
           >
-            v0.2.0 · PRE-1.0
+            v0.2.0
           </span>
 
           <a

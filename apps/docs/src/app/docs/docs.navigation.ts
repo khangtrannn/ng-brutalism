@@ -139,16 +139,6 @@ export const docsNavGroups: readonly DocsNavGroup[] = [
           { label: 'Layout breakdown', fragment: 'layout-breakdown' },
         ],
       },
-      // {
-      //   label: 'Job Card',
-      //   path: '/recipes/job-card',
-      //   toc: [
-      //     { label: 'Overview', fragment: 'overview' },
-      //     { label: 'Preview', fragment: 'preview' },
-      //     { label: 'Code', fragment: 'code' },
-      //     { label: 'Primitives used', fragment: 'primitives' },
-      //   ],
-      // },
     ],
   },
   {
@@ -295,7 +285,7 @@ export const docsNavGroups: readonly DocsNavGroup[] = [
           { label: 'Usage', fragment: 'usage' },
           { label: 'Shapes', fragment: 'shapes' },
           { label: 'Sizes', fragment: 'sizes' },
-          { label: 'Variants', fragment: 'variants' },
+          { label: 'Tones', fragment: 'tones' },
           { label: 'API', fragment: 'api' },
         ],
       },

@@ -7,13 +7,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-## [0.2.0] — upcoming
+## [0.2.0] — 2026-06-02
 
 `v0.2.0` introduces a stronger composition system for building brutalist Angular UIs. The new layout grammar — Surface, Section, Stack, Cluster, and Split — lets you compose full card layouts, multi-column pages, and recipe UIs entirely from library primitives with consistent token-driven spacing, border, shadow, and typography.
 
 ### Added
 
 **Composition system**
+
 - `NbSurface` — base brutalist panel directive. Token-driven tone, radius, border, shadow, padding, size, layout, edge, clip, and typography inputs.
 - `NbSection` — inner region primitive for Surface. Owns padding, divider side, divider style, layout (default / center / between), align, and flush.
 - `NbStack` — vertical rhythm primitive. Gap, align, justify, and separator inputs.
@@ -37,11 +38,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `NbSeparator` — divider line primitive.
 
 **Recipes**
+
 - Travel Card — media, sticker, display, split, cluster composition recipe.
 - Podcast Card — audio episode card composition recipe.
 - Open to Work Card — professional profile card composition recipe.
 
 **Shared token vocabulary**
+
 - Unified `NbBorderStrength`, `NbShadow`, `NbRadius`, `NbSpacing`, `NbPadding`, `NbToneToken` across all composition primitives.
 - `NbTypographyFont` — font role contract used by `NbTypography` and `NbSurface`.
 - `NbMediaFrameRatio` — now includes `'3/4'` portrait ratio.
@@ -83,6 +86,7 @@ Initial public release.
 ### Added
 
 **Form controls**
+
 - `NbButton`
 - `NbCheckbox`
 - `NbInput`
@@ -93,6 +97,7 @@ Initial public release.
 - `NbTextarea`
 
 **Layout & content**
+
 - `NbAccordion`
 - `NbAvatar`
 - `NbBadge`
@@ -102,9 +107,11 @@ Initial public release.
 - `NbTitle`
 
 **Overlays**
+
 - `NbDialog`
 
 **Foundation**
+
 - MIT license, Angular 21 + Tailwind v4 peer dependencies
 - `styles.css` single-import entrypoint (default theme)
 - `theme.css` token-only entrypoint for advanced theming
@@ -112,4 +119,5 @@ Initial public release.
 - CSS custom properties as the primary theming surface
 
 **Notes**
+
 - Pre-1.0: minor versions may include breaking changes while APIs settle.

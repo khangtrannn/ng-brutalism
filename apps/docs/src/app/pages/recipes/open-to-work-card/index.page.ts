@@ -26,8 +26,8 @@ import { OpenToWorkCard } from './open-to-work-card';
 
         <div class="mt-7 flex flex-wrap items-center gap-3">
           <div class="nb-stat-tile nb-stat-tile--mint">
-            <span class="nb-stat-tile__value">13</span>
-            <span class="nb-stat-tile__label">Primitives</span>
+            <span class="nb-stat-tile__value">{{ primitives.length }}</span>
+            <span class="nb-stat-tile__label">primitives</span>
           </div>
           <div class="nb-stat-tile nb-stat-tile--pink">
             <span class="nb-stat-tile__value">100%</span>
@@ -63,6 +63,11 @@ import { OpenToWorkCard } from './open-to-work-card';
           class="block mb-5"
           title="Imports"
           [code]="importCode"
+        />
+        <docs-code-block
+          class="block mb-5"
+          title="Composition skeleton"
+          [code]="skeletonCode"
         />
         <docs-code-block title="Template" [code]="templateCode" />
       </section>
@@ -100,10 +105,16 @@ import { OpenToWorkCard } from './open-to-work-card';
             How it is composed
           </div>
           @for (step of layoutBreakdown; track step.primitive) {
-            <div class="flex flex-wrap gap-x-6 gap-y-1 border-b border-white/10 px-5 py-3 last:border-none">
-              <code class="shrink-0 font-mono text-sm font-black" style="color: var(--nb-mint)">{{ step.primitive }}</code>
-              <span class="text-sm font-medium">{{ step.description }}</span>
-            </div>
+          <div
+            class="flex flex-wrap gap-x-6 gap-y-1 border-b border-white/10 px-5 py-3 last:border-none"
+          >
+            <code
+              class="shrink-0 font-mono text-sm font-black"
+              style="color: var(--nb-mint)"
+              >{{ step.primitive }}</code
+            >
+            <span class="text-sm font-medium">{{ step.description }}</span>
+          </div>
           }
         </div>
       </section>
@@ -114,83 +125,113 @@ import { OpenToWorkCard } from './open-to-work-card';
 export default class OpenToWorkCardRecipePage {
   protected readonly primitives = [
     {
-      name: 'NbSurface',
+      name: 'nbSurface',
       path: '/components/surface',
       role: 'bordered card shell',
     },
     {
-      name: 'NbSplit',
+      name: 'nbSplit',
       path: '/components/split',
       role: 'portrait/identity and socials/CTA two-column layouts',
     },
     {
-      name: 'NbStack',
+      name: 'nbStack',
       path: '/components/stack',
       role: 'vertical rhythm for identity and skills/bio',
     },
     {
-      name: 'NbCluster',
+      name: 'nbCluster',
       path: '/components/cluster',
       role: 'wrapping social icon button row',
     },
     {
-      name: 'NbSection',
+      name: 'nbSection',
       path: '/components/section',
       role: 'padded skills/bio and divided footer regions',
     },
     {
-      name: 'NbMediaFrame',
+      name: 'nbMediaFrame',
       path: '/components/media-frame',
       role: 'pink portrait frame with object-fit cover',
     },
     {
-      name: 'NbDisplay',
+      name: 'nbDisplay',
       path: '/components/display',
       role: 'huge uppercase name heading',
     },
     {
-      name: 'NbText',
+      name: 'nbText',
       path: '/components/text',
       role: 'role label, bio, and CTA label',
     },
     {
-      name: 'NbChip',
+      name: 'nbChip',
       path: '/components/chip',
       role: 'open-to-work status and skill tags',
     },
     {
-      name: 'NbIconButton',
+      name: 'nbIconButton',
       path: '/components/icon-button',
       role: 'circular social action buttons',
     },
     {
-      name: 'NbButton',
+      name: 'nbButton',
       path: '/components/button',
       role: 'view profile call to action',
     },
     {
-      name: 'NbButtonTrailingIcon',
+      name: 'nbButtonTrailingIcon',
       path: '/components/button',
       role: 'circular arrow affordance inside the CTA',
     },
     {
-      name: 'NbSticker',
+      name: 'nbSticker',
       path: '/components/sticker',
       role: 'overflowing star decoration with a smiling face',
     },
   ];
 
   protected readonly layoutBreakdown = [
-    { primitive: 'nbSurface', description: 'Outer card shell — cream tone, xl radius, hard shadow, and clip.' },
-    { primitive: 'nbSplit', description: 'Two-column layout: portrait frame on the left, identity stack on the right. Also used in the footer for socials vs CTA.' },
-    { primitive: 'nbStack', description: 'Vertical rhythm for name, role label, and skill/bio content.' },
-    { primitive: 'nbCluster', description: 'Wrapping row for social icon buttons.' },
-    { primitive: 'nbSection', description: 'Padded skill/bio region and divided footer region.' },
-    { primitive: 'nbMediaFrame', description: 'Pink portrait frame with object-fit cover ratio.' },
+    {
+      primitive: 'nbSurface',
+      description:
+        'Outer card shell — cream tone, xl radius, hard shadow, and clip.',
+    },
+    {
+      primitive: 'nbSplit',
+      description:
+        'Two-column layout: portrait frame on the left, identity stack on the right. Also used in the footer for socials vs CTA.',
+    },
+    {
+      primitive: 'nbStack',
+      description:
+        'Vertical rhythm for name, role label, and skill/bio content.',
+    },
+    {
+      primitive: 'nbCluster',
+      description: 'Wrapping row for social icon buttons.',
+    },
+    {
+      primitive: 'nbSection',
+      description: 'Padded skill/bio region and divided footer region.',
+    },
+    {
+      primitive: 'nbMediaFrame',
+      description: 'Pink portrait frame with object-fit cover ratio.',
+    },
     { primitive: 'nbDisplay', description: 'Large uppercase name heading.' },
-    { primitive: 'nbChip', description: 'Open-to-work status badge and skill tags.' },
-    { primitive: 'nbButton', description: 'View Profile primary call to action.' },
-    { primitive: 'nbSticker', description: 'Overflowing star decoration with a smiling face.' },
+    {
+      primitive: 'nbChip',
+      description: 'Open-to-work status badge and skill tags.',
+    },
+    {
+      primitive: 'nbButton',
+      description: 'View Profile primary call to action.',
+    },
+    {
+      primitive: 'nbSticker',
+      description: 'Overflowing star decoration with a smiling face.',
+    },
   ];
 
   protected readonly importCode = `import {
@@ -212,6 +253,30 @@ export default class OpenToWorkCardRecipePage {
   NbText,
   NbTypography,
 } from '@ng-brutalism/ui';`;
+
+  protected readonly skeletonCode = `<article nbSurface>
+  <div nbSplit>
+    <div nbMediaFrame>
+      ...
+    </div>
+
+    <section nbStack>
+      ...
+    </section>
+  </div>
+
+  <section nbSection>
+    <div nbStack>
+      ...
+    </div>
+  </section>
+
+  <footer nbSection divider="top">
+    <div nbSplit>
+      ...
+    </div>
+  </footer>
+</article>`;
 
   protected readonly templateCode = `<div nbCluster justify="center" padding="xl" class="otw-stage">
 <article nbSurface tone="cream" border="strong" shadow="hard" radius="xl"

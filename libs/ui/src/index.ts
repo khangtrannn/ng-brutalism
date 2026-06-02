@@ -4,7 +4,12 @@ export { provideNgBrutalism } from './lib/core/provide';
 export type { NbConfig } from './lib/core/provide';
 export { NB_THEME_CONFIG } from './lib/tokens/theme.tokens';
 export type { NbThemeConfig } from './lib/tokens/theme.tokens';
-export type { NbTone, NbToneTokens, NbToneToken, NbToneVars } from './lib/tokens/tone';
+export type {
+  NbTone,
+  NbToneTokens,
+  NbToneToken,
+  NbToneVars,
+} from './lib/tokens/tone';
 export { nbToneTokens, nbToneVars } from './lib/tokens/tone';
 
 // Shared design tokens — one vocabulary for every primitive's visual grammar.
@@ -164,10 +169,7 @@ export type {
   NbChipGroupDirection,
 } from './lib/chip';
 export { NbIconButton } from './lib/icon-button';
-export type {
-  NbIconButtonShape,
-  NbIconButtonSize,
-} from './lib/icon-button';
+export type { NbIconButtonShape, NbIconButtonSize } from './lib/icon-button';
 export { NbButtonTrailingIcon } from './lib/button/nb-button-trailing-icon';
 export { NbProgress } from './lib/progress';
 export type { NbProgressTone } from './lib/progress';
@@ -175,7 +177,7 @@ export { NbAvatarGroup } from './lib/avatar-group';
 export { NbSticker, NbStickerFace } from './lib/sticker';
 export type { NbStickerShape, NbStickerTone } from './lib/sticker';
 export { NbHalftone } from './lib/halftone';
-export type { NbHalftoneShape } from './lib/halftone';
+export type { NbHalftonePosition, NbHalftoneShape } from './lib/halftone';
 export { NbSurface } from './lib/surface';
 export type {
   NbSurfaceBorder,

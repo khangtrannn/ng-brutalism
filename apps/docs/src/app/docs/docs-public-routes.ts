@@ -289,12 +289,6 @@ export const DOCS_PUBLIC_ROUTES = [
     changefreq: 'monthly',
   },
   {
-    path: '/recipes/job-card',
-    file: 'recipes/job-card/index.page.ts',
-    priority: '0.6',
-    changefreq: 'monthly',
-  },
-  {
     path: '/recipes/podcast-card',
     file: 'recipes/podcast-card/index.page.ts',
     priority: '0.6',

@@ -2,13 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://ngbrutalism.khangtran.dev/</loc>
-    <lastmod>2026-06-02T13:26:15+07:00</lastmod>
+    <lastmod>2026-06-02T15:23:05+07:00</lastmod>
     <priority>1.0</priority>
     <changefreq>weekly</changefreq>
   </url>
   <url>
     <loc>https://ngbrutalism.khangtran.dev/docs/introduction/</loc>
-    <lastmod>2026-06-01T15:31:58+07:00</lastmod>
+    <lastmod>2026-06-02T15:23:05+07:00</lastmod>
     <priority>0.9</priority>
     <changefreq>weekly</changefreq>
   </url>
@@ -32,26 +32,31 @@
   </url>
   <url>
     <loc>https://ngbrutalism.khangtran.dev/composition/overview/</loc>
+    <lastmod>2026-06-02T15:23:05+07:00</lastmod>
     <priority>0.8</priority>
     <changefreq>weekly</changefreq>
   </url>
   <url>
     <loc>https://ngbrutalism.khangtran.dev/composition/surface-and-section/</loc>
+    <lastmod>2026-06-02T15:23:05+07:00</lastmod>
     <priority>0.8</priority>
     <changefreq>weekly</changefreq>
   </url>
   <url>
     <loc>https://ngbrutalism.khangtran.dev/composition/stack-and-cluster/</loc>
+    <lastmod>2026-06-02T15:23:05+07:00</lastmod>
     <priority>0.8</priority>
     <changefreq>weekly</changefreq>
   </url>
   <url>
     <loc>https://ngbrutalism.khangtran.dev/composition/split-layouts/</loc>
+    <lastmod>2026-06-02T15:23:05+07:00</lastmod>
     <priority>0.8</priority>
     <changefreq>weekly</changefreq>
   </url>
   <url>
     <loc>https://ngbrutalism.khangtran.dev/composition/common-patterns/</loc>
+    <lastmod>2026-06-02T15:23:05+07:00</lastmod>
     <priority>0.8</priority>
     <changefreq>weekly</changefreq>
   </url>
@@ -273,25 +278,19 @@
   </url>
   <url>
     <loc>https://ngbrutalism.khangtran.dev/recipes/travel-card/</loc>
-    <lastmod>2026-06-01T22:24:30+07:00</lastmod>
-    <priority>0.6</priority>
-    <changefreq>monthly</changefreq>
-  </url>
-  <url>
-    <loc>https://ngbrutalism.khangtran.dev/recipes/job-card/</loc>
-    <lastmod>2026-06-01T20:08:20+07:00</lastmod>
+    <lastmod>2026-06-02T15:23:05+07:00</lastmod>
     <priority>0.6</priority>
     <changefreq>monthly</changefreq>
   </url>
   <url>
     <loc>https://ngbrutalism.khangtran.dev/recipes/podcast-card/</loc>
-    <lastmod>2026-06-02T10:26:32+07:00</lastmod>
+    <lastmod>2026-06-02T15:23:05+07:00</lastmod>
     <priority>0.6</priority>
     <changefreq>monthly</changefreq>
   </url>
   <url>
     <loc>https://ngbrutalism.khangtran.dev/recipes/open-to-work-card/</loc>
-    <lastmod>2026-06-01T22:24:30+07:00</lastmod>
+    <lastmod>2026-06-02T15:23:05+07:00</lastmod>
     <priority>0.6</priority>
     <changefreq>monthly</changefreq>
   </url>

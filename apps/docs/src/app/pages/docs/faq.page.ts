@@ -43,17 +43,23 @@ import { NbButton } from '@ng-brutalism/ui';
           What is Ng Brutalism?
         </h2>
         <p class="mb-4 text-base font-medium">
-          Ng Brutalism is a neo-brutalist Angular UI component library published
-          as <code class="font-mono text-sm">&#64;ng-brutalism/ui</code>. It
-          gives modern Angular apps directive-first components with hard
-          borders, offset shadows, punchy colors, and Tailwind CSS v4 styling
-          ergonomics.
+          Ng Brutalism is a neo-brutalist Angular UI primitive library and
+          composition system published as
+          <code class="font-mono text-sm">&#64;ng-brutalism/ui</code>. It gives
+          modern Angular apps directive-first primitives — Surface, Section,
+          Stack, Cluster, Split, Button, Chip, and more — with hard borders,
+          offset shadows, punchy colors, and Tailwind CSS v4 styling ergonomics.
         </p>
         <p class="text-base font-medium">
-          Ng Brutalism offers Angular projects a compact, opinionated component
-          set for building expressive interfaces with a strong visual identity.
-          It ships with loud defaults, directive-first primitives, and CSS
-          tokens you can tune so the brutalist style still fits your brand.
+          Primitives compose together like LEGO. Each owns one job:
+          <code class="font-mono text-sm">nbSurface</code> creates the panel,
+          <code class="font-mono text-sm">nbSection</code> divides it into
+          regions, <code class="font-mono text-sm">nbStack</code> and
+          <code class="font-mono text-sm">nbCluster</code> handle vertical and
+          horizontal rhythm, and
+          <code class="font-mono text-sm">nbSplit</code> builds main-and-aside
+          layouts. Layer in actions, forms, media, and emphasis to build any
+          product UI.
         </p>
       </section>
 
@@ -130,10 +136,10 @@ import { NbButton } from '@ng-brutalism/ui';
           </div>
         </div>
         <p class="mt-5 text-base font-medium">
-          Some Angular libraries focus on unstyled or lightly styled
-          primitives. Ng Brutalism takes a more visual-first approach: the
-          brutalist look ships with the primitives, then CSS tokens and Tailwind
-          utilities let you tune it from there.
+          Some Angular libraries focus on unstyled or lightly styled primitives.
+          Ng Brutalism takes a more visual-first approach: the brutalist look
+          ships with the primitives, then CSS tokens and Tailwind utilities let
+          you tune it from there.
         </p>
       </section>
 
@@ -155,18 +161,28 @@ import { NbButton } from '@ng-brutalism/ui';
           What components are included?
         </h2>
         <p class="mb-5 text-base font-medium">
-          The current public preview includes common UI primitives for actions,
-          layout, content, forms, and overlays.
+          v0.2.0 ships a full primitive composition system grouped by role.
         </p>
-        <div class="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-          @for (component of components; track component.path) {
-            <a
-              class="nb-stat-tile nb-stat-tile--interactive"
-              [routerLink]="component.path"
+        <div class="space-y-5">
+          @for (group of componentGroups; track group.label) {
+          <div>
+            <p
+              class="mb-3 font-mono text-xs font-bold tracking-widest uppercase opacity-60"
             >
-              <span class="nb-stat-tile__value">{{ component.label }}</span>
-              <span class="nb-stat-tile__label">{{ component.summary }}</span>
-            </a>
+              {{ group.label }}
+            </p>
+            <div class="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+              @for (component of group.items; track component.path) {
+              <a
+                class="nb-stat-tile nb-stat-tile--interactive"
+                [routerLink]="component.path"
+              >
+                <span class="nb-stat-tile__value">{{ component.label }}</span>
+                <span class="nb-stat-tile__label">{{ component.summary }}</span>
+              </a>
+              }
+            </div>
+          </div>
           }
         </div>
       </section>
@@ -199,36 +215,172 @@ import { NbButton } from '@ng-brutalism/ui';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export default class FaqPage {
-  protected readonly components = [
+  protected readonly componentGroups = [
     {
-      label: 'Button',
-      path: '/components/button',
-      summary: 'Actions and links',
+      label: 'Composition',
+      items: [
+        {
+          label: 'Surface',
+          path: '/components/surface',
+          summary: 'Brutalist panel',
+        },
+        {
+          label: 'Section',
+          path: '/components/section',
+          summary: 'Panel regions',
+        },
+        {
+          label: 'Stack',
+          path: '/components/stack',
+          summary: 'Vertical rhythm',
+        },
+        {
+          label: 'Cluster',
+          path: '/components/cluster',
+          summary: 'Horizontal groups',
+        },
+        { label: 'Split', path: '/components/split', summary: 'Main + aside' },
+      ],
     },
     {
-      label: 'Card',
-      path: '/components/card',
-      summary: 'Content blocks',
+      label: 'Actions',
+      items: [
+        {
+          label: 'Button',
+          path: '/components/button',
+          summary: 'Actions and links',
+        },
+        {
+          label: 'Icon Button',
+          path: '/components/icon-button',
+          summary: 'Icon-only actions',
+        },
+      ],
     },
     {
-      label: 'Dialog',
-      path: '/components/dialog',
-      summary: 'Modal flows',
+      label: 'Typography',
+      items: [
+        { label: 'Text', path: '/components/text', summary: 'Body copy' },
+        {
+          label: 'Title',
+          path: '/components/title',
+          summary: 'Section headings',
+        },
+        { label: 'Display', path: '/components/display', summary: 'Hero text' },
+      ],
     },
     {
-      label: 'Input',
-      path: '/components/input',
-      summary: 'Form fields',
+      label: 'Forms',
+      items: [
+        { label: 'Input', path: '/components/input', summary: 'Form fields' },
+        {
+          label: 'Textarea',
+          path: '/components/textarea',
+          summary: 'Multi-line input',
+        },
+        { label: 'Checkbox', path: '/components/checkbox', summary: 'Toggles' },
+        {
+          label: 'Select',
+          path: '/components/select',
+          summary: 'Dropdown choices',
+        },
+        { label: 'Label', path: '/components/label', summary: 'Form labels' },
+        {
+          label: 'Input Group',
+          path: '/components/input-group',
+          summary: 'Prefix and suffix',
+        },
+      ],
     },
     {
-      label: 'Select',
-      path: '/components/select',
-      summary: 'Dropdown choices',
+      label: 'Media',
+      items: [
+        {
+          label: 'Avatar',
+          path: '/components/avatar',
+          summary: 'Profile images',
+        },
+        {
+          label: 'Avatar Group',
+          path: '/components/avatar-group',
+          summary: 'Team stacks',
+        },
+        { label: 'Icon', path: '/components/icon', summary: 'SVG icons' },
+        {
+          label: 'Media Frame',
+          path: '/components/media-frame',
+          summary: 'Framed images',
+        },
+        {
+          label: 'Media Item',
+          path: '/components/media-item',
+          summary: 'Icon + label rows',
+        },
+      ],
     },
     {
-      label: 'Accordion',
-      path: '/components/accordion',
-      summary: 'Disclosure panels',
+      label: 'Emphasis',
+      items: [
+        { label: 'Badge', path: '/components/badge', summary: 'Status labels' },
+        { label: 'Chip', path: '/components/chip', summary: 'Metadata tags' },
+        {
+          label: 'Callout',
+          path: '/components/callout',
+          summary: 'Highlight panels',
+        },
+        {
+          label: 'Sticker',
+          path: '/components/sticker',
+          summary: 'Decorative bursts',
+        },
+        {
+          label: 'Status Dot',
+          path: '/components/status-dot',
+          summary: 'State indicators',
+        },
+        { label: 'Rating', path: '/components/rating', summary: 'Star scores' },
+        {
+          label: 'Progress',
+          path: '/components/progress',
+          summary: 'Completion bars',
+        },
+      ],
     },
-  ] as const;
+    {
+      label: 'Interaction',
+      items: [
+        {
+          label: 'Accordion',
+          path: '/components/accordion',
+          summary: 'Disclosure panels',
+        },
+        { label: 'Dialog', path: '/components/dialog', summary: 'Modal flows' },
+        {
+          label: 'Marquee',
+          path: '/components/marquee',
+          summary: 'Scrolling ticker',
+        },
+      ],
+    },
+    {
+      label: 'Recipes',
+      items: [
+        {
+          label: 'Travel Card',
+          path: '/recipes/travel-card',
+          summary: 'Media composition',
+        },
+        {
+          label: 'Podcast Card',
+          path: '/recipes/podcast-card',
+          summary: 'Audio episode card',
+        },
+        {
+          label: 'Open to Work',
+          path: '/recipes/open-to-work-card',
+          summary: 'Profile card',
+        },
+      ],
+    },
+  ];
 }

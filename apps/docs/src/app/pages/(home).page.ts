@@ -1,29 +1,60 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { NbButton } from '@ng-brutalism/ui';
+import {
+  NbButton,
+  NbChip,
+  NbCluster,
+  NbDisplay,
+  NbSection,
+  NbStack,
+  NbSurface,
+  NbText,
+  NbTitle,
+} from '@ng-brutalism/ui';
 
 import { NbDocsNavbar } from '../docs/layout/navbar';
 
 @Component({
+  selector: 'docs-home-page-decorator',
+  template: `
+    <span
+      aria-hidden="true"
+      class="pointer-events-none fixed top-40 left-2 hidden h-14 w-14 rotate-12 border-4 border-(--nb-border) bg-(--nb-pink) shadow-[5px_5px_0_0_var(--nb-shadow)] xl:block"
+    ></span>
+    <span
+      aria-hidden="true"
+      class="pointer-events-none fixed bottom-12 right-4 hidden h-10 w-10 -rotate-12 rounded-full border-4 border-(--nb-border) bg-(--nb-lavender) shadow-[4px_4px_0_0_var(--nb-shadow)] xl:block"
+    ></span>
+  `
+})
+export class HomePageDecorator {}
+
+@Component({
   selector: 'docs-home-page',
-  imports: [NbButton, NbDocsNavbar, RouterLink],
+  imports: [
+    NbButton,
+    NbChip,
+    NbCluster,
+    NbDisplay,
+    NbDocsNavbar,
+    NbSection,
+    NbStack,
+    NbSurface,
+    NbText,
+    NbTitle,
+    HomePageDecorator,
+    RouterLink,
+  ],
   template: `
     <div class="relative min-h-screen overflow-x-clip">
-      <span
-        aria-hidden="true"
-        class="pointer-events-none fixed top-40 left-2 hidden h-14 w-14 rotate-12 border-4 border-(--nb-border) bg-(--nb-pink) shadow-[5px_5px_0_0_var(--nb-shadow)] xl:block"
-      ></span>
-      <span
-        aria-hidden="true"
-        class="pointer-events-none fixed bottom-12 right-4 hidden h-10 w-10 -rotate-12 rounded-full border-4 border-(--nb-border) bg-(--nb-lavender) shadow-[4px_4px_0_0_var(--nb-shadow)] xl:block"
-      ></span>
+      <docs-home-page-decorator />
 
       <nb-docs-navbar />
 
-      <main class="docs-grid-bg pt-32 pb-16">
+      <main nbStack gap="2xl" class="docs-grid-bg pt-32 pb-16">
         <div class="mx-auto w-full max-w-6xl px-5 lg:px-8">
-          <article>
-            <header id="hero" class="mb-12 scroll-mt-32">
+          <article nbStack gap="xl">
+            <header id="hero" class="mb-4 scroll-mt-32">
               <div
                 class="grid gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(300px,380px)] lg:items-center lg:gap-16 xl:grid-cols-[minmax(0,1fr)_minmax(360px,440px)] xl:gap-24"
               >
@@ -48,7 +79,9 @@ import { NbDocsNavbar } from '../docs/layout/navbar';
                     <span class="mt-3 block sm:mt-4 sm:whitespace-nowrap">UI library</span>
                   </h1>
 
-                  <p class="mt-5 font-mono text-xs font-bold tracking-[0.08em] uppercase">
+                  <p
+                    class="mt-5 font-mono text-xs font-bold tracking-[0.08em] uppercase"
+                  >
                     Created by
                     <a
                       class="underline decoration-(--nb-border) decoration-2 underline-offset-4 hover:bg-(--nb-yellow)"
@@ -60,27 +93,26 @@ import { NbDocsNavbar } from '../docs/layout/navbar';
                     </a>
                   </p>
 
-                  <p class="mt-5 max-w-3xl text-base font-bold sm:text-lg">
-                    Ng Brutalism is the neo-brutalist Angular UI library — a
-                    token-driven set of brutalist Angular components with
+                  <p nbText size="lg" weight="bold" class="max-w-3xl">
+                    Ng Brutalism is a token-driven primitive composition system
+                    for building loud Angular interfaces with directive APIs,
                     signals, zoneless-friendly change detection, and Tailwind v4
-                    ergonomics. Hard borders, offset shadows, punchy colors,
-                    and keyboard-ready interactions from the first import.
+                    ergonomics.
                   </p>
 
-                  <div
-                    class="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap"
-                  >
+                  <div nbCluster gap="sm" class="mt-1 flex flex-wrap gap-2 items-center">
                     <a
-                      class="w-full justify-center sm:w-auto"
+                      class="w-full sm:w-auto inline-flex h-[3.25rem] items-center justify-center px-5 text-lg font-bold whitespace-nowrap"
                       nbButton
-                      routerLink="/docs/installation"
+                      size="lg"
+                      routerLink="/docs/introduction"
                     >
-                      Install
+                      Get started
                     </a>
                     <a
-                      class="w-full justify-center sm:w-auto"
+                      class="w-full sm:w-auto inline-flex h-[3.25rem] items-center justify-center px-5 text-lg font-bold whitespace-nowrap"
                       nbButton
+                      size="lg"
                       tone="background"
                       routerLink="/composition/overview"
                       style="--nb-button-bg: #fff"
@@ -88,8 +120,9 @@ import { NbDocsNavbar } from '../docs/layout/navbar';
                       Composition system
                     </a>
                     <a
-                      class="w-full justify-center sm:w-auto"
+                      class="w-full sm:w-auto inline-flex h-[3.25rem] items-center justify-center px-5 text-lg font-bold whitespace-nowrap"
                       nbButton
+                      size="lg"
                       tone="background"
                       routerLink="/components/button"
                       style="--nb-button-bg: #fff"
@@ -119,6 +152,11 @@ import { NbDocsNavbar } from '../docs/layout/navbar';
                 </div>
 
                 <div
+                  nbSurface
+                  tone="yellow"
+                  radius="xl"
+                  border="thick"
+                  shadow="heavy"
                   class="relative isolate mx-auto flex aspect-[1.05] w-full max-w-[340px] items-center justify-center border-4 border-(--nb-border) bg-(--nb-yellow) p-5 shadow-[10px_10px_0_0_var(--nb-shadow)] sm:max-w-[390px] sm:p-7 lg:mx-0 lg:max-w-[380px] lg:justify-self-end xl:max-w-[440px]"
                   aria-label="Angular mascot preview"
                 >
@@ -162,11 +200,15 @@ import { NbDocsNavbar } from '../docs/layout/navbar';
             </header>
 
             <section id="why" class="scroll-mt-32">
-              <h2 data-docs-heading class="mt-10 mb-5 text-2xl font-bold">
+              <h2 data-docs-heading class="mb-5 text-2xl font-bold">
                 Why neo-brutalism for Angular?
               </h2>
               <div class="grid gap-4 md:grid-cols-3">
                 <div
+                  nbSurface
+                  tone="yellow"
+                  border="strong"
+                  shadow="hard"
                   class="border-3 border-(--nb-border) bg-(--nb-yellow) p-5 shadow-[5px_5px_0_0_var(--nb-shadow)]"
                 >
                   <h3 class="font-heading text-xl font-black uppercase">
@@ -179,6 +221,10 @@ import { NbDocsNavbar } from '../docs/layout/navbar';
                   </p>
                 </div>
                 <div
+                  nbSurface
+                  tone="mint"
+                  border="strong"
+                  shadow="hard"
                   class="border-3 border-(--nb-border) bg-(--nb-mint) p-5 shadow-[5px_5px_0_0_var(--nb-shadow)]"
                 >
                   <h3 class="font-heading text-xl font-black uppercase">
@@ -186,11 +232,15 @@ import { NbDocsNavbar } from '../docs/layout/navbar';
                   </h3>
                   <p class="mt-2 text-sm font-medium">
                     Thick borders, offset shadows, punchy color, and compact
-                    motion. Brutalist Angular components that look like they
+                    motion. Brutalist Angular primitives that look like they
                     mean it.
                   </p>
                 </div>
                 <div
+                  nbSurface
+                  tone="pink"
+                  border="strong"
+                  shadow="hard"
                   class="border-3 border-(--nb-border) bg-(--nb-pink) p-5 shadow-[5px_5px_0_0_var(--nb-shadow)]"
                 >
                   <h3 class="font-heading text-xl font-black uppercase">
@@ -205,7 +255,7 @@ import { NbDocsNavbar } from '../docs/layout/navbar';
             </section>
 
             <section id="install" class="scroll-mt-32">
-              <h2 data-docs-heading class="mt-12 mb-5 text-2xl font-bold">
+              <h2 data-docs-heading class="mb-5 text-2xl font-bold">
                 Install
               </h2>
               <p class="mb-5 text-base font-medium">
@@ -219,9 +269,15 @@ import { NbDocsNavbar } from '../docs/layout/navbar';
                 <div
                   class="flex h-11 items-center gap-2 border-b-2 border-white/20 bg-black px-4 font-mono text-xs font-black tracking-[0.12em] text-white/80 uppercase"
                 >
-                  <span class="inline-block size-2.5 rounded-full border border-white/40 bg-(--nb-pink)"></span>
-                  <span class="inline-block size-2.5 rounded-full border border-white/40 bg-(--nb-yellow)"></span>
-                  <span class="inline-block size-2.5 rounded-full border border-white/40 bg-(--nb-mint)"></span>
+                  <span
+                    class="inline-block size-2.5 rounded-full border border-white/40 bg-(--nb-pink)"
+                  ></span>
+                  <span
+                    class="inline-block size-2.5 rounded-full border border-white/40 bg-(--nb-yellow)"
+                  ></span>
+                  <span
+                    class="inline-block size-2.5 rounded-full border border-white/40 bg-(--nb-mint)"
+                  ></span>
                   <span class="ml-2">Angular CLI</span>
                 </div>
                 <pre
@@ -241,7 +297,7 @@ import { NbDocsNavbar } from '../docs/layout/navbar';
             </section>
 
             <section id="explore" class="scroll-mt-32">
-              <h2 data-docs-heading class="mt-12 mb-5 text-2xl font-bold">
+              <h2 data-docs-heading class="mb-5 text-2xl font-bold">
                 Explore
               </h2>
               <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
@@ -250,21 +306,27 @@ import { NbDocsNavbar } from '../docs/layout/navbar';
                   routerLink="/docs/installation"
                 >
                   <span class="nb-stat-tile__value">Install</span>
-                  <span class="nb-stat-tile__label">Package, styles, tokens</span>
+                  <span class="nb-stat-tile__label"
+                    >Package, styles, tokens</span
+                  >
                 </a>
                 <a
                   class="nb-stat-tile nb-stat-tile--interactive nb-stat-tile--mint"
                   routerLink="/composition/overview"
                 >
                   <span class="nb-stat-tile__value">Composition</span>
-                  <span class="nb-stat-tile__label">Surface, Stack, Cluster, Split</span>
+                  <span class="nb-stat-tile__label"
+                    >Surface, Stack, Cluster, Split</span
+                  >
                 </a>
                 <a
                   class="nb-stat-tile nb-stat-tile--interactive nb-stat-tile--pink"
                   routerLink="/components/button"
                 >
                   <span class="nb-stat-tile__value">Primitives</span>
-                  <span class="nb-stat-tile__label">45+ components</span>
+                  <span class="nb-stat-tile__label"
+                    >Composition + UI controls</span
+                  >
                 </a>
                 <a
                   class="nb-stat-tile nb-stat-tile--interactive nb-stat-tile--lavender"

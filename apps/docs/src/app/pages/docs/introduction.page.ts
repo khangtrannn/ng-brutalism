@@ -1,12 +1,12 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { NbButton } from '@ng-brutalism/ui';
+import { NbButton, NbSurface } from '@ng-brutalism/ui';
 
 import { DocsCodeBlock } from '../../docs/docs-code-block';
 
 @Component({
   selector: 'docs-introduction-page',
-  imports: [DocsCodeBlock, NbButton, RouterLink],
+  imports: [DocsCodeBlock, NbButton, NbSurface, RouterLink],
   template: `
     <article>
       <header id="overview" class="relative mb-10 scroll-mt-32">
@@ -15,13 +15,20 @@ import { DocsCodeBlock } from '../../docs/docs-code-block';
         >
           <div class="min-w-0">
             <p class="eyebrow">Getting Started</p>
-            <h1 class="max-w-3xl text-[clamp(2.35rem,7vw,4.5rem)] md:text-[clamp(2.6rem,5.2vw,4.5rem)] xl:text-[clamp(3.5rem,5vw,4.5rem)]">
+            <h1
+              class="max-w-3xl text-[clamp(2.35rem,7vw,4.5rem)] md:text-[clamp(2.6rem,5.2vw,4.5rem)] xl:text-[clamp(3.5rem,5vw,4.5rem)]"
+            >
               <span class="block">Build loud.</span>
               <span class="block">Stay sharp.</span>
             </h1>
           </div>
 
           <div
+            nbSurface
+            tone="yellow"
+            radius="xl"
+            border="thick"
+            shadow="heavy"
             class="relative isolate mx-auto flex aspect-square w-full max-w-55 items-center justify-center border-4 border-(--nb-border) bg-(--nb-yellow) p-4 shadow-[8px_8px_0_0_var(--nb-shadow)] sm:max-w-[260px] sm:p-5 md:mx-0 md:max-w-[240px] md:justify-self-end xl:max-w-75 xl:p-6"
             aria-label="Angular mascot preview"
           >
@@ -39,19 +46,23 @@ import { DocsCodeBlock } from '../../docs/docs-code-block';
               class="absolute -top-4 left-7 z-20 h-6 w-16 rotate-[8deg] border-3 border-(--nb-border) bg-white shadow-[3px_3px_0_0_var(--nb-shadow)] sm:left-9"
               aria-hidden="true"
             ></div>
-            <video
-              class="relative z-10 block w-full max-w-[155px] drop-shadow-[8px_8px_0_rgba(0,0,0,0.18)] sm:max-w-[190px] md:max-w-[170px] xl:max-w-[220px]"
-              width="488"
-              height="488"
-              autoplay
-              loop
-              muted
-              playsinline
-              aria-label="Animated Angular mascot for Ng Brutalism"
+            <div
+              class="relative z-10 flex aspect-square w-full items-center justify-center border-0 bg-white shadow-[12px_12px_0_0_rgba(0,0,0,0.18)]"
             >
-              <source src="/angular-mascot.webm" type="video/webm" />
-              <source src="/angular-mascot.mp4" type="video/mp4" />
-            </video>
+              <video
+                class="block w-full max-w-[155px] sm:max-w-[190px] md:max-w-[170px] xl:max-w-[220px]"
+                width="488"
+                height="488"
+                autoplay
+                loop
+                muted
+                playsinline
+                aria-label="Animated Angular mascot for Ng Brutalism"
+              >
+                <source src="/angular-mascot.webm" type="video/webm" />
+                <source src="/angular-mascot.mp4" type="video/mp4" />
+              </video>
+            </div>
           </div>
         </div>
 
@@ -159,24 +170,70 @@ import { DocsCodeBlock } from '../../docs/docs-code-block';
           Start exploring
         </h2>
         <p class="mb-5 text-base font-medium">
-          Jump straight into the composition layers: setup, layout grammar,
-          surfaces, emphasis, actions, forms, and recipes.
+          Start with the composition grammar, then move into setup and
+          individual primitives.
         </p>
 
         <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           <a
             class="nb-stat-tile nb-stat-tile--interactive nb-stat-tile--yellow"
-            routerLink="/docs/installation"
+            routerLink="/composition/overview"
           >
-            <span class="nb-stat-tile__value">Install</span>
-            <span class="nb-stat-tile__label">Package, styles, tokens</span>
+            <span class="nb-stat-tile__value">Composition Overview</span>
+            <span class="nb-stat-tile__label"
+              >Mental model + decision guide</span
+            >
           </a>
           <a
             class="nb-stat-tile nb-stat-tile--interactive nb-stat-tile--mint"
-            routerLink="/components/card"
+            routerLink="/composition/surface-and-section"
           >
-            <span class="nb-stat-tile__value">Card</span>
-            <span class="nb-stat-tile__label">Bold content blocks</span>
+            <span class="nb-stat-tile__value">Surface & Section</span>
+            <span class="nb-stat-tile__label">Panels and regions</span>
+          </a>
+          <a
+            class="nb-stat-tile nb-stat-tile--interactive nb-stat-tile--pink"
+            routerLink="/composition/stack-and-cluster"
+          >
+            <span class="nb-stat-tile__value">Stack & Cluster</span>
+            <span class="nb-stat-tile__label"
+              >Vertical and horizontal flow</span
+            >
+          </a>
+          <a
+            class="nb-stat-tile nb-stat-tile--interactive nb-stat-tile--lavender"
+            routerLink="/composition/split-layouts"
+          >
+            <span class="nb-stat-tile__value">Split Layouts</span>
+            <span class="nb-stat-tile__label">Main / aside patterns</span>
+          </a>
+          <a
+            class="nb-stat-tile nb-stat-tile--interactive nb-stat-tile--peach"
+            routerLink="/composition/common-patterns"
+          >
+            <span class="nb-stat-tile__value">Common Patterns</span>
+            <span class="nb-stat-tile__label">Copy-pasteable compositions</span>
+          </a>
+          <a
+            class="nb-stat-tile nb-stat-tile--interactive"
+            routerLink="/docs/installation"
+          >
+            <span class="nb-stat-tile__value">Installation</span>
+            <span class="nb-stat-tile__label">Package, styles, tokens</span>
+          </a>
+          <a
+            class="nb-stat-tile nb-stat-tile--interactive nb-stat-tile--yellow"
+            routerLink="/components/button"
+          >
+            <span class="nb-stat-tile__value">Button</span>
+            <span class="nb-stat-tile__label">High-impact actions</span>
+          </a>
+          <a
+            class="nb-stat-tile nb-stat-tile--interactive nb-stat-tile--mint"
+            routerLink="/components/input"
+          >
+            <span class="nb-stat-tile__value">Input</span>
+            <span class="nb-stat-tile__label">Sharp form fields</span>
           </a>
           <a
             class="nb-stat-tile nb-stat-tile--interactive nb-stat-tile--pink"
@@ -184,27 +241,6 @@ import { DocsCodeBlock } from '../../docs/docs-code-block';
           >
             <span class="nb-stat-tile__value">Dialog</span>
             <span class="nb-stat-tile__label">Native modal flow</span>
-          </a>
-          <a
-            class="nb-stat-tile nb-stat-tile--interactive nb-stat-tile--lavender"
-            routerLink="/components/accordion"
-          >
-            <span class="nb-stat-tile__value">Accordion</span>
-            <span class="nb-stat-tile__label">Dense disclosure</span>
-          </a>
-          <a
-            class="nb-stat-tile nb-stat-tile--interactive nb-stat-tile--peach"
-            routerLink="/components/button"
-          >
-            <span class="nb-stat-tile__value">Button</span>
-            <span class="nb-stat-tile__label">High-impact actions</span>
-          </a>
-          <a
-            class="nb-stat-tile nb-stat-tile--interactive"
-            routerLink="/components/input"
-          >
-            <span class="nb-stat-tile__value">Input</span>
-            <span class="nb-stat-tile__label">Sharp form fields</span>
           </a>
         </div>
       </section>
@@ -214,22 +250,21 @@ import { DocsCodeBlock } from '../../docs/docs-code-block';
           Composition system
         </h2>
         <p class="mb-5 text-base font-medium">
-          v0.2.0 introduces a stronger composition system for building
-          loud, token-driven, Angular-first brutalist UIs. Small primitives
-          that lock together like LEGO — each primitive owns one job.
+          v0.2.0 introduces a stronger composition system for building loud,
+          token-driven, Angular-first brutalist UIs. Small primitives that lock
+          together like LEGO — each primitive owns one job.
         </p>
         <p class="mb-5 text-base font-medium">
           <code class="font-mono">nbSurface</code> creates the panel.
           <code class="font-mono">nbSection</code> creates regions inside the
-          panel.
-          <code class="font-mono">nbStack</code> controls vertical rhythm.
-          <code class="font-mono">nbCluster</code> controls horizontal wrapping
-          groups.
-          <code class="font-mono">nbSplit</code> creates main/aside layouts.
-          Layer in <code class="font-mono">nbButton</code>,
+          panel. <code class="font-mono">nbStack</code> controls vertical
+          rhythm. <code class="font-mono">nbCluster</code> controls horizontal
+          wrapping groups. <code class="font-mono">nbSplit</code> creates
+          main/aside layouts. Layer in <code class="font-mono">nbButton</code>,
           <code class="font-mono">nbChip</code>,
           <code class="font-mono">nbText</code>, and
-          <code class="font-mono">nbDisplay</code> to build complete product UIs.
+          <code class="font-mono">nbDisplay</code> to build complete product
+          UIs.
         </p>
         <docs-code-block title="Composition example" [code]="compositionCode" />
 
@@ -239,7 +274,9 @@ import { DocsCodeBlock } from '../../docs/docs-code-block';
             routerLink="/composition/overview"
           >
             <span class="nb-stat-tile__value">Overview</span>
-            <span class="nb-stat-tile__label">Mental model + decision guide</span>
+            <span class="nb-stat-tile__label"
+              >Mental model + decision guide</span
+            >
           </a>
           <a
             class="nb-stat-tile nb-stat-tile--interactive nb-stat-tile--mint"

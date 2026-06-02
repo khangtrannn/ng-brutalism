@@ -1,5 +1,10 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { NbButton, NbButtonTrailingIcon, NbIcon, NbText } from '@ng-brutalism/ui';
+import {
+  NbButton,
+  NbButtonTrailingIcon,
+  NbIcon,
+  NbText,
+} from '@ng-brutalism/ui';
 
 import { DocsCodeBlock } from '../../docs/docs-code-block';
 import { DocsExample } from '../../docs/docs-example';
@@ -7,18 +12,18 @@ import { DocsSourceTile } from '../../docs/docs-source-tile';
 import { DocsTokens } from '../../docs/docs-tokens';
 
 @Component({
-    selector: 'docs-button-page',
-    imports: [
-        DocsCodeBlock,
-        DocsExample,
-        DocsSourceTile,
-        DocsTokens,
-        NbButton,
-        NbButtonTrailingIcon,
-        NbIcon,
-        NbText,
-    ],
-    template: `
+  selector: 'docs-button-page',
+  imports: [
+    DocsCodeBlock,
+    DocsExample,
+    DocsSourceTile,
+    DocsTokens,
+    NbButton,
+    NbButtonTrailingIcon,
+    NbIcon,
+    NbText,
+  ],
+  template: `
     <article>
       <header id="overview" class="relative mb-10 scroll-mt-32">
         <div class="mb-5">
@@ -33,16 +38,16 @@ import { DocsTokens } from '../../docs/docs-tokens';
 
         <div class="mt-7 flex flex-wrap items-center gap-3">
           <div class="nb-stat-tile nb-stat-tile--yellow">
-            <span class="nb-stat-tile__value">15</span>
-            <span class="nb-stat-tile__label">Tones</span>
+            <span class="nb-stat-tile__value">Tone</span>
+            <span class="nb-stat-tile__label">Shared vocabulary</span>
           </div>
           <div class="nb-stat-tile nb-stat-tile--mint">
-            <span class="nb-stat-tile__value">4</span>
-            <span class="nb-stat-tile__label">Sizes</span>
+            <span class="nb-stat-tile__value">Size</span>
+            <span class="nb-stat-tile__label">Action scale</span>
           </div>
           <div class="nb-stat-tile nb-stat-tile--pink">
-            <span class="nb-stat-tile__value">7</span>
-            <span class="nb-stat-tile__label">Inputs</span>
+            <span class="nb-stat-tile__value">Press</span>
+            <span class="nb-stat-tile__label">Button motion</span>
           </div>
 
           <docs-source-tile
@@ -54,11 +59,7 @@ import { DocsTokens } from '../../docs/docs-tokens';
       <section id="preview">
         <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">Preview</h2>
         <docs-example [code]="defaultExampleCode">
-          <button
-            nbButton
-          >
-            Button
-          </button>
+          <button nbButton>Button</button>
         </docs-example>
       </section>
 
@@ -164,42 +165,32 @@ import { DocsTokens } from '../../docs/docs-tokens';
       </section>
 
       <section id="full-width">
-        <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">Full width</h2>
+        <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">
+          Full width
+        </h2>
         <docs-example [code]="fullWidthExampleCode">
           <div class="w-full max-w-md">
-            <button
-              nbButton
-              [fullWidth]="true"
-            >
-              Full width button
-            </button>
+            <button nbButton [fullWidth]="true">Full width button</button>
           </div>
         </docs-example>
       </section>
 
       <section id="disabled">
-        <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">Disabled</h2>
+        <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">
+          Disabled
+        </h2>
         <docs-example [code]="disabledExampleCode">
           <div class="flex flex-wrap items-center justify-center gap-4">
-            <button
-              nbButton
-              disabled
-            >
-              Disabled button
-            </button>
-            <a
-              nbButton
-              href="#"
-              aria-disabled="true"
-            >
-              Disabled link style
-            </a>
+            <button nbButton disabled>Disabled button</button>
+            <a nbButton href="#" aria-disabled="true"> Disabled link style </a>
           </div>
         </docs-example>
       </section>
 
       <section id="anchor-usage">
-        <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">Anchor usage</h2>
+        <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">
+          Anchor usage
+        </h2>
         <docs-example [code]="anchorExampleCode">
           <div class="flex flex-wrap items-center justify-center gap-4">
             <a
@@ -374,35 +365,97 @@ import { DocsTokens } from '../../docs/docs-tokens';
           <table class="w-full min-w-160 border-collapse text-left">
             <thead class="bg-nb-secondary text-nb-secondary-fg">
               <tr>
-                <th class="border-b-2 border-r-2 border-(--nb-border) px-4 py-3 font-bold">Input</th>
-                <th class="border-b-2 border-r-2 border-(--nb-border) px-4 py-3 font-bold">Type</th>
-                <th class="border-b-2 border-(--nb-border) px-4 py-3 font-bold">Default</th>
+                <th
+                  class="border-b-2 border-r-2 border-(--nb-border) px-4 py-3 font-bold"
+                >
+                  Input
+                </th>
+                <th
+                  class="border-b-2 border-r-2 border-(--nb-border) px-4 py-3 font-bold"
+                >
+                  Type
+                </th>
+                <th class="border-b-2 border-(--nb-border) px-4 py-3 font-bold">
+                  Default
+                </th>
               </tr>
             </thead>
             <tbody class="font-medium">
               <tr>
-                <td class="border-b-2 border-r-2 border-(--nb-border) px-4 py-3">size</td>
-                <td class="border-b-2 border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">'sm' | 'md' | 'lg'</td>
-                <td class="border-b-2 border-(--nb-border) px-4 py-3 font-mono text-sm">undefined</td>
+                <td
+                  class="border-b-2 border-r-2 border-(--nb-border) px-4 py-3"
+                >
+                  size
+                </td>
+                <td
+                  class="border-b-2 border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
+                >
+                  'sm' | 'md' | 'lg'
+                </td>
+                <td
+                  class="border-b-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
+                >
+                  undefined
+                </td>
               </tr>
               <tr>
-                <td class="border-b-2 border-r-2 border-(--nb-border) px-4 py-3">shape</td>
-                <td class="border-b-2 border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">'none' | 'square' | 'circle'</td>
-                <td class="border-b-2 border-(--nb-border) px-4 py-3 font-mono text-sm">undefined</td>
+                <td
+                  class="border-b-2 border-r-2 border-(--nb-border) px-4 py-3"
+                >
+                  shape
+                </td>
+                <td
+                  class="border-b-2 border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
+                >
+                  'none' | 'square' | 'circle'
+                </td>
+                <td
+                  class="border-b-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
+                >
+                  undefined
+                </td>
               </tr>
               <tr>
-                <td class="border-b-2 border-r-2 border-(--nb-border) px-4 py-3">tone</td>
-                <td class="border-b-2 border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">'default' | 'inverse' | 'current'</td>
-                <td class="border-b-2 border-(--nb-border) px-4 py-3 font-mono text-sm">undefined</td>
+                <td
+                  class="border-b-2 border-r-2 border-(--nb-border) px-4 py-3"
+                >
+                  tone
+                </td>
+                <td
+                  class="border-b-2 border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
+                >
+                  'default' | 'inverse' | 'current'
+                </td>
+                <td
+                  class="border-b-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
+                >
+                  undefined
+                </td>
               </tr>
               <tr>
-                <td class="border-b-2 border-r-2 border-(--nb-border) px-4 py-3">push</td>
-                <td class="border-b-2 border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">'none' | 'end'</td>
-                <td class="border-b-2 border-(--nb-border) px-4 py-3 font-mono text-sm">'none'</td>
+                <td
+                  class="border-b-2 border-r-2 border-(--nb-border) px-4 py-3"
+                >
+                  push
+                </td>
+                <td
+                  class="border-b-2 border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
+                >
+                  'none' | 'end'
+                </td>
+                <td
+                  class="border-b-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
+                >
+                  'none'
+                </td>
               </tr>
               <tr>
                 <td class="border-r-2 border-(--nb-border) px-4 py-3">icon</td>
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">string</td>
+                <td
+                  class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
+                >
+                  string
+                </td>
                 <td class="px-4 py-3 font-mono text-sm">undefined</td>
               </tr>
             </tbody>
@@ -411,7 +464,7 @@ import { DocsTokens } from '../../docs/docs-tokens';
       </section>
     </article>
   `,
-    changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export default class ButtonPage {
   protected readonly defaultExampleCode = `<button nbButton>

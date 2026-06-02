@@ -25,8 +25,8 @@ import { PodcastCard } from './podcast-card';
 
         <div class="mt-7 flex flex-wrap items-center gap-3">
           <div class="nb-stat-tile nb-stat-tile--pink">
-            <span class="nb-stat-tile__value">15</span>
-            <span class="nb-stat-tile__label">Primitives</span>
+            <span class="nb-stat-tile__value">{{ primitives.length }}</span>
+            <span class="nb-stat-tile__label">primitives</span>
           </div>
           <div class="nb-stat-tile nb-stat-tile--mint">
             <span class="nb-stat-tile__value">100%</span>
@@ -62,6 +62,11 @@ import { PodcastCard } from './podcast-card';
           class="block mb-5"
           title="Imports"
           [code]="importCode"
+        />
+        <docs-code-block
+          class="block mb-5"
+          title="Composition skeleton"
+          [code]="skeletonCode"
         />
         <docs-code-block title="Template" [code]="templateCode" />
       </section>
@@ -99,10 +104,16 @@ import { PodcastCard } from './podcast-card';
             How it is composed
           </div>
           @for (step of layoutBreakdown; track step.primitive) {
-            <div class="flex flex-wrap gap-x-6 gap-y-1 border-b border-white/10 px-5 py-3 last:border-none">
-              <code class="shrink-0 font-mono text-sm font-black" style="color: var(--nb-pink)">{{ step.primitive }}</code>
-              <span class="text-sm font-medium">{{ step.description }}</span>
-            </div>
+          <div
+            class="flex flex-wrap gap-x-6 gap-y-1 border-b border-white/10 px-5 py-3 last:border-none"
+          >
+            <code
+              class="shrink-0 font-mono text-sm font-black"
+              style="color: var(--nb-pink)"
+              >{{ step.primitive }}</code
+            >
+            <span class="text-sm font-medium">{{ step.description }}</span>
+          </div>
           }
         </div>
       </section>
@@ -113,92 +124,121 @@ import { PodcastCard } from './podcast-card';
 export default class PodcastCardRecipePage {
   protected readonly primitives = [
     {
-      name: 'NbSurface',
+      name: 'nbSurface',
       path: '/components/surface',
       role: 'bordered card shell and audio player panels',
     },
     {
-      name: 'NbStack',
+      name: 'nbStack',
       path: '/components/stack',
       role: 'vertical rhythm for metadata and host sections',
     },
     {
-      name: 'NbCluster',
+      name: 'nbCluster',
       path: '/components/cluster',
       role: 'inline metadata chips and host identity row',
     },
     {
-      name: 'NbSection',
+      name: 'nbSection',
       path: '/components/section',
       role: 'padded content regions with borders',
     },
     {
-      name: 'NbDisplay',
+      name: 'nbDisplay',
       path: '/components/display',
       role: 'episode title mega heading',
     },
     {
-      name: 'NbText',
+      name: 'nbText',
       path: '/components/text',
       role: 'description, host name, role, and status copy',
     },
     {
-      name: 'NbChip',
+      name: 'nbChip',
       path: '/components/chip',
       role: 'podcast badge, episode number, and metadata tags',
     },
     {
-      name: 'NbStatusDot',
+      name: 'nbStatusDot',
       path: '/components/status-dot',
       role: 'live "on air" indicator next to the host',
     },
     {
-      name: 'NbIcon',
+      name: 'nbIcon',
       path: '/components/icon',
       role: 'microphone, clock, sparkle, user, bookmark, and arrow icons',
     },
     {
-      name: 'NbButton',
+      name: 'nbButton',
       path: '/components/button',
       role: 'listen now call to action',
     },
     {
-      name: 'NbButtonTrailingIcon',
+      name: 'nbButtonTrailingIcon',
       path: '/components/button',
       role: 'CTA arrow affordance inside the button',
     },
     {
-      name: 'NbIconButton',
+      name: 'nbIconButton',
       path: '/components/icon-button',
       role: 'bookmark / save episode action',
     },
     {
-      name: 'NbSticker',
+      name: 'nbSticker',
       path: '/components/sticker',
       role: 'overflowing star and splat decorations',
     },
     {
-      name: 'NbStickerFace',
+      name: 'nbStickerFace',
       path: '/components/sticker',
       role: 'smiling face inside the star sticker',
     },
     {
-      name: 'NbHalftone',
+      name: 'nbHalftone',
       path: '/components/halftone',
       role: 'dotted halftone flourish in the host row',
     },
   ];
 
   protected readonly layoutBreakdown = [
-    { primitive: 'nbSurface', description: 'Outer card shell and inner audio player panel — cream tone, hard shadow, clip.' },
-    { primitive: 'nbSection', description: 'Each distinct content band (header, brand, episode badge, title, meta, host, player, footer) is a padded section. The host and footer sections use top dividers.' },
-    { primitive: 'nbStack', description: 'Vertical rhythm for host identity (name, role, on-air status).' },
-    { primitive: 'nbCluster', description: 'Inline metadata chips, host identity row, and footer action row.' },
+    {
+      primitive: 'nbSurface',
+      description:
+        'Outer card shell and inner audio player panel — cream tone, hard shadow, clip.',
+    },
+    {
+      primitive: 'nbSection',
+      description:
+        'Each distinct content band (header, brand, episode badge, title, meta, host, player, footer) is a padded section. The host and footer sections use top dividers.',
+    },
+    {
+      primitive: 'nbStack',
+      description:
+        'Vertical rhythm for host identity (name, role, on-air status).',
+    },
+    {
+      primitive: 'nbCluster',
+      description:
+        'Inline metadata chips, host identity row, and footer action row.',
+    },
     { primitive: 'nbDisplay', description: 'Episode title mega heading.' },
-    { primitive: 'nbChip', description: 'Podcast badge, episode number, and metadata tags (duration, new, category).' },
-    { primitive: 'nbButton', description: 'Listen Now primary call to action.' },
-    { primitive: 'nbSticker', description: 'Overflowing star and splat decorative elements.' },
-    { primitive: 'nbHalftone', description: 'Dotted halftone flourish behind the host row.' },
+    {
+      primitive: 'nbChip',
+      description:
+        'Podcast badge, episode number, and metadata tags (duration, new, category).',
+    },
+    {
+      primitive: 'nbButton',
+      description: 'Listen Now primary call to action.',
+    },
+    {
+      primitive: 'nbSticker',
+      description: 'Overflowing star and splat decorative elements.',
+    },
+    {
+      primitive: 'nbHalftone',
+      description: 'Dotted halftone flourish behind the host row.',
+    },
   ];
 
   protected readonly importCode = `import {
@@ -218,6 +258,32 @@ export default class PodcastCardRecipePage {
   NbSurface,
   NbText,
 } from '@ng-brutalism/ui';`;
+
+  protected readonly skeletonCode = `<article nbSurface>
+  <header nbSection>
+    <div nbCluster>
+      ...
+    </div>
+  </header>
+
+  <section nbSection>
+    <div nbStack>
+      ...
+    </div>
+  </section>
+
+  <section nbSection divider="top">
+    <div nbCluster>
+      ...
+    </div>
+  </section>
+
+  <footer nbSection>
+    <div nbCluster>
+      ...
+    </div>
+  </footer>
+</article>`;
 
   protected readonly templateCode = `<div nbCluster justify="center" padding="lg" class="podcast-stage">
 <div nbSurface clip tone="cream" border="strong" shadow="hard" radius="xl">

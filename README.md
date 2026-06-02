@@ -1,10 +1,11 @@
-# ng-brutalism — Neo-brutalist Angular UI Component Library
+# ng-brutalism — Neo-brutalist Angular UI Primitive Library
 
 Build loud. Stay sharp.
 
-ng-brutalism is a neo-brutalist Angular UI component library — token-driven,
-signals-first, zoneless, with directive APIs, keyboard-ready interactions, and
-Tailwind v4 ergonomics from the first import.
+ng-brutalism is a neo-brutalist Angular UI primitive library and composition
+system for building loud, token-driven Angular interfaces with directive-first
+APIs, signals, zoneless-friendly patterns, Tailwind CSS v4, chunky borders,
+offset shadows, and punchy colors.
 
 If you like shadcn/ui or daisyUI, but for Angular and built around brutalism.
 
@@ -17,7 +18,7 @@ If you like shadcn/ui or daisyUI, but for Angular and built around brutalism.
 [npm](https://www.npmjs.com/package/@ng-brutalism/ui) ·
 [GitHub](https://github.com/khangtrannn/ng-brutalism)
 
-![ng-brutalism Angular component library demo — buttons, cards, dialogs in neo-brutalist style](docs/assets/introduction.gif)
+![ng-brutalism Angular primitive library demo — buttons, cards, dialogs in neo-brutalist style](docs/assets/introduction.gif)
 
 ## Install
 
@@ -104,18 +105,18 @@ layout grammar. Add emphasis with `nbChip`, `nbCallout`, `nbSticker`, and
 Inputs are for common design decisions. CSS variables are for local art
 direction. Classes are for layout escape hatches.
 
-| Group | Primitives |
-| --- | --- |
-| Foundation | Tokens, theme provider, CSS variables, `nbClass` |
-| Layout | Stack, Cluster, Split, Section, Separator |
-| Surfaces | Surface, Card, Image Card, Media Frame |
-| Typography | Text, Display, Title |
-| Emphasis | Badge, Chip, Callout, Sticker, Status Dot, Rating, Progress |
-| Actions | Button, Icon Button, Button Trailing Icon |
-| Media | Avatar, Avatar Group, Icon, Media Item |
-| Forms | Input, Input Group, Textarea, Checkbox, Select, Label |
-| Overlays / Interaction | Accordion, Dialog, Marquee |
-| Recipes | Podcast Card, Travel Card, Job Card |
+| Group                  | Primitives                                                  |
+| ---------------------- | ----------------------------------------------------------- |
+| Foundation             | Tokens, theme provider, CSS variables, `nbClass`            |
+| Layout                 | Stack, Cluster, Split, Section, Separator                   |
+| Surfaces               | Surface, Card, Image Card, Media Frame                      |
+| Typography             | Text, Display, Title                                        |
+| Emphasis               | Badge, Chip, Callout, Sticker, Status Dot, Rating, Progress |
+| Actions                | Button, Icon Button, Button Trailing Icon                   |
+| Media                  | Avatar, Avatar Group, Icon, Media Item                      |
+| Forms                  | Input, Input Group, Textarea, Checkbox, Select, Label       |
+| Overlays / Interaction | Accordion, Dialog, Marquee                                  |
+| Recipes                | Travel Card, Podcast Card, Open to Work Card                |
 
 ## What it looks like
 

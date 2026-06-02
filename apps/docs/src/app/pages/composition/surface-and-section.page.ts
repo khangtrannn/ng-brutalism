@@ -60,10 +60,13 @@ import { DocsExample } from '../../docs/docs-example';
           >
             <h3 class="font-heading text-xl font-black uppercase">nbSection</h3>
             <p class="mt-2 text-sm font-medium">
-              An inner region. Owns its own padding and optional divider borders.
-              Use <code class="font-mono">divider="top"</code> or
-              <code class="font-mono">divider="bottom"</code> to structure
-              the panel into clear zones.
+              An inner region. Owns its own padding and optional divider
+              borders. Use <code class="font-mono">divider="top"</code> or
+              <code class="font-mono">divider="bottom"</code> to structure the
+              panel into clear zones. Use
+              <code class="font-mono">divider="block"</code> for top + bottom
+              and <code class="font-mono">divider="inline"</code> for left +
+              right.
             </p>
           </div>
         </div>
@@ -74,13 +77,31 @@ import { DocsExample } from '../../docs/docs-example';
           Basic panel
         </h2>
         <p class="mb-6 text-base font-medium">
-          A surface with a header region and a body region — the minimal card shell.
+          A surface with a header region and a body region — the minimal card
+          shell.
         </p>
 
         <docs-example [code]="basicPanelCode">
-          <article nbSurface tone="cream" radius="xl" shadow="hard" border="strong" clip class="w-full max-w-lg">
+          <article
+            nbSurface
+            tone="cream"
+            radius="xl"
+            shadow="hard"
+            border="strong"
+            clip
+            class="w-full max-w-lg"
+          >
             <header nbSection padding="lg" divider="bottom">
-              <h2 nbDisplay size="sm" underline="bar" underlineGap="xs" class="inline-flex flex-col items-start" style="--nb-underline-width: 75%">Profile</h2>
+              <h2
+                nbDisplay
+                size="sm"
+                underline="bar"
+                underlineGap="xs"
+                class="inline-flex flex-col items-start"
+                style="--nb-underline-width: 75%"
+              >
+                Profile
+              </h2>
             </header>
             <div nbSection padding="lg">
               <p nbText>Chunky card shell with clear regions.</p>
@@ -94,16 +115,34 @@ import { DocsExample } from '../../docs/docs-example';
           Header / body / footer
         </h2>
         <p class="mb-6 text-base font-medium">
-          Three sections with a top and bottom divider create a structured
-          panel layout. The footer uses <code class="font-mono">layout="between"</code>
+          Three sections with a top and bottom divider create a structured panel
+          layout. The footer uses
+          <code class="font-mono">layout="between"</code>
           to push its two children to opposite ends.
         </p>
 
         <docs-example [code]="headerBodyFooterCode">
-          <article nbSurface tone="yellow" radius="xl" border="thick" shadow="hard" clip class="w-full max-w-lg">
+          <article
+            nbSurface
+            tone="yellow"
+            radius="xl"
+            border="thick"
+            shadow="hard"
+            clip
+            class="w-full max-w-lg"
+          >
             <header nbSection padding="lg" divider="bottom">
               <div nbCluster gap="sm" align="center" justify="between">
-                <h2 nbDisplay size="sm" underline="bar" underlineGap="xs" class="inline-flex flex-col items-start" style="--nb-underline-width: 45%">Campaign draft</h2>
+                <h2
+                  nbDisplay
+                  size="sm"
+                  underline="bar"
+                  underlineGap="xs"
+                  class="inline-flex flex-col items-start"
+                  style="--nb-underline-width: 45%"
+                >
+                  Campaign draft
+                </h2>
                 <span nbChip tone="pink">Draft</span>
               </div>
             </header>
@@ -121,7 +160,13 @@ import { DocsExample } from '../../docs/docs-example';
               </div>
             </div>
 
-            <footer nbSection padding="lg" divider="top" layout="between" align="center">
+            <footer
+              nbSection
+              padding="lg"
+              divider="top"
+              layout="between"
+              align="center"
+            >
               <span nbText tone="muted">Last saved 2m ago</span>
               <button nbButton tone="black" size="sm">Publish</button>
             </footer>
@@ -141,46 +186,95 @@ import { DocsExample } from '../../docs/docs-example';
           through the corners.
         </p>
         <docs-example [code]="clipCode">
-        <div class="grid w-full gap-5 sm:grid-cols-2">
-          <div>
-            <p class="mb-2 font-mono text-xs font-bold uppercase opacity-70">With clip</p>
-            <article nbSurface tone="pink" radius="xl" shadow="hard" border="strong" clip class="relative w-full">
-              <header nbSection padding="md" divider="bottom" class="relative min-h-32 bg-(--nb-blue) text-white">
-                <div
-                  class="absolute -right-5 -top-5 size-16 rounded-full border-2 border-(--nb-border) bg-(--nb-yellow)"
-                  aria-hidden="true"
-                ></div>
-                <div
-                  class="absolute -left-8 bottom-5 h-5 w-36 rotate-[-12deg] border-2 border-(--nb-border) bg-(--nb-primary)"
-                  aria-hidden="true"
-                ></div>
-                <h3 nbText size="2xl" weight="black" leading="tight" class="relative z-10">With clip</h3>
-              </header>
-              <div nbSection padding="md">
-                <p nbText size="sm">The pushed-out dot and stripe are cut at the rounded edge.</p>
-              </div>
-            </article>
+          <div class="grid w-full gap-5 sm:grid-cols-2">
+            <div>
+              <p class="mb-2 font-mono text-xs font-bold uppercase opacity-70">
+                With clip
+              </p>
+              <article
+                nbSurface
+                tone="pink"
+                radius="xl"
+                shadow="hard"
+                border="strong"
+                clip
+                class="relative w-full"
+              >
+                <header
+                  nbSection
+                  padding="md"
+                  divider="bottom"
+                  class="relative min-h-32 bg-(--nb-blue) text-white"
+                >
+                  <div
+                    class="absolute -right-5 -top-5 size-16 rounded-full border-2 border-(--nb-border) bg-(--nb-yellow)"
+                    aria-hidden="true"
+                  ></div>
+                  <div
+                    class="absolute -left-8 bottom-5 h-5 w-36 rotate-[-12deg] border-2 border-(--nb-border) bg-(--nb-primary)"
+                    aria-hidden="true"
+                  ></div>
+                  <h3
+                    nbText
+                    size="2xl"
+                    weight="black"
+                    leading="tight"
+                    class="relative z-10"
+                  >
+                    With clip
+                  </h3>
+                </header>
+                <div nbSection padding="md">
+                  <p nbText size="sm">
+                    The pushed-out dot and stripe are cut at the rounded edge.
+                  </p>
+                </div>
+              </article>
+            </div>
+            <div>
+              <p class="mb-2 font-mono text-xs font-bold uppercase opacity-70">
+                Without clip
+              </p>
+              <article
+                nbSurface
+                tone="lavender"
+                radius="xl"
+                shadow="hard"
+                border="strong"
+                class="relative w-full"
+              >
+                <header
+                  nbSection
+                  padding="md"
+                  divider="bottom"
+                  class="relative min-h-32 bg-(--nb-blue) text-white"
+                >
+                  <div
+                    class="absolute -right-5 -top-5 size-16 rounded-full border-2 border-(--nb-border) bg-(--nb-yellow)"
+                    aria-hidden="true"
+                  ></div>
+                  <div
+                    class="absolute -left-8 bottom-5 h-5 w-36 rotate-[-12deg] border-2 border-(--nb-border) bg-(--nb-primary)"
+                    aria-hidden="true"
+                  ></div>
+                  <h3
+                    nbText
+                    size="2xl"
+                    weight="black"
+                    leading="tight"
+                    class="relative z-10"
+                  >
+                    Without clip
+                  </h3>
+                </header>
+                <div nbSection padding="md">
+                  <p nbText size="sm">
+                    The same inner children spill past the surface radius.
+                  </p>
+                </div>
+              </article>
+            </div>
           </div>
-          <div>
-            <p class="mb-2 font-mono text-xs font-bold uppercase opacity-70">Without clip</p>
-            <article nbSurface tone="lavender" radius="xl" shadow="hard" border="strong" class="relative w-full">
-              <header nbSection padding="md" divider="bottom" class="relative min-h-32 bg-(--nb-blue) text-white">
-                <div
-                  class="absolute -right-5 -top-5 size-16 rounded-full border-2 border-(--nb-border) bg-(--nb-yellow)"
-                  aria-hidden="true"
-                ></div>
-                <div
-                  class="absolute -left-8 bottom-5 h-5 w-36 rotate-[-12deg] border-2 border-(--nb-border) bg-(--nb-primary)"
-                  aria-hidden="true"
-                ></div>
-                <h3 nbText size="2xl" weight="black" leading="tight" class="relative z-10">Without clip</h3>
-              </header>
-              <div nbSection padding="md">
-                <p nbText size="sm">The same inner children spill past the surface radius.</p>
-              </div>
-            </article>
-          </div>
-        </div>
         </docs-example>
       </section>
 
@@ -197,13 +291,15 @@ import { DocsExample } from '../../docs/docs-example';
             Reach for this pattern when…
           </div>
           @for (use of whenToUse; track use) {
-            <div class="flex gap-3 border-b border-white/10 px-5 py-3 last:border-none">
-              <span
-                class="mt-1.5 inline-block h-2 w-2 shrink-0 border-2 border-(--nb-yellow) bg-(--nb-yellow)"
-                aria-hidden="true"
-              ></span>
-              <span class="text-sm font-medium">{{ use }}</span>
-            </div>
+          <div
+            class="flex gap-3 border-b border-white/10 px-5 py-3 last:border-none"
+          >
+            <span
+              class="mt-1.5 inline-block h-2 w-2 shrink-0 border-2 border-(--nb-yellow) bg-(--nb-yellow)"
+              aria-hidden="true"
+            ></span>
+            <span class="text-sm font-medium">{{ use }}</span>
+          </div>
           }
         </div>
       </section>
@@ -214,16 +310,25 @@ import { DocsExample } from '../../docs/docs-example';
         </h2>
         <div class="grid gap-3 sm:grid-cols-2">
           @for (input of keyInputs; track input.name) {
-            <div class="border-3 border-(--nb-border) bg-white p-4 shadow-[3px_3px_0_0_var(--nb-shadow)]">
-              <div class="flex items-center gap-2">
-                <code class="font-mono text-sm font-black">{{ input.name }}</code>
-                <span
-                  class="font-mono text-xs font-bold uppercase px-1.5 py-0.5 border border-(--nb-border)"
-                  [style.background]="input.primitive === 'nbSurface' ? 'var(--nb-yellow)' : 'var(--nb-mint)'"
-                >{{ input.primitive }}</span>
-              </div>
-              <p class="mt-1.5 text-sm font-medium text-black/70">{{ input.description }}</p>
+          <div
+            class="border-3 border-(--nb-border) bg-white p-4 shadow-[3px_3px_0_0_var(--nb-shadow)]"
+          >
+            <div class="flex items-center gap-2">
+              <code class="font-mono text-sm font-black">{{ input.name }}</code>
+              <span
+                class="font-mono text-xs font-bold uppercase px-1.5 py-0.5 border border-(--nb-border)"
+                [style.background]="
+                  input.primitive === 'nbSurface'
+                    ? 'var(--nb-yellow)'
+                    : 'var(--nb-mint)'
+                "
+                >{{ input.primitive }}</span
+              >
             </div>
+            <p class="mt-1.5 text-sm font-medium text-black/70">
+              {{ input.description }}
+            </p>
+          </div>
           }
         </div>
         <p class="mt-5 text-sm font-medium">
@@ -249,7 +354,8 @@ export default class SurfaceAndSectionPage {
     {
       name: 'tone',
       primitive: 'nbSurface',
-      description: 'Color theme — cream, yellow, pink, mint, lavender, black, white, etc.',
+      description:
+        'Color theme — cream, yellow, pink, mint, lavender, black, white, etc.',
     },
     {
       name: 'radius',
@@ -279,7 +385,8 @@ export default class SurfaceAndSectionPage {
     {
       name: 'divider',
       primitive: 'nbSection',
-      description: 'Border position — top, bottom, left, right, all, none',
+      description:
+        'Divider position — top, bottom, left, right, block (top + bottom), inline (left + right), all, none',
     },
     {
       name: 'layout',

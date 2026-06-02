@@ -64,26 +64,26 @@ interface SectionLayoutDemo {
           <p>Neo-Brutalist Angular Section</p>
           <h1>Section</h1>
           <p class="mt-3 max-w-3xl text-base font-medium sm:text-lg">
-            Use <code class="font-mono">nbSection</code> for the internal regions
-            of a card — headers, body blocks, and footers. It replaces ad-hoc
-            <code class="font-mono">border-t-2 px-6 py-6</code> wrappers with a
-            small declarative primitive for padding, border side, and inline
-            layout.
+            Use <code class="font-mono">nbSection</code> for the internal
+            regions of a card — headers, body blocks, and footers. It replaces
+            ad-hoc <code class="font-mono">border-t-2 px-6 py-6</code> wrappers
+            with a small declarative primitive for padding, border side, and
+            inline layout.
           </p>
         </div>
 
         <div class="mt-7 flex flex-wrap items-center gap-3">
           <div class="nb-stat-tile nb-stat-tile--yellow">
-            <span class="nb-stat-tile__value">6</span>
-            <span class="nb-stat-tile__label">Paddings</span>
+            <span class="nb-stat-tile__value">Padding</span>
+            <span class="nb-stat-tile__label">Region spacing</span>
           </div>
           <div class="nb-stat-tile nb-stat-tile--mint">
-            <span class="nb-stat-tile__value">8</span>
-            <span class="nb-stat-tile__label">Border sides</span>
+            <span class="nb-stat-tile__value">Divider</span>
+            <span class="nb-stat-tile__label">Side placement</span>
           </div>
           <div class="nb-stat-tile nb-stat-tile--pink">
-            <span class="nb-stat-tile__value">3</span>
-            <span class="nb-stat-tile__label">Layouts</span>
+            <span class="nb-stat-tile__value">Layout</span>
+            <span class="nb-stat-tile__label">Region flow</span>
           </div>
 
           <docs-source-tile
@@ -114,9 +114,7 @@ interface SectionLayoutDemo {
                 <span class="font-mono text-xs font-black uppercase">
                   Project
                 </span>
-                <h2 nbDisplay class="[--nb-display-size:2rem]">
-                  Alpha Launch
-                </h2>
+                <h2 nbDisplay class="[--nb-display-size:2rem]">Alpha Launch</h2>
               </div>
               <span nbChip tone="mint">Active</span>
             </div>
@@ -151,16 +149,22 @@ interface SectionLayoutDemo {
           Add <code class="font-mono">nbSection</code> to the wrapper around any
           region inside a surface or card. Pair it with
           <code class="font-mono">padding</code>,
-          <code class="font-mono">border</code>, and
+          <code class="font-mono">divider</code>, and
           <code class="font-mono">layout</code> to compose headers, content, and
           footers without ad-hoc utility classes.
         </p>
-        <docs-code-block class="block mb-5" title="Import" [code]="importCode" />
+        <docs-code-block
+          class="block mb-5"
+          title="Import"
+          [code]="importCode"
+        />
         <docs-code-block title="Template" [code]="defaultExampleCode" />
       </section>
 
       <section id="paddings">
-        <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">Paddings</h2>
+        <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">
+          Paddings
+        </h2>
         <p class="mb-4 font-medium">
           Padding is the most common knob. Inline layouts (headers, footers,
           toolbars) usually take <code class="font-mono">md</code> to
@@ -170,54 +174,56 @@ interface SectionLayoutDemo {
         <docs-example [code]="paddingsExampleCode">
           <div class="grid w-full grid-cols-1 gap-4 p-4 sm:grid-cols-2">
             @for (padding of paddings; track padding.value) {
-              <div nbSurface tone="white" shadow="sm">
+            <div nbSurface tone="white" shadow="sm">
+              <div
+                class="border-b-2 border-(--nb-border) bg-(--nb-background) px-4 py-2 font-mono text-xs font-black uppercase"
+              >
+                padding {{ padding.label }}
+              </div>
+              <div nbSection [padding]="padding.value">
                 <div
-                  class="border-b-2 border-(--nb-border) bg-(--nb-background) px-4 py-2 font-mono text-xs font-black uppercase"
+                  class="grid h-12 place-items-center border-2 border-(--nb-border) bg-(--nb-yellow) font-mono text-xs font-black uppercase"
                 >
-                  padding {{ padding.label }}
-                </div>
-                <div nbSection [padding]="padding.value">
-                  <div
-                    class="grid h-12 place-items-center border-2 border-(--nb-border) bg-(--nb-yellow) font-mono text-xs font-black uppercase"
-                  >
-                    content
-                  </div>
+                  content
                 </div>
               </div>
+            </div>
             }
           </div>
         </docs-example>
       </section>
 
       <section id="borders">
-        <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">Borders</h2>
+        <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">
+          Dividers
+        </h2>
         <p class="mb-4 font-medium">
           Sections share <code class="font-mono">--nb-border</code> and
           <code class="font-mono">--nb-border-width</code> with the rest of the
           system, so a single side never goes out of sync. Use
-          <code class="font-mono">block</code> or
-          <code class="font-mono">inline</code> for two sides;
+          <code class="font-mono">block</code> for top + bottom or
+          <code class="font-mono">inline</code> for left + right;
           <code class="font-mono">all</code> for a fully outlined region.
         </p>
         <docs-example [code]="bordersExampleCode">
           <div class="grid w-full grid-cols-1 gap-4 p-4 sm:grid-cols-2">
             @for (border of borders; track border.value) {
-              <div nbSurface tone="cream" shadow="sm">
-                <div
-                  class="border-b-2 border-(--nb-border) bg-(--nb-background) px-4 py-2 font-mono text-xs font-black uppercase"
-                >
-                  border {{ border.label }}
-                </div>
-                <div class="p-4">
-                  <div nbSection padding="md" [divider]="border.value">
-                    <div
-                      class="grid h-12 place-items-center border-2 border-(--nb-border) bg-(--nb-mint) px-3 font-mono text-xs font-black uppercase"
-                    >
-                      {{ border.hint }}
-                    </div>
+            <div nbSurface tone="cream" shadow="sm">
+              <div
+                class="border-b-2 border-(--nb-border) bg-(--nb-background) px-4 py-2 font-mono text-xs font-black uppercase"
+              >
+                divider {{ border.label }}
+              </div>
+              <div class="p-4">
+                <div nbSection padding="md" [divider]="border.value">
+                  <div
+                    class="grid h-12 place-items-center border-2 border-(--nb-border) bg-(--nb-mint) px-3 font-mono text-xs font-black uppercase"
+                  >
+                    {{ border.hint }}
                   </div>
                 </div>
               </div>
+            </div>
             }
           </div>
         </docs-example>
@@ -225,32 +231,32 @@ interface SectionLayoutDemo {
 
       <section id="border-styles">
         <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">
-          Border styles
+          Divider styles
         </h2>
         <docs-example [code]="borderStylesExampleCode">
           <div class="grid w-full grid-cols-1 gap-4 p-4 sm:grid-cols-3">
             @for (style of borderStyles; track style.value) {
-              <div nbSurface tone="white" shadow="sm">
+            <div nbSurface tone="white" shadow="sm">
+              <div
+                class="border-b-2 border-(--nb-border) bg-(--nb-background) px-4 py-2 font-mono text-xs font-black uppercase"
+              >
+                {{ style.label }}
+              </div>
+              <div class="p-4">
                 <div
-                  class="border-b-2 border-(--nb-border) bg-(--nb-background) px-4 py-2 font-mono text-xs font-black uppercase"
+                  nbSection
+                  padding="md"
+                  divider="all"
+                  [dividerStyle]="style.value"
                 >
-                  {{ style.label }}
-                </div>
-                <div class="p-4">
                   <div
-                    nbSection
-                    padding="md"
-                    divider="all"
-                    [dividerStyle]="style.value"
+                    class="grid h-12 place-items-center border-2 border-(--nb-border) bg-(--nb-lavender) px-3 font-mono text-xs font-black uppercase"
                   >
-                    <div
-                      class="grid h-12 place-items-center border-2 border-(--nb-border) bg-(--nb-lavender) px-3 font-mono text-xs font-black uppercase"
-                    >
-                      {{ style.label }} edge
-                    </div>
+                    {{ style.label }} edge
                   </div>
                 </div>
               </div>
+            </div>
             }
           </div>
         </docs-example>
@@ -268,36 +274,36 @@ interface SectionLayoutDemo {
         <docs-example [code]="layoutsExampleCode">
           <div class="grid w-full grid-cols-1 gap-4 p-4">
             @for (layout of layouts; track layout.value) {
-              <div nbSurface tone="white" shadow="sm">
-                <div
-                  class="flex flex-wrap items-center justify-between gap-2 border-b-2 border-(--nb-border) bg-(--nb-background) px-4 py-2"
-                >
-                  <span class="font-mono text-xs font-black uppercase">
-                    layout {{ layout.label }}
-                  </span>
-                  <span class="font-mono text-xs font-medium">
-                    {{ layout.hint }}
-                  </span>
-                </div>
-                <div
-                  nbSection
-                  padding="md"
-                  [layout]="layout.value"
-                  [align]="layout.align"
-                  class="bg-(--nb-cream)"
-                >
-                  <span
-                    class="border-2 border-(--nb-border) bg-(--nb-yellow) px-3 py-2 font-mono text-xs font-black uppercase"
-                  >
-                    Lead
-                  </span>
-                  <span
-                    class="border-2 border-(--nb-border) bg-(--nb-pink) px-3 py-2 font-mono text-xs font-black text-white uppercase"
-                  >
-                    Trail
-                  </span>
-                </div>
+            <div nbSurface tone="white" shadow="sm">
+              <div
+                class="flex flex-wrap items-center justify-between gap-2 border-b-2 border-(--nb-border) bg-(--nb-background) px-4 py-2"
+              >
+                <span class="font-mono text-xs font-black uppercase">
+                  layout {{ layout.label }}
+                </span>
+                <span class="font-mono text-xs font-medium">
+                  {{ layout.hint }}
+                </span>
               </div>
+              <div
+                nbSection
+                padding="md"
+                [layout]="layout.value"
+                [align]="layout.align"
+                class="bg-(--nb-cream)"
+              >
+                <span
+                  class="border-2 border-(--nb-border) bg-(--nb-yellow) px-3 py-2 font-mono text-xs font-black uppercase"
+                >
+                  Lead
+                </span>
+                <span
+                  class="border-2 border-(--nb-border) bg-(--nb-pink) px-3 py-2 font-mono text-xs font-black text-white uppercase"
+                >
+                  Trail
+                </span>
+              </div>
+            </div>
             }
           </div>
         </docs-example>
@@ -377,13 +383,19 @@ interface SectionLayoutDemo {
           <table class="w-full min-w-180 border-collapse text-left">
             <thead class="bg-nb-secondary text-nb-secondary-fg">
               <tr>
-                <th class="border-b-2 border-r-2 border-(--nb-border) px-4 py-3 font-bold">
+                <th
+                  class="border-b-2 border-r-2 border-(--nb-border) px-4 py-3 font-bold"
+                >
                   Input
                 </th>
-                <th class="border-b-2 border-r-2 border-(--nb-border) px-4 py-3 font-bold">
+                <th
+                  class="border-b-2 border-r-2 border-(--nb-border) px-4 py-3 font-bold"
+                >
                   Type
                 </th>
-                <th class="border-b-2 border-r-2 border-(--nb-border) px-4 py-3 font-bold">
+                <th
+                  class="border-b-2 border-r-2 border-(--nb-border) px-4 py-3 font-bold"
+                >
                   Default
                 </th>
                 <th class="border-b-2 border-(--nb-border) px-4 py-3 font-bold">
@@ -393,26 +405,38 @@ interface SectionLayoutDemo {
             </thead>
             <tbody class="font-medium">
               <tr class="border-b-2 border-(--nb-border)">
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">
+                <td
+                  class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
+                >
                   padding
                 </td>
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">
+                <td
+                  class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
+                >
                   'none' | 'xs' | 'sm' | 'md' | 'lg' | 'xl'
                 </td>
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">
+                <td
+                  class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
+                >
                   'md'
                 </td>
                 <td class="px-4 py-3">Inner padding for the section.</td>
               </tr>
               <tr class="border-b-2 border-(--nb-border)">
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">
+                <td
+                  class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
+                >
                   divider
                 </td>
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">
+                <td
+                  class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
+                >
                   'none' | 'top' | 'right' | 'bottom' | 'left' | 'block' |
                   'inline' | 'all'
                 </td>
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">
+                <td
+                  class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
+                >
                   'none'
                 </td>
                 <td class="px-4 py-3">
@@ -422,13 +446,19 @@ interface SectionLayoutDemo {
                 </td>
               </tr>
               <tr class="border-b-2 border-(--nb-border)">
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">
+                <td
+                  class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
+                >
                   dividerStyle
                 </td>
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">
+                <td
+                  class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
+                >
                   'solid' | 'dashed' | 'dotted'
                 </td>
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">
+                <td
+                  class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
+                >
                   'solid'
                 </td>
                 <td class="px-4 py-3">
@@ -436,13 +466,19 @@ interface SectionLayoutDemo {
                 </td>
               </tr>
               <tr class="border-b-2 border-(--nb-border)">
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">
+                <td
+                  class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
+                >
                   layout
                 </td>
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">
+                <td
+                  class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
+                >
                   'default' | 'center' | 'between'
                 </td>
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">
+                <td
+                  class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
+                >
                   'default'
                 </td>
                 <td class="px-4 py-3">
@@ -453,13 +489,19 @@ interface SectionLayoutDemo {
                 </td>
               </tr>
               <tr class="border-b-2 border-(--nb-border)">
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">
+                <td
+                  class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
+                >
                   align
                 </td>
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">
+                <td
+                  class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
+                >
                   'stretch' | 'start' | 'center' | 'end'
                 </td>
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">
+                <td
+                  class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
+                >
                   'stretch'
                 </td>
                 <td class="px-4 py-3">
@@ -470,13 +512,19 @@ interface SectionLayoutDemo {
                 </td>
               </tr>
               <tr>
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">
+                <td
+                  class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
+                >
                   flush
                 </td>
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">
+                <td
+                  class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
+                >
                   boolean
                 </td>
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">
+                <td
+                  class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
+                >
                   false
                 </td>
                 <td class="px-4 py-3">
