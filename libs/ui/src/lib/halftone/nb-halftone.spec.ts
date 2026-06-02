@@ -70,12 +70,11 @@ describe('NbHalftone', () => {
     ) as HTMLElement;
 
     expect(halftone.getAttribute('data-nb-halftone')).toBe('');
-    expect(halftone.getAttribute('data-position')).toBe('bottom-right');
     expect(halftone.getAttribute('data-shape')).toBe('square');
     expect(halftone.classList).toContain('nb-halftone--square');
     expect(halftone.style.getPropertyValue('--nb-halftone-rows')).toBe('7');
     expect(halftone.style.getPropertyValue('--nb-halftone-columns')).toBe('7');
-    expect(halftone.querySelectorAll('circle')).toHaveLength(28);
+    expect(halftone.querySelectorAll('circle')).toHaveLength(49);
   });
 
   it('keeps legacy element selector compatibility', async () => {
@@ -85,8 +84,7 @@ describe('NbHalftone', () => {
     ) as HTMLElement;
 
     expect(halftone.getAttribute('data-nb-halftone')).toBe('');
-    expect(halftone.getAttribute('data-position')).toBe('bottom-right');
-    expect(halftone.querySelectorAll('circle')).toHaveLength(28);
+    expect(halftone.querySelectorAll('circle')).toHaveLength(49);
   });
 
   it('applies the rectangle shape class and accessibility metadata', async () => {
