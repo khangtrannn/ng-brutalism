@@ -32,39 +32,54 @@ class SelectTokenTest {}
 class NativeSelectTokenTest {}
 
 describe('NbSelect token surface', () => {
-  it('declares the expected default tokens on the base host', async () => {
+  it('adds nb-tone and nb-border-width capability marker classes', async () => {
     const fixture = await createFixture(SelectTokenTest);
     const select = findCustomSelect(fixture);
-    const cls = select.className;
 
-    expect(cls).toContain(
-      '[--nb-select-bg:var(--nb-input-bg,var(--nb-field-bg))]'
-    );
-    expect(cls).toContain('[--nb-select-fg:var(--nb-foreground)]');
-    expect(cls).toContain('[--nb-select-border:var(--nb-border)]');
-    expect(cls).toContain('[--nb-select-radius:var(--nb-radius)]');
-    expect(cls).toContain('[--nb-select-listbox-bg:var(--nb-select-bg)]');
+    expect(select.className).toContain('nb-tone');
+    expect(select.className).toContain('nb-border-width');
   });
 
-  it('reads its scoped tokens instead of global tokens directly', async () => {
+  it('sets capability default CSS variables as inline styles', async () => {
+    const fixture = await createFixture(SelectTokenTest);
+    const select = findCustomSelect(fixture);
+
+    expect(select.style.getPropertyValue('--_nb-tone-bg-default')).toBe(
+      'var(--nb-surface)'
+    );
+    expect(select.style.getPropertyValue('--_nb-tone-bg-token')).toBe(
+      'var(--nb-select-bg, var(--_nb-tone-bg-default))'
+    );
+  });
+
+  it('declares scoped fg, border, radius, and listbox-bg tokens as classes', async () => {
+    const fixture = await createFixture(SelectTokenTest);
+    const cls = findCustomSelect(fixture).className;
+
+    expect(cls).toContain(
+      '[--nb-select-fg:var(--_nb-tone-fg-token,var(--_nb-tone-fg-default))]'
+    );
+    expect(cls).toContain(
+      '[--nb-select-border:var(--_nb-tone-border-color-token,var(--_nb-tone-border-color-default))]'
+    );
+    expect(cls).toContain('[--nb-select-radius:var(--nb-radius)]');
+    expect(cls).toContain(
+      '[--nb-select-listbox-bg:var(--_nb-tone-bg-token,var(--_nb-tone-bg-default))]'
+    );
+  });
+
+  it('reads scoped tokens instead of global tokens directly', async () => {
     const fixture = await createFixture(SelectTokenTest);
     const select = findCustomSelect(fixture);
     const trigger = findTrigger(fixture);
-    const cls = select.className;
 
-    expect(cls).toContain('bg-(--nb-select-bg)');
-    expect(cls).toContain('border-(--nb-select-border)');
-    expect(cls).toContain('rounded-(--nb-select-radius)');
-    expect(cls).toContain('focus-within:ring-(--nb-select-border)');
     expect(trigger.className).toContain('text-(--nb-select-fg)');
     expect(findTriggerText(fixture).className).toContain('text-gray-400');
-    expect(cls).not.toContain('bg-(--nb-input-bg');
-    expect(cls).not.toContain('bg-(--nb-field-bg)');
-    expect(cls).not.toContain('border-(--nb-border)');
-    expect(cls).not.toContain('rounded-nb');
+    expect(select.className).not.toContain('bg-(--nb-input-bg');
+    expect(select.className).not.toContain('bg-(--nb-field-bg)');
   });
 
-  it('uses the scoped listbox background token', async () => {
+  it('uses the scoped listbox background and border tokens', async () => {
     const fixture = await createFixture(SelectTokenTest);
     findTrigger(fixture).click();
     fixture.detectChanges();
@@ -83,11 +98,7 @@ describe('NbSelect token surface', () => {
     expect(cls).toContain('rounded-b-(--nb-select-radius)');
     expect(optionCls).toContain('text-(--nb-select-fg)');
     expect(optionCls).toContain('focus-visible:ring-(--nb-select-border)');
-    expect(optionCls).not.toContain('--nb-select-selected-bg');
-    expect(optionCls).not.toContain('--nb-select-option-hover-bg');
     expect(cls).not.toContain('bg-(--nb-surface');
-    expect(cls).not.toContain('border-(--nb-border)');
-    expect(cls).not.toContain('rounded-b-nb');
     expect(optionCls).not.toContain('text-(--nb-foreground)');
     expect(optionCls).not.toContain('focus-visible:ring-(--nb-border)');
   });
@@ -101,7 +112,6 @@ describe('NbSelect token surface', () => {
     expect(cls).toContain('relative');
     expect(cls).toContain('block');
     expect(cls).toContain('w-full');
-    expect(cls).toContain('border-2');
     expect(cls).toContain('shadow-nb');
     expect(cls).toContain('focus-within:outline-none');
     expect(cls).toContain('focus-within:ring-2');
@@ -123,23 +133,30 @@ describe('NbSelect token surface', () => {
 });
 
 describe('NbNativeSelect directive token surface', () => {
-  it('declares the expected default tokens on the base host', async () => {
+  it('adds nb-tone and nb-border-width capability marker classes', async () => {
     const fixture = await createFixture(NativeSelectTokenTest);
     const select = findNativeSelect(fixture);
-    const cls = select.className;
+
+    expect(select.className).toContain('nb-tone');
+    expect(select.className).toContain('nb-border-width');
+  });
+
+  it('declares scoped fg, border, and radius tokens as classes', async () => {
+    const fixture = await createFixture(NativeSelectTokenTest);
+    const cls = findNativeSelect(fixture).className;
 
     expect(cls).toContain(
-      '[--nb-select-bg:var(--nb-input-bg,var(--nb-field-bg))]'
+      '[--nb-select-fg:var(--_nb-tone-fg-token,var(--_nb-tone-fg-default))]'
     );
-    expect(cls).toContain('[--nb-select-fg:var(--nb-foreground)]');
-    expect(cls).toContain('[--nb-select-border:var(--nb-border)]');
+    expect(cls).toContain(
+      '[--nb-select-border:var(--_nb-tone-border-color-token,var(--_nb-tone-border-color-default))]'
+    );
     expect(cls).toContain('[--nb-select-radius:var(--nb-radius)]');
   });
 
-  it('reads its scoped tokens instead of global tokens directly', async () => {
+  it('reads scoped tokens instead of global tokens directly', async () => {
     const fixture = await createFixture(NativeSelectTokenTest);
-    const select = findNativeSelect(fixture);
-    const cls = select.className;
+    const cls = findNativeSelect(fixture).className;
 
     expect(cls).toContain('bg-(--nb-select-bg)');
     expect(cls).toContain('text-(--nb-select-fg)');
@@ -154,11 +171,9 @@ describe('NbNativeSelect directive token surface', () => {
 
   it('does not regress the default native select class shape', async () => {
     const fixture = await createFixture(NativeSelectTokenTest);
-    const select = findNativeSelect(fixture);
-    const cls = select.className;
+    const cls = findNativeSelect(fixture).className;
 
     expect(cls).toContain('flex');
-    expect(cls).toContain('border-2');
     expect(cls).toContain('font-medium');
     expect(cls).toContain('appearance-none');
     expect(cls).toContain('pr-10');

@@ -73,7 +73,7 @@ describe('NbSelect', () => {
       '[role="listbox"]'
     ) as HTMLElement;
 
-    expect(select.className).toContain('border-(--nb-select-border)');
+    expect(select.className).toContain('focus-within:ring-(--nb-select-border)');
     expect(listbox.className).toContain('border-(--nb-select-border)');
     expect(select.className).not.toContain('--nb-select-active-border');
     expect(listbox.className).not.toContain('--nb-select-active-border');
@@ -260,7 +260,7 @@ describe('NbNativeSelect directive inside NbInputGroup', () => {
       'select[nbSelect]'
     ) as HTMLSelectElement;
 
-    expect(select.className).toContain('border-0');
+    expect(parseInt(select.style.borderWidth)).toBe(0);
     expect(select.className).not.toContain('shadow-nb');
     expect(select.className).not.toContain('rounded-(--nb-select-radius)');
   });
@@ -273,7 +273,7 @@ describe('NbNativeSelect directive inside NbInputGroup', () => {
 
     expect(select.className).toContain('flex-1');
     expect(select.className).toContain('min-w-0');
-    expect(select.className).toContain('bg-transparent');
+    expect(select.style.backgroundColor).toBe('transparent');
   });
 
   it('uses the same focus-within treatment as grouped inputs', async () => {

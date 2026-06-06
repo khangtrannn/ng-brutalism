@@ -40,8 +40,8 @@ export class NbAccordionTrigger {
 
   protected readonly triggerClasses = computed(() =>
     nbClass(
-      '[--nb-accordion-trigger-bg:var(--nb-main)]',
-      '[--nb-accordion-trigger-fg:var(--nb-main-foreground)]',
+      '[--nb-accordion-trigger-bg:var(--_nb-tone-bg-token)]',
+      '[--nb-accordion-trigger-fg:var(--_nb-tone-fg-token)]',
       'flex min-h-14 flex-1 items-center justify-between gap-4',
       'w-full bg-(--nb-accordion-trigger-bg) p-4 text-left text-base font-bold',
       'text-(--nb-accordion-trigger-fg) transition-all duration-200',

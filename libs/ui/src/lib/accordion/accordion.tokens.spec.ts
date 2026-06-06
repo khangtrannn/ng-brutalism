@@ -54,10 +54,10 @@ describe('NbAccordion token surface', () => {
       itemHost.style.getPropertyValue('--_nb-border-width-default')
     ).toBe('var(--nb-border-width)');
     expect(trigger.className).toContain(
-      '[--nb-accordion-trigger-bg:var(--nb-main)]'
+      '[--nb-accordion-trigger-bg:var(--_nb-tone-bg-token)]'
     );
     expect(trigger.className).toContain(
-      '[--nb-accordion-trigger-fg:var(--nb-main-foreground)]'
+      '[--nb-accordion-trigger-fg:var(--_nb-tone-fg-token)]'
     );
     expect(content.className).toContain(
       '[--nb-accordion-content-bg:var(--nb-surface)]'

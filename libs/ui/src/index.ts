@@ -172,7 +172,6 @@ export { NbIconButton } from './lib/icon-button';
 export type { NbIconButtonShape, NbIconButtonSize } from './lib/icon-button';
 export { NbButtonTrailingIcon } from './lib/button/nb-button-trailing-icon';
 export { NbProgress } from './lib/progress';
-export type { NbProgressTone } from './lib/progress';
 export { NbAvatarGroup } from './lib/avatar-group';
 export { NbSticker, NbStickerFace } from './lib/sticker';
 export type { NbStickerShape, NbStickerTone } from './lib/sticker';

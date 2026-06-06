@@ -12,6 +12,13 @@ import {
 } from '@angular/core';
 
 import { nbClass } from '../core/class';
+import {
+  NbBorderCapability,
+  NbToneCapability,
+  NB_STYLE_DEFAULTS,
+  NB_STYLE_NAMESPACE,
+  type NbStyleDefaults,
+} from '../core/capabilities';
 import { NB_INPUT_GROUP } from '../input-group/input-group.types';
 import { NbSelectOption } from './nb-select-option';
 import {
@@ -44,7 +51,7 @@ let nextSelectId = 0;
       </span>
 
       <svg
-        class="size-6 shrink-0 fill-none stroke-current stroke-[3] stroke-linecap-round stroke-linejoin-round"
+        class="size-6 shrink-0 fill-none stroke-current stroke-3 stroke-linecap-round stroke-linejoin-round"
         viewBox="0 0 24 24"
         aria-hidden="true"
       >
@@ -63,18 +70,32 @@ let nextSelectId = 0;
     </div>
     }
   `,
+  providers: [
+    { provide: NB_STYLE_NAMESPACE, useValue: 'select' },
+    {
+      provide: NB_STYLE_DEFAULTS,
+      useValue: { tone: 'surface', border: 'default' } satisfies NbStyleDefaults,
+    },
+    { provide: NB_SELECT, useExisting: NbSelect },
+  ],
+  hostDirectives: [
+    { directive: NbToneCapability, inputs: ['tone'] },
+    { directive: NbBorderCapability, inputs: ['border'] },
+  ],
   host: {
     '[class]': 'hostClasses()',
     '[attr.data-state]': 'open() ? "open" : "closed"',
     '[attr.data-disabled]': 'disabled() ? "" : null',
     '(document:click)': 'closeOnOutsideClick($event)',
+    '[style.background-color]': 'isInGroup ? "transparent" : null',
+    '[style.border-width]': 'isInGroup ? "0" : null',
   },
-  providers: [{ provide: NB_SELECT, useExisting: NbSelect }],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NbSelect implements NbSelectController {
   private readonly element = inject<ElementRef<HTMLElement>>(ElementRef);
   private readonly group = inject(NB_INPUT_GROUP, { optional: true });
+  protected readonly isInGroup = this.group !== null;
 
   readonly placeholder = input<string>('Select an option');
   readonly value = model<NbSelectValue | null>(null);
@@ -105,19 +126,18 @@ export class NbSelect implements NbSelectController {
   );
 
   protected readonly hostClasses = computed(() => {
-    const inGroup = this.group !== null;
+    const inGroup = this.isInGroup;
     return nbClass(
-      '[--nb-select-bg:var(--nb-input-bg,var(--nb-field-bg))]',
-      '[--nb-select-fg:var(--nb-foreground)]',
-      '[--nb-select-border:var(--nb-border)]',
+      '[--nb-select-fg:var(--_nb-tone-fg-token,var(--_nb-tone-fg-default))]',
+      '[--nb-select-border:var(--_nb-tone-border-color-token,var(--_nb-tone-border-color-default))]',
       '[--nb-select-radius:var(--nb-radius)]',
-      '[--nb-select-listbox-bg:var(--nb-select-bg)]',
+      '[--nb-select-listbox-bg:var(--_nb-tone-bg-token,var(--_nb-tone-bg-default))]',
       inGroup
         ? 'block w-full'
         : [
             'relative block w-full',
-            'rounded-(--nb-select-radius) border-2 border-(--nb-select-border)',
-            'bg-(--nb-select-bg) shadow-nb',
+            'rounded-(--nb-select-radius)',
+            'shadow-nb',
             'focus-within:outline-none focus-within:ring-2 focus-within:ring-(--nb-select-border)',
             'focus-within:ring-offset-2 focus-within:shadow-none',
             'data-[disabled]:border-gray-400 data-[disabled]:shadow-[5px_5px_0_0_#a3a3a3]',
@@ -126,7 +146,7 @@ export class NbSelect implements NbSelectController {
   });
 
   protected readonly triggerClasses = computed(() => {
-    const inGroup = this.group !== null;
+    const inGroup = this.isInGroup;
     return nbClass(
       'flex h-14 w-full items-center gap-4 font-mono text-base font-bold',
       'text-(--nb-select-fg) transition-all duration-150',

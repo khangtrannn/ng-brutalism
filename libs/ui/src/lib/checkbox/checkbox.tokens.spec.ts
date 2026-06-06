@@ -4,40 +4,62 @@ import { describe, expect, it } from 'vitest';
 
 import { NbCheckbox } from './nb-checkbox';
 import type { NbCheckboxSize } from './checkbox.types';
+import type { NbToneToken } from '../tokens/tone';
 
 @Component({
   imports: [NbCheckbox],
-  template: `<input type="checkbox" nbCheckbox [size]="size" />`,
+  template: `<input type="checkbox" nbCheckbox [size]="size" [tone]="tone" />`,
 })
 class CheckboxTokenTest {
   size: NbCheckboxSize = 'md';
+  tone: NbToneToken = 'primary';
 }
 
 describe('NbCheckbox token surface', () => {
-  it('declares the expected default tokens on the base host', async () => {
+  it('sets --nb-checkbox-bg and --nb-checkbox-fg as inline styles from tone', async () => {
     const fixture = await createFixture();
     const checkbox = findCheckbox(fixture);
-    const cls = checkbox.className;
 
-    expect(cls).toContain('[--nb-checkbox-bg:var(--nb-main)]');
-    expect(cls).toContain('[--nb-checkbox-fg:#fff]');
-    expect(cls).toContain('[--nb-checkbox-border:var(--nb-border)]');
-    expect(cls).toContain('[--nb-checkbox-radius:0]');
+    expect(checkbox.style.getPropertyValue('--nb-checkbox-bg')).toBe(
+      'var(--nb-primary)'
+    );
+    expect(checkbox.style.getPropertyValue('--nb-checkbox-fg')).toBe(
+      'var(--nb-primary-foreground)'
+    );
+    expect(checkbox.getAttribute('data-tone')).toBe('primary');
   });
 
-  it('reads its scoped tokens instead of global tokens directly', async () => {
+  it('updates inline styles when tone changes', async () => {
+    const fixture = await createFixture({ tone: 'success' });
+    const checkbox = findCheckbox(fixture);
+
+    expect(checkbox.style.getPropertyValue('--nb-checkbox-bg')).toBe(
+      'var(--nb-success)'
+    );
+    expect(checkbox.style.getPropertyValue('--nb-checkbox-fg')).toBe(
+      'var(--nb-success-foreground)'
+    );
+    expect(checkbox.getAttribute('data-tone')).toBe('success');
+  });
+
+  it('reads its scoped tokens in checked state classes', async () => {
     const fixture = await createFixture();
     const checkbox = findCheckbox(fixture);
     const cls = checkbox.className;
 
     expect(cls).toContain('checked:bg-(--nb-checkbox-bg)');
     expect(cls).toContain('checked:text-(--nb-checkbox-fg)');
-    expect(cls).toContain('outline-(--nb-checkbox-border)');
-    expect(cls).toContain('rounded-(--nb-checkbox-radius)');
-    expect(cls).toContain('focus-visible:ring-(--nb-checkbox-border)');
     expect(cls).not.toContain('checked:bg-(--nb-main)');
-    expect(cls).not.toContain('outline-(--nb-border)');
-    expect(cls).not.toContain('focus-visible:ring-(--nb-border)');
+  });
+
+  it('uses --nb-border directly for outline and focus ring', async () => {
+    const fixture = await createFixture();
+    const cls = findCheckbox(fixture).className;
+
+    expect(cls).toContain('outline-(--nb-border)');
+    expect(cls).toContain('focus-visible:ring-(--nb-border)');
+    expect(cls).not.toContain('outline-(--nb-checkbox-border)');
+    expect(cls).not.toContain('focus-visible:ring-(--nb-checkbox-border)');
   });
 
   it.each([
@@ -76,7 +98,7 @@ describe('NbCheckbox token surface', () => {
 });
 
 async function createFixture(
-  inputs: Partial<Pick<CheckboxTokenTest, 'size'>> = {}
+  inputs: Partial<Pick<CheckboxTokenTest, 'size' | 'tone'>> = {}
 ): Promise<ComponentFixture<CheckboxTokenTest>> {
   await TestBed.configureTestingModule({
     imports: [CheckboxTokenTest],

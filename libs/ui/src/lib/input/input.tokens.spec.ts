@@ -11,36 +11,50 @@ import { NbInput } from './nb-input';
 class InputTokenTest {}
 
 describe('NbInput token surface', () => {
-  it('declares the expected default tokens on the base host', async () => {
+  it('adds nb-tone and nb-border-width capability marker classes', async () => {
+    const fixture = await createFixture();
+    const input = findInput(fixture);
+
+    expect(input.className).toContain('nb-tone');
+    expect(input.className).toContain('nb-border-width');
+  });
+
+  it('sets capability default CSS variables as inline styles', async () => {
+    const fixture = await createFixture();
+    const input = findInput(fixture);
+
+    expect(input.style.getPropertyValue('--_nb-tone-bg-default')).toBe(
+      'var(--nb-surface)'
+    );
+    expect(input.style.getPropertyValue('--_nb-tone-bg-token')).toBe(
+      'var(--nb-input-bg, var(--_nb-tone-bg-default))'
+    );
+    expect(input.style.getPropertyValue('--_nb-border-width-default')).toBe(
+      'var(--nb-border-width)'
+    );
+  });
+
+  it('keeps scoped radius and shadow CSS vars as classes', async () => {
     const fixture = await createFixture();
     const input = findInput(fixture);
     const cls = input.className;
 
-    expect(cls).toContain('[--nb-input-bg:var(--nb-field-bg)]');
-    expect(cls).toContain('[--nb-input-fg:var(--nb-foreground)]');
-    expect(cls).toContain('[--nb-input-border:var(--nb-border)]');
     expect(cls).toContain('[--nb-input-radius:var(--nb-radius)]');
     expect(cls).toContain(
       '[--nb-input-shadow:var(--nb-shadow-offset-x)_var(--nb-shadow-offset-y)_0_var(--nb-shadow)]'
     );
-  });
-
-  it('reads its scoped tokens instead of global tokens directly', async () => {
-    const fixture = await createFixture();
-    const input = findInput(fixture);
-    const cls = input.className;
-
-    expect(cls).toContain('bg-(--nb-input-bg)');
-    expect(cls).toContain('text-(--nb-input-fg)');
-    expect(cls).toContain('border-(--nb-input-border)');
     expect(cls).toContain('rounded-(--nb-input-radius)');
     expect(cls).toContain('shadow-[var(--nb-input-shadow)]');
-    expect(cls).toContain('focus-visible:ring-(--nb-input-border)');
-    expect(cls).not.toContain('bg-[#faf3d6]');
-    expect(cls).not.toContain('text-(--nb-foreground)');
-    expect(cls).not.toContain('border-(--nb-border)');
-    expect(cls).not.toContain('rounded-nb');
-    expect(cls).not.toContain('shadow-nb');
+  });
+
+  it('uses capability border-color token for focus ring', async () => {
+    const fixture = await createFixture();
+    const cls = findInput(fixture).className;
+
+    expect(cls).toContain(
+      'focus-visible:ring-[var(--_nb-tone-border-color-token,var(--_nb-tone-border-color-default))]'
+    );
+    expect(cls).not.toContain('focus-visible:ring-(--nb-input-border)');
   });
 
   it('does not regress the default input class shape', async () => {
@@ -49,7 +63,6 @@ describe('NbInput token surface', () => {
     const cls = input.className;
 
     expect(cls).toContain('flex');
-    expect(cls).toContain('border-2');
     expect(cls).toContain('font-medium');
     expect(cls).toContain('placeholder:text-gray-400');
     expect(cls).toContain('file:h-full');
@@ -62,11 +75,21 @@ describe('NbInput token surface', () => {
     expect(cls).toContain('focus-visible:ring-offset-2');
     expect(cls).toContain('focus-visible:shadow-none');
   });
+
+  it('no longer uses the old CSS var class declarations', async () => {
+    const fixture = await createFixture();
+    const cls = findInput(fixture).className;
+
+    expect(cls).not.toContain('[--nb-input-bg:');
+    expect(cls).not.toContain('[--nb-input-fg:');
+    expect(cls).not.toContain('[--nb-input-border:');
+    expect(cls).not.toContain('bg-(--nb-input-bg)');
+    expect(cls).not.toContain('text-(--nb-input-fg)');
+    expect(cls).not.toContain('border-2 border-(--nb-input-border)');
+  });
 });
 
-async function createFixture(): Promise<
-  ComponentFixture<InputTokenTest>
-> {
+async function createFixture(): Promise<ComponentFixture<InputTokenTest>> {
   await TestBed.configureTestingModule({
     imports: [InputTokenTest],
   }).compileComponents();

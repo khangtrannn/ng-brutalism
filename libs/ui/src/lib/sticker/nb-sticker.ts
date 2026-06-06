@@ -3,19 +3,20 @@ import {
   Component,
   booleanAttribute,
   computed,
+  inject,
   input,
   numberAttribute,
 } from '@angular/core';
 
+import {
+  NbToneCapability,
+  NB_STYLE_DEFAULTS,
+  NB_STYLE_NAMESPACE,
+  type NbStyleDefaults,
+} from '../core/capabilities';
+import { nbToneVars } from '../tokens/tone';
 import { NB_STICKER_PATHS } from './sticker.paths';
-import type { NbStickerShape, NbStickerTone } from './sticker.types';
-import { nbToneTokens } from '../tokens/tone';
-
-interface NbStickerToneTokens {
-  fill: string;
-  ink: string;
-  shadow: string;
-}
+import type { NbStickerShape } from './sticker.types';
 
 @Component({
   selector: 'nb-sticker',
@@ -41,16 +42,26 @@ interface NbStickerToneTokens {
       </span>
     </span>
   `,
+  providers: [
+    { provide: NB_STYLE_NAMESPACE, useValue: 'sticker' },
+    {
+      provide: NB_STYLE_DEFAULTS,
+      useValue: { tone: 'mint' } satisfies NbStyleDefaults,
+    },
+  ],
+  hostDirectives: [
+    { directive: NbToneCapability, inputs: ['tone'] },
+  ],
   host: {
     class: 'nb-sticker',
     '[attr.data-shape]': 'shape()',
-    '[attr.data-tone]': 'tone()',
     '[attr.data-nb-sticker]': '""',
     '[attr.aria-hidden]': 'decorative() ? "true" : null',
     '[attr.role]': 'decorative() ? null : "img"',
-    '[style.--nb-sticker-fill]': 'toneTokens().fill',
-    '[style.--nb-sticker-ink]': 'toneTokens().ink',
-    '[style.--nb-sticker-shadow]': 'toneTokens().shadow',
+    '[style.background-color]': '"transparent"',
+    '[style.--nb-sticker-fill]': 'fillBg()',
+    '[style.--nb-sticker-ink]': 'fillInk()',
+    '[style.--nb-sticker-shadow]': '"var(--nb-shadow, #050505)"',
     '[style.--nb-sticker-rotate]': 'rotateStyle()',
     '[style.--nb-sticker-scale]': 'size()',
   },
@@ -177,22 +188,24 @@ interface NbStickerToneTokens {
 })
 export class NbSticker {
   readonly shape = input<NbStickerShape>('burst');
-  readonly tone = input<NbStickerTone>('mint');
   readonly decorative = input<boolean, unknown>(false, { transform: booleanAttribute });
   readonly rotate = input<number, unknown>(0, { transform: numberAttribute });
   readonly size = input<number, unknown>(1, { transform: numberAttribute });
 
-  protected readonly config = computed(() => NB_STICKER_PATHS[this.shape()]);
-  protected readonly toneTokens = computed(
-    (): NbStickerToneTokens => {
-      const tokens = nbToneTokens(this.tone());
+  private readonly capability = inject(NbToneCapability);
+  private readonly defaults = inject(NB_STYLE_DEFAULTS);
 
-      return {
-        fill: tokens.bg,
-        ink: tokens.fg,
-        shadow: 'var(--nb-shadow, #050505)',
-      };
-    }
-  );
+  protected readonly config = computed(() => NB_STICKER_PATHS[this.shape()]);
+
+  protected readonly fillBg = computed(() => {
+    const tone = this.capability.tone() ?? this.defaults.tone ?? 'mint';
+    return nbToneVars(tone).bg;
+  });
+
+  protected readonly fillInk = computed(() => {
+    const tone = this.capability.tone() ?? this.defaults.tone ?? 'mint';
+    return nbToneVars(tone).fg;
+  });
+
   protected readonly rotateStyle = computed(() => `${this.rotate()}deg`);
 }

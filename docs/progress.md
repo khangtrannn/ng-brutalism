@@ -23,11 +23,11 @@ For history and details, read the domain's own `progress.md`.
 ---
 
 ## Components
-**Status:** Internal style-capability refactor complete. 8 capabilities total: tone/radius/shadow/border/padding/gap (visual shells) + `NbUnderlineCapability`/`NbResetMarginCapability` (typography). NbText and NbDisplay now compose the shared underline + reset-margin capabilities via `hostDirectives` instead of re-implementing 12 lines each. `NbTextTracking` + `NbUnderlineVariant` canonicalized in `tokens/typography.ts`. NbChipGroup coupling to `../text` removed (imports tracking type from tokens). 12 new tests; ui lint + test + docs build green.
-**Last action:** Typography capability sweep — `NbUnderlineCapability` + `NbResetMarginCapability` extracted; NbText + NbDisplay refactored to compose them; shared types added to tokens.
-**Next:** `NbPressCapability` (extract Button/IconButton hover-translate), then focus/disabled a11y chapter. Then visual QA + resume v0.2.0.
-**Goal:** All 18 reference designs buildable with v0.2.0 primitives (~90% fidelity).
-→ Plan: `docs/release/v0.2.0-plan.md` · Arch: `docs/components/style-capabilities.md` · Audit: `docs/architecture/api-consistency-audit.md`
+**Status:** v0.3 Track 1 complete. All 9 targets adopted NbToneCapability/NbBorderCapability. 199 tests pass.
+**Last action:** NbAccordionTrigger, NbProgress, NbSticker, NbRating, NbInput, NbTextarea, NbCheckbox, NbSelect, NbNativeSelect fully migrated to capability system. NbProgressTone / NbStickerTone narrow types removed; public barrel cleaned.
+**Next:** Track 2 — NbTabs primitive model refactor (see v0.3 plan).
+**Goal:** Fully consistent capability adoption across all visual primitives before v0.3 interactive components land.
+→ Plan: `docs/architecture/v0.3-refactor-plan.md` · Arch: `docs/components/style-capabilities.md`
 
 ---
 
