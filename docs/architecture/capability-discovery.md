@@ -15,7 +15,8 @@ A repeated concern only becomes a capability when **all** of these hold:
 
 - It appears in **≥3 primitives**, or 2 very important ones.
 - It means the **same thing** across those primitives.
-- It can write predictable `--nb-{ns}-*` variables or host classes.
+- It can produce predictable literal-or-null values that primitives map to real
+  CSS properties.
 - It does not hide important component anatomy.
 - It does not make the public API more confusing.
 - It is directly needed by the refactor in flight.
@@ -26,14 +27,14 @@ disabled) is not — yet.
 
 ## Shipped capabilities
 
-| Capability | Public input | Writes | Adopted by |
+| Capability | Public input | Output | Adopted by |
 |---|---|---|---|
-| NbToneCapability | `tone` | `--nb-{ns}-{bg,fg,border-color}` | Surface, MediaFrame, Button, IconButton, Chip, Callout, MediaItem, Badge, Card, Avatar, ImageCard, Dialog, AccordionItem |
-| NbRadiusCapability | `radius` | `--nb-{ns}-radius` | Surface, MediaFrame, Button, IconButton, Chip, Badge, Card, Avatar, ImageCard, Dialog, AccordionItem |
-| NbShadowCapability | `shadow` | `--nb-{ns}-shadow` | Surface, MediaFrame, IconButton, Chip, Callout, Badge, Card, Avatar, ImageCard, Dialog, AccordionItem |
-| NbBorderCapability | `border` | `--nb-{ns}-border-width` | Surface, MediaFrame, Button, IconButton, Chip, Badge, Card, Avatar, ImageCard, Dialog, AccordionItem |
-| NbPaddingCapability | `padding` | `--nb-{ns}-padding` | Surface, Section, Cluster, Split |
-| NbGapCapability | `gap` | `--nb-{ns}-gap` | Stack, Cluster, Split |
+| NbToneCapability | `tone` | `background` / `foreground` / `borderColor` | Surface, MediaFrame, Button, IconButton, Chip, Callout, MediaItem, Badge, Card, Avatar, ImageCard, Dialog, AccordionItem |
+| NbRadiusCapability | `radius` | `value` for `border-radius` | Surface, MediaFrame, Button, IconButton, Chip, Badge, Card, Avatar, ImageCard, Dialog, AccordionItem |
+| NbShadowCapability | `shadow` | `value` for `box-shadow` | Surface, MediaFrame, IconButton, Chip, Callout, Badge, Card, Avatar, ImageCard, Dialog, AccordionItem |
+| NbBorderCapability | `border` | `width` for `border-width` | Surface, MediaFrame, Button, IconButton, Chip, Badge, Card, Avatar, ImageCard, Dialog, AccordionItem |
+| NbPaddingCapability | `padding` | `value` for `padding` | Surface, Section, Cluster, Split |
+| NbGapCapability | `gap` | `value` for `gap` | Stack, Cluster, Split |
 
 > Tone owns color (`bg` / `fg` / `border-color`); the border capability owns
 > `border-width` only — so color and width never fight.

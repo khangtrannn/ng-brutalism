@@ -9,24 +9,30 @@ import type { NbCheckboxSize } from './checkbox.types';
   host: {
     '[class]': 'classes()',
     '[attr.data-size]': 'size()',
-    '[attr.data-tone]': 'tone()',
+    '[attr.data-tone]': 'toneAttr()',
     '[style.--nb-checkbox-bg]': 'checkboxBg()',
     '[style.--nb-checkbox-fg]': 'checkboxFg()',
   },
 })
 export class NbCheckbox {
   readonly size = input<NbCheckboxSize>('md');
-  readonly tone = input<NbToneToken>('primary');
+  readonly tone = input<NbToneToken | undefined>(undefined);
 
-  protected readonly checkboxBg = computed(() => nbToneVars(this.tone()).bg);
-  protected readonly checkboxFg = computed(() => nbToneVars(this.tone()).fg);
+  private readonly toneVars = computed(() => {
+    const tone = this.tone();
+    return tone ? nbToneVars(tone) : null;
+  });
+
+  protected readonly toneAttr = computed(() => this.tone() ?? 'primary');
+  protected readonly checkboxBg = computed(() => this.toneVars()?.bg ?? null);
+  protected readonly checkboxFg = computed(() => this.toneVars()?.fg ?? null);
 
   protected readonly classes = computed(() =>
     nbClass(
       '[--nb-checkbox-radius:0]',
       'peer grid shrink-0 cursor-pointer appearance-none place-content-center',
       'rounded-(--nb-checkbox-radius) outline-2 outline-(--nb-border) ring-offset-white',
-      'checked:bg-(--nb-checkbox-bg) checked:text-(--nb-checkbox-fg)',
+      'checked:bg-[var(--nb-checkbox-bg,var(--nb-primary))] checked:text-[var(--nb-checkbox-fg,var(--nb-primary-foreground))]',
       'focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-(--nb-border) focus-visible:ring-offset-2',
       'disabled:opacity-50 disabled:cursor-not-allowed',
       this.sizeClass()

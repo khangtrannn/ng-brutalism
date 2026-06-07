@@ -1,4 +1,10 @@
-import { booleanAttribute, computed, Directive, input } from '@angular/core';
+import {
+  booleanAttribute,
+  computed,
+  Directive,
+  inject,
+  input,
+} from '@angular/core';
 
 import {
   NbResetMarginCapability,
@@ -51,7 +57,7 @@ const LEADING_MAP: Record<NbDisplayLeading, string> = {
 @Directive({
   selector: '[nbDisplay]',
   hostDirectives: [
-    // underline variant + optional gap/width overrides → data-underline + CSS vars
+    // underline variant + optional gap/width overrides
     {
       directive: NbUnderlineCapability,
       inputs: ['underline', 'underlineGap', 'underlineWidth'],
@@ -65,6 +71,8 @@ const LEADING_MAP: Record<NbDisplayLeading, string> = {
     '[style.color]': '"var(--nb-display-color, currentColor)"',
     '[style.letter-spacing]': 'trackingValue()',
     '[style.line-height]': 'leadingValue()',
+    '[style.--nb-underline-gap]': 'underlineGapStyle()',
+    '[style.--nb-underline-width]': 'underlineWidthStyle()',
     '[attr.data-nb-display]': '""',
   },
 })
@@ -78,6 +86,8 @@ export class NbDisplay {
   readonly leading = input<NbDisplayLeading>('none');
   // underline / underlineGap / underlineWidth / reset → composed capabilities
 
+  private readonly underlineCapability = inject(NbUnderlineCapability);
+
   protected readonly fontSize = computed(() => {
     const base = this.fluid() ? FLUID_MAP[this.size()] : SIZE_MAP[this.size()];
     return `var(--nb-display-size, ${base})`;
@@ -87,4 +97,10 @@ export class NbDisplay {
   );
   protected readonly trackingValue = computed(() => TRACKING_MAP[this.tracking()]);
   protected readonly leadingValue = computed(() => LEADING_MAP[this.leading()]);
+  protected readonly underlineGapStyle = computed(() =>
+    this.underlineCapability.gap()
+  );
+  protected readonly underlineWidthStyle = computed(() =>
+    this.underlineCapability.width()
+  );
 }

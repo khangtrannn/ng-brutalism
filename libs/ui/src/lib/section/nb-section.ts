@@ -66,9 +66,9 @@ export class NbSection {
 
   protected readonly paddingStyle = computed(() => this.padding.value());
 
-  // `flush` negates the section's own padding to let content bleed to the
-  // edge. That needs the actual rendered padding (explicit input or the
-  // `--nb-section-padding` hook fallback), hence the resolved value.
+  // Component-local anatomy var: `flush` negates the section's own padding so
+  // content can bleed to the edge. It mirrors an explicit padding input when
+  // present, otherwise the public `--nb-section-padding` hook chain.
   protected readonly flushMarginStyle = computed(() =>
     this.flush()
       ? `calc(${this.padding.value() ?? nbPaddingFallback('section', 'md')} * -1)`

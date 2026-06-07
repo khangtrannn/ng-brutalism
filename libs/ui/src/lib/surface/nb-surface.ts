@@ -66,7 +66,6 @@ export type NbSurfaceEdge = 'none' | 'top' | 'bottom';
     '[attr.data-nb-surface]': '""',
     '[attr.data-size]': 'size()',
     '[attr.data-layout]': 'layout()',
-    '[attr.data-padding]': 'padding()',
     '[attr.data-edge]': 'edge()',
     '[style.background]': 'backgroundStyle()',
     '[style.color]': 'foregroundStyle()',
@@ -80,7 +79,6 @@ export type NbSurfaceEdge = 'none' | 'top' | 'bottom';
 export class NbSurface {
   readonly size = input<NbSurfaceSize>('auto');
   readonly layout = input<NbSurfaceLayout>('block');
-  readonly padding = input<NbSurfacePadding>('none');
   readonly edge = input<NbSurfaceEdge>('none');
   readonly clip = input<boolean, unknown>(false, {
     transform: booleanAttribute,

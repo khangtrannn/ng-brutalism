@@ -61,10 +61,11 @@ export function nbTypographyFontValue(font: NbTypographyFont): string | null {
 
 /**
  * Underline customization shared by nbText / nbDisplay `underline="bar"|"wave"`.
- * Writes the public `--nb-underline-gap` / `--nb-underline-width` tokens that the
- * underline CSS already reads. `auto` leaves the CSS default in place. Color and
- * thickness remain token-driven (`--nb-underline-color`, `--nb-underline-height`)
- * for the rarer brand-specific cases.
+ * Resolves input values for the public `--nb-underline-gap` /
+ * `--nb-underline-width` hooks that the underline CSS already reads. `auto`
+ * leaves the CSS default in place. Color and thickness remain token-driven
+ * (`--nb-underline-color`, `--nb-underline-height`) for the rarer
+ * brand-specific cases.
  */
 export type NbUnderlineGap = 'none' | 'xs' | 'sm' | 'md' | 'lg';
 export type NbUnderlineWidth = 'auto' | 'xs' | 'sm' | 'md' | 'lg' | 'full';

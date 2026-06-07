@@ -2,7 +2,7 @@
 
 > **Status:** Decision document. Audited 2026-06-01 against the actual code on
 > `refactor/api-consistency-audit`. The internal style-capability layer
-> (`tokens → capabilities → hostDirectives → component CSS vars`) has already
+> (`tokens → capabilities → hostDirectives → public CSS hooks`) has already
 > landed for the visual-grammar primitives; this audit closes the remaining
 > drift **before** the next wave of the refactor (folding Button/IconButton tone
 > into the tone capability, removing local token maps).
@@ -71,8 +71,9 @@ The shared token vocabulary (`NbRadius`, `NbShadow`, `NbBorderStrength`,
 capabilities (`tone`, `radius`, `shadow`, `border`, `padding`, `gap`) are in
 place and adopted by the **container/layout** primitives (Surface, MediaFrame,
 Chip, Callout, Section, Stack, Cluster, Split). For those primitives a token now
-means the same thing everywhere and writes a predictable `--nb-<ns>-<prop>`
-variable. That part of the language is healthy.
+means the same thing everywhere: explicit inputs map to actual CSS properties,
+and component CSS reads predictable `--nb-<ns>-<prop>` public hooks when inputs
+are unset. That part of the language is healthy.
 
 The remaining drift is concentrated in five places:
 
@@ -103,10 +104,10 @@ implements it.
 
 ## 2. Current API inventory
 
-Captured from code. "CSS vars written" = variables the primitive (or its
-composed capabilities) emits; "Class-based only" = no custom-property contract.
+Captured from code. "Public CSS hooks read" = variables the primitive's CSS
+consults for customization; "Class-based only" = no custom-property contract.
 
-| Primitive | Selector | Current inputs | Current defaults | CSS vars written | Capability adoption | Notes |
+| Primitive | Selector | Current inputs | Current defaults | Public CSS hooks read | Capability adoption | Notes |
 |---|---|---|---|---|---|---|
 | Surface | `[nbSurface]` | tone, radius, shadow, border, padding, size, layout, edge, clip | tone `default`, radius `md`, shadow `default`, border `default`, padding `none`, size `auto`, layout `block`, edge `none`, clip `false` | `--nb-surface-{bg,fg,border-color,radius,border-width,shadow,padding}` | tone+radius+shadow+border+padding | `size` = square dimensions; `edge` = top/bottom hairline |
 | MediaFrame | `[nbMediaFrame]` | tone, radius, shadow, border, ratio, fit | tone `default`, radius `lg`, shadow `none`, border `default`, ratio `auto`, fit `cover` | `--nb-media-frame-{bg,fg,border-color,radius,border-width,shadow}` | tone+radius+shadow+border | Clean. `ratio`/`fit` are correct anatomy |
@@ -234,9 +235,9 @@ from the single `nbToneVars()` resolver. **State and typography systems remain
 intentionally separate:**
 
 - **Button**: ~~`variant` (preset enum) **plus** `tone` override, writing
-  `--nb-button-bg/-fg` directly via `nbToneTokens()`~~ **resolved (2026-06-01)** —
+  button color hooks directly via `nbToneTokens()`~~ **resolved (2026-06-01)** —
   `variant` removed; Button now composes `NbToneCapability` with `tone` as the
-  single color axis (default `primary`).
+  single color axis (default `primary` in CSS).
 - **IconButton**: ~~`variant` only, hardcoded class map; no `tone`, no capability~~
   **resolved** — now composes tone/radius/shadow/border capabilities.
 - **MediaItem**: ~~hardcoded hex tone map~~ **resolved** — `tone` now flows
@@ -580,7 +581,7 @@ Typography defaults (Text, Display):
 ## 7. CSS variable naming audit
 
 Pattern: `--nb-{namespace}-{property}`. Capability-driven primitives already
-follow it cleanly.
+read public hooks with that shape cleanly.
 
 | Primitive | Current variables | Missing / not-yet-capability | Naming issues | Recommendation |
 |---|---|---|---|---|
@@ -598,9 +599,9 @@ follow it cleanly.
 | nbStat | `--nb-stat-{value-size,label-size,label-fg}` | — | none | OK (composition block) |
 | nbStatusDot | `--nb-status-dot-size` | — | none | OK |
 
-**Rules confirmed:** variables are component-specific (no generic
-`--nb-radius`-as-output), names match public inputs, and users can override them
-from CSS. The two historical issues are now **resolved**: (a) `--nb-*-border`
+**Rules confirmed:** variables are component-specific hooks (not capability
+outputs), names match public inputs, and users can override them from CSS. The
+two historical issues are now **resolved**: (a) `--nb-*-border`
 color-vs-strength ambiguity on Button/IconButton — split into `-border-color`
 (tone) + `-border-width` (border capability); and (b) MediaItem's hex literals —
 replaced by `nbToneVars()` via the tone capability.

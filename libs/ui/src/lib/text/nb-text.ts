@@ -1,4 +1,4 @@
-import { computed, Directive, input } from '@angular/core';
+import { computed, Directive, inject, input } from '@angular/core';
 
 import {
   NbResetMarginCapability,
@@ -102,7 +102,7 @@ const measureMap: Record<NbTextMeasure, string> = {
   standalone: true,
   exportAs: 'nbText',
   hostDirectives: [
-    // underline variant + optional gap/width overrides → data-underline + CSS vars
+    // underline variant + optional gap/width overrides
     {
       directive: NbUnderlineCapability,
       inputs: ['underline', 'underlineGap', 'underlineWidth'],
@@ -127,6 +127,8 @@ const measureMap: Record<NbTextMeasure, string> = {
     '[style.text-transform]': 'transformValue()',
     '[style.letter-spacing]': 'trackingValue()',
     '[style.max-width]': 'measureValue()',
+    '[style.--nb-underline-gap]': 'underlineGapStyle()',
+    '[style.--nb-underline-width]': 'underlineWidthStyle()',
   },
 })
 export class NbText {
@@ -138,6 +140,8 @@ export class NbText {
   readonly measure = input<NbTextMeasure>('none');
   readonly leading = input<NbTextLeading>('normal');
   // underline / underlineGap / underlineWidth / reset → composed capabilities
+
+  private readonly underlineCapability = inject(NbUnderlineCapability);
 
   protected readonly sizeValue = computed(() => sizeMap[this.size()]);
 
@@ -154,4 +158,10 @@ export class NbText {
     const val = measureMap[this.measure()];
     return val === 'none' ? null : val;
   });
+  protected readonly underlineGapStyle = computed(() =>
+    this.underlineCapability.gap()
+  );
+  protected readonly underlineWidthStyle = computed(() =>
+    this.underlineCapability.width()
+  );
 }

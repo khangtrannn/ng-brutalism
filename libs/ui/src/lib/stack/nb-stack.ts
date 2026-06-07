@@ -47,9 +47,9 @@ export class NbStack {
 
   protected readonly gapStyle = computed(() => this.gap.value());
 
-  // The separator's top padding stands in for the flex gap (so the border sits
-  // mid-gap), so it needs the actual rendered gap — explicit input or the
-  // `--nb-stack-gap` hook fallback — hence the resolved value.
+  // Component-local anatomy var: the separator's top padding stands in for the
+  // flex gap, so the border sits mid-gap. It mirrors an explicit gap input when
+  // present, otherwise the public `--nb-stack-gap` hook chain.
   protected readonly separatorGapStyle = computed(() =>
     this.separator() === 'none'
       ? null

@@ -111,11 +111,11 @@ Classes are for layout escape hatches and recipe composition:
 
 ## Component-specific CSS variables
 
-Every primitive's visual tokens resolve to a namespaced variable set
-(`--nb-surface-bg`, `--nb-button-radius`, `--nb-media-frame-shadow`, …) written
-by internal style capabilities. These are the customization/debug contract:
-inspect them in devtools, document them, and override per token. The vocabulary
-(`tone`, `radius`, `shadow`, `border`, `gap`, `padding`) is defined once in
+Every primitive reads a namespaced public variable set
+(`--nb-surface-bg`, `--nb-button-radius`, `--nb-media-frame-shadow`, …) from its
+CSS. These are the customization/debug contract: inspect them in devtools,
+document them, and override per token. The vocabulary (`tone`, `radius`,
+`shadow`, `border`, `gap`, `padding`) is defined once in
 `libs/ui/src/lib/tokens/` so a token means the same thing across every primitive.
 See [style-capabilities.md](./style-capabilities.md) for the internal architecture.
 

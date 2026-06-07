@@ -68,9 +68,9 @@ export class NbSplit {
   protected readonly gapStyle = computed(() => this.gap.value());
   protected readonly paddingStyle = computed(() => this.paddingCapability.value());
 
-  // The separator's `::after` line is centered in the gap, so it needs the
-  // actual rendered gap (explicit input or `--nb-split-gap` hook fallback) —
-  // hence the capability's always-resolved value rather than a CSS duplicate.
+  // Component-local anatomy var: the separator's `::after` line is centered in
+  // the gap. It mirrors an explicit gap input when present, otherwise the
+  // public `--nb-split-gap` hook chain.
   protected readonly separatorGapStyle = computed(() =>
     this.separator() === 'none'
       ? null

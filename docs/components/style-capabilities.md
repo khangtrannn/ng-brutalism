@@ -140,29 +140,16 @@ readonly tone = input<NbButtonTone | undefined>(undefined);
 inline style and lets the `var(--nb-<ns>-<prop>, <default>)` chain in CSS take
 over — keeping layers 2–4 reachable.
 
-### Migration rule: no internal resolved variables
+### Migration rule: no internal variable channel
 
-Earlier drafts of this architecture introduced a second resolution layer of
-internal CSS custom properties:
-
-```txt
---nb-resolved-tone-bg
---nb-resolved-tone-fg
---nb-resolved-tone-border-color
---nb-resolved-radius
---nb-resolved-shadow
---nb-resolved-border-width
---nb-resolved-padding
---nb-resolved-gap
-```
-
-These are **removed**. They blended "input" and "library default" into one
-value and then wrapped *that* in the public hook — which let the hook win over
-an explicit input (backwards), and made the implementation harder to reason
-about because the primitive no longer mapped inputs directly to the CSS
-properties they affect. The replacement is the three-part split above:
-capability resolves, primitive maps to the real property, CSS reads the public
-hook with a literal default.
+Earlier drafts of this architecture introduced a second CSS custom-property
+layer between capability outputs and public hooks. That layer is removed. It
+blended "input" and "library default" into one value and then wrapped *that* in
+the public hook — which let the hook win over an explicit input (backwards), and
+made the implementation harder to reason about because the primitive no longer
+mapped inputs directly to the CSS properties they affect. The replacement is the
+three-part split above: capability resolves input values, primitive maps to the
+real property, CSS reads the public hook with a literal default.
 
 ## Component variable contract
 
@@ -229,11 +216,11 @@ The library already handles self-containment via `@source './fesm2022/...'` in `
 **The pattern — reference implementation: `NbAccordionTrigger`**
 
 `background-color`, `border-color`, and `box-shadow` don't inherit natively, so
-a compound child can't pick up its ancestor's *resolved* visuals through plain
-CSS inheritance the way `color` can. Rather than reintroduce an internal
-`--nb-resolved-*` channel, the descendant **injects the ancestor component and
-reads its capability outputs directly** — pure signal composition, no second
-CSS layer:
+a compound child can't pick up an ancestor's input-derived inline values through
+plain CSS inheritance the way `color` can. Rather than adding a private
+custom-property channel, the descendant **injects the ancestor component and
+reads its capability outputs directly** — pure signal composition, no second CSS
+layer:
 
 ```typescript
 @Component({
@@ -317,11 +304,9 @@ This keeps all of these override shapes valid:
 </nb-accordion-trigger>
 ```
 
-`--nb-resolved-*` variables are **not** reintroduced anywhere — see the
-migration rule above. Compound descendants reach an ancestor's resolved
-visuals via DI + `computed()`, never via an internal CSS custom-property
-channel. Public `--nb-<component>-*` variables remain the only consumer-owned
-override surface.
+Compound descendants reach an ancestor's input-derived values via DI +
+`computed()`, never via an internal CSS custom-property channel. Public
+`--nb-<component>-*` variables remain the only consumer-owned override surface.
 
 **What stays in templates:** Data/ARIA attributes (`[attr.aria-expanded]`, `[attr.data-state]`, `[id]`), event bindings, structural directives. No `class` or `[class]` bindings on internal elements.
 
@@ -432,24 +417,26 @@ hover-translate press behavior).
 - **Chip** and **Button** adopt `NbBorderCapability` for border *width*; border
   *color* comes from tone (`--nb-*-border-color`).
 - **Button** folds `variant` into `tone` — `variant` and `NbButtonVariant` are
-  removed (no alias), Button composes `NbToneCapability`, and color flows through
-  `--nb-button-{bg,fg,border-color}`. Default tone is `primary` (replacing the
-  bespoke `--nb-main`). `shadow` now composes `NbShadowCapability`; pressed motion
-  is separated into `press`.
+  removed (no alias), Button composes `NbToneCapability`, and explicit tone
+  inputs map to actual color properties. CSS reads
+  `--nb-button-{bg,fg,border-color}` only when the input is unset. Default tone
+  is `primary` in CSS (replacing the bespoke `--nb-main`). `shadow` now composes
+  `NbShadowCapability`; pressed motion is separated into `press`.
 - **Badge** replaces `variant` with the shared `tone` capability and composes
   radius/shadow/border as a small visual shell.
 - **Card**, **Avatar**, **ImageCard**, **Dialog**, and **AccordionItem** consume
   shared visual-shell capabilities; their subpart/layout anatomy stays local.
-- **Surface** padding now writes `--nb-surface-padding` through
-  `NbPaddingCapability`.
+- **Surface** adopts `NbPaddingCapability`; explicit padding maps to actual
+  `padding`, while unset padding lets CSS read `--nb-surface-padding`.
 - Ambiguous `--nb-*-border` variables are normalized to `--nb-*-border-color`
   (color) and `--nb-*-border-width` (width).
 
 ### Typography capability sweep (2026-06-01)
 - `NbUnderlineCapability` — handles `underline/underlineGap/underlineWidth`
-  inputs and writes `data-underline`, `--nb-underline-gap`,
-  `--nb-underline-width` on the host. No namespace injection needed (the vars
-  are global, not primitive-scoped).
+  inputs and reflects `data-underline`; `NbText` / `NbDisplay` map the resolved
+  gap and width to `--nb-underline-gap` / `--nb-underline-width` for their
+  pseudo-element CSS. No namespace injection needed (the vars are global, not
+  primitive-scoped).
 - `NbResetMarginCapability` — handles `reset` input and writes `margin: 0`
   when true (default). Removes native `<p>`/`<h*>` margins so layout primitives
   control spacing.

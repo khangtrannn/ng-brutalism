@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { existsSync, readFileSync } from 'node:fs';
+import { join } from 'node:path';
 import { describe, expect, it } from 'vitest';
 
 import { NbButton } from '../../button';
@@ -15,6 +17,22 @@ import { NbMediaItem } from '../../media-item';
 import { NbStack } from '../../stack';
 import { NbSurface } from '../../surface';
 import { NbText } from '../../text';
+
+const stylesCss = readUiStylesCss();
+
+function readUiStylesCss(): string {
+  const candidates = [
+    join(process.cwd(), 'src/lib/styles/styles.css'),
+    join(process.cwd(), 'libs/ui/src/lib/styles/styles.css'),
+  ];
+  const path = candidates.find((candidate) => existsSync(candidate));
+
+  if (!path) {
+    throw new Error('Unable to locate libs/ui styles.css for token priority specs.');
+  }
+
+  return readFileSync(path, 'utf8');
+}
 
 function mount<T>(type: new () => T): HTMLElement {
   const fixture: ComponentFixture<T> = TestBed.createComponent(type);
@@ -39,6 +57,31 @@ class SurfaceDefaultsTest {}
   template: `<button nbButton tone="lavender">Listen</button>`,
 })
 class ButtonToneTest {}
+
+@Component({
+  imports: [NbButton],
+  template: `
+    <div id="scope" style="--nb-button-bg: #ffcc00">
+      <button
+        id="input-local"
+        nbButton
+        tone="accent"
+        style="--nb-button-bg: #00e5ff"
+      >
+        Input beats local
+      </button>
+      <button id="input-inherited" nbButton tone="accent">
+        Input beats inherited
+      </button>
+      <button id="local" nbButton style="--nb-button-bg: #00e5ff">
+        Local beats inherited
+      </button>
+      <button id="inherited" nbButton>Inherited beats fallback</button>
+    </div>
+    <button id="fallback" nbButton>Fallback</button>
+  `,
+})
+class ButtonBackgroundPriorityTest {}
 
 @Component({
   imports: [NbMediaFrame],
@@ -221,6 +264,61 @@ describe('style capabilities', () => {
     expect(button.style.getPropertyValue('--nb-button-bg')).toBe('');
     expect(button.style.getPropertyValue('--nb-surface-bg')).toBe('');
     expect(button.style.cssText).not.toContain('--nb-resolved');
+  });
+
+  it('input beats a local token for button background', () => {
+    const el = mount(ButtonBackgroundPriorityTest);
+    const button = el.querySelector<HTMLElement>('#input-local')!;
+
+    expect(button.style.getPropertyValue('--nb-button-bg')).toBe('#00e5ff');
+    expect(button.style.getPropertyValue('background')).toBe('var(--nb-accent)');
+  });
+
+  it('input beats an inherited token for button background', () => {
+    const el = mount(ButtonBackgroundPriorityTest);
+    const scope = el.querySelector<HTMLElement>('#scope')!;
+    const button = el.querySelector<HTMLElement>('#input-inherited')!;
+
+    expect(scope.style.getPropertyValue('--nb-button-bg')).toBe('#ffcc00');
+    expect(button.style.getPropertyValue('--nb-button-bg')).toBe('');
+    expect(button.style.getPropertyValue('background')).toBe('var(--nb-accent)');
+  });
+
+  it('local token beats inherited token when button tone is unset', () => {
+    const el = mount(ButtonBackgroundPriorityTest);
+    const scope = el.querySelector<HTMLElement>('#scope')!;
+    const button = el.querySelector<HTMLElement>('#local')!;
+
+    expect(scope.style.getPropertyValue('--nb-button-bg')).toBe('#ffcc00');
+    expect(button.style.getPropertyValue('--nb-button-bg')).toBe('#00e5ff');
+    expect(button.style.getPropertyValue('background')).toBe('');
+    expect(stylesCss).toContain(
+      'background: var(--nb-button-bg, var(--nb-primary));'
+    );
+  });
+
+  it('inherited token beats the library fallback when button tone is unset', () => {
+    const el = mount(ButtonBackgroundPriorityTest);
+    const scope = el.querySelector<HTMLElement>('#scope')!;
+    const button = el.querySelector<HTMLElement>('#inherited')!;
+
+    expect(scope.style.getPropertyValue('--nb-button-bg')).toBe('#ffcc00');
+    expect(button.style.getPropertyValue('--nb-button-bg')).toBe('');
+    expect(button.style.getPropertyValue('background')).toBe('');
+    expect(stylesCss).toContain(
+      'background: var(--nb-button-bg, var(--nb-primary));'
+    );
+  });
+
+  it('library fallback is used when button tone and tokens are unset', () => {
+    const el = mount(ButtonBackgroundPriorityTest);
+    const button = el.querySelector<HTMLElement>('#fallback')!;
+
+    expect(button.style.getPropertyValue('--nb-button-bg')).toBe('');
+    expect(button.style.getPropertyValue('background')).toBe('');
+    expect(stylesCss).toContain(
+      'background: var(--nb-button-bg, var(--nb-primary));'
+    );
   });
 
   it('nbMediaFrame shadow input writes box-shadow', () => {
@@ -472,7 +570,7 @@ describe('NbText + NbDisplay capability composition', () => {
     expect(p.style.getPropertyValue('color')).toContain('var(--nb-foreground)');
   });
 
-  it('nbText underline capability writes data attribute and CSS vars', () => {
+  it('nbText maps underline capability values to data attribute and CSS vars', () => {
     const el = mount(TextUnderlineTest);
     const p = el.querySelector<HTMLElement>('[nbText]')!;
 
@@ -571,7 +669,7 @@ describe('NbDisplay capability composition', () => {
     );
   });
 
-  it('nbDisplay underline capability writes data attribute and CSS vars', () => {
+  it('nbDisplay maps underline capability values to data attribute and CSS vars', () => {
     const el = mount(DisplayUnderlineTest);
     const h = el.querySelector<HTMLElement>('[nbDisplay]')!;
 

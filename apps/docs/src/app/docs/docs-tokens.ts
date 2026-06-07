@@ -282,12 +282,12 @@ const componentTokens: Record<DocsTokenComponent, DocsToken[]> = {
   checkbox: [
     {
       name: '--nb-checkbox-bg',
-      defaultValue: 'var(--nb-main)',
+      defaultValue: 'var(--nb-primary)',
       usage: 'Checked background',
     },
     {
       name: '--nb-checkbox-fg',
-      defaultValue: '#fff',
+      defaultValue: 'var(--nb-primary-foreground)',
       usage: 'Checked text color',
     },
     {

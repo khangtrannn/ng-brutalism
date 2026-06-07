@@ -71,10 +71,9 @@ export class NbCluster {
     this.separator() === 'none' ? null : '0px',
   );
 
-  // The separator's inline spacing is half the cluster's effective gap. This
-  // needs the actual rendered gap (whether from an explicit input or the
-  // `--nb-cluster-gap` hook fallback), so it reads the capability's
-  // always-resolved value rather than duplicating CSS resolution.
+  // Component-local anatomy var: the separator owns half the inline spacing on
+  // each side. It mirrors an explicit gap input when present, otherwise the
+  // public `--nb-cluster-gap` hook chain.
   protected readonly separatorGapStyle = computed(() =>
     this.separator() === 'none'
       ? null

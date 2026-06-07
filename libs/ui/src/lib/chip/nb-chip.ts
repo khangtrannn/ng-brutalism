@@ -72,7 +72,7 @@ const paddingMap: Record<NbChipPadding, string> = {
   `,
   host: {
     '[class]': 'classes()',
-    '[attr.data-padding]': 'padding()',
+    '[attr.data-padding]': 'paddingAttr()',
     '[attr.data-nb-chip]': '""',
     '[style.background]': 'backgroundStyle()',
     '[style.color]': 'foregroundStyle()',
@@ -84,7 +84,7 @@ const paddingMap: Record<NbChipPadding, string> = {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NbChip {
-  readonly padding = input<NbChipPadding>('md');
+  readonly padding = input<NbChipPadding | undefined>(undefined);
   // Optional leading icon, given as an SVG/image URL. Rendered through nbIcon
   // in mask mode so it tints to the chip's foreground color. For full-color
   // or labeled icons, compose an `nbIcon` (or any element) as projected
@@ -103,12 +103,13 @@ export class NbChip {
   protected readonly radiusStyle = computed(() => this.radius.value());
   protected readonly shadowStyle = computed(() => this.shadow.value());
   protected readonly borderWidthStyle = computed(() => this.border.width());
+  protected readonly paddingAttr = computed(() => this.padding() ?? 'md');
 
   protected readonly classes = computed(() =>
     nbClass(
       'inline-flex items-center gap-1.5',
       'text-xs font-bold',
-      paddingMap[this.padding()],
+      paddingMap[this.padding() ?? 'md'],
       '[&_svg]:size-[var(--nb-chip-icon-size,0.75rem)] [&_svg]:shrink-0'
     )
   );

@@ -12,20 +12,16 @@ import type { NbToneToken } from '../tokens/tone';
 })
 class CheckboxTokenTest {
   size: NbCheckboxSize = 'md';
-  tone: NbToneToken = 'primary';
+  tone: NbToneToken | undefined = undefined;
 }
 
 describe('NbCheckbox token surface', () => {
-  it('sets --nb-checkbox-bg and --nb-checkbox-fg as inline styles from tone', async () => {
+  it('leaves checked color tokens unset when tone is omitted', async () => {
     const fixture = await createFixture();
     const checkbox = findCheckbox(fixture);
 
-    expect(checkbox.style.getPropertyValue('--nb-checkbox-bg')).toBe(
-      'var(--nb-primary)'
-    );
-    expect(checkbox.style.getPropertyValue('--nb-checkbox-fg')).toBe(
-      'var(--nb-primary-foreground)'
-    );
+    expect(checkbox.style.getPropertyValue('--nb-checkbox-bg')).toBe('');
+    expect(checkbox.style.getPropertyValue('--nb-checkbox-fg')).toBe('');
     expect(checkbox.getAttribute('data-tone')).toBe('primary');
   });
 
@@ -47,8 +43,12 @@ describe('NbCheckbox token surface', () => {
     const checkbox = findCheckbox(fixture);
     const cls = checkbox.className;
 
-    expect(cls).toContain('checked:bg-(--nb-checkbox-bg)');
-    expect(cls).toContain('checked:text-(--nb-checkbox-fg)');
+    expect(cls).toContain(
+      'checked:bg-[var(--nb-checkbox-bg,var(--nb-primary))]'
+    );
+    expect(cls).toContain(
+      'checked:text-[var(--nb-checkbox-fg,var(--nb-primary-foreground))]'
+    );
     expect(cls).not.toContain('checked:bg-(--nb-main)');
   });
 
