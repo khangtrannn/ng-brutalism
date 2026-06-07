@@ -64,8 +64,9 @@ describe('NbSection', () => {
     expect(section.className).toContain('box-border');
     expect(section.className).toContain('min-w-0');
     expect(section.className).toContain('block');
-    expect(section.className).toContain('nb-padding');
-    expect(section.style.getPropertyValue('--_nb-padding-default')).toBe('1rem');
+    expect(section.className).not.toMatch(/(?:^|\s)nb-padding(?:\s|$)/);
+    expect(section.style.getPropertyValue('padding')).toBe('');
+    expect(section.style.cssText).not.toContain('--nb-resolved');
     expect(section.className).not.toContain('border-t-');
     expect(section.className).not.toContain('items-stretch');
   });
@@ -119,8 +120,9 @@ describe('NbSection', () => {
     ) as HTMLElement;
 
     expect(section.getAttribute('data-flush')).toBe('');
-    expect(section.className).toContain(
-      'mx-[calc(var(--nb-padding-token,var(--_nb-padding-default))*-1)]'
+    expect(section.className).toContain('mx-(--nb-section-flush-margin)');
+    expect(section.style.getPropertyValue('--nb-section-flush-margin')).toBe(
+      'calc(1.5rem * -1)'
     );
   });
 });

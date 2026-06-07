@@ -2,6 +2,7 @@ import {
   ChangeDetectionStrategy,
   Component,
   computed,
+  inject,
   input,
 } from '@angular/core';
 
@@ -68,10 +69,28 @@ const iconSizeMap: Record<NbIconButtonSize, NbIconSize> = {
     '[class]': 'classes()',
     '[attr.data-shape]': 'shape()',
     '[attr.data-nb-icon-button]': '""',
+    '[style.background]': 'backgroundStyle()',
+    '[style.color]': 'foregroundStyle()',
+    '[style.border-color]': 'borderColorStyle()',
+    '[style.border-radius]': 'radiusStyle()',
+    '[style.box-shadow]': 'shadowStyle()',
+    '[style.border-width]': 'borderWidthStyle()',
   },
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NbIconButton {
+  private readonly tone = inject(NbToneCapability);
+  private readonly radius = inject(NbRadiusCapability);
+  private readonly shadow = inject(NbShadowCapability);
+  private readonly border = inject(NbBorderCapability);
+
+  protected readonly backgroundStyle = computed(() => this.tone.background());
+  protected readonly foregroundStyle = computed(() => this.tone.foreground());
+  protected readonly borderColorStyle = computed(() => this.tone.borderColor());
+  protected readonly radiusStyle = computed(() => this.radius.value());
+  protected readonly shadowStyle = computed(() => this.shadow.value());
+  protected readonly borderWidthStyle = computed(() => this.border.width());
+
   readonly shape = input<NbIconButtonShape>('square');
   readonly size = input<NbIconButtonSize>('md');
   // Optional icon, given as an SVG/image URL. Rendered through nbIcon in mask

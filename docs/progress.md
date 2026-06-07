@@ -23,10 +23,10 @@ For history and details, read the domain's own `progress.md`.
 ---
 
 ## Components
-**Status:** v0.3 Track 1 complete. All 9 targets adopted NbToneCapability/NbBorderCapability. 199 tests pass.
-**Last action:** NbAccordionTrigger, NbProgress, NbSticker, NbRating, NbInput, NbTextarea, NbCheckbox, NbSelect, NbNativeSelect fully migrated to capability system. NbProgressTone / NbStickerTone narrow types removed; public barrel cleaned.
-**Next:** Track 2 — NbTabs primitive model refactor (see v0.3 plan).
-**Goal:** Fully consistent capability adoption across all visual primitives before v0.3 interactive components land.
+**Status:** v0.3 Track 1 complete. Wave 1 of CSS-in-styles rollout complete (all 3 accordion components).
+**Last action:** `NbAccordionItem` + `NbAccordionContent` migrated — `computed()`/`nbClass` removed, inner divs styled via cascaded capability CSS vars, open/close driven by `[data-state='open']` CSS selector. Trigger `:host` public-var anti-pattern fixed. Token spec rewritten for new pattern. All tests pass.
+**Next:** Wave 2 — `NbBadge`, `NbAvatar`, `NbLabel`, `NbCard` sub-components, `NbImageCard`. Then Track 2 NbTabs. Decided: token-customization priority model (input → local token → inherited token → default; inputs bind to actual CSS props, never the public `--nb-*` hook) — capabilities to migrate on `refactor/token-customization`.
+**Goal:** All primitives migrated to component CSS pattern before v0.3 interactive components land.
 → Plan: `docs/architecture/v0.3-refactor-plan.md` · Arch: `docs/components/style-capabilities.md`
 
 ---

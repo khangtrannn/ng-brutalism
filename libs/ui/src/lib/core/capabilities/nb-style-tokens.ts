@@ -9,16 +9,16 @@ import type { NbToneToken } from '../../tokens/tone';
 
 /**
  * INTERNAL. The CSS-variable namespace a primitive owns, e.g. `'surface'` →
- * capabilities write `--nb-surface-*`. Every primitive that composes a style
- * capability must provide this on its element injector.
+ * fallback helpers build `--nb-surface-*` public token chains. Every primitive
+ * that composes a style capability must provide this on its element injector.
  */
 export const NB_STYLE_NAMESPACE = new InjectionToken<string>(
   'NB_STYLE_NAMESPACE',
 );
 
 /**
- * INTERNAL. Per-primitive default tokens. A capability resolves its value as:
- * explicit input → this default → the capability's own hard fallback.
+ * INTERNAL. Per-primitive default tokens. Capabilities use these only for
+ * diagnostic data attributes; CSS fallback rules own the visual defaults.
  */
 export interface NbStyleDefaults {
   tone?: NbToneToken;

@@ -18,40 +18,29 @@ import { NbImageCard, NbImageCardCaption } from './nb-image-card';
 class ImageCardTokenTest {}
 
 describe('NbImageCard token surface', () => {
-  it('declares the expected default tokens on the base host', async () => {
+  it('leaves default visuals to CSS token fallbacks', async () => {
     const fixture = await createFixture();
     const imageCard = findImageCard(fixture);
 
-    expect(imageCard.style.getPropertyValue('--_nb-tone-bg-default')).toBe(
-      'var(--nb-background)'
-    );
-    expect(imageCard.style.getPropertyValue('--_nb-tone-fg-default')).toBe(
-      'var(--nb-foreground)'
-    );
-    expect(imageCard.style.getPropertyValue('--_nb-tone-border-color-default')).toBe(
-      'var(--nb-border)'
-    );
+    expect(imageCard.style.getPropertyValue('background')).toBe('');
+    expect(imageCard.style.getPropertyValue('color')).toBe('');
+    expect(imageCard.style.getPropertyValue('border-color')).toBe('');
     expect(imageCard.style.getPropertyValue('--nb-image-card-bg')).toBe('');
-    expect(imageCard.style.getPropertyValue('--_nb-radius-default')).toBe(
-      'var(--nb-radius)'
-    );
-    expect(imageCard.style.getPropertyValue('--_nb-shadow-default')).toBe(
-      'var(--nb-shadow-offset-x) var(--nb-shadow-offset-y) 0 0 var(--nb-shadow)'
-    );
-    expect(
-      imageCard.style.getPropertyValue('--_nb-border-width-default')
-    ).toBe('var(--nb-border-width)');
+    expect(imageCard.style.getPropertyValue('border-radius')).toBe('');
+    expect(imageCard.style.getPropertyValue('box-shadow')).toBe('');
+    expect(imageCard.style.getPropertyValue('border-width')).toBe('');
+    expect(imageCard.style.cssText).not.toContain('--nb-resolved');
   });
 
-  it('reads its scoped tokens instead of global tokens directly', async () => {
+  it('does not emit legacy token utility classes', async () => {
     const fixture = await createFixture();
     const imageCard = findImageCard(fixture);
     const cls = imageCard.className;
 
-    expect(cls).toContain('nb-tone');
-    expect(cls).toContain('nb-border-width');
-    expect(cls).toContain('nb-radius');
-    expect(cls).toContain('nb-shadow');
+    expect(cls).not.toMatch(/(?:^|\s)nb-tone(?:\s|$)/);
+    expect(cls).not.toMatch(/(?:^|\s)nb-border-width(?:\s|$)/);
+    expect(cls).not.toMatch(/(?:^|\s)nb-radius(?:\s|$)/);
+    expect(cls).not.toMatch(/(?:^|\s)nb-shadow(?:\s|$)/);
     expect(cls).not.toContain('bg-(--nb-image-card-bg)');
     expect(cls).not.toContain('text-(--nb-image-card-fg)');
     expect(cls).not.toContain('border-(--nb-image-card-border-color)');
@@ -79,8 +68,14 @@ describe('NbImageCard token surface', () => {
     const caption = findCaption(fixture);
     const cls = caption.className;
 
-    expect(cls).toContain('border-t-[length:var(--nb-border-width-token,var(--_nb-border-width-default))]');
-    expect(cls).toContain('border-t-[var(--_nb-tone-border-color-token,var(--_nb-tone-border-color-default))]');
+    expect(caption.style.getPropertyValue('border-top-width')).toBe(
+      'var(--nb-image-card-border-width, var(--nb-border-width))'
+    );
+    expect(caption.style.getPropertyValue('border-top-color')).toBe(
+      'var(--nb-image-card-border-color, var(--nb-border))'
+    );
+    expect(caption.style.cssText).not.toContain('--nb-resolved');
+    expect(cls).toContain('border-t-solid');
     expect(cls).not.toContain('border-(--nb-border)');
   });
 
@@ -92,7 +87,6 @@ describe('NbImageCard token surface', () => {
     expect(cls).toContain('flex');
     expect(cls).toContain('flex-col');
     expect(cls).toContain('overflow-hidden');
-    expect(cls).toContain('nb-border-width');
     expect(cls).toContain('font-medium');
   });
 });

@@ -1,10 +1,11 @@
-import { Directive, computed, input } from '@angular/core';
+import { Directive, computed, inject, input } from '@angular/core';
 
 import { nbClass } from '../core/class';
 import {
   NbGapCapability,
   NB_STYLE_DEFAULTS,
   NB_STYLE_NAMESPACE,
+  nbGapFallback,
   type NbStyleDefaults,
 } from '../core/capabilities';
 import type { NbSpacing } from '../tokens/spacing';
@@ -33,12 +34,27 @@ export type NbStackSeparator = 'none' | 'solid' | 'dashed' | 'thick';
     '[attr.data-align]': 'align()',
     '[attr.data-justify]': 'justify()',
     '[attr.data-separator]': 'separator()',
+    '[style.gap]': 'gapStyle()',
+    '[style.--nb-stack-separator-gap]': 'separatorGapStyle()',
   },
 })
 export class NbStack {
   readonly align = input<NbStackAlign>('stretch');
   readonly justify = input<NbStackJustify>('start');
   readonly separator = input<NbStackSeparator>('none');
+
+  private readonly gap = inject(NbGapCapability);
+
+  protected readonly gapStyle = computed(() => this.gap.value());
+
+  // The separator's top padding stands in for the flex gap (so the border sits
+  // mid-gap), so it needs the actual rendered gap — explicit input or the
+  // `--nb-stack-gap` hook fallback — hence the resolved value.
+  protected readonly separatorGapStyle = computed(() =>
+    this.separator() === 'none'
+      ? null
+      : (this.gap.value() ?? nbGapFallback('stack', 'md')),
+  );
 
   protected readonly classes = computed(() =>
     nbClass(
@@ -78,19 +94,19 @@ export class NbStack {
         '[&>*+*]:border-t-(length:--nb-border-width)',
         '[&>*+*]:border-solid',
         '[&>*+*]:[border-top-color:var(--nb-border)]',
-        '[&>*+*]:pt-[var(--nb-stack-gap)]'
+        '[&>*+*]:pt-(--nb-stack-separator-gap)'
       ),
       dashed: nbClass(
         '[&>*+*]:border-t-(length:--nb-border-width)',
         '[&>*+*]:border-dashed',
         '[&>*+*]:[border-top-color:var(--nb-border)]',
-        '[&>*+*]:pt-[var(--nb-stack-gap)]'
+        '[&>*+*]:pt-(--nb-stack-separator-gap)'
       ),
       thick: nbClass(
         '[&>*+*]:border-t-4',
         '[&>*+*]:border-solid',
         '[&>*+*]:[border-top-color:var(--nb-border)]',
-        '[&>*+*]:pt-[var(--nb-stack-gap)]'
+        '[&>*+*]:pt-(--nb-stack-separator-gap)'
       ),
     };
 

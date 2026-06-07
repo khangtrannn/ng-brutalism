@@ -72,7 +72,6 @@ describe('NbSurface', () => {
       '[nbSurface]'
     ) as HTMLElement;
 
-    // Resolved tokens are reflected as data-* by the composed capabilities.
     expect(surface.getAttribute('data-nb-surface')).toBe('');
     expect(surface.getAttribute('data-tone')).toBe('default');
     expect(surface.getAttribute('data-radius')).toBe('md');
@@ -81,36 +80,27 @@ describe('NbSurface', () => {
     expect(surface.getAttribute('data-padding')).toBe('none');
     expect(surface.getAttribute('data-edge')).toBe('none');
 
-    // Consumption-only classes — the variables come from the capabilities.
     expect(surface.className).toContain('relative');
-    expect(surface.className).toContain('nb-tone');
-    expect(surface.className).toContain('nb-border-width');
+    expect(surface.className).not.toMatch(/(?:^|\s)nb-tone(?:\s|$)/);
+    expect(surface.className).not.toMatch(/(?:^|\s)nb-border-width(?:\s|$)/);
     expect(surface.className).not.toContain('bg-(--nb-surface-bg)');
     expect(surface.className).not.toContain('text-(--nb-surface-fg)');
     expect(surface.className).not.toContain('border-(--nb-surface-border-color)');
-    expect(surface.className).toContain('nb-radius');
-    expect(surface.className).toContain('nb-shadow');
-    expect(surface.className).toContain('nb-padding');
+    expect(surface.className).not.toMatch(/(?:^|\s)nb-radius(?:\s|$)/);
+    expect(surface.className).not.toMatch(/(?:^|\s)nb-shadow(?:\s|$)/);
+    expect(surface.className).not.toMatch(/(?:^|\s)nb-padding(?:\s|$)/);
     expect(surface.className).not.toContain('overflow-hidden');
 
-    // Component-specific CSS variables written by the capabilities.
     const style = surface.style;
-    expect(style.getPropertyValue('--_nb-tone-bg-default')).toBe('var(--nb-surface)');
-    expect(style.getPropertyValue('--_nb-tone-fg-default')).toBe(
-      'var(--nb-surface-foreground)'
-    );
-    expect(style.getPropertyValue('--_nb-tone-border-color-default')).toBe(
-      'var(--nb-border)'
-    );
+    expect(style.getPropertyValue('background')).toBe('');
+    expect(style.getPropertyValue('color')).toBe('');
+    expect(style.getPropertyValue('border-color')).toBe('');
     expect(style.getPropertyValue('--nb-surface-bg')).toBe('');
-    expect(style.getPropertyValue('--_nb-radius-default')).toBe(
-      'var(--nb-radius)'
-    );
-    expect(style.getPropertyValue('--_nb-border-width-default')).toBe(
-      'var(--nb-border-width)'
-    );
-    expect(style.getPropertyValue('--_nb-padding-default')).toBe('0px');
+    expect(style.getPropertyValue('border-radius')).toBe('');
+    expect(style.getPropertyValue('border-width')).toBe('');
+    expect(style.getPropertyValue('padding')).toBe('');
     expect(style.getPropertyValue('--nb-surface-padding')).toBe('');
+    expect(style.cssText).not.toContain('--nb-resolved');
   });
 
   it('maps tone, radius, border, shadow, and bare clip attributes', async () => {
@@ -126,14 +116,14 @@ describe('NbSurface', () => {
     expect(surface.getAttribute('data-size')).toBe('lg');
     expect(surface.getAttribute('data-layout')).toBe('center');
 
-    expect(surface.style.getPropertyValue('background-color')).toBe(
-      'var(--nb-cream)'
-    );
+    // Explicit inputs win outright — literal values, no public hook.
+    expect(surface.style.getPropertyValue('background')).toBe('var(--nb-cream)');
     expect(surface.style.getPropertyValue('border-radius')).toBe('1rem');
     expect(surface.style.getPropertyValue('border-width')).toBe('4px');
     expect(surface.style.getPropertyValue('box-shadow')).toBe(
       '10px 10px 0 0 var(--nb-shadow)'
     );
+    expect(surface.style.cssText).not.toContain('--nb-resolved');
     expect(surface.className).toContain('size-11');
     expect(surface.className).toContain('shrink-0');
     expect(surface.className).toContain('inline-flex');
@@ -159,11 +149,11 @@ describe('NbSurface', () => {
       ) as HTMLElement;
 
       expect(surface.getAttribute('data-tone')).toBe(tone);
-      expect(surface.style.getPropertyValue('background-color')).toBe(color);
+      expect(surface.style.getPropertyValue('background')).toBe(color);
     }
   );
 
-  it('writes final background style from the tone capability', async () => {
+  it('writes actual background from the tone capability', async () => {
     const fixture = await createFixture(ToneSurfaceTest, (instance) => {
       instance.tone = 'mint';
     });
@@ -171,10 +161,9 @@ describe('NbSurface', () => {
       '[nbSurface]'
     ) as HTMLElement;
 
-    expect(surface.style.getPropertyValue('background-color')).toBe(
-      'var(--nb-mint)'
-    );
+    expect(surface.style.getPropertyValue('background')).toBe('var(--nb-mint)');
     expect(surface.style.getPropertyValue('--nb-surface-bg')).toBe('');
+    expect(surface.style.cssText).not.toContain('--nb-resolved');
   });
 
   it('supports strong stacked surfaces for compact card shells', async () => {
@@ -211,7 +200,7 @@ describe('NbSurface', () => {
     expect(surface.getAttribute('data-shadow')).toBe('none');
     expect(surface.className).toContain('flex');
     expect(surface.className).toContain('items-center');
-    expect(surface.className).toContain('nb-padding');
+    expect(surface.className).not.toMatch(/(?:^|\s)nb-padding(?:\s|$)/);
     expect(surface.style.getPropertyValue('padding')).toBe('1rem');
     expect(surface.style.getPropertyValue('border-width')).toBe('0px');
     expect(surface.style.getPropertyValue('box-shadow')).toBe('none');

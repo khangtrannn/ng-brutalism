@@ -50,7 +50,7 @@ describe('NbSelect', () => {
 
     expect(select.className).toContain('focus-within:ring-2');
     expect(select.className).toContain(
-      'focus-within:ring-(--nb-select-border)'
+      'focus-within:ring-[var(--nb-select-focus-ring-color,var(--nb-select-border-color,var(--nb-border)))]'
     );
     expect(select.className).toContain('focus-within:ring-offset-2');
     expect(select.className).toContain('focus-within:shadow-none');
@@ -73,8 +73,12 @@ describe('NbSelect', () => {
       '[role="listbox"]'
     ) as HTMLElement;
 
-    expect(select.className).toContain('focus-within:ring-(--nb-select-border)');
-    expect(listbox.className).toContain('border-(--nb-select-border)');
+    expect(select.className).toContain(
+      'focus-within:ring-[var(--nb-select-focus-ring-color,var(--nb-select-border-color,var(--nb-border)))]'
+    );
+    expect(listbox.className).toContain(
+      'border-[var(--nb-select-border-color,var(--nb-border))]'
+    );
     expect(select.className).not.toContain('--nb-select-active-border');
     expect(listbox.className).not.toContain('--nb-select-active-border');
   });

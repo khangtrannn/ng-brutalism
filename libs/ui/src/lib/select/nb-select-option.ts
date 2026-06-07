@@ -24,6 +24,8 @@ let nextSelectOptionId = 0;
       [attr.aria-selected]="selected()"
       [disabled]="disabled() || select.disabled()"
       [class]="classes()"
+      [style.color]="select.optionForegroundStyle()"
+      [style.--nb-select-option-focus-ring-color]="select.optionFocusRingColorStyle()"
       (click)="select.selectOption(this)"
       (keydown)="selectOptionOnKey($event)"
     >
@@ -73,9 +75,9 @@ export class NbSelectOption {
   protected readonly classes = computed(() =>
     nbClass(
       'flex h-11 w-full items-center gap-3 px-2',
-      'font-mono text-base font-bold text-(--nb-select-fg)',
+      'font-mono text-base font-bold text-[var(--nb-select-fg,var(--nb-surface-foreground))]',
       'transition-colors duration-150',
-      'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--nb-select-border)',
+      'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--nb-select-option-focus-ring-color,var(--nb-select-border-color,var(--nb-border)))]',
       'disabled:pointer-events-none disabled:opacity-50',
       this.selected()
         ? 'bg-[#bdf7c8]'

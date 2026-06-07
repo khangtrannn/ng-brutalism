@@ -11,27 +11,21 @@ import { NbTextarea } from './nb-textarea';
 class TextareaTokenTest {}
 
 describe('NbTextarea token surface', () => {
-  it('adds nb-tone and nb-border-width capability marker classes', async () => {
+  it('does not emit legacy capability marker classes', async () => {
     const fixture = await createFixture();
     const textarea = findTextarea(fixture);
 
-    expect(textarea.className).toContain('nb-tone');
-    expect(textarea.className).toContain('nb-border-width');
+    expect(textarea.className).not.toMatch(/(?:^|\s)nb-tone(?:\s|$)/);
+    expect(textarea.className).not.toMatch(/(?:^|\s)nb-border-width(?:\s|$)/);
   });
 
-  it('sets capability default CSS variables as inline styles', async () => {
+  it('leaves default visuals to CSS token fallbacks', async () => {
     const fixture = await createFixture();
     const textarea = findTextarea(fixture);
 
-    expect(textarea.style.getPropertyValue('--_nb-tone-bg-default')).toBe(
-      'var(--nb-surface)'
-    );
-    expect(textarea.style.getPropertyValue('--_nb-tone-bg-token')).toBe(
-      'var(--nb-textarea-bg, var(--_nb-tone-bg-default))'
-    );
-    expect(textarea.style.getPropertyValue('--_nb-border-width-default')).toBe(
-      'var(--nb-border-width)'
-    );
+    expect(textarea.style.getPropertyValue('background-color')).toBe('');
+    expect(textarea.style.getPropertyValue('border-width')).toBe('');
+    expect(textarea.style.cssText).not.toContain('--nb-resolved');
   });
 
   it('keeps scoped radius and shadow CSS vars as classes', async () => {
@@ -47,12 +41,12 @@ describe('NbTextarea token surface', () => {
     expect(cls).toContain('shadow-[var(--nb-textarea-shadow)]');
   });
 
-  it('uses capability border-color token for focus ring', async () => {
+  it('uses public border-color fallback for focus ring', async () => {
     const fixture = await createFixture();
     const cls = findTextarea(fixture).className;
 
     expect(cls).toContain(
-      'focus-visible:ring-[var(--_nb-tone-border-color-token,var(--_nb-tone-border-color-default))]'
+      'focus-visible:ring-[var(--nb-textarea-focus-ring-color,var(--nb-textarea-border-color,var(--nb-border)))]'
     );
     expect(cls).not.toContain('focus-visible:ring-(--nb-textarea-border)');
   });

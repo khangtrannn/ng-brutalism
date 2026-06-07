@@ -27,8 +27,10 @@ import type { NbInputSize } from './input.types';
   host: {
     '[class]': 'classes()',
     '[attr.data-size]': 'size()',
-    '[style.background-color]': 'isInGroup ? "transparent" : null',
-    '[style.border-width]': 'isInGroup ? "0" : null',
+    '[style.background-color]': 'backgroundStyle()',
+    '[style.border-color]': 'borderColorStyle()',
+    '[style.border-width]': 'borderWidthStyle()',
+    '[style.--nb-input-focus-ring-color]': 'focusRingColorStyle()',
   },
 })
 export class NbInput {
@@ -36,6 +38,21 @@ export class NbInput {
 
   private readonly group = inject(NB_INPUT_GROUP, { optional: true });
   protected readonly isInGroup = this.group !== null;
+
+  private readonly tone = inject(NbToneCapability);
+  private readonly border = inject(NbBorderCapability);
+
+  // Inputs inside a group are visually merged into the group's surface — no
+  // border or background of their own.
+  protected readonly backgroundStyle = computed(() =>
+    this.isInGroup ? 'transparent' : this.tone.background(),
+  );
+  protected readonly borderColorStyle = computed(() => this.tone.borderColor());
+  protected readonly borderWidthStyle = computed(() =>
+    this.isInGroup ? '0' : this.border.width(),
+  );
+
+  protected readonly focusRingColorStyle = computed(() => this.tone.borderColor());
 
   protected readonly classes = computed(() => {
     const inGroup = this.isInGroup;
@@ -56,7 +73,7 @@ export class NbInput {
             'rounded-(--nb-input-radius)',
             'shadow-[var(--nb-input-shadow)]',
             'focus-visible:outline-none focus-visible:ring-2',
-            'focus-visible:ring-[var(--_nb-tone-border-color-token,var(--_nb-tone-border-color-default))]',
+            'focus-visible:ring-[var(--nb-input-focus-ring-color,var(--nb-input-border-color,var(--nb-border)))]',
             'focus-visible:ring-offset-2 focus-visible:shadow-none',
           ]
     );

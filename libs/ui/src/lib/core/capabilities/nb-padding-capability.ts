@@ -1,40 +1,32 @@
 import { Directive, computed, inject, input } from '@angular/core';
 
 import { nbPaddingValue, type NbPadding } from '../../tokens/padding';
-import { NB_STYLE_DEFAULTS, NB_STYLE_NAMESPACE } from './nb-style-tokens';
+import { NB_STYLE_DEFAULTS } from './nb-style-tokens';
 
 /**
- * INTERNAL capability — not part of the public API. Defaults and scoped public
- * tokens flow through marker CSS; explicit inputs write the final property.
+ * INTERNAL capability — not part of the public API. Composed into primitives via
+ * `hostDirectives`. Resolves `padding` to a literal value only — it writes no
+ * CSS. The primitive maps `value` onto the real `[style.padding]` (`null`
+ * removes the inline style, letting the primitive's CSS read the public
+ * `--nb-<namespace>-padding` hook with its library default).
  */
 @Directive({
   selector: '[nbPaddingCapability]',
   host: {
-    class: 'nb-padding',
-    '[style.--_nb-padding-default]': 'paddingDefaultVar()',
-    '[style.--nb-padding-token]': 'paddingTokenVar()',
-    '[style.padding]': 'paddingInputStyle()',
     '[attr.data-padding]': 'resolved()',
   },
 })
 export class NbPaddingCapability {
-  private readonly namespace = inject(NB_STYLE_NAMESPACE);
   private readonly defaults = inject(NB_STYLE_DEFAULTS);
 
   readonly padding = input<NbPadding | undefined>(undefined);
 
-  private readonly fallback = computed(() => this.defaults.padding ?? 'md');
-  protected readonly resolved = computed(() => this.padding() ?? this.fallback());
+  protected readonly resolved = computed(
+    () => this.padding() ?? this.defaults.padding ?? 'md',
+  );
 
-  protected readonly paddingDefaultVar = computed(() =>
-    nbPaddingValue(this.fallback()),
-  );
-  protected readonly paddingTokenVar = computed(
-    () => `var(--nb-${this.namespace}-padding, var(--_nb-padding-default))`,
-  );
-  protected readonly paddingInputStyle = computed(() => {
+  readonly value = computed(() => {
     const padding = this.padding();
-
     return padding ? nbPaddingValue(padding) : null;
   });
 }

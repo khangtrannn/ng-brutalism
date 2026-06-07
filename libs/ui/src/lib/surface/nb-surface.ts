@@ -1,4 +1,10 @@
-import { Directive, booleanAttribute, computed, input } from '@angular/core';
+import {
+  Directive,
+  booleanAttribute,
+  computed,
+  inject,
+  input,
+} from '@angular/core';
 
 import { nbClass } from '../core/class';
 import {
@@ -62,6 +68,13 @@ export type NbSurfaceEdge = 'none' | 'top' | 'bottom';
     '[attr.data-layout]': 'layout()',
     '[attr.data-padding]': 'padding()',
     '[attr.data-edge]': 'edge()',
+    '[style.background]': 'backgroundStyle()',
+    '[style.color]': 'foregroundStyle()',
+    '[style.border-color]': 'borderColorStyle()',
+    '[style.border-radius]': 'radiusStyle()',
+    '[style.box-shadow]': 'shadowStyle()',
+    '[style.border-width]': 'borderWidthStyle()',
+    '[style.padding]': 'paddingStyle()',
   },
 })
 export class NbSurface {
@@ -73,8 +86,20 @@ export class NbSurface {
     transform: booleanAttribute,
   });
 
-  // Tone, radius, shadow, and border-width are written as `--nb-surface-*`
-  // variables by the composed capabilities; here we only *consume* them.
+  private readonly tone = inject(NbToneCapability);
+  private readonly radius = inject(NbRadiusCapability);
+  private readonly shadow = inject(NbShadowCapability);
+  private readonly border = inject(NbBorderCapability);
+  private readonly paddingCapability = inject(NbPaddingCapability);
+
+  protected readonly backgroundStyle = computed(() => this.tone.background());
+  protected readonly foregroundStyle = computed(() => this.tone.foreground());
+  protected readonly borderColorStyle = computed(() => this.tone.borderColor());
+  protected readonly radiusStyle = computed(() => this.radius.value());
+  protected readonly shadowStyle = computed(() => this.shadow.value());
+  protected readonly borderWidthStyle = computed(() => this.border.width());
+  protected readonly paddingStyle = computed(() => this.paddingCapability.value());
+
   protected readonly classes = computed(() =>
     nbClass(
       'relative',

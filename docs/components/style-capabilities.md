@@ -12,11 +12,11 @@ tokens          libs/ui/src/lib/tokens/*        vocabulary + value resolvers
    ↓
 DI tokens       core/capabilities/nb-style-tokens.ts   NB_STYLE_NAMESPACE / NB_STYLE_DEFAULTS
    ↓
-capabilities    core/capabilities/*            internal directives, write --nb-<ns>-* vars
+capabilities    core/capabilities/*            internal directives, resolve inputs to literal values only
    ↓
-primitives      lib/<primitive>/*              compose capabilities via hostDirectives
+primitives      lib/<primitive>/*              compose capabilities via hostDirectives, map outputs to CSS props
    ↓
-CSS             primitive `classes()`          consume --nb-<ns>-* via Tailwind utilities
+CSS             component `styles` (plain CSS)  read public hooks with fallbacks, state via data-attrs
 ```
 
 - **Tokens** define the vocabulary once: `NbRadius`, `NbShadow`,
@@ -26,26 +26,152 @@ CSS             primitive `classes()`          consume --nb-<ns>-* via Tailwind 
   thing in every primitive.
 - **Capabilities** are tiny standalone directives (`NbToneCapability`,
   `NbRadiusCapability`, …). Each injects `NB_STYLE_NAMESPACE` + `NB_STYLE_DEFAULTS`,
-  resolves its one input, and binds a **signal-driven host `[style]` map** that
-  writes namespaced component variables. No `effect()` — the dynamic variable
-  name (`--nb-${ns}-radius`) is produced by a `computed()` style map, which is
-  the declarative, zoneless-friendly idiom. Each also reflects a `data-<token>`
-  attribute for inspection.
-- **Resolution order** inside every capability:
-  `explicit input → NB_STYLE_DEFAULTS[token] → capability hard fallback`.
-- **Primitives** provide their namespace + defaults and compose the capabilities
-  through Angular `hostDirectives`, forwarding the public input names
-  (`inputs: ['tone']`). The primitive keeps only its own anatomy (Surface `clip`,
+  resolves its one input, and exposes **computed literal-or-`null` values**
+  (`background`, `foreground`, `borderColor`, `value`, `width`, …) — `null`
+  when the input is unset. Capabilities **do not write any CSS custom
+  properties**; they only resolve values and reflect a `data-<token>` attribute
+  for inspection. No `effect()` — every output is a plain `computed()`, the
+  declarative, zoneless-friendly idiom.
+- **Primitives** provide their namespace + defaults, compose the capabilities
+  through Angular `hostDirectives` (forwarding public input names like
+  `inputs: ['tone']`), and **map each capability output straight onto the real
+  CSS property** via host `[style.*]` bindings (`[style.background]`,
+  `[style.border-radius]`, `[style.box-shadow]`, …). When a capability returns
+  `null`, Angular removes the inline style entirely, letting the CSS fallback
+  chain take over. The primitive keeps only its own anatomy (Surface `clip`,
   MediaFrame `ratio`/`fit`, Button `press`/`size`/state, layout
-  `align`/`justify`/`separator`, …) and a Tailwind base-class string that *consumes*
-  the variables.
+  `align`/`justify`/`separator`, …).
+- **CSS** (global `:where()` rules or component `styles`) reads the primitive's
+  **public** hooks directly — `var(--nb-button-bg, var(--nb-primary))` — and
+  owns the library default as a literal fallback. There is no internal
+  resolution layer in CSS: the cascade and inheritance do all the work for
+  layers 2–4.
+
+## Token customization priority model
+
+Decided target order for every visual property a primitive exposes
+(`background`, `tone`-derived colors, `radius`, `shadow`, …), highest wins:
+
+1. **Directive input** — `tone`, `background`, `radius`, `shadow`, …
+2. **Local CSS token customization** — `style="--nb-button-bg: …"` on the element itself
+3. **Inherited CSS token customization** — `--nb-button-bg` set on an ancestor
+4. **Library default** — the fallback baked into the component's `styles`
+
+### Core rule: inputs and tokens must not write to the same CSS custom property
+
+```txt
+Input value
+→ actual CSS property
+→ [style.background], [style.color], [style.border-color], [style.border-radius], …
+
+Token customization
+→ public CSS custom property
+→ --nb-button-bg, --nb-button-fg, --nb-button-radius, …
+
+Inheritance
+→ native CSS custom property inheritance
+
+Default
+→ fallback inside var(--nb-<namespace>-<prop>, <default>)
+```
+
+If an input wrote to the same `--nb-button-bg` hook that token customization
+targets, a local/inherited token would be indistinguishable from — and could
+even outrank — an explicit input, inverting the priority order. Routing inputs
+to the **actual property** instead sidesteps the contention entirely: the
+inline style (highest-specificity, element-level) always wins over anything a
+custom property's `var()` fallback chain could produce, and when the input is
+absent the inline style is gone and the public hook governs unopposed.
+
+### The two halves, worked through `nbButton` background
+
+**Capability** resolves the input only, returns `null` when unset:
+
+```ts
+readonly toneTokens = computed(() => {
+  const tone = this.tone();
+  if (!tone) return null;
+  return nbToneVars(tone);
+});
+
+readonly background = computed(() => this.toneTokens()?.bg ?? null);
+```
+
+**Primitive** maps that resolved value straight onto the real property:
+
+```ts
+host: {
+  '[style.background]': 'backgroundStyle()',
+},
+// ...
+protected readonly backgroundStyle = computed(() => this.tone.background());
+```
+
+**CSS** reads the public hook with the library default as fallback — this is
+the *only* place `--nb-button-bg` is consulted:
+
+```css
+.nb-button {
+  background: var(--nb-button-bg, var(--nb-primary));
+}
+```
+
+### Worked examples (`nbButton` background)
+
+| Scenario | Resolution | Why |
+|---|---|---|
+| `tone="accent"` on element with inherited `--nb-button-bg: #ffcc00` | inline `background: var(--nb-accent)` | input resolves to a literal written straight to the actual property — the hook is never consulted |
+| `tone="accent"` + local `style="--nb-button-bg: #00e5ff"` | inline `background: var(--nb-accent)` | input still wins — different property, no contention with the local token |
+| no `tone`, local `--nb-button-bg: #00e5ff`, inherited `--nb-button-bg: #ffcc00` | no inline style; CSS `background: var(--nb-button-bg, var(--nb-primary))` → `#00e5ff` | native cascade — local custom property beats inherited |
+| no `tone`, inherited `--nb-button-bg: #ffcc00` only | resolves to `#ffcc00` | inherited token, nothing closer overrides it |
+| no `tone`, no token anywhere | resolves to `var(--nb-primary)` | CSS fallback owns the library default |
+
+### Don't give inputs defaults that always activate the input layer
+
+```ts
+// Avoid — the input layer is permanently "on"; token customization can never win
+readonly tone = input<NbButtonTone>('neutral');
+
+// Prefer — undefined lets the CSS fallback own the default, keeping layers 2–4 reachable
+readonly tone = input<NbButtonTone | undefined>(undefined);
+```
+
+`undefined` is what lets the capability return `null`, which removes the
+inline style and lets the `var(--nb-<ns>-<prop>, <default>)` chain in CSS take
+over — keeping layers 2–4 reachable.
+
+### Migration rule: no internal resolved variables
+
+Earlier drafts of this architecture introduced a second resolution layer of
+internal CSS custom properties:
+
+```txt
+--nb-resolved-tone-bg
+--nb-resolved-tone-fg
+--nb-resolved-tone-border-color
+--nb-resolved-radius
+--nb-resolved-shadow
+--nb-resolved-border-width
+--nb-resolved-padding
+--nb-resolved-gap
+```
+
+These are **removed**. They blended "input" and "library default" into one
+value and then wrapped *that* in the public hook — which let the hook win over
+an explicit input (backwards), and made the implementation harder to reason
+about because the primitive no longer mapped inputs directly to the CSS
+properties they affect. The replacement is the three-part split above:
+capability resolves, primitive maps to the real property, CSS reads the public
+hook with a literal default.
 
 ## Component variable contract
 
-Each primitive owns a namespaced set of variables — easy to inspect, document,
-and override:
+Each primitive owns a namespaced set of public variables — easy to inspect,
+document, and override. These variables are **read**, not assigned, by the
+primitive/capability CSS so consumers can override them on the primitive itself
+or on an ancestor scope:
 
-| Primitive | namespace | variables written |
+| Primitive | namespace | public variables read |
 |---|---|---|
 | nbSurface | `surface` | `--nb-surface-{bg,fg,border-color,radius,border-width,shadow,padding}` |
 | nbMediaFrame | `media-frame` | `--nb-media-frame-{bg,fg,border-color,radius,border-width,shadow}` |
@@ -90,6 +216,143 @@ for direct use.
 
 ---
 
+## Component internal styling philosophy
+
+**Rule for migrated internals:** No Tailwind utility classes inside component templates. All component-internal styling lives in the `styles` array as plain CSS. State-driven styling uses existing `data-*` attributes as CSS selectors instead of signal-computed class strings. Capability-owned public hooks are read with fallbacks; they are not assigned locally by the component.
+
+**Why not Tailwind in templates?**
+The library already handles self-containment via `@source './fesm2022/...'` in `styles.css` — so this is not about self-containment. The reasons are DX and performance:
+- Devtools shows a clean element with no class attribute instead of a 200-char class string
+- `computed()` + `twMerge(clsx(...))` overhead is eliminated for static styles
+- State changes (open/close, disabled) are handled by CSS selectors on `data-state`, requiring zero JS
+
+**The pattern — reference implementation: `NbAccordionTrigger`**
+
+`background-color`, `border-color`, and `box-shadow` don't inherit natively, so
+a compound child can't pick up its ancestor's *resolved* visuals through plain
+CSS inheritance the way `color` can. Rather than reintroduce an internal
+`--nb-resolved-*` channel, the descendant **injects the ancestor component and
+reads its capability outputs directly** — pure signal composition, no second
+CSS layer:
+
+```typescript
+@Component({
+  styles: [`
+    button {
+      /* Static structural styles — plain CSS, never recalculates */
+      display: flex;
+      min-height: var(--nb-accordion-trigger-min-height, 3.5rem); /* expose as token */
+      background-color: var(--nb-accordion-trigger-bg, transparent);
+      color: var(--nb-accordion-trigger-fg, inherit);
+      /* ... */
+    }
+
+    button:focus-visible {
+      /* State via CSS pseudo-class — no JS needed */
+      outline-offset: 2px;
+    }
+  `],
+  host: {
+    '[style.outline-color]': 'item.borderColorStyle()',
+    '[style.border-bottom]': 'dividerStyle()',
+  },
+  template: `
+    <!-- No class attribute on internal elements -->
+    <button [attr.data-state]="item.open() ? 'open' : 'closed'" ...>
+  `,
+})
+export class NbAccordionTrigger {
+  protected readonly item = inject(NbAccordionItem);
+
+  protected readonly dividerStyle = computed(() => {
+    if (this.item.open()) {
+      return `${this.item.borderWidthStyle() ?? 'var(--nb-accordion-item-border-width)'} solid ${this.item.borderColorStyle() ?? 'var(--nb-accordion-item-border-color)'}`;
+    }
+    return null;
+  });
+}
+```
+
+`color` and `background-color` lean on **native CSS** instead — `inherit` and
+`transparent` — so the trigger blends into whatever the item actually rendered
+without needing to know its resolved value at all. Only the genuinely
+non-inheriting properties the trigger needs that the item *doesn't* expose
+through its own DOM (an outline, a divider that only exists when open) go
+through DI: `NbAccordionItem` exposes its own capability-mapped style computeds
+(`borderColorStyle`, `borderWidthStyle`, …) as `protected readonly`, and the
+trigger reads them straight off the injected instance.
+
+**Specificity note:** Angular's `ViewEncapsulation.Emulated` scopes `button { }` to `button[_ngcontent-…]` (specificity 0,1,1). `:host { }` becomes an attribute selector on the host element (0,1,0 — same as a Tailwind class). This only affects consumers trying to directly target internal elements from outside, which is not the supported override path. Consumers use CSS custom properties.
+
+**Consumer override API:** Expose customizable values as CSS custom properties with defaults:
+```css
+min-height: var(--nb-accordion-trigger-min-height, 3.5rem);
+stroke-width: var(--nb-accordion-trigger-icon-stroke, 3);
+background-color: var(--nb-accordion-trigger-bg, transparent);
+color: var(--nb-accordion-trigger-fg, inherit);
+```
+
+Do **not** assign the public hook on the host:
+
+```css
+/* Avoid: this blocks inherited overrides from nb-accordion / nb-accordion-item. */
+:host {
+  --nb-accordion-trigger-bg: transparent;
+}
+```
+
+This keeps all of these override shapes valid:
+
+```html
+<nb-accordion style="--nb-accordion-trigger-bg: var(--nb-lavender)">
+  ...
+</nb-accordion>
+
+<nb-accordion-item style="--nb-accordion-trigger-bg: var(--nb-lavender)">
+  ...
+</nb-accordion-item>
+
+<nb-accordion-trigger style="--nb-accordion-trigger-bg: var(--nb-lavender)">
+  Overview
+</nb-accordion-trigger>
+```
+
+`--nb-resolved-*` variables are **not** reintroduced anywhere — see the
+migration rule above. Compound descendants reach an ancestor's resolved
+visuals via DI + `computed()`, never via an internal CSS custom-property
+channel. Public `--nb-<component>-*` variables remain the only consumer-owned
+override surface.
+
+**What stays in templates:** Data/ARIA attributes (`[attr.aria-expanded]`, `[attr.data-state]`, `[id]`), event bindings, structural directives. No `class` or `[class]` bindings on internal elements.
+
+**What does NOT change:** The `@source` directive in `styles.css` still handles any remaining template Tailwind classes during the rollout period. `nbClass` remains publicly exported for consumers.
+
+---
+
+## Component internal styling rollout
+
+Migrated — full `styles` pattern, no template class bindings:
+- `NbAccordionTrigger` (2026-06-06) — reference implementation; `:host` public-var anti-pattern fixed
+- `NbAccordionItem` (2026-06-06) — `computed()` class map removed; inner div styled via CSS vars from cascaded capability tokens
+- `NbAccordionContent` (2026-06-06) — open/close `grid-template-rows` transition driven by `[data-state='open']` CSS selector; no `computed()` class
+
+Pending migration (grouped by complexity):
+
+**Wave 1 — simple static components (no reactive classes):**
+- `NbBadge`, `NbAvatar`, `NbLabel`, `NbCard` (sub-components), `NbImageCard`
+
+**Wave 2 — interactive components with state (reactive classes → data-attr CSS):**
+- `NbButton`, `NbIconButton`, `NbChip`, `NbCheckbox`, `NbInput`, `NbTextarea`
+- `NbProgress`, `NbRating`, `NbStatusDot`, `NbStat`
+
+**Wave 3 — complex / layout (separator logic, multiple dynamic class maps):**
+- `NbSelect`, `NbDialog`, `NbCallout`, `NbSurface`, `NbMediaFrame`, `NbMediaItem`
+- `NbStack`, `NbCluster`, `NbSplit`, `NbSection`, `NbMarquee`
+
+**Decision per wave:** validate in devtools + run tests before proceeding to next wave.
+
+---
+
 ## Migration summary
 
 ### Added
@@ -111,9 +374,12 @@ for direct use.
   `NbAccordionItem`, `NbSection`, `NbStack`, `NbCluster`, and `NbSplit` now
   compose shared capabilities via `hostDirectives` instead of redefining token
   unions/maps.
-- Style capabilities write component-specific CSS variables (e.g.
-  `--nb-surface-bg`, `--nb-button-radius`) via host `[style]` maps; primitives
-  consume them with Tailwind utilities (no new `.nb-*` CSS classes).
+- Style capabilities resolve their one input to a literal-or-`null` value
+  (e.g. `background`, `radius`, `shadow`) and write nothing to CSS; primitives
+  map those outputs straight onto the real CSS property
+  (`[style.background]`, `[style.border-radius]`, …), and component CSS reads
+  the public hook with the library default as fallback (e.g.
+  `background: var(--nb-button-bg, var(--nb-primary))`).
 - Per-primitive token type names (`NbSurfaceRadius`, `NbButtonRadius`,
   `NbStackGap`, …) are retained as **aliases** of the shared tokens.
 
@@ -146,11 +412,12 @@ The visual grammar now flows through internal capabilities across the major
 primitives. IconButton, MediaItem, Chip, and Button all consume the shared
 vocabulary instead of redefining it:
 
-- `tone` writes `--nb-{namespace}-bg`, `--nb-{namespace}-fg`, and
-  `--nb-{namespace}-border-color`.
-- `radius` writes `--nb-{namespace}-radius`.
-- `shadow` writes `--nb-{namespace}-shadow`.
-- `border` writes `--nb-{namespace}-border-width`.
+- `tone` resolves `background`/`foreground`/`borderColor`; the primitive maps
+  them onto `[style.background]`/`[style.color]`/`[style.border-color]`, and
+  its CSS reads `--nb-{namespace}-bg/fg/border-color` as the customization hook.
+- `radius` resolves to `[style.border-radius]`, hook `--nb-{namespace}-radius`.
+- `shadow` resolves to `[style.box-shadow]`, hook `--nb-{namespace}-shadow`.
+- `border` resolves to `[style.border-width]`, hook `--nb-{namespace}-border-width`.
 
 Component-specific behavior remains inside each primitive (IconButton square
 dimensions/shape, Chip pill padding, MediaItem layout anatomy, Button/IconButton

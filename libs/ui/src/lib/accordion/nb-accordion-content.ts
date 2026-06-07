@@ -1,11 +1,5 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  computed,
-  inject,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 
-import { nbClass } from '../core/class';
 import { NbAccordionItem } from './nb-accordion-item';
 
 @Component({
@@ -13,21 +7,55 @@ import { NbAccordionItem } from './nb-accordion-item';
   template: `
     <div
       [id]="item.contentId"
-      [class]="classes()"
       role="region"
       [attr.aria-labelledby]="item.triggerId"
-      [attr.data-slot]="'accordion-content'"
+      data-slot="accordion-content"
       [attr.data-state]="item.open() ? 'open' : 'closed'"
-      [attr.data-orientation]="'vertical'"
+      data-orientation="vertical"
       [attr.aria-hidden]="!item.open()"
+      [style.background-color]="item.backgroundStyle()"
+      [style.color]="item.foregroundStyle()"
     >
-      <div class="min-h-0 overflow-hidden">
-        <div class="p-4">
+      <div>
+        <div>
           <ng-content />
         </div>
       </div>
     </div>
   `,
+  styles: [
+    `
+      div[role='region'] {
+        display: grid;
+        overflow: hidden;
+        background-color: var(
+          --nb-accordion-content-bg,
+          var(--nb-accordion-item-bg, var(--nb-surface))
+        );
+        color: var(
+          --nb-accordion-content-fg,
+          var(--nb-accordion-item-fg, var(--nb-surface-foreground))
+        );
+        font-size: 0.875rem;
+        font-weight: 500;
+        grid-template-rows: 0fr;
+        transition: grid-template-rows 200ms ease-out;
+      }
+
+      div[role='region'][data-state='open'] {
+        grid-template-rows: 1fr;
+      }
+
+      div[role='region'] > div {
+        min-height: 0;
+        overflow: hidden;
+      }
+
+      div[role='region'] > div > div {
+        padding: 1rem;
+      }
+    `,
+  ],
   host: {
     class: 'block',
   },
@@ -35,15 +63,4 @@ import { NbAccordionItem } from './nb-accordion-item';
 })
 export class NbAccordionContent {
   protected readonly item = inject(NbAccordionItem);
-
-  protected readonly classes = computed(() =>
-    nbClass(
-      '[--nb-accordion-content-bg:var(--nb-surface)]',
-      '[--nb-accordion-content-fg:var(--nb-surface-foreground)]',
-      'grid overflow-hidden bg-(--nb-accordion-content-bg) text-sm font-medium',
-      'text-(--nb-accordion-content-fg)',
-      'transition-[grid-template-rows] duration-200 ease-out',
-      this.item.open() ? 'grid-rows-[1fr]' : 'grid-rows-[0fr]'
-    )
-  );
 }

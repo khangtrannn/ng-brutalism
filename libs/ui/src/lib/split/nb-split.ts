@@ -1,4 +1,4 @@
-import { Directive, computed, input } from '@angular/core';
+import { Directive, computed, inject, input } from '@angular/core';
 
 import { nbClass } from '../core/class';
 import {
@@ -6,6 +6,7 @@ import {
   NbPaddingCapability,
   NB_STYLE_DEFAULTS,
   NB_STYLE_NAMESPACE,
+  nbGapFallback,
   type NbStyleDefaults,
 } from '../core/capabilities';
 import type { NbPadding } from '../tokens/padding';
@@ -50,6 +51,9 @@ export type NbSplitSeparator = 'none' | 'solid' | 'dashed' | 'thick';
     '[attr.data-collapse]': 'collapse()',
     '[attr.data-align]': 'align()',
     '[attr.data-separator]': 'separator()',
+    '[style.--nb-split-separator-gap]': 'separatorGapStyle()',
+    '[style.gap]': 'gapStyle()',
+    '[style.padding]': 'paddingStyle()',
   },
 })
 export class NbSplit {
@@ -57,6 +61,21 @@ export class NbSplit {
   readonly collapse = input<NbSplitCollapse>('md');
   readonly align = input<NbSplitAlign>('stretch');
   readonly separator = input<NbSplitSeparator>('none');
+
+  private readonly gap = inject(NbGapCapability);
+  private readonly paddingCapability = inject(NbPaddingCapability);
+
+  protected readonly gapStyle = computed(() => this.gap.value());
+  protected readonly paddingStyle = computed(() => this.paddingCapability.value());
+
+  // The separator's `::after` line is centered in the gap, so it needs the
+  // actual rendered gap (explicit input or `--nb-split-gap` hook fallback) —
+  // hence the capability's always-resolved value rather than a CSS duplicate.
+  protected readonly separatorGapStyle = computed(() =>
+    this.separator() === 'none'
+      ? null
+      : (this.gap.value() ?? nbGapFallback('split', 'lg')),
+  );
 
   protected readonly classes = computed(() =>
     nbClass(
@@ -127,7 +146,7 @@ const separatorBaseClass = nbClass(
   '[&>*:first-child]:after:pointer-events-none',
   '[&>*:first-child]:after:absolute',
   '[&>*:first-child]:after:inset-y-0',
-  '[&>*:first-child]:after:[inset-inline-end:calc(var(--_nb-gap-resolved)/-2)]',
+  '[&>*:first-child]:after:[inset-inline-end:calc(var(--nb-split-separator-gap)/-2)]',
   '[&>*:first-child]:after:[border-inline-end-color:var(--nb-border)]',
   '[&>*:first-child]:after:content-[""]'
 );

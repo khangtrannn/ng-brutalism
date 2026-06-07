@@ -37,6 +37,7 @@ let nextSelectId = 0;
       type="button"
       [id]="triggerId"
       [class]="triggerClasses()"
+      [style.color]="foregroundStyle()"
       [disabled]="disabled()"
       [attr.aria-haspopup]="'listbox'"
       [attr.aria-expanded]="open()"
@@ -65,6 +66,8 @@ let nextSelectId = 0;
       role="listbox"
       [attr.aria-labelledby]="triggerId"
       [class]="listboxClasses"
+      [style.background-color]="listboxBackgroundStyle()"
+      [style.border-color]="listboxBorderColorStyle()"
     >
       <ng-content />
     </div>
@@ -87,8 +90,11 @@ let nextSelectId = 0;
     '[attr.data-state]': 'open() ? "open" : "closed"',
     '[attr.data-disabled]': 'disabled() ? "" : null',
     '(document:click)': 'closeOnOutsideClick($event)',
-    '[style.background-color]': 'isInGroup ? "transparent" : null',
-    '[style.border-width]': 'isInGroup ? "0" : null',
+    '[style.background-color]': 'backgroundStyle()',
+    '[style.color]': 'foregroundStyle()',
+    '[style.border-color]': 'borderColorStyle()',
+    '[style.border-width]': 'borderWidthStyle()',
+    '[style.--nb-select-focus-ring-color]': 'selectFocusRingColorStyle()',
   },
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
@@ -96,6 +102,30 @@ export class NbSelect implements NbSelectController {
   private readonly element = inject<ElementRef<HTMLElement>>(ElementRef);
   private readonly group = inject(NB_INPUT_GROUP, { optional: true });
   protected readonly isInGroup = this.group !== null;
+
+  private readonly tone = inject(NbToneCapability);
+  private readonly border = inject(NbBorderCapability);
+
+  protected readonly backgroundStyle = computed(() =>
+    this.isInGroup ? 'transparent' : this.tone.background(),
+  );
+  protected readonly foregroundStyle = computed(() => this.tone.foreground());
+  protected readonly borderColorStyle = computed(() => this.tone.borderColor());
+  protected readonly borderWidthStyle = computed(() =>
+    this.isInGroup ? '0' : this.border.width(),
+  );
+
+  protected readonly listboxBackgroundStyle = computed(() =>
+    this.tone.background(),
+  );
+  protected readonly listboxBorderColorStyle = computed(() =>
+    this.tone.borderColor(),
+  );
+  protected readonly selectFocusRingColorStyle = computed(() =>
+    this.tone.borderColor(),
+  );
+  readonly optionForegroundStyle = computed(() => this.tone.foreground());
+  readonly optionFocusRingColorStyle = computed(() => this.tone.borderColor());
 
   readonly placeholder = input<string>('Select an option');
   readonly value = model<NbSelectValue | null>(null);
@@ -128,17 +158,14 @@ export class NbSelect implements NbSelectController {
   protected readonly hostClasses = computed(() => {
     const inGroup = this.isInGroup;
     return nbClass(
-      '[--nb-select-fg:var(--_nb-tone-fg-token,var(--_nb-tone-fg-default))]',
-      '[--nb-select-border:var(--_nb-tone-border-color-token,var(--_nb-tone-border-color-default))]',
       '[--nb-select-radius:var(--nb-radius)]',
-      '[--nb-select-listbox-bg:var(--_nb-tone-bg-token,var(--_nb-tone-bg-default))]',
       inGroup
         ? 'block w-full'
         : [
             'relative block w-full',
             'rounded-(--nb-select-radius)',
             'shadow-nb',
-            'focus-within:outline-none focus-within:ring-2 focus-within:ring-(--nb-select-border)',
+            'focus-within:outline-none focus-within:ring-2 focus-within:ring-[var(--nb-select-focus-ring-color,var(--nb-select-border-color,var(--nb-border)))]',
             'focus-within:ring-offset-2 focus-within:shadow-none',
             'data-[disabled]:border-gray-400 data-[disabled]:shadow-[5px_5px_0_0_#a3a3a3]',
           ]
@@ -149,7 +176,7 @@ export class NbSelect implements NbSelectController {
     const inGroup = this.isInGroup;
     return nbClass(
       'flex h-14 w-full items-center gap-4 font-mono text-base font-bold',
-      'text-(--nb-select-fg) transition-all duration-150',
+      'text-[var(--nb-select-fg,var(--nb-surface-foreground))] transition-all duration-150',
       'disabled:cursor-not-allowed disabled:text-gray-400',
       inGroup
         ? ['flex-1 min-w-0 bg-transparent px-3 focus-visible:outline-none']
@@ -160,14 +187,14 @@ export class NbSelect implements NbSelectController {
   protected readonly valueClasses = computed(() =>
     nbClass(
       'min-w-0 flex-1 truncate text-left',
-      this.selectedLabel() ? 'text-(--nb-select-fg)' : 'text-gray-400'
+      this.selectedLabel() ? 'text-inherit' : 'text-gray-400'
     )
   );
 
   protected readonly listboxClasses = nbClass(
     'absolute z-50 top-[calc(100%+8px)]',
     'left-[-6px] w-[calc(100%+12px)] mt-0.5',
-    'rounded-b-(--nb-select-radius) border-2 border-(--nb-select-border) bg-(--nb-select-listbox-bg)',
+    'rounded-b-(--nb-select-radius) border-2 border-[var(--nb-select-border-color,var(--nb-border))] bg-[var(--nb-select-listbox-bg,var(--nb-select-bg,var(--nb-surface)))]',
     'shadow-nb'
   );
 

@@ -11,17 +11,15 @@ import { NbBadge } from './nb-badge';
 class BadgeTest {}
 
 describe('NbBadge', () => {
-  it('uses the shared radius marker with a badge-specific default', async () => {
+  it('leaves radius defaults to CSS token fallbacks', async () => {
     const fixture = await createFixture(BadgeTest);
     const badge = fixture.nativeElement.querySelector(
       'span[nbBadge]'
     ) as HTMLSpanElement;
 
-    expect(badge.className).toContain('nb-radius');
-    expect(badge.style.getPropertyValue('--_nb-radius-default')).toBe('9999px');
-    expect(badge.style.getPropertyValue('--nb-radius-token')).toBe(
-      'var(--nb-badge-radius, var(--_nb-radius-default))'
-    );
+    expect(badge.className).not.toMatch(/(?:^|\s)nb-radius(?:\s|$)/);
+    expect(badge.style.getPropertyValue('border-radius')).toBe('');
+    expect(badge.style.cssText).not.toContain('--nb-resolved');
     expect(badge.className).not.toContain('rounded-nb');
   });
 });

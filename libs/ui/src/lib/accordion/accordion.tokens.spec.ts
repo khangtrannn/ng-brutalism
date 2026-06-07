@@ -25,139 +25,115 @@ import { NbAccordionTrigger } from './nb-accordion-trigger';
 })
 class AccordionTokenTest {}
 
+@Component({
+  imports: [
+    NbAccordion,
+    NbAccordionItem,
+    NbAccordionTrigger,
+    NbAccordionContent,
+  ],
+  template: `
+    <nb-accordion [value]="'one'">
+      <nb-accordion-item
+        value="one"
+        style="--nb-accordion-trigger-bg: red"
+      >
+        <nb-accordion-trigger tone="yellow">One</nb-accordion-trigger>
+        <nb-accordion-content>First panel</nb-accordion-content>
+      </nb-accordion-item>
+    </nb-accordion>
+  `,
+})
+class TriggerToneAccordionTokenTest {}
+
 describe('NbAccordion token surface', () => {
-  it('declares the expected default tokens on the component parts', async () => {
+  it('leaves default item visuals to component CSS token fallbacks', async () => {
     const fixture = await createFixture();
     const itemHost = findItemHost(fixture);
+    const itemBox = findItemBox(fixture);
+
+    expect(itemHost.style.cssText).not.toContain('--nb-resolved');
+    expect(itemBox.style.getPropertyValue('background')).toBe('');
+    expect(itemBox.style.getPropertyValue('color')).toBe('');
+    expect(itemBox.style.getPropertyValue('border-color')).toBe('');
+    expect(itemHost.style.getPropertyValue('--nb-accordion-item-bg')).toBe('');
+    expect(itemBox.style.getPropertyValue('border-radius')).toBe('');
+    expect(itemBox.style.getPropertyValue('box-shadow')).toBe('');
+    expect(itemBox.style.getPropertyValue('border-width')).toBe('');
+    expect(itemBox.style.cssText).not.toContain('--nb-resolved');
+  });
+
+  it('item inner div has no reactive class binding — styling is in component CSS', async () => {
+    const fixture = await createFixture();
+    const itemBox = findItemBox(fixture);
+
+    expect(itemBox.className.trim()).toBe('');
+    expect(itemBox.className).not.toContain('nb-main');
+    expect(itemBox.className).not.toContain('bg-(--nb-surface)');
+  });
+
+  it('item host does not carry legacy capability marker classes', async () => {
+    const fixture = await createFixture();
+    const itemHost = findItemHost(fixture);
+
+    expect(itemHost.classList.contains('nb-tone')).toBe(false);
+    expect(itemHost.classList.contains('nb-radius')).toBe(false);
+    expect(itemHost.classList.contains('nb-border-width')).toBe(false);
+  });
+
+  it('trigger button has no reactive class binding — styling is in component CSS', async () => {
+    const fixture = await createFixture();
+    const trigger = findTrigger(fixture);
+
+    expect(trigger.className.trim()).toBe('');
+    expect(trigger.style.getPropertyValue('background-color')).toBe('');
+    expect(trigger.style.getPropertyValue('color')).toBe('');
+    expect(trigger.className).not.toContain('nb-main');
+  });
+
+  it('trigger tone writes actual trigger colors without repainting item or content', async () => {
+    const fixture = await createFixture(TriggerToneAccordionTokenTest);
+    const itemBox = findItemBox(fixture);
+    const triggerHost = findTriggerHost(fixture);
     const trigger = findTrigger(fixture);
     const content = findContent(fixture);
 
-    expect(itemHost.style.getPropertyValue('--_nb-tone-bg-default')).toBe(
-      'var(--nb-surface)'
+    expect(triggerHost.getAttribute('data-tone')).toBe('yellow');
+    expect(trigger.style.getPropertyValue('background-color')).toBe(
+      'var(--nb-yellow)'
     );
-    expect(itemHost.style.getPropertyValue('--_nb-tone-fg-default')).toBe(
-      'var(--nb-surface-foreground)'
-    );
-    expect(
-      itemHost.style.getPropertyValue('--_nb-tone-border-color-default')
-    ).toBe('var(--nb-border)');
-    expect(itemHost.style.getPropertyValue('--nb-accordion-item-bg')).toBe('');
-    expect(
-      itemHost.style.getPropertyValue('--_nb-radius-default')
-    ).toBe('var(--nb-radius)');
-    expect(
-      itemHost.style.getPropertyValue('--_nb-shadow-default')
-    ).toBe(
-      'var(--nb-shadow-offset-x) var(--nb-shadow-offset-y) 0 0 var(--nb-shadow)'
-    );
-    expect(
-      itemHost.style.getPropertyValue('--_nb-border-width-default')
-    ).toBe('var(--nb-border-width)');
-    expect(trigger.className).toContain(
-      '[--nb-accordion-trigger-bg:var(--_nb-tone-bg-token)]'
-    );
-    expect(trigger.className).toContain(
-      '[--nb-accordion-trigger-fg:var(--_nb-tone-fg-token)]'
-    );
-    expect(content.className).toContain(
-      '[--nb-accordion-content-bg:var(--nb-surface)]'
-    );
-    expect(content.className).toContain(
-      '[--nb-accordion-content-fg:var(--nb-surface-foreground)]'
-    );
+    expect(trigger.style.getPropertyValue('color')).toBeTruthy();
+    expect(trigger.style.getPropertyValue('--nb-accordion-trigger-bg')).toBe('');
+    expect(itemBox.style.getPropertyValue('background')).toBe('');
+    expect(content.style.getPropertyValue('background-color')).toBe('');
+    expect(trigger.style.cssText).not.toContain('--nb-resolved');
   });
 
-  it('reads scoped tokens instead of global tokens directly', async () => {
+  it('content region has no reactive class binding and tracks state via data-state', async () => {
     const fixture = await createFixture();
-    const itemClass = findItemBox(fixture).className;
-    const triggerClass = findTrigger(fixture).className;
-    const contentClass = findContent(fixture).className;
+    const content = findContent(fixture);
 
-    expect(itemClass).toContain('nb-tone');
-    expect(itemClass).not.toContain('bg-(--nb-accordion-item-bg)');
-    expect(itemClass).not.toContain('text-(--nb-accordion-item-fg)');
-    expect(itemClass).toContain('border-[length:var(--nb-border-width-token,var(--_nb-border-width-default))]');
-    expect(itemClass).not.toContain('border-(--nb-accordion-item-border-color)');
-    expect(itemClass).toContain('rounded-[var(--nb-radius-token,var(--_nb-radius-default))]');
-    expect(itemClass).toContain('shadow-[var(--nb-shadow-token,var(--_nb-shadow-default))]');
-    expect(triggerClass).toContain('bg-(--nb-accordion-trigger-bg)');
-    expect(triggerClass).toContain('text-(--nb-accordion-trigger-fg)');
-    expect(triggerClass).toContain(
-      'focus-visible:ring-[var(--_nb-tone-border-color-token,var(--_nb-tone-border-color-default))]'
-    );
-    expect(triggerClass).toContain(
-      'border-b-[length:var(--nb-border-width-token,var(--_nb-border-width-default))]'
-    );
-    expect(triggerClass).toContain('border-b-[var(--_nb-tone-border-color-token,var(--_nb-tone-border-color-default))]');
-    expect(contentClass).toContain('bg-(--nb-accordion-content-bg)');
-    expect(contentClass).toContain('text-(--nb-accordion-content-fg)');
-    expect(`${itemClass} ${triggerClass} ${contentClass}`).not.toContain(
-      'bg-(--nb-main)'
-    );
-    expect(`${itemClass} ${triggerClass} ${contentClass}`).not.toContain(
-      'bg-(--nb-surface)'
-    );
-    expect(itemClass).not.toContain('rounded-nb');
-    expect(itemClass).not.toContain('shadow-nb');
-  });
-
-  it('does not regress the default item class shape', async () => {
-    const fixture = await createFixture();
-    const cls = findItemBox(fixture).className;
-
-    expect(cls).toContain('overflow-hidden');
-    expect(cls).toContain('border-[length:var(--nb-border-width-token,var(--_nb-border-width-default))]');
-  });
-
-  it('does not regress the default trigger class shape', async () => {
-    const fixture = await createFixture();
-    const cls = findTrigger(fixture).className;
-
-    expect(cls).toContain('flex');
-    expect(cls).toContain('min-h-14');
-    expect(cls).toContain('justify-between');
-    expect(cls).toContain('gap-4');
-    expect(cls).toContain('p-4');
-    expect(cls).toContain('text-left');
-    expect(cls).toContain('text-base');
-    expect(cls).toContain('font-bold');
-    expect(cls).toContain('transition-all');
-    expect(cls).toContain('focus-visible:outline-none');
-    expect(cls).toContain('focus-visible:ring-2');
-    expect(cls).toContain('disabled:opacity-50');
-    expect(cls).toContain('border-b-[length:var(--nb-border-width-token,var(--_nb-border-width-default))]');
-  });
-
-  it('does not regress the default content class shape', async () => {
-    const fixture = await createFixture();
-    const cls = findContent(fixture).className;
-
-    expect(cls).toContain('grid');
-    expect(cls).toContain('overflow-hidden');
-    expect(cls).toContain('text-sm');
-    expect(cls).toContain('font-medium');
-    expect(cls).toContain('transition-[grid-template-rows]');
-    expect(cls).toContain('duration-200');
-    expect(cls).toContain('ease-out');
-    expect(cls).toContain('grid-rows-[1fr]');
+    expect(content.className.trim()).toBe('');
+    expect(content.getAttribute('data-state')).toBe('open');
+    expect(content.getAttribute('aria-hidden')).toBe('false');
   });
 });
 
-async function createFixture(): Promise<
-  ComponentFixture<AccordionTokenTest>
-> {
+async function createFixture<T = AccordionTokenTest>(
+  component: new () => T = AccordionTokenTest as new () => T
+): Promise<ComponentFixture<T>> {
   await TestBed.configureTestingModule({
-    imports: [AccordionTokenTest],
+    imports: [component],
   }).compileComponents();
 
-  const fixture = TestBed.createComponent(AccordionTokenTest);
+  const fixture = TestBed.createComponent(component);
   fixture.detectChanges();
 
   return fixture;
 }
 
 function findItemBox(
-  fixture: ComponentFixture<AccordionTokenTest>
+  fixture: ComponentFixture<unknown>
 ): HTMLElement {
   return fixture.nativeElement.querySelector(
     'nb-accordion-item > div'
@@ -165,15 +141,23 @@ function findItemBox(
 }
 
 function findItemHost(
-  fixture: ComponentFixture<AccordionTokenTest>
+  fixture: ComponentFixture<unknown>
 ): HTMLElement {
   return fixture.nativeElement.querySelector(
     'nb-accordion-item'
   ) as HTMLElement;
 }
 
+function findTriggerHost(
+  fixture: ComponentFixture<unknown>
+): HTMLElement {
+  return fixture.nativeElement.querySelector(
+    'nb-accordion-trigger'
+  ) as HTMLElement;
+}
+
 function findTrigger(
-  fixture: ComponentFixture<AccordionTokenTest>
+  fixture: ComponentFixture<unknown>
 ): HTMLButtonElement {
   return fixture.nativeElement.querySelector(
     'nb-accordion-trigger button'
@@ -181,7 +165,7 @@ function findTrigger(
 }
 
 function findContent(
-  fixture: ComponentFixture<AccordionTokenTest>
+  fixture: ComponentFixture<unknown>
 ): HTMLElement {
   return fixture.nativeElement.querySelector('[role="region"]') as HTMLElement;
 }

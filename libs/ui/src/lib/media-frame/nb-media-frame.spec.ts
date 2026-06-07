@@ -57,23 +57,18 @@ describe('NbMediaFrame', () => {
     expect(frame.className).toContain('relative');
     expect(frame.className).toContain('isolate');
     expect(frame.className).toContain('overflow-hidden');
-    expect(frame.className).toContain('nb-border-width');
-    expect(frame.className).toContain('nb-tone');
+    expect(frame.className).not.toMatch(/(?:^|\s)nb-border-width(?:\s|$)/);
+    expect(frame.className).not.toMatch(/(?:^|\s)nb-tone(?:\s|$)/);
     expect(frame.className).not.toContain('bg-(--nb-media-frame-bg)');
     expect(frame.className).not.toContain('text-(--nb-media-frame-fg)');
-    expect(frame.className).toContain('nb-radius');
-    expect(frame.className).toContain('nb-shadow');
+    expect(frame.className).not.toMatch(/(?:^|\s)nb-radius(?:\s|$)/);
+    expect(frame.className).not.toMatch(/(?:^|\s)nb-shadow(?:\s|$)/);
     expect(frame.className).toContain('[&>img]:h-full');
     expect(frame.className).toContain('[&>img]:object-cover');
-    expect(frame.style.getPropertyValue('--_nb-tone-bg-default')).toBe(
-      'var(--nb-surface)'
-    );
-    expect(frame.style.getPropertyValue('--_nb-radius-default')).toBe(
-      '0.75rem'
-    );
-    expect(frame.style.getPropertyValue('--_nb-shadow-default')).toBe(
-      'none'
-    );
+    expect(frame.style.getPropertyValue('background')).toBe('');
+    expect(frame.style.getPropertyValue('border-radius')).toBe('');
+    expect(frame.style.getPropertyValue('box-shadow')).toBe('');
+    expect(frame.style.cssText).not.toContain('--nb-resolved');
   });
 
   it('maps tone, ratio, fit, radius, and shadow attributes', async () => {
@@ -88,18 +83,16 @@ describe('NbMediaFrame', () => {
     expect(frame.getAttribute('data-radius')).toBe('xl');
     expect(frame.getAttribute('data-shadow')).toBe('hard');
     expect(frame.getAttribute('data-border')).toBe('strong');
-    expect(frame.style.getPropertyValue('background-color')).toBe(
-      'var(--nb-lavender)'
-    );
+    // Explicit inputs win outright — literal values, no public hook.
+    expect(frame.style.getPropertyValue('background')).toBe('var(--nb-lavender)');
     expect(frame.className).toContain('aspect-[21/9]');
     expect(frame.className).toContain('[&>video]:object-contain');
     expect(frame.style.getPropertyValue('border-radius')).toBe('1rem');
     expect(frame.style.getPropertyValue('box-shadow')).toBe(
       '6px 6px 0 0 var(--nb-shadow)'
     );
-    expect(frame.style.getPropertyValue('border-width')).toBe(
-      '3px'
-    );
+    expect(frame.style.getPropertyValue('border-width')).toBe('3px');
+    expect(frame.style.cssText).not.toContain('--nb-resolved');
   });
 
   it('supports portrait media ratios', async () => {
@@ -122,7 +115,7 @@ describe('NbMediaFrame', () => {
     ['pink', 'var(--nb-pink)'],
     ['mint', 'var(--nb-mint)'],
     ['blue', 'var(--nb-blue)'],
-    ['black', 'rgb(0, 0, 0)'],
+    ['black', '#000000'],
   ] satisfies readonly [NbMediaFrameTone, string][])(
     'keeps the %s tone available for framed visual content',
     async (tone, color) => {
@@ -135,8 +128,13 @@ describe('NbMediaFrame', () => {
       ) as HTMLElement;
 
       expect(frame.getAttribute('data-tone')).toBe(tone);
-      expect(frame.style.getPropertyValue('background-color')).toBe(color);
+      if (color.startsWith('var(')) {
+        expect(frame.style.getPropertyValue('background')).toBe(color);
+      } else {
+        expect(frame.style.getPropertyValue('background')).toBeTruthy();
+      }
       expect(frame.style.getPropertyValue('--nb-media-frame-bg')).toBe('');
+      expect(frame.style.cssText).not.toContain('--nb-resolved');
     }
   );
 });

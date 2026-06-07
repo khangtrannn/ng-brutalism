@@ -124,15 +124,17 @@ import { DocsTokens } from '../../docs/docs-tokens';
 
       <section id="controlled">
         <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">Controlled</h2>
-        <docs-example [code]="controlledExampleTemplateCode">
+        <docs-example
+          previewPadding="compact"
+          [code]="controlledExampleTemplateCode"
+        >
           <div class="flex w-full max-w-xl flex-col gap-4">
             <div class="flex flex-wrap gap-3">
               <button
                 nbButton
                 size="sm"
-                tone="background"
+                tone="warning"
                 type="button"
-                style="--nb-button-bg: var(--nb-warning)"
                 (click)="controlledValue.set('overview')"
               >
                 Overview
@@ -140,9 +142,8 @@ import { DocsTokens } from '../../docs/docs-tokens';
               <button
                 nbButton
                 size="sm"
-                tone="background"
+                tone="success"
                 type="button"
-                style="--nb-button-bg: var(--nb-success)"
                 (click)="controlledValue.set('details')"
               >
                 Details
@@ -150,9 +151,7 @@ import { DocsTokens } from '../../docs/docs-tokens';
               <button
                 nbButton
                 size="sm"
-                tone="background"
                 type="button"
-                style="--nb-button-bg: var(--nb-primary)"
                 (click)="controlledValue.set(null)"
               >
                 Collapse All
@@ -161,20 +160,14 @@ import { DocsTokens } from '../../docs/docs-tokens';
 
             <nb-accordion [(value)]="controlledValue">
               <nb-accordion-item value="overview">
-                <nb-accordion-trigger
-                  style="--nb-accordion-trigger-bg: #b8a4ff"
-                  >Overview</nb-accordion-trigger
-                >
+                <nb-accordion-trigger>Overview</nb-accordion-trigger>
                 <nb-accordion-content>
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                 </nb-accordion-content>
               </nb-accordion-item>
 
               <nb-accordion-item value="details">
-                <nb-accordion-trigger
-                  style="--nb-accordion-trigger-bg: #b8a4ff"
-                  >Details</nb-accordion-trigger
-                >
+                <nb-accordion-trigger>Details</nb-accordion-trigger>
                 <nb-accordion-content>
                   Duis aute irure dolor in reprehenderit in voluptate velit.
                 </nb-accordion-content>
@@ -365,7 +358,8 @@ import { DocsTokens } from '../../docs/docs-tokens';
                   nb-accordion-trigger
                 </td>
                 <td class="px-4 py-3">
-                  Toggles its parent item open or closed. Has no inputs.
+                  Toggles its parent item open or closed. Supports optional
+                  <code class="font-mono">tone</code>.
                 </td>
               </tr>
               <tr>
@@ -423,9 +417,8 @@ readonly controlledValue = signal<string | string[] | null>('overview');`;
     <button
       nbButton
       size="sm"
-      tone="background"
+      tone="warning"
       type="button"
-      style="--nb-button-bg: var(--nb-warning)"
       (click)="controlledValue.set('overview')"
     >
       Overview
@@ -433,9 +426,8 @@ readonly controlledValue = signal<string | string[] | null>('overview');`;
     <button
       nbButton
       size="sm"
-      tone="background"
+      tone="success"
       type="button"
-      style="--nb-button-bg: var(--nb-success)"
       (click)="controlledValue.set('details')"
     >
       Details
@@ -443,9 +435,7 @@ readonly controlledValue = signal<string | string[] | null>('overview');`;
     <button
       nbButton
       size="sm"
-      tone="background"
       type="button"
-      style="--nb-button-bg: var(--nb-primary)"
       (click)="controlledValue.set(null)"
     >
       Collapse All
@@ -454,14 +444,14 @@ readonly controlledValue = signal<string | string[] | null>('overview');`;
 
   <nb-accordion [(value)]="controlledValue">
     <nb-accordion-item value="overview">
-      <nb-accordion-trigger style="--nb-accordion-trigger-bg: #b8a4ff">Overview</nb-accordion-trigger>
+      <nb-accordion-trigger>Overview</nb-accordion-trigger>
       <nb-accordion-content>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit.
       </nb-accordion-content>
     </nb-accordion-item>
 
     <nb-accordion-item value="details">
-      <nb-accordion-trigger style="--nb-accordion-trigger-bg: #b8a4ff">Details</nb-accordion-trigger>
+      <nb-accordion-trigger>Details</nb-accordion-trigger>
       <nb-accordion-content>
         Duis aute irure dolor in reprehenderit in voluptate velit.
       </nb-accordion-content>

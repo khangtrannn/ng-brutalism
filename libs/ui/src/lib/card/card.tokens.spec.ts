@@ -40,38 +40,29 @@ import {
 class CardTokenTest {}
 
 describe('NbCard token surface', () => {
-  it('declares the expected default tokens on the base host', async () => {
+  it('leaves default visuals to CSS token fallbacks', async () => {
     const fixture = await createFixture();
     const card = findCard(fixture);
 
-    expect(card.style.getPropertyValue('--_nb-tone-bg-default')).toBe(
-      'var(--nb-background)'
-    );
-    expect(card.style.getPropertyValue('--_nb-tone-fg-default')).toBe(
-      'var(--nb-foreground)'
-    );
-    expect(card.style.getPropertyValue('--_nb-tone-border-color-default')).toBe(
-      'var(--nb-border)'
-    );
+    expect(card.style.getPropertyValue('background')).toBe('');
+    expect(card.style.getPropertyValue('color')).toBe('');
+    expect(card.style.getPropertyValue('border-color')).toBe('');
     expect(card.style.getPropertyValue('--nb-card-bg')).toBe('');
-    expect(card.style.getPropertyValue('--_nb-radius-default')).toBe('0.75rem');
-    expect(card.style.getPropertyValue('--_nb-shadow-default')).toBe(
-      'var(--nb-shadow-offset-x) var(--nb-shadow-offset-y) 0 0 var(--nb-shadow)'
-    );
-    expect(card.style.getPropertyValue('--_nb-border-width-default')).toBe(
-      'var(--nb-border-width)'
-    );
+    expect(card.style.getPropertyValue('border-radius')).toBe('');
+    expect(card.style.getPropertyValue('box-shadow')).toBe('');
+    expect(card.style.getPropertyValue('border-width')).toBe('');
+    expect(card.style.cssText).not.toContain('--nb-resolved');
   });
 
-  it('reads its scoped tokens instead of global tokens directly', async () => {
+  it('does not emit legacy token utility classes', async () => {
     const fixture = await createFixture();
     const card = findCard(fixture);
     const cls = card.className;
 
-    expect(cls).toContain('nb-tone');
-    expect(cls).toContain('nb-border-width');
-    expect(cls).toContain('nb-radius');
-    expect(cls).toContain('nb-shadow');
+    expect(cls).not.toMatch(/(?:^|\s)nb-tone(?:\s|$)/);
+    expect(cls).not.toMatch(/(?:^|\s)nb-border-width(?:\s|$)/);
+    expect(cls).not.toMatch(/(?:^|\s)nb-radius(?:\s|$)/);
+    expect(cls).not.toMatch(/(?:^|\s)nb-shadow(?:\s|$)/);
     expect(cls).not.toContain('bg-(--nb-card-bg)');
     expect(cls).not.toContain('text-(--nb-card-fg)');
     expect(cls).not.toContain('border-(--nb-card-border-color)');
@@ -91,7 +82,6 @@ describe('NbCard token surface', () => {
     expect(cls).toContain('flex-col');
     expect(cls).toContain('gap-6');
     expect(cls).toContain('py-6');
-    expect(cls).toContain('nb-border-width');
     expect(cls).toContain('font-medium');
   });
 

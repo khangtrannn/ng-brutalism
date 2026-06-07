@@ -102,13 +102,14 @@ const componentTokens: Record<DocsTokenComponent, DocsToken[]> = {
     },
     {
       name: '--nb-accordion-trigger-bg',
-      defaultValue: 'var(--nb-main)',
-      usage: 'Accordion trigger background',
+      defaultValue: 'var(--nb-accordion-item-bg, var(--nb-surface))',
+      usage: 'Accordion trigger background. Reassigned by trigger tone.',
     },
     {
       name: '--nb-accordion-trigger-fg',
-      defaultValue: 'var(--nb-main-foreground)',
-      usage: 'Accordion trigger text and icon color',
+      defaultValue:
+        'var(--nb-accordion-item-fg, var(--nb-surface-foreground))',
+      usage: 'Accordion trigger text and icon color. Reassigned by trigger tone.',
     },
     {
       name: '--nb-accordion-content-bg',

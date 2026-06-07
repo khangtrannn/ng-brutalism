@@ -8,6 +8,7 @@ import {
 import { DocsCodeBlock } from './docs-code-block';
 
 type DocsExampleTab = 'preview' | 'code';
+type DocsExamplePreviewPadding = 'default' | 'compact';
 
 @Component({
     selector: 'docs-example',
@@ -40,7 +41,8 @@ type DocsExampleTab = 'preview' | 'code';
       <div>
         @if (activeTab() === 'preview') {
           <div
-            class="docs-preview-grid flex min-h-[240px] items-center justify-center px-5 py-10 sm:px-10 sm:py-20"
+            class="docs-preview-grid"
+            [class.docs-preview-grid--compact]="previewPadding() === 'compact'"
           >
             <ng-content />
           </div>
@@ -95,11 +97,30 @@ type DocsExampleTab = 'preview' | 'code';
       }
 
       .docs-preview-grid {
+        display: flex;
+        min-height: 240px;
+        align-items: center;
+        justify-content: center;
+        padding: 2.5rem 1.25rem;
         background-color: var(--nb-paper);
         background-image:
           linear-gradient(rgba(0, 0, 0, 0.08) 1px, transparent 1px),
           linear-gradient(90deg, rgba(0, 0, 0, 0.08) 1px, transparent 1px);
         background-size: 24px 24px, 24px 24px;
+      }
+
+      .docs-preview-grid--compact {
+        padding-block: 1.5rem;
+      }
+
+      @media (min-width: 640px) {
+        .docs-preview-grid {
+          padding: 5rem 2.5rem;
+        }
+
+        .docs-preview-grid--compact {
+          padding-block: 2.5rem;
+        }
       }
     `,
     ],
@@ -107,5 +128,6 @@ type DocsExampleTab = 'preview' | 'code';
 })
 export class DocsExample {
   readonly code = input.required<string>();
+  readonly previewPadding = input<DocsExamplePreviewPadding>('default');
   protected readonly activeTab = signal<DocsExampleTab>('preview');
 }

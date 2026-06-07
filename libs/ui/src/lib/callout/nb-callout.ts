@@ -1,4 +1,4 @@
-import { Directive, computed, input } from '@angular/core';
+import { Directive, computed, inject, input } from '@angular/core';
 
 import { nbClass } from '../core/class';
 import {
@@ -43,12 +43,24 @@ export type NbCalloutRadius = NbRadius;
     '[attr.data-layout]': 'layout()',
     '[attr.data-radius]': 'radius() ?? null',
     '[style.--nb-callout-radius]': 'radiusStyle()',
+    '[style.background]': 'backgroundStyle()',
+    '[style.color]': 'foregroundStyle()',
+    '[style.border-color]': 'borderColorStyle()',
+    '[style.box-shadow]': 'shadowStyle()',
   },
 })
 export class NbCallout {
   readonly size = input<NbCalloutSize>('lg');
   readonly layout = input<NbCalloutLayout>('inline');
   readonly radius = input<NbCalloutRadius | undefined>(undefined);
+
+  private readonly tone = inject(NbToneCapability);
+  private readonly shadow = inject(NbShadowCapability);
+
+  protected readonly backgroundStyle = computed(() => this.tone.background());
+  protected readonly foregroundStyle = computed(() => this.tone.foreground());
+  protected readonly borderColorStyle = computed(() => this.tone.borderColor());
+  protected readonly shadowStyle = computed(() => this.shadow.value());
 
   protected readonly classes = computed(() =>
     nbClass(

@@ -65,9 +65,11 @@ describe('NbCluster', () => {
     expect(cluster.getAttribute('data-padding')).toBe('none');
     expect(cluster.className).toContain('flex');
     expect(cluster.className).toContain('min-w-0');
-    expect(cluster.className).toContain('nb-gap');
-    expect(cluster.className).toContain('nb-padding');
-    expect(cluster.style.getPropertyValue('--_nb-gap-default')).toBe('0.75rem');
+    expect(cluster.className).not.toMatch(/(?:^|\s)nb-gap(?:\s|$)/);
+    expect(cluster.className).not.toMatch(/(?:^|\s)nb-padding(?:\s|$)/);
+    expect(cluster.style.getPropertyValue('gap')).toBe('');
+    expect(cluster.style.getPropertyValue('padding')).toBe('');
+    expect(cluster.style.cssText).not.toContain('--nb-resolved');
     expect(cluster.className).toContain('items-center');
     expect(cluster.className).toContain('justify-start');
     expect(cluster.className).toContain('flex-wrap');
@@ -79,7 +81,7 @@ describe('NbCluster', () => {
 
     expect(cluster.getAttribute('data-separator')).toBe('none');
     expect(cluster.className).not.toContain('border-inline-start');
-    expect(cluster.className).toContain('nb-gap');
+    expect(cluster.className).not.toMatch(/(?:^|\s)nb-gap(?:\s|$)/);
   });
 
   it('dashed separator switches to row-gap-only mode and renders separators', async () => {
@@ -90,8 +92,8 @@ describe('NbCluster', () => {
     expect(cluster.className).toContain('gap-x-0');
     expect(cluster.style.getPropertyValue('gap')).toBe('1rem');
     expect(cluster.style.getPropertyValue('column-gap')).toBe('0px');
-    expect(cluster.className).toContain(
-      '[--nb-cluster-separator-gap:calc(var(--_nb-gap-resolved)*0.5)]'
+    expect(cluster.style.getPropertyValue('--nb-cluster-separator-gap')).toBe(
+      'calc(1rem * 0.5)'
     );
     expect(cluster.className).toContain('[&>*+*]:[margin-inline-start:var(--nb-cluster-separator-gap)]');
     expect(cluster.className).toContain('[--nb-cluster-separator-color:var(--nb-border)]');
@@ -136,8 +138,9 @@ describe('NbCluster', () => {
     const cluster = fixture.nativeElement.querySelector('[nbCluster]') as HTMLElement;
 
     expect(cluster.getAttribute('data-padding')).toBe('lg');
-    expect(cluster.className).toContain('nb-padding');
+    expect(cluster.className).not.toMatch(/(?:^|\s)nb-padding(?:\s|$)/);
     expect(cluster.style.getPropertyValue('padding')).toBe('1.5rem');
+    expect(cluster.style.cssText).not.toContain('--nb-resolved');
   });
 
   it('maps gap, alignment, justification, and wrapping', async () => {

@@ -1,4 +1,4 @@
-import { Directive, computed, input } from '@angular/core';
+import { Directive, computed, inject, input } from '@angular/core';
 
 import { nbClass } from '../core/class';
 import {
@@ -6,6 +6,7 @@ import {
   NbPaddingCapability,
   NB_STYLE_DEFAULTS,
   NB_STYLE_NAMESPACE,
+  nbGapFallback,
   type NbStyleDefaults,
 } from '../core/capabilities';
 import type { NbPadding } from '../tokens/padding';
@@ -49,6 +50,9 @@ export type NbClusterSeparator = 'none' | 'solid' | 'dashed' | 'thick';
     '[attr.data-wrap]': 'wrap()',
     '[attr.data-separator]': 'separator()',
     '[style.column-gap]': 'separatorColumnGapStyle()',
+    '[style.--nb-cluster-separator-gap]': 'separatorGapStyle()',
+    '[style.gap]': 'gapStyle()',
+    '[style.padding]': 'paddingStyle()',
   },
 })
 export class NbCluster {
@@ -57,8 +61,24 @@ export class NbCluster {
   readonly wrap = input<NbClusterWrap>('wrap');
   readonly separator = input<NbClusterSeparator>('none');
 
+  private readonly gap = inject(NbGapCapability);
+  private readonly paddingCapability = inject(NbPaddingCapability);
+
+  protected readonly gapStyle = computed(() => this.gap.value());
+  protected readonly paddingStyle = computed(() => this.paddingCapability.value());
+
   protected readonly separatorColumnGapStyle = computed(() =>
     this.separator() === 'none' ? null : '0px',
+  );
+
+  // The separator's inline spacing is half the cluster's effective gap. This
+  // needs the actual rendered gap (whether from an explicit input or the
+  // `--nb-cluster-gap` hook fallback), so it reads the capability's
+  // always-resolved value rather than duplicating CSS resolution.
+  protected readonly separatorGapStyle = computed(() =>
+    this.separator() === 'none'
+      ? null
+      : `calc(${this.gap.value() ?? nbGapFallback('cluster', 'md')} * 0.5)`,
   );
 
   protected readonly classes = computed(() =>
@@ -124,7 +144,6 @@ export class NbCluster {
 
 // Written as module-level constants so Tailwind's static scanner emits the classes.
 const separatorBaseClass = nbClass(
-  '[--nb-cluster-separator-gap:calc(var(--_nb-gap-resolved)*0.5)]',
   '[--nb-cluster-separator-color:var(--nb-border)]',
   '[&>*+*]:[margin-inline-start:var(--nb-cluster-separator-gap)]',
   '[&>*+*]:[padding-inline-start:var(--nb-cluster-separator-gap)]',

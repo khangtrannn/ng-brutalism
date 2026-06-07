@@ -25,20 +25,34 @@ import { NB_INPUT_GROUP } from '../input-group/input-group.types';
   ],
   host: {
     '[class]': 'classes()',
-    '[style.background-color]': 'isInGroup ? "transparent" : null',
-    '[style.border-width]': 'isInGroup ? "0" : null',
+    '[style.background-color]': 'backgroundStyle()',
+    '[style.color]': 'foregroundStyle()',
+    '[style.border-color]': 'borderColorStyle()',
+    '[style.border-width]': 'borderWidthStyle()',
+    '[style.--nb-select-focus-ring-color]': 'focusRingColorStyle()',
   },
 })
 export class NbNativeSelect {
   private readonly group = inject(NB_INPUT_GROUP, { optional: true });
   protected readonly isInGroup = this.group !== null;
 
+  private readonly tone = inject(NbToneCapability);
+  private readonly border = inject(NbBorderCapability);
+
+  protected readonly backgroundStyle = computed(() =>
+    this.isInGroup ? 'transparent' : this.tone.background(),
+  );
+  protected readonly foregroundStyle = computed(() => this.tone.foreground());
+  protected readonly borderColorStyle = computed(() => this.tone.borderColor());
+  protected readonly borderWidthStyle = computed(() =>
+    this.isInGroup ? '0' : this.border.width(),
+  );
+  protected readonly focusRingColorStyle = computed(() => this.tone.borderColor());
+
   protected readonly classes = computed(() => {
     const inGroup = this.isInGroup;
 
     return nbClass(
-      '[--nb-select-fg:var(--_nb-tone-fg-token,var(--_nb-tone-fg-default))]',
-      '[--nb-select-border:var(--_nb-tone-border-color-token,var(--_nb-tone-border-color-default))]',
       '[--nb-select-radius:var(--nb-radius)]',
       'flex font-medium',
       'appearance-none',
@@ -48,12 +62,9 @@ export class NbNativeSelect {
       inGroup
         ? ['flex-1 min-w-0', 'focus-visible:outline-none']
         : [
-            'bg-(--nb-select-bg)',
-            'text-(--nb-select-fg)',
-            'border-(--nb-select-border)',
             'rounded-(--nb-select-radius)',
             'shadow-nb',
-            'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--nb-select-border)',
+            'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--nb-select-focus-ring-color,var(--nb-select-border-color,var(--nb-border)))]',
             'focus-visible:ring-offset-2 focus-visible:shadow-none',
           ]
     );

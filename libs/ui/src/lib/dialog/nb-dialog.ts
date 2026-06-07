@@ -3,6 +3,7 @@ import {
   Component,
   ElementRef,
   PLATFORM_ID,
+  computed,
   inject,
   viewChild,
 } from '@angular/core';
@@ -27,6 +28,12 @@ import { NB_DIALOG, type NbDialogController } from './dialog.types';
       #dialogEl
       data-nb-dialog
       [class]="classes"
+      [style.background]="backgroundStyle()"
+      [style.color]="foregroundStyle()"
+      [style.border-color]="borderColorStyle()"
+      [style.border-radius]="radiusStyle()"
+      [style.box-shadow]="shadowStyle()"
+      [style.border-width]="borderWidthStyle()"
       (click)="dismissOnBackdrop($event)"
     >
       <ng-content />
@@ -58,10 +65,20 @@ export class NbDialog implements NbDialogController {
   private readonly isBrowser = isPlatformBrowser(inject(PLATFORM_ID));
   private readonly dialogEl =
     viewChild.required<ElementRef<HTMLDialogElement>>('dialogEl');
+  private readonly tone = inject(NbToneCapability);
+  private readonly radius = inject(NbRadiusCapability);
+  private readonly shadow = inject(NbShadowCapability);
+  private readonly border = inject(NbBorderCapability);
+
+  protected readonly backgroundStyle = computed(() => this.tone.background());
+  protected readonly foregroundStyle = computed(() => this.tone.foreground());
+  protected readonly borderColorStyle = computed(() => this.tone.borderColor());
+  protected readonly radiusStyle = computed(() => this.radius.value());
+  protected readonly shadowStyle = computed(() => this.shadow.value());
+  protected readonly borderWidthStyle = computed(() => this.border.width());
 
   protected readonly classes = nbClass(
     'w-[calc(100vw-2rem)] max-w-2xl',
-    'nb-tone',
     'm-auto p-0 max-h-[90vh] overflow-x-hidden',
     'open:flex open:flex-col'
   );

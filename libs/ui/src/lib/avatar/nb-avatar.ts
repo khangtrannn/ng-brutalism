@@ -1,4 +1,10 @@
-import { ChangeDetectionStrategy, Component, input } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  inject,
+  input,
+} from '@angular/core';
 
 import { nbClass } from '../core/class';
 import {
@@ -52,12 +58,30 @@ export type NbAvatarBorder = NbBorderStrength;
     '[attr.data-slot]': '"avatar"',
     '[attr.role]': '"img"',
     '[attr.aria-label]': 'alt()',
+    '[style.background]': 'backgroundStyle()',
+    '[style.color]': 'foregroundStyle()',
+    '[style.border-color]': 'borderColorStyle()',
+    '[style.border-radius]': 'radiusStyle()',
+    '[style.box-shadow]': 'shadowStyle()',
+    '[style.border-width]': 'borderWidthStyle()',
   },
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NbAvatar {
   readonly src = input<string | undefined>(undefined);
   readonly alt = input<string>('');
+
+  private readonly tone = inject(NbToneCapability);
+  private readonly radius = inject(NbRadiusCapability);
+  private readonly shadow = inject(NbShadowCapability);
+  private readonly border = inject(NbBorderCapability);
+
+  protected readonly backgroundStyle = computed(() => this.tone.background());
+  protected readonly foregroundStyle = computed(() => this.tone.foreground());
+  protected readonly borderColorStyle = computed(() => this.tone.borderColor());
+  protected readonly radiusStyle = computed(() => this.radius.value());
+  protected readonly shadowStyle = computed(() => this.shadow.value());
+  protected readonly borderWidthStyle = computed(() => this.border.width());
 
   protected readonly classes = nbClass(
     'relative inline-flex h-10 w-10 shrink-0 overflow-hidden',

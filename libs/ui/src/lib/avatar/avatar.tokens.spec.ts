@@ -11,37 +11,28 @@ import { NbAvatar } from './nb-avatar';
 class AvatarTokenTest {}
 
 describe('NbAvatar token surface', () => {
-  it('declares the expected default tokens on the base host', async () => {
+  it('leaves default visuals to CSS token fallbacks', async () => {
     const fixture = await createFixture();
     const avatar = findAvatar(fixture);
 
-    expect(avatar.style.getPropertyValue('--_nb-tone-bg-default')).toBe(
-      'var(--nb-surface)'
-    );
-    expect(avatar.style.getPropertyValue('--_nb-tone-fg-default')).toBe(
-      'var(--nb-surface-foreground)'
-    );
-    expect(avatar.style.getPropertyValue('--_nb-tone-border-color-default')).toBe(
-      'var(--nb-border)'
-    );
+    expect(avatar.style.getPropertyValue('background')).toBe('');
+    expect(avatar.style.getPropertyValue('color')).toBe('');
+    expect(avatar.style.getPropertyValue('border-color')).toBe('');
     expect(avatar.style.getPropertyValue('--nb-avatar-bg')).toBe('');
-    expect(avatar.style.getPropertyValue('--_nb-radius-default')).toBe(
-      '9999px'
-    );
-    expect(avatar.style.getPropertyValue('--_nb-shadow-default')).toBe(
-      '2px 2px 0 0 var(--nb-shadow)'
-    );
+    expect(avatar.style.getPropertyValue('border-radius')).toBe('');
+    expect(avatar.style.getPropertyValue('box-shadow')).toBe('');
+    expect(avatar.style.cssText).not.toContain('--nb-resolved');
   });
 
-  it('reads its scoped tokens instead of global tokens directly', async () => {
+  it('does not emit legacy token utility classes', async () => {
     const fixture = await createFixture();
     const avatar = findAvatar(fixture);
     const cls = avatar.className;
 
-    expect(cls).toContain('nb-tone');
-    expect(cls).toContain('nb-border-width');
-    expect(cls).toContain('nb-radius');
-    expect(cls).toContain('nb-shadow');
+    expect(cls).not.toMatch(/(?:^|\s)nb-tone(?:\s|$)/);
+    expect(cls).not.toMatch(/(?:^|\s)nb-border-width(?:\s|$)/);
+    expect(cls).not.toMatch(/(?:^|\s)nb-radius(?:\s|$)/);
+    expect(cls).not.toMatch(/(?:^|\s)nb-shadow(?:\s|$)/);
     expect(cls).not.toContain('bg-(--nb-avatar-bg)');
     expect(cls).not.toContain('text-(--nb-avatar-fg)');
     expect(cls).not.toContain('border-(--nb-avatar-border-color)');
@@ -62,7 +53,6 @@ describe('NbAvatar token surface', () => {
     expect(cls).toContain('w-10');
     expect(cls).toContain('shrink-0');
     expect(cls).toContain('overflow-hidden');
-    expect(cls).toContain('nb-border-width');
     expect(cls).toContain('font-bold');
     expect(cls).toContain('text-sm');
     expect(cls).toContain('items-center');

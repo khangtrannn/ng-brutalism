@@ -18,10 +18,8 @@ body {
 
 /* Zero-specificity defaults: any consumer Tailwind utility on the element wins
    without needing the `!` (important) suffix. Tokens are exposed for theming.
-   Wrapped in @layer base so Tailwind v4 utilities (in @layer utilities) win
-   over these unlayered defaults — without this, the cascade-layer rule
-   "unlayered author > layered author" makes the :where() rule beat any
-   utility regardless of specificity. */
+   Primitive visual defaults live in @layer components so they sit above
+   Tailwind's base reset and below @layer utilities. */
 
 @layer base {
   :where([data-nb-reset-margin]) {
@@ -111,9 +109,200 @@ body {
     padding: 1rem 1.5rem;
     background-color: var(--nb-dialog-actions-bg);
   }
+}
 
-  :where(input[nbInput], textarea[nbTextarea]) {
-    background-color: var(--nb-input-bg, var(--nb-field-bg));
+@layer components {
+  :where([data-nb-title]) {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: flex-start;
+    align-self: flex-start;
+    max-width: 100%;
+    font-size: var(--nb-title-font-size, 1.75rem);
+    font-weight: var(--nb-title-font-weight, 900);
+    line-height: var(--nb-title-line-height, 1.05);
+  }
+
+  :where(button[nbButton], a[nbButton]) {
+    border-style: solid;
+    background: var(--nb-button-bg, var(--nb-primary));
+    color: var(--nb-button-fg, var(--nb-primary-foreground));
+    border-color: var(--nb-button-border-color, var(--nb-border));
+    border-width: var(--nb-button-border-width, var(--nb-border-width));
+    border-radius: var(--nb-button-radius, var(--nb-radius));
+    box-shadow: var(
+      --nb-button-shadow,
+      var(--nb-shadow-offset-x) var(--nb-shadow-offset-y) 0 0 var(--nb-shadow)
+    );
+  }
+
+  :where(button[nbIconButton]) {
+    border-style: solid;
+    background: var(--nb-icon-button-bg, var(--nb-surface));
+    color: var(--nb-icon-button-fg, var(--nb-surface-foreground));
+    border-color: var(--nb-icon-button-border-color, var(--nb-border));
+    border-width: var(--nb-icon-button-border-width, var(--nb-border-width));
+    border-radius: var(--nb-icon-button-radius, 0px);
+    box-shadow: var(
+      --nb-icon-button-shadow,
+      var(--nb-shadow-offset-x) var(--nb-shadow-offset-y) 0 0 var(--nb-shadow)
+    );
+  }
+
+  :where(span[nbBadge]) {
+    border-style: solid;
+    background: var(--nb-badge-bg, #ffffff);
+    color: var(--nb-badge-fg, #000000);
+    border-color: var(--nb-badge-border-color, var(--nb-border));
+    border-width: var(--nb-badge-border-width, var(--nb-border-width));
+    border-radius: var(--nb-badge-radius, 9999px);
+    box-shadow: var(--nb-badge-shadow, 2px 2px 0 0 var(--nb-shadow));
+  }
+
+  :where(nb-avatar) {
+    border-style: solid;
+    background: var(--nb-avatar-bg, var(--nb-surface));
+    color: var(--nb-avatar-fg, var(--nb-surface-foreground));
+    border-color: var(--nb-avatar-border-color, var(--nb-border));
+    border-width: var(--nb-avatar-border-width, var(--nb-border-width));
+    border-radius: var(--nb-avatar-radius, 9999px);
+    box-shadow: var(--nb-avatar-shadow, 2px 2px 0 0 var(--nb-shadow));
+  }
+
+  :where(span[nbChip]) {
+    border-style: solid;
+    background: var(--nb-chip-bg, var(--nb-surface));
+    color: var(--nb-chip-fg, var(--nb-surface-foreground));
+    border-color: var(--nb-chip-border-color, var(--nb-border));
+    border-width: var(--nb-chip-border-width, var(--nb-border-width));
+    border-radius: var(--nb-chip-radius, 0px);
+    box-shadow: var(--nb-chip-shadow, 2px 2px 0 0 var(--nb-shadow));
+  }
+
+  :where(nb-card) {
+    border-style: solid;
+    background: var(--nb-card-bg, var(--nb-background));
+    color: var(--nb-card-fg, var(--nb-foreground));
+    border-color: var(--nb-card-border-color, var(--nb-border));
+    border-width: var(--nb-card-border-width, var(--nb-border-width));
+    border-radius: var(--nb-card-radius, 0.75rem);
+    box-shadow: var(
+      --nb-card-shadow,
+      var(--nb-shadow-offset-x) var(--nb-shadow-offset-y) 0 0 var(--nb-shadow)
+    );
+  }
+
+  :where(nb-image-card) {
+    border-style: solid;
+    background: var(--nb-image-card-bg, var(--nb-background));
+    color: var(--nb-image-card-fg, var(--nb-foreground));
+    border-color: var(--nb-image-card-border-color, var(--nb-border));
+    border-width: var(--nb-image-card-border-width, var(--nb-border-width));
+    border-radius: var(--nb-image-card-radius, var(--nb-radius));
+    box-shadow: var(
+      --nb-image-card-shadow,
+      var(--nb-shadow-offset-x) var(--nb-shadow-offset-y) 0 0 var(--nb-shadow)
+    );
+  }
+
+  :where([nbMediaFrame]) {
+    border-style: solid;
+    background: var(--nb-media-frame-bg, var(--nb-surface));
+    color: var(--nb-media-frame-fg, var(--nb-surface-foreground));
+    border-color: var(--nb-media-frame-border-color, var(--nb-border));
+    border-width: var(--nb-media-frame-border-width, var(--nb-border-width));
+    border-radius: var(--nb-media-frame-radius, 0.75rem);
+    box-shadow: var(--nb-media-frame-shadow, none);
+  }
+
+  :where([nbSurface]) {
+    border-style: solid;
+    background: var(--nb-surface-bg, var(--nb-surface));
+    color: var(--nb-surface-fg, var(--nb-surface-foreground));
+    border-color: var(--nb-surface-border-color, var(--nb-border));
+    border-width: var(--nb-surface-border-width, var(--nb-border-width));
+    border-radius: var(--nb-surface-radius, var(--nb-radius));
+    box-shadow: var(
+      --nb-surface-shadow,
+      var(--nb-shadow-offset-x) var(--nb-shadow-offset-y) 0 0 var(--nb-shadow)
+    );
+    padding: var(--nb-surface-padding, 0px);
+  }
+
+  :where([data-nb-section]) {
+    padding: var(--nb-section-padding, 1rem);
+  }
+
+  :where([data-nb-stack]) {
+    gap: var(--nb-stack-gap, 0.75rem);
+  }
+
+  :where([data-nb-cluster]) {
+    gap: var(--nb-cluster-gap, 0.75rem);
+    padding: var(--nb-cluster-padding, 0px);
+  }
+
+  :where([data-nb-split]) {
+    gap: var(--nb-split-gap, 1rem);
+    padding: var(--nb-split-padding, 0px);
+  }
+
+  :where([data-nb-media-item][data-variant="boxed"], [data-nb-media-item][data-variant="chip"]) {
+    background: var(--nb-media-item-bg, var(--nb-surface));
+    color: var(--nb-media-item-fg, var(--nb-surface-foreground));
+    border-color: var(--nb-media-item-border-color, var(--nb-border));
+  }
+
+  :where([nbCallout]) {
+    border-style: solid;
+    background: var(--nb-callout-bg, var(--nb-yellow));
+    color: var(--nb-callout-fg, #000000);
+    border-color: var(--nb-callout-border-color, var(--nb-border));
+    box-shadow: var(--nb-callout-shadow, 6px 6px 0 0 var(--nb-shadow));
+  }
+
+  :where(input[nbInput]) {
+    background-color: var(--nb-input-bg, var(--nb-surface));
+    color: var(--nb-input-fg, var(--nb-surface-foreground));
+    border-color: var(--nb-input-border-color, var(--nb-border));
+    border-width: var(--nb-input-border-width, var(--nb-border-width));
+    border-style: solid;
+    border-radius: var(--nb-input-radius, var(--nb-radius));
+    box-shadow: var(
+      --nb-input-shadow,
+      var(--nb-shadow-offset-x) var(--nb-shadow-offset-y) 0 var(--nb-shadow)
+    );
+  }
+
+  :where(textarea[nbTextarea]) {
+    background-color: var(--nb-textarea-bg, var(--nb-surface));
+    color: var(--nb-textarea-fg, var(--nb-surface-foreground));
+    border-color: var(--nb-textarea-border-color, var(--nb-border));
+    border-width: var(--nb-textarea-border-width, var(--nb-border-width));
+    border-style: solid;
+    border-radius: var(--nb-textarea-radius, var(--nb-radius));
+    box-shadow: var(
+      --nb-textarea-shadow,
+      var(--nb-shadow-offset-x) var(--nb-shadow-offset-y) 0 var(--nb-shadow)
+    );
+  }
+
+  :where(nb-select) {
+    background-color: var(--nb-select-bg, var(--nb-surface));
+    color: var(--nb-select-fg, var(--nb-surface-foreground));
+    border-color: var(--nb-select-border-color, var(--nb-border));
+    border-width: var(--nb-select-border-width, var(--nb-border-width));
+    border-style: solid;
+  }
+
+  :where(dialog[data-nb-dialog]) {
+    border-style: solid;
+    background: var(--nb-dialog-bg, #ffffff);
+    color: var(--nb-dialog-fg, #000000);
+    border-color: var(--nb-dialog-border-color, var(--nb-border));
+    border-width: var(--nb-dialog-border-width, var(--nb-border-width));
+    border-radius: var(--nb-dialog-radius, 0.25rem);
+    box-shadow: var(--nb-dialog-shadow, 6px 6px 0 0 var(--nb-shadow));
   }
 
   :where(input[nbInput]) {
@@ -151,9 +340,15 @@ body {
     font-family: var(--nb-font-mono, monospace);
     font-size: 1rem;
     font-weight: 700;
-    background-color: var(
-      --nb-select-bg,
-      var(--nb-input-bg, var(--nb-field-bg))
+    background-color: var(--nb-select-bg, var(--nb-surface));
+    color: var(--nb-select-fg, var(--nb-surface-foreground));
+    border-color: var(--nb-select-border-color, var(--nb-border));
+    border-width: var(--nb-select-border-width, var(--nb-border-width));
+    border-style: solid;
+    border-radius: var(--nb-select-radius, var(--nb-radius));
+    box-shadow: var(
+      --nb-select-shadow,
+      var(--nb-shadow-offset-x) var(--nb-shadow-offset-y) 0 0 var(--nb-shadow)
     );
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000000' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
     background-repeat: no-repeat;
@@ -178,69 +373,6 @@ body {
 
   :where(label[nbLabel]) {
     font-size: 0.875rem;
-  }
-}
-
-@layer components {
-  :where([data-nb-title]) {
-    display: inline-flex;
-    flex-direction: column;
-    align-items: flex-start;
-    align-self: flex-start;
-    max-width: 100%;
-    font-size: var(--nb-title-font-size, 1.75rem);
-    font-weight: var(--nb-title-font-weight, 900);
-    line-height: var(--nb-title-line-height, 1.05);
-  }
-
-  :where(.nb-radius) {
-    border-radius: var(--nb-radius-token, var(--_nb-radius-default));
-  }
-
-  :where(.nb-tone) {
-    background-color: var(
-      --_nb-tone-bg-token,
-      var(--_nb-tone-bg-default)
-    );
-    color: var(--_nb-tone-fg-token, var(--_nb-tone-fg-default));
-    border-color: var(
-      --_nb-tone-border-color-token,
-      var(--_nb-tone-border-color-default)
-    );
-  }
-
-  :where(.nb-shadow) {
-    box-shadow: var(--nb-shadow-token, var(--_nb-shadow-default));
-  }
-
-  :where(.nb-padding) {
-    padding: var(--nb-padding-token, var(--_nb-padding-default));
-  }
-
-  :where(.nb-gap) {
-    gap: var(--_nb-gap-resolved, var(--_nb-gap-default));
-  }
-
-  :where(.nb-border-width) {
-    border-width: var(
-      --nb-border-width-token,
-      var(--_nb-border-width-default)
-    );
-  }
-
-  :where(.nb-radius [data-nb-dialog]) {
-    border-radius: var(--nb-radius-token, var(--_nb-radius-default));
-  }
-
-  :where(.nb-shadow [data-nb-dialog]) {
-    box-shadow: var(--nb-shadow-token, var(--_nb-shadow-default));
-  }
-
-  :where(.nb-border-width [data-nb-dialog]) {
-    border-width: var(
-      --nb-border-width-token,
-      var(--_nb-border-width-default)
-    );
   }
 }
 

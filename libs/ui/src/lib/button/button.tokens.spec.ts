@@ -38,6 +38,32 @@ class ButtonPressTest {
 class FullWidthButtonTest {}
 
 @Component({
+  imports: [NbButton],
+  template: `<button nbButton tone="yellow">Yellow</button>`,
+})
+class ToneInputButtonTokenTest {}
+
+@Component({
+  imports: [NbButton],
+  template: `
+    <button id="local" nbButton style="--nb-button-bg: red">Local red</button>
+    <button id="sibling" nbButton>Default</button>
+  `,
+})
+class LocalScopedButtonTokenTest {}
+
+@Component({
+  imports: [NbButton],
+  template: `
+    <div id="scope" style="--nb-button-bg: red">
+      <button id="first" nbButton>First red</button>
+      <button id="second" nbButton>Second red</button>
+    </div>
+  `,
+})
+class ParentScopedButtonTokenTest {}
+
+@Component({
   imports: [NbButton, NbButtonTrailingIcon],
   template: `
     <button nbButton>
@@ -65,10 +91,10 @@ describe('NbButton token surface', () => {
     const button = findButton(fixture);
     const cls = button.className;
 
-    expect(cls).toContain('nb-tone');
-    expect(cls).toContain('nb-border-width');
-    expect(cls).toContain('nb-radius');
-    expect(cls).toContain('nb-shadow');
+    expect(cls).not.toMatch(/(?:^|\s)nb-tone(?:\s|$)/);
+    expect(cls).not.toMatch(/(?:^|\s)nb-border-width(?:\s|$)/);
+    expect(cls).not.toMatch(/(?:^|\s)nb-radius(?:\s|$)/);
+    expect(cls).not.toMatch(/(?:^|\s)nb-shadow(?:\s|$)/);
     expect(cls).not.toContain('bg-(--nb-button-bg)');
     expect(cls).not.toContain('text-(--nb-button-fg)');
     expect(cls).not.toContain('border-(--nb-button-border-color)');
@@ -81,39 +107,84 @@ describe('NbButton token surface', () => {
     const fixture = await createFixture();
     const button = findButton(fixture);
 
-    expect(button.style.getPropertyValue('--_nb-tone-bg-default')).toBe(
-      'var(--nb-primary)'
-    );
-    expect(button.style.getPropertyValue('--_nb-tone-fg-default')).toBe(
-      'var(--nb-primary-foreground)'
-    );
-    expect(button.style.getPropertyValue('--_nb-tone-border-color-default')).toBe(
-      'var(--nb-border)'
-    );
-    expect(button.style.getPropertyValue('--_nb-tone-bg-token')).toBe(
-      'var(--nb-button-bg, var(--_nb-tone-bg-default))'
-    );
+    expect(button.style.getPropertyValue('background')).toBe('');
+    expect(button.style.getPropertyValue('color')).toBe('');
+    expect(button.style.getPropertyValue('border-color')).toBe('');
     expect(button.style.getPropertyValue('--nb-button-bg')).toBe('');
-    expect(button.style.getPropertyValue('background-color')).toBe('');
+    expect(button.style.cssText).not.toContain('--nb-resolved');
   });
 
-  it('writes private default border-width, radius, and shadow capability variables', async () => {
+  it('lets the tone input override token customization for the button background', async () => {
+    await TestBed.configureTestingModule({
+      imports: [ToneInputButtonTokenTest],
+    }).compileComponents();
+    const fixture = TestBed.createComponent(ToneInputButtonTokenTest);
+    fixture.detectChanges();
+    const button = fixture.nativeElement.querySelector(
+      'button[nbButton]'
+    ) as HTMLButtonElement;
+
+    expect(button.getAttribute('data-tone')).toBe('yellow');
+    expect(button.style.getPropertyValue('background')).toBe('var(--nb-yellow)');
+    expect(button.style.getPropertyValue('color')).toBeTruthy();
+    expect(button.style.getPropertyValue('border-color')).toBe('var(--nb-border)');
+    expect(button.style.getPropertyValue('--nb-button-bg')).toBe('');
+    expect(button.style.cssText).not.toContain('--nb-resolved');
+  });
+
+  it('keeps an inline button token local to that button', async () => {
+    await TestBed.configureTestingModule({
+      imports: [LocalScopedButtonTokenTest],
+    }).compileComponents();
+    const fixture = TestBed.createComponent(LocalScopedButtonTokenTest);
+    fixture.detectChanges();
+    const host = fixture.nativeElement as HTMLElement;
+    const local = host.querySelector<HTMLButtonElement>('#local')!;
+    const sibling = host.querySelector<HTMLButtonElement>('#sibling')!;
+
+    expect(local.style.getPropertyValue('--nb-button-bg')).toBe('red');
+    expect(local.style.getPropertyValue('background')).toBe('');
+    expect(sibling.style.getPropertyValue('--nb-button-bg')).toBe('');
+    expect(sibling.style.getPropertyValue('background')).toBe('');
+    expect(local.style.cssText).not.toContain('--nb-resolved');
+    expect(sibling.style.cssText).not.toContain('--nb-resolved');
+  });
+
+  it('lets parent-scoped button tokens apply to all descendant buttons', async () => {
+    await TestBed.configureTestingModule({
+      imports: [ParentScopedButtonTokenTest],
+    }).compileComponents();
+    const fixture = TestBed.createComponent(ParentScopedButtonTokenTest);
+    fixture.detectChanges();
+    const host = fixture.nativeElement as HTMLElement;
+    const scope = host.querySelector<HTMLElement>('#scope')!;
+    const buttons = Array.from(
+      scope.querySelectorAll<HTMLButtonElement>('button[nbButton]')
+    );
+
+    expect(scope.style.getPropertyValue('--nb-button-bg')).toBe('red');
+    expect(buttons).toHaveLength(2);
+    for (const button of buttons) {
+      expect(button.style.getPropertyValue('--nb-button-bg')).toBe('');
+      expect(button.style.getPropertyValue('background')).toBe('');
+      expect(button.style.cssText).not.toContain('--nb-resolved');
+    }
+  });
+
+  it('writes only explicit visual inputs to actual CSS properties', async () => {
     const fixture = await createFixture();
     const button = findButton(fixture);
 
-    expect(button.style.getPropertyValue('--_nb-border-width-default')).toBe(
-      'var(--nb-border-width)'
-    );
-    expect(button.style.getPropertyValue('--_nb-radius-default')).toBe(
-      'var(--nb-radius)'
-    );
-    expect(button.style.getPropertyValue('--_nb-shadow-default')).toBe(
+    expect(button.style.getPropertyValue('border-width')).toBe('');
+    expect(button.style.getPropertyValue('border-radius')).toBe('');
+    expect(button.style.getPropertyValue('box-shadow')).toBe(
       'var(--nb-shadow-offset-x) var(--nb-shadow-offset-y) 0 0 var(--nb-shadow)'
     );
+    expect(button.style.cssText).not.toContain('--nb-resolved');
   });
 
   it.each([
-    ['lavender', 'var(--nb-lavender)', 'rgb(0, 0, 0)'],
+    ['lavender', 'var(--nb-lavender)', '#000000'],
     ['primary', 'var(--nb-primary)', 'var(--nb-primary-foreground)'],
     ['secondary', 'var(--nb-secondary)', 'var(--nb-secondary-foreground)'],
     ['accent', 'var(--nb-accent)', 'var(--nb-accent-foreground)'],
@@ -122,19 +193,22 @@ describe('NbButton token surface', () => {
     ['warning', 'var(--nb-warning)', 'var(--nb-warning-foreground)'],
     ['background', 'var(--nb-background)', 'var(--nb-foreground)'],
   ] satisfies Array<[NbButtonTone, string, string]>)(
-    'tone="%s" writes final tone styles and leaves public tokens user-owned',
+    'tone="%s" wins outright and leaves public tokens user-owned',
     async (tone, bg, fg) => {
       const fixture = await createFixture({ tone });
       const button = findButton(fixture);
 
-      expect(button.style.getPropertyValue('background-color')).toBe(bg);
-      expect(button.style.getPropertyValue('color')).toBe(fg);
-      expect(button.style.getPropertyValue('border-color')).toBe(
-        'var(--nb-border)'
-      );
+      expect(button.style.getPropertyValue('background')).toBe(bg);
+      if (fg.startsWith('var(')) {
+        expect(button.style.getPropertyValue('color')).toBe(fg);
+      } else {
+        expect(button.style.getPropertyValue('color')).toBeTruthy();
+      }
+      expect(button.style.getPropertyValue('border-color')).toBe('var(--nb-border)');
       expect(button.style.getPropertyValue('--nb-button-bg')).toBe('');
       expect(button.style.getPropertyValue('--nb-button-fg')).toBe('');
       expect(button.style.getPropertyValue('--nb-button-border-color')).toBe('');
+      expect(button.style.cssText).not.toContain('--nb-resolved');
     }
   );
 
@@ -145,6 +219,7 @@ describe('NbButton token surface', () => {
     expect(button.getAttribute('data-shadow')).toBe('none');
     expect(button.style.getPropertyValue('box-shadow')).toBe('none');
     expect(button.style.getPropertyValue('--nb-button-shadow')).toBe('');
+    expect(button.style.cssText).not.toContain('--nb-resolved');
   });
 
   it('shadow="hard" resolves through the shared shadow capability', async () => {
@@ -155,6 +230,7 @@ describe('NbButton token surface', () => {
     expect(button.style.getPropertyValue('box-shadow')).toBe(
       '6px 6px 0 0 var(--nb-shadow)'
     );
+    expect(button.style.cssText).not.toContain('--nb-resolved');
   });
 
   it('press="reverse" changes only the interaction direction', async () => {

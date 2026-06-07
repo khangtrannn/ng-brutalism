@@ -11,27 +11,21 @@ import { NbInput } from './nb-input';
 class InputTokenTest {}
 
 describe('NbInput token surface', () => {
-  it('adds nb-tone and nb-border-width capability marker classes', async () => {
+  it('does not emit legacy capability marker classes', async () => {
     const fixture = await createFixture();
     const input = findInput(fixture);
 
-    expect(input.className).toContain('nb-tone');
-    expect(input.className).toContain('nb-border-width');
+    expect(input.className).not.toMatch(/(?:^|\s)nb-tone(?:\s|$)/);
+    expect(input.className).not.toMatch(/(?:^|\s)nb-border-width(?:\s|$)/);
   });
 
-  it('sets capability default CSS variables as inline styles', async () => {
+  it('leaves default visuals to CSS token fallbacks', async () => {
     const fixture = await createFixture();
     const input = findInput(fixture);
 
-    expect(input.style.getPropertyValue('--_nb-tone-bg-default')).toBe(
-      'var(--nb-surface)'
-    );
-    expect(input.style.getPropertyValue('--_nb-tone-bg-token')).toBe(
-      'var(--nb-input-bg, var(--_nb-tone-bg-default))'
-    );
-    expect(input.style.getPropertyValue('--_nb-border-width-default')).toBe(
-      'var(--nb-border-width)'
-    );
+    expect(input.style.getPropertyValue('background-color')).toBe('');
+    expect(input.style.getPropertyValue('border-width')).toBe('');
+    expect(input.style.cssText).not.toContain('--nb-resolved');
   });
 
   it('keeps scoped radius and shadow CSS vars as classes', async () => {
@@ -47,12 +41,12 @@ describe('NbInput token surface', () => {
     expect(cls).toContain('shadow-[var(--nb-input-shadow)]');
   });
 
-  it('uses capability border-color token for focus ring', async () => {
+  it('uses public border-color fallback for focus ring', async () => {
     const fixture = await createFixture();
     const cls = findInput(fixture).className;
 
     expect(cls).toContain(
-      'focus-visible:ring-[var(--_nb-tone-border-color-token,var(--_nb-tone-border-color-default))]'
+      'focus-visible:ring-[var(--nb-input-focus-ring-color,var(--nb-input-border-color,var(--nb-border)))]'
     );
     expect(cls).not.toContain('focus-visible:ring-(--nb-input-border)');
   });

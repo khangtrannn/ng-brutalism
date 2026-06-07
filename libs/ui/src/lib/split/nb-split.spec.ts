@@ -81,10 +81,11 @@ describe('NbSplit', () => {
     expect(split.getAttribute('data-separator')).toBe('none');
     expect(split.className).toContain('grid');
     expect(split.className).toContain('min-w-0');
-    expect(split.className).toContain('nb-gap');
-    expect(split.className).toContain('nb-padding');
-    expect(split.style.getPropertyValue('--_nb-gap-default')).toBe('1rem');
-    expect(split.style.getPropertyValue('--_nb-padding-default')).toBe('0px');
+    expect(split.className).not.toMatch(/(?:^|\s)nb-gap(?:\s|$)/);
+    expect(split.className).not.toMatch(/(?:^|\s)nb-padding(?:\s|$)/);
+    expect(split.style.getPropertyValue('gap')).toBe('');
+    expect(split.style.getPropertyValue('padding')).toBe('');
+    expect(split.style.cssText).not.toContain('--nb-resolved');
     expect(split.className).toContain('items-stretch');
     expect(split.className).toContain(
       '[--nb-split-columns:minmax(0,1fr)_minmax(0,1fr)]'

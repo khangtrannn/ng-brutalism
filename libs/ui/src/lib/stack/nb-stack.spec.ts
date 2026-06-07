@@ -58,8 +58,9 @@ describe('NbStack', () => {
     expect(stack.className).toContain('flex');
     expect(stack.className).toContain('min-w-0');
     expect(stack.className).toContain('flex-col');
-    expect(stack.className).toContain('nb-gap');
-    expect(stack.style.getPropertyValue('--_nb-gap-default')).toBe('0.75rem');
+    expect(stack.className).not.toMatch(/(?:^|\s)nb-gap(?:\s|$)/);
+    expect(stack.style.getPropertyValue('gap')).toBe('');
+    expect(stack.style.cssText).not.toContain('--nb-resolved');
     expect(stack.className).toContain('items-stretch');
     expect(stack.className).toContain('justify-start');
     expect(stack.className).not.toContain('[&>*+*]:border-t');
@@ -76,6 +77,9 @@ describe('NbStack', () => {
     expect(stack.getAttribute('data-justify')).toBe('center');
     expect(stack.getAttribute('data-separator')).toBe('dashed');
     expect(stack.style.getPropertyValue('gap')).toBe('1.5rem');
+    expect(stack.style.getPropertyValue('--nb-stack-separator-gap')).toBe(
+      '1.5rem'
+    );
     expect(stack.className).toContain('items-start');
     expect(stack.className).toContain('justify-center');
     expect(stack.className).toContain(
@@ -83,7 +87,8 @@ describe('NbStack', () => {
     );
     expect(stack.className).toContain('[&>*+*]:border-dashed');
     expect(stack.className).toContain('[&>*+*]:[border-top-color:var(--nb-border)]');
-    expect(stack.className).toContain('[&>*+*]:pt-[var(--nb-stack-gap)]');
+    expect(stack.className).toContain('[&>*+*]:pt-(--nb-stack-separator-gap)');
+    expect(stack.style.cssText).not.toContain('--nb-resolved');
   });
   it('solid separator uses explicit border-solid and explicit color', async () => {
     const fixture = await createFixture(SolidStackTest);

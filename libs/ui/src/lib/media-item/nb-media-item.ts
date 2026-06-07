@@ -4,6 +4,7 @@ import {
   Directive,
   booleanAttribute,
   computed,
+  inject,
   input,
 } from '@angular/core';
 import { nbClass } from '../core/class';
@@ -23,9 +24,7 @@ export type NbMediaItemAlign = 'start' | 'center' | 'between';
 
 export type NbMediaItemSize = 'xs' | 'sm' | 'md' | 'lg';
 
-// Tone is the shared color vocabulary; MediaItem does not redefine it. The tone
-// capability writes `--nb-media-item-{bg,fg,border-color}` from the same resolver
-// every other primitive uses.
+// Tone is the shared color vocabulary; MediaItem does not redefine it.
 export type NbMediaItemTone = NbToneToken;
 
 @Component({
@@ -82,6 +81,9 @@ export type NbMediaItemTone = NbToneToken;
     '[attr.data-orientation]': 'orientation()',
     '[attr.data-align]': 'align()',
     '[attr.data-size]': 'size()',
+    '[style.background]': 'backgroundStyle()',
+    '[style.color]': 'foregroundStyle()',
+    '[style.border-color]': 'borderColorStyle()',
   },
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
@@ -95,6 +97,20 @@ export class NbMediaItem {
   readonly iconBackground = input<string | undefined>(undefined);
   readonly title = input<string | undefined>(undefined);
   readonly description = input<string | undefined>(undefined);
+
+  private readonly tone = inject(NbToneCapability);
+
+  // The `plain` variant has no surface (transparent background, no border), so
+  // tone-driven background/border only apply to `boxed`/`chip`. When unset,
+  // returning null lets the variant's `bg-[var(--nb-media-item-bg)]` /
+  // `border-[var(--nb-media-item-border-color)]` classes read the public hooks.
+  protected readonly backgroundStyle = computed(() =>
+    this.variant() === 'plain' ? null : this.tone.background()
+  );
+  protected readonly foregroundStyle = computed(() => this.tone.foreground());
+  protected readonly borderColorStyle = computed(() =>
+    this.variant() === 'plain' ? null : this.tone.borderColor()
+  );
 
   protected readonly classes = computed(() =>
     nbClass(

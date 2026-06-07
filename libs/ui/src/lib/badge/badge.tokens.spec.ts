@@ -13,38 +13,31 @@ class BadgeTokenTest {
 }
 
 describe('NbBadge token surface', () => {
-  it('declares the expected default tokens on the base host', async () => {
+  it('maps explicit tone input to actual color styles', async () => {
     const fixture = await createFixture();
     const badge = findBadge(fixture);
 
-    expect(badge.style.getPropertyValue('background-color')).toBe(
-      'rgb(255, 255, 255)'
-    );
-    expect(badge.style.getPropertyValue('color')).toBe('rgb(0, 0, 0)');
-    expect(badge.style.getPropertyValue('border-color')).toBe(
-      'var(--nb-border)'
-    );
+    // tone="white" is bound explicitly (matching the badge's library default) —
+    // the directive input wins outright with a literal value, no public hook.
+    expect(badge.style.getPropertyValue('background')).toBeTruthy();
+    expect(badge.style.getPropertyValue('color')).toBeTruthy();
+    expect(badge.style.getPropertyValue('border-color')).toBe('var(--nb-border)');
     expect(badge.style.getPropertyValue('--nb-badge-bg')).toBe('');
-    expect(badge.style.getPropertyValue('--_nb-radius-default')).toBe(
-      '9999px'
-    );
-    expect(badge.style.getPropertyValue('--_nb-shadow-default')).toBe(
-      '2px 2px 0 0 var(--nb-shadow)'
-    );
-    expect(badge.style.getPropertyValue('--_nb-border-width-default')).toBe(
-      'var(--nb-border-width)'
-    );
+    expect(badge.style.cssText).not.toContain('--nb-resolved');
+    expect(badge.style.getPropertyValue('border-radius')).toBe('');
+    expect(badge.style.getPropertyValue('box-shadow')).toBe('');
+    expect(badge.style.getPropertyValue('border-width')).toBe('');
   });
 
-  it('reads its scoped tokens instead of global tokens directly', async () => {
+  it('does not emit legacy token utility classes', async () => {
     const fixture = await createFixture();
     const badge = findBadge(fixture);
     const cls = badge.className;
 
-    expect(cls).toContain('nb-tone');
-    expect(cls).toContain('nb-border-width');
-    expect(cls).toContain('nb-radius');
-    expect(cls).toContain('nb-shadow');
+    expect(cls).not.toMatch(/(?:^|\s)nb-tone(?:\s|$)/);
+    expect(cls).not.toMatch(/(?:^|\s)nb-border-width(?:\s|$)/);
+    expect(cls).not.toMatch(/(?:^|\s)nb-radius(?:\s|$)/);
+    expect(cls).not.toMatch(/(?:^|\s)nb-shadow(?:\s|$)/);
     expect(cls).not.toContain('bg-(--nb-badge-bg)');
     expect(cls).not.toContain('text-(--nb-badge-fg)');
     expect(cls).not.toContain('border-(--nb-badge-border-color)');
@@ -65,9 +58,13 @@ describe('NbBadge token surface', () => {
       const fixture = await createFixture({ tone });
       const badge = findBadge(fixture);
 
-      expect(badge.style.getPropertyValue('background-color')).toBe(bg);
+      expect(badge.style.getPropertyValue('background')).toBe(bg);
       expect(badge.style.getPropertyValue('color')).toBe(fg);
+      expect(badge.style.getPropertyValue('border-color')).toBe(
+        'var(--nb-border)'
+      );
       expect(badge.style.getPropertyValue('--nb-badge-bg')).toBe('');
+      expect(badge.style.cssText).not.toContain('--nb-resolved');
     }
   );
 
@@ -77,7 +74,6 @@ describe('NbBadge token surface', () => {
 
     expect(cls).toContain('inline-flex');
     expect(cls).toContain('items-center');
-    expect(cls).toContain('nb-border-width');
     expect(cls).toContain('px-2.5');
     expect(cls).toContain('py-0.5');
     expect(cls).toContain('text-xs');

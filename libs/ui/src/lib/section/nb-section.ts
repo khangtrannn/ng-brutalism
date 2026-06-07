@@ -1,10 +1,17 @@
-import { Directive, booleanAttribute, computed, input } from '@angular/core';
+import {
+  Directive,
+  booleanAttribute,
+  computed,
+  inject,
+  input,
+} from '@angular/core';
 
 import { nbClass } from '../core/class';
 import {
   NbPaddingCapability,
   NB_STYLE_DEFAULTS,
   NB_STYLE_NAMESPACE,
+  nbPaddingFallback,
   type NbStyleDefaults,
 } from '../core/capabilities';
 import type { NbDivider } from '../tokens/divider';
@@ -42,6 +49,8 @@ export type NbSectionAlign = 'stretch' | 'start' | 'center' | 'end';
     '[attr.data-layout]': 'layout()',
     '[attr.data-align]': 'align()',
     '[attr.data-flush]': 'flush() ? "" : null',
+    '[style.padding]': 'paddingStyle()',
+    '[style.--nb-section-flush-margin]': 'flushMarginStyle()',
   },
 })
 export class NbSection {
@@ -53,14 +62,26 @@ export class NbSection {
     transform: booleanAttribute,
   });
 
+  private readonly padding = inject(NbPaddingCapability);
+
+  protected readonly paddingStyle = computed(() => this.padding.value());
+
+  // `flush` negates the section's own padding to let content bleed to the
+  // edge. That needs the actual rendered padding (explicit input or the
+  // `--nb-section-padding` hook fallback), hence the resolved value.
+  protected readonly flushMarginStyle = computed(() =>
+    this.flush()
+      ? `calc(${this.padding.value() ?? nbPaddingFallback('section', 'md')} * -1)`
+      : null,
+  );
+
   protected readonly classes = computed(() =>
     nbClass(
       'box-border min-w-0',
       this.layoutClass(),
       this.alignClass(),
       this.dividerClass(),
-      this.flush() &&
-        'mx-[calc(var(--nb-padding-token,var(--_nb-padding-default))*-1)]'
+      this.flush() && 'mx-(--nb-section-flush-margin)'
     )
   );
 

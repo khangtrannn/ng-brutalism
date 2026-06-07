@@ -27,7 +27,7 @@ The build approach for the Showcase phase: rough versions of all four new compon
 The library-wide TypeScript export prefix (`NbButton`, `NbCard`, etc.) and CSS variable prefix (`--nb-border`, `--nb-main`). Originally derived from "Neo-Brutalism"; now treated as an opaque brand token. With the package renamed to `@ng-brutalism/ui`, `Nb` reads as the initials of "ng-brutalism." Component selectors also use `nb-*` (e.g., `nb-card`) — formerly `neo-*`, renamed pre-v0.1.0 for cross-surface consistency.
 
 ### NbButton CSS variable override
-`NbButton`'s `default` variant sets `[--nb-button-bg:#fff]` via its computed host class. Overriding it with a Tailwind arbitrary class (`[--nb-button-bg:#76fbd9]`) in the template is **not reliable** — Tailwind's stylesheet order determines which wins, and it's non-deterministic. Always use an inline `style` attribute (`style="--nb-button-bg: #76fbd9;"`) to guarantee the override wins, because inline styles take precedence over any class-based rule.
+`NbButton` does not assign public component hooks such as `--nb-button-bg`. The tone capability writes a private resolved variable (`--_nb-tone-bg: var(--nb-button-bg, …)`), so both inline styles and Tailwind arbitrary variable classes like `[--nb-button-bg:#76fbd9]` can override the button background without fighting a library-authored `--nb-button-bg` declaration.
 
 ### CSS individual transform properties for animation
 When replicating a Framer Motion `whileHover` that combines a persistent `scale` with a one-shot keyframe `rotate` array, use CSS individual transform properties — **not** the `transform` shorthand — so they stay independent:

@@ -1,6 +1,8 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  computed,
+  inject,
   input,
 } from '@angular/core';
 
@@ -12,6 +14,8 @@ import {
   NbToneCapability,
   NB_STYLE_DEFAULTS,
   NB_STYLE_NAMESPACE,
+  nbBorderWidthFallback,
+  nbToneFallbacks,
   type NbStyleDefaults,
 } from '../core/capabilities';
 import type { NbBorderStrength } from '../tokens/border';
@@ -57,12 +61,39 @@ export type NbImageCardBorder = NbBorderStrength;
   host: {
     '[class]': 'classes',
     '[attr.data-slot]': '"image-card"',
+    '[style.background]': 'backgroundStyle()',
+    '[style.color]': 'foregroundStyle()',
+    '[style.border-color]': 'borderColorStyle()',
+    '[style.border-radius]': 'radiusStyle()',
+    '[style.box-shadow]': 'shadowStyle()',
+    '[style.border-width]': 'borderWidthStyle()',
   },
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NbImageCard {
   readonly image = input.required<string>();
   readonly alt = input.required<string>();
+
+  private readonly tone = inject(NbToneCapability);
+  private readonly radius = inject(NbRadiusCapability);
+  private readonly shadow = inject(NbShadowCapability);
+  private readonly border = inject(NbBorderCapability);
+
+  protected readonly backgroundStyle = computed(() => this.tone.background());
+  protected readonly foregroundStyle = computed(() => this.tone.foreground());
+  protected readonly borderColorStyle = computed(() => this.tone.borderColor());
+  protected readonly radiusStyle = computed(() => this.radius.value());
+  protected readonly shadowStyle = computed(() => this.shadow.value());
+  protected readonly borderWidthStyle = computed(() => this.border.width());
+
+  readonly captionBorderWidth = computed(
+    () => this.border.width() ?? nbBorderWidthFallback('image-card', 'default'),
+  );
+  readonly captionBorderColor = computed(
+    () =>
+      this.tone.borderColor() ??
+      nbToneFallbacks('image-card', 'background').borderColor,
+  );
 
   protected readonly classes = nbClass(
     'flex flex-col overflow-hidden',
@@ -78,12 +109,23 @@ export class NbImageCard {
   host: {
     '[class]': 'classes',
     '[attr.data-slot]': '"image-card-caption"',
+    '[style.border-top-width]': 'borderTopWidthStyle()',
+    '[style.border-top-color]': 'borderTopColorStyle()',
   },
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NbImageCardCaption {
+  private readonly card = inject(NbImageCard);
+
+  protected readonly borderTopWidthStyle = computed(() =>
+    this.card.captionBorderWidth(),
+  );
+  protected readonly borderTopColorStyle = computed(() =>
+    this.card.captionBorderColor(),
+  );
+
   protected readonly classes = nbClass(
-    'border-t-[length:var(--nb-border-width-token,var(--_nb-border-width-default))] border-t-[var(--_nb-tone-border-color-token,var(--_nb-tone-border-color-default))]',
+    'border-t-solid',
     'px-6 py-4 text-center font-bold text-base'
   );
 }
