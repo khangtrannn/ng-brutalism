@@ -1,6 +1,5 @@
 import { Directive, computed, inject, input } from '@angular/core';
 
-import { nbClass } from '../core/class';
 import {
   NbShadowCapability,
   NbToneCapability,
@@ -37,12 +36,11 @@ export type NbCalloutRadius = NbRadius;
     { directive: NbShadowCapability, inputs: ['shadow'] },
   ],
   host: {
-    '[class]': 'classes()',
     '[attr.data-nb-callout]': '""',
     '[attr.data-size]': 'size()',
     '[attr.data-layout]': 'layout()',
     '[attr.data-radius]': 'radius() ?? null',
-    '[style.--nb-callout-radius]': 'radiusStyle()',
+    '[style.border-radius]': 'radiusStyle()',
     '[style.background]': 'tone.background()',
     '[style.color]': 'tone.foreground()',
     '[style.border-color]': 'tone.borderColor()',
@@ -57,43 +55,11 @@ export class NbCallout {
   protected readonly tone = inject(NbToneCapability);
   protected readonly shadow = inject(NbShadowCapability);
 
-  protected readonly classes = computed(() =>
-    nbClass(
-      'relative inline-flex items-center gap-3',
-      'border-(length:--nb-callout-border-width)',
-      'rounded-(--nb-callout-radius)',
-      'font-black uppercase leading-none',
-      this.sizeClass(),
-      this.layoutClass()
-    )
-  );
-
-  // Inline style wins over the size-derived `--nb-callout-radius` class, so an
-  // explicit `radius` always takes precedence; null leaves the size default.
+  // Inline style wins over the size-derived CSS rule, so an explicit `radius`
+  // always takes precedence; null leaves the size default.
   protected readonly radiusStyle = computed(() => {
     const r = this.radius();
 
     return r !== undefined ? nbRadiusValue(r) : null;
   });
-
-  private sizeClass(): string {
-    const map: Record<NbCalloutSize, string> = {
-      sm: 'min-h-9 px-3 py-2 text-sm [--nb-callout-radius:0.5rem] [--nb-callout-border-width:2px]',
-      md: 'min-h-11 px-4 py-2 text-base [--nb-callout-radius:0.625rem] [--nb-callout-border-width:2px]',
-      lg: 'min-h-14 px-5 py-3 text-2xl [--nb-callout-radius:0.75rem] [--nb-callout-border-width:3px]',
-      xl: 'min-h-20 px-6 py-4 text-5xl [--nb-callout-radius:0.875rem] [--nb-callout-border-width:4px]',
-    };
-
-    return map[this.size()];
-  }
-
-  private layoutClass(): string {
-    const map: Record<NbCalloutLayout, string> = {
-      inline: 'justify-start',
-      between: 'w-full justify-between',
-      center: 'justify-center text-center',
-    };
-
-    return map[this.layout()];
-  }
 }

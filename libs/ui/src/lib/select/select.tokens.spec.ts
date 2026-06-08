@@ -50,7 +50,7 @@ describe('NbSelect token surface', () => {
     expect(select.style.cssText).not.toContain('--nb-resolved');
   });
 
-  it('keeps radius as a local class token only', async () => {
+  it('keeps radius in CSS instead of local class tokens', async () => {
     const fixture = await createFixture(SelectTokenTest);
     const cls = findCustomSelect(fixture).className;
 
@@ -58,18 +58,18 @@ describe('NbSelect token surface', () => {
     expect(cls).not.toContain('[--nb-select-fg:');
     expect(cls).not.toContain('[--nb-select-border:');
     expect(cls).not.toContain('[--nb-select-listbox-bg:');
-    expect(cls).toContain('[--nb-select-radius:var(--nb-radius)]');
+    expect(cls).not.toContain('[--nb-select-radius:var(--nb-radius)]');
   });
 
-  it('reads scoped tokens instead of global tokens directly', async () => {
+  it('uses data slots instead of trigger token classes', async () => {
     const fixture = await createFixture(SelectTokenTest);
     const select = findCustomSelect(fixture);
     const trigger = findTrigger(fixture);
 
-    expect(trigger.className).toContain(
-      'text-[var(--nb-select-fg,var(--nb-surface-foreground))]'
-    );
-    expect(findTriggerText(fixture).className).toContain('text-gray-400');
+    expect(trigger.className).toBe('');
+    expect(trigger.getAttribute('data-slot')).toBe('select-trigger');
+    expect(findTriggerText(fixture).className).toBe('');
+    expect(findTriggerText(fixture).getAttribute('data-placeholder')).toBe('');
     expect(select.className).not.toContain('bg-(--nb-input-bg');
     expect(select.className).not.toContain('bg-(--nb-field-bg)');
   });
@@ -88,41 +88,24 @@ describe('NbSelect token surface', () => {
     const cls = listbox.className;
     const optionCls = option.className;
 
-    expect(cls).toContain(
-      'bg-[var(--nb-select-listbox-bg,var(--nb-select-bg,var(--nb-surface)))]'
-    );
-    expect(cls).toContain(
-      'border-[var(--nb-select-border-color,var(--nb-border))]'
-    );
-    expect(cls).toContain('rounded-b-(--nb-select-radius)');
-    expect(optionCls).toContain(
-      'text-[var(--nb-select-fg,var(--nb-surface-foreground))]'
-    );
-    expect(optionCls).toContain(
-      'focus-visible:ring-[var(--nb-select-option-focus-ring-color,var(--nb-select-border-color,var(--nb-border)))]'
-    );
+    expect(cls).toBe('');
+    expect(listbox.getAttribute('data-slot')).toBe('select-listbox');
+    expect(optionCls).toBe('');
+    expect(option.getAttribute('data-slot')).toBe('select-option-button');
     expect(cls).not.toContain('bg-(--nb-surface');
     expect(optionCls).not.toContain('text-(--nb-foreground)');
     expect(optionCls).not.toContain('focus-visible:ring-(--nb-border)');
   });
 
-  it('does not regress the default custom select class shape', async () => {
+  it('keeps custom select anatomy out of classes', async () => {
     const fixture = await createFixture(SelectTokenTest);
     const select = findCustomSelect(fixture);
     const trigger = findTrigger(fixture);
     const cls = select.className;
 
-    expect(cls).toContain('relative');
-    expect(cls).toContain('block');
-    expect(cls).toContain('w-full');
-    expect(cls).toContain('shadow-nb');
-    expect(cls).toContain('focus-within:outline-none');
-    expect(cls).toContain('focus-within:ring-2');
-    expect(cls).toContain('focus-within:ring-offset-2');
-    expect(cls).toContain('focus-within:shadow-none');
-    expect(trigger.className).toContain('font-mono');
-    expect(trigger.className).toContain('font-bold');
-    expect(trigger.className).toContain('bg-transparent');
+    expect(cls).toBe('');
+    expect(select.getAttribute('data-nb-select')).toBe('');
+    expect(trigger.className).toBe('');
   });
 
   it('uses the same placeholder color as inputs and textareas', async () => {
@@ -130,7 +113,8 @@ describe('NbSelect token surface', () => {
     const value = findTriggerText(fixture);
 
     expect(value.textContent?.trim()).toBe('Pick one');
-    expect(value.className).toContain('text-gray-400');
+    expect(value.className).toBe('');
+    expect(value.getAttribute('data-placeholder')).toBe('');
     expect(value.className).not.toContain('text-[var(--nb-select-fg');
   });
 });

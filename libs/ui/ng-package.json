@@ -2,23 +2,7 @@
   "$schema": "../../node_modules/ng-packagr/ng-package.schema.json",
   "dest": "../../dist/ui",
   "assets": [
-    { "glob": "*.css", "input": "src/lib/styles", "output": "./styles" },
-    { "glob": "nb-button.css", "input": "src/lib/button", "output": "./button" },
-    { "glob": "nb-icon-button.css", "input": "src/lib/icon-button", "output": "./icon-button" },
-    { "glob": "nb-badge.css", "input": "src/lib/badge", "output": "./badge" },
-    { "glob": "nb-avatar.css", "input": "src/lib/avatar", "output": "./avatar" },
-    { "glob": "nb-chip.css", "input": "src/lib/chip", "output": "./chip" },
-    { "glob": "nb-card.css", "input": "src/lib/card", "output": "./card" },
-    { "glob": "nb-image-card.css", "input": "src/lib/image-card", "output": "./image-card" },
-    { "glob": "nb-media-frame.css", "input": "src/lib/media-frame", "output": "./media-frame" },
-    { "glob": "nb-surface.css", "input": "src/lib/surface", "output": "./surface" },
-    { "glob": "nb-stack.css", "input": "src/lib/stack", "output": "./stack" },
-    { "glob": "nb-cluster.css", "input": "src/lib/cluster", "output": "./cluster" },
-    { "glob": "nb-split.css", "input": "src/lib/split", "output": "./split" },
-    { "glob": "nb-callout.css", "input": "src/lib/callout", "output": "./callout" },
-    { "glob": "nb-textarea.css", "input": "src/lib/textarea", "output": "./textarea" },
-    { "glob": "*.css", "input": "src/lib/input", "output": "./input" },
-    { "glob": "nb-native-select.css", "input": "src/lib/select", "output": "./select" }
+    { "glob": "**/*.css", "input": "src/lib", "output": "./" }
   ],
   "allowedNonPeerDependencies": [
     "@angular-devkit/schematics",

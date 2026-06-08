@@ -1,0 +1,47 @@
+@layer components {
+  :where(span[nbStatusDot]) {
+    display: inline-block;
+    flex-shrink: 0;
+    border: 2px solid var(--nb-border);
+    border-radius: 9999px;
+  }
+
+  :where(span[nbStatusDot][data-size='xs']) {
+    width: 8px;
+    height: 8px;
+  }
+
+  :where(span[nbStatusDot][data-size='sm']) {
+    width: 10px;
+    height: 10px;
+  }
+
+  :where(span[nbStatusDot][data-size='md']) {
+    width: 12px;
+    height: 12px;
+  }
+
+  :where(span[nbStatusDot][data-size='lg']) {
+    width: 16px;
+    height: 16px;
+  }
+
+  :where(span[nbStatusDot][data-state='online']) {
+    background: var(--nb-success);
+  }
+
+  :where(span[nbStatusDot][data-state='offline']) {
+    background: var(--nb-secondary-background);
+  }
+
+  :where(span[nbStatusDot][data-state='live']) {
+    background: var(--nb-danger);
+    animation: nb-status-dot-pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+}
+
+@keyframes nb-status-dot-pulse {
+  50% {
+    opacity: 0.5;
+  }
+}

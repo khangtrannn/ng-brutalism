@@ -1,5 +1,9 @@
 @layer components {
   :where(nb-image-card) {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    font-weight: 500;
     border-style: solid;
     background: var(--nb-image-card-bg, var(--nb-background));
     color: var(--nb-image-card-fg, var(--nb-foreground));
@@ -10,5 +14,19 @@
       --nb-image-card-shadow,
       var(--nb-shadow-offset-x) var(--nb-shadow-offset-y) 0 0 var(--nb-shadow)
     );
+  }
+
+  :where(nb-image-card > [data-slot='image-card-image']) {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  :where(nb-image-card-caption) {
+    padding: 1rem 1.5rem;
+    border-top-style: solid;
+    text-align: center;
+    font-size: 1rem;
+    font-weight: 700;
   }
 }

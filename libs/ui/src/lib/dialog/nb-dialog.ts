@@ -8,7 +8,6 @@ import {
 } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 
-import { nbClass } from '../core/class';
 import {
   NbBorderCapability,
   NbRadiusCapability,
@@ -26,7 +25,7 @@ import { NB_DIALOG, type NbDialogController } from './dialog.types';
     <dialog
       #dialogEl
       data-nb-dialog
-      [class]="classes"
+      data-slot="dialog-surface"
       [style.background]="tone.background()"
       [style.color]="tone.foreground()"
       [style.border-color]="tone.borderColor()"
@@ -68,12 +67,6 @@ export class NbDialog implements NbDialogController {
   protected readonly radius = inject(NbRadiusCapability);
   protected readonly shadow = inject(NbShadowCapability);
   protected readonly border = inject(NbBorderCapability);
-
-  protected readonly classes = nbClass(
-    'w-[calc(100vw-2rem)] max-w-2xl',
-    'm-auto p-0 max-h-[90vh] overflow-x-hidden',
-    'open:flex open:flex-col'
-  );
 
   open(): void {
     if (this.isBrowser) {

@@ -68,16 +68,12 @@ describe('NbBadge token surface', () => {
     }
   );
 
-  it('does not regress the default badge class shape', async () => {
+  it('keeps anatomy out of host classes', async () => {
     const fixture = await createFixture();
-    const cls = findBadge(fixture).className;
+    const badge = findBadge(fixture);
 
-    expect(cls).toContain('inline-flex');
-    expect(cls).toContain('items-center');
-    expect(cls).toContain('px-2.5');
-    expect(cls).toContain('py-0.5');
-    expect(cls).toContain('text-xs');
-    expect(cls).toContain('font-bold');
+    expect(badge.className).toBe('');
+    expect(badge.getAttribute('data-nb-badge')).toBe('');
   });
 });
 

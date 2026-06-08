@@ -1,0 +1,82 @@
+@layer components {
+  :where([nbSection]) {
+    box-sizing: border-box;
+    min-width: 0;
+    display: block;
+    padding: var(--nb-section-padding, 1rem);
+  }
+
+  :where([nbSection][data-layout='center']),
+  :where([nbSection][data-layout='between']) {
+    display: flex;
+    gap: var(--nb-spacing-md, 1rem);
+  }
+
+  :where([nbSection][data-layout='center']) {
+    justify-content: center;
+  }
+
+  :where([nbSection][data-layout='between']) {
+    justify-content: space-between;
+  }
+
+  :where([nbSection][data-layout='center'], [nbSection][data-layout='between'])[data-align='stretch'] {
+    align-items: stretch;
+  }
+
+  :where([nbSection][data-layout='center'], [nbSection][data-layout='between'])[data-align='start'] {
+    align-items: flex-start;
+  }
+
+  :where([nbSection][data-layout='center'], [nbSection][data-layout='between'])[data-align='center'] {
+    align-items: center;
+  }
+
+  :where([nbSection][data-layout='center'], [nbSection][data-layout='between'])[data-align='end'] {
+    align-items: flex-end;
+  }
+
+  :where([nbSection][data-divider]:not([data-divider='none'])) {
+    border-color: var(--nb-border);
+  }
+
+  :where([nbSection][data-divider-style='solid']) {
+    border-style: solid;
+  }
+
+  :where([nbSection][data-divider-style='dashed']) {
+    border-style: dashed;
+  }
+
+  :where([nbSection][data-divider-style='dotted']) {
+    border-style: dotted;
+  }
+
+  :where([nbSection][data-divider='top']) {
+    border-top-width: var(--nb-border-width);
+  }
+
+  :where([nbSection][data-divider='right']) {
+    border-right-width: var(--nb-border-width);
+  }
+
+  :where([nbSection][data-divider='bottom']) {
+    border-bottom-width: var(--nb-border-width);
+  }
+
+  :where([nbSection][data-divider='left']) {
+    border-left-width: var(--nb-border-width);
+  }
+
+  :where([nbSection][data-divider='block']) {
+    border-block-width: var(--nb-border-width);
+  }
+
+  :where([nbSection][data-divider='inline']) {
+    border-inline-width: var(--nb-border-width);
+  }
+
+  :where([nbSection][data-divider='all']) {
+    border-width: var(--nb-border-width);
+  }
+}

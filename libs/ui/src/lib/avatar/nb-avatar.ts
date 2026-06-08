@@ -5,7 +5,6 @@ import {
   input,
 } from '@angular/core';
 
-import { nbClass } from '../core/class';
 import {
   NbBorderCapability,
   NbRadiusCapability,
@@ -29,7 +28,7 @@ export type NbAvatarBorder = NbBorderStrength;
   selector: 'nb-avatar',
   template: `
     @if (src()) {
-    <img [src]="src()" [alt]="alt()" class="h-full w-full object-cover" />
+    <img [src]="src()" [alt]="alt()" data-slot="avatar-image" />
     } @else {
     <ng-content />
     }
@@ -53,7 +52,6 @@ export type NbAvatarBorder = NbBorderStrength;
     { directive: NbBorderCapability, inputs: ['border'] },
   ],
   host: {
-    '[class]': 'classes',
     '[attr.data-slot]': '"avatar"',
     '[attr.role]': '"img"',
     '[attr.aria-label]': 'alt()',
@@ -74,9 +72,4 @@ export class NbAvatar {
   protected readonly radius = inject(NbRadiusCapability);
   protected readonly shadow = inject(NbShadowCapability);
   protected readonly border = inject(NbBorderCapability);
-
-  protected readonly classes = nbClass(
-    'relative inline-flex h-10 w-10 shrink-0 overflow-hidden',
-    'font-bold text-sm items-center justify-center'
-  );
 }

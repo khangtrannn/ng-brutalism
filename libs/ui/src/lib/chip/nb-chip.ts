@@ -7,7 +7,6 @@ import {
   input,
 } from '@angular/core';
 
-import { nbClass } from '../core/class';
 import {
   NbBorderCapability,
   NbRadiusCapability,
@@ -34,14 +33,6 @@ export type NbChipShadow = NbShadow;
 // box. Padding therefore stays primitive-local rather than using the shared
 // padding capability.
 export type NbChipPadding = 'none' | 'sm' | 'md' | 'lg' | 'xl';
-
-const paddingMap: Record<NbChipPadding, string> = {
-  none: 'px-0 py-0',
-  sm: 'px-2 py-0.5',
-  md: 'px-2.5 py-0.5',
-  lg: 'px-4 py-2',
-  xl: 'px-5 py-2.5',
-};
 
 @Component({
   selector: 'span[nbChip]',
@@ -71,7 +62,6 @@ const paddingMap: Record<NbChipPadding, string> = {
     <ng-content />
   `,
   host: {
-    '[class]': 'classes()',
     '[attr.data-padding]': "padding() ?? 'md'",
     '[attr.data-nb-chip]': '""',
     '[style.background]': 'tone.background()',
@@ -96,26 +86,10 @@ export class NbChip {
   protected readonly radius = inject(NbRadiusCapability);
   protected readonly shadow = inject(NbShadowCapability);
   protected readonly border = inject(NbBorderCapability);
-
-  protected readonly classes = computed(() =>
-    nbClass(
-      'inline-flex items-center gap-1.5',
-      'text-xs font-bold',
-      paddingMap[this.padding() ?? 'md'],
-      '[&_svg]:size-[var(--nb-chip-icon-size,0.75rem)] [&_svg]:shrink-0'
-    )
-  );
 }
 
 export type NbChipGroupDirection = 'horizontal' | 'vertical';
 export type NbChipGroupAlign = 'start' | 'center' | 'end' | 'stretch';
-
-const chipGroupAlignMap: Record<NbChipGroupAlign, string> = {
-  start: 'items-start',
-  center: 'items-center',
-  end: 'items-end',
-  stretch: 'items-stretch',
-};
 
 const chipGroupTrackingMap: Record<NbTextTracking, string | null> = {
   tight: '-0.025em',
@@ -134,13 +108,14 @@ const chipGroupTrackingMap: Record<NbTextTracking, string | null> = {
 @Directive({
   selector: '[nbChipGroup]',
   host: {
-    '[class]': 'classes()',
     '[style.gap]': 'gapValue()',
     '[style.--nb-chip-radius]': 'chipRadiusValue()',
     '[style.--nb-chip-shadow]': 'chipShadowValue()',
     '[style.text-transform]': 'transformValue()',
     '[style.letter-spacing]': 'trackingValue()',
     '[attr.data-nb-chip-group]': '""',
+    '[attr.data-direction]': 'direction()',
+    '[attr.data-align]': 'align()',
   },
 })
 export class NbChipGroup {
@@ -151,14 +126,6 @@ export class NbChipGroup {
   readonly shadow = input<NbShadow | undefined>(undefined);
   readonly transform = input<NbTextTransform>('none');
   readonly tracking = input<NbTextTracking>('normal');
-
-  protected readonly classes = computed(() =>
-    nbClass(
-      'flex min-w-0',
-      this.direction() === 'vertical' ? 'flex-col' : 'flex-wrap',
-      chipGroupAlignMap[this.align()]
-    )
-  );
 
   protected readonly gapValue = computed(() => nbSpacingValue(this.gap()));
 

@@ -70,32 +70,22 @@ describe('NbDialog token surface', () => {
     const content = findSlot(host, 'dialog-content');
     const actions = findSlot(host, 'dialog-actions');
 
-    expect(description.className).toContain(
-      '[--nb-dialog-description-fg:#4b5563]'
-    );
-    expect(description.className).toContain(
-      'text-(--nb-dialog-description-fg)'
-    );
+    expect(description.className).toBe('');
+    expect(description.getAttribute('data-slot')).toBe('dialog-description');
 
-    expect(content.className).toContain('[--nb-dialog-content-bg:transparent]');
-    expect(content.className).toContain('bg-(--nb-dialog-content-bg)');
+    expect(content.className).toBe('');
+    expect(content.getAttribute('data-slot')).toBe('dialog-content');
 
-    expect(actions.className).toContain('[--nb-dialog-actions-bg:transparent]');
-    expect(actions.className).toContain('bg-(--nb-dialog-actions-bg)');
+    expect(actions.className).toBe('');
+    expect(actions.getAttribute('data-slot')).toBe('dialog-actions');
   });
 
-  it('does not regress the default dialog class shape', async () => {
+  it('keeps dialog surface anatomy out of classes', async () => {
     const fixture = await createFixture();
-    const cls = findDialog(fixture).className;
+    const dialog = findDialog(fixture);
 
-    expect(cls).toContain('w-[calc(100vw-2rem)]');
-    expect(cls).toContain('max-w-2xl');
-    expect(cls).toContain('m-auto');
-    expect(cls).toContain('p-0');
-    expect(cls).toContain('max-h-[90vh]');
-    expect(cls).toContain('overflow-x-hidden');
-    expect(cls).toContain('open:flex');
-    expect(cls).toContain('open:flex-col');
+    expect(dialog.className).toBe('');
+    expect(dialog.getAttribute('data-slot')).toBe('dialog-surface');
   });
 });
 

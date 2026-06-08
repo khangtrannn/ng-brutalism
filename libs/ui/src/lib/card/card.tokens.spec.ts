@@ -73,33 +73,25 @@ describe('NbCard token surface', () => {
     expect(cls).not.toContain('shadow-nb');
   });
 
-  it('does not regress the default card class shape', async () => {
+  it('keeps host anatomy out of classes', async () => {
     const fixture = await createFixture();
     const card = findCard(fixture);
-    const cls = card.className;
 
-    expect(cls).toContain('flex');
-    expect(cls).toContain('flex-col');
-    expect(cls).toContain('gap-6');
-    expect(cls).toContain('py-6');
-    expect(cls).toContain('font-medium');
+    expect(card.className).toBe('');
+    expect(card.getAttribute('data-slot')).toBe('card');
   });
 
-  it('does not regress the card sub-part class shape', async () => {
+  it('keeps sub-part anatomy out of classes while retaining slots', async () => {
     const fixture = await createFixture();
     const host = fixture.nativeElement as HTMLElement;
 
-    expect(findSlot(host, 'card-header').className).toContain('grid');
-    expect(findSlot(host, 'card-header').className).toContain('auto-rows-min');
-    expect(findSlot(host, 'card-title').className).toContain('font-bold');
-    expect(findSlot(host, 'card-description').className).toContain('text-sm');
-    expect(findSlot(host, 'card-content').className).toContain('px-6');
-    expect(findSlot(host, 'card-actions').className).toContain('flex-wrap');
-    expect(findSlot(host, 'card-actions').className).toContain('justify-end');
-    expect(findSlot(host, 'card-footer').className).toContain('flex');
-    expect(findSlot(host, 'card-footer').className).toContain(
-      'has-[[data-slot=card-actions]]:justify-between'
-    );
+    expect(findSlot(host, 'card-header').className).toBe('');
+    expect(findSlot(host, 'card-title').className).toBe('');
+    expect(findSlot(host, 'card-description').className).toBe('');
+    expect(findSlot(host, 'card-content').className).toBe('');
+    expect(findSlot(host, 'card-actions').className).toBe('');
+    expect(findSlot(host, 'card-actions').getAttribute('data-align')).toBe('end');
+    expect(findSlot(host, 'card-footer').className).toBe('');
   });
 });
 

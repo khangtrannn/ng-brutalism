@@ -38,62 +38,44 @@ describe('NbCheckbox token surface', () => {
     expect(checkbox.getAttribute('data-tone')).toBe('success');
   });
 
-  it('reads its scoped tokens in checked state classes', async () => {
+  it('keeps checked state styling in CSS instead of classes', async () => {
     const fixture = await createFixture();
     const checkbox = findCheckbox(fixture);
-    const cls = checkbox.className;
 
-    expect(cls).toContain(
-      'checked:bg-[var(--nb-checkbox-bg,var(--nb-primary))]'
-    );
-    expect(cls).toContain(
-      'checked:text-[var(--nb-checkbox-fg,var(--nb-primary-foreground))]'
-    );
-    expect(cls).not.toContain('checked:bg-(--nb-main)');
+    expect(checkbox.className).toBe('');
+    expect(checkbox.getAttribute('data-tone')).toBe('primary');
   });
 
-  it('uses --nb-border directly for outline and focus ring', async () => {
+  it('uses CSS for outline and focus ring anatomy', async () => {
     const fixture = await createFixture();
     const cls = findCheckbox(fixture).className;
 
-    expect(cls).toContain('outline-(--nb-border)');
-    expect(cls).toContain('focus-visible:ring-(--nb-border)');
+    expect(cls).toBe('');
     expect(cls).not.toContain('outline-(--nb-checkbox-border)');
     expect(cls).not.toContain('focus-visible:ring-(--nb-checkbox-border)');
   });
 
   it.each([
-    ['sm', 'size-3.5'],
-    ['md', 'size-4'],
-    ['lg', 'size-5'],
+    ['sm'],
+    ['md'],
+    ['lg'],
   ] satisfies Array<[NbCheckboxSize, string]>)(
-    'size="%s" keeps its expected size class',
-    async (size, expectedClass) => {
+    'size="%s" is reflected as a data attribute',
+    async (size) => {
       const fixture = await createFixture({ size });
-      const cls = findCheckbox(fixture).className;
+      const checkbox = findCheckbox(fixture);
 
-      expect(cls).toContain(expectedClass);
+      expect(checkbox.getAttribute('data-size')).toBe(size);
+      expect(checkbox.className).toBe('');
     }
   );
 
-  it('does not regress the default checkbox class shape', async () => {
+  it('keeps default checkbox anatomy out of classes', async () => {
     const fixture = await createFixture();
     const checkbox = findCheckbox(fixture);
-    const cls = checkbox.className;
 
-    expect(cls).toContain('peer');
-    expect(cls).toContain('grid');
-    expect(cls).toContain('shrink-0');
-    expect(cls).toContain('cursor-pointer');
-    expect(cls).toContain('appearance-none');
-    expect(cls).toContain('place-content-center');
-    expect(cls).toContain('outline-2');
-    expect(cls).toContain('ring-offset-white');
-    expect(cls).toContain('focus-visible:outline-hidden');
-    expect(cls).toContain('focus-visible:ring-2');
-    expect(cls).toContain('focus-visible:ring-offset-2');
-    expect(cls).toContain('disabled:opacity-50');
-    expect(cls).toContain('disabled:cursor-not-allowed');
+    expect(checkbox.className).toBe('');
+    expect(checkbox.getAttribute('data-size')).toBe('md');
   });
 });
 

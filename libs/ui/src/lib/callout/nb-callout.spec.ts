@@ -43,22 +43,19 @@ describe('NbCallout', () => {
     expect(callout.getAttribute('data-size')).toBe('lg');
     expect(callout.getAttribute('data-layout')).toBe('inline');
     expect(callout.getAttribute('data-shadow')).toBeNull();
-    expect(callout.className).toContain('relative');
-    expect(callout.className).toContain('inline-flex');
+    expect(callout.className).toBe('');
     expect(callout.className).not.toMatch(/(?:^|\s)nb-tone(?:\s|$)/);
     expect(callout.className).not.toContain('bg-(--nb-callout-bg)');
     expect(callout.className).not.toContain('text-(--nb-callout-fg)');
-    expect(callout.className).toContain(
+    expect(callout.className).not.toContain(
       'border-(length:--nb-callout-border-width)'
     );
     expect(callout.className).not.toContain('border-(--nb-callout-border-color)');
-    expect(callout.className).toContain('rounded-(--nb-callout-radius)');
+    expect(callout.className).not.toContain('rounded-(--nb-callout-radius)');
     expect(callout.className).not.toMatch(/(?:^|\s)nb-shadow(?:\s|$)/);
-    expect(callout.className).toContain('font-black');
     expect(callout.style.getPropertyValue('background')).toBe('');
     expect(callout.style.getPropertyValue('--nb-callout-bg')).toBe('');
-    // Border width still derives from `size` (size lg -> 3px) via the class.
-    expect(callout.className).toContain('[--nb-callout-border-width:3px]');
+    expect(callout.style.getPropertyValue('border-radius')).toBe('');
     expect(callout.style.getPropertyValue('box-shadow')).toBe('');
     expect(callout.style.cssText).not.toContain('--nb-resolved');
   });
@@ -75,10 +72,7 @@ describe('NbCallout', () => {
     expect(callout.getAttribute('data-shadow')).toBe('default');
     // Explicit tone/shadow inputs win outright — literal values, no public hook.
     expect(callout.style.getPropertyValue('background')).toBe('var(--nb-pink)');
-    expect(callout.className).toContain('min-h-20');
-    expect(callout.className).toContain('text-5xl');
-    expect(callout.className).toContain('w-full');
-    expect(callout.className).toContain('justify-between');
+    expect(callout.className).toBe('');
     expect(callout.style.getPropertyValue('box-shadow')).toBe(
       'var(--nb-shadow-offset-x) var(--nb-shadow-offset-y) 0 0 var(--nb-shadow)'
     );

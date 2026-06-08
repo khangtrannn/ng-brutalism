@@ -27,42 +27,7 @@ const RECTANGLE_DEFAULT_COLUMNS = 13;
     </svg>
     }
   `,
-  styles: `
-    :host {
-      pointer-events: none;
-    }
-
-    :host(.nb-halftone--rectangle) {
-      --nb-halftone-color: var(--nb-border);
-      --nb-halftone-dot-size: 8px;
-      --nb-halftone-gap-x: 28px;
-      --nb-halftone-gap-y: 27px;
-
-      display: block;
-      overflow: hidden;
-      width: calc(var(--nb-halftone-columns) * var(--nb-halftone-gap-x));
-      height: calc(var(--nb-halftone-rows) * var(--nb-halftone-gap-y));
-      background-image: radial-gradient(
-        circle at center,
-        var(--nb-halftone-color) 0 calc(var(--nb-halftone-dot-size) / 2),
-        transparent calc((var(--nb-halftone-dot-size) / 2) + 1px)
-      );
-      background-size: var(--nb-halftone-gap-x) var(--nb-halftone-gap-y);
-      background-repeat: repeat;
-      background-position: 0 0;
-    }
-
-    :host(.nb-halftone--circle) {
-      border-radius: 9999px;
-      overflow: hidden;
-    }
-  `,
   host: {
-    'class': 'nb-halftone',
-    '[class.pointer-events-none]': 'true',
-    '[class.nb-halftone--square]': 'shape() === "square"',
-    '[class.nb-halftone--circle]': 'shape() === "circle"',
-    '[class.nb-halftone--rectangle]': 'shape() === "rectangle"',
     '[attr.aria-hidden]': '"true"',
     '[attr.data-shape]': 'shape()',
     '[attr.data-nb-halftone]': '""',

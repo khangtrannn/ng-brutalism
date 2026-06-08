@@ -1,0 +1,98 @@
+@layer components {
+  :where(nb-marquee) {
+    display: block;
+  }
+
+  :where(nb-marquee [data-slot='marquee-wrapper']) {
+    position: relative;
+    display: flex;
+    width: 100%;
+    overflow: hidden;
+    border-top: 2px solid var(--nb-border);
+    border-bottom: 2px solid var(--nb-border);
+    background: #ffffff;
+    color: #000000;
+    font-weight: var(--nb-font-weight-normal);
+  }
+
+  :where(nb-marquee [data-slot='marquee-strip']) {
+    display: flex;
+    width: max-content;
+    min-width: 100%;
+    flex-shrink: 0;
+    align-items: center;
+    padding-block: 1rem;
+    white-space: nowrap;
+    animation-duration: var(--nb-marquee-duration, 5s);
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+  }
+
+  :where(nb-marquee [data-strip='1']) {
+    animation-name: nb-marquee-1;
+  }
+
+  :where(nb-marquee [data-strip='1'][data-reverse]) {
+    animation-name: nb-marquee-reverse-1;
+  }
+
+  :where(nb-marquee [data-strip='2']) {
+    position: absolute;
+    top: 0;
+    left: 0;
+    animation-name: nb-marquee-2;
+  }
+
+  :where(nb-marquee [data-strip='2'][data-reverse]) {
+    animation-name: nb-marquee-reverse-2;
+  }
+
+  :where(nb-marquee [data-slot='marquee-wrapper'][data-pause-on-hover]:hover [data-slot='marquee-strip']) {
+    animation-play-state: paused;
+  }
+
+  :where(nb-marquee-item) {
+    display: inline-flex;
+    flex-shrink: 0;
+    align-items: center;
+    margin-inline: 1rem;
+    font-size: 2.25rem;
+    white-space: nowrap;
+  }
+}
+
+@keyframes nb-marquee-1 {
+  from {
+    transform: translateX(0%);
+  }
+  to {
+    transform: translateX(-100%);
+  }
+}
+
+@keyframes nb-marquee-2 {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0%);
+  }
+}
+
+@keyframes nb-marquee-reverse-1 {
+  from {
+    transform: translateX(0%);
+  }
+  to {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes nb-marquee-reverse-2 {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(0%);
+  }
+}

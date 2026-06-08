@@ -3,6 +3,8 @@
 
 @layer base, components;
 
+@import '../accordion/nb-accordion.css';
+@import '../avatar-group/nb-avatar-group.css';
 @import '../button/nb-button.css';
 @import '../icon-button/nb-icon-button.css';
 @import '../badge/nb-badge.css';
@@ -16,10 +18,27 @@
 @import '../cluster/nb-cluster.css';
 @import '../split/nb-split.css';
 @import '../callout/nb-callout.css';
+@import '../checkbox/nb-checkbox.css';
+@import '../dialog/nb-dialog.css';
+@import '../display/nb-display.css';
+@import '../halftone/nb-halftone.css';
+@import '../label/nb-label.css';
+@import '../marquee/nb-marquee.css';
+@import '../media-item/nb-media-item.css';
+@import '../progress/nb-progress.css';
+@import '../rating/nb-rating.css';
+@import '../section/nb-section.css';
+@import '../stat/nb-stat.css';
+@import '../status-dot/nb-status-dot.css';
+@import '../sticker/nb-sticker.css';
+@import '../sticker/nb-sticker-face.css';
+@import '../text/nb-text.css';
+@import '../title/nb-title.css';
 @import '../textarea/nb-textarea.css';
 @import '../input/nb-input.css';
 @import '../input/nb-input-group.css';
 @import '../select/nb-native-select.css';
+@import '../select/nb-select.css';
 
 @source '../fesm2022/ng-brutalism-ui.mjs';
 
@@ -45,142 +64,6 @@ body {
   :where([data-nb-reset-margin]) {
     margin: 0;
   }
-
-  :where([data-slot="dialog-title"]) {
-    display: block;
-    padding: 1.5rem 1.5rem 0.5rem;
-    font-size: 1.125rem;
-    font-weight: 700;
-    line-height: 1;
-  }
-
-  :where([data-nb-title][data-underline])::after {
-    content: "";
-    display: block;
-    width: var(--nb-title-wave-width, min(9rem, 100%));
-    height: var(--nb-title-wave-height, 0.625rem);
-    margin-top: var(--nb-title-wave-gap, 0);
-    background-color: var(--nb-title-wave-color, #a78bfa);
-    -webkit-mask: url("data:image/svg+xml,%3Csvg viewBox='0 0 220 12' preserveAspectRatio='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0,6 Q10,0 20,6 T40,6 T60,6 T80,6 T100,6 T120,6 T140,6 T160,6 T180,6 T200,6 T220,6' fill='none' stroke='black' stroke-width='6' stroke-linecap='round'/%3E%3C/svg%3E")
-      center / 100% 100% no-repeat;
-    mask: url("data:image/svg+xml,%3Csvg viewBox='0 0 220 12' preserveAspectRatio='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0,6 Q10,0 20,6 T40,6 T60,6 T80,6 T100,6 T120,6 T140,6 T160,6 T180,6 T200,6 T220,6' fill='none' stroke='black' stroke-width='6' stroke-linecap='round'/%3E%3C/svg%3E")
-      center / 100% 100% no-repeat;
-  }
-
-  /* Built-in accent underline for nbDisplay / nbText (underline="bar" | "wave").
-     Drawn as an ::after so it stays out of the accessibility tree. Shape, size,
-     gap and color are all token-driven public API. */
-  :where([data-nb-display][data-underline], [data-nb-text][data-underline]) {
-    /* Column flex so the underline sits beneath the text and stays left-aligned,
-       regardless of any inherited text-align or shrink-to-fit width. Align to
-       start so percentage underline widths are based on the text box instead of
-       a stretched flex parent. */
-    display: inline-flex;
-    flex-direction: column;
-    align-items: flex-start;
-    align-self: flex-start;
-  }
-
-  :where([data-nb-display][data-underline="bar"], [data-nb-text][data-underline="bar"])::after {
-    content: "";
-    display: block;
-    width: var(--nb-underline-width, 7rem);
-    height: var(--nb-underline-height, 0.375rem);
-    margin-top: var(--nb-underline-gap, 0.75rem);
-    border-radius: var(--nb-underline-radius, 9999px);
-    background-color: var(--nb-underline-color, var(--nb-pink));
-  }
-
-  :where([data-nb-display][data-underline="wave"], [data-nb-text][data-underline="wave"])::after {
-    content: "";
-    display: block;
-    width: var(--nb-underline-width, min(18rem, 100%));
-    height: var(--nb-underline-height, 0.625rem);
-    margin-top: var(--nb-underline-gap, 0.5rem);
-    background-color: var(--nb-underline-color, var(--nb-pink));
-    -webkit-mask: url("data:image/svg+xml,%3Csvg viewBox='0 0 220 12' preserveAspectRatio='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0,6 Q10,0 20,6 T40,6 T60,6 T80,6 T100,6 T120,6 T140,6 T160,6 T180,6 T200,6 T220,6' fill='none' stroke='black' stroke-width='6' stroke-linecap='round'/%3E%3C/svg%3E")
-      center / 100% 100% no-repeat;
-    mask: url("data:image/svg+xml,%3Csvg viewBox='0 0 220 12' preserveAspectRatio='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0,6 Q10,0 20,6 T40,6 T60,6 T80,6 T100,6 T120,6 T140,6 T160,6 T180,6 T200,6 T220,6' fill='none' stroke='black' stroke-width='6' stroke-linecap='round'/%3E%3C/svg%3E")
-      center / 100% 100% no-repeat;
-  }
-
-  :where([data-slot="dialog-description"]) {
-    display: block;
-    padding: 0 1.5rem 1rem;
-    font-size: 0.875rem;
-    font-weight: 500;
-    color: var(--nb-dialog-description-fg);
-  }
-
-  :where([data-slot="dialog-content"]) {
-    flex: 1 1 0%;
-    overflow-y: auto;
-    padding: 1rem 1.5rem;
-    border-top: 2px solid var(--nb-border);
-    border-bottom: 2px solid var(--nb-border);
-    background-color: var(--nb-dialog-content-bg);
-  }
-
-  :where([data-slot="dialog-actions"]) {
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-    gap: 0.75rem;
-    padding: 1rem 1.5rem;
-    background-color: var(--nb-dialog-actions-bg);
-  }
-}
-
-@layer components {
-  :where([data-nb-title]) {
-    display: inline-flex;
-    flex-direction: column;
-    align-items: flex-start;
-    align-self: flex-start;
-    max-width: 100%;
-    font-size: var(--nb-title-font-size, 1.75rem);
-    font-weight: var(--nb-title-font-weight, 900);
-    line-height: var(--nb-title-line-height, 1.05);
-  }
-
-  :where([data-nb-section]) {
-    padding: var(--nb-section-padding, 1rem);
-  }
-
-  :where([data-nb-media-item][data-variant="boxed"], [data-nb-media-item][data-variant="chip"]) {
-    background: var(--nb-media-item-bg, var(--nb-surface));
-    color: var(--nb-media-item-fg, var(--nb-surface-foreground));
-    border-color: var(--nb-media-item-border-color, var(--nb-border));
-  }
-
-  :where(nb-select) {
-    background-color: var(--nb-select-bg, var(--nb-surface));
-    color: var(--nb-select-fg, var(--nb-surface-foreground));
-    border-color: var(--nb-select-border-color, var(--nb-border));
-    border-width: var(--nb-select-border-width, var(--nb-border-width));
-    border-style: solid;
-  }
-
-  :where(dialog[data-nb-dialog]) {
-    border-style: solid;
-    background: var(--nb-dialog-bg, #ffffff);
-    color: var(--nb-dialog-fg, #000000);
-    border-color: var(--nb-dialog-border-color, var(--nb-border));
-    border-width: var(--nb-dialog-border-width, var(--nb-border-width));
-    border-radius: var(--nb-dialog-radius, 0.25rem);
-    box-shadow: var(--nb-dialog-shadow, 6px 6px 0 0 var(--nb-shadow));
-  }
-
-  :where(label[nbLabel]) {
-    font-size: 0.875rem;
-    font-weight: 700;
-    line-height: 1;
-  }
-
-  :where(.peer:disabled ~ label[nbLabel]) {
-    cursor: not-allowed;
-    opacity: 0.5;
-  }
 }
 
 /* Focus visible utility class */
@@ -191,17 +74,4 @@ body {
 
 .focus-visible\:outline-\[var\(--nb-focus-ring\)\]:focus-visible {
   outline: var(--nb-focus-ring);
-}
-
-/* Dialog backdrop */
-dialog[data-nb-dialog]::backdrop {
-  background: rgba(0, 0, 0, 0.45);
-}
-
-/* Checkbox: check icon shown over the checked background */
-input[nbCheckbox]:checked {
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000000' stroke-width='3.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'/%3E%3C/svg%3E");
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: 100%;
 }

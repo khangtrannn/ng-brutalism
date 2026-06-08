@@ -16,50 +16,13 @@ import { NbAccordionItem } from './nb-accordion-item';
       [style.background-color]="item.backgroundStyle()"
       [style.color]="item.foregroundStyle()"
     >
-      <div>
+      <div data-slot="accordion-content-inner">
         <ng-content />
       </div>
     </div>
   `,
-  styles: [
-    `
-      div[role='region'] {
-        display: grid;
-        overflow: hidden;
-        background-color: var(
-          --nb-accordion-content-bg,
-          var(--nb-accordion-item-bg, var(--nb-surface))
-        );
-        color: var(
-          --nb-accordion-content-fg,
-          var(--nb-accordion-item-fg, var(--nb-surface-foreground))
-        );
-        font-size: 0.875rem;
-        font-weight: 500;
-        grid-template-rows: 0fr;
-        transition: grid-template-rows 200ms ease-out;
-      }
-
-      div[role='region'][data-state='open'] {
-        grid-template-rows: 1fr;
-      }
-
-      div[role='region'] > div {
-        min-height: 0;
-        overflow: hidden;
-        padding-inline: 1rem;
-      }
-
-      div[role='region'] > div::before,
-      div[role='region'] > div::after {
-        content: '';
-        display: block;
-        height: 1rem;
-      }
-    `,
-  ],
   host: {
-    class: 'block',
+    '[attr.data-nb-accordion-content]': '""',
   },
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

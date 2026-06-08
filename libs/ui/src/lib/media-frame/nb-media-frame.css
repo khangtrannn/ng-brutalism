@@ -1,5 +1,9 @@
 @layer components {
   :where([nbMediaFrame]) {
+    position: relative;
+    isolation: isolate;
+    display: block;
+    overflow: hidden;
     border-style: solid;
     background: var(--nb-media-frame-bg, var(--nb-surface));
     color: var(--nb-media-frame-fg, var(--nb-surface-foreground));
@@ -7,5 +11,64 @@
     border-width: var(--nb-media-frame-border-width, var(--nb-border-width));
     border-radius: var(--nb-media-frame-radius, 0.75rem);
     box-shadow: var(--nb-media-frame-shadow, none);
+  }
+
+  :where([nbMediaFrame] > img),
+  :where([nbMediaFrame] > video) {
+    width: 100%;
+    height: 100%;
+  }
+
+  :where([nbMediaFrame] > picture) {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+
+  :where([nbMediaFrame] > picture > img) {
+    width: 100%;
+    height: 100%;
+  }
+
+  :where([nbMediaFrame][data-ratio='1/1']) {
+    aspect-ratio: 1 / 1;
+  }
+
+  :where([nbMediaFrame][data-ratio='3/4']) {
+    aspect-ratio: 3 / 4;
+  }
+
+  :where([nbMediaFrame][data-ratio='4/3']) {
+    aspect-ratio: 4 / 3;
+  }
+
+  :where([nbMediaFrame][data-ratio='3/2']) {
+    aspect-ratio: 3 / 2;
+  }
+
+  :where([nbMediaFrame][data-ratio='16/9']) {
+    aspect-ratio: 16 / 9;
+  }
+
+  :where([nbMediaFrame][data-ratio='21/9']) {
+    aspect-ratio: 21 / 9;
+  }
+
+  :where([nbMediaFrame][data-fit='cover'] > img),
+  :where([nbMediaFrame][data-fit='cover'] > video),
+  :where([nbMediaFrame][data-fit='cover'] > picture > img) {
+    object-fit: cover;
+  }
+
+  :where([nbMediaFrame][data-fit='contain'] > img),
+  :where([nbMediaFrame][data-fit='contain'] > video),
+  :where([nbMediaFrame][data-fit='contain'] > picture > img) {
+    object-fit: contain;
+  }
+
+  :where([nbMediaFrame][data-fit='fill'] > img),
+  :where([nbMediaFrame][data-fit='fill'] > video),
+  :where([nbMediaFrame][data-fit='fill'] > picture > img) {
+    object-fit: fill;
   }
 }

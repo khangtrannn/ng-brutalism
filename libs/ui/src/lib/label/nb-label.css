@@ -1,0 +1,13 @@
+@layer components {
+  :where(label[nbLabel]) {
+    font-size: 0.875rem;
+    font-weight: 700;
+    line-height: 1;
+  }
+
+  :where(input[nbCheckbox]:disabled ~ label[nbLabel]),
+  :where(.peer:disabled ~ label[nbLabel]) {
+    cursor: not-allowed;
+    opacity: 0.5;
+  }
+}

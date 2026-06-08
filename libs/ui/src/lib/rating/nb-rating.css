@@ -1,0 +1,21 @@
+@layer components {
+  :where(nb-rating) {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.125rem;
+    background-color: transparent;
+  }
+
+  :where(nb-rating [data-slot='rating-star']) {
+    color: var(--nb-rating-empty, var(--nb-border));
+    font-size: var(--nb-rating-size, 1.25rem);
+    line-height: 1;
+  }
+
+  :where(nb-rating [data-slot='rating-count']) {
+    margin-left: 0.125rem;
+    color: var(--nb-rating-empty, var(--nb-border));
+    font-size: 0.75rem;
+    font-weight: 700;
+  }
+}

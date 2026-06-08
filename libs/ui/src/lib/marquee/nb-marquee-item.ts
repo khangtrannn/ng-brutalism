@@ -3,7 +3,7 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 @Component({
   selector: 'nb-marquee-item',
   host: {
-    class: 'mx-4 inline-flex shrink-0 items-center text-4xl whitespace-nowrap',
+    '[attr.data-nb-marquee-item]': '""',
   },
   template: `<ng-content />`,
   changeDetection: ChangeDetectionStrategy.OnPush,

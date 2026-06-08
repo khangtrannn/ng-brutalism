@@ -1,5 +1,10 @@
 @layer components {
   :where(nb-card) {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    padding-block: 1.5rem;
+    font-weight: 500;
     border-style: solid;
     background: var(--nb-card-bg, var(--nb-background));
     color: var(--nb-card-fg, var(--nb-foreground));
@@ -10,5 +15,65 @@
       --nb-card-shadow,
       var(--nb-shadow-offset-x) var(--nb-shadow-offset-y) 0 0 var(--nb-shadow)
     );
+  }
+
+  :where(nb-card-header) {
+    display: grid;
+    grid-template-rows: auto auto;
+    grid-auto-rows: min-content;
+    align-items: flex-start;
+    gap: 0.375rem;
+    padding-inline: 1.5rem;
+  }
+
+  :where(nb-card-header.border-b) {
+    padding-bottom: 1.5rem;
+  }
+
+  :where(nb-card-title) {
+    font-weight: 700;
+    line-height: 1;
+  }
+
+  :where(nb-card-description) {
+    font-size: 0.875rem;
+    font-weight: 500;
+  }
+
+  :where(nb-card-actions) {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.75rem;
+    padding-inline: 1.5rem;
+    justify-content: flex-start;
+  }
+
+  :where(nb-card-actions[data-align='end']) {
+    justify-content: flex-end;
+  }
+
+  :where(nb-card-footer nb-card-actions) {
+    padding-inline: 0;
+  }
+
+  :where(nb-card-content) {
+    padding-inline: 1.5rem;
+  }
+
+  :where(nb-card-footer) {
+    display: flex;
+    align-items: center;
+    padding-inline: 1.5rem;
+  }
+
+  :where(nb-card-footer:has(nb-card-actions)) {
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+
+  :where(nb-card-footer.border-t) {
+    padding-top: 1.5rem;
   }
 }

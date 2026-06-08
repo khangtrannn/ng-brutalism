@@ -1,6 +1,5 @@
 import { ChangeDetectionStrategy, Component, computed, inject, input } from '@angular/core';
 
-import { nbClass } from '../core/class';
 import {
   NbToneCapability,
   NB_STYLE_DEFAULTS,
@@ -13,10 +12,14 @@ import { nbToneVars } from '../tokens/tone';
   selector: 'nb-rating',
   template: `
     @for (i of stars(); track i) {
-      <span [class]="i <= filled() ? filledClass : emptyClass">{{ i <= filled() ? '★' : '☆' }}</span>
+      <span
+        data-slot="rating-star"
+        [attr.data-filled]="i <= filled() ? '' : null"
+        [style.color]="i <= filled() ? ratingFilledColor() : null"
+      >{{ i <= filled() ? '★' : '☆' }}</span>
     }
     @if (count() !== undefined) {
-      <span class="text-xs font-bold text-(--nb-rating-empty) ml-0.5">({{ count() }})</span>
+      <span data-slot="rating-count">({{ count() }})</span>
     }
   `,
   providers: [
@@ -30,11 +33,9 @@ import { nbToneVars } from '../tokens/tone';
     { directive: NbToneCapability, inputs: ['tone'] },
   ],
   host: {
-    '[class]': 'classes',
     '[attr.aria-label]': 'ariaLabel()',
     '[attr.role]': '"img"',
-    '[style.background-color]': '"transparent"',
-    '[style.--nb-rating-filled]': 'ratingFilledColor()',
+    '[attr.data-nb-rating]': '""',
   },
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
@@ -62,22 +63,4 @@ export class NbRating {
     const tone = this.capability.tone() ?? this.defaults.tone ?? 'warning';
     return nbToneVars(tone).bg;
   });
-
-  protected readonly classes = nbClass(
-    '[--nb-rating-empty:var(--nb-border)]',
-    '[--nb-rating-size:1.25rem]',
-    'inline-flex items-center gap-0.5'
-  );
-
-  protected readonly filledClass = nbClass(
-    'text-(--nb-rating-filled)',
-    'text-[length:var(--nb-rating-size)]',
-    'leading-none'
-  );
-
-  protected readonly emptyClass = nbClass(
-    'text-(--nb-rating-empty)',
-    'text-[length:var(--nb-rating-size)]',
-    'leading-none'
-  );
 }

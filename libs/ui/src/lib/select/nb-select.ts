@@ -11,7 +11,6 @@ import {
   viewChild,
 } from '@angular/core';
 
-import { nbClass } from '../core/class';
 import {
   NbBorderCapability,
   NbToneCapability,
@@ -36,7 +35,7 @@ let nextSelectId = 0;
       #trigger
       type="button"
       [id]="triggerId"
-      [class]="triggerClasses()"
+      data-slot="select-trigger"
       [style.color]="tone.foreground()"
       [disabled]="disabled()"
       [attr.aria-haspopup]="'listbox'"
@@ -47,12 +46,15 @@ let nextSelectId = 0;
       (click)="toggle()"
       (keydown)="openListboxOnKey($event)"
     >
-      <span [class]="valueClasses()">
+      <span
+        data-slot="select-value"
+        [attr.data-placeholder]="selectedLabel() ? null : ''"
+      >
         {{ selectedLabel() || placeholder() }}
       </span>
 
       <svg
-        class="size-6 shrink-0 fill-none stroke-current stroke-3 stroke-linecap-round stroke-linejoin-round"
+        data-slot="select-icon"
         viewBox="0 0 24 24"
         aria-hidden="true"
       >
@@ -65,7 +67,7 @@ let nextSelectId = 0;
       [id]="listboxId"
       role="listbox"
       [attr.aria-labelledby]="triggerId"
-      [class]="listboxClasses"
+      data-slot="select-listbox"
       [style.background-color]="listboxBackgroundStyle()"
       [style.border-color]="listboxBorderColorStyle()"
     >
@@ -86,9 +88,10 @@ let nextSelectId = 0;
     { directive: NbBorderCapability, inputs: ['border'] },
   ],
   host: {
-    '[class]': 'hostClasses()',
+    '[attr.data-nb-select]': '""',
     '[attr.data-state]': 'open() ? "open" : "closed"',
     '[attr.data-disabled]': 'disabled() ? "" : null',
+    '[attr.data-in-group]': 'isInGroup ? "" : null',
     '(document:click)': 'closeOnOutsideClick($event)',
     '[style.background-color]': 'backgroundStyle()',
     '[style.color]': 'tone.foreground()',
@@ -151,49 +154,6 @@ export class NbSelect implements NbSelectController {
 
   protected readonly selectedLabel = computed(
     () => this.selectedOption()?.label() ?? ''
-  );
-
-  protected readonly hostClasses = computed(() => {
-    const inGroup = this.isInGroup;
-    return nbClass(
-      '[--nb-select-radius:var(--nb-radius)]',
-      inGroup
-        ? 'block w-full'
-        : [
-            'relative block w-full',
-            'rounded-(--nb-select-radius)',
-            'shadow-nb',
-            'focus-within:outline-none focus-within:ring-2 focus-within:ring-[var(--nb-select-focus-ring-color,var(--nb-select-border-color,var(--nb-border)))]',
-            'focus-within:ring-offset-2 focus-within:shadow-none',
-            'data-[disabled]:border-gray-400 data-[disabled]:shadow-[5px_5px_0_0_#a3a3a3]',
-          ]
-    );
-  });
-
-  protected readonly triggerClasses = computed(() => {
-    const inGroup = this.isInGroup;
-    return nbClass(
-      'flex h-14 w-full items-center gap-4 font-mono text-base font-bold',
-      'text-[var(--nb-select-fg,var(--nb-surface-foreground))] transition-all duration-150',
-      'disabled:cursor-not-allowed disabled:text-gray-400',
-      inGroup
-        ? ['flex-1 min-w-0 bg-transparent px-3 focus-visible:outline-none']
-        : ['flex-1 min-w-0 bg-transparent px-5 focus-visible:outline-none']
-    );
-  });
-
-  protected readonly valueClasses = computed(() =>
-    nbClass(
-      'min-w-0 flex-1 truncate text-left',
-      this.selectedLabel() ? 'text-inherit' : 'text-gray-400'
-    )
-  );
-
-  protected readonly listboxClasses = nbClass(
-    'absolute z-50 top-[calc(100%+8px)]',
-    'left-[-6px] w-[calc(100%+12px)] mt-0.5',
-    'rounded-b-(--nb-select-radius) border-2 border-[var(--nb-select-border-color,var(--nb-border))] bg-[var(--nb-select-listbox-bg,var(--nb-select-bg,var(--nb-surface)))]',
-    'shadow-nb'
   );
 
   isSelected(value: NbSelectValue | null): boolean {

@@ -42,21 +42,12 @@ describe('NbAvatar token surface', () => {
     expect(cls).not.toContain('rounded-full');
   });
 
-  it('does not regress the default avatar class shape', async () => {
+  it('keeps anatomy out of host classes', async () => {
     const fixture = await createFixture();
     const avatar = findAvatar(fixture);
-    const cls = avatar.className;
 
-    expect(cls).toContain('relative');
-    expect(cls).toContain('inline-flex');
-    expect(cls).toContain('h-10');
-    expect(cls).toContain('w-10');
-    expect(cls).toContain('shrink-0');
-    expect(cls).toContain('overflow-hidden');
-    expect(cls).toContain('font-bold');
-    expect(cls).toContain('text-sm');
-    expect(cls).toContain('items-center');
-    expect(cls).toContain('justify-center');
+    expect(avatar.className).toBe('');
+    expect(avatar.getAttribute('data-slot')).toBe('avatar');
   });
 });
 

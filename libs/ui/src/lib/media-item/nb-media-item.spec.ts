@@ -118,7 +118,7 @@ describe('NbMediaItem', () => {
     ) as HTMLElement;
 
     expect(item.getAttribute('data-nb-media-item')).toBe('');
-    expect(item.className).toContain('[&_[nbSurface]]:shrink-0');
+    expect(item.className).toBe('');
     expect(surface.getAttribute('data-nb-surface')).toBe('');
     expect(surface.getAttribute('data-size')).toBe('lg');
     expect(surface.getAttribute('data-layout')).toBe('center');
@@ -142,21 +142,11 @@ describe('NbMediaItem', () => {
     expect(image.getAttribute('alt')).toBe('Ticket');
     expect(title.textContent?.trim()).toBe('Seat 14A');
     expect(description.textContent?.trim()).toBe('Economy window');
-    expect(item.className).toContain('[--nb-media-item-gap:0.75rem]');
-    expect(item.className).toContain(
-      '[--nb-media-item-title-default-size:0.875rem]'
-    );
+    expect(item.className).toBe('');
     expect(item.className).not.toContain(
       '[--nb-media-item-title-size:0.875rem]'
     );
-    expect(item.className).toContain(
-      '[&_img]:h-[var(--nb-media-item-icon-size)]'
-    );
-    expect(item.className).toContain('[&_img]:w-auto');
-    expect(item.className).toContain('[&_img]:object-contain');
-    expect(item.className).toContain(
-      '[&_[data-nb-media-item-title]]:text-[length:var(--nb-media-item-title-size,var(--nb-media-item-title-default-size))]'
-    );
+    expect(item.getAttribute('data-size')).toBe('md');
   });
 
   it('renders a framed icon from inputs', async () => {
@@ -170,9 +160,7 @@ describe('NbMediaItem', () => {
     expect(icon.style.getPropertyValue('--nb-media-item-icon-bg')).toBe(
       '#ff6aa2'
     );
-    expect(icon.className).toContain(
-      'size-[var(--nb-media-item-surface-size)]'
-    );
+    expect(icon.className).toBe('');
   });
 
   it('supports a projected title with input icon and description', async () => {
@@ -226,18 +214,14 @@ describe('NbMediaItem', () => {
       '[nbMediaItemIcon]'
     ) as HTMLElement;
 
-    expect(item.className).toContain('[&_[data-nb-media-item-icon]]:shrink-0');
+    expect(item.className).toBe('');
     expect(icon.getAttribute('data-nb-media-item-icon')).toBe('');
     expect(icon.getAttribute('data-surface')).toBe('true');
     expect(icon.getAttribute('data-background')).toBe('#ff6aa2');
     expect(icon.style.getPropertyValue('--nb-media-item-icon-bg')).toBe(
       '#ff6aa2'
     );
-    expect(icon.className).toContain('bg-(--nb-media-item-icon-bg)');
-    expect(icon.className).toContain(
-      'size-[var(--nb-media-item-surface-size)]'
-    );
-    expect(icon.className).toContain('rounded-lg');
+    expect(icon.className).toBe('');
   });
 });
 

@@ -1,12 +1,10 @@
 import {
   ChangeDetectionStrategy,
   Component,
-  computed,
   inject,
   input,
 } from '@angular/core';
 
-import { nbClass } from '../core/class';
 import {
   NbBorderCapability,
   NbRadiusCapability,
@@ -49,7 +47,6 @@ export type NbCardBorder = NbBorderStrength;
     { directive: NbBorderCapability, inputs: ['border'] },
   ],
   host: {
-    '[class]': 'classes',
     '[attr.data-slot]': '"card"',
     '[style.background]': 'tone.background()',
     '[style.color]': 'tone.foreground()',
@@ -61,11 +58,6 @@ export type NbCardBorder = NbBorderStrength;
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NbCard {
-  protected readonly classes = nbClass(
-    'flex flex-col gap-6 py-6',
-    'font-medium'
-  );
-
   protected readonly tone = inject(NbToneCapability);
   protected readonly radius = inject(NbRadiusCapability);
   protected readonly shadow = inject(NbShadowCapability);
@@ -76,49 +68,36 @@ export class NbCard {
   selector: 'nb-card-header',
   template: `<ng-content />`,
   host: {
-    '[class]': 'classes',
     '[attr.data-slot]': '"card-header"',
   },
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class NbCardHeader {
-  protected readonly classes = nbClass(
-    'grid auto-rows-min grid-rows-[auto_auto] items-start gap-1.5 px-6',
-    '[.border-b]:pb-6'
-  );
-}
+export class NbCardHeader {}
 
 @Component({
   selector: 'nb-card-title',
   template: `<ng-content />`,
   host: {
-    '[class]': 'classes',
     '[attr.data-slot]': '"card-title"',
   },
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class NbCardTitle {
-  protected readonly classes = nbClass('font-bold leading-none');
-}
+export class NbCardTitle {}
 
 @Component({
   selector: 'nb-card-description',
   template: `<ng-content />`,
   host: {
-    '[class]': 'classes',
     '[attr.data-slot]': '"card-description"',
   },
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class NbCardDescription {
-  protected readonly classes = nbClass('text-sm font-medium');
-}
+export class NbCardDescription {}
 
 @Component({
   selector: 'nb-card-actions',
   template: `<ng-content />`,
   host: {
-    '[class]': 'classes()',
     '[attr.data-slot]': '"card-actions"',
     '[attr.data-align]': 'align()',
   },
@@ -126,44 +105,24 @@ export class NbCardDescription {
 })
 export class NbCardActions {
   readonly align = input<NbCardActionsAlign>('start');
-
-  protected readonly classes = computed(() =>
-    nbClass(
-      'flex flex-wrap items-center gap-3 px-6',
-      '[[data-slot=card-footer]_&]:px-0',
-      this.align() === 'end' ? 'justify-end' : 'justify-start'
-    )
-  );
 }
 
 @Component({
   selector: 'nb-card-content',
   template: `<ng-content />`,
   host: {
-    '[class]': 'classes',
     '[attr.data-slot]': '"card-content"',
   },
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class NbCardContent {
-  protected readonly classes = nbClass('px-6');
-}
+export class NbCardContent {}
 
 @Component({
   selector: 'nb-card-footer',
   template: `<ng-content />`,
   host: {
-    '[class]': 'classes',
     '[attr.data-slot]': '"card-footer"',
   },
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class NbCardFooter {
-  protected readonly classes = nbClass(
-    'flex items-center px-6',
-    'has-[[data-slot=card-actions]]:flex-wrap',
-    'has-[[data-slot=card-actions]]:justify-between',
-    'has-[[data-slot=card-actions]]:gap-4',
-    '[.border-t]:pt-6'
-  );
-}
+export class NbCardFooter {}

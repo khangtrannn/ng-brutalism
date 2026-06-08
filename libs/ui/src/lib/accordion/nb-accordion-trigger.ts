@@ -15,9 +15,10 @@ import { NbAccordionItem } from './nb-accordion-item';
 @Component({
   selector: 'nb-accordion-trigger',
   template: `
-    <h3>
+    <h3 data-slot="accordion-trigger-heading">
       <button
         type="button"
+        data-slot="accordion-trigger-button"
         [id]="item.triggerId"
         [attr.aria-expanded]="item.open()"
         [attr.aria-controls]="item.contentId"
@@ -31,77 +32,20 @@ import { NbAccordionItem } from './nb-accordion-item';
         (click)="item.toggle()"
       >
         <ng-content />
-        <svg viewBox="0 0 24 24" aria-hidden="true">
+        <svg data-slot="accordion-trigger-icon" viewBox="0 0 24 24" aria-hidden="true">
           <path [attr.d]="item.open() ? 'm18 15-6-6-6 6' : 'm6 9 6 6 6-6'" />
         </svg>
       </button>
     </h3>
   `,
-  styles: [
-    `
-      h3 {
-        display: flex;
-      }
-
-      button {
-        display: flex;
-        min-height: var(--nb-accordion-trigger-min-height, 3.5rem);
-        flex: 1;
-        align-items: center;
-        justify-content: space-between;
-        gap: 1rem;
-        width: 100%;
-        padding: 1rem;
-        text-align: left;
-        font-size: 1rem;
-        font-weight: 700;
-        background-color: var(
-          --nb-accordion-trigger-bg,
-          var(--nb-accordion-item-bg, var(--nb-surface))
-        );
-        color: var(
-          --nb-accordion-trigger-fg,
-          var(--nb-accordion-item-fg, var(--nb-surface-foreground))
-        );
-        transition: all 200ms;
-      }
-
-      button:focus-visible {
-        outline: 2px solid var(--nb-accordion-item-border-color, var(--nb-border));
-        outline-offset: 2px;
-      }
-
-      button:disabled {
-        pointer-events: none;
-        opacity: 0.5;
-      }
-
-      button[data-state='open'] {
-        border-bottom-style: solid;
-        border-bottom-width: var(
-          --nb-accordion-item-border-width,
-          var(--nb-border-width)
-        );
-        border-bottom-color: var(--nb-accordion-item-border-color, var(--nb-border));
-      }
-
-      svg {
-        width: var(--nb-accordion-trigger-icon-size, 1.5rem);
-        height: var(--nb-accordion-trigger-icon-size, 1.5rem);
-        flex-shrink: 0;
-        fill: none;
-        stroke: currentColor;
-        stroke-width: var(--nb-accordion-trigger-icon-stroke, 3);
-        stroke-linecap: round;
-        stroke-linejoin: round;
-      }
-    `,
-  ],
   providers: [
     { provide: NB_STYLE_NAMESPACE, useValue: 'accordion-trigger' },
     { provide: NB_STYLE_DEFAULTS, useValue: {} },
   ],
   hostDirectives: [{ directive: NbToneCapability, inputs: ['tone'] }],
+  host: {
+    '[attr.data-nb-accordion-trigger]': '""',
+  },
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NbAccordionTrigger {

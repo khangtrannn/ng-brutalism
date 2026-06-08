@@ -1,6 +1,5 @@
 import { Directive, inject } from '@angular/core';
 
-import { nbClass } from '../core/class';
 import {
   NbBorderCapability,
   NbRadiusCapability,
@@ -41,7 +40,6 @@ export type NbBadgeBorder = NbBorderStrength;
     { directive: NbBorderCapability, inputs: ['border'] },
   ],
   host: {
-    '[class]': 'classes',
     '[attr.data-nb-badge]': '""',
     '[style.background]': 'tone.background()',
     '[style.color]': 'tone.foreground()',
@@ -52,11 +50,6 @@ export type NbBadgeBorder = NbBorderStrength;
   },
 })
 export class NbBadge {
-  protected readonly classes = nbClass(
-    'inline-flex items-center gap-1.5',
-    'px-2.5 py-0.5 text-xs font-bold'
-  );
-
   protected readonly tone = inject(NbToneCapability);
   protected readonly radius = inject(NbRadiusCapability);
   protected readonly shadow = inject(NbShadowCapability);

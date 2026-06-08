@@ -1,0 +1,62 @@
+@layer base {
+  :where([data-slot='dialog-title']) {
+    display: block;
+    padding: 1.5rem 1.5rem 0.5rem;
+    font-size: 1.125rem;
+    font-weight: 700;
+    line-height: 1;
+  }
+
+  :where([data-slot='dialog-description']) {
+    display: block;
+    padding: 0 1.5rem 1rem;
+    color: var(--nb-dialog-description-fg, #4b5563);
+    font-size: 0.875rem;
+    font-weight: 500;
+  }
+
+  :where([data-slot='dialog-content']) {
+    flex: 1 1 0%;
+    overflow-y: auto;
+    padding: 1rem 1.5rem;
+    border-top: 2px solid var(--nb-border);
+    border-bottom: 2px solid var(--nb-border);
+    background-color: var(--nb-dialog-content-bg, transparent);
+  }
+
+  :where([data-slot='dialog-actions']) {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 0.75rem;
+    padding: 1rem 1.5rem;
+    background-color: var(--nb-dialog-actions-bg, transparent);
+  }
+}
+
+@layer components {
+  :where(dialog[data-nb-dialog]) {
+    width: calc(100vw - 2rem);
+    max-width: 42rem;
+    max-height: 90vh;
+    margin: auto;
+    padding: 0;
+    overflow-x: hidden;
+    border-style: solid;
+    background: var(--nb-dialog-bg, #ffffff);
+    color: var(--nb-dialog-fg, #000000);
+    border-color: var(--nb-dialog-border-color, var(--nb-border));
+    border-width: var(--nb-dialog-border-width, var(--nb-border-width));
+    border-radius: var(--nb-dialog-radius, 0.25rem);
+    box-shadow: var(--nb-dialog-shadow, 6px 6px 0 0 var(--nb-shadow));
+  }
+
+  :where(dialog[data-nb-dialog][open]) {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+dialog[data-nb-dialog]::backdrop {
+  background: rgba(0, 0, 0, 0.45);
+}

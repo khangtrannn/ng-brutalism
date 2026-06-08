@@ -1,0 +1,30 @@
+@layer components {
+  :where(nb-avatar-group) {
+    display: flex;
+    align-items: center;
+  }
+
+  :where(nb-avatar-group > *) {
+    margin-left: -0.75rem;
+  }
+
+  :where(nb-avatar-group > *:first-child) {
+    margin-left: 0;
+  }
+
+  :where(nb-avatar-group [data-slot='avatar-group-overflow']) {
+    position: relative;
+    display: inline-flex;
+    width: 2.5rem;
+    height: 2.5rem;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid var(--nb-border);
+    border-radius: 9999px;
+    background: var(--nb-surface);
+    font-size: 0.75rem;
+    font-weight: 700;
+    box-shadow: 2px 2px 0 0 var(--nb-shadow);
+  }
+}

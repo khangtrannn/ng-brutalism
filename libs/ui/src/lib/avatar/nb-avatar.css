@@ -1,5 +1,15 @@
 @layer components {
   :where(nb-avatar) {
+    position: relative;
+    display: inline-flex;
+    width: 2.5rem;
+    height: 2.5rem;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    font-size: 0.875rem;
+    font-weight: 700;
     border-style: solid;
     background: var(--nb-avatar-bg, var(--nb-surface));
     color: var(--nb-avatar-fg, var(--nb-surface-foreground));
@@ -7,5 +17,11 @@
     border-width: var(--nb-avatar-border-width, var(--nb-border-width));
     border-radius: var(--nb-avatar-radius, 9999px);
     box-shadow: var(--nb-avatar-shadow, 2px 2px 0 0 var(--nb-shadow));
+  }
+
+  :where(nb-avatar > [data-slot='avatar-image']) {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
   }
 }

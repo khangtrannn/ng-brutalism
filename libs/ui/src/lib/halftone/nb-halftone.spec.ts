@@ -71,7 +71,7 @@ describe('NbHalftone', () => {
 
     expect(halftone.getAttribute('data-nb-halftone')).toBe('');
     expect(halftone.getAttribute('data-shape')).toBe('square');
-    expect(halftone.classList).toContain('nb-halftone--square');
+    expect(halftone.className).toBe('');
     expect(halftone.style.getPropertyValue('--nb-halftone-rows')).toBe('7');
     expect(halftone.style.getPropertyValue('--nb-halftone-columns')).toBe('7');
     expect(halftone.querySelectorAll('circle')).toHaveLength(49);
@@ -93,8 +93,8 @@ describe('NbHalftone', () => {
       '[nbHalftone]'
     ) as HTMLElement;
 
-    expect(halftone.classList).toContain('nb-halftone');
-    expect(halftone.classList).toContain('nb-halftone--rectangle');
+    expect(halftone.getAttribute('data-nb-halftone')).toBe('');
+    expect(halftone.getAttribute('data-shape')).toBe('rectangle');
     expect(halftone.classList).not.toContain('absolute');
     expect(halftone.getAttribute('aria-hidden')).toBe('true');
     expect(halftone.querySelector('circle')).toBeNull();

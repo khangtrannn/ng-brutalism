@@ -8,7 +8,6 @@ import {
   input,
 } from '@angular/core';
 
-import { nbClass } from '../core/class';
 import { NB_SELECT, type NbSelectValue } from './select.types';
 
 let nextSelectOptionId = 0;
@@ -22,21 +21,22 @@ let nextSelectOptionId = 0;
       role="option"
       [id]="id"
       [attr.aria-selected]="selected()"
+      [attr.data-selected]="selected() ? '' : null"
       [disabled]="disabled() || select.disabled()"
-      [class]="classes()"
+      data-slot="select-option-button"
       [style.color]="select.optionForegroundStyle()"
       [style.--nb-select-option-focus-ring-color]="select.optionFocusRingColorStyle()"
       (click)="select.selectOption(this)"
       (keydown)="selectOptionOnKey($event)"
     >
       <span
-        class="min-w-0 flex flex-1 items-center gap-3 truncate text-left [&_svg]:size-6 [&_svg]:shrink-0 [&_svg]:fill-none [&_svg]:stroke-current [&_svg]:stroke-[2.3] [&_svg]:stroke-linecap-round [&_svg]:stroke-linejoin-round"
+        data-slot="select-option-content"
       >
         <ng-content />
       </span>
       @if (showIndicator()) {
       <svg
-        class="size-6 shrink-0 fill-none stroke-current stroke-[3] stroke-linecap-round stroke-linejoin-round"
+        data-slot="select-option-indicator"
         viewBox="0 0 24 24"
         aria-hidden="true"
       >
@@ -46,7 +46,7 @@ let nextSelectOptionId = 0;
     </button>
   `,
   host: {
-    class: 'block',
+    '[attr.data-nb-select-option]': '""',
   },
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
@@ -70,19 +70,6 @@ export class NbSelectOption {
 
   protected readonly showIndicator = computed(
     () => this.value() !== null && this.selected()
-  );
-
-  protected readonly classes = computed(() =>
-    nbClass(
-      'flex h-11 w-full items-center gap-3 px-2',
-      'font-mono text-base font-bold text-[var(--nb-select-fg,var(--nb-surface-foreground))]',
-      'transition-colors duration-150',
-      'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--nb-select-option-focus-ring-color,var(--nb-select-border-color,var(--nb-border)))]',
-      'disabled:pointer-events-none disabled:opacity-50',
-      this.selected()
-        ? 'bg-[#bdf7c8]'
-        : 'bg-transparent hover:bg-[#e8d6ff] focus-visible:bg-[#e8d6ff]'
-    )
   );
 
   focus(): void {

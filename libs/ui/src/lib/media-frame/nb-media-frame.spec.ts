@@ -56,17 +56,14 @@ describe('NbMediaFrame', () => {
     expect(frame.getAttribute('data-radius')).toBeNull();
     expect(frame.getAttribute('data-shadow')).toBeNull();
     expect(frame.getAttribute('data-border')).toBeNull();
-    expect(frame.className).toContain('relative');
-    expect(frame.className).toContain('isolate');
-    expect(frame.className).toContain('overflow-hidden');
+    expect(frame.className).toBe('');
     expect(frame.className).not.toMatch(/(?:^|\s)nb-border-width(?:\s|$)/);
     expect(frame.className).not.toMatch(/(?:^|\s)nb-tone(?:\s|$)/);
     expect(frame.className).not.toContain('bg-(--nb-media-frame-bg)');
     expect(frame.className).not.toContain('text-(--nb-media-frame-fg)');
     expect(frame.className).not.toMatch(/(?:^|\s)nb-radius(?:\s|$)/);
     expect(frame.className).not.toMatch(/(?:^|\s)nb-shadow(?:\s|$)/);
-    expect(frame.className).toContain('[&>img]:h-full');
-    expect(frame.className).toContain('[&>img]:object-cover');
+    expect(frame.getAttribute('data-fit')).toBe('cover');
     expect(frame.style.getPropertyValue('background')).toBe('');
     expect(frame.style.getPropertyValue('border-radius')).toBe('');
     expect(frame.style.getPropertyValue('box-shadow')).toBe('');
@@ -87,8 +84,7 @@ describe('NbMediaFrame', () => {
     expect(frame.getAttribute('data-border')).toBe('strong');
     // Explicit inputs win outright — literal values, no public hook.
     expect(frame.style.getPropertyValue('background')).toBe('var(--nb-lavender)');
-    expect(frame.className).toContain('aspect-[21/9]');
-    expect(frame.className).toContain('[&>video]:object-contain');
+    expect(frame.className).toBe('');
     expect(frame.style.getPropertyValue('border-radius')).toBe('1rem');
     expect(frame.style.getPropertyValue('box-shadow')).toBe(
       '6px 6px 0 0 var(--nb-shadow)'
@@ -110,7 +106,7 @@ describe('NbMediaFrame', () => {
     ) as HTMLElement;
 
     expect(frame.getAttribute('data-ratio')).toBe('3/4');
-    expect(frame.className).toContain('aspect-[3/4]');
+    expect(frame.className).toBe('');
   });
 
   it.each([

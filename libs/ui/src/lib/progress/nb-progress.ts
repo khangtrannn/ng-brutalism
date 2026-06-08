@@ -6,7 +6,6 @@ import {
   input,
 } from '@angular/core';
 
-import { nbClass } from '../core/class';
 import {
   NbToneCapability,
   NB_STYLE_DEFAULTS,
@@ -24,10 +23,10 @@ import { nbToneVars } from '../tokens/tone';
       [attr.aria-valuemin]="0"
       [attr.aria-valuemax]="max()"
       [attr.aria-label]="label() || 'Progress'"
-      class="relative h-full w-full overflow-hidden"
+      data-slot="progress-track"
     >
       <div
-        class="h-full transition-all duration-300 ease-out"
+        data-slot="progress-fill"
         [style.background-color]="fillBg()"
         [style.width.%]="percentage()"
       ></div>
@@ -44,7 +43,6 @@ import { nbToneVars } from '../tokens/tone';
     { directive: NbToneCapability, inputs: ['tone'] },
   ],
   host: {
-    '[class]': 'hostClass()',
     '[style.background-color]': '"var(--nb-secondary-background)"',
     '[attr.data-nb-progress]': '""',
   },
@@ -70,12 +68,4 @@ export class NbProgress {
     const tone = this.capability.tone() ?? this.defaults.tone ?? 'primary';
     return nbToneVars(tone).bg;
   });
-
-  protected readonly hostClass = computed(() =>
-    nbClass(
-      'block h-3 w-full overflow-hidden',
-      'border-2 border-(--nb-border)',
-      'shadow-[var(--nb-shadow-offset-x)_var(--nb-shadow-offset-y)_0_var(--nb-shadow)]'
-    )
-  );
 }

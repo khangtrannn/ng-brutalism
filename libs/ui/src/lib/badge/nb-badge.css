@@ -1,5 +1,11 @@
 @layer components {
   :where(span[nbBadge]) {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.375rem;
+    padding: 0.125rem 0.625rem;
+    font-size: 0.75rem;
+    font-weight: 700;
     border-style: solid;
     background: var(--nb-badge-bg, #ffffff);
     color: var(--nb-badge-fg, #000000);

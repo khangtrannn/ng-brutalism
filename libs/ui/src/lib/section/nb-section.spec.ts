@@ -63,14 +63,11 @@ describe('NbSection', () => {
     expect(section.getAttribute('data-layout')).toBe('default');
     expect(section.getAttribute('data-align')).toBe('stretch');
     expect(section.getAttribute('data-flush')).toBeNull();
-    expect(section.className).toContain('box-border');
-    expect(section.className).toContain('min-w-0');
-    expect(section.className).toContain('block');
+    expect(section.className).toBe('');
     expect(section.className).not.toMatch(/(?:^|\s)nb-padding(?:\s|$)/);
     expect(section.style.getPropertyValue('padding')).toBe('');
     expect(section.style.cssText).not.toContain('--nb-resolved');
     expect(section.className).not.toContain('border-t-');
-    expect(section.className).not.toContain('items-stretch');
   });
 
   it('renders a top divider with the configured padding', async () => {
@@ -82,9 +79,7 @@ describe('NbSection', () => {
     expect(section.getAttribute('data-padding')).toBe('lg');
     expect(section.getAttribute('data-divider')).toBe('top');
     expect(section.style.getPropertyValue('padding')).toBe('1.5rem');
-    expect(section.className).toContain('border-t-(length:--nb-border-width)');
-    expect(section.className).toContain('border-(--nb-border)');
-    expect(section.className).toContain('border-solid');
+    expect(section.className).toBe('');
   });
 
   it('maps block divider with dashed style', async () => {
@@ -96,8 +91,7 @@ describe('NbSection', () => {
     expect(section.getAttribute('data-divider')).toBe('block');
     expect(section.getAttribute('data-divider-style')).toBe('dashed');
     expect(section.style.getPropertyValue('padding')).toBe('2rem');
-    expect(section.className).toContain('border-y-(length:--nb-border-width)');
-    expect(section.className).toContain('border-dashed');
+    expect(section.className).toBe('');
     expect(section.className).not.toContain('border-solid');
   });
 
@@ -109,9 +103,7 @@ describe('NbSection', () => {
 
     expect(section.getAttribute('data-layout')).toBe('between');
     expect(section.getAttribute('data-align')).toBe('center');
-    expect(section.className).toContain('flex');
-    expect(section.className).toContain('justify-between');
-    expect(section.className).toContain('items-center');
+    expect(section.className).toBe('');
     expect(section.className).not.toContain('block');
   });
 
@@ -122,9 +114,9 @@ describe('NbSection', () => {
     ) as HTMLElement;
 
     expect(section.getAttribute('data-flush')).toBe('');
-    expect(section.className).toContain('mx-(--nb-section-flush-margin)');
-    expect(section.style.getPropertyValue('--nb-section-flush-margin')).toBe(
-      'calc(1.5rem * -1)'
+    expect(section.className).toBe('');
+    expect(section.style.getPropertyValue('margin-inline')).toBe(
+      'calc(-1.5rem)'
     );
   });
 });

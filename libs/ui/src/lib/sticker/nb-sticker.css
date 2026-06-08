@@ -1,0 +1,106 @@
+@layer components {
+  :where([data-nb-sticker]) {
+    --nb-sticker-min-block-size: 8.75rem;
+    --nb-sticker-padding-inline: 3.5rem;
+    --nb-sticker-padding-block: 3rem;
+    --nb-sticker-fill: var(--nb-mint, #9af7b5);
+    --nb-sticker-ink: var(--nb-black, #050505);
+    --nb-sticker-shadow: var(--nb-shadow, var(--nb-black, #050505));
+    --nb-sticker-stroke-width: 5px;
+    --nb-sticker-rotate: -6deg;
+    --nb-sticker-font-size: 1.5rem;
+
+    display: inline-block;
+    vertical-align: middle;
+  }
+
+  :where([data-nb-sticker][data-shape='burst-wide']) {
+    --nb-sticker-padding-inline: 4rem;
+    --nb-sticker-padding-block: 3rem;
+    --nb-sticker-font-size: 1.5rem;
+  }
+
+  :where([data-nb-sticker][data-shape='star']) {
+    --nb-sticker-min-block-size: 7.5rem;
+    --nb-sticker-padding-inline: 2.5rem;
+    --nb-sticker-padding-block: 2.5rem;
+    --nb-sticker-face-size: 3.5rem;
+    --nb-sticker-rotate: 0deg;
+    --nb-sticker-stroke-width: 5px;
+  }
+
+  :where([data-nb-sticker][data-shape='splat']) {
+    --nb-sticker-size: 6rem;
+    --nb-sticker-shadow-x: 6px;
+    --nb-sticker-shadow-y: 6px;
+    --nb-sticker-stroke-width: 4px;
+    --nb-sticker-rotate: -10deg;
+  }
+
+  :where([data-nb-sticker] [data-slot='sticker-root']) {
+    position: relative;
+    isolation: isolate;
+    display: inline-grid;
+    box-sizing: border-box;
+    min-block-size: var(--nb-sticker-min-block-size);
+    inline-size: max-content;
+    block-size: max-content;
+    place-items: center;
+    transform: rotate(var(--nb-sticker-rotate)) scale(var(--nb-sticker-scale, 1));
+    transform-origin: center;
+  }
+
+  :where([data-nb-sticker][data-shape='splat'] [data-slot='sticker-root']) {
+    inline-size: var(--nb-sticker-size);
+    block-size: var(--nb-sticker-size);
+    min-block-size: var(--nb-sticker-size);
+  }
+
+  :where([data-nb-sticker] [data-slot='sticker-svg']) {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    inline-size: 100%;
+    block-size: 100%;
+    overflow: visible;
+  }
+
+  :where([data-nb-sticker] [data-slot='sticker-shadow']) {
+    fill: var(--nb-sticker-shadow);
+  }
+
+  :where([data-nb-sticker][data-shape='splat'] [data-slot='sticker-shadow']) {
+    transform: translate(var(--nb-sticker-shadow-x), var(--nb-sticker-shadow-y));
+  }
+
+  :where([data-nb-sticker] [data-slot='sticker-shape']) {
+    fill: var(--nb-sticker-fill);
+    stroke: var(--nb-sticker-ink);
+    stroke-width: var(--nb-sticker-stroke-width);
+    stroke-linejoin: round;
+    stroke-linecap: round;
+    vector-effect: non-scaling-stroke;
+  }
+
+  :where([data-nb-sticker] [data-slot='sticker-content']) {
+    display: block;
+    max-width: 300px;
+    padding-inline: var(--nb-sticker-padding-inline);
+    padding-block: var(--nb-sticker-padding-block);
+    overflow-wrap: break-word;
+    color: var(--nb-sticker-ink);
+    font-family: var(--nb-font-display, system-ui, sans-serif);
+    font-size: var(--nb-sticker-font-size);
+    font-weight: 950;
+    line-height: 0.9;
+    letter-spacing: 0;
+    text-align: center;
+    text-transform: uppercase;
+    pointer-events: none;
+    user-select: none;
+  }
+
+  :where([data-nb-sticker][data-shape='splat'] [data-slot='sticker-content']) {
+    display: none;
+  }
+}

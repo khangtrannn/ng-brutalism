@@ -107,6 +107,6 @@ function findShape(
   fixture: ComponentFixture<StickerTokenTest>
 ): SVGPathElement {
   return fixture.nativeElement.querySelector(
-    '.nb-sticker__shape'
+    '[data-slot="sticker-shape"]'
   ) as SVGPathElement;
 }

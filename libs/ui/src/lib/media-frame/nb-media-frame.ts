@@ -1,6 +1,5 @@
-import { Directive, computed, inject, input } from '@angular/core';
+import { Directive, inject, input } from '@angular/core';
 
-import { nbClass } from '../core/class';
 import {
   NbBorderCapability,
   NbRadiusCapability,
@@ -54,7 +53,6 @@ export type NbMediaFrameFit = 'cover' | 'contain' | 'fill';
     { directive: NbBorderCapability, inputs: ['border'] },
   ],
   host: {
-    '[class]': 'classes()',
     '[attr.data-nb-media-frame]': '""',
     '[attr.data-ratio]': 'ratio()',
     '[attr.data-fit]': 'fit()',
@@ -74,42 +72,4 @@ export class NbMediaFrame {
   protected readonly radius = inject(NbRadiusCapability);
   protected readonly shadow = inject(NbShadowCapability);
   protected readonly border = inject(NbBorderCapability);
-
-  protected readonly classes = computed(() =>
-    nbClass(
-      'relative isolate block overflow-hidden',
-      '[&>img]:h-full [&>img]:w-full',
-      '[&>video]:h-full [&>video]:w-full',
-      '[&>picture]:block [&>picture]:h-full [&>picture]:w-full',
-      '[&>picture>img]:h-full [&>picture>img]:w-full',
-      this.ratioClass(),
-      this.fitClass()
-    )
-  );
-
-  private ratioClass(): string {
-    const map: Record<NbMediaFrameRatio, string> = {
-      auto: '',
-      '1/1': 'aspect-square',
-      '3/4': 'aspect-[3/4]',
-      '4/3': 'aspect-[4/3]',
-      '3/2': 'aspect-[3/2]',
-      '16/9': 'aspect-video',
-      '21/9': 'aspect-[21/9]',
-    };
-
-    return map[this.ratio()];
-  }
-
-  private fitClass(): string {
-    const map: Record<NbMediaFrameFit, string> = {
-      cover:
-        '[&>img]:object-cover [&>video]:object-cover [&>picture>img]:object-cover',
-      contain:
-        '[&>img]:object-contain [&>video]:object-contain [&>picture>img]:object-contain',
-      fill: '[&>img]:object-fill [&>video]:object-fill [&>picture>img]:object-fill',
-    };
-
-    return map[this.fit()];
-  }
 }

@@ -54,19 +54,14 @@ describe('NbImageCard token surface', () => {
   it('does not put caption divider styles on the image', async () => {
     const fixture = await createFixture();
     const image = findImage(fixture);
-    const cls = image.className;
 
-    expect(cls).toContain('block');
-    expect(cls).toContain('w-full');
-    expect(cls).toContain('h-auto');
-    expect(cls).not.toContain('border-b-2');
-    expect(cls).not.toContain('border-(--nb-border)');
+    expect(image.className).toBe('');
+    expect(image.getAttribute('data-slot')).toBe('image-card-image');
   });
 
   it('uses the scoped border token for the caption divider', async () => {
     const fixture = await createFixture();
     const caption = findCaption(fixture);
-    const cls = caption.className;
 
     expect(caption.style.getPropertyValue('border-top-width')).toBe(
       'var(--nb-image-card-border-width, var(--nb-border-width))'
@@ -75,19 +70,15 @@ describe('NbImageCard token surface', () => {
       'var(--nb-image-card-border-color, var(--nb-border))'
     );
     expect(caption.style.cssText).not.toContain('--nb-resolved');
-    expect(cls).toContain('border-t-solid');
-    expect(cls).not.toContain('border-(--nb-border)');
+    expect(caption.className).toBe('');
   });
 
-  it('does not regress the default image-card class shape', async () => {
+  it('keeps image-card anatomy out of host classes', async () => {
     const fixture = await createFixture();
     const imageCard = findImageCard(fixture);
-    const cls = imageCard.className;
 
-    expect(cls).toContain('flex');
-    expect(cls).toContain('flex-col');
-    expect(cls).toContain('overflow-hidden');
-    expect(cls).toContain('font-medium');
+    expect(imageCard.className).toBe('');
+    expect(imageCard.getAttribute('data-slot')).toBe('image-card');
   });
 });
 

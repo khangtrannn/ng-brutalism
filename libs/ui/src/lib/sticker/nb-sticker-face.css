@@ -1,0 +1,27 @@
+@layer components {
+  :where([data-nb-sticker-face]) {
+    --nb-sticker-face-ink: var(--nb-sticker-ink, #050505);
+
+    display: block;
+    width: var(--nb-sticker-face-size, 5.55rem);
+    height: calc(var(--nb-sticker-face-size, 5.55rem) * 0.64);
+  }
+
+  :where([data-nb-sticker-face] [data-slot='sticker-face-svg']) {
+    display: block;
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+  }
+
+  :where([data-nb-sticker-face] [data-slot='sticker-face-eye']) {
+    fill: var(--nb-sticker-face-ink);
+  }
+
+  :where([data-nb-sticker-face] [data-slot='sticker-face-smile']) {
+    fill: none;
+    stroke: var(--nb-sticker-face-ink);
+    stroke-width: 36;
+    stroke-linecap: round;
+  }
+}

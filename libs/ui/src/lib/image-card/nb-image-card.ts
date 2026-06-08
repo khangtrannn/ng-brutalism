@@ -6,7 +6,6 @@ import {
   input,
 } from '@angular/core';
 
-import { nbClass } from '../core/class';
 import {
   NbBorderCapability,
   NbRadiusCapability,
@@ -34,7 +33,7 @@ export type NbImageCardBorder = NbBorderStrength;
     <img
       [src]="image()"
       [alt]="alt()"
-      [class]="imageClasses"
+      data-slot="image-card-image"
       loading="lazy"
       decoding="async"
     />
@@ -59,7 +58,6 @@ export type NbImageCardBorder = NbBorderStrength;
     { directive: NbBorderCapability, inputs: ['border'] },
   ],
   host: {
-    '[class]': 'classes',
     '[attr.data-slot]': '"image-card"',
     '[style.background]': 'tone.background()',
     '[style.color]': 'tone.foreground()',
@@ -87,20 +85,12 @@ export class NbImageCard {
       this.tone.borderColor() ??
       nbToneFallbacks('image-card', 'background').borderColor,
   );
-
-  protected readonly classes = nbClass(
-    'flex flex-col overflow-hidden',
-    'font-medium'
-  );
-
-  protected readonly imageClasses = nbClass('block w-full h-auto');
 }
 
 @Component({
   selector: 'nb-image-card-caption',
   template: `<ng-content />`,
   host: {
-    '[class]': 'classes',
     '[attr.data-slot]': '"image-card-caption"',
     '[style.border-top-width]': 'borderTopWidthStyle()',
     '[style.border-top-color]': 'borderTopColorStyle()',
@@ -115,10 +105,5 @@ export class NbImageCardCaption {
   );
   protected readonly borderTopColorStyle = computed(() =>
     this.card.captionBorderColor(),
-  );
-
-  protected readonly classes = nbClass(
-    'border-t-solid',
-    'px-6 py-4 text-center font-bold text-base'
   );
 }

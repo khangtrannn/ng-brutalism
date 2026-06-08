@@ -24,6 +24,7 @@ let nextAccordionItemId = 0;
   selector: 'nb-accordion-item',
   template: `
     <div
+      data-slot="accordion-item-surface"
       [style.background]="backgroundStyle()"
       [style.color]="foregroundStyle()"
       [style.border-color]="borderColorStyle()"
@@ -34,27 +35,6 @@ let nextAccordionItemId = 0;
       <ng-content />
     </div>
   `,
-  styles: [
-    `
-      div {
-        overflow: hidden;
-        border-style: solid;
-        border-radius: var(--nb-accordion-item-radius, var(--nb-radius));
-        border-width: var(--nb-accordion-item-border-width, var(--nb-border-width));
-        border-color: var(--nb-accordion-item-border-color, var(--nb-border));
-        background-color: var(--nb-accordion-item-bg, var(--nb-surface));
-        color: var(--nb-accordion-item-fg, var(--nb-surface-foreground));
-        box-shadow: var(
-          --nb-accordion-item-shadow,
-          var(--nb-shadow-offset-x) var(--nb-shadow-offset-y) 0 0 var(--nb-shadow)
-        );
-      }
-
-      :host([data-disabled]) {
-        opacity: 0.5;
-      }
-    `,
-  ],
   providers: [
     { provide: NB_STYLE_NAMESPACE, useValue: 'accordion-item' },
     {
@@ -74,7 +54,7 @@ let nextAccordionItemId = 0;
     { directive: NbBorderCapability, inputs: ['border'] },
   ],
   host: {
-    class: 'block',
+    '[attr.data-nb-accordion-item]': '""',
     '[attr.data-state]': 'open() ? "open" : "closed"',
     '[attr.data-disabled]': 'disabled() ? "" : null',
     '[attr.data-orientation]': '"vertical"',

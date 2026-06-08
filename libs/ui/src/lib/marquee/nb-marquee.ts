@@ -14,91 +14,35 @@ import {
   viewChild,
 } from '@angular/core';
 
-import { nbClass } from '../core/class';
-
 @Component({
   selector: 'nb-marquee',
   host: {
-    class: 'block',
+    '[attr.data-nb-marquee]': '""',
   },
   template: `
-    <div #wrapper [class]="wrapperClass()" [style]="wrapperStyle()">
-      <div #strip1 [class]="strip1Class()">
+    <div
+      #wrapper
+      data-slot="marquee-wrapper"
+      [attr.data-pause-on-hover]="pauseOnHover() ? '' : null"
+      [style.--nb-marquee-duration]="scaledDuration()"
+    >
+      <div
+        #strip1
+        data-slot="marquee-strip"
+        data-strip="1"
+        [attr.data-reverse]="reverse() ? '' : null"
+      >
         <ng-content />
       </div>
-      <div #strip2 [class]="strip2Class()" aria-hidden="true"></div>
+      <div
+        #strip2
+        data-slot="marquee-strip"
+        data-strip="2"
+        [attr.data-reverse]="reverse() ? '' : null"
+        aria-hidden="true"
+      ></div>
     </div>
   `,
-  styles: [
-    `
-      @keyframes nb-marquee-1 {
-        from {
-          transform: translateX(0%);
-        }
-        to {
-          transform: translateX(-100%);
-        }
-      }
-      @keyframes nb-marquee-2 {
-        from {
-          transform: translateX(100%);
-        }
-        to {
-          transform: translateX(0%);
-        }
-      }
-      @keyframes nb-marquee-reverse-1 {
-        from {
-          transform: translateX(0%);
-        }
-        to {
-          transform: translateX(100%);
-        }
-      }
-      @keyframes nb-marquee-reverse-2 {
-        from {
-          transform: translateX(-100%);
-        }
-        to {
-          transform: translateX(0%);
-        }
-      }
-
-      .nb-marquee-strip-1 {
-        animation-name: nb-marquee-1;
-        animation-duration: var(--nb-marquee-duration, 5s);
-        animation-timing-function: linear;
-        animation-iteration-count: infinite;
-      }
-      .nb-marquee-strip-1.nb-marquee-reverse {
-        animation-name: nb-marquee-reverse-1;
-      }
-
-      .nb-marquee-strip-2 {
-        animation-name: nb-marquee-2;
-        animation-duration: var(--nb-marquee-duration, 5s);
-        animation-timing-function: linear;
-        animation-iteration-count: infinite;
-      }
-      .nb-marquee-strip-2.nb-marquee-reverse {
-        animation-name: nb-marquee-reverse-2;
-      }
-
-      .nb-marquee-strip-1,
-      .nb-marquee-strip-2 {
-        display: flex;
-        width: max-content;
-        min-width: 100%;
-        align-items: center;
-        flex-shrink: 0;
-      }
-
-      .nb-marquee-wrapper.nb-pause-on-hover:hover .nb-marquee-strip-1,
-      .nb-marquee-wrapper.nb-pause-on-hover:hover .nb-marquee-strip-2 {
-        animation-play-state: paused;
-      }
-    `,
-  ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NbMarquee {
@@ -120,20 +64,7 @@ export class NbMarquee {
   private readonly isBrowser = isPlatformBrowser(inject(PLATFORM_ID));
   private readonly widthScale = signal(1);
 
-  protected readonly wrapperClass = computed(() =>
-    nbClass(
-      'nb-marquee-wrapper relative flex w-full overflow-hidden',
-      'border-t-2 border-b-2 border-(--nb-border)',
-      'bg-white text-black font-base',
-      this.pauseOnHover() && 'nb-pause-on-hover'
-    )
-  );
-
-  protected readonly wrapperStyle = computed(() => ({
-    '--nb-marquee-duration': this.scaledDuration(),
-  }));
-
-  private readonly scaledDuration = computed(() => {
+  protected readonly scaledDuration = computed(() => {
     const duration = this.duration();
     const durationMs = this.durationToMs(duration);
 
@@ -143,20 +74,6 @@ export class NbMarquee {
 
     return `${durationMs * this.widthScale()}ms`;
   });
-
-  protected readonly strip1Class = computed(() =>
-    nbClass(
-      'nb-marquee-strip-1 whitespace-nowrap py-4',
-      this.reverse() && 'nb-marquee-reverse'
-    )
-  );
-
-  protected readonly strip2Class = computed(() =>
-    nbClass(
-      'nb-marquee-strip-2 absolute top-0 left-0 whitespace-nowrap py-4',
-      this.reverse() && 'nb-marquee-reverse'
-    )
-  );
 
   constructor() {
     if (!this.isBrowser) {

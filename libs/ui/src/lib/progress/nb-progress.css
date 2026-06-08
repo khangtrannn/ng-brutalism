@@ -1,0 +1,22 @@
+@layer components {
+  :where(nb-progress) {
+    display: block;
+    width: 100%;
+    height: 0.75rem;
+    overflow: hidden;
+    border: 2px solid var(--nb-border);
+    box-shadow: var(--nb-shadow-offset-x) var(--nb-shadow-offset-y) 0 var(--nb-shadow);
+  }
+
+  :where(nb-progress [data-slot='progress-track']) {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+  }
+
+  :where(nb-progress [data-slot='progress-fill']) {
+    height: 100%;
+    transition: width 300ms ease-out;
+  }
+}

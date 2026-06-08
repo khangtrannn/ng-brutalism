@@ -18,12 +18,12 @@ import {
 @Component({
   selector: 'nb-accordion',
   template: `
-    <div class="flex w-full flex-col gap-3">
+    <div data-slot="accordion-items">
       <ng-content />
     </div>
   `,
   host: {
-    class: 'block w-full',
+    '[attr.data-nb-accordion]': '""',
     '[attr.data-orientation]': '"vertical"',
     '[attr.data-type]': 'type()',
   },

@@ -48,12 +48,8 @@ describe('NbSelect', () => {
       'nb-select'
     ) as HTMLElement;
 
-    expect(select.className).toContain('focus-within:ring-2');
-    expect(select.className).toContain(
-      'focus-within:ring-[var(--nb-select-focus-ring-color,var(--nb-select-border-color,var(--nb-border)))]'
-    );
-    expect(select.className).toContain('focus-within:ring-offset-2');
-    expect(select.className).toContain('focus-within:shadow-none');
+    expect(select.className).toBe('');
+    expect(select.getAttribute('data-nb-select')).toBe('');
     expect(select.className).not.toContain('focus-within:ring-(--nb-focus');
   });
 
@@ -73,12 +69,9 @@ describe('NbSelect', () => {
       '[role="listbox"]'
     ) as HTMLElement;
 
-    expect(select.className).toContain(
-      'focus-within:ring-[var(--nb-select-focus-ring-color,var(--nb-select-border-color,var(--nb-border)))]'
-    );
-    expect(listbox.className).toContain(
-      'border-[var(--nb-select-border-color,var(--nb-border))]'
-    );
+    expect(select.className).toBe('');
+    expect(listbox.className).toBe('');
+    expect(listbox.getAttribute('data-slot')).toBe('select-listbox');
     expect(select.className).not.toContain('--nb-select-active-border');
     expect(listbox.className).not.toContain('--nb-select-active-border');
   });
@@ -130,7 +123,7 @@ describe('NbSelect', () => {
     expect(resetOption.getAttribute('aria-selected')).toBe('false');
     expect(resetOption.querySelector('svg')).toBeNull();
     expect(selectedOption.getAttribute('aria-selected')).toBe('true');
-    expect(selectedOption.className).toContain('bg-[#bdf7c8]');
+    expect(selectedOption.getAttribute('data-selected')).toBe('');
     expect(selectedOption.querySelector('svg')).not.toBeNull();
 
     resetOption.click();
@@ -148,7 +141,7 @@ describe('NbSelect', () => {
     ) as HTMLButtonElement[];
 
     expect(resetOption.getAttribute('aria-selected')).toBe('true');
-    expect(resetOption.className).toContain('bg-[#bdf7c8]');
+    expect(resetOption.getAttribute('data-selected')).toBe('');
     expect(resetOption.querySelector('svg')).toBeNull();
     expect(selectedOption.getAttribute('aria-selected')).toBe('false');
   });
@@ -215,9 +208,8 @@ describe('NbSelect inside NbInputGroup', () => {
       'button[aria-haspopup="listbox"]'
     ) as HTMLButtonElement;
 
-    expect(trigger.className).toContain('flex-1');
-    expect(trigger.className).toContain('min-w-0');
-    expect(trigger.className).toContain('bg-transparent');
+    expect(trigger.className).toBe('');
+    expect(trigger.getAttribute('data-slot')).toBe('select-trigger');
   });
 
   it('uses the same focus-within treatment as grouped inputs', async () => {
