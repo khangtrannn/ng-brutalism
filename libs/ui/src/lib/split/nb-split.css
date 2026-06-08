@@ -1,0 +1,112 @@
+@layer components {
+  :where([data-nb-split]) {
+    display: grid;
+    min-width: 0;
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--nb-split-gap, 1rem);
+    padding: var(--nb-split-padding, 0px);
+  }
+
+  :where([data-nb-split][data-align='start']) { align-items: start; }
+  :where([data-nb-split][data-align='center']) { align-items: center; }
+  :where([data-nb-split][data-align='end']) { align-items: end; }
+  :where([data-nb-split][data-align='stretch']) { align-items: stretch; }
+
+  :where([data-nb-split][data-ratio='1:1']) {
+    --nb-split-columns: minmax(0, 1fr) minmax(0, 1fr);
+  }
+  :where([data-nb-split][data-ratio='2:1']) {
+    --nb-split-columns: minmax(0, 2fr) minmax(0, 1fr);
+  }
+  :where([data-nb-split][data-ratio='3:1']) {
+    --nb-split-columns: minmax(0, 3fr) minmax(0, 1fr);
+  }
+  :where([data-nb-split][data-ratio='1:2']) {
+    --nb-split-columns: minmax(0, 1fr) minmax(0, 2fr);
+  }
+  :where([data-nb-split][data-ratio='1:3']) {
+    --nb-split-columns: minmax(0, 1fr) minmax(0, 3fr);
+  }
+  :where([data-nb-split][data-ratio='fill:auto']) {
+    --nb-split-columns: minmax(0, 1fr) auto;
+  }
+  :where([data-nb-split][data-ratio='auto:fill']) {
+    --nb-split-columns: auto minmax(0, 1fr);
+  }
+
+  :where([data-nb-split][data-collapse='none']) {
+    grid-template-columns: var(--nb-split-columns);
+  }
+  @media (min-width: 40rem) {
+    :where([data-nb-split][data-collapse='sm']) {
+      grid-template-columns: var(--nb-split-columns);
+    }
+  }
+  @media (min-width: 48rem) {
+    :where([data-nb-split][data-collapse='md']) {
+      grid-template-columns: var(--nb-split-columns);
+    }
+  }
+  @media (min-width: 64rem) {
+    :where([data-nb-split][data-collapse='lg']) {
+      grid-template-columns: var(--nb-split-columns);
+    }
+  }
+
+  /* `::after` on the first column draws the separator line, centered in the gap. */
+  :where([data-nb-split][data-separator='solid'] > *:first-child),
+  :where([data-nb-split][data-separator='dashed'] > *:first-child),
+  :where([data-nb-split][data-separator='thick'] > *:first-child) {
+    position: relative;
+  }
+  :where([data-nb-split][data-separator='solid'] > *:first-child)::after,
+  :where([data-nb-split][data-separator='dashed'] > *:first-child)::after,
+  :where([data-nb-split][data-separator='thick'] > *:first-child)::after {
+    content: '';
+    pointer-events: none;
+    position: absolute;
+    inset-block: 0;
+    inset-inline-end: calc(var(--nb-split-separator-gap) / -2);
+    border-inline-end-color: var(--nb-border);
+  }
+
+  :where([data-nb-split][data-separator='solid'] > *:first-child)::after {
+    border-inline-end-width: var(--nb-border-width);
+    border-inline-end-style: solid;
+  }
+  :where([data-nb-split][data-separator='dashed'] > *:first-child)::after {
+    border-inline-end-width: var(--nb-border-width);
+    border-inline-end-style: dashed;
+  }
+  :where([data-nb-split][data-separator='thick'] > *:first-child)::after {
+    border-inline-end-width: 4px;
+    border-inline-end-style: solid;
+  }
+
+  /* Hide the separator while stacked into a single column, reveal it at the
+     same breakpoint where the columns appear, so it tracks `collapse`. */
+  :where([data-nb-split][data-separator]:not([data-separator='none'])[data-collapse='sm'] > *:first-child)::after {
+    display: none;
+  }
+  @media (min-width: 40rem) {
+    :where([data-nb-split][data-separator]:not([data-separator='none'])[data-collapse='sm'] > *:first-child)::after {
+      display: block;
+    }
+  }
+  :where([data-nb-split][data-separator]:not([data-separator='none'])[data-collapse='md'] > *:first-child)::after {
+    display: none;
+  }
+  @media (min-width: 48rem) {
+    :where([data-nb-split][data-separator]:not([data-separator='none'])[data-collapse='md'] > *:first-child)::after {
+      display: block;
+    }
+  }
+  :where([data-nb-split][data-separator]:not([data-separator='none'])[data-collapse='lg'] > *:first-child)::after {
+    display: none;
+  }
+  @media (min-width: 64rem) {
+    :where([data-nb-split][data-separator]:not([data-separator='none'])[data-collapse='lg'] > *:first-child)::after {
+      display: block;
+    }
+  }
+}

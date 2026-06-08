@@ -1,0 +1,81 @@
+@layer components {
+  :where(button[nbIconButton]) {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    user-select: none;
+    border-style: solid;
+    background: var(--nb-icon-button-bg, var(--nb-surface));
+    color: var(--nb-icon-button-fg, var(--nb-surface-foreground));
+    border-color: var(--nb-icon-button-border-color, var(--nb-border));
+    border-width: var(--nb-icon-button-border-width, var(--nb-border-width));
+    border-radius: var(--nb-icon-button-radius, 0px);
+    box-shadow: var(
+      --nb-icon-button-shadow,
+      var(--nb-shadow-offset-x) var(--nb-shadow-offset-y) 0 0 var(--nb-shadow)
+    );
+    transition: all 150ms ease-out;
+  }
+
+  :where(button[nbIconButton]) svg {
+    pointer-events: none;
+    flex-shrink: 0;
+  }
+
+  :where(button[nbIconButton]):hover {
+    translate: var(--nb-shadow-offset-x) var(--nb-shadow-offset-y);
+    box-shadow: none;
+  }
+
+  :where(button[nbIconButton]):focus-visible {
+    outline: var(--nb-focus-ring);
+    outline-offset: var(--nb-focus-ring-offset);
+  }
+
+  :where(button[nbIconButton]:disabled) {
+    opacity: 0.5;
+    cursor: not-allowed;
+    pointer-events: none;
+  }
+
+  :where(button[nbIconButton][data-shape='circle']) {
+    border-radius: 9999px;
+  }
+
+  :where(button[nbIconButton][data-size='sm']) {
+    width: 2rem;
+    height: 2rem;
+  }
+  :where(button[nbIconButton][data-size='sm']) svg {
+    width: 1rem;
+    height: 1rem;
+  }
+
+  :where(button[nbIconButton][data-size='md']) {
+    width: 2.5rem;
+    height: 2.5rem;
+  }
+  :where(button[nbIconButton][data-size='md']) svg {
+    width: 1.25rem;
+    height: 1.25rem;
+  }
+
+  :where(button[nbIconButton][data-size='lg']) {
+    width: 3rem;
+    height: 3rem;
+  }
+  :where(button[nbIconButton][data-size='lg']) svg {
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+
+  :where(button[nbIconButton][data-size='xl']) {
+    width: 3.5rem;
+    height: 3.5rem;
+  }
+  :where(button[nbIconButton][data-size='xl']) svg {
+    width: 2rem;
+    height: 2rem;
+  }
+}

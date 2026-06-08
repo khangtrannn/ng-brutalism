@@ -1,0 +1,54 @@
+@layer components {
+  :where(textarea[nbTextarea]) {
+    display: flex;
+    min-height: 5rem;
+    padding: 0.5rem 0.75rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    resize: none;
+    background-color: var(--nb-textarea-bg, var(--nb-surface));
+    color: var(--nb-textarea-fg, var(--nb-surface-foreground));
+    border-color: var(--nb-textarea-border-color, var(--nb-border));
+    border-width: var(--nb-textarea-border-width, var(--nb-border-width));
+    border-style: solid;
+    border-radius: var(--nb-textarea-radius, var(--nb-radius));
+    box-shadow: var(
+      --nb-textarea-shadow,
+      var(--nb-shadow-offset-x) var(--nb-shadow-offset-y) 0 var(--nb-shadow)
+    );
+  }
+
+  :where(textarea[nbTextarea][data-size="sm"]) {
+    min-height: 4rem;
+    padding: 0.375rem 0.75rem;
+  }
+  :where(textarea[nbTextarea][data-size="lg"]) {
+    min-height: 6rem;
+    padding: 0.75rem 1rem;
+    font-size: 1rem;
+  }
+
+  :where(textarea[nbTextarea])::placeholder {
+    color: #9ca3af;
+  }
+
+  :where(textarea[nbTextarea]:disabled) {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  :where(textarea[nbTextarea][data-in-group]) {
+    flex: 1 1 0%;
+    min-width: 0;
+  }
+  :where(textarea[nbTextarea][data-in-group]):focus-visible {
+    outline: none;
+  }
+
+  :where(textarea[nbTextarea]:not([data-in-group])):focus-visible {
+    box-shadow: none;
+    outline: 2px solid
+      var(--nb-textarea-focus-ring-color, var(--nb-textarea-border-color, var(--nb-border)));
+    outline-offset: 2px;
+  }
+}

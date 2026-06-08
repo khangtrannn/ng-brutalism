@@ -1,0 +1,50 @@
+@layer components {
+  :where(nb-input-group) {
+    position: relative;
+    display: inline-flex;
+    width: 100%;
+    border-width: 2px;
+    border-style: solid;
+    border-radius: var(--nb-input-group-radius, var(--nb-radius));
+    border-color: var(--nb-input-group-border, var(--nb-border));
+    background: var(--nb-input-group-bg, var(--nb-input-bg, var(--nb-field-bg)));
+    box-shadow: var(--nb-shadow-offset-x) var(--nb-shadow-offset-y) 0 0 var(--nb-shadow);
+  }
+
+  :where(nb-input-group):focus-within {
+    box-shadow: none;
+    outline: 2px solid var(--nb-input-group-border, var(--nb-border));
+    outline-offset: 2px;
+  }
+
+  :where([nbInputPrefix]),
+  :where([nbInputSuffix]) {
+    display: flex;
+    width: 3rem;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: center;
+    border-style: solid;
+    border-color: var(--nb-input-group-border, var(--nb-border));
+  }
+
+  :where([nbInputPrefix]) {
+    border-right-width: 2px;
+    background: var(--nb-input-group-prefix-bg, var(--nb-input-group-addon-bg, #ffd24a));
+  }
+
+  :where([nbInputPrefix][data-align='stretch']) {
+    align-self: stretch;
+    align-items: flex-start;
+    padding-top: 0.5rem;
+  }
+
+  :where([nbInputSuffix]) {
+    border-left-width: 2px;
+    background: var(--nb-input-group-suffix-bg, var(--nb-input-group-addon-bg, #ffd24a));
+  }
+
+  :where([nbInputSuffix][data-align='stretch']) {
+    align-self: stretch;
+  }
+}

@@ -1,0 +1,14 @@
+@layer components {
+  :where(nb-card) {
+    border-style: solid;
+    background: var(--nb-card-bg, var(--nb-background));
+    color: var(--nb-card-fg, var(--nb-foreground));
+    border-color: var(--nb-card-border-color, var(--nb-border));
+    border-width: var(--nb-card-border-width, var(--nb-border-width));
+    border-radius: var(--nb-card-radius, 0.75rem);
+    box-shadow: var(
+      --nb-card-shadow,
+      var(--nb-shadow-offset-x) var(--nb-shadow-offset-y) 0 0 var(--nb-shadow)
+    );
+  }
+}

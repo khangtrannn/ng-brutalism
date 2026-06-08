@@ -1,0 +1,9 @@
+@layer components {
+  :where([nbCallout]) {
+    border-style: solid;
+    background: var(--nb-callout-bg, var(--nb-yellow));
+    color: var(--nb-callout-fg, #000000);
+    border-color: var(--nb-callout-border-color, var(--nb-border));
+    box-shadow: var(--nb-callout-shadow, 6px 6px 0 0 var(--nb-shadow));
+  }
+}

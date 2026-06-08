@@ -1,0 +1,11 @@
+@layer components {
+  :where(nb-avatar) {
+    border-style: solid;
+    background: var(--nb-avatar-bg, var(--nb-surface));
+    color: var(--nb-avatar-fg, var(--nb-surface-foreground));
+    border-color: var(--nb-avatar-border-color, var(--nb-border));
+    border-width: var(--nb-avatar-border-width, var(--nb-border-width));
+    border-radius: var(--nb-avatar-radius, 9999px);
+    box-shadow: var(--nb-avatar-shadow, 2px 2px 0 0 var(--nb-shadow));
+  }
+}

@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { existsSync, readFileSync } from 'node:fs';
-import { join } from 'node:path';
+import { dirname, join, resolve } from 'node:path';
 import { describe, expect, it } from 'vitest';
 
 import { NbButton } from '../../button';
@@ -18,6 +18,7 @@ import { NbStack } from '../../stack';
 import { NbSurface } from '../../surface';
 import { NbText } from '../../text';
 
+const cssImportPattern = /^@import\s+['"]([^'"]+)['"];/gm;
 const stylesCss = readUiStylesCss();
 
 function readUiStylesCss(): string {
@@ -31,7 +32,33 @@ function readUiStylesCss(): string {
     throw new Error('Unable to locate libs/ui styles.css for token priority specs.');
   }
 
-  return readFileSync(path, 'utf8');
+  return readCssWithLocalImports(path);
+}
+
+function readCssWithLocalImports(path: string, seen = new Set<string>()): string {
+  const absolutePath = resolve(path);
+
+  if (seen.has(absolutePath)) {
+    return '';
+  }
+
+  seen.add(absolutePath);
+
+  const css = readFileSync(absolutePath, 'utf8');
+
+  return css.replace(cssImportPattern, (statement, specifier: string) => {
+    if (!specifier.startsWith('.')) {
+      return statement;
+    }
+
+    const importedPath = resolve(dirname(absolutePath), specifier);
+
+    if (!existsSync(importedPath)) {
+      return statement;
+    }
+
+    return `${statement}\n${readCssWithLocalImports(importedPath, seen)}`;
+  });
 }
 
 function mount<T>(type: new () => T): HTMLElement {

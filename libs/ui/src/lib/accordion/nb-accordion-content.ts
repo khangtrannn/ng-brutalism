@@ -17,9 +17,7 @@ import { NbAccordionItem } from './nb-accordion-item';
       [style.color]="item.foregroundStyle()"
     >
       <div>
-        <div>
-          <ng-content />
-        </div>
+        <ng-content />
       </div>
     </div>
   `,
@@ -49,10 +47,14 @@ import { NbAccordionItem } from './nb-accordion-item';
       div[role='region'] > div {
         min-height: 0;
         overflow: hidden;
+        padding-inline: 1rem;
       }
 
-      div[role='region'] > div > div {
-        padding: 1rem;
+      div[role='region'] > div::before,
+      div[role='region'] > div::after {
+        content: '';
+        display: block;
+        height: 1rem;
       }
     `,
   ],

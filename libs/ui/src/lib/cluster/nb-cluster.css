@@ -1,0 +1,43 @@
+@layer components {
+  :where([data-nb-cluster]) {
+    display: flex;
+    min-width: 0;
+    gap: var(--nb-cluster-gap, 0.75rem);
+    padding: var(--nb-cluster-padding, 0px);
+  }
+
+  :where([data-nb-cluster][data-align='start']) { align-items: flex-start; }
+  :where([data-nb-cluster][data-align='center']) { align-items: center; }
+  :where([data-nb-cluster][data-align='end']) { align-items: flex-end; }
+  :where([data-nb-cluster][data-align='baseline']) { align-items: baseline; }
+  :where([data-nb-cluster][data-align='stretch']) { align-items: stretch; }
+
+  :where([data-nb-cluster][data-justify='start']) { justify-content: flex-start; }
+  :where([data-nb-cluster][data-justify='center']) { justify-content: center; }
+  :where([data-nb-cluster][data-justify='end']) { justify-content: flex-end; }
+  :where([data-nb-cluster][data-justify='between']) { justify-content: space-between; }
+
+  :where([data-nb-cluster][data-wrap='wrap']) { flex-wrap: wrap; }
+  :where([data-nb-cluster][data-wrap='nowrap']) { flex-wrap: nowrap; }
+
+  :where([data-nb-cluster][data-separator='solid'] > * + *),
+  :where([data-nb-cluster][data-separator='dashed'] > * + *),
+  :where([data-nb-cluster][data-separator='thick'] > * + *) {
+    margin-inline-start: var(--nb-cluster-separator-gap);
+    padding-inline-start: var(--nb-cluster-separator-gap);
+    border-inline-start-color: var(--nb-border);
+  }
+
+  :where([data-nb-cluster][data-separator='solid'] > * + *) {
+    border-inline-start-width: 2px;
+    border-inline-start-style: solid;
+  }
+  :where([data-nb-cluster][data-separator='dashed'] > * + *) {
+    border-inline-start-width: 2px;
+    border-inline-start-style: dashed;
+  }
+  :where([data-nb-cluster][data-separator='thick'] > * + *) {
+    border-inline-start-width: 4px;
+    border-inline-start-style: solid;
+  }
+}

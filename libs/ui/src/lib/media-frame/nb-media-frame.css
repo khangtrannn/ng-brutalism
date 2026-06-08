@@ -1,0 +1,11 @@
+@layer components {
+  :where([nbMediaFrame]) {
+    border-style: solid;
+    background: var(--nb-media-frame-bg, var(--nb-surface));
+    color: var(--nb-media-frame-fg, var(--nb-surface-foreground));
+    border-color: var(--nb-media-frame-border-color, var(--nb-border));
+    border-width: var(--nb-media-frame-border-width, var(--nb-border-width));
+    border-radius: var(--nb-media-frame-radius, 0.75rem);
+    box-shadow: var(--nb-media-frame-shadow, none);
+  }
+}

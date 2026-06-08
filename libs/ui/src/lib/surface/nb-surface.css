@@ -1,0 +1,62 @@
+@layer components {
+  :where([nbSurface]) {
+    position: relative;
+    border-style: solid;
+    background: var(--nb-surface-bg, var(--nb-surface));
+    color: var(--nb-surface-fg, var(--nb-surface-foreground));
+    border-color: var(--nb-surface-border-color, var(--nb-border));
+    border-width: var(--nb-surface-border-width, var(--nb-border-width));
+    border-radius: var(--nb-surface-radius, var(--nb-radius));
+    box-shadow: var(
+      --nb-surface-shadow,
+      var(--nb-shadow-offset-x) var(--nb-shadow-offset-y) 0 0 var(--nb-shadow)
+    );
+    padding: var(--nb-surface-padding, 0px);
+  }
+
+  :where([nbSurface][data-clip]) {
+    overflow: hidden;
+  }
+
+  :where([nbSurface][data-size='sm']) {
+    width: 2rem;
+    height: 2rem;
+    flex-shrink: 0;
+  }
+  :where([nbSurface][data-size='md']) {
+    width: 2.5rem;
+    height: 2.5rem;
+    flex-shrink: 0;
+  }
+  :where([nbSurface][data-size='lg']) {
+    width: 2.75rem;
+    height: 2.75rem;
+    flex-shrink: 0;
+  }
+  :where([nbSurface][data-size='xl']) {
+    width: 3rem;
+    height: 3rem;
+    flex-shrink: 0;
+  }
+
+  :where([nbSurface][data-layout='center']) {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+  :where([nbSurface][data-layout='row']) {
+    display: flex;
+    align-items: center;
+  }
+  :where([nbSurface][data-layout='stack']) {
+    display: flex;
+    flex-direction: column;
+  }
+
+  :where([nbSurface][data-edge='top']) {
+    border-top: 2px solid var(--nb-border);
+  }
+  :where([nbSurface][data-edge='bottom']) {
+    border-bottom: 2px solid var(--nb-border);
+  }
+}

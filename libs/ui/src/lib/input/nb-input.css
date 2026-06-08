@@ -1,0 +1,74 @@
+@layer components {
+  :where(input[nbInput]) {
+    display: flex;
+    height: 2.5rem;
+    padding: 0.5rem 0.75rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    background-color: var(--nb-input-bg, var(--nb-surface));
+    color: var(--nb-input-fg, var(--nb-surface-foreground));
+    border-color: var(--nb-input-border-color, var(--nb-border));
+    border-width: var(--nb-input-border-width, var(--nb-border-width));
+    border-style: solid;
+    border-radius: var(--nb-input-radius, var(--nb-radius));
+    box-shadow: var(
+      --nb-input-shadow,
+      var(--nb-shadow-offset-x) var(--nb-shadow-offset-y) 0 var(--nb-shadow)
+    );
+  }
+  :where(input[nbInput][data-size="sm"]) {
+    height: 2.25rem;
+    padding: 0 0.75rem;
+  }
+  :where(input[nbInput][data-size="lg"]) {
+    height: 2.75rem;
+    padding: 0 1rem;
+    font-size: 1rem;
+  }
+
+  :where(input[nbInput][type="file"]) {
+    padding-block: 0;
+    padding-inline-start: 0;
+    align-items: center;
+  }
+
+  :where(input[nbInput])::placeholder {
+    color: #9ca3af;
+  }
+
+  :where(input[nbInput])::file-selector-button {
+    height: 100%;
+    padding-block: 0;
+    margin: 0;
+    margin-inline-end: 0.75rem;
+    padding-inline: 0.75rem;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 0.875rem;
+    font-weight: 700;
+    background-color: var(--nb-main);
+    color: var(--nb-main-foreground);
+    border: 0;
+    border-inline-end: 2px solid var(--nb-border);
+  }
+
+  :where(input[nbInput]:disabled) {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  :where(input[nbInput][data-in-group]) {
+    flex: 1 1 0%;
+    min-width: 0;
+  }
+  :where(input[nbInput][data-in-group]):focus-visible {
+    outline: none;
+  }
+
+  :where(input[nbInput]:not([data-in-group])):focus-visible {
+    box-shadow: none;
+    outline: 2px solid
+      var(--nb-input-focus-ring-color, var(--nb-input-border-color, var(--nb-border)));
+    outline-offset: 2px;
+  }
+}

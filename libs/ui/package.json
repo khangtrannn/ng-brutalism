@@ -55,7 +55,7 @@
     "fesm2022/",
     "types/",
     "schematics/",
-    "*.css",
+    "**/*.css",
     "README.md",
     "CHANGELOG.md",
     "LICENSE",
@@ -68,12 +68,12 @@
       "default": "./fesm2022/ng-brutalism-ui.mjs"
     },
     "./styles.css": {
-      "style": "./styles.css",
-      "default": "./styles.css"
+      "style": "./styles/styles.css",
+      "default": "./styles/styles.css"
     },
     "./theme.css": {
-      "style": "./theme.css",
-      "default": "./theme.css"
+      "style": "./styles/theme.css",
+      "default": "./styles/theme.css"
     }
   },
   "sideEffects": [

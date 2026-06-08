@@ -1,0 +1,11 @@
+@layer components {
+  :where(span[nbBadge]) {
+    border-style: solid;
+    background: var(--nb-badge-bg, #ffffff);
+    color: var(--nb-badge-fg, #000000);
+    border-color: var(--nb-badge-border-color, var(--nb-border));
+    border-width: var(--nb-badge-border-width, var(--nb-border-width));
+    border-radius: var(--nb-badge-radius, 9999px);
+    box-shadow: var(--nb-badge-shadow, 2px 2px 0 0 var(--nb-shadow));
+  }
+}
