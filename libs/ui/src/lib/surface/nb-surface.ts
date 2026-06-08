@@ -1,7 +1,6 @@
 import {
   Directive,
   booleanAttribute,
-  computed,
   inject,
   input,
 } from '@angular/core';
@@ -66,13 +65,13 @@ export type NbSurfaceEdge = 'none' | 'top' | 'bottom';
     '[attr.data-layout]': 'layout()',
     '[attr.data-edge]': 'edge()',
     '[attr.data-clip]': 'clip() ? "" : null',
-    '[style.background]': 'backgroundStyle()',
-    '[style.color]': 'foregroundStyle()',
-    '[style.border-color]': 'borderColorStyle()',
-    '[style.border-radius]': 'radiusStyle()',
-    '[style.box-shadow]': 'shadowStyle()',
-    '[style.border-width]': 'borderWidthStyle()',
-    '[style.padding]': 'paddingStyle()',
+    '[style.background]': 'tone.background()',
+    '[style.color]': 'tone.foreground()',
+    '[style.border-color]': 'tone.borderColor()',
+    '[style.border-radius]': 'radius.value()',
+    '[style.box-shadow]': 'shadow.value()',
+    '[style.border-width]': 'border.width()',
+    '[style.padding]': 'paddingCapability.value()',
   },
 })
 export class NbSurface {
@@ -83,17 +82,9 @@ export class NbSurface {
     transform: booleanAttribute,
   });
 
-  private readonly tone = inject(NbToneCapability);
-  private readonly radius = inject(NbRadiusCapability);
-  private readonly shadow = inject(NbShadowCapability);
-  private readonly border = inject(NbBorderCapability);
-  private readonly paddingCapability = inject(NbPaddingCapability);
-
-  protected readonly backgroundStyle = computed(() => this.tone.background());
-  protected readonly foregroundStyle = computed(() => this.tone.foreground());
-  protected readonly borderColorStyle = computed(() => this.tone.borderColor());
-  protected readonly radiusStyle = computed(() => this.radius.value());
-  protected readonly shadowStyle = computed(() => this.shadow.value());
-  protected readonly borderWidthStyle = computed(() => this.border.width());
-  protected readonly paddingStyle = computed(() => this.paddingCapability.value());
+  protected readonly tone = inject(NbToneCapability);
+  protected readonly radius = inject(NbRadiusCapability);
+  protected readonly shadow = inject(NbShadowCapability);
+  protected readonly border = inject(NbBorderCapability);
+  protected readonly paddingCapability = inject(NbPaddingCapability);
 }

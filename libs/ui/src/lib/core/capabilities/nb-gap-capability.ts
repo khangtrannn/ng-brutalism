@@ -1,7 +1,6 @@
-import { Directive, computed, inject, input } from '@angular/core';
+import { Directive, computed, input } from '@angular/core';
 
 import { nbSpacingValue, type NbSpacing } from '../../tokens/spacing';
-import { NB_STYLE_DEFAULTS } from './nb-style-tokens';
 
 /**
  * INTERNAL capability — not part of the public API. Composed into primitives via
@@ -13,17 +12,11 @@ import { NB_STYLE_DEFAULTS } from './nb-style-tokens';
 @Directive({
   selector: '[nbGapCapability]',
   host: {
-    '[attr.data-gap]': 'resolved()',
+    '[attr.data-gap]': 'gap() ?? null',
   },
 })
 export class NbGapCapability {
-  private readonly defaults = inject(NB_STYLE_DEFAULTS);
-
   readonly gap = input<NbSpacing | undefined>(undefined);
-
-  protected readonly resolved = computed(
-    () => this.gap() ?? this.defaults.gap ?? 'md',
-  );
 
   readonly value = computed(() => {
     const gap = this.gap();

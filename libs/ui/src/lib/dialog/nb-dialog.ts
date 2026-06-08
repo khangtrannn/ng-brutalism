@@ -3,7 +3,6 @@ import {
   Component,
   ElementRef,
   PLATFORM_ID,
-  computed,
   inject,
   viewChild,
 } from '@angular/core';
@@ -28,12 +27,12 @@ import { NB_DIALOG, type NbDialogController } from './dialog.types';
       #dialogEl
       data-nb-dialog
       [class]="classes"
-      [style.background]="backgroundStyle()"
-      [style.color]="foregroundStyle()"
-      [style.border-color]="borderColorStyle()"
-      [style.border-radius]="radiusStyle()"
-      [style.box-shadow]="shadowStyle()"
-      [style.border-width]="borderWidthStyle()"
+      [style.background]="tone.background()"
+      [style.color]="tone.foreground()"
+      [style.border-color]="tone.borderColor()"
+      [style.border-radius]="radius.value()"
+      [style.box-shadow]="shadow.value()"
+      [style.border-width]="border.width()"
       (click)="dismissOnBackdrop($event)"
     >
       <ng-content />
@@ -65,17 +64,10 @@ export class NbDialog implements NbDialogController {
   private readonly isBrowser = isPlatformBrowser(inject(PLATFORM_ID));
   private readonly dialogEl =
     viewChild.required<ElementRef<HTMLDialogElement>>('dialogEl');
-  private readonly tone = inject(NbToneCapability);
-  private readonly radius = inject(NbRadiusCapability);
-  private readonly shadow = inject(NbShadowCapability);
-  private readonly border = inject(NbBorderCapability);
-
-  protected readonly backgroundStyle = computed(() => this.tone.background());
-  protected readonly foregroundStyle = computed(() => this.tone.foreground());
-  protected readonly borderColorStyle = computed(() => this.tone.borderColor());
-  protected readonly radiusStyle = computed(() => this.radius.value());
-  protected readonly shadowStyle = computed(() => this.shadow.value());
-  protected readonly borderWidthStyle = computed(() => this.border.width());
+  protected readonly tone = inject(NbToneCapability);
+  protected readonly radius = inject(NbRadiusCapability);
+  protected readonly shadow = inject(NbShadowCapability);
+  protected readonly border = inject(NbBorderCapability);
 
   protected readonly classes = nbClass(
     'w-[calc(100vw-2rem)] max-w-2xl',

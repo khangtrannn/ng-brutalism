@@ -29,9 +29,9 @@ CSS             component `styles` (plain CSS)  read public hooks with fallbacks
   resolves its one input, and exposes **computed literal-or-`null` values**
   (`background`, `foreground`, `borderColor`, `value`, `width`, …) — `null`
   when the input is unset. Capabilities **do not write any CSS custom
-  properties**; they only resolve values and reflect a `data-<token>` attribute
-  for inspection. No `effect()` — every output is a plain `computed()`, the
-  declarative, zoneless-friendly idiom.
+  properties**. They may reflect a `data-<token>` modifier only when the input is
+  actually provided; omitted inputs stay omitted in the DOM. No `effect()` —
+  every output is a plain `computed()`, the declarative, zoneless-friendly idiom.
 - **Primitives** provide their namespace + defaults, compose the capabilities
   through Angular `hostDirectives` (forwarding public input names like
   `inputs: ['tone']`), and **map each capability output straight onto the real
@@ -40,7 +40,9 @@ CSS             component `styles` (plain CSS)  read public hooks with fallbacks
   `null`, Angular removes the inline style entirely, letting the CSS fallback
   chain take over. The primitive keeps only its own anatomy (Surface `clip`,
   MediaFrame `ratio`/`fit`, Button `press`/`size`/state, layout
-  `align`/`justify`/`separator`, …).
+  `align`/`justify`/`separator`, …). Modifier inputs whose defaults are visual
+  CSS defaults should also be optional (`undefined`) and bound directly to
+  `data-*`, so the DOM only carries modifiers the user selected.
 - **CSS** (global `:where()` rules or component `styles`) reads the primitive's
   **public** hooks directly — `var(--nb-button-bg, var(--nb-primary))` — and
   owns the library default as a literal fallback. There is no internal
@@ -139,6 +141,55 @@ readonly tone = input<NbButtonTone | undefined>(undefined);
 `undefined` is what lets the capability return `null`, which removes the
 inline style and lets the `var(--nb-<ns>-<prop>, <default>)` chain in CSS take
 over — keeping layers 2–4 reachable.
+
+### Modifier `data-*` attrs follow the same rule
+
+`data-*` modifier attributes are CSS state hooks, not default metadata. If the
+default visual state belongs in CSS, TypeScript should not know that default just
+to decide whether to print an attribute.
+
+```ts
+// Avoid — the DOM always says "md", even though CSS owns the md/default shape.
+readonly size = input<NbButtonSize>('md');
+
+host: {
+  '[attr.data-size]': 'size()',
+}
+
+// Prefer — absent means default; CSS owns what the default looks like.
+readonly size = input<NbButtonSize | undefined>(undefined);
+
+host: {
+  '[attr.data-size]': 'size()',
+}
+```
+
+```css
+/* Base selector owns defaults. */
+:where(button[nbButton]) {
+  height: 2.75rem;
+  padding-inline: 1rem;
+}
+
+/* Modifier selectors only describe non-default choices. */
+:where(button[nbButton][data-size='lg']) {
+  height: 3.25rem;
+  padding-inline: 1.25rem;
+}
+```
+
+Do not replace this with `value === default ? null : value`; that still teaches
+TypeScript the CSS default. The better model is: optional input, direct
+attribute binding, base CSS fallback.
+
+This applies to visual/anatomy modifiers such as `data-tone`, `data-radius`,
+`data-shadow`, `data-border`, `data-padding`, `data-gap`, `data-size`,
+`data-layout`, `data-align`, `data-justify`, `data-separator`, `data-ratio`,
+`data-fit`, `data-shape`, and `data-press` whenever their default is purely a CSS
+default. Always-on identity/state attributes are different and should remain
+explicit: `data-nb-*` identity hooks, `data-slot`, `data-state`, `data-disabled`,
+`data-in-group`, `data-clip`, `data-full-width`, ARIA, IDs, and other runtime
+state.
 
 ### Migration rule: no internal variable channel
 

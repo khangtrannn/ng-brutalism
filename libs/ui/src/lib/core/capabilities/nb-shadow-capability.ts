@@ -1,7 +1,6 @@
-import { Directive, computed, inject, input } from '@angular/core';
+import { Directive, computed, input } from '@angular/core';
 
 import { nbShadowValue, type NbShadow } from '../../tokens/shadow';
-import { NB_STYLE_DEFAULTS } from './nb-style-tokens';
 
 /**
  * INTERNAL capability — not part of the public API. Composed into primitives via
@@ -13,17 +12,11 @@ import { NB_STYLE_DEFAULTS } from './nb-style-tokens';
 @Directive({
   selector: '[nbShadowCapability]',
   host: {
-    '[attr.data-shadow]': 'resolved()',
+    '[attr.data-shadow]': 'shadow() ?? null',
   },
 })
 export class NbShadowCapability {
-  private readonly defaults = inject(NB_STYLE_DEFAULTS);
-
   readonly shadow = input<NbShadow | undefined>(undefined);
-
-  protected readonly resolved = computed(
-    () => this.shadow() ?? this.defaults.shadow ?? 'default',
-  );
 
   readonly value = computed(() => {
     const shadow = this.shadow();

@@ -32,7 +32,7 @@ export type NbStackSeparator = 'none' | 'solid' | 'dashed' | 'thick';
     '[attr.data-align]': 'align()',
     '[attr.data-justify]': 'justify()',
     '[attr.data-separator]': 'separator()',
-    '[style.gap]': 'gapStyle()',
+    '[style.gap]': 'gap.value()',
     '[style.--nb-stack-separator-gap]': 'separatorGapStyle()',
   },
 })
@@ -41,9 +41,7 @@ export class NbStack {
   readonly justify = input<NbStackJustify>('start');
   readonly separator = input<NbStackSeparator>('none');
 
-  private readonly gap = inject(NbGapCapability);
-
-  protected readonly gapStyle = computed(() => this.gap.value());
+  protected readonly gap = inject(NbGapCapability);
 
   // Component-local anatomy var: the separator's top padding stands in for the
   // flex gap, so the border sits mid-gap. It mirrors an explicit gap input when

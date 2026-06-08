@@ -74,8 +74,10 @@ describe('NbSplit', () => {
 
     expect(split.getAttribute('data-nb-split')).toBe('');
     expect(split.getAttribute('data-ratio')).toBe('1:1');
-    expect(split.getAttribute('data-gap')).toBe('lg');
-    expect(split.getAttribute('data-padding')).toBe('none');
+    // No gap/padding inputs set — capability attrs stay absent; CSS fallback owns
+    // the visual defaults. Attribute presence means "consumer chose this".
+    expect(split.getAttribute('data-gap')).toBeNull();
+    expect(split.getAttribute('data-padding')).toBeNull();
     expect(split.getAttribute('data-collapse')).toBe('md');
     expect(split.getAttribute('data-align')).toBe('stretch');
     expect(split.getAttribute('data-separator')).toBe('none');

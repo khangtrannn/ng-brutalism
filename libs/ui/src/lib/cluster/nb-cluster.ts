@@ -49,8 +49,8 @@ export type NbClusterSeparator = 'none' | 'solid' | 'dashed' | 'thick';
     '[attr.data-separator]': 'separator()',
     '[style.column-gap]': 'separatorColumnGapStyle()',
     '[style.--nb-cluster-separator-gap]': 'separatorGapStyle()',
-    '[style.gap]': 'gapStyle()',
-    '[style.padding]': 'paddingStyle()',
+    '[style.gap]': 'gap.value()',
+    '[style.padding]': 'paddingCapability.value()',
   },
 })
 export class NbCluster {
@@ -59,11 +59,8 @@ export class NbCluster {
   readonly wrap = input<NbClusterWrap>('wrap');
   readonly separator = input<NbClusterSeparator>('none');
 
-  private readonly gap = inject(NbGapCapability);
-  private readonly paddingCapability = inject(NbPaddingCapability);
-
-  protected readonly gapStyle = computed(() => this.gap.value());
-  protected readonly paddingStyle = computed(() => this.paddingCapability.value());
+  protected readonly gap = inject(NbGapCapability);
+  protected readonly paddingCapability = inject(NbPaddingCapability);
 
   protected readonly separatorColumnGapStyle = computed(() =>
     this.separator() === 'none' ? null : '0px',

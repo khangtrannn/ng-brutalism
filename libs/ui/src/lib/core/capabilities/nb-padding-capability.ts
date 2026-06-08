@@ -1,7 +1,6 @@
-import { Directive, computed, inject, input } from '@angular/core';
+import { Directive, computed, input } from '@angular/core';
 
 import { nbPaddingValue, type NbPadding } from '../../tokens/padding';
-import { NB_STYLE_DEFAULTS } from './nb-style-tokens';
 
 /**
  * INTERNAL capability — not part of the public API. Composed into primitives via
@@ -13,17 +12,11 @@ import { NB_STYLE_DEFAULTS } from './nb-style-tokens';
 @Directive({
   selector: '[nbPaddingCapability]',
   host: {
-    '[attr.data-padding]': 'resolved()',
+    '[attr.data-padding]': 'padding() ?? null',
   },
 })
 export class NbPaddingCapability {
-  private readonly defaults = inject(NB_STYLE_DEFAULTS);
-
   readonly padding = input<NbPadding | undefined>(undefined);
-
-  protected readonly resolved = computed(
-    () => this.padding() ?? this.defaults.padding ?? 'md',
-  );
 
   readonly value = computed(() => {
     const padding = this.padding();

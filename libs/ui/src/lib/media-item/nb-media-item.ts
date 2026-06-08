@@ -82,7 +82,7 @@ export type NbMediaItemTone = NbToneToken;
     '[attr.data-align]': 'align()',
     '[attr.data-size]': 'size()',
     '[style.background]': 'backgroundStyle()',
-    '[style.color]': 'foregroundStyle()',
+    '[style.color]': 'tone.foreground()',
     '[style.border-color]': 'borderColorStyle()',
   },
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -98,7 +98,7 @@ export class NbMediaItem {
   readonly title = input<string | undefined>(undefined);
   readonly description = input<string | undefined>(undefined);
 
-  private readonly tone = inject(NbToneCapability);
+  protected readonly tone = inject(NbToneCapability);
 
   // The `plain` variant has no surface (transparent background, no border), so
   // tone-driven background/border only apply to `boxed`/`chip`. When unset,
@@ -107,7 +107,6 @@ export class NbMediaItem {
   protected readonly backgroundStyle = computed(() =>
     this.variant() === 'plain' ? null : this.tone.background()
   );
-  protected readonly foregroundStyle = computed(() => this.tone.foreground());
   protected readonly borderColorStyle = computed(() =>
     this.variant() === 'plain' ? null : this.tone.borderColor()
   );

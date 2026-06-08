@@ -25,26 +25,23 @@ import { NB_INPUT_GROUP } from '../input-group/input-group.types';
   host: {
     '[attr.data-in-group]': 'isInGroup ? "" : null',
     '[style.background-color]': 'backgroundStyle()',
-    '[style.color]': 'foregroundStyle()',
-    '[style.border-color]': 'borderColorStyle()',
+    '[style.color]': 'tone.foreground()',
+    '[style.border-color]': 'tone.borderColor()',
     '[style.border-width]': 'borderWidthStyle()',
-    '[style.--nb-select-focus-ring-color]': 'focusRingColorStyle()',
+    '[style.--nb-select-focus-ring-color]': 'tone.borderColor()',
   },
 })
 export class NbNativeSelect {
   private readonly group = inject(NB_INPUT_GROUP, { optional: true });
   protected readonly isInGroup = this.group !== null;
 
-  private readonly tone = inject(NbToneCapability);
+  protected readonly tone = inject(NbToneCapability);
   private readonly border = inject(NbBorderCapability);
 
   protected readonly backgroundStyle = computed(() =>
     this.isInGroup ? 'transparent' : this.tone.background(),
   );
-  protected readonly foregroundStyle = computed(() => this.tone.foreground());
-  protected readonly borderColorStyle = computed(() => this.tone.borderColor());
   protected readonly borderWidthStyle = computed(() =>
     this.isInGroup ? '0' : this.border.width(),
   );
-  protected readonly focusRingColorStyle = computed(() => this.tone.borderColor());
 }

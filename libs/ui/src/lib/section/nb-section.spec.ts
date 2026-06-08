@@ -55,7 +55,9 @@ describe('NbSection', () => {
     ) as HTMLElement;
 
     expect(section.getAttribute('data-nb-section')).toBe('');
-    expect(section.getAttribute('data-padding')).toBe('md');
+    // No padding input set — capability attr stays absent; CSS fallback owns the
+    // default padding. Attribute presence means "consumer chose this".
+    expect(section.getAttribute('data-padding')).toBeNull();
     expect(section.getAttribute('data-divider')).toBe('none');
     expect(section.getAttribute('data-divider-style')).toBe('solid');
     expect(section.getAttribute('data-layout')).toBe('default');

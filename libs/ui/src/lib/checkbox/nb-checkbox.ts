@@ -9,7 +9,7 @@ import type { NbCheckboxSize } from './checkbox.types';
   host: {
     '[class]': 'classes()',
     '[attr.data-size]': 'size()',
-    '[attr.data-tone]': 'toneAttr()',
+    '[attr.data-tone]': "tone() ?? 'primary'",
     '[style.--nb-checkbox-bg]': 'checkboxBg()',
     '[style.--nb-checkbox-fg]': 'checkboxFg()',
   },
@@ -23,7 +23,6 @@ export class NbCheckbox {
     return tone ? nbToneVars(tone) : null;
   });
 
-  protected readonly toneAttr = computed(() => this.tone() ?? 'primary');
   protected readonly checkboxBg = computed(() => this.toneVars()?.bg ?? null);
   protected readonly checkboxFg = computed(() => this.toneVars()?.fg ?? null);
 

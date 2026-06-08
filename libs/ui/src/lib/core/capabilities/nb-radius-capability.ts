@@ -1,7 +1,6 @@
-import { Directive, computed, inject, input } from '@angular/core';
+import { Directive, computed, input } from '@angular/core';
 
 import { nbRadiusValue, type NbRadius } from '../../tokens/radius';
-import { NB_STYLE_DEFAULTS } from './nb-style-tokens';
 
 /**
  * INTERNAL capability — not part of the public API. Composed into primitives via
@@ -13,17 +12,11 @@ import { NB_STYLE_DEFAULTS } from './nb-style-tokens';
 @Directive({
   selector: '[nbRadiusCapability]',
   host: {
-    '[attr.data-radius]': 'resolved()',
+    '[attr.data-radius]': 'radius() ?? null',
   },
 })
 export class NbRadiusCapability {
-  private readonly defaults = inject(NB_STYLE_DEFAULTS);
-
   readonly radius = input<NbRadius | undefined>(undefined);
-
-  protected readonly resolved = computed(
-    () => this.radius() ?? this.defaults.radius ?? 'md',
-  );
 
   readonly value = computed(() => {
     const radius = this.radius();

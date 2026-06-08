@@ -27,9 +27,9 @@ import type { NbTextareaSize } from './textarea.types';
     '[attr.data-size]': 'size()',
     '[attr.data-in-group]': 'isInGroup ? "" : null',
     '[style.background-color]': 'backgroundStyle()',
-    '[style.border-color]': 'borderColorStyle()',
+    '[style.border-color]': 'tone.borderColor()',
     '[style.border-width]': 'borderWidthStyle()',
-    '[style.--nb-textarea-focus-ring-color]': 'focusRingColorStyle()',
+    '[style.--nb-textarea-focus-ring-color]': 'tone.borderColor()',
   },
 })
 export class NbTextarea {
@@ -38,15 +38,13 @@ export class NbTextarea {
   private readonly group = inject(NB_INPUT_GROUP, { optional: true });
   protected readonly isInGroup = this.group !== null;
 
-  private readonly tone = inject(NbToneCapability);
+  protected readonly tone = inject(NbToneCapability);
   private readonly border = inject(NbBorderCapability);
 
   protected readonly backgroundStyle = computed(() =>
     this.isInGroup ? 'transparent' : this.tone.background(),
   );
-  protected readonly borderColorStyle = computed(() => this.tone.borderColor());
   protected readonly borderWidthStyle = computed(() =>
     this.isInGroup ? '0' : this.border.width(),
   );
-  protected readonly focusRingColorStyle = computed(() => this.tone.borderColor());
 }

@@ -1,7 +1,6 @@
 import {
   Directive,
   booleanAttribute,
-  computed,
   inject,
   input,
 } from '@angular/core';
@@ -41,12 +40,12 @@ import type { NbButtonPress, NbButtonSize } from './button.types';
     '[attr.data-press]': 'press()',
     '[attr.data-size]': 'size()',
     '[attr.data-full-width]': 'fullWidth() ? "" : null',
-    '[style.background]': 'backgroundStyle()',
-    '[style.color]': 'foregroundStyle()',
-    '[style.border-color]': 'borderColorStyle()',
-    '[style.border-radius]': 'radiusStyle()',
-    '[style.box-shadow]': 'shadowStyle()',
-    '[style.border-width]': 'borderWidthStyle()',
+    '[style.background]': 'tone.background()',
+    '[style.color]': 'tone.foreground()',
+    '[style.border-color]': 'tone.borderColor()',
+    '[style.border-radius]': 'radius.value()',
+    '[style.box-shadow]': 'shadow.value()',
+    '[style.border-width]': 'border.width()',
   },
 })
 export class NbButton {
@@ -54,15 +53,8 @@ export class NbButton {
   readonly size = input<NbButtonSize>('md');
   readonly fullWidth = input<boolean, unknown>(false, { transform: booleanAttribute });
 
-  private readonly tone = inject(NbToneCapability);
-  private readonly radius = inject(NbRadiusCapability);
-  private readonly shadow = inject(NbShadowCapability);
-  private readonly border = inject(NbBorderCapability);
-
-  protected readonly backgroundStyle = computed(() => this.tone.background());
-  protected readonly foregroundStyle = computed(() => this.tone.foreground());
-  protected readonly borderColorStyle = computed(() => this.tone.borderColor());
-  protected readonly radiusStyle = computed(() => this.radius.value());
-  protected readonly shadowStyle = computed(() => this.shadow.value());
-  protected readonly borderWidthStyle = computed(() => this.border.width());
+  protected readonly tone = inject(NbToneCapability);
+  protected readonly radius = inject(NbRadiusCapability);
+  protected readonly shadow = inject(NbShadowCapability);
+  protected readonly border = inject(NbBorderCapability);
 }

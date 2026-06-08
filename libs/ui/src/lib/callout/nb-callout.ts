@@ -43,10 +43,10 @@ export type NbCalloutRadius = NbRadius;
     '[attr.data-layout]': 'layout()',
     '[attr.data-radius]': 'radius() ?? null',
     '[style.--nb-callout-radius]': 'radiusStyle()',
-    '[style.background]': 'backgroundStyle()',
-    '[style.color]': 'foregroundStyle()',
-    '[style.border-color]': 'borderColorStyle()',
-    '[style.box-shadow]': 'shadowStyle()',
+    '[style.background]': 'tone.background()',
+    '[style.color]': 'tone.foreground()',
+    '[style.border-color]': 'tone.borderColor()',
+    '[style.box-shadow]': 'shadow.value()',
   },
 })
 export class NbCallout {
@@ -54,13 +54,8 @@ export class NbCallout {
   readonly layout = input<NbCalloutLayout>('inline');
   readonly radius = input<NbCalloutRadius | undefined>(undefined);
 
-  private readonly tone = inject(NbToneCapability);
-  private readonly shadow = inject(NbShadowCapability);
-
-  protected readonly backgroundStyle = computed(() => this.tone.background());
-  protected readonly foregroundStyle = computed(() => this.tone.foreground());
-  protected readonly borderColorStyle = computed(() => this.tone.borderColor());
-  protected readonly shadowStyle = computed(() => this.shadow.value());
+  protected readonly tone = inject(NbToneCapability);
+  protected readonly shadow = inject(NbShadowCapability);
 
   protected readonly classes = computed(() =>
     nbClass(

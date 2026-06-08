@@ -50,8 +50,8 @@ export type NbSplitSeparator = 'none' | 'solid' | 'dashed' | 'thick';
     '[attr.data-align]': 'align()',
     '[attr.data-separator]': 'separator()',
     '[style.--nb-split-separator-gap]': 'separatorGapStyle()',
-    '[style.gap]': 'gapStyle()',
-    '[style.padding]': 'paddingStyle()',
+    '[style.gap]': 'gap.value()',
+    '[style.padding]': 'paddingCapability.value()',
   },
 })
 export class NbSplit {
@@ -60,11 +60,8 @@ export class NbSplit {
   readonly align = input<NbSplitAlign>('stretch');
   readonly separator = input<NbSplitSeparator>('none');
 
-  private readonly gap = inject(NbGapCapability);
-  private readonly paddingCapability = inject(NbPaddingCapability);
-
-  protected readonly gapStyle = computed(() => this.gap.value());
-  protected readonly paddingStyle = computed(() => this.paddingCapability.value());
+  protected readonly gap = inject(NbGapCapability);
+  protected readonly paddingCapability = inject(NbPaddingCapability);
 
   // Component-local anatomy var: the separator's `::after` line is centered in
   // the gap. It mirrors an explicit gap input when present, otherwise the

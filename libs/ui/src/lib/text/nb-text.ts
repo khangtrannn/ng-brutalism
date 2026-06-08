@@ -152,7 +152,7 @@ export class NbText {
 
   protected readonly weightValue = computed(() => nbFontWeightValue(this.weight()));
   protected readonly colorValue = computed(() => toneMap[this.tone()]);
-  protected readonly transformValue = computed(() => this.transform());
+  protected readonly transformValue = this.transform;
   protected readonly trackingValue = computed(() => trackingMap[this.tracking()]);
   protected readonly measureValue = computed(() => {
     const val = measureMap[this.measure()];

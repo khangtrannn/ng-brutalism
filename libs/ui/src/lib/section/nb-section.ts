@@ -49,7 +49,7 @@ export type NbSectionAlign = 'stretch' | 'start' | 'center' | 'end';
     '[attr.data-layout]': 'layout()',
     '[attr.data-align]': 'align()',
     '[attr.data-flush]': 'flush() ? "" : null',
-    '[style.padding]': 'paddingStyle()',
+    '[style.padding]': 'padding.value()',
     '[style.--nb-section-flush-margin]': 'flushMarginStyle()',
   },
 })
@@ -62,9 +62,7 @@ export class NbSection {
     transform: booleanAttribute,
   });
 
-  private readonly padding = inject(NbPaddingCapability);
-
-  protected readonly paddingStyle = computed(() => this.padding.value());
+  protected readonly padding = inject(NbPaddingCapability);
 
   // Component-local anatomy var: `flush` negates the section's own padding so
   // content can bleed to the edge. It mirrors an explicit padding input when

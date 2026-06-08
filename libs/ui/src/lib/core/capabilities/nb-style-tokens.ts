@@ -17,8 +17,10 @@ export const NB_STYLE_NAMESPACE = new InjectionToken<string>(
 );
 
 /**
- * INTERNAL. Per-primitive default tokens. Capabilities use these only for
- * diagnostic data attributes; CSS fallback rules own the visual defaults.
+ * INTERNAL. Per-primitive default tokens. Style capabilities never read these —
+ * CSS fallback rules own the visual defaults and `data-*` attrs reflect only
+ * explicit consumer choices. Consumed only by primitives that resolve a token to
+ * a literal at render time (e.g. SVG fills) where no CSS fallback chain exists.
  */
 export interface NbStyleDefaults {
   tone?: NbToneToken;

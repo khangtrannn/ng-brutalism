@@ -37,10 +37,12 @@ describe('NbCallout', () => {
     ) as HTMLElement;
 
     expect(callout.getAttribute('data-nb-callout')).toBe('');
-    expect(callout.getAttribute('data-tone')).toBe('yellow');
+    // No style inputs set — capability attrs stay absent; CSS fallback owns the
+    // visual defaults. Attribute presence means "consumer chose this".
+    expect(callout.getAttribute('data-tone')).toBeNull();
     expect(callout.getAttribute('data-size')).toBe('lg');
     expect(callout.getAttribute('data-layout')).toBe('inline');
-    expect(callout.getAttribute('data-shadow')).toBe('hard');
+    expect(callout.getAttribute('data-shadow')).toBeNull();
     expect(callout.className).toContain('relative');
     expect(callout.className).toContain('inline-flex');
     expect(callout.className).not.toMatch(/(?:^|\s)nb-tone(?:\s|$)/);

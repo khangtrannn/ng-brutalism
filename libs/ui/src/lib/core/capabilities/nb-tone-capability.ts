@@ -1,7 +1,6 @@
-import { Directive, computed, inject, input } from '@angular/core';
+import { Directive, computed, input } from '@angular/core';
 
 import { nbToneVars, type NbToneToken } from '../../tokens/tone';
-import { NB_STYLE_DEFAULTS } from './nb-style-tokens';
 
 /**
  * INTERNAL capability — not part of the public API. Composed into primitives via
@@ -14,17 +13,11 @@ import { NB_STYLE_DEFAULTS } from './nb-style-tokens';
 @Directive({
   selector: '[nbToneCapability]',
   host: {
-    '[attr.data-tone]': 'resolved()',
+    '[attr.data-tone]': 'tone() ?? null',
   },
 })
 export class NbToneCapability {
-  private readonly defaults = inject(NB_STYLE_DEFAULTS);
-
   readonly tone = input<NbToneToken | undefined>(undefined);
-
-  protected readonly resolved = computed(
-    () => this.tone() ?? this.defaults.tone ?? 'default',
-  );
 
   private readonly toneVars = computed(() => {
     const tone = this.tone();

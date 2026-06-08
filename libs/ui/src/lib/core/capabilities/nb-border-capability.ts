@@ -1,7 +1,6 @@
-import { Directive, computed, inject, input } from '@angular/core';
+import { Directive, computed, input } from '@angular/core';
 
 import { nbBorderWidthValue, type NbBorderStrength } from '../../tokens/border';
-import { NB_STYLE_DEFAULTS } from './nb-style-tokens';
 
 /**
  * INTERNAL capability — not part of the public API. Composed into primitives via
@@ -14,17 +13,11 @@ import { NB_STYLE_DEFAULTS } from './nb-style-tokens';
 @Directive({
   selector: '[nbBorderCapability]',
   host: {
-    '[attr.data-border]': 'resolved()',
+    '[attr.data-border]': 'border() ?? null',
   },
 })
 export class NbBorderCapability {
-  private readonly defaults = inject(NB_STYLE_DEFAULTS);
-
   readonly border = input<NbBorderStrength | undefined>(undefined);
-
-  protected readonly resolved = computed(
-    () => this.border() ?? this.defaults.border ?? 'default',
-  );
 
   readonly width = computed(() => {
     const border = this.border();

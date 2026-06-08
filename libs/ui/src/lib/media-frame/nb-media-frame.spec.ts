@@ -48,12 +48,14 @@ describe('NbMediaFrame', () => {
     ) as HTMLElement;
 
     expect(frame.getAttribute('data-nb-media-frame')).toBe('');
-    expect(frame.getAttribute('data-tone')).toBe('default');
+    // No style inputs set — capability attrs stay absent; CSS fallback owns the
+    // visual defaults. Attribute presence means "consumer chose this".
+    expect(frame.getAttribute('data-tone')).toBeNull();
     expect(frame.getAttribute('data-ratio')).toBe('auto');
     expect(frame.getAttribute('data-fit')).toBe('cover');
-    expect(frame.getAttribute('data-radius')).toBe('lg');
-    expect(frame.getAttribute('data-shadow')).toBe('none');
-    expect(frame.getAttribute('data-border')).toBe('default');
+    expect(frame.getAttribute('data-radius')).toBeNull();
+    expect(frame.getAttribute('data-shadow')).toBeNull();
+    expect(frame.getAttribute('data-border')).toBeNull();
     expect(frame.className).toContain('relative');
     expect(frame.className).toContain('isolate');
     expect(frame.className).toContain('overflow-hidden');

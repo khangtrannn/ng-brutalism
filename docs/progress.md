@@ -24,8 +24,8 @@ For history and details, read the domain's own `progress.md`.
 
 ## Components
 **Status:** v0.3 Track 1 complete. Wave 1 of CSS-in-styles rollout complete (all 3 accordion components).
-**Last action:** `NbAccordionItem` + `NbAccordionContent` migrated — `computed()`/`nbClass` removed, inner divs styled via cascaded capability CSS vars, open/close driven by `[data-state='open']` CSS selector. Trigger `:host` public-var anti-pattern fixed. Token spec rewritten for new pattern. All tests pass.
-**Next:** Wave 2 — `NbBadge`, `NbAvatar`, `NbLabel`, `NbCard` sub-components, `NbImageCard`. Then Track 2 NbTabs. Decided: token-customization priority model (input → local token → inherited token → default; inputs bind to actual CSS props, never the public `--nb-*` hook) — capabilities to migrate on `refactor/token-customization`.
+**Last action:** Style-capability docs updated with the modifier-attr contract: optional inputs, direct `data-*` binding, CSS owns defaults; no default comparison in TS.
+**Next:** Wave 2 — `NbBadge`, `NbAvatar`, `NbLabel`, `NbCard` sub-components, `NbImageCard`. Then Track 2 NbTabs. Decisions: inputs bind to actual CSS props, never public `--nb-*` hooks; modifier `data-*` attrs emit only user-provided non-default state.
 **Goal:** All primitives migrated to component CSS pattern before v0.3 interactive components land.
 → Plan: `docs/architecture/v0.3-refactor-plan.md` · Arch: `docs/components/style-capabilities.md`
 

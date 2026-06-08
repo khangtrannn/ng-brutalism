@@ -73,11 +73,13 @@ describe('NbSurface', () => {
     ) as HTMLElement;
 
     expect(surface.getAttribute('data-nb-surface')).toBe('');
-    expect(surface.getAttribute('data-tone')).toBe('default');
-    expect(surface.getAttribute('data-radius')).toBe('md');
-    expect(surface.getAttribute('data-border')).toBe('default');
-    expect(surface.getAttribute('data-shadow')).toBe('default');
-    expect(surface.getAttribute('data-padding')).toBe('none');
+    // No style inputs set — capability attrs stay absent; CSS fallback owns the
+    // visual defaults. Attribute presence means "consumer chose this".
+    expect(surface.getAttribute('data-tone')).toBeNull();
+    expect(surface.getAttribute('data-radius')).toBeNull();
+    expect(surface.getAttribute('data-border')).toBeNull();
+    expect(surface.getAttribute('data-shadow')).toBeNull();
+    expect(surface.getAttribute('data-padding')).toBeNull();
     expect(surface.getAttribute('data-edge')).toBe('none');
 
     expect(surface.getAttribute('data-clip')).toBeNull();

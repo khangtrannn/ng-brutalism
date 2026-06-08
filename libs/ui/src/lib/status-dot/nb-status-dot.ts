@@ -44,16 +44,14 @@ const STATUS_DOT_SIZE_MAP: Record<NbStatusDotSize, string> = {
     '[attr.data-state]': 'state()',
     '[attr.data-size]': 'size()',
     '[attr.data-nb-status-dot]': '""',
-    '[style.border-radius]': 'radiusStyle()',
+    '[style.border-radius]': 'radius.value()',
   },
 })
 export class NbStatusDot {
   readonly state = input<NbStatusDotState>('online');
   readonly size = input<NbStatusDotSize>('md');
 
-  private readonly radius = inject(NbRadiusCapability);
-
-  protected readonly radiusStyle = computed(() => this.radius.value());
+  protected readonly radius = inject(NbRadiusCapability);
 
   protected readonly classes = computed(() =>
     nbClass(

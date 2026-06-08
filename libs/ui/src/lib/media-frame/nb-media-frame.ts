@@ -58,29 +58,22 @@ export type NbMediaFrameFit = 'cover' | 'contain' | 'fill';
     '[attr.data-nb-media-frame]': '""',
     '[attr.data-ratio]': 'ratio()',
     '[attr.data-fit]': 'fit()',
-    '[style.background]': 'backgroundStyle()',
-    '[style.color]': 'foregroundStyle()',
-    '[style.border-color]': 'borderColorStyle()',
-    '[style.border-radius]': 'radiusStyle()',
-    '[style.box-shadow]': 'shadowStyle()',
-    '[style.border-width]': 'borderWidthStyle()',
+    '[style.background]': 'tone.background()',
+    '[style.color]': 'tone.foreground()',
+    '[style.border-color]': 'tone.borderColor()',
+    '[style.border-radius]': 'radius.value()',
+    '[style.box-shadow]': 'shadow.value()',
+    '[style.border-width]': 'border.width()',
   },
 })
 export class NbMediaFrame {
   readonly ratio = input<NbMediaFrameRatio>('auto');
   readonly fit = input<NbMediaFrameFit>('cover');
 
-  private readonly tone = inject(NbToneCapability);
-  private readonly radius = inject(NbRadiusCapability);
-  private readonly shadow = inject(NbShadowCapability);
-  private readonly border = inject(NbBorderCapability);
-
-  protected readonly backgroundStyle = computed(() => this.tone.background());
-  protected readonly foregroundStyle = computed(() => this.tone.foreground());
-  protected readonly borderColorStyle = computed(() => this.tone.borderColor());
-  protected readonly radiusStyle = computed(() => this.radius.value());
-  protected readonly shadowStyle = computed(() => this.shadow.value());
-  protected readonly borderWidthStyle = computed(() => this.border.width());
+  protected readonly tone = inject(NbToneCapability);
+  protected readonly radius = inject(NbRadiusCapability);
+  protected readonly shadow = inject(NbShadowCapability);
+  protected readonly border = inject(NbBorderCapability);
 
   protected readonly classes = computed(() =>
     nbClass(

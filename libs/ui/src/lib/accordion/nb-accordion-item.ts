@@ -99,12 +99,12 @@ export class NbAccordionItem {
   readonly contentId = `neo-accordion-content-${this.id}`;
 
   readonly open = computed(() => this.accordion.isItemOpen(this.value()));
-  readonly backgroundStyle = computed(() => this.tone.background());
-  readonly foregroundStyle = computed(() => this.tone.foreground());
-  readonly borderColorStyle = computed(() => this.tone.borderColor());
-  readonly radiusStyle = computed(() => this.radius.value());
-  readonly shadowStyle = computed(() => this.shadow.value());
-  readonly borderWidthStyle = computed(() => this.border.width());
+  readonly backgroundStyle = this.tone.background;
+  readonly foregroundStyle = this.tone.foreground;
+  readonly borderColorStyle = this.tone.borderColor;
+  readonly radiusStyle = this.radius.value;
+  readonly shadowStyle = this.shadow.value;
+  readonly borderWidthStyle = this.border.width;
 
   toggle(): void {
     if (!this.disabled()) {

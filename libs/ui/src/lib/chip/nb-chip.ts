@@ -72,14 +72,14 @@ const paddingMap: Record<NbChipPadding, string> = {
   `,
   host: {
     '[class]': 'classes()',
-    '[attr.data-padding]': 'paddingAttr()',
+    '[attr.data-padding]': "padding() ?? 'md'",
     '[attr.data-nb-chip]': '""',
-    '[style.background]': 'backgroundStyle()',
-    '[style.color]': 'foregroundStyle()',
-    '[style.border-color]': 'borderColorStyle()',
-    '[style.border-radius]': 'radiusStyle()',
-    '[style.box-shadow]': 'shadowStyle()',
-    '[style.border-width]': 'borderWidthStyle()',
+    '[style.background]': 'tone.background()',
+    '[style.color]': 'tone.foreground()',
+    '[style.border-color]': 'tone.borderColor()',
+    '[style.border-radius]': 'radius.value()',
+    '[style.box-shadow]': 'shadow.value()',
+    '[style.border-width]': 'border.width()',
   },
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
@@ -92,18 +92,10 @@ export class NbChip {
   readonly icon = input<string>();
   readonly iconSize = input<NbIconSize>('sm');
 
-  private readonly tone = inject(NbToneCapability);
-  private readonly radius = inject(NbRadiusCapability);
-  private readonly shadow = inject(NbShadowCapability);
-  private readonly border = inject(NbBorderCapability);
-
-  protected readonly backgroundStyle = computed(() => this.tone.background());
-  protected readonly foregroundStyle = computed(() => this.tone.foreground());
-  protected readonly borderColorStyle = computed(() => this.tone.borderColor());
-  protected readonly radiusStyle = computed(() => this.radius.value());
-  protected readonly shadowStyle = computed(() => this.shadow.value());
-  protected readonly borderWidthStyle = computed(() => this.border.width());
-  protected readonly paddingAttr = computed(() => this.padding() ?? 'md');
+  protected readonly tone = inject(NbToneCapability);
+  protected readonly radius = inject(NbRadiusCapability);
+  protected readonly shadow = inject(NbShadowCapability);
+  protected readonly border = inject(NbBorderCapability);
 
   protected readonly classes = computed(() =>
     nbClass(
