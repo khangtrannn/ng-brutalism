@@ -6,7 +6,6 @@ import {
   input,
 } from '@angular/core';
 
-import { nbClass } from '../core/class';
 import {
   NbBorderCapability,
   NbRadiusCapability,
@@ -20,16 +19,6 @@ import { NbIcon, type NbIconSize } from '../icon';
 
 export type NbIconButtonShape = 'square' | 'circle';
 export type NbIconButtonSize = 'sm' | 'md' | 'lg' | 'xl';
-
-// Each size sets the square touch target plus a matching glyph size. The glyph
-// size feeds both the projected `<svg>` (via `[&_svg]:size-*`) and the internal
-// `nbIcon` (via `iconSize`) so the two authoring styles render identically.
-const sizeMap: Record<NbIconButtonSize, string> = {
-  sm: 'size-8 [&_svg]:size-4',
-  md: 'size-10 [&_svg]:size-5',
-  lg: 'size-12 [&_svg]:size-6',
-  xl: 'size-14 [&_svg]:size-8',
-};
 
 const iconSizeMap: Record<NbIconButtonSize, NbIconSize> = {
   sm: 'sm',
@@ -66,8 +55,8 @@ const iconSizeMap: Record<NbIconButtonSize, NbIconSize> = {
     <ng-content />
   `,
   host: {
-    '[class]': 'classes()',
     '[attr.data-shape]': 'shape()',
+    '[attr.data-size]': 'size()',
     '[attr.data-nb-icon-button]': '""',
     '[style.background]': 'backgroundStyle()',
     '[style.color]': 'foregroundStyle()',
@@ -100,17 +89,4 @@ export class NbIconButton {
   readonly icon = input<string>();
 
   protected readonly iconSize = computed<NbIconSize>(() => iconSizeMap[this.size()]);
-
-  protected readonly classes = computed(() =>
-    nbClass(
-      'inline-flex items-center justify-center shrink-0 select-none',
-      'hover:translate-x-(--nb-shadow-offset-x) hover:translate-y-(--nb-shadow-offset-y) hover:shadow-none',
-      'transition-all duration-150 ease-out',
-      '[&_svg]:pointer-events-none [&_svg]:shrink-0',
-      'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--nb-border) focus-visible:ring-offset-2',
-      'disabled:opacity-50 disabled:cursor-not-allowed disabled:pointer-events-none',
-      sizeMap[this.size()],
-      this.shape() === 'circle' && 'rounded-full',
-    )
-  );
 }

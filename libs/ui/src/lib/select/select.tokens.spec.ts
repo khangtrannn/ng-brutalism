@@ -136,54 +136,30 @@ describe('NbSelect token surface', () => {
 });
 
 describe('NbNativeSelect directive token surface', () => {
-  it('does not emit legacy capability marker classes', async () => {
+  it('emits no internal styling classes — anatomy lives in styles.css and data-attrs', async () => {
     const fixture = await createFixture(NativeSelectTokenTest);
     const select = findNativeSelect(fixture);
 
-    expect(select.className).not.toMatch(/(?:^|\s)nb-tone(?:\s|$)/);
-    expect(select.className).not.toMatch(/(?:^|\s)nb-border-width(?:\s|$)/);
+    expect(select.className).toBe('');
+    expect(select.getAttribute('data-in-group')).toBeNull();
   });
 
-  it('keeps radius as a local class token only', async () => {
+  it('leaves radius and shadow to CSS token fallbacks instead of local class vars', async () => {
     const fixture = await createFixture(NativeSelectTokenTest);
-    const cls = findNativeSelect(fixture).className;
+    const select = findNativeSelect(fixture);
 
-    expect(cls).not.toContain('--nb-resolved');
-    expect(cls).not.toContain('[--nb-select-fg:');
-    expect(cls).not.toContain('[--nb-select-border:');
-    expect(cls).toContain('[--nb-select-radius:var(--nb-radius)]');
+    expect(select.style.getPropertyValue('--nb-select-radius')).toBe('');
+    expect(select.style.getPropertyValue('border-radius')).toBe('');
+    expect(select.style.getPropertyValue('box-shadow')).toBe('');
+    expect(select.style.cssText).not.toContain('--nb-resolved');
   });
 
-  it('reads scoped tokens instead of global tokens directly', async () => {
+  it('writes the focus ring color from the tone capability for CSS to consume', async () => {
     const fixture = await createFixture(NativeSelectTokenTest);
-    const cls = findNativeSelect(fixture).className;
+    const select = findNativeSelect(fixture);
 
-    expect(cls).toContain('rounded-(--nb-select-radius)');
-    expect(cls).toContain(
-      'focus-visible:ring-[var(--nb-select-focus-ring-color,var(--nb-select-border-color,var(--nb-border)))]'
-    );
-    expect(cls).not.toContain('bg-(--nb-input-bg');
-    expect(cls).not.toContain('text-(--nb-foreground)');
-    expect(cls).not.toContain('border-(--nb-border)');
-    expect(cls).not.toContain('rounded-nb');
-  });
-
-  it('does not regress the default native select class shape', async () => {
-    const fixture = await createFixture(NativeSelectTokenTest);
-    const cls = findNativeSelect(fixture).className;
-
-    expect(cls).toContain('flex');
-    expect(cls).toContain('font-medium');
-    expect(cls).toContain('appearance-none');
-    expect(cls).toContain('pr-10');
-    expect(cls).toContain('has-[option:disabled:checked]:text-gray-400');
-    expect(cls).toContain('disabled:opacity-50');
-    expect(cls).toContain('disabled:cursor-not-allowed');
-    expect(cls).toContain('shadow-nb');
-    expect(cls).toContain('focus-visible:outline-none');
-    expect(cls).toContain('focus-visible:ring-2');
-    expect(cls).toContain('focus-visible:ring-offset-2');
-    expect(cls).toContain('focus-visible:shadow-none');
+    // No explicit tone — capability resolves nothing, CSS falls back to public hooks.
+    expect(select.style.getPropertyValue('--nb-select-focus-ring-color')).toBe('');
   });
 });
 

@@ -55,15 +55,9 @@ describe('NbStack', () => {
     expect(stack.getAttribute('data-align')).toBe('stretch');
     expect(stack.getAttribute('data-justify')).toBe('start');
     expect(stack.getAttribute('data-separator')).toBe('none');
-    expect(stack.className).toContain('flex');
-    expect(stack.className).toContain('min-w-0');
-    expect(stack.className).toContain('flex-col');
-    expect(stack.className).not.toMatch(/(?:^|\s)nb-gap(?:\s|$)/);
+    expect(stack.className).toBe('');
     expect(stack.style.getPropertyValue('gap')).toBe('');
     expect(stack.style.cssText).not.toContain('--nb-resolved');
-    expect(stack.className).toContain('items-stretch');
-    expect(stack.className).toContain('justify-start');
-    expect(stack.className).not.toContain('[&>*+*]:border-t');
   });
 
   it('maps gap, alignment, justification, and dashed separators', async () => {
@@ -80,34 +74,23 @@ describe('NbStack', () => {
     expect(stack.style.getPropertyValue('--nb-stack-separator-gap')).toBe(
       '1.5rem'
     );
-    expect(stack.className).toContain('items-start');
-    expect(stack.className).toContain('justify-center');
-    expect(stack.className).toContain(
-      '[&>*+*]:border-t-(length:--nb-border-width)'
-    );
-    expect(stack.className).toContain('[&>*+*]:border-dashed');
-    expect(stack.className).toContain('[&>*+*]:[border-top-color:var(--nb-border)]');
-    expect(stack.className).toContain('[&>*+*]:pt-(--nb-stack-separator-gap)');
+    expect(stack.className).toBe('');
     expect(stack.style.cssText).not.toContain('--nb-resolved');
   });
-  it('solid separator uses explicit border-solid and explicit color', async () => {
+  it('solid separator is reflected via the data attribute', async () => {
     const fixture = await createFixture(SolidStackTest);
     const stack = fixture.nativeElement.querySelector('[nbStack]') as HTMLElement;
 
     expect(stack.getAttribute('data-separator')).toBe('solid');
-    expect(stack.className).toContain('[&>*+*]:border-solid');
-    expect(stack.className).toContain('[&>*+*]:[border-top-color:var(--nb-border)]');
-    expect(stack.className).not.toContain('[&>*+*]:border-dashed');
+    expect(stack.className).toBe('');
   });
 
-  it('thick separator uses a 4px solid top border', async () => {
+  it('thick separator is reflected via the data attribute', async () => {
     const fixture = await createFixture(ThickStackTest);
     const stack = fixture.nativeElement.querySelector('[nbStack]') as HTMLElement;
 
     expect(stack.getAttribute('data-separator')).toBe('thick');
-    expect(stack.className).toContain('[&>*+*]:border-t-4');
-    expect(stack.className).toContain('[&>*+*]:border-solid');
-    expect(stack.className).toContain('[&>*+*]:[border-top-color:var(--nb-border)]');
+    expect(stack.className).toBe('');
   });
 });
 

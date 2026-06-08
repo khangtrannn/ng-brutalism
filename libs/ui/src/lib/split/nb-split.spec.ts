@@ -79,22 +79,10 @@ describe('NbSplit', () => {
     expect(split.getAttribute('data-collapse')).toBe('md');
     expect(split.getAttribute('data-align')).toBe('stretch');
     expect(split.getAttribute('data-separator')).toBe('none');
-    expect(split.className).toContain('grid');
-    expect(split.className).toContain('min-w-0');
-    expect(split.className).not.toMatch(/(?:^|\s)nb-gap(?:\s|$)/);
-    expect(split.className).not.toMatch(/(?:^|\s)nb-padding(?:\s|$)/);
+    expect(split.className).toBe('');
     expect(split.style.getPropertyValue('gap')).toBe('');
     expect(split.style.getPropertyValue('padding')).toBe('');
     expect(split.style.cssText).not.toContain('--nb-resolved');
-    expect(split.className).toContain('items-stretch');
-    expect(split.className).toContain(
-      '[--nb-split-columns:minmax(0,1fr)_minmax(0,1fr)]'
-    );
-    expect(split.className).toContain('grid-cols-1');
-    expect(split.className).toContain(
-      'md:grid-cols-[var(--nb-split-columns)]'
-    );
-    expect(split.className).not.toContain('after:border-r-');
   });
 
   it('maps ratio, gap, padding, collapse, and alignment', async () => {
@@ -111,14 +99,7 @@ describe('NbSplit', () => {
     expect(split.getAttribute('data-separator')).toBe('none');
     expect(split.style.getPropertyValue('gap')).toBe('2rem');
     expect(split.style.getPropertyValue('padding')).toBe('2rem');
-    expect(split.className).toContain('items-end');
-    expect(split.className).toContain(
-      '[--nb-split-columns:minmax(0,3fr)_minmax(0,1fr)]'
-    );
-    expect(split.className).toContain('grid-cols-1');
-    expect(split.className).toContain(
-      'lg:grid-cols-[var(--nb-split-columns)]'
-    );
+    expect(split.className).toBe('');
   });
 
   it('sizes the first column to fill and the second to its content', async () => {
@@ -128,9 +109,7 @@ describe('NbSplit', () => {
     ) as HTMLElement;
 
     expect(split.getAttribute('data-ratio')).toBe('fill:auto');
-    expect(split.className).toContain(
-      '[--nb-split-columns:minmax(0,1fr)_auto]'
-    );
+    expect(split.className).toBe('');
   });
 
   it('draws a solid separator, hidden until the collapse breakpoint', async () => {
@@ -140,21 +119,8 @@ describe('NbSplit', () => {
     ) as HTMLElement;
 
     expect(split.getAttribute('data-separator')).toBe('solid');
-    expect(split.className).toContain(
-      '[&>*:first-child]:after:[border-inline-end-width:var(--nb-border-width)]'
-    );
-    expect(split.className).toContain(
-      '[&>*:first-child]:after:[border-inline-end-color:var(--nb-border)]'
-    );
-    expect(split.className).toContain(
-      '[&>*:first-child]:after:border-solid'
-    );
-    // Stacked on mobile, revealed once the columns appear at `md`.
-    expect(split.className).toContain('[&>*:first-child]:after:hidden');
-    expect(split.className).toContain('md:[&>*:first-child]:after:block');
-    expect(classNames(split)).not.toContain(
-      '[&>*:first-child]:after:border-dashed'
-    );
+    expect(split.getAttribute('data-collapse')).toBe('md');
+    expect(split.className).toBe('');
   });
 
   it('draws a dashed separator that is always visible when it never collapses', async () => {
@@ -164,15 +130,8 @@ describe('NbSplit', () => {
     ) as HTMLElement;
 
     expect(split.getAttribute('data-separator')).toBe('dashed');
-    expect(split.className).toContain('[&>*:first-child]:after:border-dashed');
-    expect(split.className).toContain(
-      '[&>*:first-child]:after:[border-inline-end-width:var(--nb-border-width)]'
-    );
-    expect(split.className).toContain(
-      '[&>*:first-child]:after:[border-inline-end-color:var(--nb-border)]'
-    );
-    // collapse="none" means no breakpoint gating.
-    expect(classNames(split)).not.toContain('[&>*:first-child]:after:hidden');
+    expect(split.getAttribute('data-collapse')).toBe('none');
+    expect(split.className).toBe('');
   });
 
   it('draws a thick separator, revealed at the lg breakpoint', async () => {
@@ -182,23 +141,10 @@ describe('NbSplit', () => {
     ) as HTMLElement;
 
     expect(split.getAttribute('data-separator')).toBe('thick');
-    expect(split.className).toContain(
-      '[&>*:first-child]:after:[border-inline-end-width:4px]'
-    );
-    expect(split.className).toContain('[&>*:first-child]:after:border-solid');
-    expect(split.className).toContain(
-      '[&>*:first-child]:after:[border-inline-end-color:var(--nb-border)]'
-    );
-    expect(split.className).toContain('lg:[&>*:first-child]:after:block');
-    expect(classNames(split)).not.toContain(
-      '[&>*:first-child]:after:border-dashed'
-    );
+    expect(split.getAttribute('data-collapse')).toBe('lg');
+    expect(split.className).toBe('');
   });
 });
-
-function classNames(element: HTMLElement): string[] {
-  return element.className.split(/\s+/).filter(Boolean);
-}
 
 async function createFixture<T>(
   component: new () => T

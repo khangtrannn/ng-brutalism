@@ -1,6 +1,5 @@
 import { Directive, computed, inject, input } from '@angular/core';
 
-import { nbClass } from '../core/class';
 import {
   NbBorderCapability,
   NbToneCapability,
@@ -25,8 +24,8 @@ import type { NbTextareaSize } from './textarea.types';
     { directive: NbBorderCapability, inputs: ['border'] },
   ],
   host: {
-    '[class]': 'classes()',
     '[attr.data-size]': 'size()',
+    '[attr.data-in-group]': 'isInGroup ? "" : null',
     '[style.background-color]': 'backgroundStyle()',
     '[style.border-color]': 'borderColorStyle()',
     '[style.border-width]': 'borderWidthStyle()',
@@ -50,26 +49,4 @@ export class NbTextarea {
     this.isInGroup ? '0' : this.border.width(),
   );
   protected readonly focusRingColorStyle = computed(() => this.tone.borderColor());
-
-  protected readonly classes = computed(() => {
-    const inGroup = this.isInGroup;
-
-    return nbClass(
-      '[--nb-textarea-radius:var(--nb-radius)]',
-      '[--nb-textarea-shadow:var(--nb-shadow-offset-x)_var(--nb-shadow-offset-y)_0_var(--nb-shadow)]',
-      'flex font-medium',
-      'placeholder:text-gray-400',
-      'disabled:opacity-50 disabled:cursor-not-allowed',
-      'resize-none',
-      inGroup
-        ? ['flex-1 min-w-0', 'focus-visible:outline-none']
-        : [
-            'rounded-(--nb-textarea-radius)',
-            'shadow-[var(--nb-textarea-shadow)]',
-            'focus-visible:outline-none focus-visible:ring-2',
-            'focus-visible:ring-[var(--nb-textarea-focus-ring-color,var(--nb-textarea-border-color,var(--nb-border)))]',
-            'focus-visible:ring-offset-2 focus-visible:shadow-none',
-          ]
-    );
-  });
 }

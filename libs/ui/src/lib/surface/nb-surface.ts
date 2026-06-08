@@ -6,7 +6,6 @@ import {
   input,
 } from '@angular/core';
 
-import { nbClass } from '../core/class';
 import {
   NbBorderCapability,
   NbPaddingCapability,
@@ -62,11 +61,11 @@ export type NbSurfaceEdge = 'none' | 'top' | 'bottom';
     { directive: NbTypography, inputs: ['font: typography'] },
   ],
   host: {
-    '[class]': 'classes()',
     '[attr.data-nb-surface]': '""',
     '[attr.data-size]': 'size()',
     '[attr.data-layout]': 'layout()',
     '[attr.data-edge]': 'edge()',
+    '[attr.data-clip]': 'clip() ? "" : null',
     '[style.background]': 'backgroundStyle()',
     '[style.color]': 'foregroundStyle()',
     '[style.border-color]': 'borderColorStyle()',
@@ -97,48 +96,4 @@ export class NbSurface {
   protected readonly shadowStyle = computed(() => this.shadow.value());
   protected readonly borderWidthStyle = computed(() => this.border.width());
   protected readonly paddingStyle = computed(() => this.paddingCapability.value());
-
-  protected readonly classes = computed(() =>
-    nbClass(
-      'relative',
-      this.clip() && 'overflow-hidden',
-      this.sizeClass(),
-      this.layoutClass(),
-      this.edgeClass()
-    )
-  );
-
-  private sizeClass(): string {
-    const map: Record<NbSurfaceSize, string> = {
-      auto: '',
-      sm: 'size-8 shrink-0',
-      md: 'size-10 shrink-0',
-      lg: 'size-11 shrink-0',
-      xl: 'size-12 shrink-0',
-    };
-
-    return map[this.size()];
-  }
-
-  private layoutClass(): string {
-    const map: Record<NbSurfaceLayout, string> = {
-      block: '',
-      center: 'inline-flex items-center justify-center',
-      row: 'flex items-center',
-      stack: 'flex flex-col',
-    };
-
-    return map[this.layout()];
-  }
-
-  private edgeClass(): string {
-    const map: Record<NbSurfaceEdge, string> = {
-      none: '',
-      top: '[--nb-surface-edge-width:2px] [--nb-surface-edge-color:var(--nb-border)] border-t-(length:--nb-surface-edge-width) border-t-(--nb-surface-edge-color)',
-      bottom:
-        '[--nb-surface-edge-width:2px] [--nb-surface-edge-color:var(--nb-border)] border-b-(length:--nb-surface-edge-width) border-b-(--nb-surface-edge-color)',
-    };
-
-    return map[this.edge()];
-  }
 }

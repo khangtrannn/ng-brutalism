@@ -226,12 +226,8 @@ describe('NbSelect inside NbInputGroup', () => {
       'nb-input-group'
     ) as HTMLElement;
 
-    expect(group.className).toContain('focus-within:ring-2');
-    expect(group.className).toContain(
-      'focus-within:ring-(--nb-input-group-border)'
-    );
-    expect(group.className).toContain('focus-within:shadow-none');
-    expect(group.className).not.toContain('focus-within:ring-(--nb-focus');
+    expect(group.className).toBe('');
+    expect(group.style.getPropertyValue('--nb-input-group-border')).toBe('');
   });
 
   it('still opens and selects an option when inside a group', async () => {
@@ -275,8 +271,7 @@ describe('NbNativeSelect directive inside NbInputGroup', () => {
       'select[nbSelect]'
     ) as HTMLSelectElement;
 
-    expect(select.className).toContain('flex-1');
-    expect(select.className).toContain('min-w-0');
+    expect(select.getAttribute('data-in-group')).toBe('');
     expect(select.style.backgroundColor).toBe('transparent');
   });
 
@@ -286,12 +281,8 @@ describe('NbNativeSelect directive inside NbInputGroup', () => {
       'nb-input-group'
     ) as HTMLElement;
 
-    expect(group.className).toContain('focus-within:ring-2');
-    expect(group.className).toContain(
-      'focus-within:ring-(--nb-input-group-border)'
-    );
-    expect(group.className).toContain('focus-within:shadow-none');
-    expect(group.className).not.toContain('focus-within:ring-(--nb-focus');
+    expect(group.className).toBe('');
+    expect(group.style.getPropertyValue('--nb-input-group-border')).toBe('');
   });
 });
 

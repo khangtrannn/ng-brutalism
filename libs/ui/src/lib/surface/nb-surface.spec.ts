@@ -80,16 +80,8 @@ describe('NbSurface', () => {
     expect(surface.getAttribute('data-padding')).toBe('none');
     expect(surface.getAttribute('data-edge')).toBe('none');
 
-    expect(surface.className).toContain('relative');
-    expect(surface.className).not.toMatch(/(?:^|\s)nb-tone(?:\s|$)/);
-    expect(surface.className).not.toMatch(/(?:^|\s)nb-border-width(?:\s|$)/);
-    expect(surface.className).not.toContain('bg-(--nb-surface-bg)');
-    expect(surface.className).not.toContain('text-(--nb-surface-fg)');
-    expect(surface.className).not.toContain('border-(--nb-surface-border-color)');
-    expect(surface.className).not.toMatch(/(?:^|\s)nb-radius(?:\s|$)/);
-    expect(surface.className).not.toMatch(/(?:^|\s)nb-shadow(?:\s|$)/);
-    expect(surface.className).not.toMatch(/(?:^|\s)nb-padding(?:\s|$)/);
-    expect(surface.className).not.toContain('overflow-hidden');
+    expect(surface.getAttribute('data-clip')).toBeNull();
+    expect(surface.className).toBe('');
 
     const style = surface.style;
     expect(style.getPropertyValue('background')).toBe('');
@@ -124,12 +116,8 @@ describe('NbSurface', () => {
       '10px 10px 0 0 var(--nb-shadow)'
     );
     expect(surface.style.cssText).not.toContain('--nb-resolved');
-    expect(surface.className).toContain('size-11');
-    expect(surface.className).toContain('shrink-0');
-    expect(surface.className).toContain('inline-flex');
-    expect(surface.className).toContain('items-center');
-    expect(surface.className).toContain('justify-center');
-    expect(surface.className).toContain('overflow-hidden');
+    expect(surface.getAttribute('data-clip')).toBe('');
+    expect(surface.className).toBe('');
   });
 
   it.each([
@@ -181,9 +169,9 @@ describe('NbSurface', () => {
       '6px 6px 0 0 var(--nb-shadow)'
     );
     expect(surface.style.getPropertyValue('border-radius')).toBe('0.75rem');
-    expect(surface.className).toContain('flex');
-    expect(surface.className).toContain('flex-col');
-    expect(surface.className).toContain('overflow-hidden');
+    expect(surface.getAttribute('data-layout')).toBe('stack');
+    expect(surface.getAttribute('data-clip')).toBe('');
+    expect(surface.className).toBe('');
   });
 
   it('supports row header bands with padding and a bottom edge', async () => {
@@ -198,14 +186,10 @@ describe('NbSurface', () => {
     expect(surface.getAttribute('data-padding')).toBe('md');
     expect(surface.getAttribute('data-radius')).toBe('none');
     expect(surface.getAttribute('data-shadow')).toBe('none');
-    expect(surface.className).toContain('flex');
-    expect(surface.className).toContain('items-center');
-    expect(surface.className).not.toMatch(/(?:^|\s)nb-padding(?:\s|$)/);
     expect(surface.style.getPropertyValue('padding')).toBe('1rem');
     expect(surface.style.getPropertyValue('border-width')).toBe('0px');
     expect(surface.style.getPropertyValue('box-shadow')).toBe('none');
-    expect(surface.className).toContain('border-b-(length:--nb-surface-edge-width)');
-    expect(surface.className).toContain('border-b-(--nb-surface-edge-color)');
+    expect(surface.className).toBe('');
   });
 });
 

@@ -1,6 +1,5 @@
 import { Directive, computed, inject, input } from '@angular/core';
 
-import { nbClass } from '../core/class';
 import {
   NbBorderCapability,
   NbToneCapability,
@@ -25,8 +24,8 @@ import type { NbInputSize } from './input.types';
     { directive: NbBorderCapability, inputs: ['border'] },
   ],
   host: {
-    '[class]': 'classes()',
     '[attr.data-size]': 'size()',
+    '[attr.data-in-group]': 'isInGroup ? "" : null',
     '[style.background-color]': 'backgroundStyle()',
     '[style.border-color]': 'borderColorStyle()',
     '[style.border-width]': 'borderWidthStyle()',
@@ -53,29 +52,4 @@ export class NbInput {
   );
 
   protected readonly focusRingColorStyle = computed(() => this.tone.borderColor());
-
-  protected readonly classes = computed(() => {
-    const inGroup = this.isInGroup;
-
-    return nbClass(
-      '[--nb-input-radius:var(--nb-radius)]',
-      '[--nb-input-shadow:var(--nb-shadow-offset-x)_var(--nb-shadow-offset-y)_0_var(--nb-shadow)]',
-      'flex font-medium',
-      'placeholder:text-gray-400',
-      'file:h-full file:py-0 file:my-0 file:mr-3 file:px-3',
-      'file:cursor-pointer file:text-sm file:font-bold',
-      'file:bg-(--nb-main) file:text-(--nb-main-foreground)',
-      'file:border-0 file:border-r-2 file:border-(--nb-border)',
-      'disabled:opacity-50 disabled:cursor-not-allowed',
-      inGroup
-        ? ['flex-1 min-w-0', 'focus-visible:outline-none']
-        : [
-            'rounded-(--nb-input-radius)',
-            'shadow-[var(--nb-input-shadow)]',
-            'focus-visible:outline-none focus-visible:ring-2',
-            'focus-visible:ring-[var(--nb-input-focus-ring-color,var(--nb-input-border-color,var(--nb-border)))]',
-            'focus-visible:ring-offset-2 focus-visible:shadow-none',
-          ]
-    );
-  });
 }

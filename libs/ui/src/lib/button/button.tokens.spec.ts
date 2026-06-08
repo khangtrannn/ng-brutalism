@@ -236,21 +236,15 @@ describe('NbButton token surface', () => {
   it('press="reverse" changes only the interaction direction', async () => {
     const fixture = await createPressFixture('reverse');
     const button = findPressButton(fixture);
-    const cls = button.className;
 
     expect(button.getAttribute('data-press')).toBe('reverse');
-    expect(cls).toContain('hover:-translate-x-(--nb-reverse-shadow-offset-x)');
-    expect(cls).toContain('hover:-translate-y-(--nb-reverse-shadow-offset-y)');
   });
 
   it('press="none" disables hover translation', async () => {
     const fixture = await createPressFixture('none');
     const button = findPressButton(fixture);
-    const cls = button.className;
 
     expect(button.getAttribute('data-press')).toBe('none');
-    expect(cls).not.toContain('hover:translate-x-(--nb-shadow-offset-x)');
-    expect(cls).not.toContain('hover:-translate-x-(--nb-reverse-shadow-offset-x)');
   });
 
   it('fullWidth bare attribute makes the button full width', async () => {
@@ -261,7 +255,7 @@ describe('NbButton token surface', () => {
     fixture.detectChanges();
     const button = fixture.nativeElement.querySelector('button[nbButton]') as HTMLButtonElement;
 
-    expect(button.className).toContain('w-full');
+    expect(button.getAttribute('data-full-width')).toBe('');
   });
 
   it('does not push trailing icons by default', async () => {
@@ -274,8 +268,9 @@ describe('NbButton token surface', () => {
       '[nbButtonTrailingIcon]'
     ) as HTMLElement;
 
-    expect(icon.className).not.toContain('ml-auto');
-    expect(icon.className).toContain('inline-flex');
+    expect(icon.className).toBe('');
+    expect(icon.getAttribute('data-push')).toBe('none');
+    expect(icon.getAttribute('data-size')).toBe('md');
   });
 
   it('pushes trailing icons to the end when requested', async () => {
@@ -288,25 +283,18 @@ describe('NbButton token surface', () => {
       '[nbButtonTrailingIcon]'
     ) as HTMLElement;
 
-    expect(icon.className).toContain('ml-auto');
+    expect(icon.className).toBe('');
+    expect(icon.getAttribute('data-push')).toBe('end');
   });
 
-  it('does not regress the default button class shape', async () => {
+  it('does not regress the default button anatomy data attributes', async () => {
     const fixture = await createFixture();
-    const cls = findButton(fixture).className;
+    const button = findButton(fixture);
 
-    expect(cls).toContain('inline-flex');
-    expect(cls).toContain('items-center');
-    expect(cls).toContain('justify-center');
-    expect(cls).toContain('gap-2');
-    expect(cls).toContain('font-bold');
-    expect(cls).toContain('transition-all');
-    expect(cls).toContain('focus-visible:ring-2');
-    expect(cls).toContain('disabled:opacity-50');
-    expect(cls).toContain('aria-disabled:opacity-50');
-    expect(cls).toContain('h-11');
-    expect(cls).toContain('px-4');
-    expect(cls).toContain('text-base');
+    expect(button.getAttribute('data-press')).toBe('push');
+    expect(button.getAttribute('data-size')).toBe('md');
+    expect(button.getAttribute('data-full-width')).toBeNull();
+    expect(button.className).toBe('');
   });
 });
 

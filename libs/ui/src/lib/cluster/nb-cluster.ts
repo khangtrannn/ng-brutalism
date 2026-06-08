@@ -1,6 +1,5 @@
 import { Directive, computed, inject, input } from '@angular/core';
 
-import { nbClass } from '../core/class';
 import {
   NbGapCapability,
   NbPaddingCapability,
@@ -43,7 +42,6 @@ export type NbClusterSeparator = 'none' | 'solid' | 'dashed' | 'thick';
     { directive: NbPaddingCapability, inputs: ['padding'] },
   ],
   host: {
-    '[class]': 'classes()',
     '[attr.data-nb-cluster]': '""',
     '[attr.data-align]': 'align()',
     '[attr.data-justify]': 'justify()',
@@ -79,90 +77,4 @@ export class NbCluster {
       ? null
       : `calc(${this.gap.value() ?? nbGapFallback('cluster', 'md')} * 0.5)`,
   );
-
-  protected readonly classes = computed(() =>
-    nbClass(
-      'flex min-w-0',
-      this.gapClass(),
-      this.alignClass(),
-      this.justifyClass(),
-      this.wrapClass(),
-      this.separatorClass()
-    )
-  );
-
-  private gapClass(): string {
-    // With a separator, gap collapses on the inline axis (the separator owns
-    // the inline spacing) and survives only on the block axis for wrapped rows.
-    if (this.separator() !== 'none') {
-      return 'gap-x-0';
-    }
-
-    return '';
-  }
-
-  private alignClass(): string {
-    const map: Record<NbClusterAlign, string> = {
-      start: 'items-start',
-      center: 'items-center',
-      end: 'items-end',
-      baseline: 'items-baseline',
-      stretch: 'items-stretch',
-    };
-
-    return map[this.align()];
-  }
-
-  private justifyClass(): string {
-    const map: Record<NbClusterJustify, string> = {
-      start: 'justify-start',
-      center: 'justify-center',
-      end: 'justify-end',
-      between: 'justify-between',
-    };
-
-    return map[this.justify()];
-  }
-
-  private wrapClass(): string {
-    const map: Record<NbClusterWrap, string> = {
-      wrap: 'flex-wrap',
-      nowrap: 'flex-nowrap',
-    };
-
-    return map[this.wrap()];
-  }
-
-  private separatorClass(): string {
-    const separator = this.separator();
-    if (separator === 'none') return '';
-
-    return nbClass(separatorBaseClass, separatorStyleClass[separator]);
-  }
 }
-
-// Written as module-level constants so Tailwind's static scanner emits the classes.
-const separatorBaseClass = nbClass(
-  '[--nb-cluster-separator-color:var(--nb-border)]',
-  '[&>*+*]:[margin-inline-start:var(--nb-cluster-separator-gap)]',
-  '[&>*+*]:[padding-inline-start:var(--nb-cluster-separator-gap)]',
-  '[&>*+*]:[border-inline-start-color:var(--nb-cluster-separator-color)]'
-);
-
-const separatorStyleClass: Record<Exclude<NbClusterSeparator, 'none'>, string> = {
-  solid: nbClass(
-    '[--nb-cluster-separator-thickness:2px]',
-    '[&>*+*]:[border-inline-start-width:var(--nb-cluster-separator-thickness)]',
-    '[&>*+*]:[border-inline-start-style:solid]'
-  ),
-  dashed: nbClass(
-    '[--nb-cluster-separator-thickness:2px]',
-    '[&>*+*]:[border-inline-start-width:var(--nb-cluster-separator-thickness)]',
-    '[&>*+*]:[border-inline-start-style:dashed]'
-  ),
-  thick: nbClass(
-    '[--nb-cluster-separator-thickness:4px]',
-    '[&>*+*]:[border-inline-start-width:var(--nb-cluster-separator-thickness)]',
-    '[&>*+*]:[border-inline-start-style:solid]'
-  ),
-};

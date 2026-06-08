@@ -19,99 +19,81 @@ import { NbInputSuffix } from './nb-input-group-suffix';
 })
 class InputGroupTokenTest {}
 
+@Component({
+  imports: [NbInput, NbInputGroup, NbInputPrefix, NbInputSuffix],
+  template: `
+    <nb-input-group>
+      <span nbInputPrefix align="stretch">&#64;</span>
+      <input nbInput placeholder="username" />
+      <span nbInputSuffix align="stretch">USD</span>
+    </nb-input-group>
+  `,
+})
+class StretchAlignTest {}
+
 describe('NbInputGroup token surface', () => {
-  it('declares the expected default tokens on the base host', async () => {
+  it('emits no internal styling classes — anatomy lives in styles.css and data-attrs', async () => {
     const fixture = await createFixture();
     const group = findGroup(fixture);
-    const cls = group.className;
-
-    expect(cls).toContain(
-      '[--nb-input-group-bg:var(--nb-input-bg,var(--nb-field-bg))]'
-    );
-    expect(cls).toContain('[--nb-input-group-border:var(--nb-border)]');
-    expect(cls).toContain('[--nb-input-group-radius:var(--nb-radius)]');
-  });
-
-  it('reads its scoped tokens instead of global tokens directly', async () => {
-    const fixture = await createFixture();
-    const group = findGroup(fixture);
-    const cls = group.className;
-
-    expect(cls).toContain('bg-(--nb-input-group-bg)');
-    expect(cls).toContain('border-(--nb-input-group-border)');
-    expect(cls).toContain('rounded-(--nb-input-group-radius)');
-    expect(cls).not.toContain('bg-(--nb-surface)');
-    expect(cls).not.toContain('border-(--nb-border)');
-    expect(cls).not.toContain('rounded-nb');
-  });
-
-  it('does not regress the default input group class shape', async () => {
-    const fixture = await createFixture();
-    const group = findGroup(fixture);
-    const cls = group.className;
-
-    expect(cls).toContain('relative');
-    expect(cls).toContain('inline-flex');
-    expect(cls).toContain('w-full');
-    expect(cls).toContain('rounded-(--nb-input-group-radius)');
-    expect(cls).toContain('border-2');
-    expect(cls).toContain('border-(--nb-input-group-border)');
-    expect(cls).toContain('shadow-nb');
-    expect(cls).toContain('focus-within:outline-none');
-    expect(cls).toContain('focus-within:ring-2');
-    expect(cls).toContain('focus-within:ring-offset-2');
-    expect(cls).toContain('focus-within:ring-(--nb-input-group-border)');
-    expect(cls).toContain('focus-within:shadow-none');
-  });
-
-  it('uses input-group addon tokens for prefix and suffix backgrounds', async () => {
-    const fixture = await createFixture();
     const prefix = findPrefix(fixture);
     const suffix = findSuffix(fixture);
 
-    expect(prefix.className).toContain('[--nb-input-group-addon-bg:#ffd24a]');
-    expect(prefix.className).toContain(
-      '[--nb-input-group-prefix-bg:var(--nb-input-group-addon-bg)]'
-    );
-    expect(prefix.className).toContain('bg-(--nb-input-group-prefix-bg)');
-    expect(prefix.className).not.toContain('--nb-input-prefix-bg');
+    expect(group.className).toBe('');
+    expect(prefix.className).toBe('');
+    expect(suffix.className).toBe('');
+    expect(prefix.getAttribute('data-align')).toBe('center');
+    expect(suffix.getAttribute('data-align')).toBe('center');
+  });
 
-    expect(suffix.className).toContain('[--nb-input-group-addon-bg:#ffd24a]');
-    expect(suffix.className).toContain(
-      '[--nb-input-group-suffix-bg:var(--nb-input-group-addon-bg)]'
-    );
-    expect(suffix.className).toContain('bg-(--nb-input-group-suffix-bg)');
-    expect(suffix.className).not.toContain('--nb-input-addon-bg');
+  it('does not funnel radius/background through local CSS vars — public hooks stay user-owned', async () => {
+    const fixture = await createFixture();
+    const group = findGroup(fixture);
+    const prefix = findPrefix(fixture);
+    const suffix = findSuffix(fixture);
+
+    expect(group.style.getPropertyValue('--nb-input-group-bg')).toBe('');
+    expect(group.style.getPropertyValue('--nb-input-group-border')).toBe('');
+    expect(group.style.getPropertyValue('--nb-input-group-radius')).toBe('');
+    expect(group.style.getPropertyValue('background')).toBe('');
+    expect(group.style.getPropertyValue('border-radius')).toBe('');
+    expect(prefix.style.getPropertyValue('--nb-input-group-addon-bg')).toBe('');
+    expect(prefix.style.getPropertyValue('--nb-input-group-prefix-bg')).toBe('');
+    expect(suffix.style.getPropertyValue('--nb-input-group-suffix-bg')).toBe('');
+  });
+
+  it('reflects alignment through the data attribute', async () => {
+    const fixture = await createFixture(StretchAlignTest);
+    const prefix = findPrefix(fixture);
+    const suffix = findSuffix(fixture);
+
+    expect(prefix.getAttribute('data-align')).toBe('stretch');
+    expect(suffix.getAttribute('data-align')).toBe('stretch');
+    expect(prefix.className).toBe('');
+    expect(suffix.className).toBe('');
   });
 });
 
-async function createFixture(): Promise<
-  ComponentFixture<InputGroupTokenTest>
-> {
+async function createFixture<T extends object = InputGroupTokenTest>(
+  component: new (...args: never[]) => T = InputGroupTokenTest as never
+): Promise<ComponentFixture<T>> {
   await TestBed.configureTestingModule({
-    imports: [InputGroupTokenTest],
+    imports: [component],
   }).compileComponents();
 
-  const fixture = TestBed.createComponent(InputGroupTokenTest);
+  const fixture = TestBed.createComponent(component);
   fixture.detectChanges();
 
   return fixture;
 }
 
-function findGroup(
-  fixture: ComponentFixture<InputGroupTokenTest>
-): HTMLElement {
+function findGroup(fixture: ComponentFixture<unknown>): HTMLElement {
   return fixture.nativeElement.querySelector('nb-input-group') as HTMLElement;
 }
 
-function findPrefix(
-  fixture: ComponentFixture<InputGroupTokenTest>
-): HTMLElement {
+function findPrefix(fixture: ComponentFixture<unknown>): HTMLElement {
   return fixture.nativeElement.querySelector('[nbInputPrefix]') as HTMLElement;
 }
 
-function findSuffix(
-  fixture: ComponentFixture<InputGroupTokenTest>
-): HTMLElement {
+function findSuffix(fixture: ComponentFixture<unknown>): HTMLElement {
   return fixture.nativeElement.querySelector('[nbInputSuffix]') as HTMLElement;
 }

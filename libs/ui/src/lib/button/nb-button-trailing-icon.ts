@@ -5,7 +5,6 @@ import {
   input,
 } from '@angular/core';
 
-import { nbClass } from '../core/class';
 import { NbIcon, type NbIconSize } from '../icon';
 import type {
   NbButtonIconPush,
@@ -50,8 +49,9 @@ const iconToneMap: Record<NbButtonIconTone, { bg: string; color: string }> = {
     <ng-content />
   `,
   host: {
-    '[class]': 'classes()',
     '[attr.data-nb-button-trailing-icon]': '""',
+    '[attr.data-push]': 'push()',
+    '[attr.data-size]': 'size() ?? null',
     '[style.width]': 'sizeVal()',
     '[style.height]': 'sizeVal()',
     '[style.borderRadius]': 'radiusVal()',
@@ -94,12 +94,4 @@ export class NbButtonTrailingIcon {
     const t = this.tone();
     return t !== undefined ? iconToneMap[t].color : null;
   });
-
-  protected readonly classes = computed(() =>
-    nbClass(
-      '[&_svg]:pointer-events-none [&_svg]:shrink-0',
-      this.push() === 'end' && 'ml-auto',
-      this.size() !== undefined && 'inline-flex items-center justify-center shrink-0'
-    )
-  );
 }

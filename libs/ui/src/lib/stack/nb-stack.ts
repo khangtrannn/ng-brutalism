@@ -1,6 +1,5 @@
 import { Directive, computed, inject, input } from '@angular/core';
 
-import { nbClass } from '../core/class';
 import {
   NbGapCapability,
   NB_STYLE_DEFAULTS,
@@ -29,7 +28,6 @@ export type NbStackSeparator = 'none' | 'solid' | 'dashed' | 'thick';
   ],
   hostDirectives: [{ directive: NbGapCapability, inputs: ['gap'] }],
   host: {
-    '[class]': 'classes()',
     '[attr.data-nb-stack]': '""',
     '[attr.data-align]': 'align()',
     '[attr.data-justify]': 'justify()',
@@ -55,61 +53,4 @@ export class NbStack {
       ? null
       : (this.gap.value() ?? nbGapFallback('stack', 'md')),
   );
-
-  protected readonly classes = computed(() =>
-    nbClass(
-      'flex min-w-0 flex-col',
-      this.alignClass(),
-      this.justifyClass(),
-      this.separatorClass()
-    )
-  );
-
-  private alignClass(): string {
-    const map: Record<NbStackAlign, string> = {
-      stretch: 'items-stretch',
-      start: 'items-start',
-      center: 'items-center',
-      end: 'items-end',
-    };
-
-    return map[this.align()];
-  }
-
-  private justifyClass(): string {
-    const map: Record<NbStackJustify, string> = {
-      start: 'justify-start',
-      center: 'justify-center',
-      end: 'justify-end',
-      between: 'justify-between',
-    };
-
-    return map[this.justify()];
-  }
-
-  private separatorClass(): string {
-    const map: Record<NbStackSeparator, string> = {
-      none: '',
-      solid: nbClass(
-        '[&>*+*]:border-t-(length:--nb-border-width)',
-        '[&>*+*]:border-solid',
-        '[&>*+*]:[border-top-color:var(--nb-border)]',
-        '[&>*+*]:pt-(--nb-stack-separator-gap)'
-      ),
-      dashed: nbClass(
-        '[&>*+*]:border-t-(length:--nb-border-width)',
-        '[&>*+*]:border-dashed',
-        '[&>*+*]:[border-top-color:var(--nb-border)]',
-        '[&>*+*]:pt-(--nb-stack-separator-gap)'
-      ),
-      thick: nbClass(
-        '[&>*+*]:border-t-4',
-        '[&>*+*]:border-solid',
-        '[&>*+*]:[border-top-color:var(--nb-border)]',
-        '[&>*+*]:pt-(--nb-stack-separator-gap)'
-      ),
-    };
-
-    return map[this.separator()];
-  }
 }

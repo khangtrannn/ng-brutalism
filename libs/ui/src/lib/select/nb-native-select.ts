@@ -1,6 +1,5 @@
 import { Directive, computed, inject } from '@angular/core';
 
-import { nbClass } from '../core/class';
 import {
   NbBorderCapability,
   NbToneCapability,
@@ -24,7 +23,7 @@ import { NB_INPUT_GROUP } from '../input-group/input-group.types';
     { directive: NbBorderCapability, inputs: ['border'] },
   ],
   host: {
-    '[class]': 'classes()',
+    '[attr.data-in-group]': 'isInGroup ? "" : null',
     '[style.background-color]': 'backgroundStyle()',
     '[style.color]': 'foregroundStyle()',
     '[style.border-color]': 'borderColorStyle()',
@@ -48,25 +47,4 @@ export class NbNativeSelect {
     this.isInGroup ? '0' : this.border.width(),
   );
   protected readonly focusRingColorStyle = computed(() => this.tone.borderColor());
-
-  protected readonly classes = computed(() => {
-    const inGroup = this.isInGroup;
-
-    return nbClass(
-      '[--nb-select-radius:var(--nb-radius)]',
-      'flex font-medium',
-      'appearance-none',
-      'pr-10',
-      'has-[option:disabled:checked]:text-gray-400',
-      'disabled:opacity-50 disabled:cursor-not-allowed',
-      inGroup
-        ? ['flex-1 min-w-0', 'focus-visible:outline-none']
-        : [
-            'rounded-(--nb-select-radius)',
-            'shadow-nb',
-            'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--nb-select-focus-ring-color,var(--nb-select-border-color,var(--nb-border)))]',
-            'focus-visible:ring-offset-2 focus-visible:shadow-none',
-          ]
-    );
-  });
 }
