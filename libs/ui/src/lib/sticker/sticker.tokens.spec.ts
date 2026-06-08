@@ -35,7 +35,6 @@ describe('NbSticker token surface', () => {
     const shape = findShape(fixture);
 
     expect(sticker.getAttribute('data-shape')).toBe('burst');
-    expect(sticker.getAttribute('data-tone')).toBe('mint');
     expect(sticker.getAttribute('role')).toBe('img');
     expect(sticker.style.getPropertyValue('--nb-sticker-fill')).toBe(
       'var(--nb-mint)'
@@ -69,7 +68,6 @@ describe('NbSticker token surface', () => {
     const sticker = findSticker(fixture);
 
     expect(sticker.getAttribute('data-shape')).toBe('splat');
-    expect(sticker.getAttribute('data-tone')).toBe('warning');
     expect(sticker.style.getPropertyValue('--nb-sticker-fill')).toBe(
       'var(--nb-warning)'
     );

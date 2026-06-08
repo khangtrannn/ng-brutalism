@@ -1,18 +1,10 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  inject,
-  input,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 
 import {
   NbBorderCapability,
   NbRadiusCapability,
   NbShadowCapability,
   NbToneCapability,
-  NB_STYLE_DEFAULTS,
-  NB_STYLE_NAMESPACE,
-  type NbStyleDefaults,
 } from '../core/capabilities';
 import type { NbBorderStrength } from '../tokens/border';
 import type { NbRadius } from '../tokens/radius';
@@ -28,18 +20,6 @@ export type NbCardBorder = NbBorderStrength;
 @Component({
   selector: 'nb-card',
   template: `<ng-content />`,
-  providers: [
-    { provide: NB_STYLE_NAMESPACE, useValue: 'card' },
-    {
-      provide: NB_STYLE_DEFAULTS,
-      useValue: {
-        tone: 'background',
-        radius: 'lg',
-        shadow: 'default',
-        border: 'default',
-      } satisfies NbStyleDefaults,
-    },
-  ],
   hostDirectives: [
     { directive: NbToneCapability, inputs: ['tone'] },
     { directive: NbRadiusCapability, inputs: ['radius'] },
@@ -48,21 +28,10 @@ export type NbCardBorder = NbBorderStrength;
   ],
   host: {
     '[attr.data-slot]': '"card"',
-    '[style.background]': 'tone.background()',
-    '[style.color]': 'tone.foreground()',
-    '[style.border-color]': 'tone.borderColor()',
-    '[style.border-radius]': 'radius.value()',
-    '[style.box-shadow]': 'shadow.value()',
-    '[style.border-width]': 'border.width()',
   },
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class NbCard {
-  protected readonly tone = inject(NbToneCapability);
-  protected readonly radius = inject(NbRadiusCapability);
-  protected readonly shadow = inject(NbShadowCapability);
-  protected readonly border = inject(NbBorderCapability);
-}
+export class NbCard {}
 
 @Component({
   selector: 'nb-card-header',

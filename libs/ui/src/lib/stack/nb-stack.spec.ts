@@ -68,7 +68,6 @@ describe('NbStack', () => {
       '[nbStack]'
     ) as HTMLElement;
 
-    expect(stack.getAttribute('data-gap')).toBe('xl');
     expect(stack.getAttribute('data-align')).toBe('start');
     expect(stack.getAttribute('data-justify')).toBe('center');
     expect(stack.getAttribute('data-separator')).toBe('dashed');

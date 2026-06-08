@@ -4,16 +4,9 @@ import {
   Directive,
   booleanAttribute,
   computed,
-  inject,
   input,
 } from '@angular/core';
-import {
-  NbToneCapability,
-  NB_STYLE_DEFAULTS,
-  NB_STYLE_NAMESPACE,
-  type NbStyleDefaults,
-} from '../core/capabilities';
-import type { NbToneToken } from '../tokens/tone';
+import { nbToneVars, type NbToneToken } from '../tokens/tone';
 
 export type NbMediaItemVariant = 'plain' | 'boxed' | 'chip';
 
@@ -28,14 +21,6 @@ export type NbMediaItemTone = NbToneToken;
 
 @Component({
   selector: 'nb-media-item, [nbMediaItem]',
-  providers: [
-    { provide: NB_STYLE_NAMESPACE, useValue: 'media-item' },
-    {
-      provide: NB_STYLE_DEFAULTS,
-      useValue: { tone: 'default' } satisfies NbStyleDefaults,
-    },
-  ],
-  hostDirectives: [{ directive: NbToneCapability, inputs: ['tone'] }],
   template: `
     @if (icon()) {
       @if (iconBackground()) {
@@ -79,7 +64,7 @@ export type NbMediaItemTone = NbToneToken;
     '[attr.data-align]': 'align()',
     '[attr.data-size]': 'size()',
     '[style.background]': 'backgroundStyle()',
-    '[style.color]': 'tone.foreground()',
+    '[style.color]': 'foregroundStyle()',
     '[style.border-color]': 'borderColorStyle()',
   },
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -95,19 +80,28 @@ export class NbMediaItem {
   readonly title = input<string | undefined>(undefined);
   readonly description = input<string | undefined>(undefined);
 
-  protected readonly tone = inject(NbToneCapability);
+  // Tone applies conditionally per variant, so MediaItem resolves it itself
+  // rather than composing the host-painting capability.
+  readonly tone = input<NbToneToken | undefined>(undefined);
+
+  private readonly toneVars = computed(() => {
+    const tone = this.tone();
+    return tone ? nbToneVars(tone) : null;
+  });
+  protected readonly foregroundStyle = computed(
+    () => this.toneVars()?.fg ?? null,
+  );
 
   // The `plain` variant has no surface (transparent background, no border), so
   // tone-driven background/border only apply to `boxed`/`chip`. When unset,
   // returning null lets the variant's `bg-[var(--nb-media-item-bg)]` /
   // `border-[var(--nb-media-item-border-color)]` classes read the public hooks.
   protected readonly backgroundStyle = computed(() =>
-    this.variant() === 'plain' ? null : this.tone.background()
+    this.variant() === 'plain' ? null : (this.toneVars()?.bg ?? null),
   );
   protected readonly borderColorStyle = computed(() =>
-    this.variant() === 'plain' ? null : this.tone.borderColor()
+    this.variant() === 'plain' ? null : (this.toneVars()?.borderColor ?? null),
   );
-
 }
 
 @Directive({

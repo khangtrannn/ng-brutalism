@@ -2,19 +2,12 @@ import {
   Directive,
   booleanAttribute,
   computed,
-  inject,
   input,
 } from '@angular/core';
 
-import {
-  NbPaddingCapability,
-  NB_STYLE_DEFAULTS,
-  NB_STYLE_NAMESPACE,
-  nbPaddingFallback,
-  type NbStyleDefaults,
-} from '../core/capabilities';
+import { nbPaddingFallback } from '../core/capabilities';
 import type { NbDivider } from '../tokens/divider';
-import type { NbPadding } from '../tokens/padding';
+import { nbPaddingValue, type NbPadding } from '../tokens/padding';
 
 export type NbSectionPadding = NbPadding;
 
@@ -32,14 +25,6 @@ export type NbSectionAlign = 'stretch' | 'start' | 'center' | 'end';
 @Directive({
   selector: '[nbSection]',
   exportAs: 'nbSection',
-  providers: [
-    { provide: NB_STYLE_NAMESPACE, useValue: 'section' },
-    {
-      provide: NB_STYLE_DEFAULTS,
-      useValue: { padding: 'md' } satisfies NbStyleDefaults,
-    },
-  ],
-  hostDirectives: [{ directive: NbPaddingCapability, inputs: ['padding'] }],
   host: {
     '[attr.data-nb-section]': '""',
     '[attr.data-divider]': 'divider()',
@@ -47,7 +32,7 @@ export type NbSectionAlign = 'stretch' | 'start' | 'center' | 'end';
     '[attr.data-layout]': 'layout()',
     '[attr.data-align]': 'align()',
     '[attr.data-flush]': 'flush() ? "" : null',
-    '[style.padding]': 'padding.value()',
+    '[style.padding]': 'paddingStyle()',
     '[style.margin-inline]': 'flushMarginStyle()',
   },
 })
@@ -60,14 +45,21 @@ export class NbSection {
     transform: booleanAttribute,
   });
 
-  protected readonly padding = inject(NbPaddingCapability);
+  // Padding feeds both the host padding and the flush negative-margin calc, so
+  // it is resolved locally rather than via a host-painting capability.
+  readonly padding = input<NbPadding | undefined>(undefined);
+
+  protected readonly paddingStyle = computed(() => {
+    const padding = this.padding();
+    return padding ? nbPaddingValue(padding) : null;
+  });
 
   // Component-local anatomy var: `flush` negates the section's own padding so
   // content can bleed to the edge. It mirrors an explicit padding input when
   // present, otherwise the public `--nb-section-padding` hook chain.
   protected readonly flushMarginStyle = computed(() =>
     this.flush()
-      ? `calc(${this.padding.value() ?? nbPaddingFallback('section', 'md')} * -1)`
+      ? `calc(${this.paddingStyle() ?? nbPaddingFallback('section', 'md')} * -1)`
       : null,
   );
 }

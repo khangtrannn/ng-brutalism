@@ -2,7 +2,6 @@ import {
   ChangeDetectionStrategy,
   Component,
   computed,
-  inject,
   input,
 } from '@angular/core';
 
@@ -11,9 +10,6 @@ import {
   NbRadiusCapability,
   NbShadowCapability,
   NbToneCapability,
-  NB_STYLE_DEFAULTS,
-  NB_STYLE_NAMESPACE,
-  type NbStyleDefaults,
 } from '../core/capabilities';
 import { NbIcon, type NbIconSize } from '../icon';
 
@@ -30,18 +26,6 @@ const iconSizeMap: Record<NbIconButtonSize, NbIconSize> = {
 @Component({
   selector: 'button[nbIconButton]',
   imports: [NbIcon],
-  providers: [
-    { provide: NB_STYLE_NAMESPACE, useValue: 'icon-button' },
-    {
-      provide: NB_STYLE_DEFAULTS,
-      useValue: {
-        tone: 'default',
-        radius: 'none',
-        shadow: 'default',
-        border: 'default',
-      } satisfies NbStyleDefaults,
-    },
-  ],
   hostDirectives: [
     { directive: NbToneCapability, inputs: ['tone'] },
     { directive: NbRadiusCapability, inputs: ['radius'] },
@@ -58,21 +42,10 @@ const iconSizeMap: Record<NbIconButtonSize, NbIconSize> = {
     '[attr.data-shape]': 'shape()',
     '[attr.data-size]': 'size()',
     '[attr.data-nb-icon-button]': '""',
-    '[style.background]': 'tone.background()',
-    '[style.color]': 'tone.foreground()',
-    '[style.border-color]': 'tone.borderColor()',
-    '[style.border-radius]': 'radius.value()',
-    '[style.box-shadow]': 'shadow.value()',
-    '[style.border-width]': 'border.width()',
   },
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NbIconButton {
-  protected readonly tone = inject(NbToneCapability);
-  protected readonly radius = inject(NbRadiusCapability);
-  protected readonly shadow = inject(NbShadowCapability);
-  protected readonly border = inject(NbBorderCapability);
-
   readonly shape = input<NbIconButtonShape>('square');
   readonly size = input<NbIconButtonSize>('md');
   // Optional icon, given as an SVG/image URL. Rendered through nbIcon in mask

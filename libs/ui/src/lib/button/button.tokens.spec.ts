@@ -124,7 +124,6 @@ describe('NbButton token surface', () => {
       'button[nbButton]'
     ) as HTMLButtonElement;
 
-    expect(button.getAttribute('data-tone')).toBe('yellow');
     expect(button.style.getPropertyValue('background')).toBe('var(--nb-yellow)');
     expect(button.style.getPropertyValue('color')).toBeTruthy();
     expect(button.style.getPropertyValue('border-color')).toBe('var(--nb-border)');
@@ -216,7 +215,6 @@ describe('NbButton token surface', () => {
     const fixture = await createFixture({ shadow: 'none' });
     const button = findButton(fixture);
 
-    expect(button.getAttribute('data-shadow')).toBe('none');
     expect(button.style.getPropertyValue('box-shadow')).toBe('none');
     expect(button.style.getPropertyValue('--nb-button-shadow')).toBe('');
     expect(button.style.cssText).not.toContain('--nb-resolved');
@@ -226,7 +224,6 @@ describe('NbButton token surface', () => {
     const fixture = await createFixture({ shadow: 'hard' });
     const button = findButton(fixture);
 
-    expect(button.getAttribute('data-shadow')).toBe('hard');
     expect(button.style.getPropertyValue('box-shadow')).toBe(
       '6px 6px 0 0 var(--nb-shadow)'
     );

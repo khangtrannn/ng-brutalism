@@ -76,12 +76,8 @@ describe('NbMediaFrame', () => {
       '[nbMediaFrame]'
     ) as HTMLElement;
 
-    expect(frame.getAttribute('data-tone')).toBe('lavender');
     expect(frame.getAttribute('data-ratio')).toBe('21/9');
     expect(frame.getAttribute('data-fit')).toBe('contain');
-    expect(frame.getAttribute('data-radius')).toBe('xl');
-    expect(frame.getAttribute('data-shadow')).toBe('hard');
-    expect(frame.getAttribute('data-border')).toBe('strong');
     // Explicit inputs win outright — literal values, no public hook.
     expect(frame.style.getPropertyValue('background')).toBe('var(--nb-lavender)');
     expect(frame.className).toBe('');
@@ -125,7 +121,6 @@ describe('NbMediaFrame', () => {
         '[nbMediaFrame]'
       ) as HTMLElement;
 
-      expect(frame.getAttribute('data-tone')).toBe(tone);
       if (color.startsWith('var(')) {
         expect(frame.style.getPropertyValue('background')).toBe(color);
       } else {

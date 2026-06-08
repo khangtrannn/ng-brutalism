@@ -3,7 +3,6 @@ import {
   Component,
   Directive,
   computed,
-  inject,
   input,
 } from '@angular/core';
 
@@ -12,9 +11,6 @@ import {
   NbRadiusCapability,
   NbShadowCapability,
   NbToneCapability,
-  NB_STYLE_DEFAULTS,
-  NB_STYLE_NAMESPACE,
-  type NbStyleDefaults,
 } from '../core/capabilities';
 import { NbIcon, type NbIconSize } from '../icon';
 import { nbRadiusValue, type NbRadius } from '../tokens/radius';
@@ -37,18 +33,6 @@ export type NbChipPadding = 'none' | 'sm' | 'md' | 'lg' | 'xl';
 @Component({
   selector: 'span[nbChip]',
   imports: [NbIcon],
-  providers: [
-    { provide: NB_STYLE_NAMESPACE, useValue: 'chip' },
-    {
-      provide: NB_STYLE_DEFAULTS,
-      useValue: {
-        tone: 'default',
-        radius: 'none',
-        shadow: 'sm',
-        border: 'default',
-      } satisfies NbStyleDefaults,
-    },
-  ],
   hostDirectives: [
     { directive: NbToneCapability, inputs: ['tone'] },
     { directive: NbRadiusCapability, inputs: ['radius'] },
@@ -64,12 +48,6 @@ export type NbChipPadding = 'none' | 'sm' | 'md' | 'lg' | 'xl';
   host: {
     '[attr.data-padding]': "padding() ?? 'md'",
     '[attr.data-nb-chip]': '""',
-    '[style.background]': 'tone.background()',
-    '[style.color]': 'tone.foreground()',
-    '[style.border-color]': 'tone.borderColor()',
-    '[style.border-radius]': 'radius.value()',
-    '[style.box-shadow]': 'shadow.value()',
-    '[style.border-width]': 'border.width()',
   },
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
@@ -81,11 +59,6 @@ export class NbChip {
   // content instead — the leading slot is only used when `icon` is set.
   readonly icon = input<string>();
   readonly iconSize = input<NbIconSize>('sm');
-
-  protected readonly tone = inject(NbToneCapability);
-  protected readonly radius = inject(NbRadiusCapability);
-  protected readonly shadow = inject(NbShadowCapability);
-  protected readonly border = inject(NbBorderCapability);
 }
 
 export type NbChipGroupDirection = 'horizontal' | 'vertical';

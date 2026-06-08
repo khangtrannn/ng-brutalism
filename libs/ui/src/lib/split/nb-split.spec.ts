@@ -94,8 +94,6 @@ describe('NbSplit', () => {
     ) as HTMLElement;
 
     expect(split.getAttribute('data-ratio')).toBe('3:1');
-    expect(split.getAttribute('data-gap')).toBe('2xl');
-    expect(split.getAttribute('data-padding')).toBe('xl');
     expect(split.getAttribute('data-collapse')).toBe('lg');
     expect(split.getAttribute('data-align')).toBe('end');
     expect(split.getAttribute('data-separator')).toBe('none');

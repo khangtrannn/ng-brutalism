@@ -66,10 +66,8 @@ describe('NbCallout', () => {
       '[nbCallout]'
     ) as HTMLElement;
 
-    expect(callout.getAttribute('data-tone')).toBe('pink');
     expect(callout.getAttribute('data-size')).toBe('xl');
     expect(callout.getAttribute('data-layout')).toBe('between');
-    expect(callout.getAttribute('data-shadow')).toBe('default');
     // Explicit tone/shadow inputs win outright — literal values, no public hook.
     expect(callout.style.getPropertyValue('background')).toBe('var(--nb-pink)');
     expect(callout.className).toBe('');
@@ -95,7 +93,6 @@ describe('NbCallout', () => {
         '[nbCallout]'
       ) as HTMLElement;
 
-      expect(callout.getAttribute('data-tone')).toBe(tone);
       if (color.startsWith('var(')) {
         expect(callout.style.getPropertyValue('background')).toBe(color);
       } else {

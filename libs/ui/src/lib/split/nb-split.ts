@@ -1,15 +1,8 @@
-import { Directive, computed, inject, input } from '@angular/core';
+import { Directive, computed, input } from '@angular/core';
 
-import {
-  NbGapCapability,
-  NbPaddingCapability,
-  NB_STYLE_DEFAULTS,
-  NB_STYLE_NAMESPACE,
-  nbGapFallback,
-  type NbStyleDefaults,
-} from '../core/capabilities';
-import type { NbPadding } from '../tokens/padding';
-import type { NbSpacing } from '../tokens/spacing';
+import { nbGapFallback } from '../core/capabilities';
+import { nbPaddingValue, type NbPadding } from '../tokens/padding';
+import { nbSpacingValue, type NbSpacing } from '../tokens/spacing';
 
 export type NbSplitRatio =
   | '1:1'
@@ -32,17 +25,6 @@ export type NbSplitSeparator = 'none' | 'solid' | 'dashed' | 'thick';
 
 @Directive({
   selector: '[nbSplit]',
-  providers: [
-    { provide: NB_STYLE_NAMESPACE, useValue: 'split' },
-    {
-      provide: NB_STYLE_DEFAULTS,
-      useValue: { gap: 'lg', padding: 'none' } satisfies NbStyleDefaults,
-    },
-  ],
-  hostDirectives: [
-    { directive: NbGapCapability, inputs: ['gap'] },
-    { directive: NbPaddingCapability, inputs: ['padding'] },
-  ],
   host: {
     '[attr.data-nb-split]': '""',
     '[attr.data-ratio]': 'ratio()',
@@ -50,8 +32,8 @@ export type NbSplitSeparator = 'none' | 'solid' | 'dashed' | 'thick';
     '[attr.data-align]': 'align()',
     '[attr.data-separator]': 'separator()',
     '[style.--nb-split-separator-gap]': 'separatorGapStyle()',
-    '[style.gap]': 'gap.value()',
-    '[style.padding]': 'paddingCapability.value()',
+    '[style.gap]': 'gapStyle()',
+    '[style.padding]': 'paddingStyle()',
   },
 })
 export class NbSplit {
@@ -59,9 +41,19 @@ export class NbSplit {
   readonly collapse = input<NbSplitCollapse>('md');
   readonly align = input<NbSplitAlign>('stretch');
   readonly separator = input<NbSplitSeparator>('none');
+  // Gap feeds both the flex gap and the separator anatomy var, so gap/padding
+  // are resolved locally rather than via host-painting capabilities.
+  readonly gap = input<NbSpacing | undefined>(undefined);
+  readonly padding = input<NbPadding | undefined>(undefined);
 
-  protected readonly gap = inject(NbGapCapability);
-  protected readonly paddingCapability = inject(NbPaddingCapability);
+  protected readonly gapStyle = computed(() => {
+    const gap = this.gap();
+    return gap ? nbSpacingValue(gap) : null;
+  });
+  protected readonly paddingStyle = computed(() => {
+    const padding = this.padding();
+    return padding ? nbPaddingValue(padding) : null;
+  });
 
   // Component-local anatomy var: the separator's `::after` line is centered in
   // the gap. It mirrors an explicit gap input when present, otherwise the
@@ -69,6 +61,6 @@ export class NbSplit {
   protected readonly separatorGapStyle = computed(() =>
     this.separator() === 'none'
       ? null
-      : (this.gap.value() ?? nbGapFallback('split', 'lg')),
+      : (this.gapStyle() ?? nbGapFallback('split', 'lg')),
   );
 }

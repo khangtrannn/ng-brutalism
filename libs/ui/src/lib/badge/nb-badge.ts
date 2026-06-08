@@ -1,13 +1,10 @@
-import { Directive, inject } from '@angular/core';
+import { Directive } from '@angular/core';
 
 import {
   NbBorderCapability,
   NbRadiusCapability,
   NbShadowCapability,
   NbToneCapability,
-  NB_STYLE_DEFAULTS,
-  NB_STYLE_NAMESPACE,
-  type NbStyleDefaults,
 } from '../core/capabilities';
 import type { NbBorderStrength } from '../tokens/border';
 import type { NbRadius } from '../tokens/radius';
@@ -21,18 +18,6 @@ export type NbBadgeBorder = NbBorderStrength;
 
 @Directive({
   selector: 'span[nbBadge]',
-  providers: [
-    { provide: NB_STYLE_NAMESPACE, useValue: 'badge' },
-    {
-      provide: NB_STYLE_DEFAULTS,
-      useValue: {
-        tone: 'white',
-        radius: 'full',
-        shadow: 'sm',
-        border: 'default',
-      } satisfies NbStyleDefaults,
-    },
-  ],
   hostDirectives: [
     { directive: NbToneCapability, inputs: ['tone'] },
     { directive: NbRadiusCapability, inputs: ['radius'] },
@@ -41,17 +26,6 @@ export type NbBadgeBorder = NbBorderStrength;
   ],
   host: {
     '[attr.data-nb-badge]': '""',
-    '[style.background]': 'tone.background()',
-    '[style.color]': 'tone.foreground()',
-    '[style.border-color]': 'tone.borderColor()',
-    '[style.border-radius]': 'radius.value()',
-    '[style.box-shadow]': 'shadow.value()',
-    '[style.border-width]': 'border.width()',
   },
 })
-export class NbBadge {
-  protected readonly tone = inject(NbToneCapability);
-  protected readonly radius = inject(NbRadiusCapability);
-  protected readonly shadow = inject(NbShadowCapability);
-  protected readonly border = inject(NbBorderCapability);
-}
+export class NbBadge {}

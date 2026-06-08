@@ -3,18 +3,11 @@ import {
   Component,
   booleanAttribute,
   computed,
-  inject,
   input,
   numberAttribute,
 } from '@angular/core';
 
-import {
-  NbToneCapability,
-  NB_STYLE_DEFAULTS,
-  NB_STYLE_NAMESPACE,
-  type NbStyleDefaults,
-} from '../core/capabilities';
-import { nbToneVars } from '../tokens/tone';
+import { nbToneVars, type NbToneToken } from '../tokens/tone';
 import { NB_STICKER_PATHS } from './sticker.paths';
 import type { NbStickerShape } from './sticker.types';
 
@@ -42,16 +35,6 @@ import type { NbStickerShape } from './sticker.types';
       </span>
     </span>
   `,
-  providers: [
-    { provide: NB_STYLE_NAMESPACE, useValue: 'sticker' },
-    {
-      provide: NB_STYLE_DEFAULTS,
-      useValue: { tone: 'mint' } satisfies NbStyleDefaults,
-    },
-  ],
-  hostDirectives: [
-    { directive: NbToneCapability, inputs: ['tone'] },
-  ],
   host: {
     '[attr.data-shape]': 'shape()',
     '[attr.data-nb-sticker]': '""',
@@ -71,21 +54,20 @@ export class NbSticker {
   readonly decorative = input<boolean, unknown>(false, { transform: booleanAttribute });
   readonly rotate = input<number, unknown>(0, { transform: numberAttribute });
   readonly size = input<number, unknown>(1, { transform: numberAttribute });
-
-  private readonly capability = inject(NbToneCapability);
-  private readonly defaults = inject(NB_STYLE_DEFAULTS);
+  // SVG fills resolve the tone token to a literal at render time (no CSS
+  // fallback chain), so the sticker owns the tone input directly. The 'mint'
+  // default stands in when no tone is set.
+  readonly tone = input<NbToneToken | undefined>(undefined);
 
   protected readonly config = computed(() => NB_STICKER_PATHS[this.shape()]);
 
-  protected readonly fillBg = computed(() => {
-    const tone = this.capability.tone() ?? this.defaults.tone ?? 'mint';
-    return nbToneVars(tone).bg;
-  });
+  protected readonly fillBg = computed(
+    () => nbToneVars(this.tone() ?? 'mint').bg,
+  );
 
-  protected readonly fillInk = computed(() => {
-    const tone = this.capability.tone() ?? this.defaults.tone ?? 'mint';
-    return nbToneVars(tone).fg;
-  });
+  protected readonly fillInk = computed(
+    () => nbToneVars(this.tone() ?? 'mint').fg,
+  );
 
   protected readonly rotateStyle = computed(() => `${this.rotate()}deg`);
 }

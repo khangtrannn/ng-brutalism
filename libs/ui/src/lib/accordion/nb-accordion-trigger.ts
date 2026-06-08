@@ -3,13 +3,10 @@ import {
   Component,
   computed,
   inject,
+  input,
 } from '@angular/core';
 
-import {
-  NbToneCapability,
-  NB_STYLE_DEFAULTS,
-  NB_STYLE_NAMESPACE,
-} from '../core/capabilities';
+import { nbToneVars, type NbToneToken } from '../tokens/tone';
 import { NbAccordionItem } from './nb-accordion-item';
 
 @Component({
@@ -38,27 +35,29 @@ import { NbAccordionItem } from './nb-accordion-item';
       </button>
     </h3>
   `,
-  providers: [
-    { provide: NB_STYLE_NAMESPACE, useValue: 'accordion-trigger' },
-    { provide: NB_STYLE_DEFAULTS, useValue: {} },
-  ],
-  hostDirectives: [{ directive: NbToneCapability, inputs: ['tone'] }],
   host: {
     '[attr.data-nb-accordion-trigger]': '""',
   },
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NbAccordionTrigger {
-  protected readonly item = inject(NbAccordionItem);
-  private readonly tone = inject(NbToneCapability);
+  // Trigger styles an inner <button> and falls back to the item's tone, so it
+  // resolves tone itself rather than composing the host-painting capability.
+  readonly tone = input<NbToneToken | undefined>(undefined);
 
+  protected readonly item = inject(NbAccordionItem);
+
+  private readonly toneVars = computed(() => {
+    const tone = this.tone();
+    return tone ? nbToneVars(tone) : null;
+  });
   protected readonly backgroundStyle = computed(
-    () => this.tone.background() ?? this.item.backgroundStyle()
+    () => this.toneVars()?.bg ?? this.item.backgroundStyle(),
   );
   protected readonly foregroundStyle = computed(
-    () => this.tone.foreground() ?? this.item.foregroundStyle()
+    () => this.toneVars()?.fg ?? this.item.foregroundStyle(),
   );
   protected readonly borderColorStyle = computed(
-    () => this.tone.borderColor() ?? this.item.borderColorStyle()
+    () => this.toneVars()?.borderColor ?? this.item.borderColorStyle(),
   );
 }

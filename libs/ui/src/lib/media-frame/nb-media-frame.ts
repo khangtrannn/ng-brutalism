@@ -1,13 +1,10 @@
-import { Directive, inject, input } from '@angular/core';
+import { Directive, input } from '@angular/core';
 
 import {
   NbBorderCapability,
   NbRadiusCapability,
   NbShadowCapability,
   NbToneCapability,
-  NB_STYLE_DEFAULTS,
-  NB_STYLE_NAMESPACE,
-  type NbStyleDefaults,
 } from '../core/capabilities';
 import type { NbBorderStrength } from '../tokens/border';
 import type { NbRadius } from '../tokens/radius';
@@ -34,18 +31,6 @@ export type NbMediaFrameFit = 'cover' | 'contain' | 'fill';
 
 @Directive({
   selector: '[nbMediaFrame]',
-  providers: [
-    { provide: NB_STYLE_NAMESPACE, useValue: 'media-frame' },
-    {
-      provide: NB_STYLE_DEFAULTS,
-      useValue: {
-        tone: 'default',
-        radius: 'lg',
-        shadow: 'none',
-        border: 'default',
-      } satisfies NbStyleDefaults,
-    },
-  ],
   hostDirectives: [
     { directive: NbToneCapability, inputs: ['tone'] },
     { directive: NbRadiusCapability, inputs: ['radius'] },
@@ -56,20 +41,9 @@ export type NbMediaFrameFit = 'cover' | 'contain' | 'fill';
     '[attr.data-nb-media-frame]': '""',
     '[attr.data-ratio]': 'ratio()',
     '[attr.data-fit]': 'fit()',
-    '[style.background]': 'tone.background()',
-    '[style.color]': 'tone.foreground()',
-    '[style.border-color]': 'tone.borderColor()',
-    '[style.border-radius]': 'radius.value()',
-    '[style.box-shadow]': 'shadow.value()',
-    '[style.border-width]': 'border.width()',
   },
 })
 export class NbMediaFrame {
   readonly ratio = input<NbMediaFrameRatio>('auto');
   readonly fit = input<NbMediaFrameFit>('cover');
-
-  protected readonly tone = inject(NbToneCapability);
-  protected readonly radius = inject(NbRadiusCapability);
-  protected readonly shadow = inject(NbShadowCapability);
-  protected readonly border = inject(NbBorderCapability);
 }

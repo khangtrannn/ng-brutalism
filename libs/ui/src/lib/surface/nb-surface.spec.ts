@@ -103,10 +103,6 @@ describe('NbSurface', () => {
       '[nbSurface]'
     ) as HTMLElement;
 
-    expect(surface.getAttribute('data-tone')).toBe('cream');
-    expect(surface.getAttribute('data-radius')).toBe('xl');
-    expect(surface.getAttribute('data-border')).toBe('thick');
-    expect(surface.getAttribute('data-shadow')).toBe('heavy');
     expect(surface.getAttribute('data-size')).toBe('lg');
     expect(surface.getAttribute('data-layout')).toBe('center');
 
@@ -138,7 +134,6 @@ describe('NbSurface', () => {
         '[nbSurface]'
       ) as HTMLElement;
 
-      expect(surface.getAttribute('data-tone')).toBe(tone);
       expect(surface.style.getPropertyValue('background')).toBe(color);
     }
   );
@@ -162,10 +157,7 @@ describe('NbSurface', () => {
       '[nbSurface]'
     ) as HTMLElement;
 
-    expect(surface.getAttribute('data-border')).toBe('strong');
     expect(surface.getAttribute('data-layout')).toBe('stack');
-    expect(surface.getAttribute('data-radius')).toBe('lg');
-    expect(surface.getAttribute('data-shadow')).toBe('hard');
     expect(surface.style.getPropertyValue('border-width')).toBe('3px');
     expect(surface.style.getPropertyValue('box-shadow')).toBe(
       '6px 6px 0 0 var(--nb-shadow)'
@@ -182,12 +174,8 @@ describe('NbSurface', () => {
       '[nbSurface]'
     ) as HTMLElement;
 
-    expect(surface.getAttribute('data-border')).toBe('none');
     expect(surface.getAttribute('data-edge')).toBe('bottom');
     expect(surface.getAttribute('data-layout')).toBe('row');
-    expect(surface.getAttribute('data-padding')).toBe('md');
-    expect(surface.getAttribute('data-radius')).toBe('none');
-    expect(surface.getAttribute('data-shadow')).toBe('none');
     expect(surface.style.getPropertyValue('padding')).toBe('1rem');
     expect(surface.style.getPropertyValue('border-width')).toBe('0px');
     expect(surface.style.getPropertyValue('box-shadow')).toBe('none');

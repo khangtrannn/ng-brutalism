@@ -1,12 +1,6 @@
-import { ChangeDetectionStrategy, Component, computed, inject, input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, input } from '@angular/core';
 
-import {
-  NbToneCapability,
-  NB_STYLE_DEFAULTS,
-  NB_STYLE_NAMESPACE,
-  type NbStyleDefaults,
-} from '../core/capabilities';
-import { nbToneVars } from '../tokens/tone';
+import { nbToneVars, type NbToneToken } from '../tokens/tone';
 
 @Component({
   selector: 'nb-rating',
@@ -22,16 +16,6 @@ import { nbToneVars } from '../tokens/tone';
       <span data-slot="rating-count">({{ count() }})</span>
     }
   `,
-  providers: [
-    { provide: NB_STYLE_NAMESPACE, useValue: 'rating' },
-    {
-      provide: NB_STYLE_DEFAULTS,
-      useValue: { tone: 'warning' } satisfies NbStyleDefaults,
-    },
-  ],
-  hostDirectives: [
-    { directive: NbToneCapability, inputs: ['tone'] },
-  ],
   host: {
     '[attr.aria-label]': 'ariaLabel()',
     '[attr.role]': '"img"',
@@ -43,9 +27,10 @@ export class NbRating {
   readonly value = input<number>(0);
   readonly max = input<number>(5);
   readonly count = input<number | undefined>(undefined);
-
-  private readonly capability = inject(NbToneCapability);
-  private readonly defaults = inject(NB_STYLE_DEFAULTS);
+  // The filled-star color resolves the tone token to a literal at render time
+  // (inner element, no CSS fallback chain), so the rating owns the tone input
+  // directly. The 'warning' default stands in when no tone is set.
+  readonly tone = input<NbToneToken | undefined>(undefined);
 
   protected readonly stars = computed(() =>
     Array.from({ length: this.max() }, (_, i) => i + 1)
@@ -59,8 +44,7 @@ export class NbRating {
     () => `${this.value()} out of ${this.max()} stars`
   );
 
-  protected readonly ratingFilledColor = computed(() => {
-    const tone = this.capability.tone() ?? this.defaults.tone ?? 'warning';
-    return nbToneVars(tone).bg;
-  });
+  protected readonly ratingFilledColor = computed(
+    () => nbToneVars(this.tone() ?? 'warning').bg,
+  );
 }

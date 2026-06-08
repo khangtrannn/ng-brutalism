@@ -76,7 +76,6 @@ describe('NbSection', () => {
       '[nbSection]'
     ) as HTMLElement;
 
-    expect(section.getAttribute('data-padding')).toBe('lg');
     expect(section.getAttribute('data-divider')).toBe('top');
     expect(section.style.getPropertyValue('padding')).toBe('1.5rem');
     expect(section.className).toBe('');

@@ -94,11 +94,9 @@ describe('NbAccordion token surface', () => {
   it('trigger tone writes actual trigger colors without repainting item or content', async () => {
     const fixture = await createFixture(TriggerToneAccordionTokenTest);
     const itemBox = findItemBox(fixture);
-    const triggerHost = findTriggerHost(fixture);
     const trigger = findTrigger(fixture);
     const content = findContent(fixture);
 
-    expect(triggerHost.getAttribute('data-tone')).toBe('yellow');
     expect(trigger.style.getPropertyValue('background-color')).toBe(
       'var(--nb-yellow)'
     );
@@ -145,14 +143,6 @@ function findItemHost(
 ): HTMLElement {
   return fixture.nativeElement.querySelector(
     'nb-accordion-item'
-  ) as HTMLElement;
-}
-
-function findTriggerHost(
-  fixture: ComponentFixture<unknown>
-): HTMLElement {
-  return fixture.nativeElement.querySelector(
-    'nb-accordion-trigger'
   ) as HTMLElement;
 }
 

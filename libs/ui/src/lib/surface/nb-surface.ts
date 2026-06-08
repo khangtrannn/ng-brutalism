@@ -1,9 +1,4 @@
-import {
-  Directive,
-  booleanAttribute,
-  inject,
-  input,
-} from '@angular/core';
+import { Directive, booleanAttribute, input } from '@angular/core';
 
 import {
   NbBorderCapability,
@@ -11,9 +6,6 @@ import {
   NbRadiusCapability,
   NbShadowCapability,
   NbToneCapability,
-  NB_STYLE_DEFAULTS,
-  NB_STYLE_NAMESPACE,
-  type NbStyleDefaults,
 } from '../core/capabilities';
 import type { NbBorderStrength } from '../tokens/border';
 import type { NbPadding } from '../tokens/padding';
@@ -37,19 +29,6 @@ export type NbSurfaceEdge = 'none' | 'top' | 'bottom';
 
 @Directive({
   selector: '[nbSurface]',
-  providers: [
-    { provide: NB_STYLE_NAMESPACE, useValue: 'surface' },
-    {
-      provide: NB_STYLE_DEFAULTS,
-      useValue: {
-        tone: 'default',
-        radius: 'md',
-        shadow: 'default',
-        border: 'default',
-        padding: 'none',
-      } satisfies NbStyleDefaults,
-    },
-  ],
   hostDirectives: [
     { directive: NbToneCapability, inputs: ['tone'] },
     { directive: NbRadiusCapability, inputs: ['radius'] },
@@ -65,13 +44,6 @@ export type NbSurfaceEdge = 'none' | 'top' | 'bottom';
     '[attr.data-layout]': 'layout()',
     '[attr.data-edge]': 'edge()',
     '[attr.data-clip]': 'clip() ? "" : null',
-    '[style.background]': 'tone.background()',
-    '[style.color]': 'tone.foreground()',
-    '[style.border-color]': 'tone.borderColor()',
-    '[style.border-radius]': 'radius.value()',
-    '[style.box-shadow]': 'shadow.value()',
-    '[style.border-width]': 'border.width()',
-    '[style.padding]': 'paddingCapability.value()',
   },
 })
 export class NbSurface {
@@ -81,10 +53,4 @@ export class NbSurface {
   readonly clip = input<boolean, unknown>(false, {
     transform: booleanAttribute,
   });
-
-  protected readonly tone = inject(NbToneCapability);
-  protected readonly radius = inject(NbRadiusCapability);
-  protected readonly shadow = inject(NbShadowCapability);
-  protected readonly border = inject(NbBorderCapability);
-  protected readonly paddingCapability = inject(NbPaddingCapability);
 }

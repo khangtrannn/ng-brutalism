@@ -1,15 +1,8 @@
-import { Directive, computed, inject, input } from '@angular/core';
+import { Directive, computed, input } from '@angular/core';
 
-import {
-  NbGapCapability,
-  NbPaddingCapability,
-  NB_STYLE_DEFAULTS,
-  NB_STYLE_NAMESPACE,
-  nbGapFallback,
-  type NbStyleDefaults,
-} from '../core/capabilities';
+import { NbPaddingCapability, nbGapFallback } from '../core/capabilities';
 import type { NbPadding } from '../tokens/padding';
-import type { NbSpacing } from '../tokens/spacing';
+import { nbSpacingValue, type NbSpacing } from '../tokens/spacing';
 
 export type NbClusterGap = NbSpacing;
 
@@ -30,17 +23,7 @@ export type NbClusterSeparator = 'none' | 'solid' | 'dashed' | 'thick';
 
 @Directive({
   selector: '[nbCluster]',
-  providers: [
-    { provide: NB_STYLE_NAMESPACE, useValue: 'cluster' },
-    {
-      provide: NB_STYLE_DEFAULTS,
-      useValue: { gap: 'md', padding: 'none' } satisfies NbStyleDefaults,
-    },
-  ],
-  hostDirectives: [
-    { directive: NbGapCapability, inputs: ['gap'] },
-    { directive: NbPaddingCapability, inputs: ['padding'] },
-  ],
+  hostDirectives: [{ directive: NbPaddingCapability, inputs: ['padding'] }],
   host: {
     '[attr.data-nb-cluster]': '""',
     '[attr.data-align]': 'align()',
@@ -49,8 +32,7 @@ export type NbClusterSeparator = 'none' | 'solid' | 'dashed' | 'thick';
     '[attr.data-separator]': 'separator()',
     '[style.column-gap]': 'separatorColumnGapStyle()',
     '[style.--nb-cluster-separator-gap]': 'separatorGapStyle()',
-    '[style.gap]': 'gap.value()',
-    '[style.padding]': 'paddingCapability.value()',
+    '[style.gap]': 'gapStyle()',
   },
 })
 export class NbCluster {
@@ -58,9 +40,14 @@ export class NbCluster {
   readonly justify = input<NbClusterJustify>('start');
   readonly wrap = input<NbClusterWrap>('wrap');
   readonly separator = input<NbClusterSeparator>('none');
+  // Gap feeds both the flex gap and the separator half-gap calc, so it is
+  // resolved locally; padding is paint-only and stays on the painter.
+  readonly gap = input<NbSpacing | undefined>(undefined);
 
-  protected readonly gap = inject(NbGapCapability);
-  protected readonly paddingCapability = inject(NbPaddingCapability);
+  protected readonly gapStyle = computed(() => {
+    const gap = this.gap();
+    return gap ? nbSpacingValue(gap) : null;
+  });
 
   protected readonly separatorColumnGapStyle = computed(() =>
     this.separator() === 'none' ? null : '0px',
@@ -72,6 +59,6 @@ export class NbCluster {
   protected readonly separatorGapStyle = computed(() =>
     this.separator() === 'none'
       ? null
-      : `calc(${this.gap.value() ?? nbGapFallback('cluster', 'md')} * 0.5)`,
+      : `calc(${this.gapStyle() ?? nbGapFallback('cluster', 'md')} * 0.5)`,
   );
 }

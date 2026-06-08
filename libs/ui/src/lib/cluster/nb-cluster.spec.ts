@@ -114,7 +114,6 @@ describe('NbCluster', () => {
     const fixture = await createFixture(PaddedClusterTest);
     const cluster = fixture.nativeElement.querySelector('[nbCluster]') as HTMLElement;
 
-    expect(cluster.getAttribute('data-padding')).toBe('lg');
     expect(cluster.style.getPropertyValue('padding')).toBe('1.5rem');
     expect(cluster.style.cssText).not.toContain('--nb-resolved');
     expect(cluster.className).toBe('');
@@ -126,7 +125,6 @@ describe('NbCluster', () => {
       '[nbCluster]'
     ) as HTMLElement;
 
-    expect(cluster.getAttribute('data-gap')).toBe('xl');
     expect(cluster.getAttribute('data-align')).toBe('baseline');
     expect(cluster.getAttribute('data-justify')).toBe('between');
     expect(cluster.getAttribute('data-wrap')).toBe('nowrap');

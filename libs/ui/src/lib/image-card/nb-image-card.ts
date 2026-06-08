@@ -7,20 +7,15 @@ import {
 } from '@angular/core';
 
 import {
-  NbBorderCapability,
   NbRadiusCapability,
   NbShadowCapability,
-  NbToneCapability,
-  NB_STYLE_DEFAULTS,
-  NB_STYLE_NAMESPACE,
   nbBorderWidthFallback,
   nbToneFallbacks,
-  type NbStyleDefaults,
 } from '../core/capabilities';
-import type { NbBorderStrength } from '../tokens/border';
+import { nbBorderWidthValue, type NbBorderStrength } from '../tokens/border';
 import type { NbRadius } from '../tokens/radius';
 import type { NbShadow } from '../tokens/shadow';
-import type { NbToneToken } from '../tokens/tone';
+import { nbToneVars, type NbToneToken } from '../tokens/tone';
 
 export type NbImageCardTone = NbToneToken;
 export type NbImageCardRadius = NbRadius;
@@ -39,50 +34,53 @@ export type NbImageCardBorder = NbBorderStrength;
     />
     <ng-content select="nb-image-card-caption" />
   `,
-  providers: [
-    { provide: NB_STYLE_NAMESPACE, useValue: 'image-card' },
-    {
-      provide: NB_STYLE_DEFAULTS,
-      useValue: {
-        tone: 'background',
-        radius: 'md',
-        shadow: 'default',
-        border: 'default',
-      } satisfies NbStyleDefaults,
-    },
-  ],
+  // radius/shadow are painted on the host, so they compose the painters.
+  // tone/border are also needed by the caption child, so they are hand-rolled.
   hostDirectives: [
-    { directive: NbToneCapability, inputs: ['tone'] },
     { directive: NbRadiusCapability, inputs: ['radius'] },
     { directive: NbShadowCapability, inputs: ['shadow'] },
-    { directive: NbBorderCapability, inputs: ['border'] },
   ],
   host: {
     '[attr.data-slot]': '"image-card"',
-    '[style.background]': 'tone.background()',
-    '[style.color]': 'tone.foreground()',
-    '[style.border-color]': 'tone.borderColor()',
-    '[style.border-radius]': 'radius.value()',
-    '[style.box-shadow]': 'shadow.value()',
-    '[style.border-width]': 'border.width()',
+    '[style.background]': 'backgroundStyle()',
+    '[style.color]': 'foregroundStyle()',
+    '[style.border-color]': 'borderColorStyle()',
+    '[style.border-width]': 'borderWidthStyle()',
   },
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NbImageCard {
   readonly image = input.required<string>();
   readonly alt = input.required<string>();
+  readonly tone = input<NbToneToken | undefined>(undefined);
+  readonly border = input<NbBorderStrength | undefined>(undefined);
 
-  protected readonly tone = inject(NbToneCapability);
-  protected readonly radius = inject(NbRadiusCapability);
-  protected readonly shadow = inject(NbShadowCapability);
-  protected readonly border = inject(NbBorderCapability);
+  private readonly toneVars = computed(() => {
+    const tone = this.tone();
+    return tone ? nbToneVars(tone) : null;
+  });
+  protected readonly backgroundStyle = computed(
+    () => this.toneVars()?.bg ?? null,
+  );
+  protected readonly foregroundStyle = computed(
+    () => this.toneVars()?.fg ?? null,
+  );
+  protected readonly borderColorStyle = computed(
+    () => this.toneVars()?.borderColor ?? null,
+  );
+  protected readonly borderWidthStyle = computed(() => {
+    const border = this.border();
+    return border ? nbBorderWidthValue(border) : null;
+  });
 
   readonly captionBorderWidth = computed(
-    () => this.border.width() ?? nbBorderWidthFallback('image-card', 'default'),
+    () =>
+      this.borderWidthStyle() ??
+      nbBorderWidthFallback('image-card', 'default'),
   );
   readonly captionBorderColor = computed(
     () =>
-      this.tone.borderColor() ??
+      this.borderColorStyle() ??
       nbToneFallbacks('image-card', 'background').borderColor,
   );
 }

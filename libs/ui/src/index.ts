@@ -48,13 +48,9 @@ export {
   NbShadowCapability as ɵNbShadowCapability,
   NbBorderCapability as ɵNbBorderCapability,
   NbPaddingCapability as ɵNbPaddingCapability,
-  NbGapCapability as ɵNbGapCapability,
   NbUnderlineCapability as ɵNbUnderlineCapability,
   NbResetMarginCapability as ɵNbResetMarginCapability,
-  NB_STYLE_NAMESPACE as ɵNB_STYLE_NAMESPACE,
-  NB_STYLE_DEFAULTS as ɵNB_STYLE_DEFAULTS,
 } from './lib/core/capabilities';
-export type { NbStyleDefaults as ɵNbStyleDefaults } from './lib/core/capabilities';
 
 // Components
 export { NbCheckbox } from './lib/checkbox';

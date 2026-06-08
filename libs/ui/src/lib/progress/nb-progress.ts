@@ -2,17 +2,10 @@ import {
   ChangeDetectionStrategy,
   Component,
   computed,
-  inject,
   input,
 } from '@angular/core';
 
-import {
-  NbToneCapability,
-  NB_STYLE_DEFAULTS,
-  NB_STYLE_NAMESPACE,
-  type NbStyleDefaults,
-} from '../core/capabilities';
-import { nbToneVars } from '../tokens/tone';
+import { nbToneVars, type NbToneToken } from '../tokens/tone';
 
 @Component({
   selector: 'nb-progress',
@@ -32,16 +25,6 @@ import { nbToneVars } from '../tokens/tone';
       ></div>
     </div>
   `,
-  providers: [
-    { provide: NB_STYLE_NAMESPACE, useValue: 'progress' },
-    {
-      provide: NB_STYLE_DEFAULTS,
-      useValue: { tone: 'primary' } satisfies NbStyleDefaults,
-    },
-  ],
-  hostDirectives: [
-    { directive: NbToneCapability, inputs: ['tone'] },
-  ],
   host: {
     '[style.background-color]': '"var(--nb-secondary-background)"',
     '[attr.data-nb-progress]': '""',
@@ -52,9 +35,10 @@ export class NbProgress {
   readonly value = input<number>(0);
   readonly max = input<number>(100);
   readonly label = input<string>('');
-
-  private readonly capability = inject(NbToneCapability);
-  private readonly defaults = inject(NB_STYLE_DEFAULTS);
+  // The fill color resolves the tone token to a literal at render time (inner
+  // element, no CSS fallback chain), so progress owns the tone input directly.
+  // The 'primary' default stands in when no tone is set.
+  readonly tone = input<NbToneToken | undefined>(undefined);
 
   protected readonly clampedValue = computed(() =>
     Math.min(Math.max(this.value(), 0), this.max())
@@ -64,8 +48,7 @@ export class NbProgress {
     (this.clampedValue() / this.max()) * 100
   );
 
-  protected readonly fillBg = computed(() => {
-    const tone = this.capability.tone() ?? this.defaults.tone ?? 'primary';
-    return nbToneVars(tone).bg;
-  });
+  protected readonly fillBg = computed(
+    () => nbToneVars(this.tone() ?? 'primary').bg,
+  );
 }
