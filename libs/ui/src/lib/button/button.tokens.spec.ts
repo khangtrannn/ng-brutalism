@@ -183,6 +183,7 @@ describe('NbButton token surface', () => {
   });
 
   it.each([
+    ['surface', 'var(--nb-surface)', 'var(--nb-surface-foreground)'],
     ['lavender', 'var(--nb-lavender)', '#000000'],
     ['primary', 'var(--nb-primary)', 'var(--nb-primary-foreground)'],
     ['secondary', 'var(--nb-secondary)', 'var(--nb-secondary-foreground)'],

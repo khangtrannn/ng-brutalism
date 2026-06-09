@@ -119,6 +119,7 @@ describe('NbSurface', () => {
   });
 
   it.each([
+    ['surface', 'var(--nb-surface)'],
     ['pink', 'var(--nb-pink)'],
     ['mint', 'var(--nb-mint)'],
     ['lavender', 'var(--nb-lavender)'],

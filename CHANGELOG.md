@@ -45,7 +45,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 **Shared token vocabulary**
 
-- Unified `NbBorderStrength`, `NbShadow`, `NbRadius`, `NbSpacing`, `NbPadding`, `NbToneToken` across all composition primitives.
+- Unified `NbBorderStrength`, `NbShadow`, `NbRadius`, `NbSpacing`, `NbPadding`, `NbTone` across all composition primitives.
 - `NbTypographyFont` — font role contract used by `NbTypography` and `NbSurface`.
 - `NbMediaFrameRatio` — now includes `'3/4'` portrait ratio.
 

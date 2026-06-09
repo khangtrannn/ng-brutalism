@@ -12,7 +12,7 @@ import {
 } from '@angular/core';
 
 import { nbBorderWidthValue, type NbBorderStrength } from '../tokens/border';
-import { nbToneVars, type NbToneToken } from '../tokens/tone';
+import { nbToneVars, type NbTone } from '../tokens/tone';
 import { NB_INPUT_GROUP } from '../input-group/input-group.types';
 import { NbSelectOption } from './nb-select-option';
 import {
@@ -93,7 +93,7 @@ export class NbSelect implements NbSelectController {
   // Conditional application (group merging) and inner-element listbox/options
   // mean the select resolves tone/border itself rather than composing the
   // host-painting capabilities.
-  readonly tone = input<NbToneToken | undefined>(undefined);
+  readonly tone = input<NbTone | undefined>(undefined);
   readonly border = input<NbBorderStrength | undefined>(undefined);
 
   private readonly toneVars = computed(() => {

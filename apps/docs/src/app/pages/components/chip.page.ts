@@ -133,8 +133,8 @@ import { DocsSourceTile } from '../../docs/docs-source-tile';
             <tbody class="font-medium">
               <tr>
                 <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">tone</td>
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">'default' | 'ink' | 'yellow' | 'pink' | 'mint' | 'lavender' | 'accent' | 'success' | 'warning' | 'danger'</td>
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">'default'</td>
+                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">'surface' | 'background' | 'ink' | 'yellow' | 'pink' | 'mint' | 'lavender' | 'accent' | 'success' | 'warning' | 'danger'</td>
+                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">'surface'</td>
                 <td class="px-4 py-3">Background color tone.</td>
               </tr>
               <tr>

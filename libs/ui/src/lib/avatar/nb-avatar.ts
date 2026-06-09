@@ -9,9 +9,9 @@ import {
 import type { NbBorderStrength } from '../tokens/border';
 import type { NbRadius } from '../tokens/radius';
 import type { NbShadow } from '../tokens/shadow';
-import type { NbToneToken } from '../tokens/tone';
+import type { NbTone } from '../tokens/tone';
 
-export type NbAvatarTone = NbToneToken;
+export type NbAvatarTone = NbTone;
 export type NbAvatarRadius = NbRadius;
 export type NbAvatarShadow = NbShadow;
 export type NbAvatarBorder = NbBorderStrength;

@@ -256,14 +256,14 @@ interface MediaFrameShapeDemo {
                 <td
                   class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
                 >
-                  'default' | 'cream' | 'white' | 'black' | 'yellow' | 'pink' |
-                  'mint' | 'lavender' | 'blue' | 'primary' | 'secondary' |
-                  'accent'
+                  'surface' | 'cream' | 'white' | 'black' | 'yellow' | 'pink'
+                  | 'mint' | 'lavender' | 'blue' | 'primary' | 'secondary' |
+                  'accent' | 'background' | 'ink'
                 </td>
                 <td
                   class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
                 >
-                  'default'
+                  'surface'
                 </td>
                 <td class="px-4 py-3">
                   Background color shown when content doesn't fill the frame.

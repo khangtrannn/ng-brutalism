@@ -156,7 +156,7 @@ import { DocsSourceTile } from '../../docs/docs-source-tile';
               </tr>
               <tr class="border-b-2 border-(--nb-border)">
                 <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">tone</td>
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">NbToneToken</td>
+                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">NbTone</td>
                 <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">'default'</td>
                 <td class="px-4 py-3">Shared color tone — writes background, foreground, and border color.</td>
               </tr>

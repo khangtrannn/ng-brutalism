@@ -4,7 +4,7 @@ import { describe, expect, it } from 'vitest';
 
 import { NbCheckbox } from './nb-checkbox';
 import type { NbCheckboxSize } from './checkbox.types';
-import type { NbToneToken } from '../tokens/tone';
+import type { NbTone } from '../tokens/tone';
 
 @Component({
   imports: [NbCheckbox],
@@ -12,7 +12,7 @@ import type { NbToneToken } from '../tokens/tone';
 })
 class CheckboxTokenTest {
   size: NbCheckboxSize = 'md';
-  tone: NbToneToken | undefined = undefined;
+  tone: NbTone | undefined = undefined;
 }
 
 describe('NbCheckbox token surface', () => {

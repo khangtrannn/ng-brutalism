@@ -15,9 +15,9 @@ import {
 import { nbBorderWidthValue, type NbBorderStrength } from '../tokens/border';
 import type { NbRadius } from '../tokens/radius';
 import type { NbShadow } from '../tokens/shadow';
-import { nbToneVars, type NbToneToken } from '../tokens/tone';
+import { nbToneVars, type NbTone } from '../tokens/tone';
 
-export type NbImageCardTone = NbToneToken;
+export type NbImageCardTone = NbTone;
 export type NbImageCardRadius = NbRadius;
 export type NbImageCardShadow = NbShadow;
 export type NbImageCardBorder = NbBorderStrength;
@@ -52,7 +52,7 @@ export type NbImageCardBorder = NbBorderStrength;
 export class NbImageCard {
   readonly image = input.required<string>();
   readonly alt = input.required<string>();
-  readonly tone = input<NbToneToken | undefined>(undefined);
+  readonly tone = input<NbTone | undefined>(undefined);
   readonly border = input<NbBorderStrength | undefined>(undefined);
 
   private readonly toneVars = computed(() => {

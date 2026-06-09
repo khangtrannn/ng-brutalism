@@ -13,7 +13,7 @@ import { isPlatformBrowser } from '@angular/common';
 import { nbBorderWidthValue, type NbBorderStrength } from '../tokens/border';
 import { nbRadiusValue, type NbRadius } from '../tokens/radius';
 import { nbShadowValue, type NbShadow } from '../tokens/shadow';
-import { nbToneVars, type NbToneToken } from '../tokens/tone';
+import { nbToneVars, type NbTone } from '../tokens/tone';
 import { NB_DIALOG, type NbDialogController } from './dialog.types';
 
 @Component({
@@ -41,7 +41,7 @@ import { NB_DIALOG, type NbDialogController } from './dialog.types';
 export class NbDialog implements NbDialogController {
   // The dialog surface is an inner element, so it resolves the style tokens
   // itself rather than composing the host-painting capabilities.
-  readonly tone = input<NbToneToken | undefined>(undefined);
+  readonly tone = input<NbTone | undefined>(undefined);
   readonly radius = input<NbRadius | undefined>(undefined);
   readonly shadow = input<NbShadow | undefined>(undefined);
   readonly border = input<NbBorderStrength | undefined>(undefined);

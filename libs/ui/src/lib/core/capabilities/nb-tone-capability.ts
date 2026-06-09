@@ -1,6 +1,6 @@
 import { Directive, computed, input } from '@angular/core';
 
-import { nbToneVars, type NbToneToken } from '../../tokens/tone';
+import { nbToneVars, type NbTone } from '../../tokens/tone';
 
 /**
  * INTERNAL capability — not part of the public API. Composed into surface
@@ -22,7 +22,7 @@ import { nbToneVars, type NbToneToken } from '../../tokens/tone';
   },
 })
 export class NbToneCapability {
-  readonly tone = input<NbToneToken | undefined>(undefined);
+  readonly tone = input<NbTone | undefined>(undefined);
 
   private readonly toneVars = computed(() => {
     const tone = this.tone();

@@ -37,7 +37,7 @@ class ValueMediaFrameTest {}
   template: `<div nbMediaFrame [tone]="tone">Media-like block</div>`,
 })
 class ToneMediaFrameTest {
-  tone: NbMediaFrameTone = 'default';
+  tone: NbMediaFrameTone = 'surface';
 }
 
 describe('NbMediaFrame', () => {
@@ -106,6 +106,7 @@ describe('NbMediaFrame', () => {
   });
 
   it.each([
+    ['surface', 'var(--nb-surface)'],
     ['pink', 'var(--nb-pink)'],
     ['mint', 'var(--nb-mint)'],
     ['blue', 'var(--nb-blue)'],

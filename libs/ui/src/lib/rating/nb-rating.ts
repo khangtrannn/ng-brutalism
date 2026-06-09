@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, computed, input } from '@angular/core';
 
-import { nbToneVars, type NbToneToken } from '../tokens/tone';
+import { nbToneVars, type NbTone } from '../tokens/tone';
 
 @Component({
   selector: 'nb-rating',
@@ -30,7 +30,7 @@ export class NbRating {
   // The filled-star color resolves the tone token to a literal at render time
   // (inner element, no CSS fallback chain), so the rating owns the tone input
   // directly. The 'warning' default stands in when no tone is set.
-  readonly tone = input<NbToneToken | undefined>(undefined);
+  readonly tone = input<NbTone | undefined>(undefined);
 
   protected readonly stars = computed(() =>
     Array.from({ length: this.max() }, (_, i) => i + 1)

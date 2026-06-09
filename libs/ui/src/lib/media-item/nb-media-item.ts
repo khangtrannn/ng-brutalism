@@ -6,7 +6,7 @@ import {
   computed,
   input,
 } from '@angular/core';
-import { nbToneVars, type NbToneToken } from '../tokens/tone';
+import { nbToneVars, type NbTone } from '../tokens/tone';
 
 export type NbMediaItemVariant = 'plain' | 'boxed' | 'chip';
 
@@ -17,7 +17,7 @@ export type NbMediaItemAlign = 'start' | 'center' | 'between';
 export type NbMediaItemSize = 'xs' | 'sm' | 'md' | 'lg';
 
 // Tone is the shared color vocabulary; MediaItem does not redefine it.
-export type NbMediaItemTone = NbToneToken;
+export type NbMediaItemTone = NbTone;
 
 @Component({
   selector: 'nb-media-item, [nbMediaItem]',
@@ -82,7 +82,7 @@ export class NbMediaItem {
 
   // Tone applies conditionally per variant, so MediaItem resolves it itself
   // rather than composing the host-painting capability.
-  readonly tone = input<NbToneToken | undefined>(undefined);
+  readonly tone = input<NbTone | undefined>(undefined);
 
   private readonly toneVars = computed(() => {
     const tone = this.tone();

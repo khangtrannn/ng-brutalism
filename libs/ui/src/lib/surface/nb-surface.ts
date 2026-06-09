@@ -11,12 +11,12 @@ import type { NbBorderStrength } from '../tokens/border';
 import type { NbPadding } from '../tokens/padding';
 import type { NbRadius } from '../tokens/radius';
 import type { NbShadow } from '../tokens/shadow';
-import type { NbToneToken } from '../tokens/tone';
+import type { NbTone } from '../tokens/tone';
 import { NbTypography } from '../typography';
 
 // Public type aliases — kept for API stability. They now point at the shared
 // token contracts so a token means the same thing across every primitive.
-export type NbSurfaceTone = NbToneToken;
+export type NbSurfaceTone = NbTone;
 export type NbSurfaceRadius = NbRadius;
 export type NbSurfaceBorder = NbBorderStrength;
 export type NbSurfaceShadow = NbShadow;

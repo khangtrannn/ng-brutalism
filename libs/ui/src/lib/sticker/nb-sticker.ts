@@ -7,7 +7,7 @@ import {
   numberAttribute,
 } from '@angular/core';
 
-import { nbToneVars, type NbToneToken } from '../tokens/tone';
+import { nbToneVars, type NbTone } from '../tokens/tone';
 import { NB_STICKER_PATHS } from './sticker.paths';
 import type { NbStickerShape } from './sticker.types';
 
@@ -57,7 +57,7 @@ export class NbSticker {
   // SVG fills resolve the tone token to a literal at render time (no CSS
   // fallback chain), so the sticker owns the tone input directly. The 'mint'
   // default stands in when no tone is set.
-  readonly tone = input<NbToneToken | undefined>(undefined);
+  readonly tone = input<NbTone | undefined>(undefined);
 
   protected readonly config = computed(() => NB_STICKER_PATHS[this.shape()]);
 

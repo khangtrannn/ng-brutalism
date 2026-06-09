@@ -19,7 +19,7 @@
     opacity: 0.5;
   }
 
-  :where(nb-accordion-item [data-slot='accordion-item-surface']) {
+  :where([data-nb-accordion-item][data-slot='accordion-item-surface']) {
     overflow: hidden;
     border-style: solid;
     border-radius: var(--nb-accordion-item-radius, var(--nb-radius));
@@ -50,11 +50,11 @@
     border: 0;
     background-color: var(
       --nb-accordion-trigger-bg,
-      var(--nb-accordion-item-bg, var(--nb-surface))
+      var(--nb-accordion-item-bg, transparent)
     );
     color: var(
       --nb-accordion-trigger-fg,
-      var(--nb-accordion-item-fg, var(--nb-surface-foreground))
+      var(--nb-accordion-item-fg, inherit)
     );
     text-align: left;
     font-size: 1rem;
@@ -74,7 +74,7 @@
 
   :where(nb-accordion-trigger [data-slot='accordion-trigger-button'][data-state='open']) {
     border-bottom-style: solid;
-    border-bottom-width: var(--nb-accordion-item-border-width, var(--nb-border-width));
+    border-bottom-width: var(--nb-accordion-item-border-width, inherit);
     border-bottom-color: var(--nb-accordion-item-border-color, var(--nb-border));
   }
 
@@ -98,11 +98,11 @@
     overflow: hidden;
     background-color: var(
       --nb-accordion-content-bg,
-      var(--nb-accordion-item-bg, var(--nb-surface))
+      var(--nb-accordion-item-bg, transparent)
     );
     color: var(
       --nb-accordion-content-fg,
-      var(--nb-accordion-item-fg, var(--nb-surface-foreground))
+      var(--nb-accordion-item-fg, inherit)
     );
     font-size: 0.875rem;
     font-weight: 500;

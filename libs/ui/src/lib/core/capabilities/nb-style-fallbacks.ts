@@ -3,11 +3,11 @@ import { nbPaddingValue, type NbPadding } from '../../tokens/padding';
 import { nbRadiusValue, type NbRadius } from '../../tokens/radius';
 import { nbShadowValue, type NbShadow } from '../../tokens/shadow';
 import { nbSpacingValue, type NbSpacing } from '../../tokens/spacing';
-import { nbToneVars, type NbToneToken } from '../../tokens/tone';
+import { nbToneVars, type NbTone } from '../../tokens/tone';
 
 export function nbToneFallbacks(
   namespace: string,
-  tone: NbToneToken,
+  tone: NbTone,
 ): { background: string; foreground: string; borderColor: string } {
   const defaults = nbToneVars(tone);
 

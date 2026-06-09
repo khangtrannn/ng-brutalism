@@ -1,5 +1,7 @@
 export type NbTone =
-  | 'default'
+  | 'surface'
+  | 'background'
+  | 'ink'
   | 'cream'
   | 'white'
   | 'black'
@@ -21,9 +23,17 @@ export interface NbToneTokens {
 }
 
 export const NB_TONE_TOKENS: Record<NbTone, NbToneTokens> = {
-  default: {
+  surface: {
     bg: 'var(--nb-surface)',
     fg: 'var(--nb-surface-foreground)',
+  },
+  background: {
+    bg: 'var(--nb-background)',
+    fg: 'var(--nb-foreground)',
+  },
+  ink: {
+    bg: '#000000',
+    fg: '#ffffff',
   },
   cream: {
     bg: 'var(--nb-cream)',
@@ -88,16 +98,6 @@ export function nbToneTokens(tone: NbTone): NbToneTokens {
 }
 
 /**
- * Neutral tone aliases accepted by the tone capability in addition to the core
- * {@link NbTone} palette. These map onto existing theme surfaces rather than
- * the playful/semantic palette:
- * - `surface`    → the default surface tokens
- * - `background` → the page background/foreground
- * - `ink`        → solid black (`black` tone)
- */
-export type NbToneToken = NbTone | 'surface' | 'background' | 'ink';
-
-/**
  * Component-specific tone variables: background, foreground, and border color.
  * Border color is always the brutalist ink (`--nb-border`) so the border
  * *width* capability and the tone capability never fight over color.
@@ -108,24 +108,8 @@ export interface NbToneVars {
   borderColor: string;
 }
 
-export function nbToneVars(tone: NbToneToken): NbToneVars {
+export function nbToneVars(tone: NbTone): NbToneVars {
   const borderColor = 'var(--nb-border)';
-
-  if (tone === 'surface') {
-    return { ...nbToneTokens('default'), borderColor };
-  }
-
-  if (tone === 'background') {
-    return {
-      bg: 'var(--nb-background)',
-      fg: 'var(--nb-foreground)',
-      borderColor,
-    };
-  }
-
-  if (tone === 'ink') {
-    return { ...nbToneTokens('black'), borderColor };
-  }
 
   return { ...nbToneTokens(tone), borderColor };
 }

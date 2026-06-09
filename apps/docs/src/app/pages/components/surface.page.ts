@@ -230,7 +230,7 @@ interface SurfaceShapeDemo {
                 <td
                   class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
                 >
-                  'default' | 'background' | 'surface' | 'cream' | 'white' |
+                  'surface' | 'background' | 'cream' | 'white' |
                   'black' | 'yellow' | 'pink' | 'mint' | 'lavender' | 'blue' |
                   'primary' | 'secondary' | 'accent' | 'success' | 'warning' |
                   'danger'
@@ -238,7 +238,7 @@ interface SurfaceShapeDemo {
                 <td
                   class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
                 >
-                  'default'
+                  'surface'
                 </td>
                 <td class="px-4 py-3">Background and foreground color pair.</td>
               </tr>
@@ -458,7 +458,7 @@ export default class SurfacePage {
   </div>
 </article>`;
 
-  protected readonly tonesExampleCode = `<div nbSurface tone="default">Default theme surface</div>
+  protected readonly tonesExampleCode = `<div nbSurface tone="surface">Surface theme surface</div>
 <div nbSurface tone="yellow">Yellow surface</div>
 <div nbSurface tone="black">Black surface</div>
 <div nbSurface tone="success">Success surface</div>`;
@@ -477,19 +477,14 @@ export default class SurfacePage {
 
   protected readonly tones = [
     {
-      value: 'default',
-      label: 'default',
+      value: 'surface',
+      label: 'surface',
       description: 'Uses --nb-surface tokens.',
     },
     {
       value: 'background',
       label: 'background',
       description: 'Uses the page background tokens.',
-    },
-    {
-      value: 'surface',
-      label: 'surface',
-      description: 'Explicit component surface tone.',
     },
     { value: 'cream', label: 'cream', description: 'Warm editorial panel.' },
     { value: 'white', label: 'white', description: 'Crisp white panel.' },

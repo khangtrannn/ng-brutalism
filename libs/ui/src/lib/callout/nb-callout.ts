@@ -5,9 +5,9 @@ import {
   NbToneCapability,
 } from '../core/capabilities';
 import { nbRadiusValue, type NbRadius } from '../tokens/radius';
-import type { NbToneToken } from '../tokens/tone';
+import type { NbTone } from '../tokens/tone';
 
-export type NbCalloutTone = NbToneToken;
+export type NbCalloutTone = NbTone;
 
 export type NbCalloutSize = 'sm' | 'md' | 'lg' | 'xl';
 

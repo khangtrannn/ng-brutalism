@@ -109,11 +109,11 @@ consults for customization; "Class-based only" = no custom-property contract.
 
 | Primitive | Selector | Current inputs | Current defaults | Public CSS hooks read | Capability adoption | Notes |
 |---|---|---|---|---|---|---|
-| Surface | `[nbSurface]` | tone, radius, shadow, border, padding, size, layout, edge, clip | tone `default`, radius `md`, shadow `default`, border `default`, padding `none`, size `auto`, layout `block`, edge `none`, clip `false` | `--nb-surface-{bg,fg,border-color,radius,border-width,shadow,padding}` | tone+radius+shadow+border+padding | `size` = square dimensions; `edge` = top/bottom hairline |
-| MediaFrame | `[nbMediaFrame]` | tone, radius, shadow, border, ratio, fit | tone `default`, radius `lg`, shadow `none`, border `default`, ratio `auto`, fit `cover` | `--nb-media-frame-{bg,fg,border-color,radius,border-width,shadow}` | tone+radius+shadow+border | Clean. `ratio`/`fit` are correct anatomy |
+| Surface | `[nbSurface]` | tone, radius, shadow, border, padding, size, layout, edge, clip | tone `surface`, radius `md`, shadow `default`, border `default`, padding `none`, size `auto`, layout `block`, edge `none`, clip `false` | `--nb-surface-{bg,fg,border-color,radius,border-width,shadow,padding}` | tone+radius+shadow+border+padding | `size` = square dimensions; `edge` = top/bottom hairline |
+| MediaFrame | `[nbMediaFrame]` | tone, radius, shadow, border, ratio, fit | tone `surface`, radius `lg`, shadow `none`, border `default`, ratio `auto`, fit `cover` | `--nb-media-frame-{bg,fg,border-color,radius,border-width,shadow}` | tone+radius+shadow+border | Clean. `ratio`/`fit` are correct anatomy |
 | Button | `button[nbButton], a[nbButton]` | tone, shadow, size, radius, border, fullWidth | tone `primary`, shadow `default`, size `md`, radius `md`, border `default`, fullWidth `false` | `--nb-button-{bg,fg,border-color,radius,border-width}` (+ local `-shadow`) | tone+radius+border ✓ | `tone` is the single color axis (variant removed); `shadow` still encodes hover-translate (future `NbPressCapability`) |
-| IconButton | `button[nbIconButton]` | shape, size, tone, radius, shadow, border, icon | shape `square`, size `md`, tone `default`, radius `none`, shadow `default`, border `default` | `--nb-icon-button-{bg,fg,border-color,border-width,radius,shadow}` | tone+radius+shadow+border ✓ | Local radius/variant maps removed; `tone` replaces `variant`; border via capability |
-| Chip | `span[nbChip]` | tone, radius, shadow, border, padding, icon, iconSize | tone `default`, radius `none`, shadow `sm`, border `default`, padding `md`, iconSize `sm` | `--nb-chip-{bg,fg,border-color,border-width,radius,shadow}` | tone+radius+shadow+border ✓ | `padding` is **local** asymmetric pill anatomy (intentional) |
+| IconButton | `button[nbIconButton]` | shape, size, tone, radius, shadow, border, icon | shape `square`, size `md`, tone `surface`, radius `none`, shadow `default`, border `default` | `--nb-icon-button-{bg,fg,border-color,border-width,radius,shadow}` | tone+radius+shadow+border ✓ | Local radius/variant maps removed; `tone` replaces `variant`; border via capability |
+| Chip | `span[nbChip]` | tone, radius, shadow, border, padding, icon, iconSize | tone `surface`, radius `none`, shadow `sm`, border `default`, padding `md`, iconSize `sm` | `--nb-chip-{bg,fg,border-color,border-width,radius,shadow}` | tone+radius+shadow+border ✓ | `padding` is **local** asymmetric pill anatomy (intentional) |
 | Callout | `[nbCallout]` | tone, shadow, size, layout, radius | tone `yellow`, shadow `hard`, size `lg`, layout `inline`, radius `undefined` | `--nb-callout-{bg,fg,border-color,shadow}` (+ size-derived `-radius,-border-width`) | tone+shadow | radius/border-width are size-derived anatomy; optional `radius` override uses shared `nbRadiusValue` |
 | Section | `[nbSection]` | padding, divider, dividerStyle, layout, align, flush | padding `md`, divider `none`, dividerStyle `solid`, layout `default`, align `stretch`, flush `false` | `--nb-section-padding` | padding | `divider` = **placement** (`NbDivider`). Already renamed from `border` ✓ |
 | Stack | `[nbStack]` | gap, align, justify, divider | gap `md`, align `stretch`, justify `start`, divider `none` | `--nb-stack-gap` | gap | `divider` = **line style** (`solid/dashed/thick`) — collides with Section's meaning |
@@ -121,7 +121,7 @@ consults for customization; "Class-based only" = no custom-property contract.
 | Split | `[nbSplit]` | ratio, gap, padding, collapse, align, divider | ratio `1:1`, gap `lg`, padding `none`, collapse `md`, align `stretch`, divider `none` | `--nb-split-{gap,padding}` | gap+padding | same `divider`=style collision; `ratio`/`collapse` correct anatomy |
 | Text | `[nbText]` | size, weight, tone, transform, tracking, measure, leading, underline, reset | size `md`, weight `normal`, tone `default`, transform `none`, tracking `normal`, measure `none`, leading `normal`, underline `none`, reset `true` | inline `[style.*]` (color, font-size, …) | none (typography owner) | Typography authority. `tone` is a text-specific palette (muted/subtle/inverse) |
 | Display | `[nbDisplay]` | size, tracking, leading, underline, reset | size `default`, tracking `tight`, leading `none`, underline `none`, reset `true` | `--nb-display-{size,color}` consumed | none | `size` uses `default` (not `md`); headline typography |
-| MediaItem | `nb-media-item, [nbMediaItem]` | variant, orientation, align, size, tone, icon, iconAlt, iconBackground, title, description | variant `plain`, orientation `horizontal`, align `start`, size `md`, tone `default` | `--nb-media-item-{bg,fg,border-color}` (+ local anatomy vars) | tone ✓ | Hardcoded hex tone map removed; `NbMediaItemTone` now aliases `NbToneToken`; tone via capability |
+| MediaItem | `nb-media-item, [nbMediaItem]` | variant, orientation, align, size, tone, icon, iconAlt, iconBackground, title, description | variant `plain`, orientation `horizontal`, align `start`, size `md`, tone `surface` | `--nb-media-item-{bg,fg,border-color}` (+ local anatomy vars) | tone ✓ | Hardcoded hex tone map removed; `NbMediaItemTone` now aliases `NbTone`; tone via capability |
 | Stat | `nb-stat` | value, label, direction | direction `column` | `--nb-stat-{value-size,label-size,label-fg}` (local) | none | Composition block; no shared tokens |
 | StatusDot | `span[nbStatusDot]` | state | state `online` | `--nb-status-dot-size` consumed | none | Uses semantic theme colors directly, not `tone` |
 | Sticker / StickerFace | `nb-sticker*` | (decorative) | — | `--nb-sticker-*` (local) | none | Decorative art; out of token scope |
@@ -227,12 +227,12 @@ ownership · capability status · public API decision.
 
 ### 4.1 `tone`
 
-**Current usage.** Shared `NbToneToken` (15-value `NbTone` palette + `surface`/
-`background`/`ink` aliases) flows through `NbToneCapability` into Surface,
+**Current usage.** Shared `NbTone` (17-value palette, including neutral
+`surface`/`background`/`ink`) flows through `NbToneCapability` into Surface,
 MediaFrame, Button, IconButton, Chip, Callout, MediaItem, Badge, Card, Avatar,
 ImageCard, Dialog, and AccordionItem — these resolve `bg`/`fg`/`border-color`
-from the single `nbToneVars()` resolver. **State and typography systems remain
-intentionally separate:**
+from the single `nbToneVars()` resolver.
+**State and typography systems remain intentionally separate:**
 
 - **Button**: ~~`variant` (preset enum) **plus** `tone` override, writing
   button color hooks directly via `nbToneTokens()`~~ **resolved (2026-06-01)** —
@@ -250,14 +250,15 @@ intentionally separate:**
 display color, icon tone, and state colors remain separate because they are not
 the same host-level paint concept.
 
-**Recommended shared type** (rationalize the existing 15-value `NbTone` into
-documented sub-families; values stay backward compatible):
+**Recommended shared type** (rationalize `NbTone` into documented
+sub-families):
 
 ```ts
-export type NbSemanticTone = 'default' | 'primary' | 'secondary' | 'accent'
+export type NbSemanticTone = 'primary' | 'secondary' | 'accent'
   | 'success' | 'warning' | 'danger';
 export type NbPlayfulTone  = 'yellow' | 'pink' | 'mint' | 'lavender' | 'blue';
-export type NbNeutralTone  = 'cream' | 'white' | 'black' | 'surface' | 'background' | 'ink';
+export type NbNeutralTone  = 'surface' | 'background' | 'ink'
+  | 'cream' | 'white' | 'black';
 export type NbTone = NbSemanticTone | NbPlayfulTone | NbNeutralTone;
 ```
 
@@ -265,7 +266,7 @@ export type NbTone = NbSemanticTone | NbPlayfulTone | NbNeutralTone;
 already `NbToneCapability` — extend adoption.
 
 **Public API decision.**
-- Use shared `NbTone`/`NbToneToken` globally; primitives may *narrow* (Callout,
+- Use shared `NbTone` globally; primitives may *narrow* (Callout,
   Chip) but never re-declare the full union (kill `NbMediaItemTone`).
 - MediaItem and IconButton adopt `NbToneCapability`; delete their hardcoded maps.
 - **Button:** ✅ Shipped (2026-06-01) — `variant` removed and folded into `tone`;
@@ -526,11 +527,11 @@ folding it into `layout` — **Low priority** (cosmetic, defer).
 
 | Primitive | tone | radius | shadow | border | padding | gap | size |
 |---|---|---|---|---|---|---|---|
-| nbSurface | default | md | default | default | none | – | auto |
-| nbMediaFrame | default | lg | none | default | – | – | – |
+| nbSurface | surface | md | default | default | none | – | auto |
+| nbMediaFrame | surface | lg | none | default | – | – | – |
 | nbButton | primary | md | default* | default | – | – | md |
-| nbIconButton | default | none | default | default | – | – | md |
-| nbChip | default | none | sm | default | md | – | – |
+| nbIconButton | surface | none | default | default | – | – | md |
+| nbChip | surface | none | sm | default | md | – | – |
 | nbCallout | yellow | (size-derived) | hard | (size-derived) | (size) | – | lg |
 | nbSection | – | – | – | – | md | – | – |
 | nbStack | – | – | – | – | – | md | – |
@@ -614,11 +615,11 @@ Centralized in `libs/ui/src/lib/tokens/*` (already exist except where noted).
 
 ### NbTone
 **Purpose:** shared visual color grammar (bg + fg + border-color).
-**Values:** semantic (default, primary, secondary, accent, success, warning,
-danger) · playful (yellow, pink, mint, lavender, blue) · neutral (cream, white,
-black, surface, background, ink). **Used by:** Surface, MediaFrame, Chip,
-Callout, IconButton, MediaItem, Button. **Capability:** `NbToneCapability`
-(exists; adoption widened).
+**Values:** semantic (primary, secondary, accent, success, warning, danger) ·
+playful (yellow, pink, mint, lavender, blue) · neutral (surface, background,
+ink, cream, white, black). **Used by:** Surface, MediaFrame, Chip, Callout,
+IconButton, MediaItem, Button. **Capability:** `NbToneCapability` (exists;
+adoption widened).
 
 ### NbRadius
 **Purpose:** shared corner scale. **Values:** none, sm, md, lg, xl, full
@@ -690,7 +691,7 @@ Rules: capabilities stay internal; primitives expose public inputs; resolution i
 | Remove Button `fontSize/weight/transform/tracking` | Typography belongs to nbText | Removed inputs + types; recipes use nested `nbText` | ✅ **Shipped** |
 | MediaItem: replace hex tone map with `nbToneVars()` + adopt tone capability | Hardcoded hex drifts from theme tokens | Tone now resolves from theme vars (yellow/cream shades canonicalized) | ✅ **Shipped** |
 | Delete `NbIconButtonRadius`/`NbIconButtonVariant`; adopt capabilities | Duplicate type + mismatched `md` value; `variant` duplicates `tone` | `variant`→`tone`; `md` now `var(--nb-radius)` | ✅ **Shipped** |
-| Alias `NbMediaItemTone = NbToneToken` | Duplicate union | Type-only, no runtime change | ✅ **Shipped** |
+| Alias `NbMediaItemTone = NbTone` | Duplicate union | Type-only, no runtime change | ✅ **Shipped** |
 | Chip/Button/IconButton adopt `NbBorderCapability` | `border` strength should be uniform/overridable | New `border` input; default strength = 2px parity | ✅ **Shipped** |
 | `size="default"`→`"md"` (Input/Textarea/Checkbox) | Same drift, forms | Updated form usages + docs | ✅ **Shipped** |
 | Fold Button `variant` into `tone` | Two color axes for one concept | `variant` removed; Button composes `NbToneCapability`, default tone `primary` | ✅ **Shipped** |

@@ -9,10 +9,10 @@ import {
 import type { NbBorderStrength } from '../tokens/border';
 import type { NbRadius } from '../tokens/radius';
 import type { NbShadow } from '../tokens/shadow';
-import type { NbToneToken } from '../tokens/tone';
+import type { NbTone } from '../tokens/tone';
 
 export type NbCardActionsAlign = 'start' | 'end';
-export type NbCardTone = NbToneToken;
+export type NbCardTone = NbTone;
 export type NbCardRadius = NbRadius;
 export type NbCardShadow = NbShadow;
 export type NbCardBorder = NbBorderStrength;

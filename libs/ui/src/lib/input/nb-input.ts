@@ -1,7 +1,7 @@
 import { Directive, computed, inject, input } from '@angular/core';
 
 import { nbBorderWidthValue, type NbBorderStrength } from '../tokens/border';
-import { nbToneVars, type NbToneToken } from '../tokens/tone';
+import { nbToneVars, type NbTone } from '../tokens/tone';
 import { NB_INPUT_GROUP } from '../input-group/input-group.types';
 import type { NbInputSize } from './input.types';
 
@@ -20,7 +20,7 @@ export class NbInput {
   readonly size = input<NbInputSize>('md');
   // Conditional application (group merging) means the input resolves tone/border
   // itself rather than composing the host-painting capabilities.
-  readonly tone = input<NbToneToken | undefined>(undefined);
+  readonly tone = input<NbTone | undefined>(undefined);
   readonly border = input<NbBorderStrength | undefined>(undefined);
 
   private readonly group = inject(NB_INPUT_GROUP, { optional: true });

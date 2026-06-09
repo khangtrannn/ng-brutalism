@@ -9,10 +9,10 @@ import {
 import type { NbBorderStrength } from '../tokens/border';
 import type { NbRadius } from '../tokens/radius';
 import type { NbShadow } from '../tokens/shadow';
-import type { NbToneToken } from '../tokens/tone';
+import type { NbTone } from '../tokens/tone';
 
 // Public type aliases point at the shared token contracts.
-export type NbMediaFrameTone = NbToneToken;
+export type NbMediaFrameTone = NbTone;
 export type NbMediaFrameRadius = NbRadius;
 export type NbMediaFrameShadow = NbShadow;
 export type NbMediaFrameBorder = NbBorderStrength;

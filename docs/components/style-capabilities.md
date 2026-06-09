@@ -264,61 +264,37 @@ The library already handles self-containment via `@source './fesm2022/...'` in `
 - `computed()` + `twMerge(clsx(...))` overhead is eliminated for static styles
 - State changes (open/close, disabled) are handled by CSS selectors on `data-state`, requiring zero JS
 
-**The pattern — reference implementation: `NbAccordionTrigger`**
+**The pattern — reference implementation: `NbAccordionItem`**
 
-`background-color`, `border-color`, and `box-shadow` don't inherit natively, so
-a compound child can't pick up an ancestor's input-derived inline values through
-plain CSS inheritance the way `color` can. Rather than adding a private
-custom-property channel, the descendant **injects the ancestor component and
-reads its capability outputs directly** — pure signal composition, no second CSS
-layer:
+The item host is the visual surface and composes only the low-level paint
+capabilities it needs. It does not compose `NbSurface`, because `NbSurface`
+also owns padding, typography, layout, edge, clip, and generic surface anatomy:
 
 ```typescript
 @Component({
-  styles: [`
-    button {
-      /* Static structural styles — plain CSS, never recalculates */
-      display: flex;
-      min-height: var(--nb-accordion-trigger-min-height, 3.5rem); /* expose as token */
-      background-color: var(--nb-accordion-trigger-bg, transparent);
-      color: var(--nb-accordion-trigger-fg, inherit);
-      /* ... */
-    }
-
-    button:focus-visible {
-      /* State via CSS pseudo-class — no JS needed */
-      outline-offset: 2px;
-    }
-  `],
+  selector: 'nb-accordion-item',
+  template: `<ng-content />`,
+  hostDirectives: [
+    { directive: NbToneCapability, inputs: ['tone'] },
+    { directive: NbRadiusCapability, inputs: ['radius'] },
+    { directive: NbShadowCapability, inputs: ['shadow'] },
+    { directive: NbBorderCapability, inputs: ['border'] },
+  ],
   host: {
-    '[style.outline-color]': 'item.borderColorStyle()',
-    '[style.border-bottom]': 'dividerStyle()',
+    '[attr.data-nb-accordion-item]': '""',
+    '[attr.data-slot]': '"accordion-item-surface"',
+    '[attr.data-state]': 'open() ? "open" : "closed"',
   },
-  template: `
-    <!-- No class attribute on internal elements -->
-    <button [attr.data-state]="item.open() ? 'open' : 'closed'" ...>
-  `,
 })
-export class NbAccordionTrigger {
-  protected readonly item = inject(NbAccordionItem);
-
-  protected readonly dividerStyle = computed(() => {
-    if (this.item.open()) {
-      return `${this.item.borderWidthStyle() ?? 'var(--nb-accordion-item-border-width)'} solid ${this.item.borderColorStyle() ?? 'var(--nb-accordion-item-border-color)'}`;
-    }
-    return null;
-  });
-}
+export class NbAccordionItem {}
 ```
 
-`color` and `background-color` lean on **native CSS** instead — `inherit` and
-`transparent` — so the trigger blends into whatever the item actually rendered
-without needing to know its resolved value at all. Only the genuinely
-non-inheriting properties the trigger needs that the item *doesn't* expose
-through its own DOM (an outline, a divider that only exists when open) go
-through DI: `NbAccordionItem` exposes its own capability-mapped style computeds
-(`borderColorStyle`, `borderWidthStyle`, …) as `protected readonly`, and the
-trigger reads them straight off the injected instance.
+Compound children lean on **native CSS** wherever possible. Trigger/content
+backgrounds default to `transparent`, foreground defaults to `inherit`, and the
+open trigger divider inherits the item host's border width when no public
+`--nb-accordion-item-border-width` hook is set. The trigger still injects the
+item for behavior (`open`, `disabled`, ids, `toggle()`), but it does not read
+visual style methods from the item.
 
 **Specificity note:** Angular's `ViewEncapsulation.Emulated` scopes `button { }` to `button[_ngcontent-…]` (specificity 0,1,1). `:host { }` becomes an attribute selector on the host element (0,1,0 — same as a Tailwind class). This only affects consumers trying to directly target internal elements from outside, which is not the supported override path. Consumers use CSS custom properties.
 
@@ -355,8 +331,8 @@ This keeps all of these override shapes valid:
 </nb-accordion-trigger>
 ```
 
-Compound descendants reach an ancestor's input-derived values via DI +
-`computed()`, never via an internal CSS custom-property channel. Public
+Compound descendants inherit the host-rendered surface with normal CSS where
+possible and inject ancestors only for behavior/state. Public
 `--nb-<component>-*` variables remain the only consumer-owned override surface.
 
 **What stays in templates:** Data/ARIA attributes (`[attr.aria-expanded]`, `[attr.data-state]`, `[id]`), event bindings, structural directives. No `class` or `[class]` bindings on internal elements.
@@ -369,7 +345,7 @@ Compound descendants reach an ancestor's input-derived values via DI +
 
 Migrated — full `styles` pattern, no template class bindings:
 - `NbAccordionTrigger` (2026-06-06) — reference implementation; `:host` public-var anti-pattern fixed
-- `NbAccordionItem` (2026-06-06) — `computed()` class map removed; inner div styled via CSS vars from cascaded capability tokens
+- `NbAccordionItem` (2026-06-09) — inner surface wrapper removed; host composes `NbToneCapability`, `NbRadiusCapability`, `NbShadowCapability`, and `NbBorderCapability`
 - `NbAccordionContent` (2026-06-06) — open/close `grid-template-rows` transition driven by `[data-state='open']` CSS selector; no `computed()` class
 
 Pending migration (grouped by complexity):
@@ -395,7 +371,8 @@ Pending migration (grouped by complexity):
 - Shared token contracts + resolvers: `NbRadius`/`nbRadiusValue`,
   `NbShadow`/`nbShadowValue`, `NbBorderStrength`/`nbBorderWidthValue`,
   `NbSpacing`/`nbSpacingValue`, `NbPadding`/`nbPaddingValue`, `NbDivider`, and
-  `nbToneVars()` (+ `NbToneToken` neutral aliases `surface`/`background`/`ink`).
+  `nbToneVars()` (`surface`, `background`, and `ink` included in the neutral
+  tone family).
 - Shared typography types in `tokens/typography.ts`: `NbUnderlineVariant`
   (`none|bar|wave`, shared alias for `NbTextUnderline` and `NbDisplayUnderline`)
   and `NbTextTracking` (`tight|normal|wide|wider`, shared by nbText + nbChipGroup).
@@ -464,7 +441,7 @@ hover-translate press behavior).
   `NbIconButtonRadius` map and `NbIconButtonVariant` color map removed — `variant`
   is replaced by the shared `tone`; `md` radius now means `var(--nb-radius)`.
 - **MediaItem** drops its hardcoded hex tone map; `tone` resolves through
-  `NbToneCapability` / `nbToneVars()`, and `NbMediaItemTone` aliases `NbToneToken`.
+  `NbToneCapability` / `nbToneVars()`, and `NbMediaItemTone` aliases `NbTone`.
 - **Chip** and **Button** adopt `NbBorderCapability` for border *width*; border
   *color* comes from tone (`--nb-*-border-color`).
 - **Button** folds `variant` into `tone` — `variant` and `NbButtonVariant` are

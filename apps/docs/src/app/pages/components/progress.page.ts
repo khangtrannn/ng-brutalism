@@ -110,8 +110,8 @@ import { DocsSourceTile } from '../../docs/docs-source-tile';
               </tr>
               <tr class="border-b-2 border-(--nb-border)">
                 <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">tone</td>
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">'default' | 'success' | 'warning' | 'danger' | 'accent'</td>
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">'default'</td>
+                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">NbTone</td>
+                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">'primary'</td>
                 <td class="px-4 py-3">Fill color tone.</td>
               </tr>
               <tr>

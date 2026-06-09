@@ -7,7 +7,6 @@ export type { NbThemeConfig } from './lib/tokens/theme.tokens';
 export type {
   NbTone,
   NbToneTokens,
-  NbToneToken,
   NbToneVars,
 } from './lib/tokens/tone';
 export { nbToneTokens, nbToneVars } from './lib/tokens/tone';

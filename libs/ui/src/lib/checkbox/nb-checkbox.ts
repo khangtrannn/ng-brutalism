@@ -1,6 +1,6 @@
 import { Directive, computed, input } from '@angular/core';
 
-import { nbToneVars, type NbToneToken } from '../tokens/tone';
+import { nbToneVars, type NbTone } from '../tokens/tone';
 import type { NbCheckboxSize } from './checkbox.types';
 
 @Directive({
@@ -14,7 +14,7 @@ import type { NbCheckboxSize } from './checkbox.types';
 })
 export class NbCheckbox {
   readonly size = input<NbCheckboxSize>('md');
-  readonly tone = input<NbToneToken | undefined>(undefined);
+  readonly tone = input<NbTone | undefined>(undefined);
 
   private readonly toneVars = computed(() => {
     const tone = this.tone();

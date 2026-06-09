@@ -5,7 +5,7 @@ import {
   input,
 } from '@angular/core';
 
-import { nbToneVars, type NbToneToken } from '../tokens/tone';
+import { nbToneVars, type NbTone } from '../tokens/tone';
 
 @Component({
   selector: 'nb-progress',
@@ -38,7 +38,7 @@ export class NbProgress {
   // The fill color resolves the tone token to a literal at render time (inner
   // element, no CSS fallback chain), so progress owns the tone input directly.
   // The 'primary' default stands in when no tone is set.
-  readonly tone = input<NbToneToken | undefined>(undefined);
+  readonly tone = input<NbTone | undefined>(undefined);
 
   protected readonly clampedValue = computed(() =>
     Math.min(Math.max(this.value(), 0), this.max())
