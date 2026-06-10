@@ -23,8 +23,14 @@
   :where([data-nb-cluster][data-separator='solid'] > * + *),
   :where([data-nb-cluster][data-separator='dashed'] > * + *),
   :where([data-nb-cluster][data-separator='thick'] > * + *) {
-    margin-inline-start: var(--nb-cluster-separator-gap);
-    padding-inline-start: var(--nb-cluster-separator-gap);
+    margin-inline-start: var(
+      --nb-cluster-separator-gap,
+      calc(var(--nb-cluster-gap, 0.75rem) * 0.5)
+    );
+    padding-inline-start: var(
+      --nb-cluster-separator-gap,
+      calc(var(--nb-cluster-gap, 0.75rem) * 0.5)
+    );
     border-inline-start-color: var(--nb-border);
   }
 

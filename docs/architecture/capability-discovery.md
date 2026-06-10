@@ -47,7 +47,7 @@ disabled) is not — yet.
 | NbFocusCapability | Button, IconButton, Input, Select, Checkbox, Dialog, Accordion | Shared `focus-visible` ring treatment | Future | Needs accessibility chapter |
 | NbDisabledCapability | Button, IconButton, form controls, Accordion | Shared disabled/`aria-disabled` styling + semantics | Future | Native vs ARIA differences |
 | NbControlSizeCapability | Button, IconButton, Input, Select, Checkbox | Shared control density naming (`sm/md/lg`) | Future | Each control's size remains anatomy today |
-| NbAlign / NbJustifyCapability | Stack, Cluster, Split, Section, MediaItem | Shared layout alignment mapping | Record only | CSS targets differ; centralize types first |
+| NbAlign / NbJustifyCapability | Stack, Cluster, Split, Section, MediaItem | Shared layout alignment mapping | Record only | CSS targets differ; shared layout types are centralized |
 | NbSizeCapability (generic) | Many primitives | One `size` to rule them all | Do not implement | `size` means different anatomy per primitive |
 
 ### Important standing decision

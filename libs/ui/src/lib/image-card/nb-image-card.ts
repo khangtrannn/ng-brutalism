@@ -9,8 +9,6 @@ import {
 import {
   NbRadiusCapability,
   NbShadowCapability,
-  nbBorderWidthFallback,
-  nbToneFallbacks,
 } from '../core/capabilities';
 import { nbBorderWidthValue, type NbBorderStrength } from '../tokens/border';
 import type { NbRadius } from '../tokens/radius';
@@ -73,15 +71,9 @@ export class NbImageCard {
     return border ? nbBorderWidthValue(border) : null;
   });
 
-  readonly captionBorderWidth = computed(
-    () =>
-      this.borderWidthStyle() ??
-      nbBorderWidthFallback('image-card', 'default'),
-  );
+  readonly captionBorderWidth = computed(() => this.borderWidthStyle());
   readonly captionBorderColor = computed(
-    () =>
-      this.borderColorStyle() ??
-      nbToneFallbacks('image-card', 'background').borderColor,
+    () => this.borderColorStyle(),
   );
 }
 

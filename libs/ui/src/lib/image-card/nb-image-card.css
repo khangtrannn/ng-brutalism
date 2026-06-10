@@ -25,6 +25,8 @@
   :where(nb-image-card-caption) {
     padding: 1rem 1.5rem;
     border-top-style: solid;
+    border-top-width: var(--nb-image-card-border-width, var(--nb-border-width));
+    border-top-color: var(--nb-image-card-border-color, var(--nb-border));
     text-align: center;
     font-size: 1rem;
     font-weight: 700;

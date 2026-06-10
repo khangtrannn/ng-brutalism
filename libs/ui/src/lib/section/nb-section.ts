@@ -5,8 +5,8 @@ import {
   input,
 } from '@angular/core';
 
-import { nbPaddingFallback } from '../core/capabilities';
 import type { NbDivider } from '../tokens/divider';
+import type { NbLayoutAlign } from '../tokens/layout';
 import { nbPaddingValue, type NbPadding } from '../tokens/padding';
 
 export type NbSectionPadding = NbPadding;
@@ -20,7 +20,7 @@ export type NbSectionDividerStyle = 'solid' | 'dashed' | 'dotted';
 
 export type NbSectionLayout = 'default' | 'center' | 'between';
 
-export type NbSectionAlign = 'stretch' | 'start' | 'center' | 'end';
+export type NbSectionAlign = NbLayoutAlign;
 
 @Directive({
   selector: '[nbSection]',
@@ -54,12 +54,13 @@ export class NbSection {
     return padding ? nbPaddingValue(padding) : null;
   });
 
-  // Component-local anatomy var: `flush` negates the section's own padding so
-  // content can bleed to the edge. It mirrors an explicit padding input when
-  // present, otherwise the public `--nb-section-padding` hook chain.
-  protected readonly flushMarginStyle = computed(() =>
-    this.flush()
-      ? `calc(${this.paddingStyle() ?? nbPaddingFallback('section', 'md')} * -1)`
-      : null,
-  );
+  // `flush` negates the section's own padding so content can bleed to the edge.
+  // It mirrors an explicit padding input when present; CSS owns the public hook
+  // fallback chain when it is absent.
+  protected readonly flushMarginStyle = computed(() => {
+    const paddingStyle = this.paddingStyle();
+    return this.flush() && paddingStyle
+      ? `calc(${paddingStyle} * -1)`
+      : null;
+  });
 }

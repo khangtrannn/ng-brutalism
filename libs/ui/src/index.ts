@@ -24,6 +24,11 @@ export type { NbPadding } from './lib/tokens/padding';
 export { nbPaddingValue } from './lib/tokens/padding';
 export type { NbDivider } from './lib/tokens/divider';
 export type {
+  NbLayoutAlign,
+  NbLayoutJustify,
+  NbLayoutSeparator,
+} from './lib/tokens/layout';
+export type {
   NbFontWeight,
   NbTypographyFont,
   NbUnderlineVariant,
@@ -47,6 +52,7 @@ export {
   NbShadowCapability as ɵNbShadowCapability,
   NbBorderCapability as ɵNbBorderCapability,
   NbPaddingCapability as ɵNbPaddingCapability,
+  NbGapCapability as ɵNbGapCapability,
   NbUnderlineCapability as ɵNbUnderlineCapability,
   NbResetMarginCapability as ɵNbResetMarginCapability,
 } from './lib/core/capabilities';

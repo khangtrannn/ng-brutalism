@@ -20,7 +20,7 @@
   :where([data-nb-stack][data-separator='dashed'] > * + *),
   :where([data-nb-stack][data-separator='thick'] > * + *) {
     border-top-color: var(--nb-border);
-    padding-top: var(--nb-stack-separator-gap);
+    padding-top: var(--nb-stack-separator-gap, var(--nb-stack-gap, 0.75rem));
   }
 
   :where([data-nb-stack][data-separator='solid'] > * + *) {

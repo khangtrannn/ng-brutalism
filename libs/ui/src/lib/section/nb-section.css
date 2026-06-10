@@ -6,6 +6,10 @@
     padding: var(--nb-section-padding, 1rem);
   }
 
+  :where([nbSection][data-flush]) {
+    margin-inline: calc(0px - var(--nb-section-padding, 1rem));
+  }
+
   :where([nbSection][data-layout='center']),
   :where([nbSection][data-layout='between']) {
     display: flex;

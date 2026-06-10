@@ -368,6 +368,24 @@ describe('style capabilities', () => {
     expect(stack.style.cssText).not.toContain('--nb-resolved');
   });
 
+  it('derived anatomy fallbacks live in CSS', () => {
+    expect(stylesCss).toContain(
+      'padding-top: var(--nb-stack-separator-gap, var(--nb-stack-gap, 0.75rem));'
+    );
+    expect(stylesCss).toContain(
+      'calc(var(--nb-cluster-gap, 0.75rem) * 0.5)'
+    );
+    expect(stylesCss).toContain(
+      'var(--nb-split-separator-gap, var(--nb-split-gap, 1rem)) / -2'
+    );
+    expect(stylesCss).toContain(
+      'margin-inline: calc(0px - var(--nb-section-padding, 1rem));'
+    );
+    expect(stylesCss).toContain(
+      'border-top-width: var(--nb-image-card-border-width, var(--nb-border-width));'
+    );
+  });
+
   it('nbIconButton composes explicit visual inputs into actual properties', () => {
     const el = mount(IconButtonCapabilitiesTest);
     const button = el.querySelector<HTMLElement>('[nbIconButton]')!;

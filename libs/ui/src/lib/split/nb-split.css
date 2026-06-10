@@ -66,7 +66,9 @@
     pointer-events: none;
     position: absolute;
     inset-block: 0;
-    inset-inline-end: calc(var(--nb-split-separator-gap) / -2);
+    inset-inline-end: calc(
+      var(--nb-split-separator-gap, var(--nb-split-gap, 1rem)) / -2
+    );
     border-inline-end-color: var(--nb-border);
   }
 

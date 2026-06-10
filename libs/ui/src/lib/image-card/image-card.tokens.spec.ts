@@ -59,16 +59,12 @@ describe('NbImageCard token surface', () => {
     expect(image.getAttribute('data-slot')).toBe('image-card-image');
   });
 
-  it('uses the scoped border token for the caption divider', async () => {
+  it('leaves caption divider fallbacks to CSS', async () => {
     const fixture = await createFixture();
     const caption = findCaption(fixture);
 
-    expect(caption.style.getPropertyValue('border-top-width')).toBe(
-      'var(--nb-image-card-border-width, var(--nb-border-width))'
-    );
-    expect(caption.style.getPropertyValue('border-top-color')).toBe(
-      'var(--nb-image-card-border-color, var(--nb-border))'
-    );
+    expect(caption.style.getPropertyValue('border-top-width')).toBe('');
+    expect(caption.style.getPropertyValue('border-top-color')).toBe('');
     expect(caption.style.cssText).not.toContain('--nb-resolved');
     expect(caption.className).toBe('');
   });
