@@ -1,16 +1,19 @@
 # API Consistency Audit
 
 > **Status:** Decision document. Audited 2026-06-01 against the actual code on
-> `refactor/api-consistency-audit`. The internal style-capability layer
-> (`tokens → capabilities → hostDirectives → public CSS hooks`) has already
-> landed for the visual-grammar primitives; this audit closes the remaining
-> drift **before** the next wave of the refactor (folding Button/IconButton tone
-> into the tone capability, removing local token maps).
+> `refactor/api-consistency-audit`. This audit predates the CSS-first
+> token-customization architecture and should be treated as historical context,
+> not the current implementation direction.
 >
-> Companion docs: [`style-capabilities.md`](../components/style-capabilities.md)
-> (how the capability layer works) and
-> [`composition-philosophy.md`](../components/composition-philosophy.md)
-> (ng-brutalism vs `nbText` vs Tailwind boundaries).
+> Current docs:
+> - [`token-customization.md`](./token-customization.md)
+> - [`token-customization-audit.md`](./token-customization-audit.md)
+> - [`token-customization-migration.md`](./token-customization-migration.md)
+> - [`composition-philosophy.md`](../components/composition-philosophy.md)
+>
+> The old style-capability layer (`tokens → capabilities → hostDirectives →
+> public CSS hooks`) is preserved only as a reference in
+> [`style-capabilities.md`](../components/style-capabilities.md).
 >
 > **API language cleanup — shipped (2026-06-01).** The public-vocabulary half of
 > this audit landed in the API-language-cleanup PR:
@@ -723,7 +726,8 @@ during it · **Low** = document and revisit.
    separator/divider rename to validate layout grammar.
 7. **Refactor Chip / Callout** — validate compact/block anatomy.
 8. **Update recipes**, starting with `podcast-card.ts` — proves real composition.
-9. **Update docs** — `style-capabilities.md`, `composition-philosophy.md`,
+9. **Update docs** — `token-customization.md`, `token-customization-audit.md`,
+   `token-customization-migration.md`, `composition-philosophy.md`,
    `primitives-roadmap.md`, and this audit's "target → shipped" status.
 
 Why this order: Surface/Button/MediaFrame validate the visual grammar;

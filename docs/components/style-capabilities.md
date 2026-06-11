@@ -1,9 +1,18 @@
 # Internal Style-Capability Architecture
 
-How ng-brutalism primitives share their visual vocabulary without duplicating
-token logic. This is an **internal** architecture note — public users keep
-composing the primitives (`nbSurface`, `nbButton`, …); they never touch the
-capability layer.
+Historical note: this document predates the CSS-first token-customization
+architecture. It is kept as a frozen reference for older implementation
+context, but it is no longer the active direction.
+
+Use these docs for the current model instead:
+
+- [Token customization architecture](../architecture/token-customization.md)
+- [Token customization audit](../architecture/token-customization-audit.md)
+- [Token customization migration plan](../architecture/token-customization-migration.md)
+
+How ng-brutalism primitives used to share their visual vocabulary without
+duplicating token logic. Public users keep composing the primitives
+(`nbSurface`, `nbButton`, …); they never touched the capability layer.
 
 ## The five layers
 

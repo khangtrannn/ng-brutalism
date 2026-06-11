@@ -1,11 +1,11 @@
 import { Directive, input } from '@angular/core';
 
+import { NbToneCapability } from '../core/capabilities';
 import {
-  NbBorderCapability,
-  NbRadiusCapability,
-  NbShadowCapability,
-  NbToneCapability,
-} from '../core/capabilities';
+  nbBorderWidthStyleTransform,
+  nbRadiusStyleTransform,
+  nbShadowStyleTransform,
+} from '../core/input-transforms';
 import type { NbBorderStrength } from '../tokens/border';
 import type { NbRadius } from '../tokens/radius';
 import type { NbShadow } from '../tokens/shadow';
@@ -31,19 +31,26 @@ export type NbMediaFrameFit = 'cover' | 'contain' | 'fill';
 
 @Directive({
   selector: '[nbMediaFrame]',
-  hostDirectives: [
-    { directive: NbToneCapability, inputs: ['tone'] },
-    { directive: NbRadiusCapability, inputs: ['radius'] },
-    { directive: NbShadowCapability, inputs: ['shadow'] },
-    { directive: NbBorderCapability, inputs: ['border'] },
-  ],
+  hostDirectives: [{ directive: NbToneCapability, inputs: ['tone'] }],
   host: {
     '[attr.data-nb-media-frame]': '""',
     '[attr.data-ratio]': 'ratio()',
     '[attr.data-fit]': 'fit()',
+    '[style.--nb-media-frame-radius]': 'radius()',
+    '[style.--nb-media-frame-shadow]': 'shadow()',
+    '[style.--nb-media-frame-border-width]': 'border()',
   },
 })
 export class NbMediaFrame {
   readonly ratio = input<NbMediaFrameRatio>('auto');
   readonly fit = input<NbMediaFrameFit>('cover');
+  readonly radius = input(null, {
+    transform: nbRadiusStyleTransform,
+  });
+  readonly shadow = input(null, {
+    transform: nbShadowStyleTransform,
+  });
+  readonly border = input(null, {
+    transform: nbBorderWidthStyleTransform,
+  });
 }

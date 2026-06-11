@@ -1,0 +1,680 @@
+# Token Customization Migration Plan
+
+Status: Active Draft
+Last updated: 2026-06-10
+Scope: Internal migration plan for `@ng-brutalism/ui` token customization architecture
+
+Related documents:
+
+- `docs/architecture/token-customization.md`
+- `docs/architecture/token-customization-audit.md`
+
+This migration follows the accepted architecture:
+
+  Capability directive = semantic/state adapter.
+  Input transform = scalar token normalization.
+  Host binding = component namespace mapping.
+  CSS = final visual style engine.
+
+Primary direction:
+
+  - Scalar inputs: direct `input()` calls + named pure input transforms -> write a single public component CSS variable.
+  - Semantic inputs (tone, size, layout): write `data-*` attributes (use `data-nb-tone` for tone).
+  - Shared tone recipe CSS maps `data-nb-tone` to internal `--_nb-tone-*` slots.
+  - CSS owns final properties, fallbacks and recipes.
+
+---
+
+## Phase 0 — Preparation checklist
+
+- [ ] Add `libs/ui/src/lib/core/input-transforms/token-style-transform.ts` (core transform types).
+- [ ] Add named pure transform functions for radius, shadow, padding, gap, and border width under `core/input-transforms/`.
+- [ ] Export input transforms from `core/input-transforms/index.ts`.
+- [ ] Add the shared tone recipe CSS layer (centralized stylesheet) that maps `data-nb-tone` -> `--_nb-tone-*` using `:where()` selectors.
+- [ ] Use `data-nb-tone`, not `data-tone`.
+- [ ] Do not add per-component tone recipe blocks unless a component truly needs special tone behavior (explicit exception documented).
+- [ ] Do not create helpers that call Angular `input()`; `input()` must be called directly in class member initializers.
+- [ ] Keep input options inline (alias, transform).
+
+Replace any checklist item that said "Add style input helpers" with "Add scalar token input transforms (input transforms)".
+
+---
+
+## Phase 1 — NbCallout pilot
+
+Use `NbCallout` as the migration pilot. TypeScript and CSS should match the examples in the architecture doc.
+
+Desired TypeScript changes (example):
+
+- Host directive for tone: `hostDirectives: [{ directive: NbToneCapability, inputs: ['tone'] }]` and `NbToneCapability` writes `data-nb-tone`.
+- Use direct `input()` calls with inline options and named transforms: `protected readonly radiusVar = input(null, { alias: 'radius', transform: nbRadiusStyleTransform });`
+- Host style bindings: `'[style.--nb-callout-radius]': 'radiusVar()'` and similarly for shadow.
+
+CSS changes (example):
+
+- Remove any per-component `[data-nb-callout][data-nb-tone='...']` recipe blocks.
+- Component CSS should consume internal tone slots with neutral fallback, e.g. `background: var(--nb-callout-bg, var(--_nb-tone-bg, var(--nb-tone-neutral-bg)));`.
+
+Remove list for the pilot (things to delete in code/docs):
+
+- Remove `data-radius` if used to mirror scalar inputs.
+- Remove manual computed radius logic that wrote final `border-radius` from TypeScript.
+- Remove host bindings that wrote final `border-radius` or `box-shadow` properties from TypeScript (replace with public CSS variable writes).
+- Remove tone final background/color/border-color host bindings in TypeScript.
+- Remove per-component tone recipe examples from docs and styles.
+
+Acceptance criteria (NbCallout):
+
+- [ ] No `radius` input -> no inline `--nb-callout-radius` is written.
+- [ ] `radius="sm"` writes inline `--nb-callout-radius` with the transform output.
+- [ ] Parent `--nb-callout-radius` customization works when no radius input exists.
+- [ ] Local `--nb-callout-radius` customization works when no radius input exists.
+- [ ] Radius input wins over inherited customization (inline style precedence).
+- [ ] `data-radius` is removed.
+- [ ] `size` and `layout` behavior remain unchanged.
+# Token Customization Migration Plan
+
+Status: Active Draft
+Last updated: 2026-06-10
+Scope: Internal migration plan for `@ng-brutalism/ui` token customization architecture
+
+Related documents:
+
+- `docs/architecture/token-customization.md`
+- `docs/architecture/token-customization-audit.md`
+
+Important: this migration follows the CSS-first, input-friendly architecture described in `token-customization.md`.
+
+High-level direction:
+
+```
+Angular scalar inputs write the component's public CSS variable.
+Semantic inputs reflect as data attributes (data-nb-*) and map to shared CSS recipes.
+CSS is the final style engine and owns fallbacks.
+```
+
+---
+
+## 0. Migration checklist (Phase 0)
+
+- [ ] Add `libs/ui/src/lib/core/input-transforms/token-style-transform.ts` (core transform types).
+- [ ] Add named pure transform functions for radius, shadow, padding, gap, border width (exported from `core/input-transforms/index.ts`).
+- [ ] Add a shared tone recipe CSS layer (centralized file, low specificity with `:where`).
+- [ ] Audit and replace all `data-tone` references with `data-nb-tone`.
+- [ ] Do not add per-component tone recipe blocks unless a component needs a documented special-case.
+- [ ] Do not create helpers that call Angular `input()`; replace helper wrappers with named input transforms.
+- [ ] Keep input options inline in the `input()` call (alias + transform inline) to preserve Angular static analysis compatibility.
+
+Remove any checklist item that instructs adding style input helpers that wrap `input()`; replace with "Add scalar token input transforms".
+
+---
+
+## 1. NbCallout pilot (recommended)
+
+Apply the updated code/CSS shape to `NbCallout` as a pilot. Desired TypeScript and CSS shape is the example in `token-customization.md` (section 5). Key migration actions:
+
+- Replace any `data-tone` usage with `data-nb-tone` and ensure `NbToneCapability` writes `data-nb-tone`.
+- Remove `data-radius` and any computed radius fallback logic in TypeScript.
+- Remove host bindings that set final properties (e.g. `[style.border-radius]`, `[style.box-shadow]`) and replace with host bindings that write public CSS variables (e.g. `[style.--nb-callout-radius]`).
+- Export and use named input transforms (e.g. `nbRadiusStyleTransform`, `nbShadowStyleTransform`) and call `input()` directly in the initializer.
+- Do not add per-component tone recipe blocks in the callout CSS; consume `--_nb-tone-*` provided by the shared recipe.
+
+Removal list (examples to remove):
+
+- Remove `data-radius` attribute usage.
+- Remove any in-TS final style resolution for radius, box-shadow, border-color, background, color.
+- Remove per-component `[data-nb-tone='...']` recipe blocks unless intentionally exceptional.
+
+Acceptance criteria for NbCallout pilot:
+
+- [ ] No radius input => no inline `--nb-callout-radius` written.
+- [ ] `radius="sm"` writes inline `--nb-callout-radius`.
+- [ ] Parent `--nb-callout-radius` customization works when no radius input exists.
+- [ ] Local `--nb-callout-radius` customization works when no radius input exists.
+- [ ] Radius input wins over inherited customization.
+- [ ] `data-radius` is removed.
+- [ ] `size` and `layout` behavior remain unchanged.
+- [ ] `tone="warning"` renders `data-nb-tone="warning"` on the element.
+- [ ] No tone input renders no `data-nb-tone`.
+- [ ] Shared tone recipe CSS sets internal `--_nb-tone-*` slots.
+- [ ] NbCallout consumes `--_nb-tone-*` slots with neutral fallback.
+- [ ] Base CSS falls back to neutral tokens when no tone context exists.
+- [ ] Component-specific variables like `--nb-callout-bg` override the tone recipe.
+- [ ] No per-component tone recipe block is added unless intentionally justified and documented.
+
+---
+
+## 2. Testing policy updates
+
+Tone tests:
+
+- No tone input -> no `data-nb-tone` attribute.
+- `tone="warning"` -> `data-nb-tone="warning"` written by `NbToneCapability`.
+- Shared tone recipe provides `--_nb-tone-*` when `data-nb-tone` exists.
+- Component CSS falls back to neutral tokens when no tone context exists.
+- Component-specific public vars override tone recipe.
+- Parent `data-nb-tone` provides inherited tone context; child component can override by writing its own `data-nb-tone`.
+
+Scalar input tests:
+
+- No scalar input -> no inline public CSS variable written.
+- Scalar input -> inline public CSS variable is written.
+- `null` binding -> inline public CSS variable is removed.
+- Parent CSS customization works when no input exists.
+- Local CSS customization (inline or class) works when no input exists.
+- Input wins via the inline public CSS variable when present.
+
+---
+
+## 3. Temporary decisions to document
+
+Shared internal tone slots:
+
+- Limit: `--_nb-tone-*` variables are visible in DevTools even though they are internal.
+- Reason: they prevent tone recipe duplication across components and avoid generating complex TypeScript multi-var outputs.
+- Future: if this becomes confusing, consider generated CSS recipes, CSS mixins, or richer documentation for the internal layer.
+
+Input transforms instead of input wrappers:
+
+- Limit: component input declarations will be slightly more verbose compared to an `nbRadiusStyleInput()` wrapper.
+- Reason: Angular `input()` must be called directly in a class member initializer for compiler support.
+- Future: revisit if Angular adds an officially supported abstraction for `input()` wrappers.
+
+---
+
+If you want I can apply the NbCallout pilot patch next and run the audit searches listed in the audit doc to find remaining `data-tone` / helper occurrences.
+
+```txt
+tone -> semantic recipe
+size -> semantic preset if it affects multiple anatomy values
+layout -> semantic state
+radius -> scalar design input
+shadow -> scalar design input
+padding -> scalar design input
+gap -> scalar design input
+disabled -> behavior/state
+alt -> accessibility
+value -> behavior/internal
+```
+
+### 8.2 Migrate semantic inputs
+
+```txt
+- [ ] Reflect semantic inputs as data attributes.
+- [ ] Keep CSS selectors for semantic behavior.
+- [ ] Do not compute final visual values in TypeScript for semantic inputs.
+```
+
+### 8.3 Migrate scalar design inputs
+
+```txt
+- [ ] Replace manual computed `undefined -> null` logic by using a named input transform and direct `input()`.
+- [ ] Bind scalar input to a public component CSS variable.
+- [ ] Do not bind scalar input to final CSS property.
+- [ ] Ensure unset input does not write the inline CSS variable.
+```
+
+### 8.4 Migrate CSS
+
+```txt
+- [ ] Final CSS properties read public component CSS variables with fallback.
+- [ ] Component CSS does not set public customization variables as defaults.
+- [ ] Size/variant selectors can provide different fallbacks by repeating the final property.
+- [ ] Tone recipes are written in CSS using `data-nb-tone` selectors (centralized shared layer).
+```
+
+### 8.5 Remove design mirror attributes
+
+```txt
+- [ ] Remove data attributes that only mirror scalar design values.
+- [ ] Keep data attributes used for semantic selectors or behavior.
+```
+
+### 8.6 Update tests
+
+```txt
+- [ ] No input -> no inline public CSS variable.
+- [ ] Input -> inline public CSS variable.
+- [ ] Local CSS variable customization works.
+- [ ] Inherited CSS variable customization works.
+- [ ] Input wins over inherited customization.
+- [ ] Removed mirror attributes are no longer rendered.
+```
+
+---
+
+## 9. Migration Phases
+
+### Phase 0: Architecture and transform preparation
+
+Status: Planned
+
+```txt
+- Add architecture docs.
+- Add migration docs.
+- Add input transform utilities (core/token-style-transform and named transforms).
+- Add index exports for transforms.
+```
+
+### Phase 1: NbCallout pilot
+
+Status: Planned
+
+Risk: High
+Reason: exercises the full model.
+
+```txt
+- size preset
+- layout state
+- tone semantic recipe
+- radius scalar input
+- shadow scalar input
+- data-radius removal
+- CSS fallback by size
+```
+
+### Phase 2: Simple surfaces
+
+Status: In progress
+
+Risk: Medium
+
+Components:
+
+```txt
+NbCard
+NbBadge
+NbAvatar
+NbMediaFrame (done)
+```
+
+Likely scalar inputs:
+
+```txt
+radius
+shadow
+border
+padding
+```
+
+Likely semantic inputs:
+
+```txt
+tone
+size if preset-based
+variant if present
+```
+
+### Phase 3: Surface, Button, IconButton
+
+Status: In progress
+
+Risk: Medium/High
+
+Components:
+
+```txt
+NbSurface (done)
+NbButton
+NbIconButton
+```
+
+Notes:
+
+```txt
+- Surface may have broader layout and typography concerns.
+- Button size is likely a semantic preset.
+- Button tone should be CSS recipe-based.
+- Scalar inputs should write public component variables.
+```
+
+### Phase 4: Layout primitives
+
+Status: Planned
+
+Risk: Medium
+
+Components:
+
+```txt
+NbStack
+NbCluster
+NbSplit
+NbSection
+NbChipGroup
+```
+
+Likely scalar inputs:
+
+```txt
+gap
+padding
+separator gap if exposed
+```
+
+Likely semantic inputs:
+
+```txt
+align
+justify
+wrap
+orientation
+layout
+separator
+flush
+divider
+```
+
+Notes:
+
+```txt
+- Keep layout state as data attributes.
+- Move gap/padding to public component CSS variables.
+- Avoid final inline gap/padding styles.
+```
+
+### Phase 5: Forms and overlays
+
+Status: Planned
+
+Risk: High
+
+Components:
+
+```txt
+NbInput
+NbTextarea
+NbNativeSelect
+NbSelect
+NbDialog
+```
+
+Notes:
+
+```txt
+- These have inner elements and stateful styling.
+- Keep state as data attributes.
+- Use CSS variables for visual customization.
+- Be careful with in-group, disabled, invalid, open, selected, focused states.
+```
+
+### Phase 6: Typography and Icon
+
+Status: Planned
+
+Risk: High
+
+Components:
+
+```txt
+NbText
+NbDisplay
+NbTypography
+NbIcon
+```
+
+Notes:
+
+```txt
+- Some existing design data attributes may be mirrors and should be removed.
+- Typography inputs may be scalar design inputs.
+- Icon size may be scalar if it only maps to width/height.
+- Tone for text/icon needs careful classification.
+```
+
+### Phase 7: Special components
+
+Status: Planned
+
+Risk: High
+
+Components:
+
+```txt
+NbSticker
+NbHalftone
+NbProgress
+NbRating
+NbSeparator
+NbMediaItem
+```
+
+Notes:
+
+```txt
+- Some components involve drawing, geometry, or runtime values.
+- Do not blindly apply the scalar input pattern to behavior/math values.
+- Preserve runtime behavior such as progress width and halftone geometry.
+```
+
+---
+
+## 10. Component Status Table
+
+| Component      | Phase | Status  | Risk        | Notes                 |
+| -------------- | ----: | ------- | ----------- | --------------------- |
+| NbCallout      |     1 | Planned | High        | Pilot component       |
+| NbCard         |     2 | Planned | Medium      | Simple surface        |
+| NbBadge        |     2 | Planned | Medium      | Simple surface        |
+| NbAvatar       |     2 | Planned | Medium      | Simple surface        |
+| NbMediaFrame   |     2 | Done    | Medium      | Uses data-nb-tone and public radius/shadow/border vars |
+| NbSurface      |     3 | Done    | High        | Uses data-nb-tone and public radius/shadow/border/padding vars |
+| NbButton       |     3 | Planned | High        | Size/tone/interaction |
+| NbIconButton   |     3 | Planned | Medium/High | Size/tone/shape       |
+| NbStack        |     4 | Planned | Medium      | Gap/separator         |
+| NbCluster      |     4 | Planned | Medium      | Gap/padding/separator |
+| NbSplit        |     4 | Planned | Medium      | Gap/padding/collapse  |
+| NbSection      |     4 | Planned | Medium      | Padding/flush/divider |
+| NbChipGroup    |     4 | Planned | Medium      | Gap and child context |
+| NbInput        |     5 | Planned | High        | Form state            |
+| NbTextarea     |     5 | Planned | High        | Form state            |
+| NbNativeSelect |     5 | Planned | High        | Form state            |
+| NbSelect       |     5 | Planned | High        | Complex state         |
+| NbDialog       |     5 | Planned | High        | Inner surface         |
+| NbText         |     6 | Planned | High        | Typography tokens     |
+| NbDisplay      |     6 | Planned | High        | Typography tokens     |
+| NbTypography   |     6 | Planned | Medium      | Font token            |
+| NbIcon         |     6 | Planned | High        | Size/tone/mode        |
+| NbSticker      |     7 | Planned | High        | Shape/drawing         |
+| NbHalftone     |     7 | Planned | High        | Geometry/drawing      |
+| NbProgress     |     7 | Planned | Medium/High | Runtime progress      |
+| NbRating       |     7 | Planned | Medium/High | Runtime rating        |
+| NbSeparator    |     7 | Planned | Medium      | Orientation/variant   |
+| NbMediaItem    |     7 | Planned | High        | Composite anatomy     |
+
+---
+
+## 11. Temporary Decisions and Limits
+
+### 11.1 Style capability directives remain temporarily
+
+Limit:
+
+```txt
+Old style capability directives may still exist during migration.
+```
+
+Reason:
+
+```txt
+Removing them everywhere at once would create a large, risky refactor.
+```
+
+Future:
+
+```txt
+Clean them up after enough components migrate to input transforms.
+```
+
+### 11.2 CSS may repeat public variables in size selectors
+
+Example:
+
+```css
+[data-nb-callout][data-size='sm'] {
+  border-radius: var(--nb-callout-radius, var(--nb-radius-md));
+}
+
+[data-nb-callout][data-size='lg'] {
+  border-radius: var(--nb-callout-radius, var(--nb-radius-xl));
+}
+```
+
+Limit:
+
+```txt
+This is repetitive and can feel odd at first glance.
+```
+
+Reason:
+
+```txt
+It is easier for users to understand than adding --*-default or --*-by-size variables.
+```
+
+Future:
+
+```txt
+If repetition becomes painful, revisit a derived fallback variable pattern.
+```
+
+### 11.3 Angular input and CSS customization share one slot
+
+Example:
+
+```txt
+radius input writes --nb-callout-radius.
+User CSS customization also uses --nb-callout-radius.
+```
+
+Limit:
+
+```txt
+Conflicts are possible if both are set on the same element.
+```
+
+Reason:
+
+```txt
+This keeps the public CSS API simple and preserves input priority through inline style.
+```
+
+Future:
+
+```txt
+If this becomes confusing in real usage, revisit --*-input variables for specific components only.
+```
+
+### 11.4 Tone recipe is CSS-only
+
+Limit:
+
+```txt
+Tone recipes may need repeated CSS rules across components.
+```
+
+Reason:
+
+```txt
+This keeps tone semantic and avoids a TypeScript multi-var generator.
+```
+
+Future:
+
+```txt
+If repeated tone recipe CSS becomes too large, introduce CSS mixins, shared CSS layers, or generated CSS utilities.
+```
+
+### 11.5 No namespace-aware capability yet
+
+Limit:
+
+```txt
+Each component must bind its own namespaced CSS variables.
+```
+
+Reason:
+
+```txt
+This is explicit and avoids dynamic host binding complexity.
+```
+
+Future:
+
+```txt
+After migration, revisit whether namespace-aware capabilities are worth the abstraction.
+```
+
+---
+
+## 12. Do Not Do
+
+Do not:
+
+```txt
+- Do not implement the old `--*-input / --*-default` architecture by default.
+- Do not create `resolvedRadius`, `resolvedShadow`, or similar TS fallback computeds.
+- Do not duplicate CSS defaults in TypeScript.
+- Do not bind final customizable properties like border-radius, box-shadow, padding, or gap from TypeScript.
+- Do not use data attributes that only mirror scalar design values.
+- Do not introduce `nbTokenVarsInput` for tone.
+- Do not refactor every component at once.
+- Do not start by rewriting shared style capabilities globally.
+- Do not set public customization variables as component defaults in CSS.
+```
+
+---
+
+## 13. Agent Workflow
+
+For each migration phase:
+
+```txt
+1. Read `token-customization.md`.
+2. Read this migration plan.
+3. Check the historical audit for component-specific risks.
+4. Migrate one component or one small component group.
+5. Update tests.
+6. Run the test suite.
+7. Report:
+   - what changed;
+   - what public inputs changed, if any;
+   - what CSS variables changed;
+   - what data attributes were removed;
+   - what old capability usage remains;
+   - any conflicts or visual regressions.
+```
+
+For `NbCallout`, report specifically:
+
+```txt
+- Did the directive become simpler?
+- Did `data-radius` disappear?
+- Does no input avoid writing inline CSS vars?
+- Does radius input write `--nb-callout-radius`?
+- Does inherited customization still work?
+- Does local customization still work?
+- Does input win over inherited customization?
+- Is tone now `data-nb-tone` only?
+- Are tone recipes CSS-owned?
+- Are there any visual regressions?
+```
+
+---
+
+## 14. Success Criteria
+
+This migration is successful if:
+
+```txt
+1. User-facing customization becomes easier to understand.
+2. DevTools output is less noisy than the `--*-input / --*-default` model.
+3. TypeScript no longer acts as the final style engine.
+4. CSS owns final properties and fallbacks.
+5. Angular inputs remain ergonomic.
+6. Local and inherited CSS customization continue to work.
+7. Capability directives have a clearer semantic/state boundary.
+8. Scalar design inputs become consistent through input transforms.
+9. Existing visuals remain stable unless previous behavior was caused by incorrect inline final styles.
+10. Future components have a clear implementation pattern.
+```

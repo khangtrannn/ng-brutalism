@@ -48,9 +48,8 @@ describe('NbMediaFrame', () => {
     ) as HTMLElement;
 
     expect(frame.getAttribute('data-nb-media-frame')).toBe('');
-    // No style inputs set — capability attrs stay absent; CSS fallback owns the
-    // visual defaults. Attribute presence means "consumer chose this".
-    expect(frame.getAttribute('data-tone')).toBeNull();
+    // No style inputs set — CSS fallback owns the visual defaults.
+    expect(frame.getAttribute('data-nb-tone')).toBeNull();
     expect(frame.getAttribute('data-ratio')).toBe('auto');
     expect(frame.getAttribute('data-fit')).toBe('cover');
     expect(frame.getAttribute('data-radius')).toBeNull();
@@ -67,6 +66,12 @@ describe('NbMediaFrame', () => {
     expect(frame.style.getPropertyValue('background')).toBe('');
     expect(frame.style.getPropertyValue('border-radius')).toBe('');
     expect(frame.style.getPropertyValue('box-shadow')).toBe('');
+    expect(frame.style.getPropertyValue('border-width')).toBe('');
+    expect(frame.style.getPropertyValue('--nb-media-frame-radius')).toBe('');
+    expect(frame.style.getPropertyValue('--nb-media-frame-shadow')).toBe('');
+    expect(frame.style.getPropertyValue('--nb-media-frame-border-width')).toBe(
+      ''
+    );
     expect(frame.style.cssText).not.toContain('--nb-resolved');
   });
 
@@ -78,14 +83,21 @@ describe('NbMediaFrame', () => {
 
     expect(frame.getAttribute('data-ratio')).toBe('21/9');
     expect(frame.getAttribute('data-fit')).toBe('contain');
-    // Explicit inputs win outright — literal values, no public hook.
-    expect(frame.style.getPropertyValue('background')).toBe('var(--nb-lavender)');
+    expect(frame.getAttribute('data-nb-tone')).toBe('lavender');
     expect(frame.className).toBe('');
-    expect(frame.style.getPropertyValue('border-radius')).toBe('1rem');
-    expect(frame.style.getPropertyValue('box-shadow')).toBe(
+    expect(frame.style.getPropertyValue('background')).toBe('');
+    expect(frame.style.getPropertyValue('border-radius')).toBe('');
+    expect(frame.style.getPropertyValue('box-shadow')).toBe('');
+    expect(frame.style.getPropertyValue('border-width')).toBe('');
+    expect(frame.style.getPropertyValue('--nb-media-frame-radius')).toBe(
+      'var(--nb-radius-xl, 1rem)'
+    );
+    expect(frame.style.getPropertyValue('--nb-media-frame-shadow')).toBe(
       '6px 6px 0 0 var(--nb-shadow)'
     );
-    expect(frame.style.getPropertyValue('border-width')).toBe('3px');
+    expect(frame.style.getPropertyValue('--nb-media-frame-border-width')).toBe(
+      '3px'
+    );
     expect(frame.style.cssText).not.toContain('--nb-resolved');
   });
 
@@ -106,14 +118,14 @@ describe('NbMediaFrame', () => {
   });
 
   it.each([
-    ['surface', 'var(--nb-surface)'],
-    ['pink', 'var(--nb-pink)'],
-    ['mint', 'var(--nb-mint)'],
-    ['blue', 'var(--nb-blue)'],
-    ['black', '#000000'],
-  ] satisfies readonly [NbMediaFrameTone, string][])(
-    'keeps the %s tone available for framed visual content',
-    async (tone, color) => {
+    ['surface'],
+    ['pink'],
+    ['mint'],
+    ['blue'],
+    ['black'],
+  ] satisfies readonly [NbMediaFrameTone][])(
+    'reflects %s as semantic tone state without writing final colors',
+    async (tone) => {
       const fixture = await createFixture(ToneMediaFrameTest, (instance) => {
         instance.tone = tone;
       });
@@ -122,11 +134,10 @@ describe('NbMediaFrame', () => {
         '[nbMediaFrame]'
       ) as HTMLElement;
 
-      if (color.startsWith('var(')) {
-        expect(frame.style.getPropertyValue('background')).toBe(color);
-      } else {
-        expect(frame.style.getPropertyValue('background')).toBeTruthy();
-      }
+      expect(frame.getAttribute('data-nb-tone')).toBe(tone);
+      expect(frame.style.getPropertyValue('background')).toBe('');
+      expect(frame.style.getPropertyValue('color')).toBe('');
+      expect(frame.style.getPropertyValue('border-color')).toBe('');
       expect(frame.style.getPropertyValue('--nb-media-frame-bg')).toBe('');
       expect(frame.style.cssText).not.toContain('--nb-resolved');
     }

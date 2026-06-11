@@ -73,9 +73,8 @@ describe('NbSurface', () => {
     ) as HTMLElement;
 
     expect(surface.getAttribute('data-nb-surface')).toBe('');
-    // No style inputs set — capability attrs stay absent; CSS fallback owns the
-    // visual defaults. Attribute presence means "consumer chose this".
-    expect(surface.getAttribute('data-tone')).toBeNull();
+    // No style inputs set — CSS fallback owns the visual defaults.
+    expect(surface.getAttribute('data-nb-tone')).toBeNull();
     expect(surface.getAttribute('data-radius')).toBeNull();
     expect(surface.getAttribute('data-border')).toBeNull();
     expect(surface.getAttribute('data-shadow')).toBeNull();
@@ -92,7 +91,11 @@ describe('NbSurface', () => {
     expect(style.getPropertyValue('--nb-surface-bg')).toBe('');
     expect(style.getPropertyValue('border-radius')).toBe('');
     expect(style.getPropertyValue('border-width')).toBe('');
+    expect(style.getPropertyValue('box-shadow')).toBe('');
     expect(style.getPropertyValue('padding')).toBe('');
+    expect(style.getPropertyValue('--nb-surface-radius')).toBe('');
+    expect(style.getPropertyValue('--nb-surface-shadow')).toBe('');
+    expect(style.getPropertyValue('--nb-surface-border-width')).toBe('');
     expect(style.getPropertyValue('--nb-surface-padding')).toBe('');
     expect(style.cssText).not.toContain('--nb-resolved');
   });
@@ -105,12 +108,19 @@ describe('NbSurface', () => {
 
     expect(surface.getAttribute('data-size')).toBe('lg');
     expect(surface.getAttribute('data-layout')).toBe('center');
+    expect(surface.getAttribute('data-nb-tone')).toBe('cream');
 
-    // Explicit inputs win outright — literal values, no public hook.
-    expect(surface.style.getPropertyValue('background')).toBe('var(--nb-cream)');
-    expect(surface.style.getPropertyValue('border-radius')).toBe('1rem');
-    expect(surface.style.getPropertyValue('border-width')).toBe('4px');
-    expect(surface.style.getPropertyValue('box-shadow')).toBe(
+    expect(surface.style.getPropertyValue('background')).toBe('');
+    expect(surface.style.getPropertyValue('border-radius')).toBe('');
+    expect(surface.style.getPropertyValue('border-width')).toBe('');
+    expect(surface.style.getPropertyValue('box-shadow')).toBe('');
+    expect(surface.style.getPropertyValue('--nb-surface-radius')).toBe(
+      'var(--nb-radius-xl, 1rem)'
+    );
+    expect(surface.style.getPropertyValue('--nb-surface-border-width')).toBe(
+      '4px'
+    );
+    expect(surface.style.getPropertyValue('--nb-surface-shadow')).toBe(
       '10px 10px 0 0 var(--nb-shadow)'
     );
     expect(surface.style.cssText).not.toContain('--nb-resolved');
@@ -119,14 +129,14 @@ describe('NbSurface', () => {
   });
 
   it.each([
-    ['surface', 'var(--nb-surface)'],
-    ['pink', 'var(--nb-pink)'],
-    ['mint', 'var(--nb-mint)'],
-    ['lavender', 'var(--nb-lavender)'],
-    ['blue', 'var(--nb-blue)'],
-  ] satisfies readonly [NbSurfaceTone, string][])(
-    'keeps the %s decorative tone visually distinct from semantic tones',
-    async (tone, color) => {
+    ['surface'],
+    ['pink'],
+    ['mint'],
+    ['lavender'],
+    ['blue'],
+  ] satisfies readonly [NbSurfaceTone][])(
+    'reflects %s as semantic tone state without writing final colors',
+    async (tone) => {
       const fixture = await createFixture(ToneSurfaceTest, (instance) => {
         instance.tone = tone;
       });
@@ -135,11 +145,14 @@ describe('NbSurface', () => {
         '[nbSurface]'
       ) as HTMLElement;
 
-      expect(surface.style.getPropertyValue('background')).toBe(color);
+      expect(surface.getAttribute('data-nb-tone')).toBe(tone);
+      expect(surface.style.getPropertyValue('background')).toBe('');
+      expect(surface.style.getPropertyValue('color')).toBe('');
+      expect(surface.style.getPropertyValue('border-color')).toBe('');
     }
   );
 
-  it('writes actual background from the tone capability', async () => {
+  it('leaves component-specific public CSS variables open for tone overrides', async () => {
     const fixture = await createFixture(ToneSurfaceTest, (instance) => {
       instance.tone = 'mint';
     });
@@ -147,7 +160,8 @@ describe('NbSurface', () => {
       '[nbSurface]'
     ) as HTMLElement;
 
-    expect(surface.style.getPropertyValue('background')).toBe('var(--nb-mint)');
+    expect(surface.getAttribute('data-nb-tone')).toBe('mint');
+    expect(surface.style.getPropertyValue('background')).toBe('');
     expect(surface.style.getPropertyValue('--nb-surface-bg')).toBe('');
     expect(surface.style.cssText).not.toContain('--nb-resolved');
   });
@@ -159,11 +173,18 @@ describe('NbSurface', () => {
     ) as HTMLElement;
 
     expect(surface.getAttribute('data-layout')).toBe('stack');
-    expect(surface.style.getPropertyValue('border-width')).toBe('3px');
-    expect(surface.style.getPropertyValue('box-shadow')).toBe(
+    expect(surface.style.getPropertyValue('border-width')).toBe('');
+    expect(surface.style.getPropertyValue('box-shadow')).toBe('');
+    expect(surface.style.getPropertyValue('border-radius')).toBe('');
+    expect(surface.style.getPropertyValue('--nb-surface-border-width')).toBe(
+      '3px'
+    );
+    expect(surface.style.getPropertyValue('--nb-surface-shadow')).toBe(
       '6px 6px 0 0 var(--nb-shadow)'
     );
-    expect(surface.style.getPropertyValue('border-radius')).toBe('0.75rem');
+    expect(surface.style.getPropertyValue('--nb-surface-radius')).toBe(
+      'var(--nb-radius-lg, 0.75rem)'
+    );
     expect(surface.getAttribute('data-layout')).toBe('stack');
     expect(surface.getAttribute('data-clip')).toBe('');
     expect(surface.className).toBe('');
@@ -177,9 +198,14 @@ describe('NbSurface', () => {
 
     expect(surface.getAttribute('data-edge')).toBe('bottom');
     expect(surface.getAttribute('data-layout')).toBe('row');
-    expect(surface.style.getPropertyValue('padding')).toBe('1rem');
-    expect(surface.style.getPropertyValue('border-width')).toBe('0px');
-    expect(surface.style.getPropertyValue('box-shadow')).toBe('none');
+    expect(surface.style.getPropertyValue('padding')).toBe('');
+    expect(surface.style.getPropertyValue('border-width')).toBe('');
+    expect(surface.style.getPropertyValue('box-shadow')).toBe('');
+    expect(surface.style.getPropertyValue('--nb-surface-padding')).toBe('1rem');
+    expect(surface.style.getPropertyValue('--nb-surface-border-width')).toBe(
+      '0px'
+    );
+    expect(surface.style.getPropertyValue('--nb-surface-shadow')).toBe('none');
     expect(surface.className).toBe('');
   });
 });

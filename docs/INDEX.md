@@ -59,8 +59,11 @@ Agent session protocol:
 |---|---|---|
 | `docs/components/primitives-roadmap.md` | Brutalist primitives roadmap — failure modes, decisions, candidate primitives, next steps | Yes |
 | `docs/components/composition-philosophy.md` | ng-brutalism + `nbText` + Tailwind boundary — when to add an input vs. reach for Tailwind | Yes |
-| `docs/components/style-capabilities.md` | Internal style-capability architecture (tokens → capabilities → hostDirectives → public CSS hooks) + migration summary | Yes |
-| `docs/architecture/api-consistency-audit.md` | API consistency audit — shared token rules, primitive responsibility matrix, naming/default/CSS-var decisions, capability candidates, breaking changes + migration order | Yes |
+| `docs/architecture/token-customization.md` | Current CSS-first token customization architecture — rationale, rules, and accepted direction | Yes |
+| `docs/architecture/token-customization-audit.md` | Token customization audit — current implementation gaps and per-component risk inventory | Yes |
+| `docs/architecture/token-customization-migration.md` | Active migration plan — phases, NbCallout pilot, helper APIs, and acceptance criteria | Yes |
+| `docs/components/style-capabilities.md` | Historical style-capability note — superseded by token customization docs | Yes |
+| `docs/architecture/api-consistency-audit.md` | Historical API consistency audit — naming/default decisions and older capability-language context | Yes |
 | `docs/architecture/v0.3-refactor-plan.md` | v0.3 decisions — capability gap (Track 1), Tabs primitive model, Signal Forms demo strategy, interactive component seam | Yes |
 | `docs/components/contact-dialog/PLAN.md` | Contact dialog redesign — status + design decisions | Yes |
 | `docs/adr/0001-dialog-native-element.md` | ADR: why native `<dialog>` over overlay approach | No |

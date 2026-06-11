@@ -6,9 +6,15 @@
     flex-shrink: 0;
     user-select: none;
     border-style: solid;
-    background: var(--nb-icon-button-bg, var(--nb-surface));
-    color: var(--nb-icon-button-fg, var(--nb-surface-foreground));
-    border-color: var(--nb-icon-button-border-color, var(--nb-border));
+    background: var(--nb-icon-button-bg, var(--_nb-tone-bg, var(--nb-surface)));
+    color: var(
+      --nb-icon-button-fg,
+      var(--_nb-tone-fg, var(--nb-surface-foreground))
+    );
+    border-color: var(
+      --nb-icon-button-border-color,
+      var(--_nb-tone-border-color, var(--nb-border))
+    );
     border-width: var(--nb-icon-button-border-width, var(--nb-border-width));
     border-radius: var(--nb-icon-button-radius, 0px);
     box-shadow: var(

@@ -8,12 +8,12 @@
 export type NbRadius = 'none' | 'sm' | 'md' | 'lg' | 'xl' | 'full';
 
 const RADIUS_VALUES: Record<NbRadius, string> = {
-  none: '0px',
-  sm: '0.25rem',
-  md: '0.5rem',
-  lg: '0.75rem',
-  xl: '1rem',
-  full: '9999px',
+  none: 'var(--nb-radius-none, 0px)',
+  sm: 'var(--nb-radius-sm, 0.25rem)',
+  md: 'var(--nb-radius-md, 0.5rem)',
+  lg: 'var(--nb-radius-lg, 0.75rem)',
+  xl: 'var(--nb-radius-xl, 1rem)',
+  full: 'var(--nb-radius-full, 9999px)',
 };
 
 export function nbRadiusValue(radius: NbRadius): string {

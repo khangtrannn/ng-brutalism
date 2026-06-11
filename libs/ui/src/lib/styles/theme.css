@@ -31,6 +31,11 @@
   --nb-warning: #ff9c42;
   --nb-warning-foreground: #000000;
 
+  /* Shared tone fallback aliases */
+  --nb-tone-neutral-bg: var(--nb-surface);
+  --nb-tone-neutral-fg: var(--nb-surface-foreground);
+  --nb-tone-neutral-border: var(--nb-border);
+
   /* Shape */
   --nb-radius: 0rem;
   --nb-border-width: 2px;

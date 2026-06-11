@@ -11,9 +11,12 @@
     user-select: none;
     font-weight: 700;
     border-style: solid;
-    background: var(--nb-button-bg, var(--nb-primary));
-    color: var(--nb-button-fg, var(--nb-primary-foreground));
-    border-color: var(--nb-button-border-color, var(--nb-border));
+    background: var(--nb-button-bg, var(--_nb-tone-bg, var(--nb-primary)));
+    color: var(--nb-button-fg, var(--_nb-tone-fg, var(--nb-primary-foreground)));
+    border-color: var(
+      --nb-button-border-color,
+      var(--_nb-tone-border-color, var(--nb-border))
+    );
     border-width: var(--nb-button-border-width, var(--nb-border-width));
     border-radius: var(--nb-button-radius, var(--nb-radius));
     box-shadow: var(

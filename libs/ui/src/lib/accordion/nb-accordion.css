@@ -24,9 +24,18 @@
     border-style: solid;
     border-radius: var(--nb-accordion-item-radius, var(--nb-radius));
     border-width: var(--nb-accordion-item-border-width, var(--nb-border-width));
-    border-color: var(--nb-accordion-item-border-color, var(--nb-border));
-    background-color: var(--nb-accordion-item-bg, var(--nb-surface));
-    color: var(--nb-accordion-item-fg, var(--nb-surface-foreground));
+    border-color: var(
+      --nb-accordion-item-border-color,
+      var(--_nb-tone-border-color, var(--nb-border))
+    );
+    background-color: var(
+      --nb-accordion-item-bg,
+      var(--_nb-tone-bg, var(--nb-surface))
+    );
+    color: var(
+      --nb-accordion-item-fg,
+      var(--_nb-tone-fg, var(--nb-surface-foreground))
+    );
     box-shadow: var(
       --nb-accordion-item-shadow,
       var(--nb-shadow-offset-x) var(--nb-shadow-offset-y) 0 0 var(--nb-shadow)

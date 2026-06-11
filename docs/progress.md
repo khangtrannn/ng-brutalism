@@ -24,10 +24,10 @@ For history and details, read the domain's own `progress.md`.
 
 ## Components
 **Status:** v0.3 Track 1 complete. Wave 1 of CSS-in-styles rollout complete (all 3 accordion components).
-**Last action:** Style-capability docs updated with the modifier-attr contract: optional inputs, direct `data-*` binding, CSS owns defaults; no default comparison in TS.
-**Next:** Wave 2 — `NbBadge`, `NbAvatar`, `NbLabel`, `NbCard` sub-components, `NbImageCard`. Then Track 2 NbTabs. Decisions: inputs bind to actual CSS props, never public `--nb-*` hooks; modifier `data-*` attrs emit only user-provided non-default state.
+**Last action:** NbCallout pilot landed for the token-customization migration: radius/shadow now write public CSS variables, tone is semantic `data-tone`, and the new style-input helpers are in place.
+**Next:** Wave 2 — `NbBadge`, `NbAvatar`, `NbLabel`, `NbCard` sub-components, `NbImageCard`. Then Track 2 NbTabs. Decisions: scalar inputs write public CSS variables, semantic inputs use `data-*`, and tone recipes stay CSS-owned.
 **Goal:** All primitives migrated to component CSS pattern before v0.3 interactive components land.
-→ Plan: `docs/architecture/v0.3-refactor-plan.md` · Arch: `docs/components/style-capabilities.md`
+→ Plan: `docs/architecture/v0.3-refactor-plan.md` · Arch: `docs/architecture/token-customization.md`
 
 ---
 

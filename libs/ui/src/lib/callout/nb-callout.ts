@@ -1,10 +1,11 @@
-import { Directive, computed, input } from '@angular/core';
+import { Directive, input } from '@angular/core';
 
+import { NbToneCapability } from '../core/capabilities';
 import {
-  NbShadowCapability,
-  NbToneCapability,
-} from '../core/capabilities';
-import { nbRadiusValue, type NbRadius } from '../tokens/radius';
+  nbRadiusStyleTransform,
+  nbShadowStyleTransform,
+} from '../core/input-transforms';
+import type { NbRadius } from '../tokens/radius';
 import type { NbTone } from '../tokens/tone';
 
 export type NbCalloutTone = NbTone;
@@ -21,28 +22,22 @@ export type NbCalloutRadius = NbRadius;
 
 @Directive({
   selector: '[nbCallout]',
-  hostDirectives: [
-    { directive: NbToneCapability, inputs: ['tone'] },
-    { directive: NbShadowCapability, inputs: ['shadow'] },
-  ],
+  hostDirectives: [{ directive: NbToneCapability, inputs: ['tone'] }],
   host: {
     '[attr.data-nb-callout]': '""',
     '[attr.data-size]': 'size()',
     '[attr.data-layout]': 'layout()',
-    '[attr.data-radius]': 'radius() ?? null',
-    '[style.border-radius]': 'radiusStyle()',
+    '[style.--nb-callout-radius]': 'radius()',
+    '[style.--nb-callout-shadow]': 'shadow()',
   },
 })
 export class NbCallout {
   readonly size = input<NbCalloutSize>('lg');
   readonly layout = input<NbCalloutLayout>('inline');
-  readonly radius = input<NbCalloutRadius | undefined>(undefined);
-
-  // Inline style wins over the size-derived CSS rule, so an explicit `radius`
-  // always takes precedence; null leaves the size default.
-  protected readonly radiusStyle = computed(() => {
-    const r = this.radius();
-
-    return r !== undefined ? nbRadiusValue(r) : null;
+  readonly radius = input(null, {
+    transform: nbRadiusStyleTransform,
+  });
+  readonly shadow = input(null, {
+    transform: nbShadowStyleTransform,
   });
 }

@@ -1,12 +1,12 @@
 import { Directive, booleanAttribute, input } from '@angular/core';
 
+import { NbToneCapability } from '../core/capabilities';
 import {
-  NbBorderCapability,
-  NbPaddingCapability,
-  NbRadiusCapability,
-  NbShadowCapability,
-  NbToneCapability,
-} from '../core/capabilities';
+  nbBorderWidthStyleTransform,
+  nbPaddingStyleTransform,
+  nbRadiusStyleTransform,
+  nbShadowStyleTransform,
+} from '../core/input-transforms';
 import type { NbBorderStrength } from '../tokens/border';
 import type { NbPadding } from '../tokens/padding';
 import type { NbRadius } from '../tokens/radius';
@@ -31,10 +31,6 @@ export type NbSurfaceEdge = 'none' | 'top' | 'bottom';
   selector: '[nbSurface]',
   hostDirectives: [
     { directive: NbToneCapability, inputs: ['tone'] },
-    { directive: NbRadiusCapability, inputs: ['radius'] },
-    { directive: NbShadowCapability, inputs: ['shadow'] },
-    { directive: NbBorderCapability, inputs: ['border'] },
-    { directive: NbPaddingCapability, inputs: ['padding'] },
     // Typography context — exposes nbTypography's `font` input as `typography`.
     { directive: NbTypography, inputs: ['font: typography'] },
   ],
@@ -44,6 +40,10 @@ export type NbSurfaceEdge = 'none' | 'top' | 'bottom';
     '[attr.data-layout]': 'layout()',
     '[attr.data-edge]': 'edge()',
     '[attr.data-clip]': 'clip() ? "" : null',
+    '[style.--nb-surface-radius]': 'radius()',
+    '[style.--nb-surface-shadow]': 'shadow()',
+    '[style.--nb-surface-border-width]': 'border()',
+    '[style.--nb-surface-padding]': 'padding()',
   },
 })
 export class NbSurface {
@@ -52,5 +52,17 @@ export class NbSurface {
   readonly edge = input<NbSurfaceEdge>('none');
   readonly clip = input<boolean, unknown>(false, {
     transform: booleanAttribute,
+  });
+  readonly radius = input(null, {
+    transform: nbRadiusStyleTransform,
+  });
+  readonly shadow = input(null, {
+    transform: nbShadowStyleTransform,
+  });
+  readonly border = input(null, {
+    transform: nbBorderWidthStyleTransform,
+  });
+  readonly padding = input(null, {
+    transform: nbPaddingStyleTransform,
   });
 }

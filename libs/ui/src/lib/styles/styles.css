@@ -1,5 +1,6 @@
 /* styles.css - full theme + base reset */
 @import './theme.css';
+@import './tone.css';
 
 @layer base, components;
 

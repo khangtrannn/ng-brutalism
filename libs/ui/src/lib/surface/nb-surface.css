@@ -2,9 +2,12 @@
   :where([nbSurface]) {
     position: relative;
     border-style: solid;
-    background: var(--nb-surface-bg, var(--nb-surface));
-    color: var(--nb-surface-fg, var(--nb-surface-foreground));
-    border-color: var(--nb-surface-border-color, var(--nb-border));
+    background: var(--nb-surface-bg, var(--_nb-tone-bg, var(--nb-surface)));
+    color: var(--nb-surface-fg, var(--_nb-tone-fg, var(--nb-surface-foreground)));
+    border-color: var(
+      --nb-surface-border-color,
+      var(--_nb-tone-border-color, var(--nb-border))
+    );
     border-width: var(--nb-surface-border-width, var(--nb-border-width));
     border-radius: var(--nb-surface-radius, var(--nb-radius));
     box-shadow: var(
