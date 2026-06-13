@@ -5,9 +5,12 @@
     padding: 0.5rem 0.75rem;
     font-size: 0.875rem;
     font-weight: 500;
-    background-color: var(--nb-input-bg, var(--nb-surface));
-    color: var(--nb-input-fg, var(--nb-surface-foreground));
-    border-color: var(--nb-input-border-color, var(--nb-border));
+    background-color: var(--nb-input-bg, var(--_nb-tone-bg, var(--nb-surface)));
+    color: var(--nb-input-fg, var(--_nb-tone-fg, var(--nb-surface-foreground)));
+    border-color: var(
+      --nb-input-border-color,
+      var(--_nb-tone-border-color, var(--nb-border))
+    );
     border-width: var(--nb-input-border-width, var(--nb-border-width));
     border-style: solid;
     border-radius: var(--nb-input-radius, var(--nb-radius));
@@ -60,6 +63,8 @@
   :where(input[nbInput][data-in-group]) {
     flex: 1 1 0%;
     min-width: 0;
+    background-color: transparent;
+    border-width: 0;
   }
   :where(input[nbInput][data-in-group]):focus-visible {
     outline: none;
@@ -68,7 +73,10 @@
   :where(input[nbInput]:not([data-in-group])):focus-visible {
     box-shadow: none;
     outline: 2px solid
-      var(--nb-input-focus-ring-color, var(--nb-input-border-color, var(--nb-border)));
+      var(
+        --nb-input-focus-ring-color,
+        var(--nb-input-border-color, var(--_nb-tone-border-color, var(--nb-border)))
+      );
     outline-offset: 2px;
   }
 }

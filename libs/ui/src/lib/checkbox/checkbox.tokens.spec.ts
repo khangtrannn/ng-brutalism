@@ -16,26 +16,26 @@ class CheckboxTokenTest {
 }
 
 describe('NbCheckbox token surface', () => {
-  it('leaves checked color tokens unset when tone is omitted', async () => {
+  it('leaves checked color tokens unset and omits tone state when tone is omitted', async () => {
     const fixture = await createFixture();
     const checkbox = findCheckbox(fixture);
 
     expect(checkbox.style.getPropertyValue('--nb-checkbox-bg')).toBe('');
     expect(checkbox.style.getPropertyValue('--nb-checkbox-fg')).toBe('');
-    expect(checkbox.getAttribute('data-tone')).toBe('primary');
+    expect(checkbox.getAttribute('data-nb-tone')).toBeNull();
+    expect(checkbox.getAttribute('data-tone')).toBeNull();
   });
 
-  it('updates inline styles when tone changes', async () => {
+  it('reflects tone semantically without writing final colors inline', async () => {
     const fixture = await createFixture({ tone: 'success' });
     const checkbox = findCheckbox(fixture);
 
-    expect(checkbox.style.getPropertyValue('--nb-checkbox-bg')).toBe(
-      'var(--nb-success)'
-    );
-    expect(checkbox.style.getPropertyValue('--nb-checkbox-fg')).toBe(
-      'var(--nb-success-foreground)'
-    );
-    expect(checkbox.getAttribute('data-tone')).toBe('success');
+    expect(checkbox.getAttribute('data-nb-tone')).toBe('success');
+    expect(checkbox.getAttribute('data-tone')).toBeNull();
+    expect(checkbox.style.getPropertyValue('--nb-checkbox-bg')).toBe('');
+    expect(checkbox.style.getPropertyValue('--nb-checkbox-fg')).toBe('');
+    expect(checkbox.style.getPropertyValue('background-color')).toBe('');
+    expect(checkbox.style.getPropertyValue('color')).toBe('');
   });
 
   it('keeps checked state styling in CSS instead of classes', async () => {
@@ -43,7 +43,8 @@ describe('NbCheckbox token surface', () => {
     const checkbox = findCheckbox(fixture);
 
     expect(checkbox.className).toBe('');
-    expect(checkbox.getAttribute('data-tone')).toBe('primary');
+    expect(checkbox.getAttribute('data-nb-tone')).toBeNull();
+    expect(checkbox.getAttribute('data-tone')).toBeNull();
   });
 
   it('uses CSS for outline and focus ring anatomy', async () => {
@@ -55,11 +56,7 @@ describe('NbCheckbox token surface', () => {
     expect(cls).not.toContain('focus-visible:ring-(--nb-checkbox-border)');
   });
 
-  it.each([
-    ['sm'],
-    ['md'],
-    ['lg'],
-  ] satisfies Array<[NbCheckboxSize, string]>)(
+  it.each([['sm'], ['md'], ['lg']] satisfies Array<[NbCheckboxSize, string]>)(
     'size="%s" is reflected as a data attribute',
     async (size) => {
       const fixture = await createFixture({ size });

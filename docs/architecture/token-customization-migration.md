@@ -1,7 +1,7 @@
 # Token Customization Migration Plan
 
 Status: Active Draft
-Last updated: 2026-06-10
+Last updated: 2026-06-11
 Scope: Internal migration plan for `@ng-brutalism/ui` token customization architecture
 
 Related documents:
@@ -75,7 +75,7 @@ Acceptance criteria (NbCallout):
 # Token Customization Migration Plan
 
 Status: Active Draft
-Last updated: 2026-06-10
+Last updated: 2026-06-11
 Scope: Internal migration plan for `@ng-brutalism/ui` token customization architecture
 
 Related documents:
@@ -247,18 +247,19 @@ value -> behavior/internal
 
 ### Phase 0: Architecture and transform preparation
 
-Status: Planned
+Status: Done
 
 ```txt
 - Add architecture docs.
 - Add migration docs.
 - Add input transform utilities (core/token-style-transform and named transforms).
 - Add index exports for transforms.
+- Add shared tone recipe CSS layer.
 ```
 
 ### Phase 1: NbCallout pilot
 
-Status: Planned
+Status: Done
 
 Risk: High
 Reason: exercises the full model.
@@ -375,13 +376,14 @@ Notes:
 
 ### Phase 5: Forms and overlays
 
-Status: Planned
+Status: In progress
 
 Risk: High
 
 Components:
 
 ```txt
+NbCheckbox (done)
 NbInput
 NbTextarea
 NbNativeSelect
@@ -453,7 +455,7 @@ Notes:
 
 | Component      | Phase | Status  | Risk        | Notes                 |
 | -------------- | ----: | ------- | ----------- | --------------------- |
-| NbCallout      |     1 | Planned | High        | Pilot component       |
+| NbCallout      |     1 | Done    | High        | Pilot component; uses data-nb-tone and public radius/shadow vars |
 | NbCard         |     2 | Planned | Medium      | Simple surface        |
 | NbBadge        |     2 | Planned | Medium      | Simple surface        |
 | NbAvatar       |     2 | Planned | Medium      | Simple surface        |
@@ -466,7 +468,8 @@ Notes:
 | NbSplit        |     4 | Planned | Medium      | Gap/padding/collapse  |
 | NbSection      |     4 | Planned | Medium      | Padding/flush/divider |
 | NbChipGroup    |     4 | Planned | Medium      | Gap and child context |
-| NbInput        |     5 | Planned | High        | Form state            |
+| NbCheckbox     |     5 | Done    | Medium      | Uses data-nb-tone; checked colors consume shared tone slots with primary fallback |
+| NbInput        |     5 | Done    | High        | Uses data-nb-tone and public border-width var |
 | NbTextarea     |     5 | Planned | High        | Form state            |
 | NbNativeSelect |     5 | Planned | High        | Form state            |
 | NbSelect       |     5 | Planned | High        | Complex state         |

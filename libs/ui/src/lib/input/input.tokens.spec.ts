@@ -1,14 +1,44 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { describe, expect, it } from 'vitest';
 
-import { NbInput } from './nb-input';
+import { NbInput, type NbInputBorder, type NbInputTone } from './nb-input';
 
 @Component({
   imports: [NbInput],
   template: `<input nbInput placeholder="Email" />`,
 })
 class InputTokenTest {}
+
+@Component({
+  imports: [NbInput],
+  template: `
+    <input
+      nbInput
+      placeholder="Email"
+      size="lg"
+      tone="warning"
+      border="strong"
+    />
+  `,
+})
+class ValueInputTokenTest {}
+
+@Component({
+  imports: [NbInput],
+  template: `<input nbInput [tone]="tone" placeholder="Email" />`,
+})
+class ToneInputTokenTest {
+  tone: NbInputTone = 'surface';
+}
+
+@Component({
+  imports: [NbInput],
+  template: `<input nbInput [border]="border()" placeholder="Email" />`,
+})
+class MutableBorderInputTokenTest {
+  readonly border = signal<NbInputBorder | null>('thick');
+}
 
 describe('NbInput token surface', () => {
   it('emits no internal styling classes — anatomy lives in styles.css and data-attrs', async () => {
@@ -17,6 +47,7 @@ describe('NbInput token surface', () => {
 
     expect(input.className).toBe('');
     expect(input.getAttribute('data-size')).toBe('md');
+    expect(input.getAttribute('data-nb-tone')).toBeNull();
     expect(input.getAttribute('data-in-group')).toBeNull();
   });
 
@@ -25,7 +56,9 @@ describe('NbInput token surface', () => {
     const input = findInput(fixture);
 
     expect(input.style.getPropertyValue('background-color')).toBe('');
+    expect(input.style.getPropertyValue('border-color')).toBe('');
     expect(input.style.getPropertyValue('border-width')).toBe('');
+    expect(input.style.getPropertyValue('--nb-input-border-width')).toBe('');
     expect(input.style.cssText).not.toContain('--nb-resolved');
   });
 
@@ -39,28 +72,76 @@ describe('NbInput token surface', () => {
     expect(input.style.getPropertyValue('box-shadow')).toBe('');
   });
 
-  it('writes the focus ring color from the tone capability for CSS to consume', async () => {
+  it('does not write the focus ring color inline', async () => {
     const fixture = await createFixture();
     const input = findInput(fixture);
 
-    // No explicit tone — capability resolves nothing, CSS falls back to public hooks.
     expect(input.style.getPropertyValue('--nb-input-focus-ring-color')).toBe('');
+  });
+
+  it('reflects tone semantically and writes border input to the public CSS variable', async () => {
+    const fixture = await createFixture(ValueInputTokenTest);
+    const input = findInput(fixture);
+
+    expect(input.getAttribute('data-size')).toBe('lg');
+    expect(input.getAttribute('data-nb-tone')).toBe('warning');
+    expect(input.style.getPropertyValue('--nb-input-border-width')).toBe('3px');
+    expect(input.style.getPropertyValue('background-color')).toBe('');
+    expect(input.style.getPropertyValue('border-color')).toBe('');
+    expect(input.style.getPropertyValue('border-width')).toBe('');
+  });
+
+  it.each([
+    ['surface'],
+    ['mint'],
+    ['danger'],
+  ] satisfies readonly [NbInputTone][])(
+    'reflects %s as semantic tone state without writing final colors',
+    async (tone) => {
+      const fixture = await createFixture(ToneInputTokenTest, (instance) => {
+        instance.tone = tone;
+      });
+      const input = findInput(fixture);
+
+      expect(input.getAttribute('data-nb-tone')).toBe(tone);
+      expect(input.style.getPropertyValue('background-color')).toBe('');
+      expect(input.style.getPropertyValue('border-color')).toBe('');
+      expect(input.style.getPropertyValue('--nb-input-focus-ring-color')).toBe(
+        ''
+      );
+    }
+  );
+
+  it('removes inline public CSS variables when bound scalar inputs become null', async () => {
+    const fixture = await createFixture(MutableBorderInputTokenTest);
+    const input = findInput(fixture);
+
+    expect(input.style.getPropertyValue('--nb-input-border-width')).toBe('4px');
+
+    fixture.componentInstance.border.set(null);
+    fixture.detectChanges();
+
+    expect(input.style.getPropertyValue('--nb-input-border-width')).toBe('');
   });
 });
 
-async function createFixture(): Promise<ComponentFixture<InputTokenTest>> {
+async function createFixture<T>(
+  component: new () => T = InputTokenTest as never,
+  setup?: (instance: T) => void
+): Promise<ComponentFixture<T>> {
   await TestBed.configureTestingModule({
-    imports: [InputTokenTest],
+    imports: [component],
   }).compileComponents();
 
-  const fixture = TestBed.createComponent(InputTokenTest);
+  const fixture = TestBed.createComponent(component);
+  setup?.(fixture.componentInstance);
   fixture.detectChanges();
 
   return fixture;
 }
 
 function findInput(
-  fixture: ComponentFixture<InputTokenTest>
+  fixture: ComponentFixture<unknown>
 ): HTMLInputElement {
   return fixture.nativeElement.querySelector(
     'input[nbInput]'

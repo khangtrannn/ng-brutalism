@@ -1,49 +1,30 @@
-import { Directive, computed, inject, input } from '@angular/core';
+import { Directive, inject, input } from '@angular/core';
 
-import { nbBorderWidthValue, type NbBorderStrength } from '../tokens/border';
-import { nbToneVars, type NbTone } from '../tokens/tone';
+import { NbToneCapability } from '../core/capabilities';
+import { nbBorderWidthStyleTransform } from '../core/input-transforms';
 import { NB_INPUT_GROUP } from '../input-group/input-group.types';
+import type { NbBorderStrength } from '../tokens/border';
+import type { NbTone } from '../tokens/tone';
 import type { NbInputSize } from './input.types';
+
+export type NbInputTone = NbTone;
+export type NbInputBorder = NbBorderStrength;
 
 @Directive({
   selector: 'input[nbInput]',
+  hostDirectives: [{ directive: NbToneCapability, inputs: ['tone'] }],
   host: {
     '[attr.data-size]': 'size()',
     '[attr.data-in-group]': 'isInGroup ? "" : null',
-    '[style.background-color]': 'backgroundStyle()',
-    '[style.border-color]': 'borderColorStyle()',
-    '[style.border-width]': 'borderWidthStyle()',
-    '[style.--nb-input-focus-ring-color]': 'borderColorStyle()',
+    '[style.--nb-input-border-width]': 'border()',
   },
 })
 export class NbInput {
   readonly size = input<NbInputSize>('md');
-  // Conditional application (group merging) means the input resolves tone/border
-  // itself rather than composing the host-painting capabilities.
-  readonly tone = input<NbTone | undefined>(undefined);
-  readonly border = input<NbBorderStrength | undefined>(undefined);
+  readonly border = input(null, {
+    transform: nbBorderWidthStyleTransform,
+  });
 
   private readonly group = inject(NB_INPUT_GROUP, { optional: true });
   protected readonly isInGroup = this.group !== null;
-
-  private readonly toneVars = computed(() => {
-    const tone = this.tone();
-    return tone ? nbToneVars(tone) : null;
-  });
-  protected readonly borderColorStyle = computed(
-    () => this.toneVars()?.borderColor ?? null,
-  );
-
-  // Inputs inside a group are visually merged into the group's surface — no
-  // border or background of their own.
-  protected readonly backgroundStyle = computed(() =>
-    this.isInGroup ? 'transparent' : (this.toneVars()?.bg ?? null),
-  );
-  protected readonly borderWidthStyle = computed(() => {
-    if (this.isInGroup) {
-      return '0';
-    }
-    const border = this.border();
-    return border ? nbBorderWidthValue(border) : null;
-  });
 }

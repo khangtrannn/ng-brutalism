@@ -9,7 +9,10 @@
     outline: 2px solid var(--nb-border);
     outline-offset: 0;
     background: transparent;
-    color: var(--nb-checkbox-fg, var(--nb-primary-foreground));
+    color: var(
+      --nb-checkbox-fg,
+      var(--_nb-tone-fg, var(--nb-primary-foreground))
+    );
     --tw-ring-offset-color: #ffffff;
   }
 
@@ -29,8 +32,14 @@
   }
 
   :where(input[nbCheckbox]:checked) {
-    background-color: var(--nb-checkbox-bg, var(--nb-primary));
-    color: var(--nb-checkbox-fg, var(--nb-primary-foreground));
+    background-color: var(
+      --nb-checkbox-bg,
+      var(--_nb-tone-bg, var(--nb-primary))
+    );
+    color: var(
+      --nb-checkbox-fg,
+      var(--_nb-tone-fg, var(--nb-primary-foreground))
+    );
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000000' stroke-width='3.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'/%3E%3C/svg%3E");
     background-repeat: no-repeat;
     background-position: center;
@@ -39,8 +48,7 @@
 
   :where(input[nbCheckbox]:focus-visible) {
     outline: 2px solid transparent;
-    box-shadow:
-      0 0 0 2px var(--tw-ring-offset-color),
+    box-shadow: 0 0 0 2px var(--tw-ring-offset-color),
       0 0 0 4px var(--nb-border);
   }
 
