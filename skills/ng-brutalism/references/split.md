@@ -3,23 +3,26 @@
 Use `nbSplit` for two-column main-and-aside compositions. It replaces custom grid column strings with ratio, gap, padding, alignment, and responsive collapse inputs.
 
 ## Import
+
 ```typescript
 import { NbSplit } from '@ng-brutalism/ui';
 ```
 
 ## API Reference
-| Attribute | Type | Default | Description |
-|---|---|---|---|
-| `ratio` | `'1:1' \| '2:1' \| '3:1' \| '1:2' \| '1:3' \| 'fill:auto' \| 'auto:fill'` | `'1:1'` | Column relationship between main and aside content. |
-| `gap` | `'none' \| 'xs' \| 'sm' \| 'md' \| 'lg' \| 'xl' \| '2xl'` | `'lg'` | Spacing between the two split regions. |
-| `padding` | `'none' \| 'sm' \| 'md' \| 'lg' \| 'xl'` | `'none'` | Inner padding for the split container. |
-| `collapse` | `'none' \| 'sm' \| 'md' \| 'lg'` | `'md'` | Breakpoint where the layout switches from stacked to two columns. |
-| `align` | `'start' \| 'center' \| 'end' \| 'stretch'` | `'stretch'` | Cross-axis alignment for the two regions. |
-| `separator` | `'none' \| 'solid' \| 'dashed' \| 'thick'` | `'none'` | Inline separator between the two regions. Use with a non-zero gap. |
+
+| Attribute   | Type                                                                      | Default     | Description                                                        |
+| ----------- | ------------------------------------------------------------------------- | ----------- | ------------------------------------------------------------------ |
+| `ratio`     | `'1:1' \| '2:1' \| '3:1' \| '1:2' \| '1:3' \| 'fill:auto' \| 'auto:fill'` | `'1:1'`     | Column relationship between main and aside content.                |
+| `gap`       | `'none' \| 'xs' \| 'sm' \| 'md' \| 'lg' \| 'xl' \| '2xl'`                 | `'lg'`      | Spacing between the two split regions.                             |
+| `padding`   | `'none' \| 'sm' \| 'md' \| 'lg' \| 'xl'`                                  | `'none'`    | Inner padding for the split container.                             |
+| `collapse`  | `'none' \| 'sm' \| 'md' \| 'lg'`                                          | `'md'`      | Breakpoint where the layout switches from stacked to two columns.  |
+| `align`     | `'start' \| 'center' \| 'end' \| 'stretch'`                               | `'stretch'` | Cross-axis alignment for the two regions.                          |
+| `separator` | `'none' \| 'solid' \| 'dashed' \| 'thick'`                                | `'none'`    | Inline separator between the two regions. Use with a non-zero gap. |
 
 ## Usage Examples
 
 ### Default
+
 ```html
 <div nbSplit ratio="2:1" gap="xl" padding="lg">
   <div nbStack gap="md">
@@ -35,6 +38,7 @@ import { NbSplit } from '@ng-brutalism/ui';
 ```
 
 ### Ratios
+
 ```html
 <div nbSplit ratio="1:1">...</div>
 <div nbSplit ratio="2:1">...</div>
@@ -48,6 +52,7 @@ import { NbSplit } from '@ng-brutalism/ui';
 ```
 
 ### Spacing
+
 ```html
 <div nbSplit gap="xl" padding="lg">
   <div>Main</div>
@@ -56,6 +61,7 @@ import { NbSplit } from '@ng-brutalism/ui';
 ```
 
 ### Collapse
+
 ```html
 <div nbSplit collapse="none">...</div>
 <div nbSplit collapse="sm">...</div>
@@ -64,6 +70,7 @@ import { NbSplit } from '@ng-brutalism/ui';
 ```
 
 ### Alignment
+
 ```html
 <div nbSplit align="start">...</div>
 <div nbSplit align="center">...</div>
@@ -72,6 +79,7 @@ import { NbSplit } from '@ng-brutalism/ui';
 ```
 
 ### Separators
+
 ```html
 <div nbSplit ratio="2:1" gap="lg" separator="solid">
   <div>Main</div>
@@ -90,6 +98,7 @@ import { NbSplit } from '@ng-brutalism/ui';
 ```
 
 ### Composition
+
 ```html
 <div nbSplit ratio="2:1" gap="xl" padding="lg" collapse="md">
   <div nbStack gap="lg">

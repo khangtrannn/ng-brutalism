@@ -31,8 +31,11 @@ This document outlines the core mental model and the available components. **You
 
 ### Shared API Language
 
-Every primitive in `ng-brutalism` speaks the same token vocabulary. The following attributes are universally used across the library:
-- **`tone`**: Visual intent / color theme (e.g., `primary`, `secondary`, `cream`, `yellow`, `mint`, `pink`, `lavender`).
+Most primitives in `ng-brutalism` share a core token vocabulary, while component-specific properties are documented in each component reference. Use `references/common-patterns.md` for a quick tour of real compositions before reading the detailed component files.
+
+Core shared attributes:
+
+- **`tone`**: Visual intent / color theme (e.g., `default`, `surface`, `background`, `ink`, `white`, `black`, `primary`, `secondary`, `accent`, `cream`, `yellow`, `mint`, `pink`, `lavender`, `blue`, `success`, `warning`, `danger`).
 - **`size`**: Component scale (`sm`, `md`, `lg`, `xl`).
 - **`radius`**: Corner shape (`none`, `sm`, `md`, `lg`, `xl`, `full`).
 - **`shadow`**: Brutalist offset depth (`none`, `sm`, `default`, `hard`, `heavy`).
@@ -44,6 +47,13 @@ Every primitive in `ng-brutalism` speaks the same token vocabulary. The followin
 - **`clip`**: Keep inner regions inside the outer radius (used on `nbSurface`).
 - **`divider`**: Border between regions (used on `nbSection` - `top`, `bottom`, etc.).
 
+Common component-specific attributes used in examples:
+
+- **`layout`**: Section or callout content arrangement, such as `between`, `inline`, or `center`.
+- **`collapse`**: Responsive collapse behavior for `nbSplit`.
+- **`weight`**, **`leading`**, **`tracking`**, **`transform`**: Typography controls on `nbText`.
+- **`underline`** and **`underlineGap`**: Decorative underline controls on `nbDisplay` and `nbText`.
+
 ---
 
 ## 2. Component Reference Directory
@@ -51,10 +61,13 @@ Every primitive in `ng-brutalism` speaks the same token vocabulary. The followin
 When implementing any of the following components, **read the corresponding reference file first** to understand its exact API, inputs, and template usage examples.
 
 ### Getting Started
+
 - Installation & Setup: `references/installation.md`
 
 ### Layout & Composition Primitives
-*Read these to understand how to build complex layouts.*
+
+_Read these to understand how to build complex layouts._
+
 - `nbSurface` & `nbSection`: `references/surface-and-section.md`
 - `nbStack` & `nbCluster`: `references/stack-and-cluster.md`
 - Split Layouts: `references/split-layouts.md`
@@ -62,9 +75,11 @@ When implementing any of the following components, **read the corresponding refe
 - Composition Overview: `references/overview.md`
 
 ### UI Components
-*Use `view_file` on the corresponding path before using the component.*
+
+_Use `view_file` on the corresponding path before using the component._
 
 **Containers & Layout**
+
 - `nbSurface`: `references/surface.md`
 - `nbSection`: `references/section.md`
 - `nbStack`: `references/stack.md`
@@ -76,6 +91,7 @@ When implementing any of the following components, **read the corresponding refe
 - `nbMediaItem`: `references/media-item.md`
 
 **Typography & Display**
+
 - `nbTitle`: `references/title.md`
 - `nbDisplay`: `references/display.md`
 - `nbText`: `references/text.md`
@@ -85,6 +101,7 @@ When implementing any of the following components, **read the corresponding refe
 - `nbIcon`: `references/icon.md`
 
 **Actions & Inputs**
+
 - `nbButton`: `references/button.md`
 - `nbIconButton`: `references/icon-button.md`
 - `nbInput`: `references/input.md`
@@ -95,6 +112,7 @@ When implementing any of the following components, **read the corresponding refe
 - `nbLabel`: `references/label.md`
 
 **Data Display & Feedback**
+
 - `nbChip`: `references/chip.md`
 - `nbBadge`: `references/badge.md`
 - `nbAvatar`: `references/avatar.md`

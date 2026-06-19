@@ -3,23 +3,26 @@
 Use `nbSection` for the internal regions of a card — headers, body blocks, and footers. It replaces ad-hoc `border-t-2 px-6 py-6` wrappers with a small declarative primitive for padding, border side, and inline layout.
 
 ## Import
+
 ```typescript
 import { NbSection } from '@ng-brutalism/ui';
 ```
 
 ## API Reference
-| Attribute | Type | Default | Description |
-|---|---|---|---|
-| `padding` | `'none' \| 'xs' \| 'sm' \| 'md' \| 'lg' \| 'xl'` | `'md'` | Inner padding for the section. |
-| `divider` | `'none' \| 'top' \| 'right' \| 'bottom' \| 'left' \| 'block' \| 'inline' \| 'all'` | `'none'` | Which side(s) render a divider line. Uses `--nb-border` and `--nb-border-width`. |
-| `dividerStyle` | `'solid' \| 'dashed' \| 'dotted'` | `'solid'` | Stroke style applied to the active border side(s). |
-| `layout` | `'default' \| 'center' \| 'between'` | `'default'` | `default` keeps block flow, `center` and `between` switch to flex with the matching justify. |
-| `align` | `'stretch' \| 'start' \| 'center' \| 'end'` | `'stretch'` | Cross-axis alignment; only applies when `layout` is `center` or `between`. |
-| `flush` | `boolean` | `false` | Pulls the section out to its parent's edges via negative inline margins. Escape hatch for advanced card layouts. |
+
+| Attribute      | Type                                                                               | Default     | Description                                                                                                      |
+| -------------- | ---------------------------------------------------------------------------------- | ----------- | ---------------------------------------------------------------------------------------------------------------- |
+| `padding`      | `'none' \| 'xs' \| 'sm' \| 'md' \| 'lg' \| 'xl'`                                   | `'md'`      | Inner padding for the section.                                                                                   |
+| `divider`      | `'none' \| 'top' \| 'right' \| 'bottom' \| 'left' \| 'block' \| 'inline' \| 'all'` | `'none'`    | Which side(s) render a divider line. Uses `--nb-border` and `--nb-border-width`.                                 |
+| `dividerStyle` | `'solid' \| 'dashed' \| 'dotted'`                                                  | `'solid'`   | Stroke style applied to the active border side(s).                                                               |
+| `layout`       | `'default' \| 'center' \| 'between'`                                               | `'default'` | `default` keeps block flow, `center` and `between` switch to flex with the matching justify.                     |
+| `align`        | `'stretch' \| 'start' \| 'center' \| 'end'`                                        | `'stretch'` | Cross-axis alignment; only applies when `layout` is `center` or `between`.                                       |
+| `flush`        | `boolean`                                                                          | `false`     | Pulls the section out to its parent's edges via negative inline margins. Escape hatch for advanced card layouts. |
 
 ## Usage Examples
 
 ### Default
+
 ```html
 <div nbSurface tone="cream" shadow="hard" radius="lg" clip>
   <div nbSection divider="bottom" padding="lg" layout="between" align="center">
@@ -39,6 +42,7 @@ import { NbSection } from '@ng-brutalism/ui';
 ```
 
 ### Paddings
+
 ```html
 <div nbSection padding="none">...</div>
 <div nbSection padding="xs">...</div>
@@ -49,6 +53,7 @@ import { NbSection } from '@ng-brutalism/ui';
 ```
 
 ### Dividers
+
 ```html
 <div nbSection divider="top">...</div>
 <div nbSection divider="right">...</div>
@@ -60,6 +65,7 @@ import { NbSection } from '@ng-brutalism/ui';
 ```
 
 ### Divider Styles
+
 ```html
 <div nbSection divider="all" dividerStyle="solid">...</div>
 <div nbSection divider="all" dividerStyle="dashed">...</div>
@@ -67,6 +73,7 @@ import { NbSection } from '@ng-brutalism/ui';
 ```
 
 ### Layouts
+
 ```html
 <div nbSection layout="default">...</div>
 <div nbSection layout="center" align="center">...</div>
@@ -74,6 +81,7 @@ import { NbSection } from '@ng-brutalism/ui';
 ```
 
 ### Composition
+
 ```html
 <div nbSurface tone="white" shadow="hard" radius="lg" clip>
   <div nbSection padding="lg" divider="bottom" layout="between" align="center">

@@ -5,6 +5,7 @@ Copy-pasteable composition patterns built from ng-brutalism primitives. Each pat
 ## Usage Examples
 
 ### Brutalist Card Shell
+
 ```html
 <article nbSurface tone="cream" radius="xl" shadow="hard" border="strong" clip>
   <header nbSection padding="lg" divider="bottom">
@@ -32,6 +33,7 @@ Copy-pasteable composition patterns built from ng-brutalism primitives. Each pat
 ```
 
 ### Toolbar Row
+
 ```html
 <div nbCluster gap="sm" align="center" justify="between">
   <h2 nbDisplay size="sm" underline="bar" underlineGap="xs" class="inline-flex flex-col items-start" style="--nb-underline-width: 45%">Components</h2>
@@ -44,26 +46,24 @@ Copy-pasteable composition patterns built from ng-brutalism primitives. Each pat
 ```
 
 ### Feature Card Stack
+
 ```html
 <div nbCluster gap="md">
-  <article nbSurface tone="yellow" padding="lg" radius="lg"
-           shadow="hard" border="strong" class="flex-1 min-w-[160px]">
+  <article nbSurface tone="yellow" padding="lg" radius="lg" shadow="hard" border="strong" class="flex-1 min-w-[160px]">
     <div nbStack gap="xs">
       <h3 nbText size="2xl" weight="black" leading="tight" underline="bar" underlineGap="xs" style="--nb-underline-width: 45%">Angular native</h3>
       <p nbText size="sm">Directive APIs, signal inputs.</p>
     </div>
   </article>
 
-  <article nbSurface tone="mint" padding="lg" radius="lg"
-           shadow="hard" border="strong" class="flex-1 min-w-[160px]">
+  <article nbSurface tone="mint" padding="lg" radius="lg" shadow="hard" border="strong" class="flex-1 min-w-[160px]">
     <div nbStack gap="xs">
       <h3 nbText size="2xl" weight="black" leading="tight" underline="bar" underlineGap="xs" style="--nb-underline-width: 45%">Loud by default</h3>
       <p nbText size="sm">Chunky borders, punchy color.</p>
     </div>
   </article>
 
-  <article nbSurface tone="pink" padding="lg" radius="lg"
-           shadow="hard" border="strong" class="flex-1 min-w-[160px]">
+  <article nbSurface tone="pink" padding="lg" radius="lg" shadow="hard" border="strong" class="flex-1 min-w-[160px]">
     <div nbStack gap="xs">
       <h3 nbText size="2xl" weight="black" leading="tight" underline="bar" underlineGap="xs" style="--nb-underline-width: 45%">Token driven</h3>
       <p nbText size="sm">CSS variables keep overrides local.</p>
@@ -73,6 +73,7 @@ Copy-pasteable composition patterns built from ng-brutalism primitives. Each pat
 ```
 
 ### Callout Panel
+
 ```html
 <article nbSurface tone="cream" radius="xl" shadow="hard" border="strong" clip>
   <header nbSection padding="lg" divider="bottom">
@@ -85,9 +86,7 @@ Copy-pasteable composition patterns built from ng-brutalism primitives. Each pat
   <div nbSection padding="lg">
     <div nbStack gap="lg">
       <div nbCallout tone="yellow" size="xl" shadow="hard">$49/mo</div>
-      <p nbText>
-        Everything included. No usage limits. Cancel any time.
-      </p>
+      <p nbText>Everything included. No usage limits. Cancel any time.</p>
       <button nbButton tone="black" size="lg">Start free trial</button>
     </div>
   </div>
@@ -95,9 +94,9 @@ Copy-pasteable composition patterns built from ng-brutalism primitives. Each pat
 ```
 
 ### Two-Column Card
+
 ```html
-<article nbSurface tone="lavender" radius="xl"
-         shadow="hard" border="strong" clip>
+<article nbSurface tone="lavender" radius="xl" shadow="hard" border="strong" clip>
   <div nbSection padding="lg">
     <div nbSplit ratio="1:2" gap="lg" collapse="sm" align="center">
       <!-- Stat or media placeholder -->
@@ -105,9 +104,7 @@ Copy-pasteable composition patterns built from ng-brutalism primitives. Each pat
 
       <div nbStack gap="xs">
         <h2 nbDisplay size="sm" underline="bar" underlineGap="xs" class="inline-flex flex-col items-start" style="--nb-underline-width: 45%">Components shipped</h2>
-        <p nbText tone="muted" size="sm">
-          Fully composed, keyboard-ready, token-driven.
-        </p>
+        <p nbText tone="muted" size="sm">Fully composed, keyboard-ready, token-driven.</p>
       </div>
     </div>
   </div>
@@ -115,9 +112,9 @@ Copy-pasteable composition patterns built from ng-brutalism primitives. Each pat
 ```
 
 ### Primitives Used Panel
+
 ```html
-<section nbSurface tone="cream" padding="lg"
-         radius="xl" shadow="hard" border="strong">
+<section nbSurface tone="cream" padding="lg" radius="xl" shadow="hard" border="strong">
   <div nbStack gap="md">
     <h2 nbDisplay size="sm" underline="bar" underlineGap="xs" class="inline-flex flex-col items-start" style="--nb-underline-width: 45%">Primitives used</h2>
 

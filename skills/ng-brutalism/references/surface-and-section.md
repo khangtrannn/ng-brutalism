@@ -3,30 +3,35 @@
 `nbSurface` creates the outer brutalist container. `nbSection` creates internal regions. Together they replace repeated card shell markup with a clear, intentional structure.
 
 ## Import
+
 ```typescript
 import { NbSurface, NbSection } from '@ng-brutalism/ui';
 ```
 
 ## API Reference
+
 ### nbSurface
-| Attribute | Type | Default | Description |
-|---|---|---|---|
-| `tone` | `'cream' \| 'yellow' \| 'pink' \| 'mint' \| 'lavender' \| 'black' \| 'white' \| ...` | - | Color theme |
-| `radius` | `'none' \| 'xs' \| 'sm' \| 'md' \| 'lg' \| 'xl' \| 'full'` | - | Corner shape |
-| `shadow` | `'none' \| 'sm' \| 'default' \| 'hard' \| 'heavy'` | - | Brutalist offset depth |
-| `border` | `'none' \| 'thin' \| 'default' \| 'strong' \| 'thick'` | - | Outline strength |
-| `clip` | `boolean` | `false` | Clips inner content to the surface radius. |
+
+| Attribute | Type                                                                                 | Default | Description                                |
+| --------- | ------------------------------------------------------------------------------------ | ------- | ------------------------------------------ |
+| `tone`    | `'cream' \| 'yellow' \| 'pink' \| 'mint' \| 'lavender' \| 'black' \| 'white' \| ...` | -       | Color theme                                |
+| `radius`  | `'none' \| 'xs' \| 'sm' \| 'md' \| 'lg' \| 'xl' \| 'full'`                           | -       | Corner shape                               |
+| `shadow`  | `'none' \| 'sm' \| 'default' \| 'hard' \| 'heavy'`                                   | -       | Brutalist offset depth                     |
+| `border`  | `'none' \| 'thin' \| 'default' \| 'strong' \| 'thick'`                               | -       | Outline strength                           |
+| `clip`    | `boolean`                                                                            | `false` | Clips inner content to the surface radius. |
 
 ### nbSection
-| Attribute | Type | Default | Description |
-|---|---|---|---|
-| `padding` | `'none' \| 'xs' \| 'sm' \| 'md' \| 'lg' \| 'xl'` | - | Internal space |
-| `divider` | `'top' \| 'bottom' \| 'left' \| 'right' \| 'block' \| 'inline' \| 'all' \| 'none'` | - | Divider position |
-| `layout` | `'default' \| 'center' \| 'between'` | - | Flex layout |
+
+| Attribute | Type                                                                               | Default | Description      |
+| --------- | ---------------------------------------------------------------------------------- | ------- | ---------------- |
+| `padding` | `'none' \| 'xs' \| 'sm' \| 'md' \| 'lg' \| 'xl'`                                   | -       | Internal space   |
+| `divider` | `'top' \| 'bottom' \| 'left' \| 'right' \| 'block' \| 'inline' \| 'all' \| 'none'` | -       | Divider position |
+| `layout`  | `'default' \| 'center' \| 'between'`                                               | -       | Flex layout      |
 
 ## Usage Examples
 
 ### Basic Panel
+
 ```html
 <article nbSurface tone="cream" radius="xl" shadow="hard" border="strong" clip>
   <header nbSection padding="lg" divider="bottom">
@@ -40,6 +45,7 @@ import { NbSurface, NbSection } from '@ng-brutalism/ui';
 ```
 
 ### Header / body / footer
+
 ```html
 <article nbSurface tone="yellow" radius="xl" border="thick" shadow="hard" clip>
   <header nbSection padding="lg" divider="bottom">
@@ -51,10 +57,7 @@ import { NbSurface, NbSection } from '@ng-brutalism/ui';
 
   <div nbSection padding="lg">
     <div nbStack gap="md">
-      <p nbText>
-        Body content lives here. Stack controls the vertical
-        rhythm inside the section.
-      </p>
+      <p nbText>Body content lives here. Stack controls the vertical rhythm inside the section.</p>
       <div nbCluster gap="xs">
         <span nbChip tone="mint">Angular</span>
         <span nbChip tone="lavender">Signals</span>
@@ -70,6 +73,7 @@ import { NbSurface, NbSection } from '@ng-brutalism/ui';
 ```
 
 ### Clip
+
 ```html
 <!-- clip keeps inner content within the radius -->
 <article nbSurface tone="cream" radius="xl" shadow="hard" clip class="relative">

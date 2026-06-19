@@ -3,20 +3,23 @@
 Combines inputs or textareas with bordered prefix and suffix addons, creating one continuous brutalist control.
 
 ## Import
+
 ```typescript
 import { NbInput, NbInputGroup, NbInputPrefix, NbInputSuffix } from '@ng-brutalism/ui';
 ```
 
 ## API Reference
-| Selector | Attribute | Type | Default | Description |
-|---|---|---|---|---|
-| `nb-input-group` | — | — | — | Container for input group elements. |
-| `[nbInputPrefix]` | `align` | `'center' \| 'stretch'` | `'center'` | Align configuration for prefix addon. |
-| `[nbInputSuffix]` | `align` | `'center' \| 'stretch'` | `'center'` | Align configuration for suffix addon. |
+
+| Selector          | Attribute | Type                    | Default    | Description                           |
+| ----------------- | --------- | ----------------------- | ---------- | ------------------------------------- |
+| `nb-input-group`  | —         | —                       | —          | Container for input group elements.   |
+| `[nbInputPrefix]` | `align`   | `'center' \| 'stretch'` | `'center'` | Align configuration for prefix addon. |
+| `[nbInputSuffix]` | `align`   | `'center' \| 'stretch'` | `'center'` | Align configuration for suffix addon. |
 
 ## Usage Examples
 
 ### Default
+
 ```html
 <nb-input-group class="max-w-80">
   <span nbInputPrefix>@</span>
@@ -25,6 +28,7 @@ import { NbInput, NbInputGroup, NbInputPrefix, NbInputSuffix } from '@ng-brutali
 ```
 
 ### Prefix and Suffix
+
 ```html
 <nb-input-group class="max-w-96">
   <span nbInputPrefix>$</span>
@@ -34,6 +38,7 @@ import { NbInput, NbInputGroup, NbInputPrefix, NbInputSuffix } from '@ng-brutali
 ```
 
 ### With Label
+
 ```html
 <div class="grid w-full max-w-96 gap-2">
   <label nbLabel for="profile-url">Profile URL</label>
@@ -45,6 +50,7 @@ import { NbInput, NbInputGroup, NbInputPrefix, NbInputSuffix } from '@ng-brutali
 ```
 
 ### Textarea
+
 ```html
 <nb-input-group class="max-w-96">
   <span nbInputPrefix align="stretch">TXT</span>
@@ -53,6 +59,7 @@ import { NbInput, NbInputGroup, NbInputPrefix, NbInputSuffix } from '@ng-brutali
 ```
 
 ### Disabled
+
 ```html
 <nb-input-group class="max-w-80">
   <span nbInputPrefix>@</span>

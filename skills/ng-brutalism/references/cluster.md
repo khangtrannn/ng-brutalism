@@ -3,23 +3,26 @@
 Use `nbCluster` whenever children should flow horizontally, align together, and wrap cleanly on smaller screens. It is the inline composition pair to `nbStack`.
 
 ## Import
+
 ```typescript
 import { NbCluster } from '@ng-brutalism/ui';
 ```
 
 ## API Reference
-| Attribute | Type | Default | Description |
-|---|---|---|---|
-| `gap` | `'none' \| 'xs' \| 'sm' \| 'md' \| 'lg' \| 'xl' \| '2xl'` | `'md'` | Horizontal and wrapped-row spacing between cluster children. |
-| `padding` | `'none' \| 'xs' \| 'sm' \| 'md' \| 'lg' \| 'xl'` | `'none'` | Uniform inner padding around the cluster's children. |
-| `align` | `'start' \| 'center' \| 'end' \| 'baseline' \| 'stretch'` | `'center'` | Cross-axis alignment for the inline group. |
-| `justify` | `'start' \| 'center' \| 'end' \| 'between'` | `'start'` | Main-axis distribution when the cluster has extra width. |
-| `wrap` | `'wrap' \| 'nowrap'` | `'wrap'` | Controls whether children can wrap onto additional rows. |
-| `separator` | `'none' \| 'solid' \| 'dashed' \| 'thick'` | `'none'` | Inline-start border between each child. When active, `gap-x` is collapsed and spacing is split across separator margin and padding. |
+
+| Attribute   | Type                                                      | Default    | Description                                                                                                                         |
+| ----------- | --------------------------------------------------------- | ---------- | ----------------------------------------------------------------------------------------------------------------------------------- |
+| `gap`       | `'none' \| 'xs' \| 'sm' \| 'md' \| 'lg' \| 'xl' \| '2xl'` | `'md'`     | Horizontal and wrapped-row spacing between cluster children.                                                                        |
+| `padding`   | `'none' \| 'xs' \| 'sm' \| 'md' \| 'lg' \| 'xl'`          | `'none'`   | Uniform inner padding around the cluster's children.                                                                                |
+| `align`     | `'start' \| 'center' \| 'end' \| 'baseline' \| 'stretch'` | `'center'` | Cross-axis alignment for the inline group.                                                                                          |
+| `justify`   | `'start' \| 'center' \| 'end' \| 'between'`               | `'start'`  | Main-axis distribution when the cluster has extra width.                                                                            |
+| `wrap`      | `'wrap' \| 'nowrap'`                                      | `'wrap'`   | Controls whether children can wrap onto additional rows.                                                                            |
+| `separator` | `'none' \| 'solid' \| 'dashed' \| 'thick'`                | `'none'`   | Inline-start border between each child. When active, `gap-x` is collapsed and spacing is split across separator margin and padding. |
 
 ## Usage Examples
 
 ### Default
+
 ```html
 <div nbCluster gap="2xl" align="center" justify="center">
   <div>
@@ -41,6 +44,7 @@ import { NbCluster } from '@ng-brutalism/ui';
 ```
 
 ### Gaps
+
 ```html
 <div nbCluster gap="none">...</div>
 <div nbCluster gap="xs">...</div>
@@ -52,6 +56,7 @@ import { NbCluster } from '@ng-brutalism/ui';
 ```
 
 ### Alignment
+
 ```html
 <div nbCluster align="start">...</div>
 <div nbCluster align="center">...</div>
@@ -61,6 +66,7 @@ import { NbCluster } from '@ng-brutalism/ui';
 ```
 
 ### Justification
+
 ```html
 <div nbCluster justify="start">...</div>
 <div nbCluster justify="center">...</div>
@@ -69,17 +75,15 @@ import { NbCluster } from '@ng-brutalism/ui';
 ```
 
 ### Wrapping
-```html
-<div nbCluster gap="md">
-  ...
-</div>
 
-<div nbCluster gap="md" wrap="nowrap">
-  ...
-</div>
+```html
+<div nbCluster gap="md">...</div>
+
+<div nbCluster gap="md" wrap="nowrap">...</div>
 ```
 
 ### Separators
+
 ```html
 <div nbCluster gap="lg" align="center" separator="dashed">
   <nb-media-item icon="/icons/location.png">
@@ -95,12 +99,7 @@ import { NbCluster } from '@ng-brutalism/ui';
 ```
 
 ### Responsive Gap
+
 ```html
-<div
-  nbCluster
-  gap="md"
-  class="md:[--nb-cluster-gap:1.5rem]"
->
-  ...
-</div>
+<div nbCluster gap="md" class="md:[--nb-cluster-gap:1.5rem]">...</div>
 ```

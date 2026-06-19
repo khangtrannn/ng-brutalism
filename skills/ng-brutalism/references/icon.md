@@ -3,23 +3,26 @@
 `nbIcon` is an attribute directive that renders any SVG asset as a sized, colored, accessible icon. Mask mode (default) paints monochrome SVGs with the current color. Image mode preserves original colors for illustrated assets. Composable with chips, buttons, and any other primitive.
 
 ## Import
+
 ```typescript
 import { NbIcon } from '@ng-brutalism/ui';
 ```
 
 ## API Reference
-| Attribute | Type | Default | Description |
-|---|---|---|---|
-| `src` | `string` | required | Path to a trusted local SVG or image asset. Do not pass unsanitized user-generated URLs. |
-| `size` | `'xs' \| 'sm' \| 'md' \| 'lg' \| 'xl'` | `'md'` | Icon size (0.75 rem – 2 rem). |
-| `tone` | `'current' \| 'default' \| 'muted' \| 'inverse' \| 'primary' \| 'secondary' \| 'accent' \| 'danger' \| 'success' \| 'warning'` | `'current'` | Color tone. `current` inherits the parent CSS color. Only applies in mask mode. |
-| `mode` | `'mask' \| 'image'` | `'mask'` | Rendering mode. `mask` paints the SVG with the tone color. `image` preserves original asset colors. |
-| `decorative` | `boolean` | `false` | Marks the icon as purely decorative (`aria-hidden="true"`). Use when the icon adds no information beyond adjacent text. |
-| `label` | `string \| null` | `null` | Accessible label for meaningful icons. Sets `role="img"` and `aria-label`. Ignored when `decorative` is true. |
+
+| Attribute    | Type                                                                                                                           | Default     | Description                                                                                                             |
+| ------------ | ------------------------------------------------------------------------------------------------------------------------------ | ----------- | ----------------------------------------------------------------------------------------------------------------------- |
+| `src`        | `string`                                                                                                                       | required    | Path to a trusted local SVG or image asset. Do not pass unsanitized user-generated URLs.                                |
+| `size`       | `'xs' \| 'sm' \| 'md' \| 'lg' \| 'xl'`                                                                                         | `'md'`      | Icon size (0.75 rem – 2 rem).                                                                                           |
+| `tone`       | `'current' \| 'default' \| 'muted' \| 'inverse' \| 'primary' \| 'secondary' \| 'accent' \| 'danger' \| 'success' \| 'warning'` | `'current'` | Color tone. `current` inherits the parent CSS color. Only applies in mask mode.                                         |
+| `mode`       | `'mask' \| 'image'`                                                                                                            | `'mask'`    | Rendering mode. `mask` paints the SVG with the tone color. `image` preserves original asset colors.                     |
+| `decorative` | `boolean`                                                                                                                      | `false`     | Marks the icon as purely decorative (`aria-hidden="true"`). Use when the icon adds no information beyond adjacent text. |
+| `label`      | `string \| null`                                                                                                               | `null`      | Accessible label for meaningful icons. Sets `role="img"` and `aria-label`. Ignored when `decorative` is true.           |
 
 ## Usage Examples
 
 ### Default
+
 ```html
 <!-- Decorative icon (no meaning beyond adjacent text) -->
 <span nbIcon src="/icons/plane.svg" size="sm" decorative></span>
@@ -29,6 +32,7 @@ import { NbIcon } from '@ng-brutalism/ui';
 ```
 
 ### Sizes
+
 ```html
 <span nbIcon src="/icons/plane.svg" size="xs" decorative></span>
 <span nbIcon src="/icons/plane.svg" size="sm" decorative></span>
@@ -38,6 +42,7 @@ import { NbIcon } from '@ng-brutalism/ui';
 ```
 
 ### Tones
+
 ```html
 <span nbIcon src="/icons/star.svg" size="md" tone="current" decorative></span>
 <span nbIcon src="/icons/star.svg" size="md" tone="default" decorative></span>
@@ -52,6 +57,7 @@ import { NbIcon } from '@ng-brutalism/ui';
 ```
 
 ### Modes
+
 ```html
 <!-- mask: paints the SVG with the tone color -->
 <span nbIcon src="/icons/plane.svg" size="xl" mode="mask" tone="primary" decorative></span>
@@ -61,6 +67,7 @@ import { NbIcon } from '@ng-brutalism/ui';
 ```
 
 ### Accessibility
+
 ```html
 <!-- Decorative — icon is supplementary to adjacent text -->
 <span nbIcon src="/icons/star.svg" size="lg" tone="warning" decorative></span>
@@ -70,6 +77,7 @@ import { NbIcon } from '@ng-brutalism/ui';
 ```
 
 ### Composition
+
 ```html
 <!-- Icons inside chips -->
 <div nbChipGroup>

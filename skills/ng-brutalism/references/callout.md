@@ -3,29 +3,31 @@
 A high-emphasis directive for important values. Use `nbCallout` for prices, stats, dates, awards, ratings, totals, and other compact pieces of information that need the loud brutalist treatment without domain-specific API.
 
 ## Import
+
 ```typescript
 import { NbCallout, NbSeparator } from '@ng-brutalism/ui';
 ```
 
 ## API Reference
-| Attribute | Type | Default | Description |
-|---|---|---|---|
-| `tone` | `'yellow' \| 'pink' \| 'mint' \| 'lavender' \| 'blue' \| 'cream' \| 'white' \| 'black' \| 'primary' \| 'secondary' \| 'accent' \| 'success' \| 'warning' \| 'danger'` | `'yellow'` | Background and foreground color pair. |
-| `size` | `'sm' \| 'md' \| 'lg' \| 'xl'` | `'lg'` | Height, padding, type size, radius, and border weight preset. |
-| `layout` | `'inline' \| 'between' \| 'center'` | `'inline'` | Horizontal alignment for the callout content. |
-| `shadow` | `'none' \| 'default' \| 'hard'` | `'hard'` | Offset shadow preset. |
-| `radius` | `'none' \| 'sm' \| 'md' \| 'lg' \| 'xl' \| 'full'` | — | Corner radius override. Defaults to the `size`-derived radius when unset. |
+
+| Attribute | Type                                                                                                                                                                  | Default    | Description                                                               |
+| --------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------- | ------------------------------------------------------------------------- |
+| `tone`    | `'yellow' \| 'pink' \| 'mint' \| 'lavender' \| 'blue' \| 'cream' \| 'white' \| 'black' \| 'primary' \| 'secondary' \| 'accent' \| 'success' \| 'warning' \| 'danger'` | `'yellow'` | Background and foreground color pair.                                     |
+| `size`    | `'sm' \| 'md' \| 'lg' \| 'xl'`                                                                                                                                        | `'lg'`     | Height, padding, type size, radius, and border weight preset.             |
+| `layout`  | `'inline' \| 'between' \| 'center'`                                                                                                                                   | `'inline'` | Horizontal alignment for the callout content.                             |
+| `shadow`  | `'none' \| 'default' \| 'hard'`                                                                                                                                       | `'hard'`   | Offset shadow preset.                                                     |
+| `radius`  | `'none' \| 'sm' \| 'md' \| 'lg' \| 'xl' \| 'full'`                                                                                                                    | —          | Corner radius override. Defaults to the `size`-derived radius when unset. |
 
 ## Usage Examples
 
 ### Default
+
 ```html
-<div nbCallout tone="yellow" size="xl">
-  $799
-</div>
+<div nbCallout tone="yellow" size="xl">$799</div>
 ```
 
 ### Examples
+
 ```html
 <div class="grid w-full grid-cols-1 gap-4 p-4 sm:grid-cols-2">
   <div nbCallout tone="yellow" size="xl">$799</div>
@@ -48,6 +50,7 @@ import { NbCallout, NbSeparator } from '@ng-brutalism/ui';
 ```
 
 ### Tones
+
 ```html
 <div nbCallout tone="yellow">Yellow</div>
 <div nbCallout tone="pink">Pink</div>
@@ -56,6 +59,7 @@ import { NbCallout, NbSeparator } from '@ng-brutalism/ui';
 ```
 
 ### Sizes
+
 ```html
 <div nbCallout size="sm">SM</div>
 <div nbCallout size="md">MD</div>
@@ -64,6 +68,7 @@ import { NbCallout, NbSeparator } from '@ng-brutalism/ui';
 ```
 
 ### Layouts
+
 ```html
 <div nbCallout layout="inline">
   <span>Inline</span>
@@ -82,6 +87,7 @@ import { NbCallout, NbSeparator } from '@ng-brutalism/ui';
 ```
 
 ### Shadows
+
 ```html
 <div nbCallout shadow="none">None</div>
 <div nbCallout shadow="default">Default</div>
