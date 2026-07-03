@@ -1,13 +1,13 @@
 import {
   Directive,
   booleanAttribute,
-  computed,
   input,
 } from '@angular/core';
 
+import { nbPaddingStyleTransform } from '../core/input-transforms';
 import type { NbDivider } from '../tokens/divider';
 import type { NbLayoutAlign } from '../tokens/layout';
-import { nbPaddingValue, type NbPadding } from '../tokens/padding';
+import type { NbPadding } from '../tokens/padding';
 
 export type NbSectionPadding = NbPadding;
 
@@ -32,8 +32,7 @@ export type NbSectionAlign = NbLayoutAlign;
     '[attr.data-layout]': 'layout()',
     '[attr.data-align]': 'align()',
     '[attr.data-flush]': 'flush() ? "" : null',
-    '[style.padding]': 'paddingStyle()',
-    '[style.margin-inline]': 'flushMarginStyle()',
+    '[style.--nb-section-padding]': 'padding()',
   },
 })
 export class NbSection {
@@ -45,22 +44,7 @@ export class NbSection {
     transform: booleanAttribute,
   });
 
-  // Padding feeds both the host padding and the flush negative-margin calc, so
-  // it is resolved locally rather than via a host-painting capability.
-  readonly padding = input<NbPadding | undefined>(undefined);
-
-  protected readonly paddingStyle = computed(() => {
-    const padding = this.padding();
-    return padding ? nbPaddingValue(padding) : null;
-  });
-
-  // `flush` negates the section's own padding so content can bleed to the edge.
-  // It mirrors an explicit padding input when present; CSS owns the public hook
-  // fallback chain when it is absent.
-  protected readonly flushMarginStyle = computed(() => {
-    const paddingStyle = this.paddingStyle();
-    return this.flush() && paddingStyle
-      ? `calc(${paddingStyle} * -1)`
-      : null;
+  readonly padding = input(null, {
+    transform: nbPaddingStyleTransform,
   });
 }

@@ -24,8 +24,6 @@ let nextSelectOptionId = 0;
       [attr.data-selected]="selected() ? '' : null"
       [disabled]="disabled() || select.disabled()"
       data-slot="select-option-button"
-      [style.color]="select.optionForegroundStyle()"
-      [style.--nb-select-option-focus-ring-color]="select.optionFocusRingColorStyle()"
       (click)="select.selectOption(this)"
       (keydown)="selectOptionOnKey($event)"
     >

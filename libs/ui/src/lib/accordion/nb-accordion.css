@@ -42,6 +42,12 @@
     );
   }
 
+  :where(nb-accordion-trigger[data-nb-tone]) {
+    --nb-accordion-trigger-bg: var(--_nb-tone-bg);
+    --nb-accordion-trigger-fg: var(--_nb-tone-fg);
+    --nb-accordion-trigger-border-color: var(--_nb-tone-border-color);
+  }
+
   :where(nb-accordion-trigger [data-slot='accordion-trigger-heading']) {
     display: flex;
     margin: 0;
@@ -72,7 +78,7 @@
   }
 
   :where(nb-accordion-trigger [data-slot='accordion-trigger-button']:focus-visible) {
-    outline: 2px solid var(--nb-accordion-item-border-color, var(--nb-border));
+    outline: 2px solid var(--nb-accordion-trigger-border-color, var(--nb-accordion-item-border-color, var(--nb-border)));
     outline-offset: 2px;
   }
 
@@ -84,7 +90,7 @@
   :where(nb-accordion-trigger [data-slot='accordion-trigger-button'][data-state='open']) {
     border-bottom-style: solid;
     border-bottom-width: var(--nb-accordion-item-border-width, inherit);
-    border-bottom-color: var(--nb-accordion-item-border-color, var(--nb-border));
+    border-bottom-color: var(--nb-accordion-trigger-border-color, var(--nb-accordion-item-border-color, var(--nb-border)));
   }
 
   :where(nb-accordion-trigger [data-slot='accordion-trigger-icon']) {

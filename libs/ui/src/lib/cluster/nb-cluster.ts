@@ -1,6 +1,9 @@
-import { Directive, computed, inject, input } from '@angular/core';
+import { Directive, computed, input } from '@angular/core';
 
-import { NbGapCapability, NbPaddingCapability } from '../core/capabilities';
+import {
+  nbGapStyleTransform,
+  nbPaddingStyleTransform,
+} from '../core/input-transforms';
 import type {
   NbLayoutAlign,
   NbLayoutJustify,
@@ -23,16 +26,14 @@ export type NbClusterSeparator = NbLayoutSeparator;
 
 @Directive({
   selector: '[nbCluster]',
-  hostDirectives: [
-    { directive: NbGapCapability, inputs: ['gap'] },
-    { directive: NbPaddingCapability, inputs: ['padding'] },
-  ],
   host: {
     '[attr.data-nb-cluster]': '""',
     '[attr.data-align]': 'align()',
     '[attr.data-justify]': 'justify()',
     '[attr.data-wrap]': 'wrap()',
     '[attr.data-separator]': 'separator()',
+    '[style.--nb-cluster-gap]': 'gap()',
+    '[style.--nb-cluster-padding]': 'padding()',
     '[style.column-gap]': 'separatorColumnGapStyle()',
     '[style.--nb-cluster-separator-gap]': 'separatorGapStyle()',
   },
@@ -42,8 +43,12 @@ export class NbCluster {
   readonly justify = input<NbClusterJustify>('start');
   readonly wrap = input<NbClusterWrap>('wrap');
   readonly separator = input<NbClusterSeparator>('none');
-  // gap -> NbGapCapability
-  // padding -> NbPaddingCapability
+  readonly gap = input(null, {
+    transform: nbGapStyleTransform,
+  });
+  readonly padding = input(null, {
+    transform: nbPaddingStyleTransform,
+  });
 
   protected readonly separatorColumnGapStyle = computed(() =>
     this.separator() === 'none' ? null : '0px',
@@ -52,10 +57,8 @@ export class NbCluster {
   // Component-local anatomy var: the separator owns half the inline spacing on
   // each side. It mirrors an explicit gap input when present; CSS owns the
   // public hook fallback chain when it is absent.
-  private readonly gapCapability = inject(NbGapCapability);
-
   protected readonly separatorGapStyle = computed(() => {
-    const gapStyle = this.gapCapability.value();
+    const gapStyle = this.gap();
     return this.separator() === 'none' || !gapStyle
       ? null
       : `calc(${gapStyle} * 0.5)`;

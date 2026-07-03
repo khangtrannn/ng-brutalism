@@ -31,6 +31,18 @@ class InputGroupTokenTest {}
 })
 class StretchAlignTest {}
 
+@Component({
+  imports: [NbInput, NbInputGroup, NbInputPrefix, NbInputSuffix],
+  template: `
+    <nb-input-group radius="lg">
+      <span nbInputPrefix>&#64;</span>
+      <input nbInput placeholder="username" />
+      <span nbInputSuffix>USD</span>
+    </nb-input-group>
+  `,
+})
+class RadiusInputGroupTest {}
+
 describe('NbInputGroup token surface', () => {
   it('emits no internal styling classes — anatomy lives in styles.css and data-attrs', async () => {
     const fixture = await createFixture();
@@ -70,6 +82,16 @@ describe('NbInputGroup token surface', () => {
     expect(suffix.getAttribute('data-align')).toBe('stretch');
     expect(prefix.className).toBe('');
     expect(suffix.className).toBe('');
+  });
+
+  it('writes the radius input to the public CSS variable', async () => {
+    const fixture = await createFixture(RadiusInputGroupTest);
+    const group = findGroup(fixture);
+
+    expect(group.style.getPropertyValue('--nb-input-group-radius')).toBe(
+      'var(--nb-radius-lg, 0.75rem)'
+    );
+    expect(group.style.getPropertyValue('border-radius')).toBe('');
   });
 });
 

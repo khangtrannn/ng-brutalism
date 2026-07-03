@@ -3,22 +3,21 @@
     pointer-events: none;
   }
 
-  :where([data-nb-halftone][data-shape='rectangle']) {
-    --nb-halftone-color: var(--nb-border);
-    --nb-halftone-dot-size: 8px;
-    --nb-halftone-gap-x: 28px;
-    --nb-halftone-gap-y: 27px;
+  :where([data-nb-halftone] circle) {
+    fill: var(--nb-halftone-color, var(--nb-border));
+  }
 
+  :where([data-nb-halftone][data-shape='rectangle']) {
     display: block;
     overflow: hidden;
-    width: calc(var(--nb-halftone-columns) * var(--nb-halftone-gap-x));
-    height: calc(var(--nb-halftone-rows) * var(--nb-halftone-gap-y));
+    width: calc(var(--nb-halftone-columns) * var(--nb-halftone-gap-x, 28px));
+    height: calc(var(--nb-halftone-rows) * var(--nb-halftone-gap-y, 27px));
     background-image: radial-gradient(
       circle at center,
-      var(--nb-halftone-color) 0 calc(var(--nb-halftone-dot-size) / 2),
-      transparent calc((var(--nb-halftone-dot-size) / 2) + 1px)
+      var(--nb-halftone-color, var(--nb-border)) 0 calc(var(--nb-halftone-dot-size, 8px) / 2),
+      transparent calc((var(--nb-halftone-dot-size, 8px) / 2) + 1px)
     );
-    background-size: var(--nb-halftone-gap-x) var(--nb-halftone-gap-y);
+    background-size: var(--nb-halftone-gap-x, 28px) var(--nb-halftone-gap-y, 27px);
     background-repeat: repeat;
     background-position: 0 0;
   }

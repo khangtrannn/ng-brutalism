@@ -62,6 +62,8 @@ describe('NbIcon', () => {
     expect(icon.getAttribute('aria-hidden')).toBe('true');
     expect(icon.getAttribute('role')).toBeNull();
     expect(icon.getAttribute('aria-label')).toBeNull();
+    expect(icon.getAttribute('data-nb-tone')).toBeNull();
+    expect(icon.getAttribute('data-tone')).toBeNull();
   });
 
   it('labeled icon gets role="img" and aria-label', async () => {
@@ -73,13 +75,16 @@ describe('NbIcon', () => {
     expect(icon.getAttribute('aria-hidden')).toBeNull();
   });
 
-  it('mask mode sets mask-image and background-color for colorization', async () => {
+  it('mask mode sets mask-image inline and leaves colorization to CSS', async () => {
     const fixture = await createFixture(MaskModeIconTest);
     const icon = findIcon(fixture);
 
     expect(icon.style.maskImage).toContain('url(');
-    expect(icon.style.backgroundColor).toBeTruthy();
     expect(icon.style.backgroundImage).toBe('');
+    // background-color (the mask colorization paint) is CSS-owned via
+    // [data-mode='mask'], not written inline.
+    expect(icon.style.backgroundColor).toBe('');
+    expect(icon.getAttribute('data-mode')).toBe('mask');
   });
 
   it('image mode sets background-image and suppresses mask', async () => {
@@ -94,6 +99,8 @@ describe('NbIcon', () => {
     const fixture = await createFixture(ToneIconTest);
     const icon = findIcon(fixture);
 
+    expect(icon.getAttribute('data-nb-tone')).toBe('danger');
+    expect(icon.getAttribute('data-tone')).toBeNull();
     expect(icon.style.getPropertyValue('--nb-icon-color')).toBeTruthy();
   });
 

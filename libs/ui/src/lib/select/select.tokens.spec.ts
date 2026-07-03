@@ -20,6 +20,19 @@ import { NbSelectOption } from './nb-select-option';
 class SelectTokenTest {}
 
 @Component({
+  imports: [NbSelect, NbSelectOption],
+  template: `
+    <nb-select placeholder="Pick one" radius="lg" shadow="hard">
+      <nb-select-option value="starter" label="Starter"
+        >Starter</nb-select-option
+      >
+      <nb-select-option value="team" label="Team">Team</nb-select-option>
+    </nb-select>
+  `,
+})
+class ValueSelectTokenTest {}
+
+@Component({
   imports: [NbNativeSelect],
   template: `
     <select nbSelect aria-label="Plan">
@@ -47,7 +60,25 @@ describe('NbSelect token surface', () => {
     expect(select.style.getPropertyValue('background-color')).toBe('');
     expect(select.style.getPropertyValue('color')).toBe('');
     expect(select.style.getPropertyValue('border-color')).toBe('');
+    expect(select.style.getPropertyValue('--nb-select-radius')).toBe('');
+    expect(select.style.getPropertyValue('--nb-select-shadow')).toBe('');
+    expect(select.style.getPropertyValue('border-radius')).toBe('');
+    expect(select.style.getPropertyValue('box-shadow')).toBe('');
     expect(select.style.cssText).not.toContain('--nb-resolved');
+  });
+
+  it('writes radius/shadow inputs to public CSS variables', async () => {
+    const fixture = await createFixture(ValueSelectTokenTest);
+    const select = findCustomSelect(fixture);
+
+    expect(select.style.getPropertyValue('--nb-select-radius')).toBe(
+      'var(--nb-radius-lg, 0.75rem)'
+    );
+    expect(select.style.getPropertyValue('--nb-select-shadow')).toBe(
+      '6px 6px 0 0 var(--nb-shadow)'
+    );
+    expect(select.style.getPropertyValue('border-radius')).toBe('');
+    expect(select.style.getPropertyValue('box-shadow')).toBe('');
   });
 
   it('keeps radius in CSS instead of local class tokens', async () => {
@@ -160,9 +191,7 @@ async function createFixture<T>(
   return fixture;
 }
 
-function findCustomSelect(
-  fixture: ComponentFixture<SelectTokenTest>
-): HTMLElement {
+function findCustomSelect(fixture: ComponentFixture<unknown>): HTMLElement {
   return fixture.nativeElement.querySelector('nb-select') as HTMLElement;
 }
 

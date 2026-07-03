@@ -5,7 +5,10 @@ import {
   input,
 } from '@angular/core';
 
-import { nbToneVars, type NbTone } from '../tokens/tone';
+import { NbToneCapability } from '../core/capabilities';
+import type { NbTone } from '../tokens/tone';
+
+export type NbProgressTone = NbTone;
 
 @Component({
   selector: 'nb-progress',
@@ -20,13 +23,12 @@ import { nbToneVars, type NbTone } from '../tokens/tone';
     >
       <div
         data-slot="progress-fill"
-        [style.background-color]="fillBg()"
         [style.width.%]="percentage()"
       ></div>
     </div>
   `,
+  hostDirectives: [{ directive: NbToneCapability, inputs: ['tone'] }],
   host: {
-    '[style.background-color]': '"var(--nb-secondary-background)"',
     '[attr.data-nb-progress]': '""',
   },
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -35,10 +37,6 @@ export class NbProgress {
   readonly value = input<number>(0);
   readonly max = input<number>(100);
   readonly label = input<string>('');
-  // The fill color resolves the tone token to a literal at render time (inner
-  // element, no CSS fallback chain), so progress owns the tone input directly.
-  // The 'primary' default stands in when no tone is set.
-  readonly tone = input<NbTone | undefined>(undefined);
 
   protected readonly clampedValue = computed(() =>
     Math.min(Math.max(this.value(), 0), this.max())
@@ -46,9 +44,5 @@ export class NbProgress {
 
   protected readonly percentage = computed(() =>
     (this.clampedValue() / this.max()) * 100
-  );
-
-  protected readonly fillBg = computed(
-    () => nbToneVars(this.tone() ?? 'primary').bg,
   );
 }

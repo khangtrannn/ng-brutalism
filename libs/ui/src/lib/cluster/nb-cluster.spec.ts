@@ -68,6 +68,8 @@ describe('NbCluster', () => {
     expect(cluster.className).toBe('');
     expect(cluster.style.getPropertyValue('gap')).toBe('');
     expect(cluster.style.getPropertyValue('padding')).toBe('');
+    expect(cluster.style.getPropertyValue('--nb-cluster-gap')).toBe('');
+    expect(cluster.style.getPropertyValue('--nb-cluster-padding')).toBe('');
     expect(cluster.style.cssText).not.toContain('--nb-resolved');
   });
 
@@ -86,7 +88,8 @@ describe('NbCluster', () => {
     const cluster = fixture.nativeElement.querySelector('[nbCluster]') as HTMLElement;
 
     expect(cluster.getAttribute('data-separator')).toBe('dashed');
-    expect(cluster.style.getPropertyValue('gap')).toBe('1rem');
+    expect(cluster.style.getPropertyValue('gap')).toBe('');
+    expect(cluster.style.getPropertyValue('--nb-cluster-gap')).toBe('1rem');
     expect(cluster.style.getPropertyValue('column-gap')).toBe('0px');
     expect(cluster.style.getPropertyValue('--nb-cluster-separator-gap')).toBe(
       'calc(1rem * 0.5)'
@@ -114,7 +117,10 @@ describe('NbCluster', () => {
     const fixture = await createFixture(PaddedClusterTest);
     const cluster = fixture.nativeElement.querySelector('[nbCluster]') as HTMLElement;
 
-    expect(cluster.style.getPropertyValue('padding')).toBe('1.5rem');
+    expect(cluster.style.getPropertyValue('padding')).toBe('');
+    expect(cluster.style.getPropertyValue('--nb-cluster-padding')).toBe(
+      '1.5rem'
+    );
     expect(cluster.style.cssText).not.toContain('--nb-resolved');
     expect(cluster.className).toBe('');
   });
@@ -128,7 +134,8 @@ describe('NbCluster', () => {
     expect(cluster.getAttribute('data-align')).toBe('baseline');
     expect(cluster.getAttribute('data-justify')).toBe('between');
     expect(cluster.getAttribute('data-wrap')).toBe('nowrap');
-    expect(cluster.style.getPropertyValue('gap')).toBe('1.5rem');
+    expect(cluster.style.getPropertyValue('gap')).toBe('');
+    expect(cluster.style.getPropertyValue('--nb-cluster-gap')).toBe('1.5rem');
     expect(cluster.className).toBe('');
   });
 });

@@ -15,26 +15,7 @@
     border-width: var(--nb-chip-border-width, var(--nb-border-width));
     border-radius: var(--nb-chip-radius, 0px);
     box-shadow: var(--nb-chip-shadow, 2px 2px 0 0 var(--nb-shadow));
-  }
-
-  :where(span[nbChip][data-padding='none']) {
-    padding: 0;
-  }
-
-  :where(span[nbChip][data-padding='sm']) {
-    padding: 0.125rem 0.5rem;
-  }
-
-  :where(span[nbChip][data-padding='md']) {
-    padding: 0.125rem 0.625rem;
-  }
-
-  :where(span[nbChip][data-padding='lg']) {
-    padding: 0.5rem 1rem;
-  }
-
-  :where(span[nbChip][data-padding='xl']) {
-    padding: 0.625rem 1.25rem;
+    padding: var(--nb-chip-padding, 0.125rem 0.625rem);
   }
 
   :where(span[nbChip] svg),
@@ -49,6 +30,24 @@
     min-width: 0;
     flex-wrap: wrap;
     align-items: stretch;
+    gap: var(--nb-chip-group-gap, 0.5rem);
+    letter-spacing: var(--nb-chip-group-tracking, normal);
+  }
+
+  :where([nbChipGroup][data-tracking='tight']) {
+    --nb-chip-group-tracking: -0.025em;
+  }
+
+  :where([nbChipGroup][data-tracking='normal']) {
+    --nb-chip-group-tracking: normal;
+  }
+
+  :where([nbChipGroup][data-tracking='wide']) {
+    --nb-chip-group-tracking: 0.025em;
+  }
+
+  :where([nbChipGroup][data-tracking='wider']) {
+    --nb-chip-group-tracking: 0.05em;
   }
 
   :where([nbChipGroup][data-direction='vertical']) {

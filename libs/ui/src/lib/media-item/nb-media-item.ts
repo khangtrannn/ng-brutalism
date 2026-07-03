@@ -3,10 +3,10 @@ import {
   Component,
   Directive,
   booleanAttribute,
-  computed,
   input,
 } from '@angular/core';
-import { nbToneVars, type NbTone } from '../tokens/tone';
+import { NbToneCapability } from '../core/capabilities';
+import type { NbTone } from '../tokens/tone';
 
 export type NbMediaItemVariant = 'plain' | 'boxed' | 'chip';
 
@@ -27,7 +27,6 @@ export type NbMediaItemTone = NbTone;
         <span
           data-nb-media-item-icon
           data-surface="true"
-          [attr.data-background]="iconBackground()"
           [style.--nb-media-item-icon-bg]="iconBackground()"
         >
           <img [src]="icon()" [alt]="iconAlt()" />
@@ -57,15 +56,13 @@ export type NbMediaItemTone = NbTone;
 
     <ng-content select="nb-media-item-action, [nbMediaItemAction]" />
   `,
+  hostDirectives: [{ directive: NbToneCapability, inputs: ['tone'] }],
   host: {
     '[attr.data-nb-media-item]': '""',
     '[attr.data-variant]': 'variant()',
     '[attr.data-orientation]': 'orientation()',
     '[attr.data-align]': 'align()',
     '[attr.data-size]': 'size()',
-    '[style.background]': 'backgroundStyle()',
-    '[style.color]': 'foregroundStyle()',
-    '[style.border-color]': 'borderColorStyle()',
   },
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
@@ -79,29 +76,6 @@ export class NbMediaItem {
   readonly iconBackground = input<string | undefined>(undefined);
   readonly title = input<string | undefined>(undefined);
   readonly description = input<string | undefined>(undefined);
-
-  // Tone applies conditionally per variant, so MediaItem resolves it itself
-  // rather than composing the host-painting capability.
-  readonly tone = input<NbTone | undefined>(undefined);
-
-  private readonly toneVars = computed(() => {
-    const tone = this.tone();
-    return tone ? nbToneVars(tone) : null;
-  });
-  protected readonly foregroundStyle = computed(
-    () => this.toneVars()?.fg ?? null,
-  );
-
-  // The `plain` variant has no surface (transparent background, no border), so
-  // tone-driven background/border only apply to `boxed`/`chip`. When unset,
-  // returning null lets the variant's `bg-[var(--nb-media-item-bg)]` /
-  // `border-[var(--nb-media-item-border-color)]` classes read the public hooks.
-  protected readonly backgroundStyle = computed(() =>
-    this.variant() === 'plain' ? null : (this.toneVars()?.bg ?? null),
-  );
-  protected readonly borderColorStyle = computed(() =>
-    this.variant() === 'plain' ? null : (this.toneVars()?.borderColor ?? null),
-  );
 }
 
 @Directive({
@@ -109,7 +83,6 @@ export class NbMediaItem {
   host: {
     '[attr.data-nb-media-item-icon]': '""',
     '[attr.data-surface]': 'surface()',
-    '[attr.data-background]': 'surface() ? background() : null',
     '[style.--nb-media-item-icon-bg]': 'surface() ? background() : null',
   },
 })

@@ -1,0 +1,45 @@
+@layer base {
+  :where([data-nb-icon]) {
+    display: inline-block;
+    flex-shrink: 0;
+    vertical-align: middle;
+    color: var(--nb-icon-color, currentColor);
+  }
+
+  :where([data-nb-icon][data-size='xs']) {
+    width: var(--nb-icon-size, 0.75rem);
+    height: var(--nb-icon-size, 0.75rem);
+  }
+  :where([data-nb-icon][data-size='sm']) {
+    width: var(--nb-icon-size, 1rem);
+    height: var(--nb-icon-size, 1rem);
+  }
+  :where([data-nb-icon][data-size='md']) {
+    width: var(--nb-icon-size, 1.25rem);
+    height: var(--nb-icon-size, 1.25rem);
+  }
+  :where([data-nb-icon][data-size='lg']) {
+    width: var(--nb-icon-size, 1.5rem);
+    height: var(--nb-icon-size, 1.5rem);
+  }
+  :where([data-nb-icon][data-size='xl']) {
+    width: var(--nb-icon-size, 2rem);
+    height: var(--nb-icon-size, 2rem);
+  }
+
+  :where([data-nb-icon][data-mode='mask']) {
+    background-color: var(--nb-icon-color, currentColor);
+    mask-size: contain;
+    -webkit-mask-size: contain;
+    mask-position: center;
+    -webkit-mask-position: center;
+    mask-repeat: no-repeat;
+    -webkit-mask-repeat: no-repeat;
+  }
+
+  :where([data-nb-icon][data-mode='image']) {
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+}

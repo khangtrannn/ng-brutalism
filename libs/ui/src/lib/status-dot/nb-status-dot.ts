@@ -1,25 +1,30 @@
 import { Directive, computed, input } from '@angular/core';
 
-import { NbRadiusCapability } from '../core/capabilities';
+import { nbRadiusStyleTransform } from '../core/input-transforms';
+import type { NbRadius } from '../tokens/radius';
 
 export type NbStatusDotState = 'online' | 'offline' | 'live';
 
 export type NbStatusDotSize = 'xs' | 'sm' | 'md' | 'lg';
+export type NbStatusDotRadius = NbRadius;
 
 @Directive({
   selector: 'span[nbStatusDot]',
-  hostDirectives: [{ directive: NbRadiusCapability, inputs: ['radius'] }],
   host: {
     '[attr.role]': '"img"',
     '[attr.aria-label]': 'ariaLabel()',
     '[attr.data-state]': 'state()',
     '[attr.data-size]': 'size()',
     '[attr.data-nb-status-dot]': '""',
+    '[style.--nb-status-dot-radius]': 'radius()',
   },
 })
 export class NbStatusDot {
   readonly state = input<NbStatusDotState>('online');
   readonly size = input<NbStatusDotSize>('md');
+  readonly radius = input(null, {
+    transform: nbRadiusStyleTransform,
+  });
 
   protected readonly ariaLabel = computed(() => `Status: ${this.state()}`);
 }

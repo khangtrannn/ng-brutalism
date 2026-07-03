@@ -29,13 +29,18 @@ function readUiStylesCss(): string {
   const path = candidates.find((candidate) => existsSync(candidate));
 
   if (!path) {
-    throw new Error('Unable to locate libs/ui styles.css for token priority specs.');
+    throw new Error(
+      'Unable to locate libs/ui styles.css for token priority specs.'
+    );
   }
 
   return readCssWithLocalImports(path);
 }
 
-function readCssWithLocalImports(path: string, seen = new Set<string>()): string {
+function readCssWithLocalImports(
+  path: string,
+  seen = new Set<string>()
+): string {
   const absolutePath = resolve(path);
 
   if (seen.has(absolutePath)) {
@@ -160,13 +165,23 @@ class BadgeCapabilitiesTest {}
 
 @Component({
   imports: [NbCard],
-  template: `<nb-card tone="mint" radius="xl" shadow="heavy" border="thick"></nb-card>`,
+  template: `<nb-card
+    tone="mint"
+    radius="xl"
+    shadow="heavy"
+    border="thick"
+  ></nb-card>`,
 })
 class CardCapabilitiesTest {}
 
 @Component({
   imports: [NbImageCard],
-  template: `<nb-image-card image="x.jpg" alt="x" tone="pink" border="thin"></nb-image-card>`,
+  template: `<nb-image-card
+    image="x.jpg"
+    alt="x"
+    tone="pink"
+    border="thin"
+  ></nb-image-card>`,
 })
 class ImageCardCapabilitiesTest {}
 
@@ -256,16 +271,18 @@ class NestedSurfaceTest {}
 class CapabilityPrecedenceTest {}
 
 describe('style capabilities', () => {
-  it('nbSurface writes actual CSS properties from explicit inputs', () => {
+  it('nbSurface writes explicit scalar inputs to public CSS variables', () => {
     const el = mount(SurfaceExplicitTest);
     const surface = el.querySelector<HTMLElement>('[nbSurface]')!;
 
-    // Explicit input wins outright — literal value, no public hook involved.
-    expect(surface.style.getPropertyValue('border-radius')).toBe('1rem');
-    expect(surface.style.getPropertyValue('--nb-surface-radius')).toBe('');
-    expect(surface.style.getPropertyValue('background')).toBe('var(--nb-mint)');
-    expect(surface.style.getPropertyValue('color')).toBeTruthy();
-    expect(surface.style.getPropertyValue('border-color')).toBe('var(--nb-border)');
+    expect(surface.style.getPropertyValue('border-radius')).toBe('');
+    expect(surface.style.getPropertyValue('--nb-surface-radius')).toBe(
+      'var(--nb-radius-xl, 1rem)'
+    );
+    expect(surface.getAttribute('data-nb-tone')).toBe('mint');
+    expect(surface.style.getPropertyValue('background')).toBe('');
+    expect(surface.style.getPropertyValue('color')).toBe('');
+    expect(surface.style.getPropertyValue('border-color')).toBe('');
     expect(surface.style.getPropertyValue('--nb-surface-bg')).toBe('');
     expect(surface.style.cssText).not.toContain('--nb-resolved');
   });
@@ -283,32 +300,35 @@ describe('style capabilities', () => {
     expect(surface.style.cssText).not.toContain('--nb-resolved');
   });
 
-  it('nbButton tone writes actual color properties, not public variables', () => {
+  it('nbButton reflects tone semantically without writing final colors', () => {
     const el = mount(ButtonToneTest);
     const button = el.querySelector<HTMLElement>('[nbButton]')!;
 
-    expect(button.style.getPropertyValue('background')).toBe('var(--nb-lavender)');
+    expect(button.getAttribute('data-nb-tone')).toBe('lavender');
+    expect(button.style.getPropertyValue('background')).toBe('');
     expect(button.style.getPropertyValue('--nb-button-bg')).toBe('');
     expect(button.style.getPropertyValue('--nb-surface-bg')).toBe('');
     expect(button.style.cssText).not.toContain('--nb-resolved');
   });
 
-  it('input beats a local token for button background', () => {
+  it('local button token remains user-owned when tone is explicit', () => {
     const el = mount(ButtonBackgroundPriorityTest);
     const button = el.querySelector<HTMLElement>('#input-local')!;
 
+    expect(button.getAttribute('data-nb-tone')).toBe('accent');
     expect(button.style.getPropertyValue('--nb-button-bg')).toBe('#00e5ff');
-    expect(button.style.getPropertyValue('background')).toBe('var(--nb-accent)');
+    expect(button.style.getPropertyValue('background')).toBe('');
   });
 
-  it('input beats an inherited token for button background', () => {
+  it('explicit tone is semantic when button background is inherited', () => {
     const el = mount(ButtonBackgroundPriorityTest);
     const scope = el.querySelector<HTMLElement>('#scope')!;
     const button = el.querySelector<HTMLElement>('#input-inherited')!;
 
     expect(scope.style.getPropertyValue('--nb-button-bg')).toBe('#ffcc00');
+    expect(button.getAttribute('data-nb-tone')).toBe('accent');
     expect(button.style.getPropertyValue('--nb-button-bg')).toBe('');
-    expect(button.style.getPropertyValue('background')).toBe('var(--nb-accent)');
+    expect(button.style.getPropertyValue('background')).toBe('');
   });
 
   it('local token beats inherited token when button tone is unset', () => {
@@ -320,7 +340,7 @@ describe('style capabilities', () => {
     expect(button.style.getPropertyValue('--nb-button-bg')).toBe('#00e5ff');
     expect(button.style.getPropertyValue('background')).toBe('');
     expect(stylesCss).toContain(
-      'background: var(--nb-button-bg, var(--nb-primary));'
+      'background: var(--nb-button-bg, var(--_nb-tone-bg, var(--nb-primary)));'
     );
   });
 
@@ -333,7 +353,7 @@ describe('style capabilities', () => {
     expect(button.style.getPropertyValue('--nb-button-bg')).toBe('');
     expect(button.style.getPropertyValue('background')).toBe('');
     expect(stylesCss).toContain(
-      'background: var(--nb-button-bg, var(--nb-primary));'
+      'background: var(--nb-button-bg, var(--_nb-tone-bg, var(--nb-primary)));'
     );
   });
 
@@ -344,27 +364,27 @@ describe('style capabilities', () => {
     expect(button.style.getPropertyValue('--nb-button-bg')).toBe('');
     expect(button.style.getPropertyValue('background')).toBe('');
     expect(stylesCss).toContain(
-      'background: var(--nb-button-bg, var(--nb-primary));'
+      'background: var(--nb-button-bg, var(--_nb-tone-bg, var(--nb-primary)));'
     );
   });
 
-  it('nbMediaFrame shadow input writes box-shadow', () => {
+  it('nbMediaFrame shadow input writes the public shadow variable', () => {
     const el = mount(MediaFrameTest);
     const frame = el.querySelector<HTMLElement>('[nbMediaFrame]')!;
 
-    expect(frame.style.getPropertyValue('box-shadow')).toBe(
+    expect(frame.style.getPropertyValue('box-shadow')).toBe('');
+    expect(frame.style.getPropertyValue('--nb-media-frame-shadow')).toBe(
       '6px 6px 0 0 var(--nb-shadow)'
     );
-    expect(frame.style.getPropertyValue('--nb-media-frame-shadow')).toBe('');
     expect(frame.style.cssText).not.toContain('--nb-resolved');
   });
 
-  it('nbStack gap input writes gap', () => {
+  it('nbStack gap input writes the public gap variable', () => {
     const el = mount(StackTest);
     const stack = el.querySelector<HTMLElement>('[nbStack]')!;
 
-    expect(stack.style.getPropertyValue('gap')).toBe('1rem');
-    expect(stack.style.getPropertyValue('--nb-stack-gap')).toBe('');
+    expect(stack.style.getPropertyValue('gap')).toBe('');
+    expect(stack.style.getPropertyValue('--nb-stack-gap')).toBe('1rem');
     expect(stack.style.cssText).not.toContain('--nb-resolved');
   });
 
@@ -372,9 +392,7 @@ describe('style capabilities', () => {
     expect(stylesCss).toContain(
       'padding-top: var(--nb-stack-separator-gap, var(--nb-stack-gap, 0.75rem));'
     );
-    expect(stylesCss).toContain(
-      'calc(var(--nb-cluster-gap, 0.75rem) * 0.5)'
-    );
+    expect(stylesCss).toContain('calc(var(--nb-cluster-gap, 0.75rem) * 0.5)');
     expect(stylesCss).toContain(
       'var(--nb-split-separator-gap, var(--nb-split-gap, 1rem)) / -2'
     );
@@ -386,73 +404,99 @@ describe('style capabilities', () => {
     );
   });
 
-  it('nbIconButton composes explicit visual inputs into actual properties', () => {
+  it('nbIconButton composes explicit visual inputs and semantic tone', () => {
     const el = mount(IconButtonCapabilitiesTest);
     const button = el.querySelector<HTMLElement>('[nbIconButton]')!;
 
-    expect(button.style.getPropertyValue('background')).toBe('var(--nb-mint)');
-    expect(button.style.getPropertyValue('border-radius')).toBe('0.5rem');
-    expect(button.style.getPropertyValue('box-shadow')).toBe(
+    expect(button.getAttribute('data-nb-tone')).toBe('mint');
+    expect(button.style.getPropertyValue('background')).toBe('');
+    expect(button.style.getPropertyValue('border-radius')).toBe('');
+    expect(button.style.getPropertyValue('box-shadow')).toBe('');
+    expect(button.style.getPropertyValue('border-width')).toBe('');
+    expect(button.style.getPropertyValue('--nb-icon-button-radius')).toBe(
+      'var(--nb-radius-md, 0.5rem)'
+    );
+    expect(button.style.getPropertyValue('--nb-icon-button-shadow')).toBe(
       '6px 6px 0 0 var(--nb-shadow)'
     );
-    expect(button.style.getPropertyValue('border-width')).toBe('3px');
+    expect(button.style.getPropertyValue('--nb-icon-button-border-width')).toBe(
+      '3px'
+    );
     expect(button.style.cssText).not.toContain('--nb-resolved');
   });
 
-  it('nbChip border input writes border-width', () => {
+  it('nbChip border input writes the public border-width variable', () => {
     const el = mount(ChipBorderTest);
     const chip = el.querySelector<HTMLElement>('[nbChip]')!;
 
-    expect(chip.style.getPropertyValue('border-width')).toBe('3px');
-    expect(chip.style.getPropertyValue('--nb-chip-border-width')).toBe('');
+    expect(chip.style.getPropertyValue('border-width')).toBe('');
+    expect(chip.style.getPropertyValue('--nb-chip-border-width')).toBe('3px');
     expect(chip.style.cssText).not.toContain('--nb-resolved');
   });
 
-  it('nbButton border input writes border-width', () => {
+  it('nbButton border input writes the public border-width variable', () => {
     const el = mount(ButtonBorderTest);
     const button = el.querySelector<HTMLElement>('[nbButton]')!;
 
-    expect(button.style.getPropertyValue('border-width')).toBe('3px');
+    expect(button.style.getPropertyValue('border-width')).toBe('');
+    expect(button.style.getPropertyValue('--nb-button-border-width')).toBe(
+      '3px'
+    );
   });
 
-  it('nbMediaItem tone writes applicable actual color properties', () => {
+  it('nbMediaItem tone reflects semantically without writing final colors inline', () => {
     const el = mount(MediaItemToneTest);
     const item = el.querySelector<HTMLElement>('nb-media-item')!;
 
+    expect(item.getAttribute('data-nb-tone')).toBe('yellow');
     expect(item.style.getPropertyValue('background')).toBe('');
-    expect(item.style.getPropertyValue('color')).toBeTruthy();
+    expect(item.style.getPropertyValue('color')).toBe('');
     expect(item.style.getPropertyValue('--nb-media-item-bg')).toBe('');
     expect(item.style.cssText).not.toContain('--nb-resolved');
   });
 
-  it('nbBadge composes tone and border capabilities', () => {
+  it('nbBadge composes semantic tone and scalar border variable', () => {
     const el = mount(BadgeCapabilitiesTest);
     const badge = el.querySelector<HTMLElement>('[nbBadge]')!;
 
-    expect(badge.style.getPropertyValue('background')).toBe('var(--nb-danger)');
-    expect(badge.style.getPropertyValue('border-width')).toBe('3px');
+    expect(badge.getAttribute('data-nb-tone')).toBe('danger');
+    expect(badge.style.getPropertyValue('background')).toBe('');
+    expect(badge.style.getPropertyValue('border-width')).toBe('');
+    expect(badge.style.getPropertyValue('--nb-badge-border-width')).toBe(
+      '3px'
+    );
     expect(badge.style.cssText).not.toContain('--nb-resolved');
   });
 
-  it('nbCard composes the visual shell capabilities', () => {
+  it('nbCard composes semantic tone and scalar shell variables', () => {
     const el = mount(CardCapabilitiesTest);
     const card = el.querySelector<HTMLElement>('nb-card')!;
 
-    expect(card.style.getPropertyValue('background')).toBe('var(--nb-mint)');
-    expect(card.style.getPropertyValue('border-radius')).toBe('1rem');
-    expect(card.style.getPropertyValue('box-shadow')).toBe(
+    expect(card.getAttribute('data-nb-tone')).toBe('mint');
+    expect(card.style.getPropertyValue('background')).toBe('');
+    expect(card.style.getPropertyValue('border-radius')).toBe('');
+    expect(card.style.getPropertyValue('box-shadow')).toBe('');
+    expect(card.style.getPropertyValue('border-width')).toBe('');
+    expect(card.style.getPropertyValue('--nb-card-radius')).toBe(
+      'var(--nb-radius-xl, 1rem)'
+    );
+    expect(card.style.getPropertyValue('--nb-card-shadow')).toBe(
       '10px 10px 0 0 var(--nb-shadow)'
     );
-    expect(card.style.getPropertyValue('border-width')).toBe('4px');
+    expect(card.style.getPropertyValue('--nb-card-border-width')).toBe('4px');
     expect(card.style.cssText).not.toContain('--nb-resolved');
   });
 
-  it('nbImageCard composes tone and border capabilities', () => {
+  it('nbImageCard composes semantic tone and scalar border variable', () => {
     const el = mount(ImageCardCapabilitiesTest);
     const card = el.querySelector<HTMLElement>('nb-image-card')!;
 
-    expect(card.style.getPropertyValue('background')).toBe('var(--nb-pink)');
-    expect(card.style.getPropertyValue('border-width')).toBe('1px');
+    expect(card.getAttribute('data-nb-tone')).toBe('pink');
+    expect(card.style.getPropertyValue('background')).toBe('');
+    expect(card.style.getPropertyValue('border-width')).toBe('');
+    expect(card.style.getPropertyValue('--nb-image-card-border-width')).toBe(
+      '1px'
+    );
     expect(card.style.cssText).not.toContain('--nb-resolved');
   });
 
@@ -468,10 +512,16 @@ describe('style capabilities', () => {
     expect(chips[1].style.getPropertyValue('border-radius')).toBe('');
 
     expect(chips[2].className).toContain('rounded-full');
-    expect(chips[2].style.getPropertyValue('border-radius')).toBe('0.25rem');
+    expect(chips[2].style.getPropertyValue('border-radius')).toBe('');
+    expect(chips[2].style.getPropertyValue('--nb-chip-radius')).toBe(
+      'var(--nb-radius-sm, 0.25rem)'
+    );
 
     expect(chips[3].style.getPropertyValue('border-radius')).toBe('');
-    expect(chips[4].style.getPropertyValue('border-radius')).toBe('1rem');
+    expect(chips[4].style.getPropertyValue('border-radius')).toBe('');
+    expect(chips[4].style.getPropertyValue('--nb-chip-radius')).toBe(
+      'var(--nb-radius-xl, 1rem)'
+    );
   });
 
   it('nbChip tone input wins outright over public hooks and scoped tokens', () => {
@@ -486,11 +536,13 @@ describe('style capabilities', () => {
     expect(chips[1].className).toContain('text-black');
     expect(chips[1].style.getPropertyValue('background-color')).toBe('');
 
-    expect(chips[2].style.getPropertyValue('background')).toBe('var(--nb-pink)');
-    expect(chips[2].style.getPropertyValue('color')).toBeTruthy();
+    expect(chips[2].getAttribute('data-nb-tone')).toBe('pink');
+    expect(chips[2].style.getPropertyValue('background')).toBe('');
+    expect(chips[2].style.getPropertyValue('color')).toBe('');
 
     expect(chips[3].style.getPropertyValue('background')).toBe('');
-    expect(chips[4].style.getPropertyValue('background')).toBe('var(--nb-pink)');
+    expect(chips[4].getAttribute('data-nb-tone')).toBe('pink');
+    expect(chips[4].style.getPropertyValue('background')).toBe('');
   });
 
   it('same-namespace surface inputs do not leak into nested primitives', () => {
@@ -498,8 +550,10 @@ describe('style capabilities', () => {
     const outer = el.querySelector<HTMLElement>('[nbSurface]')!;
     const inner = el.querySelector<HTMLElement>('#inner')!;
 
-    expect(outer.style.getPropertyValue('border-radius')).toBe('1rem');
-    expect(outer.style.getPropertyValue('--nb-surface-radius')).toBe('');
+    expect(outer.style.getPropertyValue('border-radius')).toBe('');
+    expect(outer.style.getPropertyValue('--nb-surface-radius')).toBe(
+      'var(--nb-radius-xl, 1rem)'
+    );
     expect(inner.style.getPropertyValue('border-radius')).toBe('');
     expect(inner.style.getPropertyValue('--nb-surface-radius')).toBe('');
     expect(inner.style.cssText).not.toContain('--nb-resolved');
@@ -516,35 +570,52 @@ describe('style capabilities', () => {
     expect(chips[0].style.getPropertyValue('box-shadow')).toBe('');
     expect(chips[0].style.getPropertyValue('border-width')).toBe('');
 
-    expect(chips[1].style.getPropertyValue('box-shadow')).toBe(
+    expect(chips[1].style.getPropertyValue('box-shadow')).toBe('');
+    expect(chips[1].style.getPropertyValue('border-width')).toBe('');
+    expect(chips[1].style.getPropertyValue('--nb-chip-shadow')).toBe(
       '6px 6px 0 0 var(--nb-shadow)'
     );
-    expect(chips[1].style.getPropertyValue('border-width')).toBe('3px');
+    expect(chips[1].style.getPropertyValue('--nb-chip-border-width')).toBe(
+      '3px'
+    );
 
     expect(chips[2].style.getPropertyValue('box-shadow')).toBe('');
-    expect(chips[3].style.getPropertyValue('box-shadow')).toBe(
+    expect(chips[3].style.getPropertyValue('box-shadow')).toBe('');
+    expect(chips[3].style.getPropertyValue('border-width')).toBe('');
+    expect(chips[3].style.getPropertyValue('--nb-chip-shadow')).toBe(
       '10px 10px 0 0 var(--nb-shadow)'
     );
-    expect(chips[3].style.getPropertyValue('border-width')).toBe('4px');
+    expect(chips[3].style.getPropertyValue('--nb-chip-border-width')).toBe(
+      '4px'
+    );
 
     expect(surfaces[0].className).toContain('p-0');
     expect(surfaces[0].style.getPropertyValue('padding')).toBe('');
-    expect(surfaces[1].style.getPropertyValue('padding')).toBe('1.5rem');
+    expect(surfaces[1].style.getPropertyValue('padding')).toBe('');
+    expect(surfaces[1].style.getPropertyValue('--nb-surface-padding')).toBe(
+      '1.5rem'
+    );
     expect(surfaces[2].style.getPropertyValue('padding')).toBe('');
-    expect(surfaces[3].style.getPropertyValue('padding')).toBe('2rem');
+    expect(surfaces[3].style.getPropertyValue('padding')).toBe('');
+    expect(surfaces[3].style.getPropertyValue('--nb-surface-padding')).toBe(
+      '2rem'
+    );
 
     expect(stacks[0].className).toContain('gap-1');
     expect(stacks[0].style.getPropertyValue('gap')).toBe('');
-    expect(stacks[1].style.getPropertyValue('gap')).toBe('1rem');
+    expect(stacks[1].style.getPropertyValue('gap')).toBe('');
+    expect(stacks[1].style.getPropertyValue('--nb-stack-gap')).toBe('1rem');
     expect(stacks[2].style.getPropertyValue('gap')).toBe('');
-    expect(stacks[3].style.getPropertyValue('gap')).toBe('1.5rem');
+    expect(stacks[3].style.getPropertyValue('gap')).toBe('');
+    expect(stacks[3].style.getPropertyValue('--nb-stack-gap')).toBe('1.5rem');
   });
 
   it('nbCluster separator derives spacing from actual gap and neutralizes column gap', () => {
     const el = mount(ClusterSeparatorGapTest);
     const cluster = el.querySelector<HTMLElement>('[nbCluster]')!;
 
-    expect(cluster.style.getPropertyValue('gap')).toBe('2rem');
+    expect(cluster.style.getPropertyValue('gap')).toBe('');
+    expect(cluster.style.getPropertyValue('--nb-cluster-gap')).toBe('2rem');
     expect(cluster.style.getPropertyValue('column-gap')).toBe('0px');
     expect(cluster.style.getPropertyValue('--nb-cluster-separator-gap')).toBe(
       'calc(2rem * 0.5)'
@@ -552,11 +623,42 @@ describe('style capabilities', () => {
     expect(cluster.style.cssText).not.toContain('--nb-resolved');
   });
 
-  it('nbButton radius md is concrete and non-zero even when defaults are sharp', () => {
+  it('nbButton radius md writes the public radius variable', () => {
     const el = mount(ButtonRadiusTest);
     const button = el.querySelector<HTMLElement>('[nbButton]')!;
 
-    expect(button.style.getPropertyValue('border-radius')).toBe('0.5rem');
+    expect(button.style.getPropertyValue('border-radius')).toBe('');
+    expect(button.style.getPropertyValue('--nb-button-radius')).toBe(
+      'var(--nb-radius-md, 0.5rem)'
+    );
+  });
+
+  it('input-set radius beats stylesheet class at computed level', () => {
+    const el = mount(ButtonRadiusTest);
+    const button = el.querySelector<HTMLElement>('[nbButton]')!;
+    const computed = window.getComputedStyle(button);
+
+    expect(computed.borderRadius).toBe('0.5rem');
+  });
+
+  it('input-set tone beats inherited CSS and stylesheet class', () => {
+    const el = mount(ButtonBackgroundPriorityTest);
+    const scope = el.querySelector<HTMLElement>('#scope')!;
+    const button = el.querySelector<HTMLElement>('#input-inherited')!;
+    const computed = window.getComputedStyle(button);
+
+    scope.style.setProperty('--nb-button-bg', '#ffcc00');
+    expect(button.getAttribute('data-nb-tone')).toBe('accent');
+    expect(computed.backgroundColor).toBe('rgb(var(--nb-accent-parts))');
+  });
+
+  it('!important CSS beats input at computed level', () => {
+    const el = mount(ButtonRadiusTest);
+    const button = el.querySelector<HTMLElement>('[nbButton]')!;
+
+    button.style.setProperty('border-radius', '999px', 'important');
+    const computed = window.getComputedStyle(button);
+    expect(computed.borderRadius).toBe('999px');
   });
 });
 
@@ -570,13 +672,25 @@ class TextDefaultsTest {}
 
 @Component({
   imports: [NbText],
-  template: `<p nbText size="xl" weight="bold" tone="muted" tracking="wide" leading="relaxed" measure="md">Styled</p>`,
+  template: `<p
+    nbText
+    size="xl"
+    weight="bold"
+    tone="muted"
+    tracking="wide"
+    leading="relaxed"
+    measure="md"
+  >
+    Styled
+  </p>`,
 })
 class TextExplicitTest {}
 
 @Component({
   imports: [NbText],
-  template: `<p nbText underline="bar" underlineGap="md" underlineWidth="lg">Underlined</p>`,
+  template: `<p nbText underline="bar" underlineGap="md" underlineWidth="lg">
+    Underlined
+  </p>`,
 })
 class TextUnderlineTest {}
 
@@ -598,21 +712,32 @@ describe('NbText + NbDisplay capability composition', () => {
     const p = el.querySelector<HTMLElement>('[nbText]')!;
 
     expect(p.getAttribute('data-nb-text')).toBe('');
+    expect(p.getAttribute('data-nb-tone')).toBeNull();
+    expect(p.getAttribute('data-tone')).toBeNull();
     expect(p.getAttribute('data-nb-reset-margin')).toBe('');
     expect(p.style.getPropertyValue('margin')).toBe('');
   });
 
-  it('nbText explicit inputs produce correct inline styles', () => {
+  it('nbText explicit inputs reflect as data attributes, not final inline styles', () => {
     const el = mount(TextExplicitTest);
     const p = el.querySelector<HTMLElement>('[nbText]')!;
 
-    expect(p.style.getPropertyValue('font-size')).toBe('1.25rem');
-    expect(p.style.getPropertyValue('font-weight')).toBe('700');
-    expect(p.style.getPropertyValue('letter-spacing')).toBe('0.025em');
-    expect(p.style.getPropertyValue('line-height')).toBe('1.65');
-    expect(p.style.getPropertyValue('max-width')).toBe('36rem');
-    // muted tone
-    expect(p.style.getPropertyValue('color')).toContain('var(--nb-foreground)');
+    expect(p.style.getPropertyValue('font-size')).toBe('');
+    expect(p.style.getPropertyValue('font-weight')).toBe('');
+    expect(p.style.getPropertyValue('letter-spacing')).toBe('');
+    expect(p.style.getPropertyValue('line-height')).toBe('');
+    expect(p.style.getPropertyValue('max-width')).toBe('');
+    expect(p.getAttribute('data-size')).toBe('xl');
+    expect(p.getAttribute('data-weight')).toBe('bold');
+    expect(p.getAttribute('data-tracking')).toBe('wide');
+    expect(p.getAttribute('data-leading')).toBe('relaxed');
+    expect(p.getAttribute('data-measure')).toBe('md');
+    expect(p.getAttribute('data-nb-tone')).toBe('muted');
+    expect(p.getAttribute('data-tone')).toBeNull();
+    // muted tone resolves to a public CSS var, not a final color
+    expect(p.style.getPropertyValue('--nb-text-color')).toContain(
+      'var(--nb-foreground)'
+    );
   });
 
   it('nbText maps underline capability values to data attribute and CSS vars', () => {
@@ -651,7 +776,15 @@ class DisplayDefaultsTest {}
 
 @Component({
   imports: [NbDisplay],
-  template: `<h1 nbDisplay size="lg" weight="black" tracking="tighter" leading="display">Styled</h1>`,
+  template: `<h1
+    nbDisplay
+    size="lg"
+    weight="black"
+    tracking="tighter"
+    leading="display"
+  >
+    Styled
+  </h1>`,
 })
 class DisplayExplicitTest {}
 
@@ -663,7 +796,14 @@ class DisplayFluidTest {}
 
 @Component({
   imports: [NbDisplay],
-  template: `<h1 nbDisplay underline="wave" underlineGap="sm" underlineWidth="md">Underlined</h1>`,
+  template: `<h1
+    nbDisplay
+    underline="wave"
+    underlineGap="sm"
+    underlineWidth="md"
+  >
+    Underlined
+  </h1>`,
 })
 class DisplayUnderlineTest {}
 
@@ -681,7 +821,13 @@ class DisplayCssVarOverrideTest {}
 
 @Component({
   imports: [NbDisplay],
-  template: `<h1 nbDisplay underline="bar" style="--nb-underline-width: 45%; --nb-underline-gap: 0.125rem">Override</h1>`,
+  template: `<h1
+    nbDisplay
+    underline="bar"
+    style="--nb-underline-width: 45%; --nb-underline-gap: 0.125rem"
+  >
+    Override
+  </h1>`,
 })
 class DisplayUnderlineCssVarOverrideTest {}
 
@@ -695,23 +841,27 @@ describe('NbDisplay capability composition', () => {
     expect(h.style.getPropertyValue('margin')).toBe('');
   });
 
-  it('nbDisplay explicit size/weight/tracking/leading produce correct styles', () => {
+  it('nbDisplay explicit size/weight/tracking/leading reflect as data attributes', () => {
     const el = mount(DisplayExplicitTest);
     const h = el.querySelector<HTMLElement>('[nbDisplay]')!;
 
-    expect(h.style.getPropertyValue('font-size')).toBe('var(--nb-display-size, 3.75rem)');
-    expect(h.style.getPropertyValue('font-weight')).toBe('900');
-    expect(h.style.getPropertyValue('letter-spacing')).toBe('-0.08em');
-    expect(h.style.getPropertyValue('line-height')).toBe('0.84');
+    expect(h.style.getPropertyValue('font-size')).toBe('');
+    expect(h.style.getPropertyValue('font-weight')).toBe('');
+    expect(h.style.getPropertyValue('letter-spacing')).toBe('');
+    expect(h.style.getPropertyValue('line-height')).toBe('');
+    expect(h.getAttribute('data-size')).toBe('lg');
+    expect(h.getAttribute('data-weight')).toBe('black');
+    expect(h.getAttribute('data-tracking')).toBe('tighter');
+    expect(h.getAttribute('data-leading')).toBe('display');
   });
 
-  it('nbDisplay fluid wraps size in a clamp', () => {
+  it('nbDisplay fluid reflects as a boolean data attribute', () => {
     const el = mount(DisplayFluidTest);
     const h = el.querySelector<HTMLElement>('[nbDisplay]')!;
 
-    expect(h.style.getPropertyValue('font-size')).toBe(
-      'var(--nb-display-size, clamp(3.25rem, 2rem + 6.25vw, 4.75rem))',
-    );
+    expect(h.getAttribute('data-fluid')).toBe('');
+    expect(h.getAttribute('data-size')).toBe('xl');
+    expect(h.style.getPropertyValue('font-size')).toBe('');
   });
 
   it('nbDisplay maps underline capability values to data attribute and CSS vars', () => {
@@ -735,8 +885,8 @@ describe('NbDisplay capability composition', () => {
     const el = mount(DisplayCssVarOverrideTest);
     const h = el.querySelector<HTMLElement>('[nbDisplay]')!;
 
-    // The inline font-size binding wraps the base value; Angular does not
-    // override an explicit inline custom-property set by the user.
+    // nbDisplay never binds --nb-display-size itself; CSS reads it as the
+    // font-size override hook, so the static inline declaration is untouched.
     expect(h.style.getPropertyValue('--nb-display-size')).toBe('6rem');
   });
 

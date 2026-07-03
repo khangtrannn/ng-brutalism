@@ -1,4 +1,10 @@
 export { NbDialog } from './nb-dialog';
+export type {
+  NbDialogBorder,
+  NbDialogRadius,
+  NbDialogShadow,
+  NbDialogTone,
+} from './nb-dialog';
 export { NbDialogTitle } from './nb-dialog-title';
 export { NbDialogDescription } from './nb-dialog-description';
 export { NbDialogContent } from './nb-dialog-content';

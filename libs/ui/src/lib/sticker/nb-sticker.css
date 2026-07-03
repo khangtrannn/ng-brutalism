@@ -3,15 +3,18 @@
     --nb-sticker-min-block-size: 8.75rem;
     --nb-sticker-padding-inline: 3.5rem;
     --nb-sticker-padding-block: 3rem;
-    --nb-sticker-fill: var(--nb-mint, #9af7b5);
-    --nb-sticker-ink: var(--nb-black, #050505);
-    --nb-sticker-shadow: var(--nb-shadow, var(--nb-black, #050505));
     --nb-sticker-stroke-width: 5px;
     --nb-sticker-rotate: -6deg;
     --nb-sticker-font-size: 1.5rem;
 
     display: inline-block;
     vertical-align: middle;
+    background-color: transparent;
+  }
+
+  :where([data-nb-sticker][data-nb-tone]) {
+    --nb-sticker-tone-bg: var(--_nb-tone-bg);
+    --nb-sticker-tone-fg: var(--_nb-tone-fg);
   }
 
   :where([data-nb-sticker][data-shape='burst-wide']) {
@@ -66,7 +69,7 @@
   }
 
   :where([data-nb-sticker] [data-slot='sticker-shadow']) {
-    fill: var(--nb-sticker-shadow);
+    fill: var(--nb-sticker-shadow, var(--nb-shadow, var(--nb-black, #050505)));
   }
 
   :where([data-nb-sticker][data-shape='splat'] [data-slot='sticker-shadow']) {
@@ -74,8 +77,8 @@
   }
 
   :where([data-nb-sticker] [data-slot='sticker-shape']) {
-    fill: var(--nb-sticker-fill);
-    stroke: var(--nb-sticker-ink);
+    fill: var(--nb-sticker-fill, var(--nb-sticker-tone-bg, var(--_nb-tone-bg, var(--nb-mint, #9af7b5))));
+    stroke: var(--nb-sticker-ink, var(--nb-sticker-tone-fg, var(--_nb-tone-fg, var(--nb-black, #050505))));
     stroke-width: var(--nb-sticker-stroke-width);
     stroke-linejoin: round;
     stroke-linecap: round;
@@ -88,7 +91,7 @@
     padding-inline: var(--nb-sticker-padding-inline);
     padding-block: var(--nb-sticker-padding-block);
     overflow-wrap: break-word;
-    color: var(--nb-sticker-ink);
+    color: var(--nb-sticker-ink, var(--nb-sticker-tone-fg, var(--_nb-tone-fg, var(--nb-black, #050505))));
     font-family: var(--nb-font-display, system-ui, sans-serif);
     font-size: var(--nb-sticker-font-size);
     font-weight: 950;

@@ -1,11 +1,13 @@
 import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 
 import {
-  NbBorderCapability,
-  NbRadiusCapability,
-  NbShadowCapability,
   NbToneCapability,
 } from '../core/capabilities';
+import {
+  nbBorderWidthStyleTransform,
+  nbRadiusStyleTransform,
+  nbShadowStyleTransform,
+} from '../core/input-transforms';
 import type { NbBorderStrength } from '../tokens/border';
 import type { NbRadius } from '../tokens/radius';
 import type { NbShadow } from '../tokens/shadow';
@@ -25,20 +27,27 @@ export type NbAvatarBorder = NbBorderStrength;
     <ng-content />
     }
   `,
-  hostDirectives: [
-    { directive: NbToneCapability, inputs: ['tone'] },
-    { directive: NbRadiusCapability, inputs: ['radius'] },
-    { directive: NbShadowCapability, inputs: ['shadow'] },
-    { directive: NbBorderCapability, inputs: ['border'] },
-  ],
+  hostDirectives: [{ directive: NbToneCapability, inputs: ['tone'] }],
   host: {
     '[attr.data-slot]': '"avatar"',
     '[attr.role]': '"img"',
     '[attr.aria-label]': 'alt()',
+    '[style.--nb-avatar-radius]': 'radius()',
+    '[style.--nb-avatar-shadow]': 'shadow()',
+    '[style.--nb-avatar-border-width]': 'border()',
   },
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NbAvatar {
   readonly src = input<string | undefined>(undefined);
   readonly alt = input<string>('');
+  readonly radius = input(null, {
+    transform: nbRadiusStyleTransform,
+  });
+  readonly shadow = input(null, {
+    transform: nbShadowStyleTransform,
+  });
+  readonly border = input(null, {
+    transform: nbBorderWidthStyleTransform,
+  });
 }

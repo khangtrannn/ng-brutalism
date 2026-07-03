@@ -7,8 +7,6 @@ export type NbSelectValue = string | number;
 export interface NbSelectController {
   readonly disabled: () => boolean;
   readonly listboxId: string;
-  readonly optionForegroundStyle: () => string | null;
-  readonly optionFocusRingColorStyle: () => string | null;
 
   isSelected(value: NbSelectValue | null): boolean;
   selectOption(option: NbSelectOption): void;

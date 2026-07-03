@@ -1,5 +1,8 @@
 # ng-brutalism + Tailwind — Composition Philosophy
 
+> ↑ Start at [design-props.md](design-props.md) for the design-prop vocabulary
+> and per-component matrix; this doc is the deep-dive on the Tailwind boundary.
+
 ng-brutalism is intentionally **not** a replacement for Tailwind. The two own
 different layers, and a healthy recipe uses all three of the following without
 blurring their responsibilities.
@@ -118,7 +121,7 @@ document them, and override per token. The vocabulary (`tone`, `radius`,
 `shadow`, `border`, `gap`, `padding`) is defined once in
 `libs/ui/src/lib/tokens/` so a token means the same thing across every primitive.
 See [token-customization.md](../architecture/token-customization.md) and
-[token-customization-migration.md](../architecture/token-customization-migration.md)
+[token-customization-hardening.md](../architecture/token-customization-hardening.md)
 for the current CSS-first token architecture.
 
 > Note: `border` means **outline strength** library-wide. Line placement between

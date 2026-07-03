@@ -8,9 +8,12 @@
     font-family: var(--nb-font-mono, monospace);
     font-size: 1rem;
     font-weight: 500;
-    background-color: var(--nb-select-bg, var(--nb-surface));
-    color: var(--nb-select-fg, var(--nb-surface-foreground));
-    border-color: var(--nb-select-border-color, var(--nb-border));
+    background-color: var(--nb-select-bg, var(--_nb-tone-bg, var(--nb-surface)));
+    color: var(--nb-select-fg, var(--_nb-tone-fg, var(--nb-surface-foreground)));
+    border-color: var(
+      --nb-select-border-color,
+      var(--_nb-tone-border-color, var(--nb-border))
+    );
     border-width: var(--nb-select-border-width, var(--nb-border-width));
     border-style: solid;
     border-radius: var(--nb-select-radius, var(--nb-radius));
@@ -36,6 +39,8 @@
   :where(select[nbSelect][data-in-group]) {
     flex: 1 1 0%;
     min-width: 0;
+    background-color: transparent;
+    border-width: 0;
   }
   :where(select[nbSelect][data-in-group]):focus-visible {
     outline: none;
@@ -44,7 +49,7 @@
   :where(select[nbSelect]:not([data-in-group])):focus-visible {
     box-shadow: none;
     outline: 2px solid
-      var(--nb-select-focus-ring-color, var(--nb-select-border-color, var(--nb-border)));
+      var(--nb-select-border-color, var(--_nb-tone-border-color, var(--nb-border)));
     outline-offset: 2px;
   }
 }

@@ -156,7 +156,7 @@ describe('NbMediaItem', () => {
     ) as HTMLElement;
 
     expect(icon.getAttribute('data-surface')).toBe('true');
-    expect(icon.getAttribute('data-background')).toBe('#ff6aa2');
+    expect(icon.hasAttribute('data-background')).toBe(false);
     expect(icon.style.getPropertyValue('--nb-media-item-icon-bg')).toBe(
       '#ff6aa2'
     );
@@ -217,7 +217,7 @@ describe('NbMediaItem', () => {
     expect(item.className).toBe('');
     expect(icon.getAttribute('data-nb-media-item-icon')).toBe('');
     expect(icon.getAttribute('data-surface')).toBe('true');
-    expect(icon.getAttribute('data-background')).toBe('#ff6aa2');
+    expect(icon.hasAttribute('data-background')).toBe(false);
     expect(icon.style.getPropertyValue('--nb-media-item-icon-bg')).toBe(
       '#ff6aa2'
     );

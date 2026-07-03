@@ -5,12 +5,12 @@ import {
   input,
 } from '@angular/core';
 
+import { NbToneCapability } from '../core/capabilities';
 import {
-  NbBorderCapability,
-  NbRadiusCapability,
-  NbShadowCapability,
-  NbToneCapability,
-} from '../core/capabilities';
+  nbBorderWidthStyleTransform,
+  nbRadiusStyleTransform,
+  nbShadowStyleTransform,
+} from '../core/input-transforms';
 import { NbIcon, type NbIconSize } from '../icon';
 
 export type NbIconButtonShape = 'square' | 'circle';
@@ -26,12 +26,7 @@ const iconSizeMap: Record<NbIconButtonSize, NbIconSize> = {
 @Component({
   selector: 'button[nbIconButton]',
   imports: [NbIcon],
-  hostDirectives: [
-    { directive: NbToneCapability, inputs: ['tone'] },
-    { directive: NbRadiusCapability, inputs: ['radius'] },
-    { directive: NbShadowCapability, inputs: ['shadow'] },
-    { directive: NbBorderCapability, inputs: ['border'] },
-  ],
+  hostDirectives: [{ directive: NbToneCapability, inputs: ['tone'] }],
   template: `
     @if (icon(); as iconSrc) {
       <span nbIcon [src]="iconSrc" [size]="iconSize()" decorative></span>
@@ -42,6 +37,9 @@ const iconSizeMap: Record<NbIconButtonSize, NbIconSize> = {
     '[attr.data-shape]': 'shape()',
     '[attr.data-size]': 'size()',
     '[attr.data-nb-icon-button]': '""',
+    '[style.--nb-icon-button-radius]': 'radius()',
+    '[style.--nb-icon-button-shadow]': 'shadow()',
+    '[style.--nb-icon-button-border-width]': 'border()',
   },
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
@@ -53,6 +51,17 @@ export class NbIconButton {
   // button. For full-color or custom icons, project an `<svg>`/`nbIcon` as
   // content instead — the internal slot is only used when `icon` is set.
   readonly icon = input<string>();
+  readonly radius = input(null, {
+    transform: nbRadiusStyleTransform,
+  });
+  readonly shadow = input(null, {
+    transform: nbShadowStyleTransform,
+  });
+  readonly border = input(null, {
+    transform: nbBorderWidthStyleTransform,
+  });
 
-  protected readonly iconSize = computed<NbIconSize>(() => iconSizeMap[this.size()]);
+  protected readonly iconSize = computed<NbIconSize>(
+    () => iconSizeMap[this.size()]
+  );
 }

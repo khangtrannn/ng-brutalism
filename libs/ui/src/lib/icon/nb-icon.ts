@@ -23,14 +23,9 @@ export type NbIconTone =
 
 export type NbIconMode = 'mask' | 'image';
 
-const sizeMap: Record<NbIconSize, string> = {
-  xs: '0.75rem',
-  sm: '1rem',
-  md: '1.25rem',
-  lg: '1.5rem',
-  xl: '2rem',
-};
-
+// Tone is icon-specific color intent: 'current'/'default'/'muted'/'inverse'
+// have no surface (bg/fg/border) and aren't part of the shared tone recipe, so
+// they resolve here rather than through the shared --_nb-tone-* slots.
 const toneMap: Record<NbIconTone, string> = {
   current: 'currentColor',
   default: 'var(--nb-foreground)',
@@ -51,7 +46,7 @@ const toneMap: Record<NbIconTone, string> = {
   host: {
     '[attr.data-nb-icon]': '""',
     '[attr.data-size]': 'size()',
-    '[attr.data-tone]': 'tone()',
+    '[attr.data-nb-tone]': 'tone() ?? null',
     '[attr.data-mode]': 'mode()',
 
     '[attr.role]': 'roleValue()',
@@ -59,35 +54,16 @@ const toneMap: Record<NbIconTone, string> = {
     '[attr.aria-label]': 'ariaLabelValue()',
 
     '[style.--nb-icon-color]': 'toneValue()',
-
-    '[style.display]': '"inline-block"',
-    '[style.width]': 'sizeValue()',
-    '[style.height]': 'sizeValue()',
-    '[style.flex-shrink]': '"0"',
-    '[style.vertical-align]': '"middle"',
-    '[style.color]': 'toneValue()',
-
-    '[style.background-color]': 'backgroundColorValue()',
     '[style.background-image]': 'backgroundImageValue()',
-    '[style.background-size]': 'backgroundSizeValue()',
-    '[style.background-position]': 'backgroundPositionValue()',
-    '[style.background-repeat]': 'backgroundRepeatValue()',
-
     '[style.mask-image]': 'maskImageValue()',
     '[style.-webkit-mask-image]': 'maskImageValue()',
-    '[style.mask-size]': 'maskSizeValue()',
-    '[style.-webkit-mask-size]': 'maskSizeValue()',
-    '[style.mask-position]': 'maskPositionValue()',
-    '[style.-webkit-mask-position]': 'maskPositionValue()',
-    '[style.mask-repeat]': 'maskRepeatValue()',
-    '[style.-webkit-mask-repeat]': 'maskRepeatValue()',
   },
 })
 export class NbIcon {
   readonly src = input.required<string>();
   readonly mode = input<NbIconMode>('mask');
   readonly size = input<NbIconSize>('md');
-  readonly tone = input<NbIconTone>('current');
+  readonly tone = input<NbIconTone | undefined>(undefined);
   readonly decorative = input<boolean, unknown>(false, {
     transform: booleanAttribute,
   });
@@ -95,8 +71,11 @@ export class NbIcon {
 
   private hasWarnedAboutMissingA11y = false;
 
-  protected readonly sizeValue = computed(() => sizeMap[this.size()]);
-  protected readonly toneValue = computed(() => toneMap[this.tone()]);
+  // No tone input → no inline write; CSS owns the currentColor fallback.
+  protected readonly toneValue = computed(() => {
+    const tone = this.tone();
+    return tone ? toneMap[tone] : null;
+  });
 
   protected readonly srcValue = computed(() => `url("${this.src()}")`);
 
@@ -115,40 +94,12 @@ export class NbIcon {
     this.decorative() ? null : this.label()
   );
 
-  protected readonly backgroundColorValue = computed(() =>
-    this.isMaskMode() ? 'var(--nb-icon-color, currentColor)' : null
-  );
-
   protected readonly backgroundImageValue = computed(() =>
     this.isImageMode() ? this.srcValue() : null
   );
 
-  protected readonly backgroundSizeValue = computed(() =>
-    this.isImageMode() ? 'contain' : null
-  );
-
-  protected readonly backgroundPositionValue = computed(() =>
-    this.isImageMode() ? 'center' : null
-  );
-
-  protected readonly backgroundRepeatValue = computed(() =>
-    this.isImageMode() ? 'no-repeat' : null
-  );
-
   protected readonly maskImageValue = computed(() =>
     this.isMaskMode() ? this.srcValue() : null
-  );
-
-  protected readonly maskSizeValue = computed(() =>
-    this.isMaskMode() ? 'contain' : null
-  );
-
-  protected readonly maskPositionValue = computed(() =>
-    this.isMaskMode() ? 'center' : null
-  );
-
-  protected readonly maskRepeatValue = computed(() =>
-    this.isMaskMode() ? 'no-repeat' : null
   );
 
   constructor() {

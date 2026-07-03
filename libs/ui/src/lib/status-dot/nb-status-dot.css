@@ -3,7 +3,7 @@
     display: inline-block;
     flex-shrink: 0;
     border: 2px solid var(--nb-border);
-    border-radius: 9999px;
+    border-radius: var(--nb-status-dot-radius, 9999px);
   }
 
   :where(span[nbStatusDot][data-size='xs']) {

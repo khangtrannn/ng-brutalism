@@ -1,0 +1,38 @@
+@layer base {
+  :where([data-nb-separator]) {
+    margin: 0;
+    border: none;
+  }
+
+  :where([data-nb-separator][data-orientation='horizontal']) {
+    width: 100%;
+    height: 0;
+    align-self: auto;
+    border-top-width: var(--nb-separator-thickness, 2px);
+    border-top-color: var(--nb-separator-color, var(--nb-border));
+    border-top-style: solid;
+  }
+
+  :where([data-nb-separator][data-orientation='vertical']) {
+    width: 0;
+    height: auto;
+    align-self: stretch;
+    border-left-width: var(--nb-separator-thickness, 2px);
+    border-left-color: var(--nb-separator-color, var(--nb-border));
+    border-left-style: solid;
+  }
+
+  :where([data-nb-separator][data-orientation='horizontal'][data-variant='thick']) {
+    border-top-width: var(--nb-separator-thickness, 4px);
+  }
+  :where([data-nb-separator][data-orientation='vertical'][data-variant='thick']) {
+    border-left-width: var(--nb-separator-thickness, 4px);
+  }
+
+  :where([data-nb-separator][data-orientation='horizontal'][data-variant='dashed']) {
+    border-top-style: dashed;
+  }
+  :where([data-nb-separator][data-orientation='vertical'][data-variant='dashed']) {
+    border-left-style: dashed;
+  }
+}

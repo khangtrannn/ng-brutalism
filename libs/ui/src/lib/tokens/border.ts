@@ -1,6 +1,6 @@
 /**
  * Shared border-strength scale. Resolves to a border *width* only — border
- * *color* is owned by the tone vocabulary (`nbToneVars().borderColor`) so the
+ * *color* is owned by the tone CSS variables (`--_nb-tone-border-color`) so the
  * two never fight. `default` tracks the themeable `--nb-border-width`.
  */
 export type NbBorderStrength = 'none' | 'thin' | 'default' | 'strong' | 'thick';

@@ -2,9 +2,11 @@ import { Directive, input } from '@angular/core';
 
 import { NbToneCapability } from '../core/capabilities';
 import {
+  nbBorderWidthStyleTransform,
   nbRadiusStyleTransform,
   nbShadowStyleTransform,
 } from '../core/input-transforms';
+import type { NbBorderStrength } from '../tokens/border';
 import type { NbRadius } from '../tokens/radius';
 import type { NbTone } from '../tokens/tone';
 
@@ -20,6 +22,8 @@ export type NbCalloutShadow = 'none' | 'default' | 'hard';
 // (larger callouts get rounder corners). Set this to opt out of that scaling.
 export type NbCalloutRadius = NbRadius;
 
+export type NbCalloutBorder = NbBorderStrength;
+
 @Directive({
   selector: '[nbCallout]',
   hostDirectives: [{ directive: NbToneCapability, inputs: ['tone'] }],
@@ -29,6 +33,7 @@ export type NbCalloutRadius = NbRadius;
     '[attr.data-layout]': 'layout()',
     '[style.--nb-callout-radius]': 'radius()',
     '[style.--nb-callout-shadow]': 'shadow()',
+    '[style.--nb-callout-border-width]': 'border()',
   },
 })
 export class NbCallout {
@@ -39,5 +44,8 @@ export class NbCallout {
   });
   readonly shadow = input(null, {
     transform: nbShadowStyleTransform,
+  });
+  readonly border = input(null, {
+    transform: nbBorderWidthStyleTransform,
   });
 }

@@ -1,0 +1,5 @@
+@layer base {
+  :where([data-nb-typography]) {
+    font-family: var(--nb-typography-font, inherit);
+  }
+}

@@ -2,31 +2,48 @@ import { Component } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { describe, expect, it } from 'vitest';
 
-import { NbBadge, type NbBadgeTone } from './nb-badge';
+import {
+  NbBadge,
+  type NbBadgeBorder,
+  type NbBadgeRadius,
+  type NbBadgeShadow,
+  type NbBadgeTone,
+} from './nb-badge';
 
 @Component({
   imports: [NbBadge],
-  template: `<span nbBadge [tone]="tone">Badge</span>`,
+  template: `<span
+    nbBadge
+    [tone]="tone"
+    [radius]="radius"
+    [shadow]="shadow"
+    [border]="border"
+  >Badge</span>`,
 })
 class BadgeTokenTest {
-  tone: NbBadgeTone = 'white';
+  tone: NbBadgeTone | undefined = undefined;
+  radius: NbBadgeRadius | null = null;
+  shadow: NbBadgeShadow | null = null;
+  border: NbBadgeBorder | null = null;
 }
 
 describe('NbBadge token surface', () => {
-  it('maps explicit tone input to actual color styles', async () => {
+  it('leaves default visuals to CSS token fallbacks', async () => {
     const fixture = await createFixture();
     const badge = findBadge(fixture);
 
-    // tone="white" is bound explicitly (matching the badge's library default) —
-    // the directive input wins outright with a literal value, no public hook.
-    expect(badge.style.getPropertyValue('background')).toBeTruthy();
-    expect(badge.style.getPropertyValue('color')).toBeTruthy();
-    expect(badge.style.getPropertyValue('border-color')).toBe('var(--nb-border)');
+    expect(badge.getAttribute('data-nb-tone')).toBeNull();
+    expect(badge.style.getPropertyValue('background')).toBe('');
+    expect(badge.style.getPropertyValue('color')).toBe('');
+    expect(badge.style.getPropertyValue('border-color')).toBe('');
     expect(badge.style.getPropertyValue('--nb-badge-bg')).toBe('');
     expect(badge.style.cssText).not.toContain('--nb-resolved');
     expect(badge.style.getPropertyValue('border-radius')).toBe('');
     expect(badge.style.getPropertyValue('box-shadow')).toBe('');
     expect(badge.style.getPropertyValue('border-width')).toBe('');
+    expect(badge.style.getPropertyValue('--nb-badge-radius')).toBe('');
+    expect(badge.style.getPropertyValue('--nb-badge-shadow')).toBe('');
+    expect(badge.style.getPropertyValue('--nb-badge-border-width')).toBe('');
   });
 
   it('does not emit legacy token utility classes', async () => {
@@ -48,25 +65,44 @@ describe('NbBadge token surface', () => {
   });
 
   it.each([
-    ['accent', 'var(--nb-accent)', 'var(--nb-accent-foreground)'],
-    ['success', 'var(--nb-success)', 'var(--nb-success-foreground)'],
-    ['warning', 'var(--nb-warning)', 'var(--nb-warning-foreground)'],
-    ['danger', 'var(--nb-danger)', 'var(--nb-danger-foreground)'],
-  ] satisfies Array<[NbBadgeTone, string, string]>)(
-    'tone="%s" resolves shared color tokens',
-    async (tone, bg, fg) => {
+    ['accent'],
+    ['success'],
+    ['warning'],
+    ['danger'],
+  ] satisfies Array<[NbBadgeTone]>)(
+    'tone="%s" reflects semantically without writing final colors inline',
+    async (tone) => {
       const fixture = await createFixture({ tone });
       const badge = findBadge(fixture);
 
-      expect(badge.style.getPropertyValue('background')).toBe(bg);
-      expect(badge.style.getPropertyValue('color')).toBe(fg);
-      expect(badge.style.getPropertyValue('border-color')).toBe(
-        'var(--nb-border)'
-      );
+      expect(badge.getAttribute('data-nb-tone')).toBe(tone);
+      expect(badge.style.getPropertyValue('background')).toBe('');
+      expect(badge.style.getPropertyValue('color')).toBe('');
+      expect(badge.style.getPropertyValue('border-color')).toBe('');
       expect(badge.style.getPropertyValue('--nb-badge-bg')).toBe('');
       expect(badge.style.cssText).not.toContain('--nb-resolved');
     }
   );
+
+  it('writes explicit scalar inputs to public CSS variables', async () => {
+    const fixture = await createFixture({
+      radius: 'sm',
+      shadow: 'hard',
+      border: 'strong',
+    });
+    const badge = findBadge(fixture);
+
+    expect(badge.style.getPropertyValue('border-radius')).toBe('');
+    expect(badge.style.getPropertyValue('box-shadow')).toBe('');
+    expect(badge.style.getPropertyValue('border-width')).toBe('');
+    expect(badge.style.getPropertyValue('--nb-badge-radius')).toBe(
+      'var(--nb-radius-sm, 0.25rem)'
+    );
+    expect(badge.style.getPropertyValue('--nb-badge-shadow')).toBe(
+      '6px 6px 0 0 var(--nb-shadow)'
+    );
+    expect(badge.style.getPropertyValue('--nb-badge-border-width')).toBe('3px');
+  });
 
   it('keeps anatomy out of host classes', async () => {
     const fixture = await createFixture();
@@ -78,7 +114,9 @@ describe('NbBadge token surface', () => {
 });
 
 async function createFixture(
-  inputs: Partial<Pick<BadgeTokenTest, 'tone'>> = {}
+  inputs: Partial<
+    Pick<BadgeTokenTest, 'tone' | 'radius' | 'shadow' | 'border'>
+  > = {}
 ): Promise<ComponentFixture<BadgeTokenTest>> {
   await TestBed.configureTestingModule({
     imports: [BadgeTokenTest],

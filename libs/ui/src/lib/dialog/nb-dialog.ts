@@ -3,18 +3,27 @@ import {
   Component,
   ElementRef,
   PLATFORM_ID,
-  computed,
   inject,
   input,
   viewChild,
 } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 
-import { nbBorderWidthValue, type NbBorderStrength } from '../tokens/border';
-import { nbRadiusValue, type NbRadius } from '../tokens/radius';
-import { nbShadowValue, type NbShadow } from '../tokens/shadow';
-import { nbToneVars, type NbTone } from '../tokens/tone';
+import {
+  nbBorderWidthStyleTransform,
+  nbRadiusStyleTransform,
+  nbShadowStyleTransform,
+} from '../core/input-transforms';
+import type { NbBorderStrength } from '../tokens/border';
+import type { NbRadius } from '../tokens/radius';
+import type { NbShadow } from '../tokens/shadow';
+import type { NbTone } from '../tokens/tone';
 import { NB_DIALOG, type NbDialogController } from './dialog.types';
+
+export type NbDialogTone = NbTone;
+export type NbDialogRadius = NbRadius;
+export type NbDialogShadow = NbShadow;
+export type NbDialogBorder = NbBorderStrength;
 
 @Component({
   selector: 'nb-dialog',
@@ -23,12 +32,10 @@ import { NB_DIALOG, type NbDialogController } from './dialog.types';
       #dialogEl
       data-nb-dialog
       data-slot="dialog-surface"
-      [style.background]="background()"
-      [style.color]="foreground()"
-      [style.border-color]="borderColor()"
-      [style.border-radius]="radiusStyle()"
-      [style.box-shadow]="shadowStyle()"
-      [style.border-width]="borderWidthStyle()"
+      [attr.data-nb-tone]="tone() ?? null"
+      [style.--nb-dialog-radius]="radius()"
+      [style.--nb-dialog-shadow]="shadow()"
+      [style.--nb-dialog-border-width]="border()"
       (click)="dismissOnBackdrop($event)"
     >
       <ng-content />
@@ -39,33 +46,15 @@ import { NB_DIALOG, type NbDialogController } from './dialog.types';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NbDialog implements NbDialogController {
-  // The dialog surface is an inner element, so it resolves the style tokens
-  // itself rather than composing the host-painting capabilities.
   readonly tone = input<NbTone | undefined>(undefined);
-  readonly radius = input<NbRadius | undefined>(undefined);
-  readonly shadow = input<NbShadow | undefined>(undefined);
-  readonly border = input<NbBorderStrength | undefined>(undefined);
-
-  private readonly toneVars = computed(() => {
-    const tone = this.tone();
-    return tone ? nbToneVars(tone) : null;
+  readonly radius = input(null, {
+    transform: nbRadiusStyleTransform,
   });
-  protected readonly background = computed(() => this.toneVars()?.bg ?? null);
-  protected readonly foreground = computed(() => this.toneVars()?.fg ?? null);
-  protected readonly borderColor = computed(
-    () => this.toneVars()?.borderColor ?? null,
-  );
-  protected readonly radiusStyle = computed(() => {
-    const radius = this.radius();
-    return radius ? nbRadiusValue(radius) : null;
+  readonly shadow = input(null, {
+    transform: nbShadowStyleTransform,
   });
-  protected readonly shadowStyle = computed(() => {
-    const shadow = this.shadow();
-    return shadow ? nbShadowValue(shadow) : null;
-  });
-  protected readonly borderWidthStyle = computed(() => {
-    const border = this.border();
-    return border ? nbBorderWidthValue(border) : null;
+  readonly border = input(null, {
+    transform: nbBorderWidthStyleTransform,
   });
 
   private readonly isBrowser = isPlatformBrowser(inject(PLATFORM_ID));

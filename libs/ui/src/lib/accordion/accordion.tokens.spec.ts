@@ -83,6 +83,15 @@ describe('NbAccordion token surface', () => {
     expect(itemHost.style.getPropertyValue('border-radius')).toBe('');
     expect(itemHost.style.getPropertyValue('box-shadow')).toBe('');
     expect(itemHost.style.getPropertyValue('border-width')).toBe('');
+    expect(itemHost.style.getPropertyValue('--nb-accordion-item-radius')).toBe(
+      ''
+    );
+    expect(itemHost.style.getPropertyValue('--nb-accordion-item-shadow')).toBe(
+      ''
+    );
+    expect(
+      itemHost.style.getPropertyValue('--nb-accordion-item-border-width')
+    ).toBe('');
   });
 
   it('item host is the surface slot with no inner surface wrapper', async () => {
@@ -133,22 +142,26 @@ describe('NbAccordion token surface', () => {
     expect(trigger.style.cssText).not.toContain('--nb-resolved');
   });
 
-  it('item visual inputs are composed onto the host surface', async () => {
+  it('item visual inputs write semantic state and public scalar variables', async () => {
     const fixture = await createFixture(ItemCapabilityAccordionTokenTest);
     const itemHost = findItemHost(fixture);
 
-    expect(itemHost.style.getPropertyValue('background')).toBe(
-      'var(--nb-cream)'
+    expect(itemHost.getAttribute('data-nb-tone')).toBe('cream');
+    expect(itemHost.style.getPropertyValue('background')).toBe('');
+    expect(itemHost.style.getPropertyValue('color')).toBe('');
+    expect(itemHost.style.getPropertyValue('border-color')).toBe('');
+    expect(itemHost.style.getPropertyValue('border-radius')).toBe('');
+    expect(itemHost.style.getPropertyValue('box-shadow')).toBe('');
+    expect(itemHost.style.getPropertyValue('border-width')).toBe('');
+    expect(itemHost.style.getPropertyValue('--nb-accordion-item-radius')).toBe(
+      'var(--nb-radius-lg, 0.75rem)'
     );
-    expect(itemHost.style.getPropertyValue('color')).toBeTruthy();
-    expect(itemHost.style.getPropertyValue('border-color')).toBe(
-      'var(--nb-border)'
-    );
-    expect(itemHost.style.getPropertyValue('border-radius')).toBe('0.75rem');
-    expect(itemHost.style.getPropertyValue('box-shadow')).toBe(
+    expect(itemHost.style.getPropertyValue('--nb-accordion-item-shadow')).toBe(
       '6px 6px 0 0 var(--nb-shadow)'
     );
-    expect(itemHost.style.getPropertyValue('border-width')).toBe('3px');
+    expect(
+      itemHost.style.getPropertyValue('--nb-accordion-item-border-width')
+    ).toBe('3px');
     expect(itemHost.style.getPropertyValue('--nb-accordion-item-bg')).toBe('');
     expect(itemHost.style.cssText).not.toContain('--nb-resolved');
   });

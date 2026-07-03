@@ -59,6 +59,7 @@ describe('NbStack', () => {
     expect(stack.getAttribute('data-separator')).toBe('none');
     expect(stack.className).toBe('');
     expect(stack.style.getPropertyValue('gap')).toBe('');
+    expect(stack.style.getPropertyValue('--nb-stack-gap')).toBe('');
     expect(stack.style.cssText).not.toContain('--nb-resolved');
   });
 
@@ -71,7 +72,8 @@ describe('NbStack', () => {
     expect(stack.getAttribute('data-align')).toBe('start');
     expect(stack.getAttribute('data-justify')).toBe('center');
     expect(stack.getAttribute('data-separator')).toBe('dashed');
-    expect(stack.style.getPropertyValue('gap')).toBe('1.5rem');
+    expect(stack.style.getPropertyValue('gap')).toBe('');
+    expect(stack.style.getPropertyValue('--nb-stack-gap')).toBe('1.5rem');
     expect(stack.style.getPropertyValue('--nb-stack-separator-gap')).toBe(
       '1.5rem'
     );

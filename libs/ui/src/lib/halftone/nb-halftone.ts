@@ -22,7 +22,7 @@ const RECTANGLE_DEFAULT_COLUMNS = 13;
     @if (shape() !== 'rectangle') {
     <svg [attr.width]="svgW()" [attr.height]="svgH()" aria-hidden="true">
       @for (dot of dots(); track $index) {
-        <circle [attr.cx]="dot.cx" [attr.cy]="dot.cy" [attr.r]="dotR()" [attr.fill]="resolvedColor()" />
+        <circle [attr.cx]="dot.cx" [attr.cy]="dot.cy" [attr.r]="dotR()" />
       }
     </svg>
     }
@@ -50,7 +50,6 @@ export class NbHalftone {
   readonly rows = input<number | null, unknown>(null, { transform: numberAttribute });
   readonly columns = input<number | null, unknown>(null, { transform: numberAttribute });
 
-  protected readonly resolvedColor = computed(() => this.color() ?? 'var(--nb-border)');
   protected readonly resolvedSize = computed(() => this.size() ?? DEFAULT_DOT_SIZE);
   protected readonly resolvedGap = computed(() => this.gap() ?? DEFAULT_DOT_GAP);
   protected readonly resolvedGapXInput = computed(() => this.gapX() ?? this.gap());

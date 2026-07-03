@@ -6,9 +6,12 @@
     font-size: 0.875rem;
     font-weight: 500;
     resize: none;
-    background-color: var(--nb-textarea-bg, var(--nb-surface));
-    color: var(--nb-textarea-fg, var(--nb-surface-foreground));
-    border-color: var(--nb-textarea-border-color, var(--nb-border));
+    background-color: var(--nb-textarea-bg, var(--_nb-tone-bg, var(--nb-surface)));
+    color: var(--nb-textarea-fg, var(--_nb-tone-fg, var(--nb-surface-foreground)));
+    border-color: var(
+      --nb-textarea-border-color,
+      var(--_nb-tone-border-color, var(--nb-border))
+    );
     border-width: var(--nb-textarea-border-width, var(--nb-border-width));
     border-style: solid;
     border-radius: var(--nb-textarea-radius, var(--nb-radius));
@@ -40,6 +43,8 @@
   :where(textarea[nbTextarea][data-in-group]) {
     flex: 1 1 0%;
     min-width: 0;
+    background-color: transparent;
+    border-width: 0;
   }
   :where(textarea[nbTextarea][data-in-group]):focus-visible {
     outline: none;
@@ -48,7 +53,7 @@
   :where(textarea[nbTextarea]:not([data-in-group])):focus-visible {
     box-shadow: none;
     outline: 2px solid
-      var(--nb-textarea-focus-ring-color, var(--nb-textarea-border-color, var(--nb-border)));
+      var(--nb-textarea-border-color, var(--_nb-tone-border-color, var(--nb-border)));
     outline-offset: 2px;
   }
 }

@@ -1,3 +1,18 @@
+@property --_nb-tone-bg {
+  syntax: "*";
+  inherits: false;
+}
+
+@property --_nb-tone-fg {
+  syntax: "*";
+  inherits: false;
+}
+
+@property --_nb-tone-border-color {
+  syntax: "*";
+  inherits: false;
+}
+
 @layer base {
   :where([data-nb-tone='surface']) {
     --_nb-tone-bg: var(--nb-surface);

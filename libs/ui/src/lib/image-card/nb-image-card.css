@@ -5,9 +5,12 @@
     overflow: hidden;
     font-weight: 500;
     border-style: solid;
-    background: var(--nb-image-card-bg, var(--nb-background));
-    color: var(--nb-image-card-fg, var(--nb-foreground));
-    border-color: var(--nb-image-card-border-color, var(--nb-border));
+    background: var(--nb-image-card-bg, var(--_nb-tone-bg, var(--nb-background)));
+    color: var(--nb-image-card-fg, var(--_nb-tone-fg, var(--nb-foreground)));
+    border-color: var(
+      --nb-image-card-border-color,
+      var(--_nb-tone-border-color, var(--nb-border))
+    );
     border-width: var(--nb-image-card-border-width, var(--nb-border-width));
     border-radius: var(--nb-image-card-radius, var(--nb-radius));
     box-shadow: var(

@@ -205,7 +205,7 @@ work from, file by file.
 
 | File | Stale content | Proposed action |
 |---|---|---|
-| _(none found)_ | A search of `docs/` for `--nb-resolved`, `--_nb-`, "legacy marker", "capability-written", and `nb-cap-` returned **zero matches**. This snapshot predates the token-customization migration; see [token-customization.md](../architecture/token-customization.md) and [token-customization-migration.md](../architecture/token-customization-migration.md) for the current direction. The historical [style-capabilities.md](../components/style-capabilities.md) note remains only as a frozen reference for older capability-layer context. | No doc updates required in Phase 0; Phase 4's docs-cleanup pass should still do a final pass once Phases 1-3 land, since this audit only checked for the specific stale terms named in the plan. |
+| _(none found)_ | A search of `docs/` for `--nb-resolved`, `--_nb-`, "legacy marker", "capability-written", and `nb-cap-` returned **zero matches**. This snapshot predates the token-customization migration; see [token-customization.md](../architecture/token-customization.md) and [token-customization-hardening.md](../architecture/token-customization-hardening.md) for the current direction. The historical [style-capabilities.md](../_archive/style-capabilities.md) note remains only as a frozen reference for older capability-layer context. | No doc updates required in Phase 0; Phase 4's docs-cleanup pass should still do a final pass once Phases 1-3 land, since this audit only checked for the specific stale terms named in the plan. |
 
 ## Notes for Phase 1/2 test updates (`TEST_UPDATE_REQUIRED`)
 

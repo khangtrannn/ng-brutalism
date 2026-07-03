@@ -1,8 +1,3 @@
-/**
- * Shared brutalist offset-shadow scale. Values are chunky, hard-edged offset
- * shadows (no blur) tinted with `--nb-shadow`. `default` tracks the themeable
- * `--nb-shadow-offset-x/y`.
- */
 export type NbShadow = 'none' | 'sm' | 'default' | 'hard' | 'heavy';
 
 const SHADOW_VALUES: Record<NbShadow, string> = {

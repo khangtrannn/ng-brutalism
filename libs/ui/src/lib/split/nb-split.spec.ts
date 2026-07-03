@@ -84,6 +84,8 @@ describe('NbSplit', () => {
     expect(split.className).toBe('');
     expect(split.style.getPropertyValue('gap')).toBe('');
     expect(split.style.getPropertyValue('padding')).toBe('');
+    expect(split.style.getPropertyValue('--nb-split-gap')).toBe('');
+    expect(split.style.getPropertyValue('--nb-split-padding')).toBe('');
     expect(split.style.cssText).not.toContain('--nb-resolved');
   });
 
@@ -97,8 +99,10 @@ describe('NbSplit', () => {
     expect(split.getAttribute('data-collapse')).toBe('lg');
     expect(split.getAttribute('data-align')).toBe('end');
     expect(split.getAttribute('data-separator')).toBe('none');
-    expect(split.style.getPropertyValue('gap')).toBe('2rem');
-    expect(split.style.getPropertyValue('padding')).toBe('2rem');
+    expect(split.style.getPropertyValue('gap')).toBe('');
+    expect(split.style.getPropertyValue('padding')).toBe('');
+    expect(split.style.getPropertyValue('--nb-split-gap')).toBe('2rem');
+    expect(split.style.getPropertyValue('--nb-split-padding')).toBe('2rem');
     expect(split.className).toBe('');
   });
 

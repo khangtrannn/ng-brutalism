@@ -1,4 +1,73 @@
 @layer base {
+  :where([data-nb-display]) {
+    color: var(--nb-display-color, currentColor);
+  }
+
+  :where([data-nb-display][data-size='sm']) {
+    font-size: var(--nb-display-size, 2rem);
+  }
+  :where([data-nb-display][data-size='md']) {
+    font-size: var(--nb-display-size, 3rem);
+  }
+  :where([data-nb-display][data-size='lg']) {
+    font-size: var(--nb-display-size, 3.75rem);
+  }
+  :where([data-nb-display][data-size='xl']) {
+    font-size: var(--nb-display-size, 4.75rem);
+  }
+
+  :where([data-nb-display][data-fluid][data-size='sm']) {
+    font-size: var(--nb-display-size, clamp(1.75rem, 1.2rem + 2.75vw, 2rem));
+  }
+  :where([data-nb-display][data-fluid][data-size='md']) {
+    font-size: var(--nb-display-size, clamp(2.25rem, 1.5rem + 3.75vw, 3rem));
+  }
+  :where([data-nb-display][data-fluid][data-size='lg']) {
+    font-size: var(--nb-display-size, clamp(2.75rem, 1.8rem + 4.75vw, 3.75rem));
+  }
+  :where([data-nb-display][data-fluid][data-size='xl']) {
+    font-size: var(--nb-display-size, clamp(3.25rem, 2rem + 6.25vw, 4.75rem));
+  }
+
+  :where([data-nb-display][data-weight='normal']) {
+    font-weight: var(--nb-display-weight, 400);
+  }
+  :where([data-nb-display][data-weight='medium']) {
+    font-weight: var(--nb-display-weight, 500);
+  }
+  :where([data-nb-display][data-weight='semibold']) {
+    font-weight: var(--nb-display-weight, 600);
+  }
+  :where([data-nb-display][data-weight='bold']) {
+    font-weight: var(--nb-display-weight, 700);
+  }
+  :where([data-nb-display][data-weight='extrabold']) {
+    font-weight: var(--nb-display-weight, 800);
+  }
+  :where([data-nb-display][data-weight='black']) {
+    font-weight: var(--nb-display-weight, 900);
+  }
+
+  :where([data-nb-display][data-tracking='normal']) {
+    letter-spacing: var(--nb-display-tracking, 0);
+  }
+  :where([data-nb-display][data-tracking='tight']) {
+    letter-spacing: var(--nb-display-tracking, -0.025em);
+  }
+  :where([data-nb-display][data-tracking='tighter']) {
+    letter-spacing: var(--nb-display-tracking, -0.08em);
+  }
+
+  :where([data-nb-display][data-leading='none']) {
+    line-height: var(--nb-display-leading, 1);
+  }
+  :where([data-nb-display][data-leading='tight']) {
+    line-height: var(--nb-display-leading, 0.9);
+  }
+  :where([data-nb-display][data-leading='display']) {
+    line-height: var(--nb-display-leading, 0.84);
+  }
+
   :where([data-nb-display][data-underline]) {
     display: inline-flex;
     flex-direction: column;

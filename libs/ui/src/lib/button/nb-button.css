@@ -84,6 +84,26 @@
     width: 100%;
   }
 
+  :where([nbButtonTrailingIcon]) {
+    background: var(--nb-button-trailing-icon-bg, transparent);
+    color: var(--nb-button-trailing-icon-color, currentColor);
+  }
+
+  :where([nbButtonTrailingIcon][data-tone='default']) {
+    --nb-button-trailing-icon-bg: transparent;
+    --nb-button-trailing-icon-color: currentColor;
+  }
+
+  :where([nbButtonTrailingIcon][data-tone='inverse']) {
+    --nb-button-trailing-icon-bg: var(--nb-foreground);
+    --nb-button-trailing-icon-color: var(--nb-background);
+  }
+
+  :where([nbButtonTrailingIcon][data-tone='current']) {
+    --nb-button-trailing-icon-bg: currentColor;
+    --nb-button-trailing-icon-color: var(--nb-background);
+  }
+
   :where([nbButtonTrailingIcon]) svg {
     pointer-events: none;
     flex-shrink: 0;

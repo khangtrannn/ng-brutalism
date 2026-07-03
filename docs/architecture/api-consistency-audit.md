@@ -7,13 +7,14 @@
 >
 > Current docs:
 > - [`token-customization.md`](./token-customization.md)
-> - [`token-customization-audit.md`](./token-customization-audit.md)
-> - [`token-customization-migration.md`](./token-customization-migration.md)
+> - [`token-customization-hardening.md`](./token-customization-hardening.md)
 > - [`composition-philosophy.md`](../components/composition-philosophy.md)
+> - Archived: [`token-customization-audit.md`](../_archive/token-customization-audit.md),
+>   [`token-customization-migration.md`](../_archive/token-customization-migration.md)
 >
 > The old style-capability layer (`tokens → capabilities → hostDirectives →
 > public CSS hooks`) is preserved only as a reference in
-> [`style-capabilities.md`](../components/style-capabilities.md).
+> [`style-capabilities.md`](../_archive/style-capabilities.md).
 >
 > **API language cleanup — shipped (2026-06-01).** The public-vocabulary half of
 > this audit landed in the API-language-cleanup PR:

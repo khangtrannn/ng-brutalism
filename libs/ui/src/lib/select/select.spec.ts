@@ -252,7 +252,8 @@ describe('NbNativeSelect directive inside NbInputGroup', () => {
       'select[nbSelect]'
     ) as HTMLSelectElement;
 
-    expect(parseInt(select.style.borderWidth)).toBe(0);
+    expect(select.getAttribute('data-in-group')).toBe('');
+    expect(select.style.borderWidth).toBe('');
     expect(select.className).not.toContain('shadow-nb');
     expect(select.className).not.toContain('rounded-(--nb-select-radius)');
   });
@@ -264,7 +265,7 @@ describe('NbNativeSelect directive inside NbInputGroup', () => {
     ) as HTMLSelectElement;
 
     expect(select.getAttribute('data-in-group')).toBe('');
-    expect(select.style.backgroundColor).toBe('transparent');
+    expect(select.style.backgroundColor).toBe('');
   });
 
   it('uses the same focus-within treatment as grouped inputs', async () => {

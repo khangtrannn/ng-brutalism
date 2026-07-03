@@ -1,6 +1,9 @@
 import { ChangeDetectionStrategy, Component, computed, input } from '@angular/core';
 
-import { nbToneVars, type NbTone } from '../tokens/tone';
+import { NbToneCapability } from '../core/capabilities';
+import type { NbTone } from '../tokens/tone';
+
+export type NbRatingTone = NbTone;
 
 @Component({
   selector: 'nb-rating',
@@ -9,13 +12,13 @@ import { nbToneVars, type NbTone } from '../tokens/tone';
       <span
         data-slot="rating-star"
         [attr.data-filled]="i <= filled() ? '' : null"
-        [style.color]="i <= filled() ? ratingFilledColor() : null"
       >{{ i <= filled() ? '★' : '☆' }}</span>
     }
     @if (count() !== undefined) {
       <span data-slot="rating-count">({{ count() }})</span>
     }
   `,
+  hostDirectives: [{ directive: NbToneCapability, inputs: ['tone'] }],
   host: {
     '[attr.aria-label]': 'ariaLabel()',
     '[attr.role]': '"img"',
@@ -27,10 +30,6 @@ export class NbRating {
   readonly value = input<number>(0);
   readonly max = input<number>(5);
   readonly count = input<number | undefined>(undefined);
-  // The filled-star color resolves the tone token to a literal at render time
-  // (inner element, no CSS fallback chain), so the rating owns the tone input
-  // directly. The 'warning' default stands in when no tone is set.
-  readonly tone = input<NbTone | undefined>(undefined);
 
   protected readonly stars = computed(() =>
     Array.from({ length: this.max() }, (_, i) => i + 1)
@@ -42,9 +41,5 @@ export class NbRating {
 
   protected readonly ariaLabel = computed(
     () => `${this.value()} out of ${this.max()} stars`
-  );
-
-  protected readonly ratingFilledColor = computed(
-    () => nbToneVars(this.tone() ?? 'warning').bg,
   );
 }

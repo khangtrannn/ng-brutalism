@@ -2,7 +2,13 @@ import { Component, signal } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { describe, expect, it } from 'vitest';
 
-import { NbInput, type NbInputBorder, type NbInputTone } from './nb-input';
+import {
+  NbInput,
+  type NbInputBorder,
+  type NbInputRadius,
+  type NbInputShadow,
+  type NbInputTone,
+} from './nb-input';
 
 @Component({
   imports: [NbInput],
@@ -19,6 +25,8 @@ class InputTokenTest {}
       size="lg"
       tone="warning"
       border="strong"
+      radius="lg"
+      shadow="hard"
     />
   `,
 })
@@ -38,6 +46,22 @@ class ToneInputTokenTest {
 })
 class MutableBorderInputTokenTest {
   readonly border = signal<NbInputBorder | null>('thick');
+}
+
+@Component({
+  imports: [NbInput],
+  template: `
+    <input
+      nbInput
+      [radius]="radius()"
+      [shadow]="shadow()"
+      placeholder="Email"
+    />
+  `,
+})
+class MutableRadiusInputTokenTest {
+  readonly radius = signal<NbInputRadius | null>('lg');
+  readonly shadow = signal<NbInputShadow | null>('hard');
 }
 
 describe('NbInput token surface', () => {
@@ -62,7 +86,7 @@ describe('NbInput token surface', () => {
     expect(input.style.cssText).not.toContain('--nb-resolved');
   });
 
-  it('does not funnel radius/shadow through local CSS vars — public hooks stay user-owned', async () => {
+  it('leaves radius/shadow to CSS token fallbacks when unset', async () => {
     const fixture = await createFixture();
     const input = findInput(fixture);
 
@@ -79,16 +103,24 @@ describe('NbInput token surface', () => {
     expect(input.style.getPropertyValue('--nb-input-focus-ring-color')).toBe('');
   });
 
-  it('reflects tone semantically and writes border input to the public CSS variable', async () => {
+  it('reflects tone semantically and writes border/radius/shadow inputs to public CSS variables', async () => {
     const fixture = await createFixture(ValueInputTokenTest);
     const input = findInput(fixture);
 
     expect(input.getAttribute('data-size')).toBe('lg');
     expect(input.getAttribute('data-nb-tone')).toBe('warning');
     expect(input.style.getPropertyValue('--nb-input-border-width')).toBe('3px');
+    expect(input.style.getPropertyValue('--nb-input-radius')).toBe(
+      'var(--nb-radius-lg, 0.75rem)'
+    );
+    expect(input.style.getPropertyValue('--nb-input-shadow')).toBe(
+      '6px 6px 0 0 var(--nb-shadow)'
+    );
     expect(input.style.getPropertyValue('background-color')).toBe('');
     expect(input.style.getPropertyValue('border-color')).toBe('');
     expect(input.style.getPropertyValue('border-width')).toBe('');
+    expect(input.style.getPropertyValue('border-radius')).toBe('');
+    expect(input.style.getPropertyValue('box-shadow')).toBe('');
   });
 
   it.each([
@@ -122,6 +154,25 @@ describe('NbInput token surface', () => {
     fixture.detectChanges();
 
     expect(input.style.getPropertyValue('--nb-input-border-width')).toBe('');
+  });
+
+  it('removes inline radius/shadow public CSS variables when bound inputs become null', async () => {
+    const fixture = await createFixture(MutableRadiusInputTokenTest);
+    const input = findInput(fixture);
+
+    expect(input.style.getPropertyValue('--nb-input-radius')).toBe(
+      'var(--nb-radius-lg, 0.75rem)'
+    );
+    expect(input.style.getPropertyValue('--nb-input-shadow')).toBe(
+      '6px 6px 0 0 var(--nb-shadow)'
+    );
+
+    fixture.componentInstance.radius.set(null);
+    fixture.componentInstance.shadow.set(null);
+    fixture.detectChanges();
+
+    expect(input.style.getPropertyValue('--nb-input-radius')).toBe('');
+    expect(input.style.getPropertyValue('--nb-input-shadow')).toBe('');
   });
 });
 

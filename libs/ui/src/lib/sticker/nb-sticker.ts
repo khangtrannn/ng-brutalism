@@ -7,9 +7,25 @@ import {
   numberAttribute,
 } from '@angular/core';
 
-import { nbToneVars, type NbTone } from '../tokens/tone';
+import { NbToneCapability } from '../core/capabilities';
 import { NB_STICKER_PATHS } from './sticker.paths';
 import type { NbStickerShape } from './sticker.types';
+
+function nbStickerRotateTransform(value: unknown): string | null {
+  if (value == null) {
+    return null;
+  }
+  const deg = numberAttribute(value);
+  return Number.isNaN(deg) ? null : `${deg}deg`;
+}
+
+function nbStickerScaleTransform(value: unknown): string | null {
+  if (value == null) {
+    return null;
+  }
+  const scale = numberAttribute(value);
+  return Number.isNaN(scale) ? null : `${scale}`;
+}
 
 @Component({
   selector: 'nb-sticker',
@@ -35,16 +51,13 @@ import type { NbStickerShape } from './sticker.types';
       </span>
     </span>
   `,
+  hostDirectives: [{ directive: NbToneCapability, inputs: ['tone'] }],
   host: {
     '[attr.data-shape]': 'shape()',
     '[attr.data-nb-sticker]': '""',
     '[attr.aria-hidden]': 'decorative() ? "true" : null',
     '[attr.role]': 'decorative() ? null : "img"',
-    '[style.background-color]': '"transparent"',
-    '[style.--nb-sticker-fill]': 'fillBg()',
-    '[style.--nb-sticker-ink]': 'fillInk()',
-    '[style.--nb-sticker-shadow]': '"var(--nb-shadow, #050505)"',
-    '[style.--nb-sticker-rotate]': 'rotateStyle()',
+    '[style.--nb-sticker-rotate]': 'rotate()',
     '[style.--nb-sticker-scale]': 'size()',
   },
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -52,22 +65,8 @@ import type { NbStickerShape } from './sticker.types';
 export class NbSticker {
   readonly shape = input<NbStickerShape>('burst');
   readonly decorative = input<boolean, unknown>(false, { transform: booleanAttribute });
-  readonly rotate = input<number, unknown>(0, { transform: numberAttribute });
-  readonly size = input<number, unknown>(1, { transform: numberAttribute });
-  // SVG fills resolve the tone token to a literal at render time (no CSS
-  // fallback chain), so the sticker owns the tone input directly. The 'mint'
-  // default stands in when no tone is set.
-  readonly tone = input<NbTone | undefined>(undefined);
+  readonly rotate = input(null, { transform: nbStickerRotateTransform });
+  readonly size = input(null, { transform: nbStickerScaleTransform });
 
   protected readonly config = computed(() => NB_STICKER_PATHS[this.shape()]);
-
-  protected readonly fillBg = computed(
-    () => nbToneVars(this.tone() ?? 'mint').bg,
-  );
-
-  protected readonly fillInk = computed(
-    () => nbToneVars(this.tone() ?? 'mint').fg,
-  );
-
-  protected readonly rotateStyle = computed(() => `${this.rotate()}deg`);
 }

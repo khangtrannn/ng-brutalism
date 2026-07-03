@@ -4,6 +4,7 @@ import { describe, expect, it } from 'vitest';
 
 import {
   NbCallout,
+  type NbCalloutBorder,
   type NbCalloutRadius,
   type NbCalloutShadow,
   type NbCalloutTone,
@@ -25,6 +26,7 @@ class DefaultCalloutTest {}
       layout="between"
       radius="md"
       shadow="default"
+      border="thick"
     >
       <span>$420K</span>
       <span>LISTING</span>
@@ -49,7 +51,7 @@ class ToneCalloutTest {
   imports: [NbCallout],
   template: `
     <section style="--nb-callout-radius: var(--nb-radius-none); --nb-callout-shadow: none;">
-      <div nbCallout radius="lg" shadow="hard">Tone callout</div>
+      <div nbCallout radius="lg" shadow="hard" border="strong">Tone callout</div>
     </section>
   `,
 })
@@ -59,13 +61,21 @@ class RadiusOverrideCalloutTest {}
   imports: [NbCallout],
   template: `
     <section style="--nb-callout-radius: var(--nb-radius-none); --nb-callout-shadow: none;">
-      <div nbCallout [radius]="radius()" [shadow]="shadow()">Tone callout</div>
+      <div
+        nbCallout
+        [radius]="radius()"
+        [shadow]="shadow()"
+        [border]="border()"
+      >
+        Tone callout
+      </div>
     </section>
   `,
 })
 class MutableRadiusCalloutTest {
   readonly radius = signal<NbCalloutRadius | null>('lg');
   readonly shadow = signal<NbCalloutShadow | null>('hard');
+  readonly border = signal<NbCalloutBorder | null>('strong');
 }
 
 describe('NbCallout', () => {
@@ -82,10 +92,12 @@ describe('NbCallout', () => {
     expect(callout.getAttribute('data-layout')).toBe('inline');
     expect(callout.style.getPropertyValue('--nb-callout-radius')).toBe('');
     expect(callout.style.getPropertyValue('--nb-callout-shadow')).toBe('');
+    expect(callout.style.getPropertyValue('--nb-callout-border-width')).toBe('');
     expect(callout.style.getPropertyValue('background')).toBe('');
     expect(callout.style.getPropertyValue('color')).toBe('');
     expect(callout.style.getPropertyValue('border-color')).toBe('');
     expect(callout.style.getPropertyValue('border-radius')).toBe('');
+    expect(callout.style.getPropertyValue('border-width')).toBe('');
     expect(callout.style.getPropertyValue('box-shadow')).toBe('');
   });
 
@@ -105,10 +117,14 @@ describe('NbCallout', () => {
     expect(callout.style.getPropertyValue('--nb-callout-shadow')).toBe(
       'var(--nb-shadow-offset-x) var(--nb-shadow-offset-y) 0 0 var(--nb-shadow)'
     );
+    expect(callout.style.getPropertyValue('--nb-callout-border-width')).toBe(
+      '4px'
+    );
     expect(callout.style.getPropertyValue('background')).toBe('');
     expect(callout.style.getPropertyValue('color')).toBe('');
     expect(callout.style.getPropertyValue('border-color')).toBe('');
     expect(callout.style.getPropertyValue('border-radius')).toBe('');
+    expect(callout.style.getPropertyValue('border-width')).toBe('');
     expect(callout.style.getPropertyValue('box-shadow')).toBe('');
   });
 
@@ -131,6 +147,9 @@ describe('NbCallout', () => {
       expect(callout.getAttribute('data-nb-tone')).toBe(tone);
       expect(callout.style.getPropertyValue('--nb-callout-radius')).toBe('');
       expect(callout.style.getPropertyValue('--nb-callout-shadow')).toBe('');
+      expect(callout.style.getPropertyValue('--nb-callout-border-width')).toBe(
+        ''
+      );
     }
   );
 
@@ -165,6 +184,9 @@ describe('NbCallout', () => {
     expect(callout.style.getPropertyValue('--nb-callout-shadow')).toBe(
       '6px 6px 0 0 var(--nb-shadow)'
     );
+    expect(callout.style.getPropertyValue('--nb-callout-border-width')).toBe(
+      '3px'
+    );
   });
 
   it('removes inline public CSS variables when bound scalar inputs become null', async () => {
@@ -179,13 +201,20 @@ describe('NbCallout', () => {
     expect(callout.style.getPropertyValue('--nb-callout-shadow')).toBe(
       '6px 6px 0 0 var(--nb-shadow)'
     );
+    expect(callout.style.getPropertyValue('--nb-callout-border-width')).toBe(
+      '3px'
+    );
 
     fixture.componentInstance.radius.set(null);
     fixture.componentInstance.shadow.set(null);
+    fixture.componentInstance.border.set(null);
     fixture.detectChanges();
 
     expect(callout.style.getPropertyValue('--nb-callout-radius')).toBe('');
     expect(callout.style.getPropertyValue('--nb-callout-shadow')).toBe('');
+    expect(callout.style.getPropertyValue('--nb-callout-border-width')).toBe(
+      ''
+    );
   });
 });
 

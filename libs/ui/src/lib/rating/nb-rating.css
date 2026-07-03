@@ -6,10 +6,18 @@
     background-color: transparent;
   }
 
+  :where(nb-rating[data-nb-tone]) {
+    --nb-rating-tone-bg: var(--_nb-tone-bg);
+  }
+
   :where(nb-rating [data-slot='rating-star']) {
     color: var(--nb-rating-empty, var(--nb-border));
     font-size: var(--nb-rating-size, 1.25rem);
     line-height: 1;
+  }
+
+  :where(nb-rating [data-slot='rating-star'][data-filled]) {
+    color: var(--nb-rating-fill, var(--nb-rating-tone-bg, var(--_nb-tone-bg, var(--nb-warning))));
   }
 
   :where(nb-rating [data-slot='rating-count']) {

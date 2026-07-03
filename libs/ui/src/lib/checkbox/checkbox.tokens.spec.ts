@@ -4,15 +4,25 @@ import { describe, expect, it } from 'vitest';
 
 import { NbCheckbox } from './nb-checkbox';
 import type { NbCheckboxSize } from './checkbox.types';
+import type { NbRadius } from '../tokens/radius';
 import type { NbTone } from '../tokens/tone';
 
 @Component({
   imports: [NbCheckbox],
-  template: `<input type="checkbox" nbCheckbox [size]="size" [tone]="tone" />`,
+  template: `
+    <input
+      type="checkbox"
+      nbCheckbox
+      [size]="size"
+      [tone]="tone"
+      [radius]="radius"
+    />
+  `,
 })
 class CheckboxTokenTest {
   size: NbCheckboxSize = 'md';
   tone: NbTone | undefined = undefined;
+  radius: NbRadius | null = null;
 }
 
 describe('NbCheckbox token surface', () => {
@@ -24,6 +34,24 @@ describe('NbCheckbox token surface', () => {
     expect(checkbox.style.getPropertyValue('--nb-checkbox-fg')).toBe('');
     expect(checkbox.getAttribute('data-nb-tone')).toBeNull();
     expect(checkbox.getAttribute('data-tone')).toBeNull();
+  });
+
+  it('leaves radius to CSS token fallback when unset', async () => {
+    const fixture = await createFixture();
+    const checkbox = findCheckbox(fixture);
+
+    expect(checkbox.style.getPropertyValue('--nb-checkbox-radius')).toBe('');
+    expect(checkbox.style.getPropertyValue('border-radius')).toBe('');
+  });
+
+  it('writes the radius input to the public CSS variable', async () => {
+    const fixture = await createFixture({ radius: 'full' });
+    const checkbox = findCheckbox(fixture);
+
+    expect(checkbox.style.getPropertyValue('--nb-checkbox-radius')).toBe(
+      'var(--nb-radius-full, 9999px)'
+    );
+    expect(checkbox.style.getPropertyValue('border-radius')).toBe('');
   });
 
   it('reflects tone semantically without writing final colors inline', async () => {
@@ -77,7 +105,7 @@ describe('NbCheckbox token surface', () => {
 });
 
 async function createFixture(
-  inputs: Partial<Pick<CheckboxTokenTest, 'size' | 'tone'>> = {}
+  inputs: Partial<Pick<CheckboxTokenTest, 'size' | 'tone' | 'radius'>> = {}
 ): Promise<ComponentFixture<CheckboxTokenTest>> {
   await TestBed.configureTestingModule({
     imports: [CheckboxTokenTest],

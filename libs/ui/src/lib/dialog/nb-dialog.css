@@ -43,9 +43,12 @@
     padding: 0;
     overflow-x: hidden;
     border-style: solid;
-    background: var(--nb-dialog-bg, #ffffff);
-    color: var(--nb-dialog-fg, #000000);
-    border-color: var(--nb-dialog-border-color, var(--nb-border));
+    background: var(--nb-dialog-bg, var(--_nb-tone-bg, #ffffff));
+    color: var(--nb-dialog-fg, var(--_nb-tone-fg, #000000));
+    border-color: var(
+      --nb-dialog-border-color,
+      var(--_nb-tone-border-color, var(--nb-border))
+    );
     border-width: var(--nb-dialog-border-width, var(--nb-border-width));
     border-radius: var(--nb-dialog-radius, 0.25rem);
     box-shadow: var(--nb-dialog-shadow, 6px 6px 0 0 var(--nb-shadow));

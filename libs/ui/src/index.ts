@@ -4,12 +4,7 @@ export { provideNgBrutalism } from './lib/core/provide';
 export type { NbConfig } from './lib/core/provide';
 export { NB_THEME_CONFIG } from './lib/tokens/theme.tokens';
 export type { NbThemeConfig } from './lib/tokens/theme.tokens';
-export type {
-  NbTone,
-  NbToneTokens,
-  NbToneVars,
-} from './lib/tokens/tone';
-export { nbToneTokens, nbToneVars } from './lib/tokens/tone';
+export type { NbTone } from './lib/tokens/tone';
 
 // Shared design tokens — one vocabulary for every primitive's visual grammar.
 export type { NbRadius } from './lib/tokens/radius';
@@ -36,7 +31,6 @@ export type {
   NbUnderlineWidth,
 } from './lib/tokens/typography';
 export {
-  nbFontWeightValue,
   nbTypographyFontValue,
   nbUnderlineGapValue,
   nbUnderlineWidthValue,
@@ -48,11 +42,6 @@ export {
 // by application code; compose public primitives such as nbSurface/nbButton.
 export {
   NbToneCapability as ɵNbToneCapability,
-  NbRadiusCapability as ɵNbRadiusCapability,
-  NbShadowCapability as ɵNbShadowCapability,
-  NbBorderCapability as ɵNbBorderCapability,
-  NbPaddingCapability as ɵNbPaddingCapability,
-  NbGapCapability as ɵNbGapCapability,
   NbUnderlineCapability as ɵNbUnderlineCapability,
   NbResetMarginCapability as ɵNbResetMarginCapability,
 } from './lib/core/capabilities';

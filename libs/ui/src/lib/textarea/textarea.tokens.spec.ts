@@ -1,14 +1,45 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { describe, expect, it } from 'vitest';
 
 import { NbTextarea } from './nb-textarea';
+import type { NbRadius } from '../tokens/radius';
+import type { NbShadow } from '../tokens/shadow';
 
 @Component({
   imports: [NbTextarea],
   template: `<textarea nbTextarea placeholder="Message"></textarea>`,
 })
 class TextareaTokenTest {}
+
+@Component({
+  imports: [NbTextarea],
+  template: `
+    <textarea
+      nbTextarea
+      placeholder="Message"
+      radius="lg"
+      shadow="hard"
+    ></textarea>
+  `,
+})
+class ValueTextareaTokenTest {}
+
+@Component({
+  imports: [NbTextarea],
+  template: `
+    <textarea
+      nbTextarea
+      placeholder="Message"
+      [radius]="radius()"
+      [shadow]="shadow()"
+    ></textarea>
+  `,
+})
+class MutableRadiusTextareaTokenTest {
+  readonly radius = signal<NbRadius | null>('lg');
+  readonly shadow = signal<NbShadow | null>('hard');
+}
 
 describe('NbTextarea token surface', () => {
   it('emits no internal styling classes — anatomy lives in styles.css and data-attrs', async () => {
@@ -29,7 +60,7 @@ describe('NbTextarea token surface', () => {
     expect(textarea.style.cssText).not.toContain('--nb-resolved');
   });
 
-  it('does not funnel radius/shadow through local CSS vars — public hooks stay user-owned', async () => {
+  it('leaves radius/shadow to CSS token fallbacks when unset', async () => {
     const fixture = await createFixture();
     const textarea = findTextarea(fixture);
 
@@ -37,6 +68,39 @@ describe('NbTextarea token surface', () => {
     expect(textarea.style.getPropertyValue('--nb-textarea-shadow')).toBe('');
     expect(textarea.style.getPropertyValue('border-radius')).toBe('');
     expect(textarea.style.getPropertyValue('box-shadow')).toBe('');
+  });
+
+  it('writes radius/shadow inputs to public CSS variables', async () => {
+    const fixture = await createFixture(ValueTextareaTokenTest);
+    const textarea = findTextarea(fixture);
+
+    expect(textarea.style.getPropertyValue('--nb-textarea-radius')).toBe(
+      'var(--nb-radius-lg, 0.75rem)'
+    );
+    expect(textarea.style.getPropertyValue('--nb-textarea-shadow')).toBe(
+      '6px 6px 0 0 var(--nb-shadow)'
+    );
+    expect(textarea.style.getPropertyValue('border-radius')).toBe('');
+    expect(textarea.style.getPropertyValue('box-shadow')).toBe('');
+  });
+
+  it('removes inline radius/shadow public CSS variables when bound inputs become null', async () => {
+    const fixture = await createFixture(MutableRadiusTextareaTokenTest);
+    const textarea = findTextarea(fixture);
+
+    expect(textarea.style.getPropertyValue('--nb-textarea-radius')).toBe(
+      'var(--nb-radius-lg, 0.75rem)'
+    );
+    expect(textarea.style.getPropertyValue('--nb-textarea-shadow')).toBe(
+      '6px 6px 0 0 var(--nb-shadow)'
+    );
+
+    fixture.componentInstance.radius.set(null);
+    fixture.componentInstance.shadow.set(null);
+    fixture.detectChanges();
+
+    expect(textarea.style.getPropertyValue('--nb-textarea-radius')).toBe('');
+    expect(textarea.style.getPropertyValue('--nb-textarea-shadow')).toBe('');
   });
 
   it('writes the focus ring color from the tone capability for CSS to consume', async () => {
@@ -48,19 +112,21 @@ describe('NbTextarea token surface', () => {
   });
 });
 
-async function createFixture(): Promise<ComponentFixture<TextareaTokenTest>> {
+async function createFixture<T>(
+  component: new () => T = TextareaTokenTest as never
+): Promise<ComponentFixture<T>> {
   await TestBed.configureTestingModule({
-    imports: [TextareaTokenTest],
+    imports: [component],
   }).compileComponents();
 
-  const fixture = TestBed.createComponent(TextareaTokenTest);
+  const fixture = TestBed.createComponent(component);
   fixture.detectChanges();
 
   return fixture;
 }
 
 function findTextarea(
-  fixture: ComponentFixture<TextareaTokenTest>
+  fixture: ComponentFixture<unknown>
 ): HTMLTextAreaElement {
   return fixture.nativeElement.querySelector(
     'textarea[nbTextarea]'

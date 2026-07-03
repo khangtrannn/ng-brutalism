@@ -1,7 +1,7 @@
 # Token Customization Migration Plan
 
 Status: Active Draft
-Last updated: 2026-06-11
+Last updated: 2026-06-30
 Scope: Internal migration plan for `@ng-brutalism/ui` token customization architecture
 
 Related documents:
@@ -27,14 +27,14 @@ Primary direction:
 
 ## Phase 0 — Preparation checklist
 
-- [ ] Add `libs/ui/src/lib/core/input-transforms/token-style-transform.ts` (core transform types).
-- [ ] Add named pure transform functions for radius, shadow, padding, gap, and border width under `core/input-transforms/`.
-- [ ] Export input transforms from `core/input-transforms/index.ts`.
-- [ ] Add the shared tone recipe CSS layer (centralized stylesheet) that maps `data-nb-tone` -> `--_nb-tone-*` using `:where()` selectors.
-- [ ] Use `data-nb-tone`, not `data-tone`.
-- [ ] Do not add per-component tone recipe blocks unless a component truly needs special tone behavior (explicit exception documented).
-- [ ] Do not create helpers that call Angular `input()`; `input()` must be called directly in class member initializers.
-- [ ] Keep input options inline (alias, transform).
+- [x] Add `libs/ui/src/lib/core/input-transforms/token-style-transform.ts` (core transform types).
+- [x] Add named pure transform functions for radius, shadow, padding, gap, and border width under `core/input-transforms/`.
+- [x] Export input transforms from `core/input-transforms/index.ts`.
+- [x] Add the shared tone recipe CSS layer (centralized stylesheet) that maps `data-nb-tone` -> `--_nb-tone-*` using `:where()` selectors.
+- [x] Use `data-nb-tone`, not `data-tone`.
+- [x] Do not add per-component tone recipe blocks unless a component truly needs special tone behavior (explicit exception documented).
+- [x] Do not create helpers that call Angular `input()`; `input()` must be called directly in class member initializers.
+- [x] Keep input options inline (alias, transform).
 
 Replace any checklist item that said "Add style input helpers" with "Add scalar token input transforms (input transforms)".
 
@@ -65,17 +65,17 @@ Remove list for the pilot (things to delete in code/docs):
 
 Acceptance criteria (NbCallout):
 
-- [ ] No `radius` input -> no inline `--nb-callout-radius` is written.
-- [ ] `radius="sm"` writes inline `--nb-callout-radius` with the transform output.
-- [ ] Parent `--nb-callout-radius` customization works when no radius input exists.
-- [ ] Local `--nb-callout-radius` customization works when no radius input exists.
-- [ ] Radius input wins over inherited customization (inline style precedence).
-- [ ] `data-radius` is removed.
-- [ ] `size` and `layout` behavior remain unchanged.
+- [x] No `radius` input -> no inline `--nb-callout-radius` is written.
+- [x] `radius="sm"` writes inline `--nb-callout-radius` with the transform output.
+- [x] Parent `--nb-callout-radius` customization works when no radius input exists.
+- [x] Local `--nb-callout-radius` customization works when no radius input exists.
+- [x] Radius input wins over inherited customization (inline style precedence).
+- [x] `data-radius` is removed.
+- [x] `size` and `layout` behavior remain unchanged.
 # Token Customization Migration Plan
 
 Status: Active Draft
-Last updated: 2026-06-11
+Last updated: 2026-06-30
 Scope: Internal migration plan for `@ng-brutalism/ui` token customization architecture
 
 Related documents:
@@ -97,13 +97,13 @@ CSS is the final style engine and owns fallbacks.
 
 ## 0. Migration checklist (Phase 0)
 
-- [ ] Add `libs/ui/src/lib/core/input-transforms/token-style-transform.ts` (core transform types).
-- [ ] Add named pure transform functions for radius, shadow, padding, gap, border width (exported from `core/input-transforms/index.ts`).
-- [ ] Add a shared tone recipe CSS layer (centralized file, low specificity with `:where`).
-- [ ] Audit and replace all `data-tone` references with `data-nb-tone`.
-- [ ] Do not add per-component tone recipe blocks unless a component needs a documented special-case.
-- [ ] Do not create helpers that call Angular `input()`; replace helper wrappers with named input transforms.
-- [ ] Keep input options inline in the `input()` call (alias + transform inline) to preserve Angular static analysis compatibility.
+- [x] Add `libs/ui/src/lib/core/input-transforms/token-style-transform.ts` (core transform types).
+- [x] Add named pure transform functions for radius, shadow, padding, gap, border width (exported from `core/input-transforms/index.ts`).
+- [x] Add a shared tone recipe CSS layer (centralized file, low specificity with `:where`).
+- [x] Audit and replace all production `data-tone` references with `data-nb-tone`.
+- [x] Do not add per-component tone recipe blocks unless a component needs a documented special-case.
+- [x] Do not create helpers that call Angular `input()`; replace helper wrappers with named input transforms.
+- [x] Keep input options inline in the `input()` call (alias + transform inline) to preserve Angular static analysis compatibility.
 
 Remove any checklist item that instructs adding style input helpers that wrap `input()`; replace with "Add scalar token input transforms".
 
@@ -127,20 +127,20 @@ Removal list (examples to remove):
 
 Acceptance criteria for NbCallout pilot:
 
-- [ ] No radius input => no inline `--nb-callout-radius` written.
-- [ ] `radius="sm"` writes inline `--nb-callout-radius`.
-- [ ] Parent `--nb-callout-radius` customization works when no radius input exists.
-- [ ] Local `--nb-callout-radius` customization works when no radius input exists.
-- [ ] Radius input wins over inherited customization.
-- [ ] `data-radius` is removed.
-- [ ] `size` and `layout` behavior remain unchanged.
-- [ ] `tone="warning"` renders `data-nb-tone="warning"` on the element.
-- [ ] No tone input renders no `data-nb-tone`.
-- [ ] Shared tone recipe CSS sets internal `--_nb-tone-*` slots.
-- [ ] NbCallout consumes `--_nb-tone-*` slots with neutral fallback.
-- [ ] Base CSS falls back to neutral tokens when no tone context exists.
-- [ ] Component-specific variables like `--nb-callout-bg` override the tone recipe.
-- [ ] No per-component tone recipe block is added unless intentionally justified and documented.
+- [x] No radius input => no inline `--nb-callout-radius` written.
+- [x] `radius="sm"` writes inline `--nb-callout-radius`.
+- [x] Parent `--nb-callout-radius` customization works when no radius input exists.
+- [x] Local `--nb-callout-radius` customization works when no radius input exists.
+- [x] Radius input wins over inherited customization.
+- [x] `data-radius` is removed.
+- [x] `size` and `layout` behavior remain unchanged.
+- [x] `tone="warning"` renders `data-nb-tone="warning"` on the element.
+- [x] No tone input renders no `data-nb-tone`.
+- [x] Shared tone recipe CSS sets internal `--_nb-tone-*` slots.
+- [x] NbCallout consumes `--_nb-tone-*` slots with neutral fallback.
+- [x] Base CSS falls back to neutral tokens when no tone context exists.
+- [x] Component-specific variables like `--nb-callout-bg` override the tone recipe.
+- [x] No per-component tone recipe block is added unless intentionally justified and documented.
 
 ---
 
@@ -200,45 +200,45 @@ value -> behavior/internal
 ### 8.2 Migrate semantic inputs
 
 ```txt
-- [ ] Reflect semantic inputs as data attributes.
-- [ ] Keep CSS selectors for semantic behavior.
-- [ ] Do not compute final visual values in TypeScript for semantic inputs.
+- [x] Reflect semantic inputs as data attributes.
+- [x] Keep CSS selectors for semantic behavior.
+- [x] Do not compute final visual values in TypeScript for semantic inputs.
 ```
 
 ### 8.3 Migrate scalar design inputs
 
 ```txt
-- [ ] Replace manual computed `undefined -> null` logic by using a named input transform and direct `input()`.
-- [ ] Bind scalar input to a public component CSS variable.
-- [ ] Do not bind scalar input to final CSS property.
-- [ ] Ensure unset input does not write the inline CSS variable.
+- [x] Replace manual computed `undefined -> null` logic by using a named input transform and direct `input()`.
+- [x] Bind scalar input to a public component CSS variable.
+- [x] Do not bind scalar input to final CSS property.
+- [x] Ensure unset input does not write the inline CSS variable.
 ```
 
 ### 8.4 Migrate CSS
 
 ```txt
-- [ ] Final CSS properties read public component CSS variables with fallback.
-- [ ] Component CSS does not set public customization variables as defaults.
-- [ ] Size/variant selectors can provide different fallbacks by repeating the final property.
-- [ ] Tone recipes are written in CSS using `data-nb-tone` selectors (centralized shared layer).
+- [x] Final CSS properties read public component CSS variables with fallback.
+- [x] Component CSS does not set public customization variables as defaults.
+- [x] Size/variant selectors can provide different fallbacks by repeating the final property.
+- [x] Tone recipes are written in CSS using `data-nb-tone` selectors (centralized shared layer).
 ```
 
 ### 8.5 Remove design mirror attributes
 
 ```txt
-- [ ] Remove data attributes that only mirror scalar design values.
-- [ ] Keep data attributes used for semantic selectors or behavior.
+- [x] Remove data attributes that only mirror scalar design values.
+- [x] Keep data attributes used for semantic selectors or behavior.
 ```
 
 ### 8.6 Update tests
 
 ```txt
-- [ ] No input -> no inline public CSS variable.
-- [ ] Input -> inline public CSS variable.
-- [ ] Local CSS variable customization works.
-- [ ] Inherited CSS variable customization works.
-- [ ] Input wins over inherited customization.
-- [ ] Removed mirror attributes are no longer rendered.
+- [x] No input -> no inline public CSS variable.
+- [x] Input -> inline public CSS variable.
+- [x] Local CSS variable customization works.
+- [x] Inherited CSS variable customization works.
+- [x] Input wins over inherited customization.
+- [x] Removed mirror attributes are no longer rendered.
 ```
 
 ---
@@ -276,7 +276,7 @@ Reason: exercises the full model.
 
 ### Phase 2: Simple surfaces
 
-Status: In progress
+Status: Done
 
 Risk: Medium
 
@@ -287,6 +287,7 @@ NbCard
 NbBadge
 NbAvatar
 NbMediaFrame (done)
+NbImageCard
 ```
 
 Likely scalar inputs:
@@ -308,7 +309,7 @@ variant if present
 
 ### Phase 3: Surface, Button, IconButton
 
-Status: In progress
+Status: Done
 
 Risk: Medium/High
 
@@ -331,7 +332,7 @@ Notes:
 
 ### Phase 4: Layout primitives
 
-Status: Planned
+Status: Done
 
 Risk: Medium
 
@@ -376,7 +377,7 @@ Notes:
 
 ### Phase 5: Forms and overlays
 
-Status: In progress
+Status: Done
 
 Risk: High
 
@@ -398,11 +399,12 @@ Notes:
 - Keep state as data attributes.
 - Use CSS variables for visual customization.
 - Be careful with in-group, disabled, invalid, open, selected, focused states.
+- Grouped form controls use CSS state selectors for transparent/merged chrome.
 ```
 
 ### Phase 6: Typography and Icon
 
-Status: Planned
+Status: Done
 
 Risk: High
 
@@ -418,15 +420,32 @@ NbIcon
 Notes:
 
 ```txt
-- Some existing design data attributes may be mirrors and should be removed.
-- Typography inputs may be scalar design inputs.
-- Icon size may be scalar if it only maps to width/height.
-- Tone for text/icon needs careful classification.
+- size/weight/tracking/leading/transform/measure are fixed-enum presets with
+  always-concrete defaults (never null), so they reflect as data-* attributes
+  with CSS owning the per-value final property + public var override, the same
+  pattern NbCallout uses for size — an always-inline CSS var write would
+  permanently block local/inherited customization for these inputs.
+- tone (NbText/NbIcon) keeps its own narrower vocabulary ('default'/'muted'/
+  'subtle'/'inverse' plus a subset of NbTone) and resolves to a public
+  --nb-text-color / --nb-icon-color var rather than the shared --_nb-tone-*
+  slots, since those text-only values have no bg/border surface and aren't
+  part of the shared tone recipe. The var is only written when tone is
+  explicit (nullable), so CSS still owns the neutral/currentColor fallback.
+- NbTypography's font role moves from a duplicated final font-family write to
+  a single --nb-typography-font var; CSS fallback is the literal `inherit`
+  keyword (not a token) so the default 'inherit' role still inherits ambient
+  font-family exactly as before.
+- NbIcon's mask/background mechanism (mode-driven structural properties:
+  size/position/repeat/background-color-for-mask) moved to CSS keyed by
+  data-mode; only the src-driven mask-image/background-image url stays
+  TS-bound since it's genuinely per-instance runtime data.
+- Legacy data-tone mirror was already removed from NbText and NbIcon prior to
+  this pass.
 ```
 
 ### Phase 7: Special components
 
-Status: Planned
+Status: Done
 
 Risk: High
 
@@ -447,6 +466,28 @@ Notes:
 - Some components involve drawing, geometry, or runtime values.
 - Do not blindly apply the scalar input pattern to behavior/math values.
 - Preserve runtime behavior such as progress width and halftone geometry.
+- NbProgress/NbRating: fill/star color moved from TS-resolved literals to
+  data-nb-tone + shared --_nb-tone-bg slot, with each component's CSS fallback
+  matching its prior hardcoded default tone (primary / warning) so the
+  visual default is unchanged. Runtime width/fill-count stays TS-driven.
+- NbMediaItem: tone moved to data-nb-tone + shared tone slots; the `plain`
+  variant still tints text-only (no surface) the same way it did before,
+  preserved by giving the base rule a color fallback and only the boxed/chip
+  rule a bg/border fallback. Removed the data-background mirror on
+  NbMediaItemIcon (the public --nb-media-item-icon-bg var already covers it).
+- NbSticker: fill/ink moved from TS tone-literal + CSS local-default (which
+  blocked inheritance) to data-nb-tone + shared tone slots consumed at point
+  of use. rotate/size switched from always-inline (numeric, never null) to
+  input(null, {transform}), which also fixes a latent bug where the
+  per-shape CSS rotation presets (e.g. splat's -10deg) were dead code because
+  rotate's old default of 0 always won as an inline override.
+- NbHalftone: rectangle-shape CSS no longer sets --nb-halftone-* as local
+  defaults (that blocked inherited customization); defaults moved into the
+  var() fallback at each point of use. Circle fill moved from a per-circle
+  TS-resolved attr to a single CSS rule.
+- NbSeparator: orientation/variant fully reflect as data attributes; CSS now
+  owns the border side/width/style matrix that TS used to compute and write
+  as final inline styles.
 ```
 
 ---
@@ -456,34 +497,35 @@ Notes:
 | Component      | Phase | Status  | Risk        | Notes                 |
 | -------------- | ----: | ------- | ----------- | --------------------- |
 | NbCallout      |     1 | Done    | High        | Pilot component; uses data-nb-tone and public radius/shadow vars |
-| NbCard         |     2 | Planned | Medium      | Simple surface        |
-| NbBadge        |     2 | Planned | Medium      | Simple surface        |
-| NbAvatar       |     2 | Planned | Medium      | Simple surface        |
+| NbCard         |     2 | Done    | Medium      | Uses data-nb-tone and public radius/shadow/border vars |
+| NbBadge        |     2 | Done    | Medium      | Uses data-nb-tone and public radius/shadow/border vars |
+| NbAvatar       |     2 | Done    | Medium      | Uses data-nb-tone and public radius/shadow/border vars |
+| NbImageCard    |     2 | Done    | Medium      | Uses data-nb-tone and public radius/shadow/border vars |
 | NbMediaFrame   |     2 | Done    | Medium      | Uses data-nb-tone and public radius/shadow/border vars |
 | NbSurface      |     3 | Done    | High        | Uses data-nb-tone and public radius/shadow/border/padding vars |
-| NbButton       |     3 | Planned | High        | Size/tone/interaction |
-| NbIconButton   |     3 | Planned | Medium/High | Size/tone/shape       |
-| NbStack        |     4 | Planned | Medium      | Gap/separator         |
-| NbCluster      |     4 | Planned | Medium      | Gap/padding/separator |
-| NbSplit        |     4 | Planned | Medium      | Gap/padding/collapse  |
-| NbSection      |     4 | Planned | Medium      | Padding/flush/divider |
-| NbChipGroup    |     4 | Planned | Medium      | Gap and child context |
+| NbButton       |     3 | Done    | High        | Uses data-nb-tone and public radius/shadow/border vars |
+| NbIconButton   |     3 | Done    | Medium/High | Uses data-nb-tone and public radius/shadow/border vars |
+| NbStack        |     4 | Done    | Medium      | Gap writes public var; separator metrics remain CSS-owned |
+| NbCluster      |     4 | Done    | Medium      | Gap/padding write public vars; separator metrics remain CSS-owned |
+| NbSplit        |     4 | Done    | Medium      | Gap/padding write public vars; separator metrics remain CSS-owned |
+| NbSection      |     4 | Done    | Medium      | Padding writes public var; flush stays CSS-owned |
+| NbChipGroup    |     4 | Done    | Medium      | Gap writes public group var; child radius/shadow context uses public chip vars |
 | NbCheckbox     |     5 | Done    | Medium      | Uses data-nb-tone; checked colors consume shared tone slots with primary fallback |
 | NbInput        |     5 | Done    | High        | Uses data-nb-tone and public border-width var |
-| NbTextarea     |     5 | Planned | High        | Form state            |
-| NbNativeSelect |     5 | Planned | High        | Form state            |
-| NbSelect       |     5 | Planned | High        | Complex state         |
-| NbDialog       |     5 | Planned | High        | Inner surface         |
-| NbText         |     6 | Planned | High        | Typography tokens     |
-| NbDisplay      |     6 | Planned | High        | Typography tokens     |
-| NbTypography   |     6 | Planned | Medium      | Font token            |
-| NbIcon         |     6 | Planned | High        | Size/tone/mode        |
-| NbSticker      |     7 | Planned | High        | Shape/drawing         |
-| NbHalftone     |     7 | Planned | High        | Geometry/drawing      |
-| NbProgress     |     7 | Planned | Medium/High | Runtime progress      |
-| NbRating       |     7 | Planned | Medium/High | Runtime rating        |
-| NbSeparator    |     7 | Planned | Medium      | Orientation/variant   |
-| NbMediaItem    |     7 | Planned | High        | Composite anatomy     |
+| NbTextarea     |     5 | Done    | High        | Uses data-nb-tone and public border-width var; group state is CSS-owned |
+| NbNativeSelect |     5 | Done    | High        | Uses data-nb-tone and public border-width var; group state is CSS-owned |
+| NbSelect       |     5 | Done    | High        | Uses data-nb-tone and public border-width var; listbox/options inherit CSS context |
+| NbDialog       |     5 | Done    | High        | Inner surface uses data-nb-tone and public radius/shadow/border vars |
+| NbText         |     6 | Done    | High        | size/weight/transform/tracking/measure/leading as data-* + CSS; tone writes public --nb-text-color var |
+| NbDisplay      |     6 | Done    | High        | size/weight/tracking/leading as data-* + CSS (incl. fluid matrix) |
+| NbTypography   |     6 | Done    | Medium      | Single --nb-typography-font var; CSS owns font-family with `inherit` fallback |
+| NbIcon         |     6 | Done    | High        | size as data-size + CSS; tone writes public --nb-icon-color var; mask/image mechanics CSS-owned by data-mode |
+| NbSticker      |     7 | Done    | High        | Uses data-nb-tone and shared tone slots for fill/ink; rotate/size are nullable scalar vars |
+| NbHalftone     |     7 | Done    | High        | Rectangle rhythm vars no longer set as local defaults; circle fill is CSS-owned |
+| NbProgress     |     7 | Done    | Medium/High | Uses data-nb-tone and shared tone slots for fill; runtime width unchanged |
+| NbRating       |     7 | Done    | Medium/High | Uses data-nb-tone and shared tone slots for filled-star color; runtime fill count unchanged |
+| NbSeparator    |     7 | Done    | Medium      | Orientation/variant as data-* attrs; CSS owns the border matrix |
+| NbMediaItem    |     7 | Done    | High        | Uses data-nb-tone and shared tone slots; data-background mirror removed from NbMediaItemIcon |
 
 ---
 
@@ -500,7 +542,8 @@ Old style capability directives may still exist during migration.
 Reason:
 
 ```txt
-Removing them everywhere at once would create a large, risky refactor.
+They remain exported for compatibility and for any downstream usage, but the
+production primitives in phases 1-5 no longer compose them.
 ```
 
 Future:

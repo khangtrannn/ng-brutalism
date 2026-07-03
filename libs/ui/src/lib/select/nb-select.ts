@@ -11,8 +11,12 @@ import {
   viewChild,
 } from '@angular/core';
 
-import { nbBorderWidthValue, type NbBorderStrength } from '../tokens/border';
-import { nbToneVars, type NbTone } from '../tokens/tone';
+import {
+  nbBorderWidthStyleTransform,
+  nbRadiusStyleTransform,
+  nbShadowStyleTransform,
+} from '../core/input-transforms';
+import type { NbTone } from '../tokens/tone';
 import { NB_INPUT_GROUP } from '../input-group/input-group.types';
 import { NbSelectOption } from './nb-select-option';
 import {
@@ -31,7 +35,6 @@ let nextSelectId = 0;
       type="button"
       [id]="triggerId"
       data-slot="select-trigger"
-      [style.color]="foregroundStyle()"
       [disabled]="disabled()"
       [attr.aria-haspopup]="'listbox'"
       [attr.aria-expanded]="open()"
@@ -63,8 +66,6 @@ let nextSelectId = 0;
       role="listbox"
       [attr.aria-labelledby]="triggerId"
       data-slot="select-listbox"
-      [style.background-color]="listboxBackgroundStyle()"
-      [style.border-color]="listboxBorderColorStyle()"
     >
       <ng-content />
     </div>
@@ -76,12 +77,11 @@ let nextSelectId = 0;
     '[attr.data-state]': 'open() ? "open" : "closed"',
     '[attr.data-disabled]': 'disabled() ? "" : null',
     '[attr.data-in-group]': 'isInGroup ? "" : null',
+    '[attr.data-nb-tone]': 'tone() ?? null',
     '(document:click)': 'closeOnOutsideClick($event)',
-    '[style.background-color]': 'backgroundStyle()',
-    '[style.color]': 'foregroundStyle()',
-    '[style.border-color]': 'borderColorStyle()',
-    '[style.border-width]': 'borderWidthStyle()',
-    '[style.--nb-select-focus-ring-color]': 'selectFocusRingColorStyle()',
+    '[style.--nb-select-border-width]': 'border()',
+    '[style.--nb-select-radius]': 'radius()',
+    '[style.--nb-select-shadow]': 'shadow()',
   },
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
@@ -90,41 +90,16 @@ export class NbSelect implements NbSelectController {
   private readonly group = inject(NB_INPUT_GROUP, { optional: true });
   protected readonly isInGroup = this.group !== null;
 
-  // Conditional application (group merging) and inner-element listbox/options
-  // mean the select resolves tone/border itself rather than composing the
-  // host-painting capabilities.
   readonly tone = input<NbTone | undefined>(undefined);
-  readonly border = input<NbBorderStrength | undefined>(undefined);
-
-  private readonly toneVars = computed(() => {
-    const tone = this.tone();
-    return tone ? nbToneVars(tone) : null;
+  readonly border = input(null, {
+    transform: nbBorderWidthStyleTransform,
   });
-  protected readonly foregroundStyle = computed(
-    () => this.toneVars()?.fg ?? null,
-  );
-  protected readonly borderColorStyle = computed(
-    () => this.toneVars()?.borderColor ?? null,
-  );
-
-  protected readonly backgroundStyle = computed(() =>
-    this.isInGroup ? 'transparent' : (this.toneVars()?.bg ?? null),
-  );
-  protected readonly borderWidthStyle = computed(() => {
-    if (this.isInGroup) {
-      return '0';
-    }
-    const border = this.border();
-    return border ? nbBorderWidthValue(border) : null;
+  readonly radius = input(null, {
+    transform: nbRadiusStyleTransform,
   });
-
-  protected readonly listboxBackgroundStyle = computed(
-    () => this.toneVars()?.bg ?? null,
-  );
-  protected readonly listboxBorderColorStyle = this.borderColorStyle;
-  protected readonly selectFocusRingColorStyle = this.borderColorStyle;
-  readonly optionForegroundStyle = this.foregroundStyle;
-  readonly optionFocusRingColorStyle = this.borderColorStyle;
+  readonly shadow = input(null, {
+    transform: nbShadowStyleTransform,
+  });
 
   readonly placeholder = input<string>('Select an option');
   readonly value = model<NbSelectValue | null>(null);

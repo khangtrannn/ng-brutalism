@@ -6,6 +6,11 @@
     overflow: hidden;
     border: 2px solid var(--nb-border);
     box-shadow: var(--nb-shadow-offset-x) var(--nb-shadow-offset-y) 0 var(--nb-shadow);
+    background-color: var(--nb-progress-track-bg, var(--nb-secondary-background));
+  }
+
+  :where(nb-progress[data-nb-tone]) {
+    --nb-progress-tone-bg: var(--_nb-tone-bg);
   }
 
   :where(nb-progress [data-slot='progress-track']) {
@@ -18,5 +23,6 @@
   :where(nb-progress [data-slot='progress-fill']) {
     height: 100%;
     transition: width 300ms ease-out;
+    background-color: var(--nb-progress-fill-bg, var(--nb-progress-tone-bg, var(--_nb-tone-bg, var(--nb-primary))));
   }
 }

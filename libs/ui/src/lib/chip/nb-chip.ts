@@ -7,15 +7,19 @@ import {
 } from '@angular/core';
 
 import {
-  NbBorderCapability,
-  NbRadiusCapability,
-  NbShadowCapability,
   NbToneCapability,
 } from '../core/capabilities';
+import {
+  nbGapStyleTransform,
+  nbBorderWidthStyleTransform,
+  nbRadiusStyleTransform,
+  nbShadowStyleTransform,
+  nbTokenStyleTransform,
+} from '../core/input-transforms';
 import { NbIcon, type NbIconSize } from '../icon';
-import { nbRadiusValue, type NbRadius } from '../tokens/radius';
-import { nbShadowValue, type NbShadow } from '../tokens/shadow';
-import { nbSpacingValue, type NbSpacing } from '../tokens/spacing';
+import { type NbRadius } from '../tokens/radius';
+import { type NbShadow } from '../tokens/shadow';
+import type { NbSpacing } from '../tokens/spacing';
 import type { NbTone } from '../tokens/tone';
 import type { NbTextTracking } from '../tokens/typography';
 import type { NbTextTransform } from '../text';
@@ -30,15 +34,22 @@ export type NbChipShadow = NbShadow;
 // padding capability.
 export type NbChipPadding = 'none' | 'sm' | 'md' | 'lg' | 'xl';
 
+const chipPaddingMap: Record<NbChipPadding, string> = {
+  none: '0',
+  sm: '0.125rem 0.5rem',
+  md: '0.125rem 0.625rem',
+  lg: '0.5rem 1rem',
+  xl: '0.625rem 1.25rem',
+};
+
+const nbChipPaddingStyleTransform = nbTokenStyleTransform<NbChipPadding>(
+  (padding) => chipPaddingMap[padding]
+);
+
 @Component({
   selector: 'span[nbChip]',
   imports: [NbIcon],
-  hostDirectives: [
-    { directive: NbToneCapability, inputs: ['tone'] },
-    { directive: NbRadiusCapability, inputs: ['radius'] },
-    { directive: NbShadowCapability, inputs: ['shadow'] },
-    { directive: NbBorderCapability, inputs: ['border'] },
-  ],
+  hostDirectives: [{ directive: NbToneCapability, inputs: ['tone'] }],
   template: `
     @if (icon()) {
       <span nbIcon [src]="icon()!" [size]="iconSize()" decorative></span>
@@ -46,13 +57,27 @@ export type NbChipPadding = 'none' | 'sm' | 'md' | 'lg' | 'xl';
     <ng-content />
   `,
   host: {
-    '[attr.data-padding]': "padding() ?? 'md'",
     '[attr.data-nb-chip]': '""',
+    '[style.--nb-chip-padding]': 'padding()',
+    '[style.--nb-chip-radius]': 'radius()',
+    '[style.--nb-chip-shadow]': 'shadow()',
+    '[style.--nb-chip-border-width]': 'border()',
   },
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NbChip {
-  readonly padding = input<NbChipPadding | undefined>(undefined);
+  readonly padding = input(null, {
+    transform: nbChipPaddingStyleTransform,
+  });
+  readonly radius = input(null, {
+    transform: nbRadiusStyleTransform,
+  });
+  readonly shadow = input(null, {
+    transform: nbShadowStyleTransform,
+  });
+  readonly border = input(null, {
+    transform: nbBorderWidthStyleTransform,
+  });
   // Optional leading icon, given as an SVG/image URL. Rendered through nbIcon
   // in mask mode so it tints to the chip's foreground color. For full-color
   // or labeled icons, compose an `nbIcon` (or any element) as projected
@@ -63,13 +88,7 @@ export class NbChip {
 
 export type NbChipGroupDirection = 'horizontal' | 'vertical';
 export type NbChipGroupAlign = 'start' | 'center' | 'end' | 'stretch';
-
-const chipGroupTrackingMap: Record<NbTextTracking, string | null> = {
-  tight: '-0.025em',
-  normal: null,
-  wide: '0.025em',
-  wider: '0.05em',
-};
+export type NbChipGroupGap = NbSpacing;
 
 /**
  * Layout + shared style context for a set of chips. Owns the row/column layout
@@ -81,43 +100,37 @@ const chipGroupTrackingMap: Record<NbTextTracking, string | null> = {
 @Directive({
   selector: '[nbChipGroup]',
   host: {
-    '[style.gap]': 'gapValue()',
+    '[style.--nb-chip-group-gap]': 'gap()',
     '[style.--nb-chip-radius]': 'chipRadiusValue()',
     '[style.--nb-chip-shadow]': 'chipShadowValue()',
     '[style.text-transform]': 'transformValue()',
-    '[style.letter-spacing]': 'trackingValue()',
     '[attr.data-nb-chip-group]': '""',
     '[attr.data-direction]': 'direction()',
     '[attr.data-align]': 'align()',
+    '[attr.data-tracking]': 'tracking()',
   },
 })
 export class NbChipGroup {
   readonly direction = input<NbChipGroupDirection>('horizontal');
-  readonly gap = input<NbSpacing>('sm');
+  readonly gap = input(null, {
+    transform: nbGapStyleTransform,
+  });
   readonly align = input<NbChipGroupAlign>('stretch');
-  readonly radius = input<NbRadius | undefined>(undefined);
-  readonly shadow = input<NbShadow | undefined>(undefined);
+  readonly radius = input(null, {
+    transform: nbRadiusStyleTransform,
+  });
+  readonly shadow = input(null, {
+    transform: nbShadowStyleTransform,
+  });
   readonly transform = input<NbTextTransform>('none');
   readonly tracking = input<NbTextTracking>('normal');
 
-  protected readonly gapValue = computed(() => nbSpacingValue(this.gap()));
+  protected readonly chipRadiusValue = this.radius;
 
-  protected readonly chipRadiusValue = computed(() => {
-    const radius = this.radius();
-    return radius ? nbRadiusValue(radius) : null;
-  });
-
-  protected readonly chipShadowValue = computed(() => {
-    const shadow = this.shadow();
-    return shadow ? nbShadowValue(shadow) : null;
-  });
+  protected readonly chipShadowValue = this.shadow;
 
   protected readonly transformValue = computed(() => {
     const transform = this.transform();
     return transform === 'none' ? null : transform;
   });
-
-  protected readonly trackingValue = computed(
-    () => chipGroupTrackingMap[this.tracking()],
-  );
 }

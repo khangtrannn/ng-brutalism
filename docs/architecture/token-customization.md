@@ -1,5 +1,9 @@
 # ng-brutalism Token Customization Architecture
 
+> ↑ Start at [design-props.md](../components/design-props.md) for the
+> design-prop vocabulary and per-component matrix; this doc is the deep-dive
+> on the CSS-first mechanics.
+
 ## 1. Purpose
 
 This document captures the thinking flow, tradeoffs, rejected approaches, and final direction for the next token customization architecture in `@ng-brutalism/ui`.
@@ -1311,7 +1315,74 @@ The internal complexity is handled by the library.
 
 ---
 
-## 28. Agent Implementation Prompt
+## 28. Input vs CSS Precedence Contract
+
+The architecture's central claim: explicit Angular inputs win over CSS customization.
+
+### Precedence Model
+
+1. **Angular input set** → write inline public CSS variable.
+2. **Input not set** → CSS variable resolves from:
+   - Local inline CSS on element
+   - Inherited CSS from parent scopes
+   - Component CSS fallback
+3. **!important CSS** → wins over inline input variable.
+
+### Key Principle
+
+Inline styles beat CSS rules. Since inputs write inline variables, they beat stylesheet-defined customization.
+
+### Important Escape Hatch
+
+If a component's computed style must not be overridable by inputs (rare, usually for accessibility), user CSS can use `!important`:
+
+```css
+/* Override an input — only when necessary */
+button {
+  border-radius: 0 !important; /* Beats inline input variable */
+}
+```
+
+### Usage Guidance
+
+1. **Use Angular inputs for one-off component overrides.**
+
+   ```html
+   <button nbButton radius="lg">Book</button>
+   ```
+
+2. **Use CSS variables for class/scope/theme customization** (no input needed).
+
+   ```css
+   .marketing-buttons {
+     --nb-button-radius: var(--nb-radius-none);
+   }
+   ```
+
+   ```html
+   <button nbButton>Book</button>
+   ```
+
+3. **Avoid setting both the input and the same CSS variable on one element.**
+
+   ```html
+   <!-- ❌ Conflict: do not mix input and CSS var on same element -->
+   <button nbButton radius="lg" style="--nb-button-radius: var(--nb-radius-sm)">
+     Bad
+   </button>
+
+   <!-- ✅ Use input OR CSS var, not both -->
+   <button nbButton radius="lg">Good</button>
+   <button nbButton style="--nb-button-radius: var(--nb-radius-sm)">Good</button>
+   ```
+
+### Testing & Documentation
+
+The precedence is verified at the computed-style level via browser tests. The contract is stable and tested.
+
+---
+
+## 29. Agent Implementation Prompt
 
 Please refactor `ng-brutalism` token customization using the new CSS-first, input-friendly architecture.
 

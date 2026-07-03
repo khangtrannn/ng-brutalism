@@ -9,17 +9,28 @@ import type {
   NbButtonShadow,
   NbButtonTone,
   NbButtonSize,
+  NbButtonRadius,
 } from './button.types';
+import type { NbBorderStrength } from '../tokens/border';
 
 @Component({
   imports: [NbButton],
-  template: `<button nbButton [tone]="tone" [shadow]="shadow" [size]="size">
+  template: `<button
+    nbButton
+    [tone]="tone"
+    [radius]="radius"
+    [shadow]="shadow"
+    [border]="border"
+    [size]="size"
+  >
     Button
   </button>`,
 })
 class ButtonTokenTest {
   tone: NbButtonTone | undefined = undefined;
-  shadow: NbButtonShadow = 'default';
+  radius: NbButtonRadius | null = null;
+  shadow: NbButtonShadow | null = null;
+  border: NbBorderStrength | null = null;
   size: NbButtonSize = 'md';
 }
 
@@ -114,7 +125,7 @@ describe('NbButton token surface', () => {
     expect(button.style.cssText).not.toContain('--nb-resolved');
   });
 
-  it('lets the tone input override token customization for the button background', async () => {
+  it('reflects tone semantically without writing final colors inline', async () => {
     await TestBed.configureTestingModule({
       imports: [ToneInputButtonTokenTest],
     }).compileComponents();
@@ -124,9 +135,10 @@ describe('NbButton token surface', () => {
       'button[nbButton]'
     ) as HTMLButtonElement;
 
-    expect(button.style.getPropertyValue('background')).toBe('var(--nb-yellow)');
-    expect(button.style.getPropertyValue('color')).toBeTruthy();
-    expect(button.style.getPropertyValue('border-color')).toBe('var(--nb-border)');
+    expect(button.getAttribute('data-nb-tone')).toBe('yellow');
+    expect(button.style.getPropertyValue('background')).toBe('');
+    expect(button.style.getPropertyValue('color')).toBe('');
+    expect(button.style.getPropertyValue('border-color')).toBe('');
     expect(button.style.getPropertyValue('--nb-button-bg')).toBe('');
     expect(button.style.cssText).not.toContain('--nb-resolved');
   });
@@ -170,15 +182,16 @@ describe('NbButton token surface', () => {
     }
   });
 
-  it('writes only explicit visual inputs to actual CSS properties', async () => {
+  it('leaves scalar visual defaults to CSS token fallbacks', async () => {
     const fixture = await createFixture();
     const button = findButton(fixture);
 
     expect(button.style.getPropertyValue('border-width')).toBe('');
     expect(button.style.getPropertyValue('border-radius')).toBe('');
-    expect(button.style.getPropertyValue('box-shadow')).toBe(
-      'var(--nb-shadow-offset-x) var(--nb-shadow-offset-y) 0 0 var(--nb-shadow)'
-    );
+    expect(button.style.getPropertyValue('box-shadow')).toBe('');
+    expect(button.style.getPropertyValue('--nb-button-radius')).toBe('');
+    expect(button.style.getPropertyValue('--nb-button-shadow')).toBe('');
+    expect(button.style.getPropertyValue('--nb-button-border-width')).toBe('');
     expect(button.style.cssText).not.toContain('--nb-resolved');
   });
 
@@ -193,18 +206,15 @@ describe('NbButton token surface', () => {
     ['warning', 'var(--nb-warning)', 'var(--nb-warning-foreground)'],
     ['background', 'var(--nb-background)', 'var(--nb-foreground)'],
   ] satisfies Array<[NbButtonTone, string, string]>)(
-    'tone="%s" wins outright and leaves public tokens user-owned',
-    async (tone, bg, fg) => {
+    'tone="%s" reflects semantically and leaves public tokens user-owned',
+    async (tone) => {
       const fixture = await createFixture({ tone });
       const button = findButton(fixture);
 
-      expect(button.style.getPropertyValue('background')).toBe(bg);
-      if (fg.startsWith('var(')) {
-        expect(button.style.getPropertyValue('color')).toBe(fg);
-      } else {
-        expect(button.style.getPropertyValue('color')).toBeTruthy();
-      }
-      expect(button.style.getPropertyValue('border-color')).toBe('var(--nb-border)');
+      expect(button.getAttribute('data-nb-tone')).toBe(tone);
+      expect(button.style.getPropertyValue('background')).toBe('');
+      expect(button.style.getPropertyValue('color')).toBe('');
+      expect(button.style.getPropertyValue('border-color')).toBe('');
       expect(button.style.getPropertyValue('--nb-button-bg')).toBe('');
       expect(button.style.getPropertyValue('--nb-button-fg')).toBe('');
       expect(button.style.getPropertyValue('--nb-button-border-color')).toBe('');
@@ -212,21 +222,34 @@ describe('NbButton token surface', () => {
     }
   );
 
-  it('shadow="none" resolves through the shared shadow capability', async () => {
+  it('shadow="none" writes the public shadow variable', async () => {
     const fixture = await createFixture({ shadow: 'none' });
     const button = findButton(fixture);
 
-    expect(button.style.getPropertyValue('box-shadow')).toBe('none');
-    expect(button.style.getPropertyValue('--nb-button-shadow')).toBe('');
+    expect(button.style.getPropertyValue('box-shadow')).toBe('');
+    expect(button.style.getPropertyValue('--nb-button-shadow')).toBe('none');
     expect(button.style.cssText).not.toContain('--nb-resolved');
   });
 
-  it('shadow="hard" resolves through the shared shadow capability', async () => {
-    const fixture = await createFixture({ shadow: 'hard' });
+  it('explicit scalar inputs write public CSS variables', async () => {
+    const fixture = await createFixture({
+      radius: 'md',
+      shadow: 'hard',
+      border: 'strong',
+    });
     const button = findButton(fixture);
 
-    expect(button.style.getPropertyValue('box-shadow')).toBe(
+    expect(button.style.getPropertyValue('border-radius')).toBe('');
+    expect(button.style.getPropertyValue('box-shadow')).toBe('');
+    expect(button.style.getPropertyValue('border-width')).toBe('');
+    expect(button.style.getPropertyValue('--nb-button-radius')).toBe(
+      'var(--nb-radius-md, 0.5rem)'
+    );
+    expect(button.style.getPropertyValue('--nb-button-shadow')).toBe(
       '6px 6px 0 0 var(--nb-shadow)'
+    );
+    expect(button.style.getPropertyValue('--nb-button-border-width')).toBe(
+      '3px'
     );
     expect(button.style.cssText).not.toContain('--nb-resolved');
   });
@@ -297,7 +320,9 @@ describe('NbButton token surface', () => {
 });
 
 async function createFixture(
-  inputs: Partial<Pick<ButtonTokenTest, 'tone' | 'shadow' | 'size'>> = {}
+  inputs: Partial<
+    Pick<ButtonTokenTest, 'tone' | 'radius' | 'shadow' | 'border' | 'size'>
+  > = {}
 ): Promise<ComponentFixture<ButtonTokenTest>> {
   await TestBed.configureTestingModule({
     imports: [ButtonTokenTest],

@@ -5,9 +5,12 @@
     width: 100%;
     border-style: solid;
     border-radius: var(--nb-select-radius, var(--nb-radius));
-    background-color: var(--nb-select-bg, var(--nb-surface));
-    color: var(--nb-select-fg, var(--nb-surface-foreground));
-    border-color: var(--nb-select-border-color, var(--nb-border));
+    background-color: var(--nb-select-bg, var(--_nb-tone-bg, var(--nb-surface)));
+    color: var(--nb-select-fg, var(--_nb-tone-fg, var(--nb-surface-foreground)));
+    border-color: var(
+      --nb-select-border-color,
+      var(--_nb-tone-border-color, var(--nb-border))
+    );
     border-width: var(--nb-select-border-width, var(--nb-border-width));
     box-shadow: var(
       --nb-select-shadow,
@@ -15,15 +18,23 @@
     );
   }
 
+  :where(nb-select[data-nb-tone]) {
+    --nb-select-tone-bg: var(--_nb-tone-bg);
+    --nb-select-tone-fg: var(--_nb-tone-fg);
+    --nb-select-tone-border-color: var(--_nb-tone-border-color);
+  }
+
   :where(nb-select[data-in-group]) {
     position: static;
+    background-color: transparent;
+    border-width: 0;
     border-radius: 0;
     box-shadow: none;
   }
 
   :where(nb-select:focus-within:not([data-in-group])) {
     outline: 2px solid
-      var(--nb-select-focus-ring-color, var(--nb-select-border-color, var(--nb-border)));
+      var(--nb-select-border-color, var(--_nb-tone-border-color, var(--nb-border)));
     outline-offset: 2px;
     box-shadow: none;
   }
@@ -95,10 +106,11 @@
     left: -6px;
     width: calc(100% + 12px);
     margin-top: 0.125rem;
-    border: 2px solid var(--nb-select-border-color, var(--nb-border));
+    border: 2px solid
+      var(--nb-select-border-color, var(--nb-select-tone-border-color, var(--_nb-tone-border-color, var(--nb-border))));
     border-radius: 0 0 var(--nb-select-radius, var(--nb-radius))
       var(--nb-select-radius, var(--nb-radius));
-    background: var(--nb-select-listbox-bg, var(--nb-select-bg, var(--nb-surface)));
+    background: var(--nb-select-listbox-bg, var(--nb-select-bg, var(--nb-select-tone-bg, var(--_nb-tone-bg, var(--nb-surface)))));
     box-shadow: var(--nb-shadow-offset-x) var(--nb-shadow-offset-y) 0 0 var(--nb-shadow);
   }
 
@@ -115,7 +127,7 @@
     padding-inline: 0.5rem;
     border: 0;
     background: transparent;
-    color: var(--nb-select-fg, var(--nb-surface-foreground));
+    color: var(--nb-select-fg, var(--nb-select-tone-fg, var(--_nb-tone-fg, var(--nb-surface-foreground))));
     font-family: var(--nb-font-mono, monospace);
     font-size: 1rem;
     font-weight: 700;
@@ -133,7 +145,7 @@
 
   :where(nb-select-option [data-slot='select-option-button']:focus-visible) {
     outline: 2px solid
-      var(--nb-select-option-focus-ring-color, var(--nb-select-border-color, var(--nb-border)));
+      var(--nb-select-border-color, var(--nb-select-tone-border-color, var(--_nb-tone-border-color, var(--nb-border))));
     outline-offset: 0;
   }
 

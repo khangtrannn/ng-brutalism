@@ -3,10 +3,5 @@
 // must be reachable for library packaging. Users compose public primitives
 // instead of importing capabilities.
 export { NbToneCapability } from './nb-tone-capability';
-export { NbRadiusCapability } from './nb-radius-capability';
-export { NbShadowCapability } from './nb-shadow-capability';
-export { NbBorderCapability } from './nb-border-capability';
-export { NbPaddingCapability } from './nb-padding-capability';
-export { NbGapCapability } from './nb-gap-capability';
 export { NbUnderlineCapability } from './nb-underline-capability';
 export { NbResetMarginCapability } from './nb-reset-margin-capability';

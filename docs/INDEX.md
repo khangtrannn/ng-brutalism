@@ -58,11 +58,12 @@ Agent session protocol:
 | File | Purpose | Mutable? |
 |---|---|---|
 | `docs/components/primitives-roadmap.md` | Brutalist primitives roadmap — failure modes, decisions, candidate primitives, next steps | Yes |
+| `docs/components/design-props.md` | **Canonical entry point** — design-prop vocabulary (7 categories), 5 archetypes, per-component prop matrix, standard-input vs CSS-only-hook tiers | Yes |
 | `docs/components/composition-philosophy.md` | ng-brutalism + `nbText` + Tailwind boundary — when to add an input vs. reach for Tailwind | Yes |
 | `docs/architecture/token-customization.md` | Current CSS-first token customization architecture — rationale, rules, and accepted direction | Yes |
-| `docs/architecture/token-customization-audit.md` | Token customization audit — current implementation gaps and per-component risk inventory | Yes |
-| `docs/architecture/token-customization-migration.md` | Active migration plan — phases, NbCallout pilot, helper APIs, and acceptance criteria | Yes |
-| `docs/components/style-capabilities.md` | Historical style-capability note — superseded by token customization docs | Yes |
+| `docs/architecture/token-customization-hardening.md` | **Active hardening plan (Phase 8)** — tone-cascade containment, migration stragglers, dead-code removal, conflict contract | Yes |
+| `docs/architecture/customization-flexibility-plan.md` | Radix-inspired customization extensions — 4 proposed tracks (tones registry, asChild, controlled/uncontrolled, a11y capabilities) | Yes |
+| `docs/architecture/design-props-plan.md` | Radix-inspired input coverage + design-philosophy doc. 9 additive inputs (input↔var symmetry) shipped across 7 components; philosophy page at `docs/components/design-props.md` | Yes |
 | `docs/architecture/api-consistency-audit.md` | Historical API consistency audit — naming/default decisions and older capability-language context | Yes |
 | `docs/architecture/v0.3-refactor-plan.md` | v0.3 decisions — capability gap (Track 1), Tabs primitive model, Signal Forms demo strategy, interactive component seam | Yes |
 | `docs/components/contact-dialog/PLAN.md` | Contact dialog redesign — status + design decisions | Yes |
@@ -84,4 +85,4 @@ Agent session protocol:
 ## Archive
 Completed work — read-only historical reference.
 
-`docs/_archive/` contains: `RELEASE_PLAN_v0.1.0.md`, `LAUNCH_v0.1.0.md`, `MIGRATION_TO_NG21.md`, `PRE_RELEASE_AUDIT.md`, `RELEASE_NOTES_v0.1.0.md`, `TOKENS.md`, `TOKENS-ROLLOUT.md`.
+`docs/_archive/` contains: `RELEASE_PLAN_v0.1.0.md`, `LAUNCH_v0.1.0.md`, `MIGRATION_TO_NG21.md`, `PRE_RELEASE_AUDIT.md`, `RELEASE_NOTES_v0.1.0.md`, `TOKENS.md`, `TOKENS-ROLLOUT.md`, `token-customization-migration.md` (Phase 0–7 migration, superseded by the hardening plan), `token-customization-audit.md` (pre-migration audit), `style-capabilities.md` (pre-CSS-first style-capability model).

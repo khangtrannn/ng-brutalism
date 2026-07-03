@@ -33,12 +33,6 @@ const iconRadiusMap: Record<NbButtonIconShape, string> = {
   circle: '999px',
 };
 
-const iconToneMap: Record<NbButtonIconTone, { bg: string; color: string }> = {
-  default: { bg: 'transparent', color: 'currentColor' },
-  inverse: { bg: 'var(--nb-foreground)', color: 'var(--nb-background)' },
-  current: { bg: 'currentColor', color: 'var(--nb-background)' },
-};
-
 @Component({
   selector: '[nbButtonTrailingIcon]',
   imports: [NbIcon],
@@ -52,11 +46,10 @@ const iconToneMap: Record<NbButtonIconTone, { bg: string; color: string }> = {
     '[attr.data-nb-button-trailing-icon]': '""',
     '[attr.data-push]': 'push()',
     '[attr.data-size]': 'size() ?? null',
+    '[attr.data-tone]': 'tone() ?? null',
     '[style.width]': 'sizeVal()',
     '[style.height]': 'sizeVal()',
     '[style.borderRadius]': 'radiusVal()',
-    '[style.background]': 'bgVal()',
-    '[style.color]': 'colorVal()',
   },
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
@@ -83,15 +76,5 @@ export class NbButtonTrailingIcon {
   protected readonly radiusVal = computed(() => {
     const s = this.shape();
     return s !== undefined ? iconRadiusMap[s] : null;
-  });
-
-  protected readonly bgVal = computed(() => {
-    const t = this.tone();
-    return t !== undefined ? iconToneMap[t].bg : null;
-  });
-
-  protected readonly colorVal = computed(() => {
-    const t = this.tone();
-    return t !== undefined ? iconToneMap[t].color : null;
   });
 }

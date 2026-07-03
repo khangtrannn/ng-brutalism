@@ -9,6 +9,7 @@
     gap: var(--nb-media-item-gap);
     font-weight: 700;
     line-height: 1.25;
+    color: var(--nb-media-item-fg, var(--_nb-tone-fg, inherit));
   }
 
   :where([data-nb-media-item-content]) {
@@ -58,9 +59,9 @@
   :where([data-nb-media-item][data-variant='boxed'], [data-nb-media-item][data-variant='chip']) {
     border-width: var(--nb-border-width);
     border-style: solid;
-    background: var(--nb-media-item-bg, var(--nb-surface));
-    color: var(--nb-media-item-fg, var(--nb-surface-foreground));
-    border-color: var(--nb-media-item-border-color, var(--nb-border));
+    background: var(--nb-media-item-bg, var(--_nb-tone-bg, var(--nb-surface)));
+    color: var(--nb-media-item-fg, var(--_nb-tone-fg, var(--nb-surface-foreground)));
+    border-color: var(--nb-media-item-border-color, var(--_nb-tone-border-color, var(--nb-border)));
   }
 
   :where([data-nb-media-item][data-variant='boxed']) {

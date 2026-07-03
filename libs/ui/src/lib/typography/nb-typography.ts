@@ -24,7 +24,6 @@ import {
   host: {
     '[attr.data-nb-typography]': 'font()',
     '[style.--nb-typography-font]': 'fontValue()',
-    '[style.font-family]': 'fontValue()',
   },
 })
 export class NbTypography {

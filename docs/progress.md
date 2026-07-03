@@ -23,11 +23,11 @@ For history and details, read the domain's own `progress.md`.
 ---
 
 ## Components
-**Status:** v0.3 Track 1 complete. Wave 1 of CSS-in-styles rollout complete (all 3 accordion components).
-**Last action:** NbCallout pilot landed for the token-customization migration: radius/shadow now write public CSS variables, tone is semantic `data-nb-tone`, shared input transforms are in place, and NbCheckbox now consumes the shared tone recipe.
-**Next:** Wave 2 — `NbBadge`, `NbAvatar`, `NbLabel`, `NbCard` sub-components, `NbImageCard`. Then Track 2 NbTabs. Decisions: scalar inputs write public CSS variables, semantic inputs use `data-*`, and tone recipes stay CSS-owned.
-**Goal:** All primitives migrated to component CSS pattern before v0.3 interactive components land.
-→ Plan: `docs/architecture/v0.3-refactor-plan.md` · Arch: `docs/architecture/token-customization.md`
+**Status:** CSS-first token customization architecture complete and hardened (Phases 0–8). Design-props coverage shipped: 9 additive inputs close every verified input↔var symmetry gap; Radix-grade philosophy doc live.
+**Last action:** Implemented `design-props-plan.md`: added `callout.border`, `checkbox.radius`, `input.radius/shadow`, `textarea.radius/shadow`, `select.radius/shadow`, `input-group.radius`; extended 7 `*.tokens.spec.ts` files; wrote `docs/components/design-props.md` (vocabulary, archetypes, per-component matrix, standard-vs-CSS-only tiers).
+**Next:** No active work. Ready for v0.2.0 release.
+**Goal:** ✅ Hardening completed (Phases 0–8). ✅ Design-props coverage completed — full input↔CSS-var symmetry + legible philosophy page.
+→ Arch: `docs/architecture/token-customization.md` · Hardening: `docs/architecture/token-customization-hardening.md` · Design props: `docs/architecture/design-props-plan.md` · `docs/components/design-props.md`
 
 ---
 
@@ -49,5 +49,5 @@ For history and details, read the domain's own `progress.md`.
 
 ## Release
 **Status:** v0.1.0 + v0.1.1 shipped to npm. v0.2.0 implementation complete: 10 primitives + docs + 7 recipes (added Open to Work Card profile recipe).
-**Next:** Visual QA, bump version in libs/ui, run `docs/release/RELEASE.md` runbook (tag → GitHub release → npm publish).
+**Next:** Design-props coverage landed. Visual QA, bump version in libs/ui, run `docs/release/RELEASE.md` runbook (tag → GitHub release → npm publish).
 → Plan: `docs/release/v0.2.0-plan.md`

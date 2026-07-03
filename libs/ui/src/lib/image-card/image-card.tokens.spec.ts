@@ -2,7 +2,14 @@ import { Component } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { describe, expect, it } from 'vitest';
 
-import { NbImageCard, NbImageCardCaption } from './nb-image-card';
+import {
+  NbImageCard,
+  NbImageCardCaption,
+  type NbImageCardBorder,
+  type NbImageCardRadius,
+  type NbImageCardShadow,
+  type NbImageCardTone,
+} from './nb-image-card';
 
 @Component({
   imports: [NbImageCard, NbImageCardCaption],
@@ -10,12 +17,21 @@ import { NbImageCard, NbImageCardCaption } from './nb-image-card';
     <nb-image-card
       image="https://example.com/photo.jpg"
       alt="Example"
+      [tone]="tone"
+      [radius]="radius"
+      [shadow]="shadow"
+      [border]="border"
     >
       <nb-image-card-caption>A caption</nb-image-card-caption>
     </nb-image-card>
   `,
 })
-class ImageCardTokenTest {}
+class ImageCardTokenTest {
+  tone: NbImageCardTone | undefined = undefined;
+  radius: NbImageCardRadius | null = null;
+  shadow: NbImageCardShadow | null = null;
+  border: NbImageCardBorder | null = null;
+}
 
 describe('NbImageCard token surface', () => {
   it('leaves default visuals to CSS token fallbacks', async () => {
@@ -29,7 +45,45 @@ describe('NbImageCard token surface', () => {
     expect(imageCard.style.getPropertyValue('border-radius')).toBe('');
     expect(imageCard.style.getPropertyValue('box-shadow')).toBe('');
     expect(imageCard.style.getPropertyValue('border-width')).toBe('');
+    expect(imageCard.style.getPropertyValue('--nb-image-card-radius')).toBe('');
+    expect(imageCard.style.getPropertyValue('--nb-image-card-shadow')).toBe('');
+    expect(
+      imageCard.style.getPropertyValue('--nb-image-card-border-width')
+    ).toBe('');
     expect(imageCard.style.cssText).not.toContain('--nb-resolved');
+  });
+
+  it('reflects tone semantically without writing final colors inline', async () => {
+    const fixture = await createFixture({ tone: 'pink' });
+    const imageCard = findImageCard(fixture);
+
+    expect(imageCard.getAttribute('data-nb-tone')).toBe('pink');
+    expect(imageCard.style.getPropertyValue('background')).toBe('');
+    expect(imageCard.style.getPropertyValue('color')).toBe('');
+    expect(imageCard.style.getPropertyValue('border-color')).toBe('');
+    expect(imageCard.style.getPropertyValue('--nb-image-card-bg')).toBe('');
+  });
+
+  it('writes explicit scalar inputs to public CSS variables', async () => {
+    const fixture = await createFixture({
+      radius: 'lg',
+      shadow: 'hard',
+      border: 'thin',
+    });
+    const imageCard = findImageCard(fixture);
+
+    expect(imageCard.style.getPropertyValue('border-radius')).toBe('');
+    expect(imageCard.style.getPropertyValue('box-shadow')).toBe('');
+    expect(imageCard.style.getPropertyValue('border-width')).toBe('');
+    expect(imageCard.style.getPropertyValue('--nb-image-card-radius')).toBe(
+      'var(--nb-radius-lg, 0.75rem)'
+    );
+    expect(imageCard.style.getPropertyValue('--nb-image-card-shadow')).toBe(
+      '6px 6px 0 0 var(--nb-shadow)'
+    );
+    expect(
+      imageCard.style.getPropertyValue('--nb-image-card-border-width')
+    ).toBe('1px');
   });
 
   it('does not emit legacy token utility classes', async () => {
@@ -78,14 +132,17 @@ describe('NbImageCard token surface', () => {
   });
 });
 
-async function createFixture(): Promise<
-  ComponentFixture<ImageCardTokenTest>
-> {
+async function createFixture(
+  inputs: Partial<
+    Pick<ImageCardTokenTest, 'tone' | 'radius' | 'shadow' | 'border'>
+  > = {}
+): Promise<ComponentFixture<ImageCardTokenTest>> {
   await TestBed.configureTestingModule({
     imports: [ImageCardTokenTest],
   }).compileComponents();
 
   const fixture = TestBed.createComponent(ImageCardTokenTest);
+  Object.assign(fixture.componentInstance, inputs);
   fixture.detectChanges();
 
   return fixture;
