@@ -56,6 +56,21 @@ Import the styles once in your global CSS:
 @import '@ng-brutalism/ui/styles.css';
 ```
 
+`styles.css` bundles every component. To ship only the CSS you use, import
+`base.css` (tokens, tone, reset — required once) plus one stylesheet per
+component instead:
+
+```css
+@import 'tailwindcss';
+@import '@ng-brutalism/ui/base.css';    /* required */
+@import '@ng-brutalism/ui/button.css';  /* only what you use */
+@import '@ng-brutalism/ui/card.css';
+```
+
+Each component ships its own stylesheet at `@ng-brutalism/ui/<name>.css`
+(e.g. `button.css`, `card.css`, `input-group.css`, `native-select.css`). The
+stylesheets are self-contained — `base.css` is the only shared dependency.
+
 Use a component:
 
 ```ts

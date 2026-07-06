@@ -24,7 +24,7 @@ For history and details, read the domain's own `progress.md`.
 
 ## Components
 **Status:** CSS-first token customization architecture complete and hardened (Phases 0–8). Design-props coverage shipped: 9 additive inputs close every verified input↔var symmetry gap; Radix-grade philosophy doc live.
-**Last action:** Implemented `design-props-plan.md`: added `callout.border`, `checkbox.radius`, `input.radius/shadow`, `textarea.radius/shadow`, `select.radius/shadow`, `input-group.radius`; extended 7 `*.tokens.spec.ts` files; wrote `docs/components/design-props.md` (vocabulary, archetypes, per-component matrix, standard-vs-CSS-only tiers).
+**Last action:** Per-component CSS delivery: extracted `styles/base.css` (tokens+tone+reset), added opt-in subpath exports `@ng-brutalism/ui/<name>.css` for all 39 stylesheets (styles.css stays the one-line default). Spike proved co-located `import './x.css'` in directives fails ng-packagr rollup, so Mantine-style opt-in chosen. `styles.spec.ts` now guards exports⇄disk sync both directions. Consumer using 2 components: ~11 KB → ~2 KB gzip.
 **Next:** No active work. Ready for v0.2.0 release.
 **Goal:** ✅ Hardening completed (Phases 0–8). ✅ Design-props coverage completed — full input↔CSS-var symmetry + legible philosophy page.
 → Arch: `docs/architecture/token-customization.md` · Hardening: `docs/architecture/token-customization-hardening.md` · Design props: `docs/architecture/design-props-plan.md` · `docs/components/design-props.md`

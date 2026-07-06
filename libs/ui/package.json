@@ -71,9 +71,169 @@
       "style": "./styles/styles.css",
       "default": "./styles/styles.css"
     },
+    "./base.css": {
+      "style": "./styles/base.css",
+      "default": "./styles/base.css"
+    },
     "./theme.css": {
       "style": "./styles/theme.css",
       "default": "./styles/theme.css"
+    },
+    "./accordion.css": {
+      "style": "./accordion/nb-accordion.css",
+      "default": "./accordion/nb-accordion.css"
+    },
+    "./avatar.css": {
+      "style": "./avatar/nb-avatar.css",
+      "default": "./avatar/nb-avatar.css"
+    },
+    "./avatar-group.css": {
+      "style": "./avatar-group/nb-avatar-group.css",
+      "default": "./avatar-group/nb-avatar-group.css"
+    },
+    "./badge.css": {
+      "style": "./badge/nb-badge.css",
+      "default": "./badge/nb-badge.css"
+    },
+    "./button.css": {
+      "style": "./button/nb-button.css",
+      "default": "./button/nb-button.css"
+    },
+    "./callout.css": {
+      "style": "./callout/nb-callout.css",
+      "default": "./callout/nb-callout.css"
+    },
+    "./card.css": {
+      "style": "./card/nb-card.css",
+      "default": "./card/nb-card.css"
+    },
+    "./checkbox.css": {
+      "style": "./checkbox/nb-checkbox.css",
+      "default": "./checkbox/nb-checkbox.css"
+    },
+    "./chip.css": {
+      "style": "./chip/nb-chip.css",
+      "default": "./chip/nb-chip.css"
+    },
+    "./cluster.css": {
+      "style": "./cluster/nb-cluster.css",
+      "default": "./cluster/nb-cluster.css"
+    },
+    "./dialog.css": {
+      "style": "./dialog/nb-dialog.css",
+      "default": "./dialog/nb-dialog.css"
+    },
+    "./display.css": {
+      "style": "./display/nb-display.css",
+      "default": "./display/nb-display.css"
+    },
+    "./halftone.css": {
+      "style": "./halftone/nb-halftone.css",
+      "default": "./halftone/nb-halftone.css"
+    },
+    "./icon.css": {
+      "style": "./icon/nb-icon.css",
+      "default": "./icon/nb-icon.css"
+    },
+    "./icon-button.css": {
+      "style": "./icon-button/nb-icon-button.css",
+      "default": "./icon-button/nb-icon-button.css"
+    },
+    "./image-card.css": {
+      "style": "./image-card/nb-image-card.css",
+      "default": "./image-card/nb-image-card.css"
+    },
+    "./input.css": {
+      "style": "./input/nb-input.css",
+      "default": "./input/nb-input.css"
+    },
+    "./input-group.css": {
+      "style": "./input-group/nb-input-group.css",
+      "default": "./input-group/nb-input-group.css"
+    },
+    "./label.css": {
+      "style": "./label/nb-label.css",
+      "default": "./label/nb-label.css"
+    },
+    "./marquee.css": {
+      "style": "./marquee/nb-marquee.css",
+      "default": "./marquee/nb-marquee.css"
+    },
+    "./media-frame.css": {
+      "style": "./media-frame/nb-media-frame.css",
+      "default": "./media-frame/nb-media-frame.css"
+    },
+    "./media-item.css": {
+      "style": "./media-item/nb-media-item.css",
+      "default": "./media-item/nb-media-item.css"
+    },
+    "./native-select.css": {
+      "style": "./select/nb-native-select.css",
+      "default": "./select/nb-native-select.css"
+    },
+    "./progress.css": {
+      "style": "./progress/nb-progress.css",
+      "default": "./progress/nb-progress.css"
+    },
+    "./rating.css": {
+      "style": "./rating/nb-rating.css",
+      "default": "./rating/nb-rating.css"
+    },
+    "./section.css": {
+      "style": "./section/nb-section.css",
+      "default": "./section/nb-section.css"
+    },
+    "./select.css": {
+      "style": "./select/nb-select.css",
+      "default": "./select/nb-select.css"
+    },
+    "./separator.css": {
+      "style": "./separator/nb-separator.css",
+      "default": "./separator/nb-separator.css"
+    },
+    "./split.css": {
+      "style": "./split/nb-split.css",
+      "default": "./split/nb-split.css"
+    },
+    "./stack.css": {
+      "style": "./stack/nb-stack.css",
+      "default": "./stack/nb-stack.css"
+    },
+    "./stat.css": {
+      "style": "./stat/nb-stat.css",
+      "default": "./stat/nb-stat.css"
+    },
+    "./status-dot.css": {
+      "style": "./status-dot/nb-status-dot.css",
+      "default": "./status-dot/nb-status-dot.css"
+    },
+    "./sticker.css": {
+      "style": "./sticker/nb-sticker.css",
+      "default": "./sticker/nb-sticker.css"
+    },
+    "./sticker-face.css": {
+      "style": "./sticker/nb-sticker-face.css",
+      "default": "./sticker/nb-sticker-face.css"
+    },
+    "./surface.css": {
+      "style": "./surface/nb-surface.css",
+      "default": "./surface/nb-surface.css"
+    },
+    "./text.css": {
+      "style": "./text/nb-text.css",
+      "default": "./text/nb-text.css"
+    },
+    "./textarea.css": {
+      "style": "./textarea/nb-textarea.css",
+      "default": "./textarea/nb-textarea.css"
+    },
+    "./title.css": {
+      "style": "./title/nb-title.css",
+      "default": "./title/nb-title.css"
+    },
+    "./typography.css": {
+      "style": "./typography/nb-typography.css",
+      "default": "./typography/nb-typography.css"
     }
   },
   "sideEffects": [

@@ -1,0 +1,44 @@
+/* base.css - tokens, tone, cascade layers, and global reset.
+   Required once by every consumer; every component stylesheet depends on the
+   tokens and tone variables declared here. Import this before any component
+   stylesheet so the `components` layer is ordered correctly. */
+@import './theme.css';
+@import './tone.css';
+
+@layer base, components;
+
+@source '../fesm2022/ng-brutalism-ui.mjs';
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--nb-background);
+  color: var(--nb-foreground);
+  font-family: var(--nb-font-sans);
+  font-weight: var(--nb-font-weight-normal);
+}
+
+/* Zero-specificity defaults: any consumer Tailwind utility on the element wins
+   without needing the `!` (important) suffix. Tokens are exposed for theming.
+   Primitive visual defaults live in @layer components so they sit above
+   Tailwind's base reset and below @layer utilities. */
+
+@layer base {
+  :where([data-nb-reset-margin]) {
+    margin: 0;
+  }
+}
+
+/* Focus visible utility class */
+.nb-focus-visible:focus-visible {
+  outline: var(--nb-focus-ring);
+  outline-offset: var(--nb-focus-ring-offset);
+}
+
+.focus-visible\:outline-\[var\(--nb-focus-ring\)\]:focus-visible {
+  outline: var(--nb-focus-ring);
+}
