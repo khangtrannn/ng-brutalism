@@ -1,5 +1,7 @@
 import { Component, signal } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { existsSync, readFileSync } from 'node:fs';
+import { join } from 'node:path';
 import { describe, expect, it } from 'vitest';
 
 import {
@@ -118,7 +120,7 @@ describe('NbCallout', () => {
       'var(--nb-shadow-offset-x) var(--nb-shadow-offset-y) 0 0 var(--nb-shadow)'
     );
     expect(callout.style.getPropertyValue('--nb-callout-border-width')).toBe(
-      '4px'
+      'var(--nb-border-width-thick, 4px)'
     );
     expect(callout.style.getPropertyValue('background')).toBe('');
     expect(callout.style.getPropertyValue('color')).toBe('');
@@ -182,10 +184,10 @@ describe('NbCallout', () => {
       'var(--nb-radius-lg, 0.75rem)'
     );
     expect(callout.style.getPropertyValue('--nb-callout-shadow')).toBe(
-      '6px 6px 0 0 var(--nb-shadow)'
+      'var(--nb-shadow-hard, calc(var(--nb-shadow-offset-x) * 1.5) calc(var(--nb-shadow-offset-y) * 1.5) 0 0 var(--nb-shadow))'
     );
     expect(callout.style.getPropertyValue('--nb-callout-border-width')).toBe(
-      '3px'
+      'var(--nb-border-width-strong, 3px)'
     );
   });
 
@@ -199,10 +201,10 @@ describe('NbCallout', () => {
       'var(--nb-radius-lg, 0.75rem)'
     );
     expect(callout.style.getPropertyValue('--nb-callout-shadow')).toBe(
-      '6px 6px 0 0 var(--nb-shadow)'
+      'var(--nb-shadow-hard, calc(var(--nb-shadow-offset-x) * 1.5) calc(var(--nb-shadow-offset-y) * 1.5) 0 0 var(--nb-shadow))'
     );
     expect(callout.style.getPropertyValue('--nb-callout-border-width')).toBe(
-      '3px'
+      'var(--nb-border-width-strong, 3px)'
     );
 
     fixture.componentInstance.radius.set(null);
@@ -216,7 +218,37 @@ describe('NbCallout', () => {
       ''
     );
   });
+
+  it('keeps the public border-width variable in every size rule', () => {
+    // data-size always matches (it defaults to 'lg'), and size rules follow
+    // the base rule at equal :where() specificity — a raw border-width there
+    // would always win and silently defeat the `border` input.
+    const css = readCalloutCss();
+    const sizeBlocks = css.match(/\[data-size='[a-z]+'\]\)\s*\{[^}]*\}/g) ?? [];
+    const borderBlocks = sizeBlocks.filter((block) =>
+      block.includes('border-width:')
+    );
+
+    expect(borderBlocks.length).toBeGreaterThan(0);
+    for (const block of borderBlocks) {
+      expect(block).toMatch(/border-width:\s*var\(--nb-callout-border-width,/);
+    }
+  });
 });
+
+function readCalloutCss(): string {
+  const candidates = [
+    join(process.cwd(), 'src/lib/callout/nb-callout.css'),
+    join(process.cwd(), 'libs/ui/src/lib/callout/nb-callout.css'),
+  ];
+  const path = candidates.find((candidate) => existsSync(candidate));
+
+  if (!path) {
+    throw new Error('Unable to locate nb-callout.css for the cascade guard.');
+  }
+
+  return readFileSync(path, 'utf8');
+}
 
 async function createFixture<T>(
   component: new () => T,

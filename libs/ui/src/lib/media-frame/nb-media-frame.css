@@ -15,7 +15,7 @@
       var(--_nb-tone-border-color, var(--nb-border))
     );
     border-width: var(--nb-media-frame-border-width, var(--nb-border-width));
-    border-radius: var(--nb-media-frame-radius, 0.75rem);
+    border-radius: var(--nb-media-frame-radius, var(--nb-radius));
     box-shadow: var(--nb-media-frame-shadow, none);
   }
 

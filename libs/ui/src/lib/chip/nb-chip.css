@@ -13,7 +13,7 @@
       var(--_nb-tone-border-color, var(--nb-border))
     );
     border-width: var(--nb-chip-border-width, var(--nb-border-width));
-    border-radius: var(--nb-chip-radius, 0px);
+    border-radius: var(--nb-chip-radius, var(--nb-radius));
     box-shadow: var(--nb-chip-shadow, 2px 2px 0 0 var(--nb-shadow));
     padding: var(--nb-chip-padding, 0.125rem 0.625rem);
   }

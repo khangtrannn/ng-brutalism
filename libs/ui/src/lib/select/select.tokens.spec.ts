@@ -75,7 +75,7 @@ describe('NbSelect token surface', () => {
       'var(--nb-radius-lg, 0.75rem)'
     );
     expect(select.style.getPropertyValue('--nb-select-shadow')).toBe(
-      '6px 6px 0 0 var(--nb-shadow)'
+      'var(--nb-shadow-hard, calc(var(--nb-shadow-offset-x) * 1.5) calc(var(--nb-shadow-offset-y) * 1.5) 0 0 var(--nb-shadow))'
     );
     expect(select.style.getPropertyValue('border-radius')).toBe('');
     expect(select.style.getPropertyValue('box-shadow')).toBe('');

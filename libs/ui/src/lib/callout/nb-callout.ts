@@ -18,8 +18,6 @@ export type NbCalloutLayout = 'inline' | 'between' | 'center';
 
 export type NbCalloutShadow = 'none' | 'default' | 'hard';
 
-// Optional radius override. When unset, the radius is derived from `size`
-// (larger callouts get rounder corners). Set this to opt out of that scaling.
 export type NbCalloutRadius = NbRadius;
 
 export type NbCalloutBorder = NbBorderStrength;

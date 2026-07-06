@@ -99,9 +99,9 @@ describe('NbBadge token surface', () => {
       'var(--nb-radius-sm, 0.25rem)'
     );
     expect(badge.style.getPropertyValue('--nb-badge-shadow')).toBe(
-      '6px 6px 0 0 var(--nb-shadow)'
+      'var(--nb-shadow-hard, calc(var(--nb-shadow-offset-x) * 1.5) calc(var(--nb-shadow-offset-y) * 1.5) 0 0 var(--nb-shadow))'
     );
-    expect(badge.style.getPropertyValue('--nb-badge-border-width')).toBe('3px');
+    expect(badge.style.getPropertyValue('--nb-badge-border-width')).toBe('var(--nb-border-width-strong, 3px)');
   });
 
   it('keeps anatomy out of host classes', async () => {

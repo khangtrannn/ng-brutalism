@@ -120,9 +120,9 @@ CSS. These are the customization/debug contract: inspect them in devtools,
 document them, and override per token. The vocabulary (`tone`, `radius`,
 `shadow`, `border`, `gap`, `padding`) is defined once in
 `libs/ui/src/lib/tokens/` so a token means the same thing across every primitive.
-See [token-customization.md](../architecture/token-customization.md) and
-[token-customization-hardening.md](../architecture/token-customization-hardening.md)
-for the current CSS-first token architecture.
+See [token-customization.md](../architecture/token-customization.md) for the
+current CSS-first token architecture. The completed hardening rollout lives in
+[token-customization-hardening.md](../_archive/token-customization-hardening.md).
 
 > Note: `border` means **outline strength** library-wide. Line placement between
 > layout regions is `divider` (e.g. `nbSection divider="top"`); the line style

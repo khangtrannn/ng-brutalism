@@ -50,7 +50,7 @@
       var(--_nb-tone-border-color, var(--nb-border))
     );
     border-width: var(--nb-dialog-border-width, var(--nb-border-width));
-    border-radius: var(--nb-dialog-radius, 0.25rem);
+    border-radius: var(--nb-dialog-radius, var(--nb-radius));
     box-shadow: var(--nb-dialog-shadow, 6px 6px 0 0 var(--nb-shadow));
   }
 

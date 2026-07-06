@@ -374,7 +374,7 @@ describe('style capabilities', () => {
 
     expect(frame.style.getPropertyValue('box-shadow')).toBe('');
     expect(frame.style.getPropertyValue('--nb-media-frame-shadow')).toBe(
-      '6px 6px 0 0 var(--nb-shadow)'
+      'var(--nb-shadow-hard, calc(var(--nb-shadow-offset-x) * 1.5) calc(var(--nb-shadow-offset-y) * 1.5) 0 0 var(--nb-shadow))'
     );
     expect(frame.style.cssText).not.toContain('--nb-resolved');
   });
@@ -384,7 +384,7 @@ describe('style capabilities', () => {
     const stack = el.querySelector<HTMLElement>('[nbStack]')!;
 
     expect(stack.style.getPropertyValue('gap')).toBe('');
-    expect(stack.style.getPropertyValue('--nb-stack-gap')).toBe('1rem');
+    expect(stack.style.getPropertyValue('--nb-stack-gap')).toBe('var(--nb-space-lg, 1rem)');
     expect(stack.style.cssText).not.toContain('--nb-resolved');
   });
 
@@ -417,10 +417,10 @@ describe('style capabilities', () => {
       'var(--nb-radius-md, 0.5rem)'
     );
     expect(button.style.getPropertyValue('--nb-icon-button-shadow')).toBe(
-      '6px 6px 0 0 var(--nb-shadow)'
+      'var(--nb-shadow-hard, calc(var(--nb-shadow-offset-x) * 1.5) calc(var(--nb-shadow-offset-y) * 1.5) 0 0 var(--nb-shadow))'
     );
     expect(button.style.getPropertyValue('--nb-icon-button-border-width')).toBe(
-      '3px'
+      'var(--nb-border-width-strong, 3px)'
     );
     expect(button.style.cssText).not.toContain('--nb-resolved');
   });
@@ -430,7 +430,7 @@ describe('style capabilities', () => {
     const chip = el.querySelector<HTMLElement>('[nbChip]')!;
 
     expect(chip.style.getPropertyValue('border-width')).toBe('');
-    expect(chip.style.getPropertyValue('--nb-chip-border-width')).toBe('3px');
+    expect(chip.style.getPropertyValue('--nb-chip-border-width')).toBe('var(--nb-border-width-strong, 3px)');
     expect(chip.style.cssText).not.toContain('--nb-resolved');
   });
 
@@ -440,7 +440,7 @@ describe('style capabilities', () => {
 
     expect(button.style.getPropertyValue('border-width')).toBe('');
     expect(button.style.getPropertyValue('--nb-button-border-width')).toBe(
-      '3px'
+      'var(--nb-border-width-strong, 3px)'
     );
   });
 
@@ -463,7 +463,7 @@ describe('style capabilities', () => {
     expect(badge.style.getPropertyValue('background')).toBe('');
     expect(badge.style.getPropertyValue('border-width')).toBe('');
     expect(badge.style.getPropertyValue('--nb-badge-border-width')).toBe(
-      '3px'
+      'var(--nb-border-width-strong, 3px)'
     );
     expect(badge.style.cssText).not.toContain('--nb-resolved');
   });
@@ -481,9 +481,9 @@ describe('style capabilities', () => {
       'var(--nb-radius-xl, 1rem)'
     );
     expect(card.style.getPropertyValue('--nb-card-shadow')).toBe(
-      '10px 10px 0 0 var(--nb-shadow)'
+      'var(--nb-shadow-heavy, calc(var(--nb-shadow-offset-x) * 2.5) calc(var(--nb-shadow-offset-y) * 2.5) 0 0 var(--nb-shadow))'
     );
-    expect(card.style.getPropertyValue('--nb-card-border-width')).toBe('4px');
+    expect(card.style.getPropertyValue('--nb-card-border-width')).toBe('var(--nb-border-width-thick, 4px)');
     expect(card.style.cssText).not.toContain('--nb-resolved');
   });
 
@@ -495,7 +495,7 @@ describe('style capabilities', () => {
     expect(card.style.getPropertyValue('background')).toBe('');
     expect(card.style.getPropertyValue('border-width')).toBe('');
     expect(card.style.getPropertyValue('--nb-image-card-border-width')).toBe(
-      '1px'
+      'var(--nb-border-width-thin, 1px)'
     );
     expect(card.style.cssText).not.toContain('--nb-resolved');
   });
@@ -573,41 +573,41 @@ describe('style capabilities', () => {
     expect(chips[1].style.getPropertyValue('box-shadow')).toBe('');
     expect(chips[1].style.getPropertyValue('border-width')).toBe('');
     expect(chips[1].style.getPropertyValue('--nb-chip-shadow')).toBe(
-      '6px 6px 0 0 var(--nb-shadow)'
+      'var(--nb-shadow-hard, calc(var(--nb-shadow-offset-x) * 1.5) calc(var(--nb-shadow-offset-y) * 1.5) 0 0 var(--nb-shadow))'
     );
     expect(chips[1].style.getPropertyValue('--nb-chip-border-width')).toBe(
-      '3px'
+      'var(--nb-border-width-strong, 3px)'
     );
 
     expect(chips[2].style.getPropertyValue('box-shadow')).toBe('');
     expect(chips[3].style.getPropertyValue('box-shadow')).toBe('');
     expect(chips[3].style.getPropertyValue('border-width')).toBe('');
     expect(chips[3].style.getPropertyValue('--nb-chip-shadow')).toBe(
-      '10px 10px 0 0 var(--nb-shadow)'
+      'var(--nb-shadow-heavy, calc(var(--nb-shadow-offset-x) * 2.5) calc(var(--nb-shadow-offset-y) * 2.5) 0 0 var(--nb-shadow))'
     );
     expect(chips[3].style.getPropertyValue('--nb-chip-border-width')).toBe(
-      '4px'
+      'var(--nb-border-width-thick, 4px)'
     );
 
     expect(surfaces[0].className).toContain('p-0');
     expect(surfaces[0].style.getPropertyValue('padding')).toBe('');
     expect(surfaces[1].style.getPropertyValue('padding')).toBe('');
     expect(surfaces[1].style.getPropertyValue('--nb-surface-padding')).toBe(
-      '1.5rem'
+      'var(--nb-padding-lg, 1.5rem)'
     );
     expect(surfaces[2].style.getPropertyValue('padding')).toBe('');
     expect(surfaces[3].style.getPropertyValue('padding')).toBe('');
     expect(surfaces[3].style.getPropertyValue('--nb-surface-padding')).toBe(
-      '2rem'
+      'var(--nb-padding-xl, 2rem)'
     );
 
     expect(stacks[0].className).toContain('gap-1');
     expect(stacks[0].style.getPropertyValue('gap')).toBe('');
     expect(stacks[1].style.getPropertyValue('gap')).toBe('');
-    expect(stacks[1].style.getPropertyValue('--nb-stack-gap')).toBe('1rem');
+    expect(stacks[1].style.getPropertyValue('--nb-stack-gap')).toBe('var(--nb-space-lg, 1rem)');
     expect(stacks[2].style.getPropertyValue('gap')).toBe('');
     expect(stacks[3].style.getPropertyValue('gap')).toBe('');
-    expect(stacks[3].style.getPropertyValue('--nb-stack-gap')).toBe('1.5rem');
+    expect(stacks[3].style.getPropertyValue('--nb-stack-gap')).toBe('var(--nb-space-xl, 1.5rem)');
   });
 
   it('nbCluster separator derives spacing from actual gap and neutralizes column gap', () => {
@@ -615,10 +615,10 @@ describe('style capabilities', () => {
     const cluster = el.querySelector<HTMLElement>('[nbCluster]')!;
 
     expect(cluster.style.getPropertyValue('gap')).toBe('');
-    expect(cluster.style.getPropertyValue('--nb-cluster-gap')).toBe('2rem');
+    expect(cluster.style.getPropertyValue('--nb-cluster-gap')).toBe('var(--nb-space-2xl, 2rem)');
     expect(cluster.style.getPropertyValue('column-gap')).toBe('0px');
     expect(cluster.style.getPropertyValue('--nb-cluster-separator-gap')).toBe(
-      'calc(2rem * 0.5)'
+      'calc(var(--nb-space-2xl, 2rem) * 0.5)'
     );
     expect(cluster.style.cssText).not.toContain('--nb-resolved');
   });

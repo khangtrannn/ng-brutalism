@@ -41,7 +41,7 @@
 | 🟡 | bestofjs listing | Gate: 100 stars (currently 12) |
 | 🟡 | **dev.to article** — Khang: screenshot/GIF → StackBlitz → post to dev.to → add URL to JSON-LD | Draft done: `docs/seo/devto-article-draft.md`; demo at `~/ng-brutalism-job-board/` |
 | 🟢 | GSC URL inspection: request re-index of `/` and `/showcase/portfolio/` | User action, after GSC finishes processing |
-| ~~🟡~~ | ~~Show HN~~ | **DROPPED** — poor audience fit; see sprint-launch-day.md |
+| ~~🟡~~ | ~~Show HN~~ | **DROPPED** — poor audience fit; see `../_archive/seo-sprint-launch-day.md` |
 
 ---
 
@@ -56,7 +56,7 @@
 
 ### 2026-05-23 (session 6)
 
-- **dev.to sprint decisions locked**: grill session resolved all implementation unknowns — standalone `ng new` at `~/ng-brutalism-job-board/`, `ng add @ng-brutalism/ui` for real consumer install, 4 job cards (Google/Figma/Vercel/GitHub), template-based dialog. See `sprint-devto-article.md` for full decision table. Ready to build next session.
+- **dev.to sprint decisions locked**: grill session resolved all implementation unknowns — standalone `ng new` at `~/ng-brutalism-job-board/`, `ng add @ng-brutalism/ui` for real consumer install, 4 job cards (Google/Figma/Vercel/GitHub), template-based dialog. See `sprint-devto-article.md` for the handoff checklist; demo and draft are now built.
 
 ### 2026-05-23 (session 5)
 
@@ -107,22 +107,22 @@
 ### 2026-05-22
 
 - All 7 entity-authority sprint items shipped (author attribution across all
-  surfaces). See `sprint-entity-authority.md` for details.
+  surfaces). See `../_archive/seo-sprint-entity-authority.md` for details.
 - X profile updated + JSON-LD `Person.url` / `Person.sameAs` wired (`20941f6`).
 - awesome-angular PR #2200 filed (merged 2026-05-23 — see above).
 - bestofjs issue #439 filed (michaelrambeau: gated at 100 stars).
 - r/Angular2 launch post: #1 post on the sub.
 - LinkedIn launch post.
 - FAQ page `/docs/faq/` shipped — content-depth exception approved in
-  `sprint-launch-day.md`.
+  `../_archive/seo-sprint-launch-day.md`.
 
 ---
 
 ## Core Web Vitals — current state
 
-PLAN.md marked CWV as "out of scope." It has been partially shipped as a side
-effect of the performance sprint. Recording here so future audits have a
-reference baseline.
+The archived SEO plan marked CWV as "out of scope." It has been partially
+shipped as a side effect of the performance sprint. Recording here so future
+audits have a reference baseline.
 
 | Page | Mobile Perf | Desktop Perf | Mobile LCP | Desktop LCP |
 |---|---|---|---|---|
@@ -140,9 +140,10 @@ without framework-level changes.
 
 | File | Purpose | Mutable? |
 |---|---|---|
-| `PLAN.md` | Master plan + decisions from 2026-05-21 grill-me | No (decisions are frozen) |
-| `audit-2026-05-22.md` | External SEO snapshot — npm, GitHub, docs site | No (frozen snapshot) |
-| `sprint-entity-authority.md` | Author-attribution punch list (all shipped) | Yes (cross off items) |
-| `sprint-launch-day.md` | Launch-week execution (Fri 2026-05-22 → Tue 2026-05-26) | Yes (cross off items) |
+| `../_archive/seo-PLAN.md` | Master plan + decisions from 2026-05-21 grill-me | No (archived) |
+| `../_archive/seo-audit-2026-05-22.md` | External SEO snapshot — npm, GitHub, docs site | No (archived) |
+| `../_archive/seo-sprint-entity-authority.md` | Author-attribution punch list (all shipped) | No (archived) |
+| `../_archive/seo-sprint-launch-day.md` | Launch-week execution (Fri 2026-05-22 → Tue 2026-05-26) | No (archived) |
+| `sprint-devto-article.md` | dev.to article handoff checklist | Yes |
 | `progress.md` (this file) | **Always-current state. Update every session.** | Yes — always |
 | `docs/performance/lighthouse-improvements.md` | CWV fix log with before/after scores | Yes |

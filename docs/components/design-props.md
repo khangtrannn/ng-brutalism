@@ -153,13 +153,13 @@ Reach for these with a `style` attribute or a scoped stylesheet rule.
 |---|---|
 | `--nb-underline-gap`, `--nb-title-wave-gap` | Fine-grained decorative tuning — an enum wouldn't add clarity over a raw value. |
 | `--nb-sticker-shadow` | It's a **fill color**, not elevation — despite the name, it doesn't fit the `shadow` category. |
-| `--nb-checkbox-shadow`-shaped focus ring | It's a focus-visible ring, not customizable elevation. |
+| Checkbox focus-visible ring | It's a focus ring, not customizable elevation; no `shadow` input is exposed. |
 | Media-item internal anatomy (`--nb-media-item-radius`, `-gap`) | No fallback comma — internal to a `variant`/`size` combination, not a public slot. |
 | `--nb-select-radius` / `-shadow` on `NbNativeSelect` | Public slot, ergonomic input intentionally deferred — see §3.1. |
 
 The rule that tells a real gap from an intentional Tier 2 hook (the audit
 methodology behind §3) lives in
-[design-props-plan.md §4](../architecture/design-props-plan.md#4-audit-methodology-so-its-reproducible--and-why-no-auto-test):
+[design-props-plan.md §4](../_archive/design-props-plan.md#4-audit-methodology-so-its-reproducible--and-why-no-auto-test):
 a public slot only becomes a Tier 1 candidate when it's a **standard
 category**, written with a **fallback comma**, on a **non-leaf** primitive.
 
@@ -211,5 +211,5 @@ for the general "when to add an input" test.
   slot, the input-vs-CSS precedence contract, and the tone recipe model.
 - [composition-philosophy.md](composition-philosophy.md) — the ng-brutalism /
   `nbText` / Tailwind boundary, with the recommended composition pattern.
-- [design-props-plan.md](../architecture/design-props-plan.md) — the plan and
+- [design-props-plan.md](../_archive/design-props-plan.md) — the plan and
   audit methodology behind this doc and the 9 additive inputs in §3.

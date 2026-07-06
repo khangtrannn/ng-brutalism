@@ -1,9 +1,11 @@
 # Sprint — dev.to Article + StackBlitz Demo
 
-**Status:** Decisions locked (2026-05-23 grill session #2). Ready to build. Pick up in the next session.
+**Status:** Demo and article draft built. Khang-side handoff remains: screenshot/GIF,
+StackBlitz, dev.to publication, then JSON-LD `sameAs` update.
 
 **Context:** Decisions from two `/grill-me` sessions (2026-05-23). All decisions below are
-locked — do not re-litigate them. Start building.
+locked — do not re-litigate them. The local demo and draft now exist; use this
+file as the publication checklist.
 
 **SEO motivation:** ChatGPT and Claude both score 0/7 on entity recognition for
 "ng-brutalism" (Perplexity gets 5/7 but misses author + npm name). Root cause is
@@ -184,7 +186,7 @@ One command, done. Show what gets added.
 - [x] Claude writes full article draft in `docs/seo/devto-article-draft.md`
 - [ ] Khang reviews + posts to dev.to
 - [ ] Add dev.to URL to `sameAs` in JSON-LD (one-line edit in `docs-seo-data.ts`)
-- [ ] Log in `progress.md` shipped log
+- [x] Log in `progress.md` shipped log
 
 ---
 

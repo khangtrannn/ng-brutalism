@@ -1,15 +1,15 @@
 # Capability Discovery Lane
 
 A running ledger for the **internal style-capability** system: which repeated
-concerns have been promoted to a shared capability, which are recorded as future
-candidates, and which deliberately stay primitive-local.
+concerns have been promoted to a shared capability or shared transform, which
+are recorded as future candidates, and which deliberately stay primitive-local.
 
 This is the "discovery lane" that runs alongside each capability-adoption
 refactor. The rule of thumb:
 
-> Tokens define the vocabulary. Capabilities apply the vocabulary internally.
-> Primitives expose the public API. Component CSS variables are the customization
-> contract. Recipes prove the vocabulary works.
+> Tokens define the vocabulary. Capabilities and input transforms apply the
+> vocabulary internally. Primitives expose the public API. Component CSS
+> variables are the customization contract. Recipes prove the vocabulary works.
 
 A repeated concern only becomes a capability when **all** of these hold:
 
@@ -21,20 +21,20 @@ A repeated concern only becomes a capability when **all** of these hold:
 - It does not make the public API more confusing.
 - It is directly needed by the refactor in flight.
 
-When in doubt, **record the candidate; do not build it.** Visual grammar (color,
-radius, shadow, border) is capability-shaped. Interaction grammar (press, focus,
-disabled) is not — yet.
+When in doubt, **record the candidate; do not build it.** Semantic visual
+grammar such as tone is capability-shaped. Scalar visual grammar such as
+radius, shadow, border, padding, and gap is transform-shaped: the input
+normalizes a token to a public CSS variable value, and component CSS owns the
+final property.
 
-## Shipped capabilities
+## Shipped internal adapters
 
-| Capability | Public input | Output | Adopted by |
+| Adapter | Public input | Output | Adopted by |
 |---|---|---|---|
-| NbToneCapability | `tone` | `background` / `foreground` / `borderColor` | Surface, MediaFrame, Button, IconButton, Chip, Callout, MediaItem, Badge, Card, Avatar, ImageCard, Dialog, AccordionItem |
-| NbRadiusCapability | `radius` | `value` for `border-radius` | Surface, MediaFrame, Button, IconButton, Chip, Badge, Card, Avatar, ImageCard, Dialog, AccordionItem |
-| NbShadowCapability | `shadow` | `value` for `box-shadow` | Surface, MediaFrame, IconButton, Chip, Callout, Badge, Card, Avatar, ImageCard, Dialog, AccordionItem |
-| NbBorderCapability | `border` | `width` for `border-width` | Surface, MediaFrame, Button, IconButton, Chip, Badge, Card, Avatar, ImageCard, Dialog, AccordionItem |
-| NbPaddingCapability | `padding` | `value` for `padding` | Surface, Section, Cluster, Split |
-| NbGapCapability | `gap` | `value` for `gap` | Stack, Cluster, Split |
+| `NbToneCapability` | `tone` | `data-nb-tone`; CSS maps that to `--_nb-tone-*` slots | Most tone-bearing primitives: Surface, Button, Input, Select, Badge, Card, Avatar, Text, Progress, Rating, Sticker, etc. |
+| `NbUnderlineCapability` | `underline` | underline state consumed by `NbText` / `NbDisplay` | Text, Display |
+| `NbResetMarginCapability` | `reset` | margin reset state consumed by typography primitives | Text, Display |
+| Scalar input transforms | `radius`, `shadow`, `border`, `padding`, `gap` | public component CSS variables such as `--nb-button-radius` | Surface/box, layout, and interactive primitives that expose those inputs |
 
 > Tone owns color (`bg` / `fg` / `border-color`); the border capability owns
 > `border-width` only — so color and width never fight.

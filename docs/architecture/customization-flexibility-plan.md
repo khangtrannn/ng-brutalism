@@ -73,8 +73,9 @@ Anything below must honor these.
 ## 5. Track A — Extensible tone registry via DI
 
 ### Problem
-`data-nb-tone` resolves through a closed enum
-(`warning|danger|neutral|...`). A consumer who wants a brand tone has to
+`data-nb-tone` resolves through the closed `NbTone` union
+(`surface|background|ink|cream|white|black|yellow|pink|mint|lavender|blue|primary|secondary|accent|success|warning|danger`).
+A consumer who wants a brand tone has to
 either fork the library or write CSS that competes with token resolution
 (brittle, breaks on capability updates).
 
@@ -91,16 +92,19 @@ providers: [
 ```
 
 - Custom tones merge with built-in tones at injection time.
-- `NbToneCapability` reads from the registry instead of static
-  `nbToneTokens()`.
+- `NbToneCapability` would still reflect `data-nb-tone`; the tone recipe
+  layer would read the registry-backed tone definitions instead of being a
+  closed CSS-only map.
 - `[tone]="'brand'"` and `[attr.data-nb-tone]="'brand'"` work the same as
   built-in tones.
-- Token shape matches `core/capabilities/nb-tone-capability.ts`.
+- Token shape matches the current tone recipe slots: `bg`, `fg`, and
+  `border`.
 
 ### Acceptance criteria
 - Built-in tones still work without any provider call.
 - Consumer-defined tone renders correctly on button, badge, surface,
-  callout (the four current `data-nb-tone` adopters).
+  callout, and at least one form/control primitive. These are representative
+  adopters; `data-nb-tone` is used by more than four primitives today.
 - Components that don't import the tone capability don't pull the registry
   (tree-shake check).
 - One docs recipe showing brand-tone setup end-to-end.
@@ -172,11 +176,13 @@ directives that any host can adopt via `hostDirectives`:
 ## 7. Track C — Controlled + uncontrolled state symmetry
 
 ### Problem
-`NbAccordion`, `NbSelect`, `NbDialog` (open state), and the upcoming
-`NbTabs` use `model()` exclusively — consumer MUST own state. Radix's
-contract is `value`/`defaultValue` symmetry: controlled when `value` is
-bound, uncontrolled otherwise. Today the simplest "just show me a working
-accordion" demo requires consumer state plumbing.
+`NbAccordion` and `NbSelect` use `model()` exclusively — consumer MUST own
+state. `NbDialog` is currently imperative (`open()` / `close()`) rather than
+model-based. The upcoming `NbTabs` can avoid a retrofit if the controlled /
+uncontrolled contract lands first. Radix's contract is `value`/`defaultValue`
+symmetry: controlled when `value` is bound, uncontrolled otherwise. Today the
+simplest "just show me a working accordion" demo requires consumer state
+plumbing.
 
 ### Proposal
 Introduce a `nbControllableSignal` helper in `core/`:
@@ -196,7 +202,8 @@ const open = nbControllableSignal({
 
 ### Targets, in landing order
 1. `NbAccordion` — `value` + `defaultValue`.
-2. `NbDialog` — `open` + `defaultOpen`.
+2. `NbDialog` — decide whether to add an optional `open` + `defaultOpen`
+   input surface alongside the imperative API.
 3. `NbSelect` — `value` + `defaultValue`; `open` + `defaultOpen`.
 4. `NbTabs` — bake in from day one (this is why C should land before v0.3 Track 2).
 5. `NbRating` — `value` + `defaultValue`.

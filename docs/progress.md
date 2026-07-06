@@ -24,10 +24,10 @@ For history and details, read the domain's own `progress.md`.
 
 ## Components
 **Status:** CSS-first token customization architecture complete and hardened (Phases 0–8). Design-props coverage shipped: 9 additive inputs close every verified input↔var symmetry gap; Radix-grade philosophy doc live.
-**Last action:** Per-component CSS delivery: extracted `styles/base.css` (tokens+tone+reset), added opt-in subpath exports `@ng-brutalism/ui/<name>.css` for all 39 stylesheets (styles.css stays the one-line default). Spike proved co-located `import './x.css'` in directives fails ng-packagr rollup, so Mantine-style opt-in chosen. `styles.spec.ts` now guards exports⇄disk sync both directions. Consumer using 2 components: ~11 KB → ~2 KB gzip.
-**Next:** No active work. Ready for v0.2.0 release.
+**Last action:** Architecture-audit fixes (uncommitted): token scales now declared in `theme.css` (`--nb-radius-*`, `--nb-space-*`, `--nb-padding-*`, `--nb-border-width-*`) and resolvers emit `var()` refs; scalar shadow stops (sm/hard/heavy) derive from the offset knobs so reduced-motion + scoped theming reach them; fixed dead callout `border` input (size rules now consume `--nb-callout-border-width`) + cascade guard spec.
+**Next:** Fix 3 stale pre-migration specs (accordion trigger tone; 2 jsdom computed-style precedence tests asserting inline final styles / `--nb-accent-parts`) and unused `input` import in `nb-accordion-trigger.ts` (lint error). Then rerun release-readiness checks.
 **Goal:** ✅ Hardening completed (Phases 0–8). ✅ Design-props coverage completed — full input↔CSS-var symmetry + legible philosophy page.
-→ Arch: `docs/architecture/token-customization.md` · Hardening: `docs/architecture/token-customization-hardening.md` · Design props: `docs/architecture/design-props-plan.md` · `docs/components/design-props.md`
+→ Arch: `docs/architecture/token-customization.md` · Design props: `docs/components/design-props.md` · History: `docs/_archive/token-customization-hardening.md`, `docs/_archive/design-props-plan.md`
 
 ---
 
@@ -48,6 +48,6 @@ For history and details, read the domain's own `progress.md`.
 ---
 
 ## Release
-**Status:** v0.1.0 + v0.1.1 shipped to npm. v0.2.0 implementation complete: 10 primitives + docs + 7 recipes (added Open to Work Card profile recipe).
-**Next:** Design-props coverage landed. Visual QA, bump version in libs/ui, run `docs/release/RELEASE.md` runbook (tag → GitHub release → npm publish).
-→ Plan: `docs/release/v0.2.0-plan.md`
+**Status:** v0.2.0 package metadata and changelog are present in repo; verify npm/GitHub release state before the next publish.
+**Next:** Resolve current lint/test blockers, run visual QA, then follow `docs/release/RELEASE.md` for any publish or patch release.
+→ Runbook: `docs/release/RELEASE.md` · Historical scope: `docs/_archive/v0.2.0-plan.md`

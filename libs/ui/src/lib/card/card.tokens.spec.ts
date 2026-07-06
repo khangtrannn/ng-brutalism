@@ -86,9 +86,9 @@ describe('NbCard token surface', () => {
       'var(--nb-radius-xl, 1rem)'
     );
     expect(card.style.getPropertyValue('--nb-card-shadow')).toBe(
-      '10px 10px 0 0 var(--nb-shadow)'
+      'var(--nb-shadow-heavy, calc(var(--nb-shadow-offset-x) * 2.5) calc(var(--nb-shadow-offset-y) * 2.5) 0 0 var(--nb-shadow))'
     );
-    expect(card.style.getPropertyValue('--nb-card-border-width')).toBe('4px');
+    expect(card.style.getPropertyValue('--nb-card-border-width')).toBe('var(--nb-border-width-thick, 4px)');
     expect(card.style.cssText).not.toContain('--nb-resolved');
   });
 

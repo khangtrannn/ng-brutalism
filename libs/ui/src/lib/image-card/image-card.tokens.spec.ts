@@ -79,11 +79,11 @@ describe('NbImageCard token surface', () => {
       'var(--nb-radius-lg, 0.75rem)'
     );
     expect(imageCard.style.getPropertyValue('--nb-image-card-shadow')).toBe(
-      '6px 6px 0 0 var(--nb-shadow)'
+      'var(--nb-shadow-hard, calc(var(--nb-shadow-offset-x) * 1.5) calc(var(--nb-shadow-offset-y) * 1.5) 0 0 var(--nb-shadow))'
     );
     expect(
       imageCard.style.getPropertyValue('--nb-image-card-border-width')
-    ).toBe('1px');
+    ).toBe('var(--nb-border-width-thin, 1px)');
   });
 
   it('does not emit legacy token utility classes', async () => {

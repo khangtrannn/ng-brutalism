@@ -5,7 +5,7 @@
     place-content: center;
     appearance: none;
     cursor: pointer;
-    border-radius: var(--nb-checkbox-radius, 0);
+    border-radius: var(--nb-checkbox-radius, var(--nb-radius));
     outline: 2px solid var(--nb-border);
     outline-offset: 0;
     background: transparent;

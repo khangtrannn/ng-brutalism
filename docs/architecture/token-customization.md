@@ -632,9 +632,9 @@ Input transforms only normalize the value.
 
 ---
 
-## 16. What Happens to Existing Style Capability Directives
+## 16. What Happened to Scalar Style Capability Directives
 
-Current style capability directives include concepts like:
+Earlier migration notes discussed concrete directives such as:
 
 ```txt
 NbRadiusCapability
@@ -644,7 +644,19 @@ NbBorderCapability
 NbGapCapability
 ```
 
-These previously wrote final styles or final style-like values.
+Those are no longer shipped as concrete capability classes. Current code uses
+scalar input transforms instead:
+
+```txt
+nbRadiusStyleTransform
+nbShadowStyleTransform
+nbPaddingStyleTransform
+nbBorderWidthStyleTransform
+nbGapStyleTransform
+```
+
+These transforms normalize token inputs to values written into the component's
+public CSS variable namespace.
 
 Under the new architecture, they should not be used in new code for scalar visual styling unless the namespace problem is solved.
 
@@ -1146,7 +1158,8 @@ Pilot the model on a contained component first.
 
 ### Temporary Decision 1: Style capability directives remain during migration
 
-Current style directives may remain temporarily to avoid a huge refactor.
+Historical style directives may remain temporarily in old migration branches,
+but the current library code should prefer scalar transforms.
 
 Limit:
 
