@@ -40,7 +40,7 @@
 @import '../typography/nb-typography.css';
 @import '../textarea/nb-textarea.css';
 @import '../input/nb-input.css';
-@import '../input/nb-input-group.css';
+@import '../input-group/nb-input-group.css';
 @import '../select/nb-native-select.css';
 @import '../select/nb-select.css';
 
