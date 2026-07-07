@@ -1,10 +1,14 @@
+import { isPlatformBrowser } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
+  DOCUMENT,
   ElementRef,
+  PLATFORM_ID,
   booleanAttribute,
   computed,
   contentChildren,
+  effect,
   inject,
   input,
   model,
@@ -17,7 +21,7 @@ import {
   nbShadowStyleTransform,
 } from '../core/input-transforms';
 import { NbIdGenerator } from '../core/id-generator';
-import type { NbTone } from '../tokens/tone';
+import type { NbTone } from '@ng-brutalism/ui/tokens';
 import { NB_INPUT_GROUP } from '../input-group/input-group.types';
 import { NbSelectOption } from './nb-select-option';
 import {
@@ -28,6 +32,7 @@ import {
 
 @Component({
   selector: 'nb-select',
+  exportAs: 'nbSelect',
   template: `
     <button
       #trigger
@@ -50,11 +55,7 @@ import {
         {{ selectedLabel() || placeholder() }}
       </span>
 
-      <svg
-        data-slot="select-icon"
-        viewBox="0 0 24 24"
-        aria-hidden="true"
-      >
+      <svg data-slot="select-icon" viewBox="0 0 24 24" aria-hidden="true">
         <path [attr.d]="open() ? 'm18 15-6-6-6 6' : 'm6 9 6 6 6-6'" />
       </svg>
     </button>
@@ -77,7 +78,6 @@ import {
     '[attr.data-disabled]': 'disabled() ? "" : null',
     '[attr.data-in-group]': 'isInGroup ? "" : null',
     '[attr.data-nb-tone]': 'tone() ?? null',
-    '(document:click)': 'closeOnOutsideClick($event)',
     '[style.--nb-select-border-width]': 'border()',
     '[style.--nb-select-radius]': 'radius()',
     '[style.--nb-select-shadow]': 'shadow()',
@@ -88,6 +88,8 @@ export class NbSelect implements NbSelectController {
   private readonly element = inject<ElementRef<HTMLElement>>(ElementRef);
   private readonly group = inject(NB_INPUT_GROUP, { optional: true });
   private readonly idGenerator = inject(NbIdGenerator);
+  private readonly document = inject(DOCUMENT);
+  private readonly isBrowser = isPlatformBrowser(inject(PLATFORM_ID));
   protected readonly isInGroup = this.group !== null;
 
   readonly tone = input<NbTone | undefined>(undefined);
@@ -128,6 +130,22 @@ export class NbSelect implements NbSelectController {
   protected readonly selectedLabel = computed(
     () => this.selectedOption()?.label() ?? ''
   );
+
+  constructor() {
+    effect((onCleanup) => {
+      if (!this.isBrowser || !this.open()) {
+        return;
+      }
+
+      const handleOutsideClick = (event: MouseEvent) =>
+        this.closeOnOutsideClick(event);
+
+      this.document.addEventListener('click', handleOutsideClick);
+      onCleanup(() =>
+        this.document.removeEventListener('click', handleOutsideClick)
+      );
+    });
+  }
 
   isSelected(value: NbSelectValue | null): boolean {
     return this.value() === value;

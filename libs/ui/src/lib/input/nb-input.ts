@@ -7,10 +7,12 @@ import {
   nbShadowStyleTransform,
 } from '../core/input-transforms';
 import { NB_INPUT_GROUP } from '../input-group/input-group.types';
-import type { NbBorderStrength } from '../tokens/border';
-import type { NbRadius } from '../tokens/radius';
-import type { NbShadow } from '../tokens/shadow';
-import type { NbTone } from '../tokens/tone';
+import type {
+  NbBorderStrength,
+  NbRadius,
+  NbShadow,
+  NbTone,
+} from '@ng-brutalism/ui/tokens';
 import type { NbInputSize } from './input.types';
 
 export type NbInputTone = NbTone;
@@ -20,6 +22,7 @@ export type NbInputShadow = NbShadow;
 
 @Directive({
   selector: 'input[nbInput]',
+  exportAs: 'nbInput',
   hostDirectives: [{ directive: NbToneCapability, inputs: ['tone'] }],
   host: {
     '[attr.data-size]': 'size()',

@@ -105,6 +105,22 @@ describe('NbSelect', () => {
     expect(trigger.textContent?.replace(/\s+/g, ' ').trim()).toBe('Worldwide');
   });
 
+  it('closes when a click lands outside the select', async () => {
+    const fixture = await createFixture(SelectTest);
+    const trigger = fixture.nativeElement.querySelector(
+      'button[aria-haspopup="listbox"]'
+    ) as HTMLButtonElement;
+
+    trigger.click();
+    fixture.detectChanges();
+    expect(trigger.getAttribute('aria-expanded')).toBe('true');
+
+    document.body.click();
+    fixture.detectChanges();
+
+    expect(trigger.getAttribute('aria-expanded')).toBe('false');
+  });
+
   it('highlights the reset option without showing a selected icon', async () => {
     const fixture = await createFixture(SelectWithResetOptionTest);
     const trigger = fixture.nativeElement.querySelector(

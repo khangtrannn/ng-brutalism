@@ -7,9 +7,7 @@ import {
   input,
 } from '@angular/core';
 
-import {
-  NbToneCapability,
-} from '../core/capabilities';
+import { NbToneCapability } from '../core/capabilities';
 import {
   nbBorderWidthStyleTransform,
   nbRadiusStyleTransform,
@@ -21,6 +19,7 @@ let nextAccordionItemId = 0;
 
 @Component({
   selector: 'nb-accordion-item',
+  exportAs: 'nbAccordionItem',
   template: `<ng-content />`,
   hostDirectives: [{ directive: NbToneCapability, inputs: ['tone'] }],
   host: {

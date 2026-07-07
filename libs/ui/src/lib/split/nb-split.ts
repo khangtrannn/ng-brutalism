@@ -4,10 +4,12 @@ import {
   nbGapStyleTransform,
   nbPaddingStyleTransform,
 } from '../core/input-transforms';
-import type { NbLayoutAlign, NbLayoutSeparator } from '../tokens/layout';
-import type { NbPadding } from '../tokens/padding';
-import type { NbSpacing } from '../tokens/spacing';
-
+import type {
+  NbLayoutAlign,
+  NbLayoutSeparator,
+  NbPadding,
+  NbSpacing,
+} from '@ng-brutalism/ui/tokens';
 export type NbSplitRatio =
   | '1:1'
   | '2:1'
@@ -29,6 +31,7 @@ export type NbSplitSeparator = NbLayoutSeparator;
 
 @Directive({
   selector: '[nbSplit]',
+  exportAs: 'nbSplit',
   host: {
     '[attr.data-nb-split]': '""',
     '[attr.data-ratio]': 'ratio()',

@@ -1,21 +1,27 @@
-import { ChangeDetectionStrategy, Component, computed, input } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  input,
+} from '@angular/core';
 
 import { NbToneCapability } from '../core/capabilities';
-import type { NbTone } from '../tokens/tone';
+import type { NbTone } from '@ng-brutalism/ui/tokens';
 
 export type NbRatingTone = NbTone;
 
 @Component({
   selector: 'nb-rating',
+  exportAs: 'nbRating',
   template: `
     @for (i of stars(); track i) {
-      <span
-        data-slot="rating-star"
-        [attr.data-filled]="i <= filled() ? '' : null"
-      >{{ i <= filled() ? '★' : '☆' }}</span>
-    }
-    @if (count() !== undefined) {
-      <span data-slot="rating-count">({{ count() }})</span>
+    <span
+      data-slot="rating-star"
+      [attr.data-filled]="i <= filled() ? '' : null"
+      >{{ i <= filled() ? '★' : '☆' }}</span
+    >
+    } @if (count() !== undefined) {
+    <span data-slot="rating-count">({{ count() }})</span>
     }
   `,
   hostDirectives: [{ directive: NbToneCapability, inputs: ['tone'] }],

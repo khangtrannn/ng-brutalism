@@ -69,7 +69,7 @@ CI package-smoke job passes on a clean checkout.
 
 ---
 
-## Phase 2 — Architecture & packaging cleanup (1–2 weeks)
+## Phase 2 — Architecture & packaging cleanup (1–2 weeks) — ✅ Complete (2026-07-07)
 
 **Goal:** remove adoption friction (hard Tailwind peer, invasive global styles)
 and lay the packaging seams (`/tokens`, API guard) the later phases
@@ -77,22 +77,42 @@ build on.
 
 **Depends on:** Phase 1 (clean baseline + CI smoke to catch exports regressions).
 
+All 9 rows below are done and verified (lint clean, 271/271 tests green,
+`ui`/`docs`/`schematics` build clean, `pnpm smoke:ui` and `pnpm api-guard` both
+pass). Row 2.4's `/tokens` entry point required physically relocating the token
++ provider source files into `libs/ui/tokens/src/lib/` (not just a relative
+re-export) — ng-packagr enforces a strict per-entry-point `rootDir`, and a
+relative import crossing entry-point boundaries is rejected at compile time;
+confirmed post-build that the primary bundle imports `@ng-brutalism/ui/tokens`
+as an external rather than duplicating it (single `NB_THEME_CONFIG`
+`InjectionToken` across both bundles — otherwise a real DI-identity bug).
+Row 2.7 needed no changes — `.gitignore` already covered `.DS_Store`/`tmp/`
+and nothing was tracked.
+
 | # | Task | Finding | Files | Breaking | Effort |
 |---|---|---|---|---|---|
-| 2.1 | Tailwind → optional peer: `peerDependenciesMeta:{tailwindcss:{optional:true}}`; keep schematic Tailwind path as default | 5.3 (High) | `libs/ui/package.json:43` | no | small |
-| 2.2 | Move `body`/reset rules into `@layer base`; add opt-in `.nb-root` scope for body colors so single-widget adopters aren't repainted | 5.1 (High) | `base.css:18-23` | mild visual | small |
-| 2.3 | Select outside-click: gate the `(document:click)` listener behind an `effect(() => open())` (or CDK `outsidePointerEvents`) instead of always-on per instance | 2.1 (High) | `nb-select.ts:81` | no | small |
-| 2.4 | Introduce `/tokens` entry point (token types, resolvers, `NbThemeConfig`, provider); root re-exports for compat | 10.4 | `ng-package.json`, new secondary entry, `index.ts` | no (additive) | medium |
-| 2.5 | Public API guard: snapshot `dist/ui/index.d.ts` (API Extractor or checked-in rollup diff) so accidental export changes fail CI; enforce "no deep imports" on the exports map | 9.2/P2, 10.4 | CI + `package.json` exports | no | small |
-| 2.6 | Schematics output assertion: post-build smoke that `dist/ui/schematics/collection.json` exists and its `factory` resolves | 1.4 | `libs/ui/project.json:20-28` | no | small |
-| 2.7 | Repo hygiene: gitignore + purge committed `.DS_Store` under `libs/ui/src/lib/`; remove vendored `tmp/` ronit.io clone + screenshots | 1.5 | `.gitignore`, tree | no | trivial |
-| 2.8 | Consistency nits: route `NbButtonTrailingIcon` through its folder barrel; adopt "every public directive declares `exportAs`" rule | 1.3, 2.4 | `index.ts:163`, directives | no (additive) | small |
-| 2.9 | Confirm whether `@angular-devkit/schematics` runtime dep is truly required under pnpm (use the smoke app); drop if not | 10.1 | `libs/ui/package.json:46` | no | small |
+| 2.1 ✅ | Tailwind → optional peer: `peerDependenciesMeta:{tailwindcss:{optional:true}}`; keep schematic Tailwind path as default | 5.3 (High) | `libs/ui/package.json:43` | no | small |
+| 2.2 ✅ | Move `body`/reset rules into `@layer base`; add opt-in `.nb-root` scope for body colors so single-widget adopters aren't repainted | 5.1 (High) | `base.css:18-23` | mild visual | small |
+| 2.3 ✅ | Select outside-click: gate the `(document:click)` listener behind an `effect(() => open())` (or CDK `outsidePointerEvents`) instead of always-on per instance | 2.1 (High) | `nb-select.ts:81` | no | small |
+| 2.4 ✅ | Introduce `/tokens` entry point (token types, resolvers, `NbThemeConfig`, provider); root re-exports for compat | 10.4 | `ng-package.json`, new secondary entry, `index.ts` | no (additive) | medium |
+| 2.5 ✅ | Public API guard: snapshot `dist/ui/index.d.ts` (checked-in diff, `tools/api-guard/run.mjs`) so accidental export changes fail CI; enforce "no deep imports" on the exports map | 9.2/P2, 10.4 | CI + `package.json` exports | no | small |
+| 2.6 ✅ | Schematics output assertion: post-build smoke that `dist/ui/schematics/collection.json` exists and its `factory` resolves | 1.4 | `libs/ui/project.json:20-28` | no | small |
+| 2.7 ✅ | Repo hygiene: gitignore + purge committed `.DS_Store` under `libs/ui/src/lib/`; remove vendored `tmp/` ronit.io clone + screenshots | 1.5 | `.gitignore`, tree | no | trivial |
+| 2.8 ✅ | Consistency nits: route `NbButtonTrailingIcon` through its folder barrel; adopt "every public directive declares `exportAs`" rule | 1.3, 2.4 | `index.ts:163`, directives | no (additive) | small |
+| 2.9 ✅ | Confirm whether `@angular-devkit/schematics` runtime dep is truly required under pnpm (use the smoke app); drop if not | 10.1 | `libs/ui/package.json:46` | no | small |
 
 **Exit criteria:** a non-Tailwind Angular app installs and builds with no peer
-warning; adopting one widget no longer repaints host `body`; `@ng-brutalism/ui/tokens`
-and `/class` resolve and tree-shake; API-guard test fails on an intentional
-export change; schematics + package smoke both green in CI.
+warning (✅ verified: plain `npm install` of the tarball with no tailwindcss
+present produces no unmet-peer warning); adopting one widget no longer repaints
+host `body` (✅ body colors now live under opt-in `.nb-root`); `@ng-brutalism/ui/tokens`
+resolves and tree-shakes (✅ verified: an app importing only `/tokens` ships zero
+component code) — the `/class` half of this criterion is dropped: `nbClass` and
+its `clsx`/`tailwind-merge` deps were removed from the library entirely in prior
+work (see `docs/progress.md`), so there is no class-merge utility left to expose
+via a `/class` entry point; API-guard test fails on an intentional export change
+(✅ verified with a planted export and a planted wildcard-exports regression);
+schematics + package smoke both green in CI (✅ `pnpm smoke:ui` passes, new
+schematics-assembly assertion verified to fail on a renamed factory file).
 
 ---
 

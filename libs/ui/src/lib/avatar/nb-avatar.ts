@@ -1,18 +1,17 @@
 import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 
-import {
-  NbToneCapability,
-} from '../core/capabilities';
+import { NbToneCapability } from '../core/capabilities';
 import {
   nbBorderWidthStyleTransform,
   nbRadiusStyleTransform,
   nbShadowStyleTransform,
 } from '../core/input-transforms';
-import type { NbBorderStrength } from '../tokens/border';
-import type { NbRadius } from '../tokens/radius';
-import type { NbShadow } from '../tokens/shadow';
-import type { NbTone } from '../tokens/tone';
-
+import type {
+  NbBorderStrength,
+  NbRadius,
+  NbShadow,
+  NbTone,
+} from '@ng-brutalism/ui/tokens';
 export type NbAvatarTone = NbTone;
 export type NbAvatarRadius = NbRadius;
 export type NbAvatarShadow = NbShadow;
@@ -20,6 +19,7 @@ export type NbAvatarBorder = NbBorderStrength;
 
 @Component({
   selector: 'nb-avatar',
+  exportAs: 'nbAvatar',
   template: `
     @if (src()) {
     <img [src]="src()" [alt]="alt()" data-slot="avatar-image" />

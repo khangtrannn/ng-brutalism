@@ -6,9 +6,7 @@ import {
   input,
 } from '@angular/core';
 
-import {
-  NbToneCapability,
-} from '../core/capabilities';
+import { NbToneCapability } from '../core/capabilities';
 import {
   nbGapStyleTransform,
   nbBorderWidthStyleTransform,
@@ -17,11 +15,13 @@ import {
   nbTokenStyleTransform,
 } from '../core/input-transforms';
 import { NbIcon, type NbIconSize } from '../icon';
-import { type NbRadius } from '../tokens/radius';
-import { type NbShadow } from '../tokens/shadow';
-import type { NbSpacing } from '../tokens/spacing';
-import type { NbTone } from '../tokens/tone';
-import type { NbTextTracking } from '../tokens/typography';
+import type {
+  NbRadius,
+  NbShadow,
+  NbSpacing,
+  NbTone,
+  NbTextTracking,
+} from '@ng-brutalism/ui/tokens';
 import type { NbTextTransform } from '../text';
 
 export type NbChipTone = NbTone;
@@ -48,11 +48,12 @@ const nbChipPaddingStyleTransform = nbTokenStyleTransform<NbChipPadding>(
 
 @Component({
   selector: 'span[nbChip]',
+  exportAs: 'nbChip',
   imports: [NbIcon],
   hostDirectives: [{ directive: NbToneCapability, inputs: ['tone'] }],
   template: `
     @if (icon()) {
-      <span nbIcon [src]="icon()!" [size]="iconSize()" decorative></span>
+    <span nbIcon [src]="icon()!" [size]="iconSize()" decorative></span>
     }
     <ng-content />
   `,
@@ -93,6 +94,7 @@ export type NbChipGroupGap = NbSpacing;
 
 @Directive({
   selector: '[nbChipGroup]',
+  exportAs: 'nbChipGroup',
   host: {
     '[style.--nb-chip-group-gap]': 'gap()',
     '[style.--nb-chip-radius]': 'chipRadiusValue()',

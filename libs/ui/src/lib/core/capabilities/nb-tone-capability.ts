@@ -1,6 +1,6 @@
 import { Directive, input } from '@angular/core';
 
-import type { NbTone } from '../../tokens/tone';
+import type { NbTone } from '@ng-brutalism/ui/tokens';
 
 @Directive({
   selector: '[nbToneCapability]',

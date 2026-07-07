@@ -6,6 +6,7 @@ export type NbInputPrefixAlign = 'center' | 'stretch';
 
 @Directive({
   selector: '[nbInputPrefix]',
+  exportAs: 'nbInputPrefix',
   host: {
     '[attr.data-align]': 'align()',
   },

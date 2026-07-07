@@ -1,8 +1,4 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  input,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 
 import { NbToneCapability } from '../core/capabilities';
 import {
@@ -10,11 +6,12 @@ import {
   nbRadiusStyleTransform,
   nbShadowStyleTransform,
 } from '../core/input-transforms';
-import type { NbBorderStrength } from '../tokens/border';
-import type { NbRadius } from '../tokens/radius';
-import type { NbShadow } from '../tokens/shadow';
-import type { NbTone } from '../tokens/tone';
-
+import type {
+  NbBorderStrength,
+  NbRadius,
+  NbShadow,
+  NbTone,
+} from '@ng-brutalism/ui/tokens';
 export type NbImageCardTone = NbTone;
 export type NbImageCardRadius = NbRadius;
 export type NbImageCardShadow = NbShadow;
@@ -22,6 +19,7 @@ export type NbImageCardBorder = NbBorderStrength;
 
 @Component({
   selector: 'nb-image-card',
+  exportAs: 'nbImageCard',
   template: `
     <img
       [src]="image()"
@@ -57,6 +55,7 @@ export class NbImageCard {
 
 @Component({
   selector: 'nb-image-card-caption',
+  exportAs: 'nbImageCardCaption',
   template: `<ng-content />`,
   host: {
     '[attr.data-slot]': '"image-card-caption"',

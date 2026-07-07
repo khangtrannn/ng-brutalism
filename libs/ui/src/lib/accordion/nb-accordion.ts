@@ -17,6 +17,7 @@ import {
 
 @Component({
   selector: 'nb-accordion',
+  exportAs: 'nbAccordion',
   template: `
     <div data-slot="accordion-items">
       <ng-content />

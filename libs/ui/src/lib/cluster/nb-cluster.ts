@@ -8,10 +8,9 @@ import type {
   NbLayoutAlign,
   NbLayoutJustify,
   NbLayoutSeparator,
-} from '../tokens/layout';
-import type { NbPadding } from '../tokens/padding';
-import type { NbSpacing } from '../tokens/spacing';
-
+  NbPadding,
+  NbSpacing,
+} from '@ng-brutalism/ui/tokens';
 export type NbClusterGap = NbSpacing;
 
 export type NbClusterPadding = NbPadding;
@@ -26,6 +25,7 @@ export type NbClusterSeparator = NbLayoutSeparator;
 
 @Directive({
   selector: '[nbCluster]',
+  exportAs: 'nbCluster',
   host: {
     '[attr.data-nb-cluster]': '""',
     '[attr.data-align]': 'align()',
@@ -51,12 +51,9 @@ export class NbCluster {
   });
 
   protected readonly separatorColumnGapStyle = computed(() =>
-    this.separator() === 'none' ? null : '0px',
+    this.separator() === 'none' ? null : '0px'
   );
 
-  // Component-local anatomy var: the separator owns half the inline spacing on
-  // each side. It mirrors an explicit gap input when present; CSS owns the
-  // public hook fallback chain when it is absent.
   protected readonly separatorGapStyle = computed(() => {
     const gapStyle = this.gap();
     return this.separator() === 'none' || !gapStyle

@@ -6,6 +6,7 @@ import type { NbCheckboxSize } from './checkbox.types';
 
 @Directive({
   selector: 'input[nbCheckbox]',
+  exportAs: 'nbCheckbox',
   hostDirectives: [{ directive: NbToneCapability, inputs: ['tone'] }],
   host: {
     '[attr.data-size]': 'size()',

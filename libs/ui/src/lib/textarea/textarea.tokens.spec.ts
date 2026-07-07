@@ -3,9 +3,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { describe, expect, it } from 'vitest';
 
 import { NbTextarea } from './nb-textarea';
-import type { NbRadius } from '../tokens/radius';
-import type { NbShadow } from '../tokens/shadow';
-
+import type { NbRadius, NbShadow } from '@ng-brutalism/ui/tokens';
 @Component({
   imports: [NbTextarea],
   template: `<textarea nbTextarea placeholder="Message"></textarea>`,
@@ -108,7 +106,9 @@ describe('NbTextarea token surface', () => {
     const textarea = findTextarea(fixture);
 
     // No explicit tone — capability resolves nothing, CSS falls back to public hooks.
-    expect(textarea.style.getPropertyValue('--nb-textarea-focus-ring-color')).toBe('');
+    expect(
+      textarea.style.getPropertyValue('--nb-textarea-focus-ring-color')
+    ).toBe('');
   });
 });
 
@@ -125,9 +125,7 @@ async function createFixture<T>(
   return fixture;
 }
 
-function findTextarea(
-  fixture: ComponentFixture<unknown>
-): HTMLTextAreaElement {
+function findTextarea(fixture: ComponentFixture<unknown>): HTMLTextAreaElement {
   return fixture.nativeElement.querySelector(
     'textarea[nbTextarea]'
   ) as HTMLTextAreaElement;

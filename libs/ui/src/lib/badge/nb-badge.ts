@@ -6,11 +6,12 @@ import {
   nbRadiusStyleTransform,
   nbShadowStyleTransform,
 } from '../core/input-transforms';
-import type { NbBorderStrength } from '../tokens/border';
-import type { NbRadius } from '../tokens/radius';
-import type { NbShadow } from '../tokens/shadow';
-import type { NbTone } from '../tokens/tone';
-
+import type {
+  NbBorderStrength,
+  NbRadius,
+  NbShadow,
+  NbTone,
+} from '@ng-brutalism/ui/tokens';
 export type NbBadgeTone = NbTone;
 export type NbBadgeRadius = NbRadius;
 export type NbBadgeShadow = NbShadow;
@@ -18,6 +19,7 @@ export type NbBadgeBorder = NbBorderStrength;
 
 @Directive({
   selector: 'span[nbBadge]',
+  exportAs: 'nbBadge',
   hostDirectives: [{ directive: NbToneCapability, inputs: ['tone'] }],
   host: {
     '[attr.data-nb-badge]': '""',

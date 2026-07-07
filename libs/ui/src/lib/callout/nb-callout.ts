@@ -6,10 +6,11 @@ import {
   nbRadiusStyleTransform,
   nbShadowStyleTransform,
 } from '../core/input-transforms';
-import type { NbBorderStrength } from '../tokens/border';
-import type { NbRadius } from '../tokens/radius';
-import type { NbTone } from '../tokens/tone';
-
+import type {
+  NbBorderStrength,
+  NbRadius,
+  NbTone,
+} from '@ng-brutalism/ui/tokens';
 export type NbCalloutTone = NbTone;
 
 export type NbCalloutSize = 'sm' | 'md' | 'lg' | 'xl';
@@ -24,6 +25,7 @@ export type NbCalloutBorder = NbBorderStrength;
 
 @Directive({
   selector: '[nbCallout]',
+  exportAs: 'nbCallout',
   hostDirectives: [{ directive: NbToneCapability, inputs: ['tone'] }],
   host: {
     '[attr.data-nb-callout]': '""',

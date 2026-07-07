@@ -7,31 +7,30 @@ import {
   nbRadiusStyleTransform,
   nbShadowStyleTransform,
 } from '../core/input-transforms';
-import type { NbBorderStrength } from '../tokens/border';
-import type { NbPadding } from '../tokens/padding';
-import type { NbRadius } from '../tokens/radius';
-import type { NbShadow } from '../tokens/shadow';
-import type { NbTone } from '../tokens/tone';
+import type {
+  NbBorderStrength,
+  NbPadding,
+  NbRadius,
+  NbShadow,
+  NbTone,
+} from '@ng-brutalism/ui/tokens';
 import { NbTypography } from '../typography';
 
-// Public type aliases — kept for API stability. They now point at the shared
-// token contracts so a token means the same thing across every primitive.
 export type NbSurfaceTone = NbTone;
 export type NbSurfaceRadius = NbRadius;
 export type NbSurfaceBorder = NbBorderStrength;
 export type NbSurfaceShadow = NbShadow;
 export type NbSurfacePadding = NbPadding;
 
-// Surface-specific anatomy (not shared tokens).
 export type NbSurfaceSize = 'auto' | 'sm' | 'md' | 'lg' | 'xl';
 export type NbSurfaceLayout = 'block' | 'center' | 'row' | 'stack';
 export type NbSurfaceEdge = 'none' | 'top' | 'bottom';
 
 @Directive({
   selector: '[nbSurface]',
+  exportAs: 'nbSurface',
   hostDirectives: [
     { directive: NbToneCapability, inputs: ['tone'] },
-    // Typography context — exposes nbTypography's `font` input as `typography`.
     { directive: NbTypography, inputs: ['font: typography'] },
   ],
   host: {

@@ -10,6 +10,7 @@ import type { NbButtonPress, NbButtonSize } from './button.types';
 
 @Directive({
   selector: 'button[nbButton], a[nbButton]',
+  exportAs: 'nbButton',
   hostDirectives: [{ directive: NbToneCapability, inputs: ['tone'] }],
   host: {
     '[attr.data-press]': 'press()',

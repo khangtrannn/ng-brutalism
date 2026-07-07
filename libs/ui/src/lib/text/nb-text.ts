@@ -4,17 +4,14 @@ import {
   NbResetMarginCapability,
   NbUnderlineCapability,
 } from '../core/capabilities';
-import type { NbTone } from '../tokens/tone';
-import {
-  type NbTextTracking,
-  type NbFontWeight,
-  type NbUnderlineVariant,
-} from '../tokens/typography';
-
+import type {
+  NbTone,
+  NbTextTracking,
+  NbFontWeight,
+  NbUnderlineVariant,
+} from '@ng-brutalism/ui/tokens';
 export type NbTextSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl' | '3xl';
 
-// Weight reuses the shared font-weight scale so it stays in lockstep with
-// nbDisplay and any future typographic primitive.
 export type NbTextWeight = NbFontWeight;
 
 export type NbTextTone =
@@ -29,20 +26,14 @@ export type NbTextTone =
 
 export type NbTextTransform = 'none' | 'uppercase' | 'lowercase' | 'capitalize';
 
-// NbTextTracking is defined in tokens/typography and re-exported here to keep
-// the public type path stable.
-export type { NbTextTracking } from '../tokens/typography';
+export type { NbTextTracking } from '@ng-brutalism/ui/tokens';
 
 export type NbTextMeasure = 'none' | 'xs' | 'sm' | 'md' | 'lg';
 
 export type NbTextLeading = 'none' | 'tight' | 'normal' | 'relaxed';
 
-// Alias of the shared underline variant — keeps the public type name stable.
 export type NbTextUnderline = NbUnderlineVariant;
 
-// Tone is text-specific color intent: 'default'/'muted'/'subtle'/'inverse' have
-// no surface (bg/fg/border) and aren't part of the shared tone recipe, so they
-// resolve here rather than through the shared --_nb-tone-* slots.
 const toneMap: Record<NbTextTone, string> = {
   default: 'var(--nb-foreground)',
   muted: 'color-mix(in srgb, var(--nb-foreground) 80%, transparent)',
@@ -61,12 +52,10 @@ const toneMap: Record<NbTextTone, string> = {
   standalone: true,
   exportAs: 'nbText',
   hostDirectives: [
-    // underline variant + optional gap/width overrides
     {
       directive: NbUnderlineCapability,
       inputs: ['underline', 'underlineGap', 'underlineWidth'],
     },
-    // reset input → margin: 0 (removes native paragraph/heading margin)
     { directive: NbResetMarginCapability, inputs: ['reset'] },
   ],
   host: {
@@ -92,11 +81,9 @@ export class NbText {
   readonly tracking = input<NbTextTracking>('normal');
   readonly measure = input<NbTextMeasure>('none');
   readonly leading = input<NbTextLeading>('normal');
-  // underline / underlineGap / underlineWidth / reset → composed capabilities
 
   private readonly underlineCapability = inject(NbUnderlineCapability);
 
-  // No tone input → no inline write; CSS owns the neutral foreground fallback.
   protected readonly colorValue = computed(() => {
     const tone = this.tone();
     return tone ? toneMap[tone] : null;

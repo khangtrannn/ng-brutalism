@@ -16,6 +16,7 @@ import {
 
 @Component({
   selector: 'nb-marquee',
+  exportAs: 'nbMarquee',
   host: {
     '[attr.data-nb-marquee]': '""',
   },

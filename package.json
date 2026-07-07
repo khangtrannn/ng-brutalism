@@ -14,6 +14,8 @@
     "serve:docs": "nx serve docs",
     "sync:repo-metadata": "node scripts/sync-repository-metadata.mjs",
     "smoke:ui": "node tools/package-smoke/run.mjs",
+    "api-guard": "node tools/api-guard/run.mjs",
+    "api-guard:update": "node tools/api-guard/run.mjs --update",
     "test": "nx affected --target=test",
     "lint": "nx affected --target=lint"
   },

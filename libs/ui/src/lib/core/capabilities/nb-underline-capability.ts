@@ -6,7 +6,7 @@ import {
   type NbUnderlineGap,
   type NbUnderlineVariant,
   type NbUnderlineWidth,
-} from '../../tokens/typography';
+} from '@ng-brutalism/ui/tokens';
 
 @Directive({
   selector: '[nbUnderlineCapability]',

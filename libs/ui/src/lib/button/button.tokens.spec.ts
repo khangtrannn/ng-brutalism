@@ -11,7 +11,7 @@ import type {
   NbButtonSize,
   NbButtonRadius,
 } from './button.types';
-import type { NbBorderStrength } from '../tokens/border';
+import type { NbBorderStrength } from '@ng-brutalism/ui/tokens';
 
 @Component({
   imports: [NbButton],
@@ -230,7 +230,9 @@ describe('NbButton token surface', () => {
       expect(button.style.getPropertyValue('border-color')).toBe('');
       expect(button.style.getPropertyValue('--nb-button-bg')).toBe('');
       expect(button.style.getPropertyValue('--nb-button-fg')).toBe('');
-      expect(button.style.getPropertyValue('--nb-button-border-color')).toBe('');
+      expect(button.style.getPropertyValue('--nb-button-border-color')).toBe(
+        ''
+      );
       expect(button.style.cssText).not.toContain('--nb-resolved');
     }
   );
@@ -287,7 +289,9 @@ describe('NbButton token surface', () => {
     }).compileComponents();
     const fixture = TestBed.createComponent(FullWidthButtonTest);
     fixture.detectChanges();
-    const button = fixture.nativeElement.querySelector('button[nbButton]') as HTMLButtonElement;
+    const button = fixture.nativeElement.querySelector(
+      'button[nbButton]'
+    ) as HTMLButtonElement;
 
     expect(button.getAttribute('data-full-width')).toBe('');
   });
@@ -311,9 +315,9 @@ describe('NbButton token surface', () => {
     expect(icon.style.getPropertyValue('--nb-button-trailing-icon-size')).toBe(
       '2rem'
     );
-    expect(icon.style.getPropertyValue('--nb-button-trailing-icon-radius')).toBe(
-      ''
-    );
+    expect(
+      icon.style.getPropertyValue('--nb-button-trailing-icon-radius')
+    ).toBe('');
   });
 
   it('pushes trailing icons to the end when requested', async () => {
@@ -351,9 +355,9 @@ describe('NbButton token surface', () => {
     expect(icon.style.getPropertyValue('--nb-button-trailing-icon-size')).toBe(
       '2.5rem'
     );
-    expect(icon.style.getPropertyValue('--nb-button-trailing-icon-radius')).toBe(
-      'var(--nb-radius-sm, 0.25rem)'
-    );
+    expect(
+      icon.style.getPropertyValue('--nb-button-trailing-icon-radius')
+    ).toBe('var(--nb-radius-sm, 0.25rem)');
   });
 
   it('does not regress the default button anatomy data attributes', async () => {

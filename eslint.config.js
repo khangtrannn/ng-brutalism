@@ -39,6 +39,7 @@ module.exports = tseslint.config(
       'tmp/**',
       '**/vite.config.*.timestamp*',
       '**/vitest.config.*.timestamp*',
+      'libs/ui/api-guard/**',
     ],
   }
 );

@@ -4,6 +4,7 @@ import { NB_DIALOG } from './dialog.types';
 
 @Directive({
   selector: '[nbDialogClose]',
+  exportAs: 'nbDialogClose',
   host: { '(click)': 'controller.close()' },
 })
 export class NbDialogClose {

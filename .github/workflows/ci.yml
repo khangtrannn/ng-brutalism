@@ -57,5 +57,11 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
+      - name: Build ui
+        run: pnpm nx build ui
+
+      - name: Public API guard
+        run: pnpm api-guard
+
       - name: Build, pack, ng add, and ng build @ng-brutalism/ui
         run: pnpm smoke:ui

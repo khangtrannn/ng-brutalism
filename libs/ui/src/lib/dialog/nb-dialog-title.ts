@@ -2,6 +2,7 @@ import { Directive } from '@angular/core';
 
 @Directive({
   selector: '[nbDialogTitle]',
+  exportAs: 'nbDialogTitle',
   host: {
     '[attr.data-slot]': '"dialog-title"',
   },

@@ -29,6 +29,7 @@ function nbStickerScaleTransform(value: unknown): string | null {
 
 @Component({
   selector: 'nb-sticker',
+  exportAs: 'nbSticker',
   template: `
     <span data-slot="sticker-root">
       <svg
@@ -64,7 +65,9 @@ function nbStickerScaleTransform(value: unknown): string | null {
 })
 export class NbSticker {
   readonly shape = input<NbStickerShape>('burst');
-  readonly decorative = input<boolean, unknown>(false, { transform: booleanAttribute });
+  readonly decorative = input<boolean, unknown>(false, {
+    transform: booleanAttribute,
+  });
   readonly rotate = input(null, { transform: nbStickerRotateTransform });
   readonly size = input(null, { transform: nbStickerScaleTransform });
 

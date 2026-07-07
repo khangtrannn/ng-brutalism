@@ -6,11 +6,12 @@ import {
   nbRadiusStyleTransform,
   nbShadowStyleTransform,
 } from '../core/input-transforms';
-import type { NbBorderStrength } from '../tokens/border';
-import type { NbRadius } from '../tokens/radius';
-import type { NbShadow } from '../tokens/shadow';
-import type { NbTone } from '../tokens/tone';
-
+import type {
+  NbBorderStrength,
+  NbRadius,
+  NbShadow,
+  NbTone,
+} from '@ng-brutalism/ui/tokens';
 // Public type aliases point at the shared token contracts.
 export type NbMediaFrameTone = NbTone;
 export type NbMediaFrameRadius = NbRadius;
@@ -31,6 +32,7 @@ export type NbMediaFrameFit = 'cover' | 'contain' | 'fill';
 
 @Directive({
   selector: '[nbMediaFrame]',
+  exportAs: 'nbMediaFrame',
   hostDirectives: [{ directive: NbToneCapability, inputs: ['tone'] }],
   host: {
     '[attr.data-nb-media-frame]': '""',

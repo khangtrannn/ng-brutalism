@@ -1,19 +1,13 @@
-import {
-  Directive,
-  booleanAttribute,
-  input,
-} from '@angular/core';
+import { Directive, booleanAttribute, input } from '@angular/core';
 
 import { nbPaddingStyleTransform } from '../core/input-transforms';
-import type { NbDivider } from '../tokens/divider';
-import type { NbLayoutAlign } from '../tokens/layout';
-import type { NbPadding } from '../tokens/padding';
-
+import type {
+  NbDivider,
+  NbLayoutAlign,
+  NbPadding,
+} from '@ng-brutalism/ui/tokens';
 export type NbSectionPadding = NbPadding;
 
-// `divider` is line placement between regions — distinct from `border`
-// (outline strength) elsewhere in the library. Renamed from the former
-// `border` input so `border` means strength library-wide.
 export type NbSectionDivider = NbDivider;
 
 export type NbSectionDividerStyle = 'solid' | 'dashed' | 'dotted';

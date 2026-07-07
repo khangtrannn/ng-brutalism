@@ -16,6 +16,7 @@ import {
 
 @Component({
   selector: 'nb-input-group',
+  exportAs: 'nbInputGroup',
   template: `<ng-content />`,
   providers: [{ provide: NB_INPUT_GROUP, useExisting: NbInputGroup }],
   host: {

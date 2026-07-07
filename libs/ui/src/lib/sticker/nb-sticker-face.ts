@@ -2,6 +2,7 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 @Component({
   selector: 'nb-sticker-face',
+  exportAs: 'nbStickerFace',
   template: `
     <svg
       data-slot="sticker-face-svg"

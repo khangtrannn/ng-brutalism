@@ -25,11 +25,12 @@ const iconSizeMap: Record<NbIconButtonSize, NbIconSize> = {
 
 @Component({
   selector: 'button[nbIconButton]',
+  exportAs: 'nbIconButton',
   imports: [NbIcon],
   hostDirectives: [{ directive: NbToneCapability, inputs: ['tone'] }],
   template: `
     @if (icon(); as iconSrc) {
-      <span nbIcon [src]="iconSrc" [size]="iconSize()" decorative></span>
+    <span nbIcon [src]="iconSrc" [size]="iconSize()" decorative></span>
     }
     <ng-content />
   `,

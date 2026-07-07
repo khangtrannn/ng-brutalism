@@ -5,12 +5,13 @@ import {
   nbRadiusStyleTransform,
   nbShadowStyleTransform,
 } from '../core/input-transforms';
-import type { NbTone } from '../tokens/tone';
+import type { NbTone } from '@ng-brutalism/ui/tokens';
 import { NB_INPUT_GROUP } from '../input-group/input-group.types';
 import type { NbTextareaSize } from './textarea.types';
 
 @Directive({
   selector: 'textarea[nbTextarea]',
+  exportAs: 'nbTextarea',
   host: {
     '[attr.data-size]': 'size()',
     '[attr.data-in-group]': 'isInGroup ? "" : null',

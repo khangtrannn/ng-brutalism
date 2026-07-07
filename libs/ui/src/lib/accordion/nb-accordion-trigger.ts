@@ -5,6 +5,7 @@ import { NbAccordionItem } from './nb-accordion-item';
 
 @Component({
   selector: 'nb-accordion-trigger',
+  exportAs: 'nbAccordionTrigger',
   template: `
     <h3 data-slot="accordion-trigger-heading">
       <button
@@ -18,7 +19,11 @@ import { NbAccordionItem } from './nb-accordion-item';
         (click)="item.toggle()"
       >
         <ng-content />
-        <svg data-slot="accordion-trigger-icon" viewBox="0 0 24 24" aria-hidden="true">
+        <svg
+          data-slot="accordion-trigger-icon"
+          viewBox="0 0 24 24"
+          aria-hidden="true"
+        >
           <path [attr.d]="item.open() ? 'm18 15-6-6-6 6' : 'm6 9 6 6 6-6'" />
         </svg>
       </button>

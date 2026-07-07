@@ -1,18 +1,17 @@
 import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 
-import {
-  NbToneCapability,
-} from '../core/capabilities';
+import { NbToneCapability } from '../core/capabilities';
 import {
   nbBorderWidthStyleTransform,
   nbRadiusStyleTransform,
   nbShadowStyleTransform,
 } from '../core/input-transforms';
-import type { NbBorderStrength } from '../tokens/border';
-import type { NbRadius } from '../tokens/radius';
-import type { NbShadow } from '../tokens/shadow';
-import type { NbTone } from '../tokens/tone';
-
+import type {
+  NbBorderStrength,
+  NbRadius,
+  NbShadow,
+  NbTone,
+} from '@ng-brutalism/ui/tokens';
 export type NbCardActionsAlign = 'start' | 'end';
 export type NbCardTone = NbTone;
 export type NbCardRadius = NbRadius;
@@ -21,6 +20,7 @@ export type NbCardBorder = NbBorderStrength;
 
 @Component({
   selector: 'nb-card',
+  exportAs: 'nbCard',
   template: `<ng-content />`,
   hostDirectives: [{ directive: NbToneCapability, inputs: ['tone'] }],
   host: {
@@ -45,6 +45,7 @@ export class NbCard {
 
 @Component({
   selector: 'nb-card-header',
+  exportAs: 'nbCardHeader',
   template: `<ng-content />`,
   host: {
     '[attr.data-slot]': '"card-header"',
@@ -55,6 +56,7 @@ export class NbCardHeader {}
 
 @Component({
   selector: 'nb-card-title',
+  exportAs: 'nbCardTitle',
   template: `<ng-content />`,
   host: {
     '[attr.data-slot]': '"card-title"',
@@ -65,6 +67,7 @@ export class NbCardTitle {}
 
 @Component({
   selector: 'nb-card-description',
+  exportAs: 'nbCardDescription',
   template: `<ng-content />`,
   host: {
     '[attr.data-slot]': '"card-description"',
@@ -75,6 +78,7 @@ export class NbCardDescription {}
 
 @Component({
   selector: 'nb-card-actions',
+  exportAs: 'nbCardActions',
   template: `<ng-content />`,
   host: {
     '[attr.data-slot]': '"card-actions"',
@@ -88,6 +92,7 @@ export class NbCardActions {
 
 @Component({
   selector: 'nb-card-content',
+  exportAs: 'nbCardContent',
   template: `<ng-content />`,
   host: {
     '[attr.data-slot]': '"card-content"',
@@ -98,6 +103,7 @@ export class NbCardContent {}
 
 @Component({
   selector: 'nb-card-footer',
+  exportAs: 'nbCardFooter',
   template: `<ng-content />`,
   host: {
     '[attr.data-slot]': '"card-footer"',

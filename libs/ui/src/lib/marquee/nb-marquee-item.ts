@@ -2,6 +2,7 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 @Component({
   selector: 'nb-marquee-item',
+  exportAs: 'nbMarqueeItem',
   host: {
     '[attr.data-nb-marquee-item]': '""',
   },

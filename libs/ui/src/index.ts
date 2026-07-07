@@ -1,39 +1,37 @@
-// Foundation
-export { provideNgBrutalism } from './lib/core/provide';
-export type { NbConfig } from './lib/core/provide';
-export { NB_THEME_CONFIG } from './lib/tokens/theme.tokens';
-export type { NbThemeConfig } from './lib/tokens/theme.tokens';
-export type { NbTone } from './lib/tokens/tone';
-
-// Shared design tokens — one vocabulary for every primitive's visual grammar.
-export type { NbRadius } from './lib/tokens/radius';
-export { nbRadiusValue } from './lib/tokens/radius';
-export type { NbShadow } from './lib/tokens/shadow';
-export { nbShadowValue } from './lib/tokens/shadow';
-export type { NbBorderStrength } from './lib/tokens/border';
-export { nbBorderWidthValue } from './lib/tokens/border';
-export type { NbSpacing } from './lib/tokens/spacing';
-export { nbSpacingValue } from './lib/tokens/spacing';
-export type { NbPadding } from './lib/tokens/padding';
-export { nbPaddingValue } from './lib/tokens/padding';
-export type { NbDivider } from './lib/tokens/divider';
+// Foundation — token types, resolvers, NbThemeConfig, and the provider also
+// live at the `@ng-brutalism/ui/tokens` entry point for consumers who want
+// them without pulling in component code. Re-exported here for compat.
+export {
+  provideNgBrutalism,
+  NB_THEME_CONFIG,
+  nbRadiusValue,
+  nbShadowValue,
+  nbBorderWidthValue,
+  nbSpacingValue,
+  nbPaddingValue,
+  nbTypographyFontValue,
+  nbUnderlineGapValue,
+  nbUnderlineWidthValue,
+} from '@ng-brutalism/ui/tokens';
 export type {
+  NbConfig,
+  NbThemeConfig,
+  NbTone,
+  NbRadius,
+  NbShadow,
+  NbBorderStrength,
+  NbSpacing,
+  NbPadding,
+  NbDivider,
   NbLayoutAlign,
   NbLayoutJustify,
   NbLayoutSeparator,
-} from './lib/tokens/layout';
-export type {
   NbFontWeight,
   NbTypographyFont,
   NbUnderlineVariant,
   NbUnderlineGap,
   NbUnderlineWidth,
-} from './lib/tokens/typography';
-export {
-  nbTypographyFontValue,
-  nbUnderlineGapValue,
-  nbUnderlineWidthValue,
-} from './lib/tokens/typography';
+} from '@ng-brutalism/ui/tokens';
 
 // Angular private internals — exported only because Angular requires classes
 // referenced by `hostDirectives` to be reachable from the package entrypoint

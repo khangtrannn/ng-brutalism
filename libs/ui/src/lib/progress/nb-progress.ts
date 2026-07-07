@@ -6,12 +6,13 @@ import {
 } from '@angular/core';
 
 import { NbToneCapability } from '../core/capabilities';
-import type { NbTone } from '../tokens/tone';
+import type { NbTone } from '@ng-brutalism/ui/tokens';
 
 export type NbProgressTone = NbTone;
 
 @Component({
   selector: 'nb-progress',
+  exportAs: 'nbProgress',
   template: `
     <div
       role="progressbar"
@@ -21,10 +22,7 @@ export type NbProgressTone = NbTone;
       [attr.aria-label]="label() || 'Progress'"
       data-slot="progress-track"
     >
-      <div
-        data-slot="progress-fill"
-        [style.width.%]="percentage()"
-      ></div>
+      <div data-slot="progress-fill" [style.width.%]="percentage()"></div>
     </div>
   `,
   hostDirectives: [{ directive: NbToneCapability, inputs: ['tone'] }],
@@ -42,7 +40,7 @@ export class NbProgress {
     Math.min(Math.max(this.value(), 0), this.max())
   );
 
-  protected readonly percentage = computed(() =>
-    (this.clampedValue() / this.max()) * 100
+  protected readonly percentage = computed(
+    () => (this.clampedValue() / this.max()) * 100
   );
 }

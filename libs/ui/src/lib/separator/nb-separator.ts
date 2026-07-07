@@ -5,6 +5,7 @@ export type NbSeparatorVariant = 'solid' | 'dashed' | 'thick';
 
 @Directive({
   selector: 'hr[nbSeparator]',
+  exportAs: 'nbSeparator',
   host: {
     '[attr.data-nb-separator]': '""',
     '[attr.data-orientation]': 'orientation()',

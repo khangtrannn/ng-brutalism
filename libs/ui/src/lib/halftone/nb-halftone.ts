@@ -18,11 +18,12 @@ const RECTANGLE_DEFAULT_COLUMNS = 13;
 
 @Component({
   selector: 'nb-halftone, [nbHalftone]',
+  exportAs: 'nbHalftone',
   template: `
     @if (shape() !== 'rectangle') {
     <svg [attr.width]="svgW()" [attr.height]="svgH()" aria-hidden="true">
       @for (dot of dots(); track $index) {
-        <circle [attr.cx]="dot.cx" [attr.cy]="dot.cy" [attr.r]="dotR()" />
+      <circle [attr.cx]="dot.cx" [attr.cy]="dot.cy" [attr.r]="dotR()" />
       }
     </svg>
     }
@@ -43,17 +44,37 @@ const RECTANGLE_DEFAULT_COLUMNS = 13;
 export class NbHalftone {
   readonly shape = input<NbHalftoneShape>(DEFAULT_SHAPE);
   readonly color = input<string | null>(null);
-  readonly size = input<number | null, unknown>(null, { transform: numberAttribute });
-  readonly gap = input<number | null, unknown>(null, { transform: numberAttribute });
-  readonly gapX = input<number | null, unknown>(null, { transform: numberAttribute });
-  readonly gapY = input<number | null, unknown>(null, { transform: numberAttribute });
-  readonly rows = input<number | null, unknown>(null, { transform: numberAttribute });
-  readonly columns = input<number | null, unknown>(null, { transform: numberAttribute });
+  readonly size = input<number | null, unknown>(null, {
+    transform: numberAttribute,
+  });
+  readonly gap = input<number | null, unknown>(null, {
+    transform: numberAttribute,
+  });
+  readonly gapX = input<number | null, unknown>(null, {
+    transform: numberAttribute,
+  });
+  readonly gapY = input<number | null, unknown>(null, {
+    transform: numberAttribute,
+  });
+  readonly rows = input<number | null, unknown>(null, {
+    transform: numberAttribute,
+  });
+  readonly columns = input<number | null, unknown>(null, {
+    transform: numberAttribute,
+  });
 
-  protected readonly resolvedSize = computed(() => this.size() ?? DEFAULT_DOT_SIZE);
-  protected readonly resolvedGap = computed(() => this.gap() ?? DEFAULT_DOT_GAP);
-  protected readonly resolvedGapXInput = computed(() => this.gapX() ?? this.gap());
-  protected readonly resolvedGapYInput = computed(() => this.gapY() ?? this.gap());
+  protected readonly resolvedSize = computed(
+    () => this.size() ?? DEFAULT_DOT_SIZE
+  );
+  protected readonly resolvedGap = computed(
+    () => this.gap() ?? DEFAULT_DOT_GAP
+  );
+  protected readonly resolvedGapXInput = computed(
+    () => this.gapX() ?? this.gap()
+  );
+  protected readonly resolvedGapYInput = computed(
+    () => this.gapY() ?? this.gap()
+  );
   protected readonly resolvedRows = computed(
     () =>
       this.rows() ??
@@ -62,7 +83,9 @@ export class NbHalftone {
   protected readonly resolvedColumns = computed(
     () =>
       this.columns() ??
-      (this.shape() === 'rectangle' ? RECTANGLE_DEFAULT_COLUMNS : DEFAULT_COLUMNS)
+      (this.shape() === 'rectangle'
+        ? RECTANGLE_DEFAULT_COLUMNS
+        : DEFAULT_COLUMNS)
   );
 
   protected readonly svgW = computed(

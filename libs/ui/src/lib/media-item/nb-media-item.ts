@@ -6,7 +6,7 @@ import {
   input,
 } from '@angular/core';
 import { NbToneCapability } from '../core/capabilities';
-import type { NbTone } from '../tokens/tone';
+import type { NbTone } from '@ng-brutalism/ui/tokens';
 
 export type NbMediaItemVariant = 'plain' | 'boxed' | 'chip';
 
@@ -21,36 +21,37 @@ export type NbMediaItemTone = NbTone;
 
 @Component({
   selector: 'nb-media-item, [nbMediaItem]',
+  exportAs: 'nbMediaItem',
   template: `
-    @if (icon()) {
-      @if (iconBackground()) {
-        <span
-          data-nb-media-item-icon
-          data-surface="true"
-          [style.--nb-media-item-icon-bg]="iconBackground()"
-        >
-          <img [src]="icon()" [alt]="iconAlt()" />
-        </span>
-      } @else {
-        <img [src]="icon()" [alt]="iconAlt()" />
-      }
+    @if (icon()) { @if (iconBackground()) {
+    <span
+      data-nb-media-item-icon
+      data-surface="true"
+      [style.--nb-media-item-icon-bg]="iconBackground()"
+    >
+      <img [src]="icon()" [alt]="iconAlt()" />
+    </span>
     } @else {
-      <ng-content select="nb-media-item-icon, [nbMediaItemIcon], [nbSurface], img, svg" />
+    <img [src]="icon()" [alt]="iconAlt()" />
+    } } @else {
+    <ng-content
+      select="nb-media-item-icon, [nbMediaItemIcon], [nbSurface], img, svg"
+    />
     }
 
     <div data-nb-media-item-content>
       @if (title()) {
-        <span data-nb-media-item-title>{{ title() }}</span>
+      <span data-nb-media-item-title>{{ title() }}</span>
       } @else {
-        <ng-content select="nb-media-item-title, [nbMediaItemTitle]" />
-      }
-      @if (description()) {
-        <span data-nb-media-item-description>{{ description() }}</span>
+      <ng-content select="nb-media-item-title, [nbMediaItemTitle]" />
+      } @if (description()) {
+      <span data-nb-media-item-description>{{ description() }}</span>
       } @else {
-        <ng-content select="nb-media-item-description, [nbMediaItemDescription]" />
-      }
-      @if (!title() && !description()) {
-        <ng-content />
+      <ng-content
+        select="nb-media-item-description, [nbMediaItemDescription]"
+      />
+      } @if (!title() && !description()) {
+      <ng-content />
       }
     </div>
 
@@ -80,6 +81,7 @@ export class NbMediaItem {
 
 @Directive({
   selector: 'nb-media-item-icon, [nbMediaItemIcon]',
+  exportAs: 'nbMediaItemIcon',
   host: {
     '[attr.data-nb-media-item-icon]': '""',
     '[attr.data-surface]': 'surface()',
@@ -87,12 +89,15 @@ export class NbMediaItem {
   },
 })
 export class NbMediaItemIcon {
-  readonly surface = input<boolean, unknown>(false, { transform: booleanAttribute });
+  readonly surface = input<boolean, unknown>(false, {
+    transform: booleanAttribute,
+  });
   readonly background = input<string>('var(--nb-surface)');
 }
 
 @Directive({
   selector: 'nb-media-item-title, [nbMediaItemTitle]',
+  exportAs: 'nbMediaItemTitle',
   host: {
     '[attr.data-nb-media-item-title]': '""',
   },
@@ -101,6 +106,7 @@ export class NbMediaItemTitle {}
 
 @Directive({
   selector: 'nb-media-item-description, [nbMediaItemDescription]',
+  exportAs: 'nbMediaItemDescription',
   host: {
     '[attr.data-nb-media-item-description]': '""',
   },

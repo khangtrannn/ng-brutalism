@@ -4,9 +4,7 @@ import { describe, expect, it } from 'vitest';
 
 import { NbCheckbox } from './nb-checkbox';
 import type { NbCheckboxSize } from './checkbox.types';
-import type { NbRadius } from '../tokens/radius';
-import type { NbTone } from '../tokens/tone';
-
+import type { NbRadius, NbTone } from '@ng-brutalism/ui/tokens';
 @Component({
   imports: [NbCheckbox],
   template: `

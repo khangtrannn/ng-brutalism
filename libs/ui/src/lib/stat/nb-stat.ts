@@ -2,6 +2,7 @@ import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 
 @Component({
   selector: 'nb-stat',
+  exportAs: 'nbStat',
   template: `
     <ng-content select="[slot=icon]" />
     <span data-slot="stat-body">

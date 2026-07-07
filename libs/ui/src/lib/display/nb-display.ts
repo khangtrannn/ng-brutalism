@@ -10,7 +10,10 @@ import {
   NbResetMarginCapability,
   NbUnderlineCapability,
 } from '../core/capabilities';
-import { type NbFontWeight, type NbUnderlineVariant } from '../tokens/typography';
+import {
+  type NbFontWeight,
+  type NbUnderlineVariant,
+} from '@ng-brutalism/ui/tokens';
 
 export type NbDisplaySize = 'sm' | 'md' | 'lg' | 'xl';
 export type NbDisplayWeight = NbFontWeight;
@@ -22,6 +25,7 @@ export type NbDisplayUnderline = NbUnderlineVariant;
 
 @Directive({
   selector: '[nbDisplay]',
+  exportAs: 'nbDisplay',
   hostDirectives: [
     // underline variant + optional gap/width overrides
     {

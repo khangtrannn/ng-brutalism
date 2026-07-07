@@ -42,8 +42,12 @@
     "@angular/core": "^21.0.0",
     "tailwindcss": "^4.0.0"
   },
+  "peerDependenciesMeta": {
+    "tailwindcss": {
+      "optional": true
+    }
+  },
   "dependencies": {
-    "@angular-devkit/schematics": "^21.0.0",
     "tslib": "^2.3.0"
   },
   "engines": {

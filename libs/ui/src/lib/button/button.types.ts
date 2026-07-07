@@ -1,7 +1,4 @@
-import type { NbRadius } from '../tokens/radius';
-import type { NbShadow } from '../tokens/shadow';
-import type { NbTone } from '../tokens/tone';
-
+import type { NbRadius, NbShadow, NbTone } from '@ng-brutalism/ui/tokens';
 export type NbButtonTone = NbTone;
 
 export type NbButtonShadow = NbShadow;

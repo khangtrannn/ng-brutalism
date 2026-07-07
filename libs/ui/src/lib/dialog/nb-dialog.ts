@@ -15,10 +15,12 @@ import {
   nbRadiusStyleTransform,
   nbShadowStyleTransform,
 } from '../core/input-transforms';
-import type { NbBorderStrength } from '../tokens/border';
-import type { NbRadius } from '../tokens/radius';
-import type { NbShadow } from '../tokens/shadow';
-import type { NbTone } from '../tokens/tone';
+import type {
+  NbBorderStrength,
+  NbRadius,
+  NbShadow,
+  NbTone,
+} from '@ng-brutalism/ui/tokens';
 import { NB_DIALOG, type NbDialogController } from './dialog.types';
 
 export type NbDialogTone = NbTone;
@@ -28,6 +30,7 @@ export type NbDialogBorder = NbBorderStrength;
 
 @Component({
   selector: 'nb-dialog',
+  exportAs: 'nbDialog',
   template: `
     <dialog
       #dialogEl

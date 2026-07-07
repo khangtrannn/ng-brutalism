@@ -5,9 +5,8 @@ import type {
   NbLayoutAlign,
   NbLayoutJustify,
   NbLayoutSeparator,
-} from '../tokens/layout';
-import type { NbSpacing } from '../tokens/spacing';
-
+  NbSpacing,
+} from '@ng-brutalism/ui/tokens';
 export type NbStackGap = NbSpacing;
 
 export type NbStackAlign = NbLayoutAlign;
@@ -18,6 +17,7 @@ export type NbStackSeparator = NbLayoutSeparator;
 
 @Directive({
   selector: '[nbStack]',
+  exportAs: 'nbStack',
   host: {
     '[attr.data-nb-stack]': '""',
     '[attr.data-align]': 'align()',

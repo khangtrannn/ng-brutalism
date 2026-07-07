@@ -35,10 +35,11 @@ const iconRadiusMap: Record<NbButtonIconShape, string> = {
 
 @Component({
   selector: '[nbButtonTrailingIcon]',
+  exportAs: 'nbButtonTrailingIcon',
   imports: [NbIcon],
   template: `
     @if (icon(); as iconSrc) {
-      <span nbIcon [src]="iconSrc" [size]="iconSize()" decorative></span>
+    <span nbIcon [src]="iconSrc" [size]="iconSize()" decorative></span>
     }
     <ng-content />
   `,

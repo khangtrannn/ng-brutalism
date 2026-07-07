@@ -4,6 +4,7 @@ import { NbAccordionItem } from './nb-accordion-item';
 
 @Component({
   selector: 'nb-accordion-content',
+  exportAs: 'nbAccordionContent',
   template: `
     <div
       [id]="item.contentId"

@@ -17,7 +17,7 @@ These supersede or refine the original §0.4 decisions. They were reached one-by
 | Q1 | **Inner field gets `bg-transparent` inside `<nb-input-group>`** so the group owns the surface. Standalone usage keeps the lib's default yellow `--nb-input-background` for no-regression. | `[nbInput]` / `[nbTextarea]` / `[nbSelect]` computed classes |
 | Q2 | **New lib token `--nb-input-addon-bg: #c4a8ff`** added to `libs/ui/src/lib/styles/theme.css`. `[nbInputPrefix]` / `[nbInputSuffix]` use `bg-(--nb-input-addon-bg)`. **No `tone` input** — every addon is purple. (YAGNI; revisit if a second variant is needed.) | `theme.css` `:root`; prefix/suffix directives |
 | Q3 | **Close `×` button color → yellow** via `style="--nb-button-bg: #ffd92e; --nb-button-fg: #000;"` matching the Send button. (Screenshot shows yellow, plan's "kept" claim was wrong.) | §1.2, §1.3 |
-| Q4 | **`select[nbSelect]` shape rules added to `styles.css :where(...)`**: extend the existing zero-specificity selectors to include `select[nbSelect]` for height/padding/font-size/background. Chevron + `appearance-none` + `pr-10` stay in the directive's `nbClass`. v1 select supports `size='default'` only. | Phase B |
+| Q4 | **`select[nbSelect]` shape rules added to `styles.css :where(...)`**: extend the existing zero-specificity selectors to include `select[nbSelect]` for height/padding/font-size/background. Chevron styling lives in CSS; host state uses direct class bindings/data attrs. v1 select supports `size='default'` only. | Phase B |
 | Q5 | **Focus ring lives on `<nb-input-group>` via `:focus-within`**, inner field's `focus-visible:ring*` suppressed when inside a group. Ensures one focus indicator around the whole unit. | Group host classes; `[nbInput]` / `[nbTextarea]` / `[nbSelect]` group branch |
 | Q6 | **Subject options**: `General Inquiry`, `Project Proposal`, `Bug Report`, `Other`. Placeholder: `What is this regarding?` (disabled, value=""). | Phase 2 |
 | Q7 | **Footer purple shield box → hand-rolled inline** (no shared primitive). Single docs site of duplication, not worth extracting. | Phase 3 |
@@ -199,7 +199,7 @@ libs/ui/src/index.ts        (modified — re-export)
    - Template: `<ng-content />`.
    - Uses `contentChildren(NB_INPUT_PREFIX)` and `contentChildren(NB_INPUT_SUFFIX)` (signal-based queries) to compute prefix/suffix presence.
    - Provides `NB_INPUT_GROUP` via `useExisting`.
-   - Host class composition with `nbClass` helper.
+   - Host styling via CSS selectors and direct class/data bindings.
 3. Create `input-group-prefix.ts` directive:
    - Selector `[nbInputPrefix]`.
    - Inputs: `align`, `tone` (per §A.2).
@@ -240,7 +240,7 @@ Build clean (`pnpm nx build ui`), lint clean (`pnpm nx lint ui`). Files shipped:
 | `libs/ui/src/lib/styles/styles.css` | **modified** — added `select[nbSelect]` to existing `:where(input[nbInput], textarea[nbTextarea], ...)` bg rule, plus new `:where(select[nbSelect])` block with height/padding/font-size **and** the chevron `background-image` data URI |
 | `libs/ui/src/index.ts` | **modified** — re-exports `NbSelect` + `NbSelectSize` |
 
-**Deviation from Q4 / §B.2 — chevron lives in `styles.css`, not in directive's `nbClass`.** Spec said chevron `bg-[url('…')]` was a directive class. Reality: encoding a multi-character SVG data URI as a Tailwind arbitrary value is unreadable and brittle. Moved the entire `background-image` declaration to the existing `:where(select[nbSelect])` rule in `styles.css` alongside the other shape rules — same zero-specificity scaffolding, much cleaner. The directive keeps `appearance-none pr-10 has-[option:disabled:checked]:text-gray-400` (`:has()` confirmed already used in the lib at `libs/ui/src/lib/card/card.ts:37`, so baseline is fine).
+**Deviation from Q4 / §B.2 — chevron lives in `styles.css`, not in directive host classes.** Spec said chevron `bg-[url('…')]` was a directive class. Reality: encoding a multi-character SVG data URI as a Tailwind arbitrary value is unreadable and brittle. Moved the entire `background-image` declaration to the existing `:where(select[nbSelect])` rule in `styles.css` alongside the other shape rules — same zero-specificity scaffolding, much cleaner. The directive keeps only select-specific host state such as `appearance-none`, right padding, and placeholder muting.
 
 When the field is inside `<nb-input-group>`, `bg-transparent` on the directive overrides only `background-color`; the chevron `background-image` still renders. Standalone: yellow `--nb-input-background` fill + chevron, both from `styles.css`.
 
@@ -273,7 +273,7 @@ libs/ui/src/lib/styles/styles.css  (modified — select shape + chevron)
 - Selector: `select[nbSelect]`.
 - **v1 supports `size='default'` only** (Q4 — no sm/lg variants until asked).
 - **Shape rules live in `styles.css`** (Q4): extend the existing `:where(input[nbInput], textarea[nbTextarea]) { background-color: ... }` to add `select[nbSelect]`, and add a parallel `:where(select[nbSelect]) { height: 2.5rem; padding: 0.5rem 0.75rem; font-size: 0.875rem; }` rule (matching `:where(input[nbInput])`). This keeps `[nbInput]` / `[nbTextarea]` / `[nbSelect]` shape parity automatic via the lib's zero-specificity scaffolding.
-- Directive host classes (in `nbClass`) — only the select-specific bits:
+- Directive host styling — only the select-specific bits:
   - `appearance-none` (strip native chevron).
   - `bg-[url('…inline-svg-chevron…')] bg-no-repeat bg-right-3 pr-10` (custom chevron via CSS background-image, matching the brutalist style — black, stroke 2).
   - `has-[option:disabled:checked]:text-gray-400` (Q11 — `:has()` muting for the disabled placeholder option, no JS, accepts ~95% browser baseline).
@@ -315,8 +315,8 @@ If/when a use case demands templated options or custom panel UI, an overlay-base
 2. Create `select.directive.ts`:
    - Selector `select[nbSelect]`, standalone.
    - Inject `NB_INPUT_GROUP` optional.
-   - Build host classes via `nbClass` + `computed()`.
-   - Inline-encoded chevron SVG as a `bg-[url(...)]` data URI in the class composition.
+   - Express host styling through CSS selectors and direct class/data bindings.
+   - Inline-encoded chevron SVG as a CSS `background-image`.
    - Optional: listen to `(change)` to toggle a `data-empty` host attribute for placeholder styling — or use `:has()` selector if browser support is acceptable for this design system (modern only; check existing usage of `:has()` in `libs/ui/src/lib/styles`).
 3. Create `select/index.ts` barrel.
 4. Add export to `libs/ui/src/index.ts`.

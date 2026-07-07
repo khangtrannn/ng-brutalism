@@ -6,9 +6,17 @@
 // regressions that unit tests can't see, since those only run against source.
 
 import { spawnSync } from 'node:child_process';
-import { mkdtempSync, mkdirSync, rmSync, readdirSync, writeFileSync } from 'node:fs';
+import {
+  mkdtempSync,
+  mkdirSync,
+  rmSync,
+  readdirSync,
+  readFileSync,
+  writeFileSync,
+} from 'node:fs';
+import { createRequire } from 'node:module';
 import { tmpdir } from 'node:os';
-import { join } from 'node:path';
+import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const repoRoot = fileURLToPath(new URL('../../', import.meta.url));
@@ -22,6 +30,7 @@ try {
   run('pnpm', ['nx', 'build', 'ui'], repoRoot);
 
   const distDir = join(repoRoot, 'dist/ui');
+  assertSchematicsAssembled(distDir);
   packOutDir = mkdtempSync(join(tmpdir(), 'ngb-pack-'));
   run('npm', ['pack', '--pack-destination', packOutDir], distDir);
 
@@ -85,6 +94,35 @@ import { NbButton } from '@ng-brutalism/ui';
 })
 export class App {}
 `
+  );
+}
+
+// Verifies the hand-rolled schematics assembly (libs/ui/project.json's build
+// target cpSync's dist/libs/schematics/src into dist/ui/schematics) actually
+// produced a working `ng add`: collection.json exists, and every schematic's
+// factory module resolves and exports a rule-factory function. A renamed file
+// in libs/schematics would otherwise ship a broken `ng add` silently.
+function assertSchematicsAssembled(distDir) {
+  const collectionPath = join(distDir, 'schematics/collection.json');
+  const collection = JSON.parse(readFileSync(collectionPath, 'utf8'));
+  const require = createRequire(import.meta.url);
+
+  for (const [name, schematic] of Object.entries(collection.schematics ?? {})) {
+    const factoryPath = require.resolve(
+      join(dirname(collectionPath), schematic.factory)
+    );
+    const factoryModule = require(factoryPath);
+    const factory = factoryModule.default ?? factoryModule;
+
+    if (typeof factory !== 'function') {
+      throw new Error(
+        `Schematic "${name}" factory at ${factoryPath} did not export a function.`
+      );
+    }
+  }
+
+  console.log(
+    `Schematics assembly verified: collection.json + factories resolve for [${Object.keys(collection.schematics ?? {}).join(', ')}].`
   );
 }
 

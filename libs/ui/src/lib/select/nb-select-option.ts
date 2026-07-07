@@ -13,6 +13,7 @@ import { NB_SELECT, type NbSelectValue } from './select.types';
 
 @Component({
   selector: 'nb-select-option',
+  exportAs: 'nbSelectOption',
   template: `
     <button
       #button
@@ -26,9 +27,7 @@ import { NB_SELECT, type NbSelectValue } from './select.types';
       (click)="select.selectOption(this)"
       (keydown)="selectOptionOnKey($event)"
     >
-      <span
-        data-slot="select-option-content"
-      >
+      <span data-slot="select-option-content">
         <ng-content />
       </span>
       @if (showIndicator()) {

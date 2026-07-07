@@ -7,7 +7,7 @@ import {
   DOCUMENT,
 } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
-import { NB_THEME_CONFIG, NbThemeConfig } from '../tokens/theme.tokens';
+import { NB_THEME_CONFIG, NbThemeConfig } from './theme.tokens';
 
 function applyThemeVars(doc: Document, config: NbThemeConfig): void {
   const root = doc.documentElement;
