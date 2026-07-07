@@ -17,7 +17,7 @@ export type NbCalloutSize = 'sm' | 'md' | 'lg' | 'xl';
 
 export type NbCalloutLayout = 'inline' | 'between' | 'center';
 
-export type NbCalloutShadow = 'none' | 'default' | 'hard';
+export type NbCalloutShadow = 'none' | 'md' | 'hard';
 
 export type NbCalloutRadius = NbRadius;
 

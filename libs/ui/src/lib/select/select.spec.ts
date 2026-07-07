@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { describe, expect, it } from 'vitest';
+import { axe } from 'vitest-axe';
 
 import { NbInputGroup } from '../input-group/nb-input-group';
 import { NbInputPrefix } from '../input-group/nb-input-group-prefix';
@@ -40,6 +41,18 @@ class SelectTest {}
   `,
 })
 class SelectWithResetOptionTest {}
+
+@Component({
+  imports: [NbSelect, NbSelectOption],
+  template: `
+    <nb-select placeholder="Pick one" disabled>
+      <nb-select-option value="worldwide" label="Worldwide">
+        Worldwide
+      </nb-select-option>
+    </nb-select>
+  `,
+})
+class DisabledSelectTest {}
 
 describe('NbSelect', () => {
   it('uses the same focus treatment as inputs and textareas', async () => {
@@ -160,6 +173,39 @@ describe('NbSelect', () => {
     expect(resetOption.getAttribute('data-selected')).toBe('');
     expect(resetOption.querySelector('svg')).toBeNull();
     expect(selectedOption.getAttribute('aria-selected')).toBe('false');
+  });
+
+  it('reflects the disabled input on the trigger and host', async () => {
+    const fixture = await createFixture(DisabledSelectTest);
+    const select = fixture.nativeElement.querySelector(
+      'nb-select'
+    ) as HTMLElement;
+    const trigger = fixture.nativeElement.querySelector(
+      'button[aria-haspopup="listbox"]'
+    ) as HTMLButtonElement;
+
+    expect(trigger.disabled).toBe(true);
+    expect(select.getAttribute('data-disabled')).toBe('');
+
+    trigger.click();
+    fixture.detectChanges();
+
+    expect(trigger.getAttribute('aria-expanded')).toBe('false');
+    expect(fixture.nativeElement.querySelector('[role="listbox"]')).toBeNull();
+  });
+
+  it('has no axe violations, closed or open', async () => {
+    const fixture = await createFixture(SelectTest);
+
+    expect(await axe(fixture.nativeElement)).toHaveNoViolations();
+
+    const trigger = fixture.nativeElement.querySelector(
+      'button[aria-haspopup="listbox"]'
+    ) as HTMLButtonElement;
+    trigger.click();
+    fixture.detectChanges();
+
+    expect(await axe(fixture.nativeElement)).toHaveNoViolations();
   });
 });
 

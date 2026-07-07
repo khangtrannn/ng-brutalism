@@ -8,6 +8,7 @@ import {
 } from '@angular/core';
 
 import { NbAccordionItem } from './nb-accordion-item';
+import { NbAccordionTrigger } from './nb-accordion-trigger';
 import {
   NB_ACCORDION,
   type NbAccordionController,
@@ -39,6 +40,9 @@ export class NbAccordion implements NbAccordionController {
   readonly value = model<NbAccordionValue>(null);
 
   readonly items = contentChildren(NbAccordionItem);
+  readonly triggers = contentChildren(NbAccordionTrigger, {
+    descendants: true,
+  });
 
   isItemOpen(value: string): boolean {
     const currentValue = this.value();
@@ -78,5 +82,38 @@ export class NbAccordion implements NbAccordionController {
         ? values.filter((itemValue) => itemValue !== value)
         : [...values, value]
     );
+  }
+
+  focusPreviousTrigger(current: NbAccordionTrigger): void {
+    this.focusRelativeTrigger(current, -1);
+  }
+
+  focusNextTrigger(current: NbAccordionTrigger): void {
+    this.focusRelativeTrigger(current, 1);
+  }
+
+  focusFirstTrigger(): void {
+    this.enabledTriggers()[0]?.focus();
+  }
+
+  focusLastTrigger(): void {
+    const triggers = this.enabledTriggers();
+    triggers[triggers.length - 1]?.focus();
+  }
+
+  private focusRelativeTrigger(
+    current: NbAccordionTrigger,
+    direction: 1 | -1
+  ): void {
+    const triggers = this.enabledTriggers();
+    const currentIndex = triggers.indexOf(current);
+    const nextIndex =
+      (currentIndex + direction + triggers.length) % triggers.length;
+
+    triggers[nextIndex]?.focus();
+  }
+
+  private enabledTriggers(): NbAccordionTrigger[] {
+    return this.triggers().filter((trigger) => !trigger.item.disabled());
   }
 }

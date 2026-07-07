@@ -23,9 +23,6 @@ export type NbIconTone =
 
 export type NbIconMode = 'mask' | 'image';
 
-// Tone is icon-specific color intent: 'current'/'default'/'muted'/'inverse'
-// have no surface (bg/fg/border) and aren't part of the shared tone recipe, so
-// they resolve here rather than through the shared --_nb-tone-* slots.
 const toneMap: Record<NbIconTone, string> = {
   current: 'currentColor',
   default: 'var(--nb-foreground)',
@@ -41,12 +38,11 @@ const toneMap: Record<NbIconTone, string> = {
 
 @Directive({
   selector: '[nbIcon]',
-  standalone: true,
   exportAs: 'nbIcon',
   host: {
     '[attr.data-nb-icon]': '""',
     '[attr.data-size]': 'size()',
-    '[attr.data-nb-tone]': 'tone() ?? null',
+    '[attr.data-icon-tone]': 'tone() ?? null',
     '[attr.data-mode]': 'mode()',
 
     '[attr.role]': 'roleValue()',
@@ -71,7 +67,6 @@ export class NbIcon {
 
   private hasWarnedAboutMissingA11y = false;
 
-  // No tone input → no inline write; CSS owns the currentColor fallback.
   protected readonly toneValue = computed(() => {
     const tone = this.tone();
     return tone ? toneMap[tone] : null;

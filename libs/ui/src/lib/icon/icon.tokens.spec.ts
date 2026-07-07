@@ -33,7 +33,7 @@ describe('NbIcon token surface', () => {
     const fixture = await createFixture();
     const icon = findIcon(fixture);
 
-    expect(icon.getAttribute('data-nb-tone')).toBeNull();
+    expect(icon.getAttribute('data-icon-tone')).toBeNull();
     expect(icon.style.getPropertyValue('--nb-icon-color')).toBe('');
     expect(icon.style.getPropertyValue('color')).toBe('');
   });
@@ -42,7 +42,7 @@ describe('NbIcon token surface', () => {
     const fixture = await createFixture({ tone: 'danger' });
     const icon = findIcon(fixture);
 
-    expect(icon.getAttribute('data-nb-tone')).toBe('danger');
+    expect(icon.getAttribute('data-icon-tone')).toBe('danger');
     expect(icon.style.getPropertyValue('--nb-icon-color')).toBe(
       'var(--nb-danger)'
     );

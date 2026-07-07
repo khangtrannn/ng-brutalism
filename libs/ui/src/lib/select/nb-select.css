@@ -62,6 +62,16 @@
     transition: all var(--nb-motion-fast);
   }
 
+  :where(nb-select[data-size='sm'] [data-slot='select-trigger']) {
+    height: 3rem;
+    padding-inline: 1rem;
+  }
+
+  :where(nb-select[data-size='lg'] [data-slot='select-trigger']) {
+    height: 4rem;
+    padding-inline: 1.5rem;
+  }
+
   :where(nb-select[data-in-group] [data-slot='select-trigger']) {
     padding-inline: 0.75rem;
   }
@@ -149,7 +159,7 @@
     outline-offset: 0;
   }
 
-  :where(nb-select-option [data-slot='select-option-button']:disabled) {
+  :where(nb-select-option [data-slot='select-option-button'][aria-disabled='true']) {
     pointer-events: none;
     opacity: 0.5;
   }

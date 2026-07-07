@@ -3,6 +3,7 @@ import {
   Component,
   ElementRef,
   PLATFORM_ID,
+  booleanAttribute,
   inject,
   input,
   output,
@@ -61,6 +62,7 @@ export class NbDialog implements NbDialogController {
   readonly border = input(null, {
     transform: nbBorderWidthStyleTransform,
   });
+  readonly dismissible = input(true, { transform: booleanAttribute });
   readonly closed = output<void>();
 
   private readonly isBrowser = isPlatformBrowser(inject(PLATFORM_ID));
@@ -80,7 +82,7 @@ export class NbDialog implements NbDialogController {
   }
 
   protected dismissOnBackdrop(event: MouseEvent): void {
-    if (event.target === this.dialogEl().nativeElement) {
+    if (this.dismissible() && event.target === this.dialogEl().nativeElement) {
       this.close();
     }
   }

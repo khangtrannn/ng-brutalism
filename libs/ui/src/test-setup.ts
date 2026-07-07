@@ -1,4 +1,5 @@
 import '@angular/compiler';
+import 'vitest-axe/extend-expect';
 
 import { NgModule, provideZonelessChangeDetection } from '@angular/core';
 import {

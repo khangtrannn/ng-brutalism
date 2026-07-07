@@ -24,6 +24,7 @@
 @import '../display/nb-display.css';
 @import '../halftone/nb-halftone.css';
 @import '../icon/nb-icon.css';
+@import '../field/nb-field.css';
 @import '../label/nb-label.css';
 @import '../marquee/nb-marquee.css';
 @import '../media-item/nb-media-item.css';

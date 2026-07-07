@@ -67,6 +67,16 @@ import { ContactUsDialog } from './examples/contact-us-dialog';
           [code]="importCode"
         />
         <docs-code-block title="Template" [code]="contactUsExampleCode" />
+        <p class="mt-5 font-medium">
+          Initial focus follows the native
+          <code class="font-mono">showModal()</code> behavior: the browser
+          focuses the first <code class="font-mono">[autofocus]</code> or
+          focusable element inside the dialog. Add
+          <code class="font-mono">autofocus</code> to whichever control should
+          receive focus first (usually the primary action or the first form
+          field) — <code class="font-mono">NbDialog</code> does not manage a
+          focus trap beyond what the native element already provides.
+        </p>
       </section>
 
       <docs-tokens component="dialog" />
@@ -102,7 +112,10 @@ import { ContactUsDialog } from './examples/contact-us-dialog';
                   <code class="font-mono">&lt;dialog&gt;</code> modal. Exposes
                   <code class="font-mono">open()</code> and
                   <code class="font-mono">close()</code> for
-                  <code class="font-mono">viewChild</code> access.
+                  <code class="font-mono">viewChild</code> access. The
+                  <code class="font-mono">dismissible</code> input (default
+                  <code class="font-mono">true</code>) controls whether
+                  clicking the backdrop closes the dialog.
                 </td>
               </tr>
               <tr class="border-b-2 border-(--nb-border)">

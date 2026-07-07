@@ -27,14 +27,10 @@ import type { NbTextTransform } from '../text';
 export type NbChipTone = NbTone;
 export type NbChipRadius = NbRadius;
 export type NbChipShadow = NbShadow;
-// Token scale mirrors the layout directives for API consistency, but values
-// stay chip-specific and asymmetric (horizontal > vertical) because a chip is
-// an inline pill, not a container — uniform container padding would make it a
-// box. Padding therefore stays primitive-local rather than using the shared
-// padding capability.
-export type NbChipPadding = 'none' | 'sm' | 'md' | 'lg' | 'xl';
 
-const chipPaddingMap: Record<NbChipPadding, string> = {
+export type NbChipSize = 'none' | 'sm' | 'md' | 'lg' | 'xl';
+
+const chipSizeMap: Record<NbChipSize, string> = {
   none: '0',
   sm: '0.125rem 0.5rem',
   md: '0.125rem 0.625rem',
@@ -42,8 +38,8 @@ const chipPaddingMap: Record<NbChipPadding, string> = {
   xl: '0.625rem 1.25rem',
 };
 
-const nbChipPaddingStyleTransform = nbTokenStyleTransform<NbChipPadding>(
-  (padding) => chipPaddingMap[padding]
+const nbChipSizeStyleTransform = nbTokenStyleTransform<NbChipSize>(
+  (size) => chipSizeMap[size]
 );
 
 @Component({
@@ -59,7 +55,7 @@ const nbChipPaddingStyleTransform = nbTokenStyleTransform<NbChipPadding>(
   `,
   host: {
     '[attr.data-nb-chip]': '""',
-    '[style.--nb-chip-padding]': 'padding()',
+    '[style.--nb-chip-padding]': 'size()',
     '[style.--nb-chip-radius]': 'radius()',
     '[style.--nb-chip-shadow]': 'shadow()',
     '[style.--nb-chip-border-width]': 'border()',
@@ -67,8 +63,8 @@ const nbChipPaddingStyleTransform = nbTokenStyleTransform<NbChipPadding>(
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NbChip {
-  readonly padding = input(null, {
-    transform: nbChipPaddingStyleTransform,
+  readonly size = input(null, {
+    transform: nbChipSizeStyleTransform,
   });
   readonly radius = input(null, {
     transform: nbRadiusStyleTransform,
@@ -80,10 +76,6 @@ export class NbChip {
     transform: nbBorderWidthStyleTransform,
   });
 
-  // Optional leading icon, given as an SVG/image URL. Rendered through nbIcon
-  // in mask mode so it tints to the chip's foreground color. For full-color
-  // or labeled icons, compose an `nbIcon` (or any element) as projected
-  // content instead — the leading slot is only used when `icon` is set.
   readonly icon = input<string>();
   readonly iconSize = input<NbIconSize>('sm');
 }

@@ -345,7 +345,7 @@ interface MediaFrameShapeDemo {
                 <td
                   class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
                 >
-                  'none' | 'default' | 'hard'
+                  'none' | 'md' | 'hard'
                 </td>
                 <td
                   class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
@@ -425,7 +425,7 @@ export default class MediaFramePage {
   <img src="/..." alt="Sharp" />
 </div>
 
-<div nbMediaFrame ratio="1/1" tone="lavender" radius="lg" shadow="default" class="w-48">
+<div nbMediaFrame ratio="1/1" tone="lavender" radius="lg" shadow="md" class="w-48">
   <img src="/..." alt="Poster" />
 </div>
 
@@ -501,7 +501,7 @@ export default class MediaFramePage {
       label: 'Poster',
       description: 'Rounded corners with a soft offset shadow',
       radius: 'lg',
-      shadow: 'default',
+      shadow: 'md',
       tone: 'lavender',
     },
     {

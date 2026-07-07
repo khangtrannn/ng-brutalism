@@ -267,12 +267,12 @@ import { DocsTokens } from '../../docs/docs-tokens';
                 <td
                   class="border-b-2 border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
                 >
-                  'none' | 'sm' | 'default' | 'hard' | 'heavy'
+                  'none' | 'sm' | 'md' | 'hard' | 'heavy'
                 </td>
                 <td
                   class="border-b-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
                 >
-                  'default'
+                  'md'
                 </td>
               </tr>
               <tr>
@@ -318,12 +318,12 @@ import { DocsTokens } from '../../docs/docs-tokens';
                 <td
                   class="border-b-2 border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
                 >
-                  'none' | 'thin' | 'default' | 'strong' | 'thick'
+                  'none' | 'thin' | 'md' | 'strong' | 'thick'
                 </td>
                 <td
                   class="border-b-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
                 >
-                  'default'
+                  'md'
                 </td>
               </tr>
               <tr>

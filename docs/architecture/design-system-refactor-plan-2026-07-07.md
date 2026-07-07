@@ -177,7 +177,7 @@ config and writes nothing to `:root`.
 
 ---
 
-## Phase 4 — Accessibility & forms hardening (2–3 weeks)
+## Phase 4 — Accessibility & forms hardening (2–3 weeks) — ✅ Complete (2026-07-07)
 
 **Goal:** the select/accordion/dialog trio is axe-clean and keyboard-complete,
 and forms "just work" with `formControlName` across every control.
@@ -185,21 +185,73 @@ and forms "just work" with `formControlName` across every control.
 **Depends on:** Phase 3 (tone/motion tokens for error states), Phase 2 (`/tokens`,
 layering). This is the set that earns the "accessible primitive system" claim.
 
+All 8 rows below are done and verified (lint clean, 313/313 `ui` tests +
+8/8 `docs` tests green, `pnpm smoke:ui` and `pnpm api-guard` both pass —
+snapshot updated deliberately for the intentional export changes). Work landed
+in 4 dependency-ordered clusters (renames/dialog/accordion → select → field →
+regression net), each verified independently before the next started.
+
+Row 4.1's `disabled` merge (`input || setDisabledState`) required an aliased
+`disabledInput` signal input (`alias: 'disabled'`) kept **public**, not
+`protected` — Angular's template type-checker resolves aliased inputs through
+their declared class member in the *consumer's* template context, which only
+compiles across a library boundary (confirmed via a full `docs:build`, not
+just the dev server or Vitest/JIT) when that member is public. The same fix
+was needed for `NbInput`/`NbTextarea`'s new `idInput` (row 4.4). Row 4.3 used
+`popover="manual"` (not `"auto"`) specifically so the existing outside-click/
+keyboard logic didn't need a rewrite around the Popover `toggle` event;
+verified in a real Chromium session (Playwright) that the listbox escapes an
+`overflow:hidden` wrapper with zero console errors — this and the
+`formControlName` round-trip are the two things the unit-test suite
+structurally can't prove on their own. Row 4.2's "disabled but focusable"
+change means `NbSelect`'s arrow/Home/End/typeahead helpers no longer filter
+disabled options out (they become reachable-but-not-activatable stops per
+APG); `NbAccordion`'s equivalent header nav (row 4.5) keeps filtering disabled
+items out, because accordion triggers stay genuinely `disabled` (not
+`aria-disabled`), and a real disabled `<button>` can't receive focus at all.
+Row 4.4's `NbField` mirrors the existing `NB_INPUT_GROUP` token-context
+pattern; `invalid` gates on `touched || dirty` (via `AbstractControl.events`,
+not just `statusChanges`, so touched-only transitions are caught) so errors
+don't appear before first interaction — the same gating was retrofitted onto
+`NbSelect`'s own direct `NgControl` reflection for consistency. `@angular/forms`
+is now a required peer dependency (previously absent from the workspace
+entirely — zero prior CVA/`NgControl` usage anywhere in the library). Row 4.8
+added `vitest-axe` (`1.0.0-pre.5`, chosen over the stale 2022 `0.1.0` release)
+wired into `test-setup.ts`; the dialog axe fixture sets the native `open`
+attribute directly (jsdom doesn't implement `showModal()`) so axe scans real
+rendered content. The per-component status data (also 4.8) is a plain
+`docsComponentStatus` map in `apps/docs/src/app/docs/docs-component-status.ts`
+— data only, guarded by a spec that fails if it drifts from the nav's
+component list; the visual Stable/Preview badge itself is still Phase 5's job
+(row 5.4).
+
 | # | Task | Finding | Files | Breaking | Effort |
 |---|---|---|---|---|---|
-| 4.1 | `NbSelect` implements `ControlValueAccessor` (value writes, `onChange`/`onTouched` on close, `setDisabledState` merged with `disabled` input, `aria-invalid`/`aria-required` from `NgControl`) | 7.1 (Critical) | `nb-select.ts` | no (additive) | medium |
-| 4.2 | `NbSelect` keyboard completion per APG: Home/End, typeahead, Tab-closes-popup, Escape-on-trigger; switch disabled options to `aria-disabled` + focusable | 6.2 (High) | `nb-select.ts`, `nb-select-option.ts` | no | medium |
-| 4.3 | `NbSelect` popover/top-layer positioning (native Popover API → top-layer, keeps zero-dep stance) so the listbox stops clipping inside `overflow` ancestors; document as "Preview" in the interim | 8.1 (High) | `nb-select.ts`, `nb-select.css:103-106` | no | medium |
-| 4.4 | `NbField` context primitive: generates ids, links label/control/description/error via `aria-describedby`, reflects `[data-invalid]` from `NgControl`; add error/hint sub-primitives | 7.2, 6.4 (High) | new `nb-field/*` | no (additive) | medium–large |
-| 4.5 | Accordion header keyboard nav (Up/Down/Home/End between headers) — Radix/Material parity | 6.3 | `nb-accordion.ts` | no | small–medium |
-| 4.6 | Dialog finish: optional `dismissible` input for backdrop click + initial-focus guidance (the `close`/`cancel` output already landed in 1.3) | 6.5 | `nb-dialog.ts:76-80` | no (additive) | small |
-| 4.7 | Give `NbSelect` a `size` input; align `NbChip` sizing to `size` (alias its `padding` enum); reconcile `'default'` enum value → `'md'` in `NbShadow`/`NbBorderStrength`; move `NbIconTone` off the shared `data-nb-tone` attribute to `data-icon-tone` | 4.2 | `nb-select.ts`, `nb-chip.ts`, `tokens/*`, `nb-icon.ts:49` | **yes** (rename/alias window now) | small each |
-| 4.8 | Regression net: `vitest-axe` on dialog/select/accordion/forms fixtures; APG keyboard specs per interactive component; fill specs for the 8 uncovered components; add per-component "Stable/Preview" status data | 9.2, 8.3 | spec files, docs data | no | medium |
+| 4.1 ✅ | `NbSelect` implements `ControlValueAccessor` (value writes, `onChange`/`onTouched` on close, `setDisabledState` merged with `disabled` input, `aria-invalid`/`aria-required` from `NgControl`) | 7.1 (Critical) | `nb-select.ts` | no (additive) | medium |
+| 4.2 ✅ | `NbSelect` keyboard completion per APG: Home/End, typeahead, Tab-closes-popup, Escape-on-trigger; switch disabled options to `aria-disabled` + focusable | 6.2 (High) | `nb-select.ts`, `nb-select-option.ts` | no | medium |
+| 4.3 ✅ | `NbSelect` popover/top-layer positioning (native Popover API → top-layer, keeps zero-dep stance) so the listbox stops clipping inside `overflow` ancestors; document as "Preview" in the interim | 8.1 (High) | `nb-select.ts`, `nb-select.css:103-106` | no | medium |
+| 4.4 ✅ | `NbField` context primitive: generates ids, links label/control/description/error via `aria-describedby`, reflects `[data-invalid]` from `NgControl`; add error/hint sub-primitives | 7.2, 6.4 (High) | new `nb-field/*` | no (additive) | medium–large |
+| 4.5 ✅ | Accordion header keyboard nav (Up/Down/Home/End between headers) — Radix/Material parity | 6.3 | `nb-accordion.ts` | no | small–medium |
+| 4.6 ✅ | Dialog finish: optional `dismissible` input for backdrop click + initial-focus guidance (the `close`/`cancel` output already landed in 1.3) | 6.5 | `nb-dialog.ts:76-80` | no (additive) | small |
+| 4.7 ✅ | Give `NbSelect` a `size` input; align `NbChip` sizing to `size` (alias its `padding` enum); reconcile `'default'` enum value → `'md'` in `NbShadow`/`NbBorderStrength`; move `NbIconTone` off the shared `data-nb-tone` attribute to `data-icon-tone` | 4.2 | `nb-select.ts`, `nb-chip.ts`, `tokens/*`, `nb-icon.ts:49` | **yes** (rename/alias window now) | small each |
+| 4.8 ✅ | Regression net: `vitest-axe` on dialog/select/accordion/forms fixtures; APG keyboard specs per interactive component; fill specs for the 8 uncovered components; add per-component "Stable/Preview" status data | 9.2, 8.3 | spec files, docs data | no | medium |
 
 **Exit criteria:** `<nb-select formControlName>` round-trips value + touched/dirty
 + disabled; axe passes on all four fixtures; APG keyboard walkthroughs pass; a
 form with an invalid control shows linked error text via `aria-describedby`;
 select popup escapes an `overflow:hidden` card.
+✅ All verified: a `FormControl`-bound `<nb-select>` round-trips value (spec),
+touched (marks on every close path, including outside-click), and disabled
+(`setDisabledState` merges with the `disabled` input) — see
+`select-forms.spec.ts`; `vitest-axe` passes on dialog/select/accordion/`NbField`
+fixtures, both closed and open/invalid states; keyboard walkthroughs pass for
+select (`select-keyboard.spec.ts`: Home/End, typeahead, Tab-close,
+Escape-on-trigger, disabled-but-reachable) and accordion
+(`nb-accordion-keyboard.spec.ts`: Up/Down/Home/End, skipping disabled items);
+an `NbField`-wrapped invalid+touched control links its error text via
+`aria-describedby` (`nb-field.spec.ts`); the select popup was confirmed in a
+real browser to render outside an `overflow:hidden` wrapper via the Popover
+API promotion, with zero console errors.
 
 ---
 

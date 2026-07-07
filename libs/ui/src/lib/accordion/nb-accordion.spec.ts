@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { describe, expect, it } from 'vitest';
+import { axe } from 'vitest-axe';
 
 import { NbAccordion } from './nb-accordion';
 import { NbAccordionContent } from './nb-accordion-content';
@@ -210,6 +211,17 @@ describe('NbAccordion', () => {
       'vertical'
     );
     expect(region.getAttribute('data-orientation')).toBe('vertical');
+  });
+
+  it('has no axe violations, closed or with an item open', async () => {
+    const fixture = await createFixture(SingleAccordionTest);
+
+    expect(await axe(fixture.nativeElement)).toHaveNoViolations();
+
+    buttons(fixture)[0].click();
+    fixture.detectChanges();
+
+    expect(await axe(fixture.nativeElement)).toHaveNoViolations();
   });
 });
 

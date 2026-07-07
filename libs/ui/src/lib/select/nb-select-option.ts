@@ -22,7 +22,7 @@ import { NB_SELECT, type NbSelectValue } from './select.types';
       [id]="id"
       [attr.aria-selected]="selected()"
       [attr.data-selected]="selected() ? '' : null"
-      [disabled]="disabled() || select.disabled()"
+      [attr.aria-disabled]="isDisabled() ? 'true' : null"
       data-slot="select-option-button"
       (click)="select.selectOption(this)"
       (keydown)="selectOptionOnKey($event)"
@@ -65,6 +65,10 @@ export class NbSelectOption {
     return this.select.isSelected(value);
   });
 
+  protected readonly isDisabled = computed(
+    () => this.disabled() || this.select.isDisabled()
+  );
+
   protected readonly showIndicator = computed(
     () => this.value() !== null && this.selected()
   );
@@ -74,21 +78,39 @@ export class NbSelectOption {
   }
 
   selectOptionOnKey(event: KeyboardEvent): void {
-    if (event.key === 'ArrowUp') {
-      event.preventDefault();
-      this.select.focusPreviousOption(this);
-      return;
+    switch (event.key) {
+      case 'ArrowUp':
+        event.preventDefault();
+        this.select.focusPreviousOption(this);
+        return;
+      case 'ArrowDown':
+        event.preventDefault();
+        this.select.focusNextOption(this);
+        return;
+      case 'Home':
+        event.preventDefault();
+        this.select.focusFirstOption();
+        return;
+      case 'End':
+        event.preventDefault();
+        this.select.focusLastOption();
+        return;
+      case 'Escape':
+        event.preventDefault();
+        this.select.closeAndFocusTrigger();
+        return;
+      case 'Tab':
+        this.select.closeOnTab();
+        return;
     }
 
-    if (event.key === 'ArrowDown') {
-      event.preventDefault();
-      this.select.focusNextOption(this);
-      return;
-    }
-
-    if (event.key === 'Escape') {
-      event.preventDefault();
-      this.select.closeAndFocusTrigger();
+    if (
+      event.key.length === 1 &&
+      !event.ctrlKey &&
+      !event.metaKey &&
+      !event.altKey
+    ) {
+      this.select.handleTypeahead(this, event.key);
     }
   }
 }

@@ -26,6 +26,7 @@
     "@angular/common": "21.2.9",
     "@angular/compiler": "21.2.9",
     "@angular/core": "21.2.9",
+    "@angular/forms": "21.2.9",
     "@angular/platform-browser": "21.2.9",
     "@angular/platform-browser-dynamic": "21.2.9",
     "@angular/platform-server": "21.2.9",
@@ -79,7 +80,8 @@
     "typescript": "5.9.3",
     "typescript-eslint": "^8.33.1",
     "vite": "7.3.3",
-    "vitest": "4.1.6"
+    "vitest": "4.1.6",
+    "vitest-axe": "1.0.0-pre.5"
   },
   "nx": {
     "includedScripts": [

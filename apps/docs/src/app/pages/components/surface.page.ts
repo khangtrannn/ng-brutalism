@@ -269,12 +269,12 @@ interface SurfaceShapeDemo {
                 <td
                   class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
                 >
-                  'none' | 'thin' | 'default' | 'strong' | 'thick'
+                  'none' | 'thin' | 'md' | 'strong' | 'thick'
                 </td>
                 <td
                   class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
                 >
-                  'default'
+                  'md'
                 </td>
                 <td class="px-4 py-3">Border width preset.</td>
               </tr>
@@ -287,12 +287,12 @@ interface SurfaceShapeDemo {
                 <td
                   class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
                 >
-                  'none' | 'sm' | 'default' | 'hard' | 'heavy'
+                  'none' | 'sm' | 'md' | 'hard' | 'heavy'
                 </td>
                 <td
                   class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
                 >
-                  'default'
+                  'md'
                 </td>
                 <td class="px-4 py-3">Offset shadow preset.</td>
               </tr>
@@ -464,7 +464,7 @@ export default class SurfacePage {
 <div nbSurface tone="success">Success surface</div>`;
 
   protected readonly shapeExampleCode = `<div nbSurface radius="sm" border="thin" shadow="sm">Compact</div>
-<div nbSurface tone="pink" radius="lg" border="default" shadow="hard">Poster</div>
+<div nbSurface tone="pink" radius="lg" border="md" shadow="hard">Poster</div>
 <div nbSurface tone="mint" radius="xl" border="thick" shadow="heavy">Feature</div>`;
 
   protected readonly clipExampleCode = `<article nbSurface radius="xl" clip class="relative">
@@ -534,7 +534,7 @@ export default class SurfacePage {
       label: 'Poster',
       tone: 'pink',
       radius: 'lg',
-      border: 'default',
+      border: 'md',
       shadow: 'hard',
     },
     {

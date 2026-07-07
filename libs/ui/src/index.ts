@@ -87,6 +87,8 @@ export type {
 export { NbMarquee, NbMarqueeItem } from './lib/marquee';
 export { NbInput } from './lib/input';
 export { NbLabel } from './lib/label';
+export { NbField, NbFieldDescription, NbFieldError } from './lib/field';
+export type { NbFieldContext } from './lib/field';
 export { NbTitle } from './lib/title';
 export { NbDisplay } from './lib/display';
 export type {
@@ -108,7 +110,7 @@ export type { NbTextareaSize } from './lib/textarea';
 export { NbInputGroup, NbInputPrefix, NbInputSuffix } from './lib/input-group';
 export type { NbInputPrefixAlign, NbInputSuffixAlign } from './lib/input-group';
 export { NbNativeSelect, NbSelect, NbSelectOption } from './lib/select';
-export type { NbSelectValue } from './lib/select';
+export type { NbSelectSize, NbSelectValue } from './lib/select';
 export { NbBadge } from './lib/badge';
 export type {
   NbBadgeBorder,
@@ -147,7 +149,7 @@ export type { NbStatusDotState } from './lib/status-dot';
 export { NbChip, NbChipGroup } from './lib/chip';
 export type {
   NbChipTone,
-  NbChipPadding,
+  NbChipSize,
   NbChipGroupAlign,
   NbChipGroupDirection,
 } from './lib/chip';

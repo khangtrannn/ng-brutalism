@@ -217,7 +217,7 @@ interface CalloutShadowDemo {
               </tr>
               <tr class="border-b-2 border-(--nb-border)">
                 <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">shadow</td>
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">'none' | 'default' | 'hard'</td>
+                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">'none' | 'md' | 'hard'</td>
                 <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">'hard'</td>
                 <td class="px-4 py-3">Offset shadow preset.</td>
               </tr>
@@ -281,7 +281,7 @@ export default class CalloutPage {
 </div>`;
 
   protected readonly shadowsExampleCode = `<div nbCallout shadow="none">None</div>
-<div nbCallout shadow="default">Default</div>
+<div nbCallout shadow="md">Md</div>
 <div nbCallout shadow="hard">Hard</div>`;
 
   protected readonly tones = [
@@ -316,7 +316,7 @@ export default class CalloutPage {
 
   protected readonly shadows = [
     { value: 'none', label: 'None' },
-    { value: 'default', label: 'Default' },
+    { value: 'md', label: 'Md' },
     { value: 'hard', label: 'Hard' },
   ] satisfies readonly CalloutShadowDemo[];
 }

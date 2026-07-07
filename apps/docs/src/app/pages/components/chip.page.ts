@@ -138,7 +138,7 @@ import { DocsSourceTile } from '../../docs/docs-source-tile';
                 <td class="px-4 py-3">Background color tone.</td>
               </tr>
               <tr>
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">padding</td>
+                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">size</td>
                 <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">'none' | 'sm' | 'md' | 'lg' | 'xl'</td>
                 <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">'md'</td>
                 <td class="px-4 py-3">Inner padding scale.</td>
@@ -151,7 +151,7 @@ import { DocsSourceTile } from '../../docs/docs-source-tile';
               </tr>
               <tr>
                 <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">shadow</td>
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">'none' | 'sm' | 'default' | 'hard'</td>
+                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">'none' | 'sm' | 'md' | 'hard'</td>
                 <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">'sm'</td>
                 <td class="px-4 py-3">Drop shadow scale.</td>
               </tr>

@@ -27,7 +27,7 @@ class DefaultCalloutTest {}
       size="xl"
       layout="between"
       radius="md"
-      shadow="default"
+      shadow="md"
       border="thick"
     >
       <span>$420K</span>

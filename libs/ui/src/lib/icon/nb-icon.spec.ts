@@ -62,7 +62,7 @@ describe('NbIcon', () => {
     expect(icon.getAttribute('aria-hidden')).toBe('true');
     expect(icon.getAttribute('role')).toBeNull();
     expect(icon.getAttribute('aria-label')).toBeNull();
-    expect(icon.getAttribute('data-nb-tone')).toBeNull();
+    expect(icon.getAttribute('data-icon-tone')).toBeNull();
     expect(icon.getAttribute('data-tone')).toBeNull();
   });
 
@@ -99,7 +99,7 @@ describe('NbIcon', () => {
     const fixture = await createFixture(ToneIconTest);
     const icon = findIcon(fixture);
 
-    expect(icon.getAttribute('data-nb-tone')).toBe('danger');
+    expect(icon.getAttribute('data-icon-tone')).toBe('danger');
     expect(icon.getAttribute('data-tone')).toBeNull();
     expect(icon.style.getPropertyValue('--nb-icon-color')).toBeTruthy();
   });

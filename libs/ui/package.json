@@ -40,6 +40,7 @@
   "peerDependencies": {
     "@angular/common": "^21.0.0",
     "@angular/core": "^21.0.0",
+    "@angular/forms": "^21.0.0",
     "tailwindcss": "^4.0.0"
   },
   "peerDependenciesMeta": {
@@ -136,6 +137,10 @@
     "./display.css": {
       "style": "./display/nb-display.css",
       "default": "./display/nb-display.css"
+    },
+    "./field.css": {
+      "style": "./field/nb-field.css",
+      "default": "./field/nb-field.css"
     },
     "./halftone.css": {
       "style": "./halftone/nb-halftone.css",

@@ -1,7 +1,7 @@
 export { NbChip, NbChipGroup } from './nb-chip';
 export type {
   NbChipTone,
-  NbChipPadding,
+  NbChipSize,
   NbChipRadius,
   NbChipShadow,
   NbChipGroupAlign,

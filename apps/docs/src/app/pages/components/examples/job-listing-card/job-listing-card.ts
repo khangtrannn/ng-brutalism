@@ -94,7 +94,7 @@ import {
                   nbSurface
                   layout="center"
                   border="strong"
-                  shadow="default"
+                  shadow="md"
                   radius="lg"
                   class="shrink-0"
                   style="
@@ -160,27 +160,27 @@ import {
                 --nb-chip-icon-size: 1.1rem;
               "
             >
-              <span nbChip tone="mint" padding="lg">
+              <span nbChip tone="mint" size="lg">
                 <docs-job-card-remote-icon />
                 Remote
               </span>
 
-              <span nbChip tone="lavender" padding="lg">
+              <span nbChip tone="lavender" size="lg">
                 <docs-job-card-briefcase-icon />
                 Full-time
               </span>
 
-              <span nbChip tone="yellow" padding="lg">
+              <span nbChip tone="yellow" size="lg">
                 <docs-job-card-salary-icon />
                 Negotiable
               </span>
 
-              <span nbChip tone="blue" padding="lg">
+              <span nbChip tone="blue" size="lg">
                 <docs-job-card-experience-icon />
                 5+ years
               </span>
 
-              <span nbChip tone="pink" padding="lg">
+              <span nbChip tone="pink" size="lg">
                 <docs-job-card-urgent-icon />
                 Urgent
               </span>
@@ -200,7 +200,7 @@ import {
               nbSurface
               tone="yellow"
               border="strong"
-              shadow="default"
+              shadow="md"
               radius="xl"
               padding="lg"
               style="--nb-surface-bg: #fff3c4"

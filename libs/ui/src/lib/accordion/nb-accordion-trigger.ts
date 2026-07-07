@@ -1,7 +1,14 @@
-import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  ElementRef,
+  inject,
+  viewChild,
+} from '@angular/core';
 
 import { NbToneCapability } from '../core/capabilities';
 import { NbAccordionItem } from './nb-accordion-item';
+import { NB_ACCORDION } from './accordion.types';
 
 @Component({
   selector: 'nb-accordion-trigger',
@@ -9,6 +16,7 @@ import { NbAccordionItem } from './nb-accordion-item';
   template: `
     <h3 data-slot="accordion-trigger-heading">
       <button
+        #button
         type="button"
         data-slot="accordion-trigger-button"
         [id]="item.triggerId"
@@ -17,6 +25,7 @@ import { NbAccordionItem } from './nb-accordion-item';
         [attr.data-state]="item.open() ? 'open' : 'closed'"
         [disabled]="item.disabled()"
         (click)="item.toggle()"
+        (keydown)="onKeydown($event)"
       >
         <ng-content />
         <svg
@@ -36,5 +45,33 @@ import { NbAccordionItem } from './nb-accordion-item';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NbAccordionTrigger {
-  protected readonly item = inject(NbAccordionItem);
+  readonly item = inject(NbAccordionItem);
+  private readonly accordion = inject(NB_ACCORDION);
+  private readonly button =
+    viewChild.required<ElementRef<HTMLButtonElement>>('button');
+
+  focus(): void {
+    this.button().nativeElement.focus();
+  }
+
+  protected onKeydown(event: KeyboardEvent): void {
+    switch (event.key) {
+      case 'ArrowUp':
+        event.preventDefault();
+        this.accordion.focusPreviousTrigger(this);
+        break;
+      case 'ArrowDown':
+        event.preventDefault();
+        this.accordion.focusNextTrigger(this);
+        break;
+      case 'Home':
+        event.preventDefault();
+        this.accordion.focusFirstTrigger();
+        break;
+      case 'End':
+        event.preventDefault();
+        this.accordion.focusLastTrigger();
+        break;
+    }
+  }
 }
