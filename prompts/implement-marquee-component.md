@@ -10,7 +10,7 @@ Implement a `NbMarquee` (Marquee) component for the `@ng-neo-brutalism/ui` libra
 
 - **Package manager**: pnpm
 - **Framework**: Angular (standalone components, signals API, `ChangeDetectionStrategy.OnPush`)
-- **Styling**: Tailwind CSS v4, plus `nbClass()` utility (`libs/ui/src/lib/core/class.ts`) which wraps `clsx` + `tailwind-merge`
+- **Styling**: Tailwind CSS v4 utilities and component-scoped CSS
 - **Selector prefix**: `neo-` (e.g. `neo-accordion`, `neo-button`)
 - **Class name prefix**: `Nb` (e.g. `NbAccordionComponent`, `NbButton`)
 - **Component lib root**: `libs/ui/src/lib/` — each component in its own subfolder
@@ -105,7 +105,6 @@ import {
   input,
 } from '@angular/core';
 
-import { nbClass } from '../core/class';
 import { NbMarqueeItemComponent } from './marquee-item';
 
 @Component({
@@ -113,15 +112,25 @@ import { NbMarqueeItemComponent } from './marquee-item';
   standalone: true,
   imports: [NgTemplateOutlet],
   template: `
-    <div [class]="wrapperClass()" [style]="wrapperStyle()">
-      <div [class]="strip1Class()">
+    <div
+      class="nb-marquee-wrapper relative flex w-full overflow-x-hidden border-t-2 border-b-2 border-(--nb-border) bg-(--nb-secondary-background) text-(--nb-foreground) font-base"
+      [class.nb-pause-on-hover]="pauseOnHover()"
+      [style]="wrapperStyle()"
+    >
+      <div
+        class="nb-marquee-strip-1 whitespace-nowrap py-12"
+        [class.nb-marquee-reverse]="reverse()"
+      >
         @for (item of items(); track $index) {
           <span class="mx-4 text-4xl whitespace-nowrap">
             <ng-container [ngTemplateOutlet]="item.tpl()" />
           </span>
         }
       </div>
-      <div [class]="strip2Class()">
+      <div
+        class="nb-marquee-strip-2 absolute top-0 left-0 whitespace-nowrap py-12"
+        [class.nb-marquee-reverse]="reverse()"
+      >
         @for (item of items(); track $index) {
           <span class="mx-4 text-4xl whitespace-nowrap">
             <ng-container [ngTemplateOutlet]="item.tpl()" />
@@ -184,32 +193,9 @@ export class NbMarquee {
 
   protected readonly items = contentChildren(NbMarqueeItemComponent);
 
-  protected readonly wrapperClass = computed(() =>
-    nbClass(
-      'nb-marquee-wrapper relative flex w-full overflow-x-hidden',
-      'border-t-2 border-b-2 border-(--nb-border)',
-      'bg-(--nb-secondary-background) text-(--nb-foreground) font-base',
-      this.pauseOnHover() && 'nb-pause-on-hover'
-    )
-  );
-
   protected readonly wrapperStyle = computed(() => ({
     '--nb-marquee-duration': this.duration(),
   }));
-
-  protected readonly strip1Class = computed(() =>
-    nbClass(
-      'nb-marquee-strip-1 whitespace-nowrap py-12',
-      this.reverse() && 'nb-marquee-reverse'
-    )
-  );
-
-  protected readonly strip2Class = computed(() =>
-    nbClass(
-      'nb-marquee-strip-2 absolute top-0 left-0 whitespace-nowrap py-12',
-      this.reverse() && 'nb-marquee-reverse'
-    )
-  );
 }
 ```
 

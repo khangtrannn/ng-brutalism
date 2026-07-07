@@ -7,8 +7,6 @@
 
 @layer base, components;
 
-@source '../fesm2022/ng-brutalism-ui.mjs';
-
 *,
 *::before,
 *::after {
@@ -37,8 +35,4 @@ body {
 .nb-focus-visible:focus-visible {
   outline: var(--nb-focus-ring);
   outline-offset: var(--nb-focus-ring-offset);
-}
-
-.focus-visible\:outline-\[var\(--nb-focus-ring\)\]:focus-visible {
-  outline: var(--nb-focus-ring);
 }

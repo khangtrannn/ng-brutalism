@@ -78,6 +78,7 @@ export class NbChip {
   readonly border = input(null, {
     transform: nbBorderWidthStyleTransform,
   });
+
   // Optional leading icon, given as an SVG/image URL. Rendered through nbIcon
   // in mask mode so it tints to the chip's foreground color. For full-color
   // or labeled icons, compose an `nbIcon` (or any element) as projected
@@ -90,13 +91,6 @@ export type NbChipGroupDirection = 'horizontal' | 'vertical';
 export type NbChipGroupAlign = 'start' | 'center' | 'end' | 'stretch';
 export type NbChipGroupGap = NbSpacing;
 
-/**
- * Layout + shared style context for a set of chips. Owns the row/column layout
- * (direction, gap, align) and broadcasts chip-level styling — radius, shadow,
- * text transform, tracking — to every child `nbChip` through CSS variables and
- * inherited text properties, so chips don't repeat the same inputs. Individual
- * `nbChip` inputs still override the group (explicit input beats context token).
- */
 @Directive({
   selector: '[nbChipGroup]',
   host: {

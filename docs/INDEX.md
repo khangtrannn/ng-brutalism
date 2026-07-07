@@ -59,6 +59,8 @@ Agent session protocol:
 | `docs/architecture/token-customization.md` | Current CSS-first token customization architecture — rationale, rules, and accepted direction | Yes |
 | `docs/architecture/customization-flexibility-plan.md` | Radix-inspired customization extensions — 4 proposed tracks (tones registry, asChild, controlled/uncontrolled, a11y capabilities) | Yes |
 | `docs/architecture/v0.3-refactor-plan.md` | v0.3 decisions — capability gap (Track 1), Tabs primitive model, Signal Forms demo strategy, interactive component seam | Yes |
+| `docs/architecture/design-system-audit-2026-07-06.md` | Full design-system audit vs mature libraries — severity-ranked findings, token/API/a11y/testing recommendations, phased roadmap | No |
+| `docs/architecture/design-system-refactor-plan-2026-07-07.md` | Executable 6-phase refactor plan derived from the audit — per-phase goal, ordered tasks (finding→files→breaking→effort), exit criteria, open decisions | Yes |
 | `docs/components/contact-dialog/PLAN.md` | Contact dialog redesign — status + design decisions | Yes |
 | `docs/adr/0001-dialog-native-element.md` | ADR: why native `<dialog>` over overlay approach | No |
 | `CONTEXT.md` (root) | Project glossary — `Nb` prefix, v0.x contract, CSS transform patterns | Yes |

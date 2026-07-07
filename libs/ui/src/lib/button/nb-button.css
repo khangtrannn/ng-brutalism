@@ -87,6 +87,7 @@
   :where([nbButtonTrailingIcon]) {
     background: var(--nb-button-trailing-icon-bg, transparent);
     color: var(--nb-button-trailing-icon-color, currentColor);
+    border-radius: var(--nb-button-trailing-icon-radius, inherit);
   }
 
   :where([nbButtonTrailingIcon][data-tone='default']) {
@@ -118,5 +119,7 @@
     align-items: center;
     justify-content: center;
     flex-shrink: 0;
+    width: var(--nb-button-trailing-icon-size);
+    height: var(--nb-button-trailing-icon-size);
   }
 }

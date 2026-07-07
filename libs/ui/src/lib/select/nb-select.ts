@@ -16,6 +16,7 @@ import {
   nbRadiusStyleTransform,
   nbShadowStyleTransform,
 } from '../core/input-transforms';
+import { NbIdGenerator } from '../core/id-generator';
 import type { NbTone } from '../tokens/tone';
 import { NB_INPUT_GROUP } from '../input-group/input-group.types';
 import { NbSelectOption } from './nb-select-option';
@@ -24,8 +25,6 @@ import {
   type NbSelectController,
   type NbSelectValue,
 } from './select.types';
-
-let nextSelectId = 0;
 
 @Component({
   selector: 'nb-select',
@@ -88,6 +87,7 @@ let nextSelectId = 0;
 export class NbSelect implements NbSelectController {
   private readonly element = inject<ElementRef<HTMLElement>>(ElementRef);
   private readonly group = inject(NB_INPUT_GROUP, { optional: true });
+  private readonly idGenerator = inject(NbIdGenerator);
   protected readonly isInGroup = this.group !== null;
 
   readonly tone = input<NbTone | undefined>(undefined);
@@ -117,9 +117,9 @@ export class NbSelect implements NbSelectController {
 
   readonly open = model<boolean>(false);
 
-  readonly id = nextSelectId++;
-  readonly triggerId = `neo-select-trigger-${this.id}`;
-  readonly listboxId = `neo-select-listbox-${this.id}`;
+  readonly id = this.idGenerator.next();
+  readonly triggerId = `nb-select-trigger-${this.id}`;
+  readonly listboxId = `nb-select-listbox-${this.id}`;
 
   protected readonly selectedOption = computed(() =>
     this.options().find((option) => option.value() === this.value())

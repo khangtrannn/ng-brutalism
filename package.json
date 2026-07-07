@@ -13,6 +13,7 @@
     "e2e:docs": "nx e2e docs",
     "serve:docs": "nx serve docs",
     "sync:repo-metadata": "node scripts/sync-repository-metadata.mjs",
+    "smoke:ui": "node tools/package-smoke/run.mjs",
     "test": "nx affected --target=test",
     "lint": "nx affected --target=lint"
   },
@@ -28,11 +29,9 @@
     "@angular/platform-server": "21.2.9",
     "@angular/router": "21.2.9",
     "@angular/ssr": "21.2.9",
-    "clsx": "^2.1.1",
     "ol": "^10.9.0",
     "rxjs": "~7.8.0",
     "shiki": "^1.29.2",
-    "tailwind-merge": "^3.5.0",
     "tslib": "^2.3.0"
   },
   "devDependencies": {

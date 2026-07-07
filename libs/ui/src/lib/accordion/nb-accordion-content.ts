@@ -13,6 +13,7 @@ import { NbAccordionItem } from './nb-accordion-item';
       [attr.data-state]="item.open() ? 'open' : 'closed'"
       data-orientation="vertical"
       [attr.aria-hidden]="!item.open()"
+      [inert]="!item.open()"
     >
       <div data-slot="accordion-content-inner">
         <ng-content />

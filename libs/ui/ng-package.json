@@ -5,9 +5,7 @@
     { "glob": "**/*.css", "input": "src/lib", "output": "./" }
   ],
   "allowedNonPeerDependencies": [
-    "@angular-devkit/schematics",
-    "clsx",
-    "tailwind-merge"
+    "@angular-devkit/schematics"
   ],
   "lib": {
     "entryFile": "src/index.ts"

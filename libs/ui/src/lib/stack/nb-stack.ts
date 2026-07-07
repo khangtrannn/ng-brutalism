@@ -35,9 +35,6 @@ export class NbStack {
     transform: nbGapStyleTransform,
   });
 
-  // Component-local anatomy var: the separator's top padding stands in for the
-  // flex gap, so the border sits mid-gap. It mirrors an explicit gap input when
-  // present; CSS owns the public hook fallback chain when it is absent.
   protected readonly separatorGapStyle = computed(() =>
     this.separator() === 'none' ? null : this.gap()
   );

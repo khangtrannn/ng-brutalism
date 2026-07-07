@@ -96,3 +96,9 @@
     transform: translateX(0%);
   }
 }
+
+@media (prefers-reduced-motion: reduce) {
+  :where(nb-marquee [data-slot='marquee-strip']) {
+    animation-play-state: paused;
+  }
+}

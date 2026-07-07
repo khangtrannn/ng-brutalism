@@ -63,3 +63,7 @@
 dialog[data-nb-dialog]::backdrop {
   background: rgba(0, 0, 0, 0.45);
 }
+
+body:has(dialog[data-nb-dialog][open]) {
+  overflow: hidden;
+}

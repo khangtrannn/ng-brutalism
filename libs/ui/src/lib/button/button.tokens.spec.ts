@@ -96,6 +96,19 @@ class TrailingIconDefaultTest {}
 })
 class TrailingIconPushEndTest {}
 
+@Component({
+  imports: [NbButton, NbButtonTrailingIcon],
+  template: `
+    <button nbButton>
+      Continue
+      <span nbButtonTrailingIcon shape="square" tone="inverse" size="lg">
+        Icon
+      </span>
+    </button>
+  `,
+})
+class TrailingIconTokenTest {}
+
 describe('NbButton token surface', () => {
   it('reads its scoped tokens instead of global tokens directly', async () => {
     const fixture = await createFixture();
@@ -292,6 +305,15 @@ describe('NbButton token surface', () => {
     expect(icon.className).toBe('');
     expect(icon.getAttribute('data-push')).toBe('none');
     expect(icon.getAttribute('data-size')).toBe('md');
+    expect(icon.style.getPropertyValue('width')).toBe('');
+    expect(icon.style.getPropertyValue('height')).toBe('');
+    expect(icon.style.getPropertyValue('border-radius')).toBe('');
+    expect(icon.style.getPropertyValue('--nb-button-trailing-icon-size')).toBe(
+      '2rem'
+    );
+    expect(icon.style.getPropertyValue('--nb-button-trailing-icon-radius')).toBe(
+      ''
+    );
   });
 
   it('pushes trailing icons to the end when requested', async () => {
@@ -306,6 +328,32 @@ describe('NbButton token surface', () => {
 
     expect(icon.className).toBe('');
     expect(icon.getAttribute('data-push')).toBe('end');
+  });
+
+  it('writes trailing icon scalar inputs to public CSS variables', async () => {
+    await TestBed.configureTestingModule({
+      imports: [TrailingIconTokenTest],
+    }).compileComponents();
+    const fixture = TestBed.createComponent(TrailingIconTokenTest);
+    fixture.detectChanges();
+    const icon = fixture.nativeElement.querySelector(
+      '[nbButtonTrailingIcon]'
+    ) as HTMLElement;
+
+    expect(icon.getAttribute('data-size')).toBe('lg');
+    expect(icon.getAttribute('data-shape')).toBe('square');
+    expect(icon.getAttribute('data-tone')).toBe('inverse');
+    expect(icon.style.getPropertyValue('width')).toBe('');
+    expect(icon.style.getPropertyValue('height')).toBe('');
+    expect(icon.style.getPropertyValue('border-radius')).toBe('');
+    expect(icon.style.getPropertyValue('background')).toBe('');
+    expect(icon.style.getPropertyValue('color')).toBe('');
+    expect(icon.style.getPropertyValue('--nb-button-trailing-icon-size')).toBe(
+      '2.5rem'
+    );
+    expect(icon.style.getPropertyValue('--nb-button-trailing-icon-radius')).toBe(
+      'var(--nb-radius-sm, 0.25rem)'
+    );
   });
 
   it('does not regress the default button anatomy data attributes', async () => {

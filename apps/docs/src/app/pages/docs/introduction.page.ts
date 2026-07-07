@@ -287,21 +287,6 @@ import { DocsCodeBlock } from '../../docs/docs-code-block';
           </a>
         </div>
       </section>
-
-      <section id="utilities">
-        <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">
-          Utility included
-        </h2>
-        <p class="mb-5 text-base font-medium">
-          <code class="font-mono text-sm">nbClass</code> is exported from
-          <code class="font-mono text-sm">&#64;ng-brutalism/ui</code> and merges
-          conditional class arrays with
-          <code class="font-mono text-sm">clsx</code> plus
-          <code class="font-mono text-sm">tailwind-merge</code>. Use it in your
-          own components when you want the same conditional styling ergonomics
-          the library uses internally.
-        </p>
-      </section>
     </article>
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,

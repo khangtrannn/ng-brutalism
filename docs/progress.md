@@ -23,11 +23,11 @@ For history and details, read the domain's own `progress.md`.
 ---
 
 ## Components
-**Status:** CSS-first token customization architecture complete and hardened (Phases 0–8). Design-props coverage shipped: 9 additive inputs close every verified input↔var symmetry gap; Radix-grade philosophy doc live.
-**Last action:** Architecture-audit fixes (uncommitted): token scales now declared in `theme.css` (`--nb-radius-*`, `--nb-space-*`, `--nb-padding-*`, `--nb-border-width-*`) and resolvers emit `var()` refs; scalar shadow stops (sm/hard/heavy) derive from the offset knobs so reduced-motion + scoped theming reach them; fixed dead callout `border` input (size rules now consume `--nb-callout-border-width`) + cascade guard spec.
-**Next:** Fix 3 stale pre-migration specs (accordion trigger tone; 2 jsdom computed-style precedence tests asserting inline final styles / `--nb-accent-parts`) and unused `input` import in `nb-accordion-trigger.ts` (lint error). Then rerun release-readiness checks.
-**Goal:** ✅ Hardening completed (Phases 0–8). ✅ Design-props coverage completed — full input↔CSS-var symmetry + legible philosophy page.
-→ Arch: `docs/architecture/token-customization.md` · Design props: `docs/components/design-props.md` · History: `docs/_archive/token-customization-hardening.md`, `docs/_archive/design-props-plan.md`
+**Status:** Design-system audit (2026-07-06) + refactor plan (2026-07-07) landed. Refactor Phase 1 (release blockers) complete: lint/test debt cleared, Critical a11y bug fixed, CI package-smoke added.
+**Last action:** Phase 1 shipped (uncommitted): accordion closed-panel content is now `[inert]` (was focusable despite `aria-hidden`); dialog got scroll-lock CSS + a `closed` output for Esc/backdrop state sync; marquee pauses under `prefers-reduced-motion`; `neo-select-*`/`neo-option-*` ids renamed to `nb-*` via a new injectable `NbIdGenerator` (SSR-hydration-safe); removed dead `@source`/escaped Tailwind class from `base.css`; `engines` now allows Node 24; new `pnpm smoke:ui` + CI job builds→packs→`ng add`s→`ng build`s the real artifact. 3 pre-migration-stale specs fixed to match current CSS-first architecture (not reverted to old behavior).
+**Next:** Phase 2 (architecture/packaging cleanup — Tailwind optional peer, `body` into `@layer base`, select outside-click gating, `/tokens`+`/class` entry points, API guard). Note: `nbClass`/`class.ts` and its `clsx`+`tailwind-merge` deps were removed from the tree concurrently with this session's work — verify that's an intentional supersede of the refactor plan's 2.4/10.2 `/class`-entry-point recommendation, and update stale "nbClass" prose in `apps/docs` introduction/installation pages if so.
+**Goal:** ✅ Hardening completed (Phases 0–8). ✅ Design-props coverage completed. ✅ Refactor Phase 1 (release blockers) complete.
+→ Arch: `docs/architecture/token-customization.md` · Design props: `docs/components/design-props.md` · Audit: `docs/architecture/design-system-audit-2026-07-06.md` · Refactor plan: `docs/architecture/design-system-refactor-plan-2026-07-07.md` · History: `docs/_archive/token-customization-hardening.md`, `docs/_archive/design-props-plan.md`
 
 ---
 

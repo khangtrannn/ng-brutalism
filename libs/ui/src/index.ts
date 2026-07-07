@@ -1,5 +1,4 @@
 // Foundation
-export { nbClass } from './lib/core/class';
 export { provideNgBrutalism } from './lib/core/provide';
 export type { NbConfig } from './lib/core/provide';
 export { NB_THEME_CONFIG } from './lib/tokens/theme.tokens';
@@ -56,7 +55,7 @@ export {
   NbAccordionTrigger,
 } from './lib/accordion';
 export type { NbAccordionType, NbAccordionValue } from './lib/accordion';
-export { NbButton } from './lib/button';
+export { NbButton, NbButtonTrailingIcon } from './lib/button';
 export type {
   NbButtonIconPush,
   NbButtonIconShape,
@@ -160,7 +159,6 @@ export type {
 } from './lib/chip';
 export { NbIconButton } from './lib/icon-button';
 export type { NbIconButtonShape, NbIconButtonSize } from './lib/icon-button';
-export { NbButtonTrailingIcon } from './lib/button/nb-button-trailing-icon';
 export { NbProgress } from './lib/progress';
 export { NbAvatarGroup } from './lib/avatar-group';
 export { NbSticker, NbStickerFace } from './lib/sticker';

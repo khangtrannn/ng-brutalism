@@ -8,9 +8,8 @@ import {
   input,
 } from '@angular/core';
 
+import { NbIdGenerator } from '../core/id-generator';
 import { NB_SELECT, type NbSelectValue } from './select.types';
-
-let nextSelectOptionId = 0;
 
 @Component({
   selector: 'nb-select-option',
@@ -50,10 +49,11 @@ let nextSelectOptionId = 0;
 })
 export class NbSelectOption {
   private readonly element = inject<ElementRef<HTMLElement>>(ElementRef);
+  private readonly idGenerator = inject(NbIdGenerator);
 
   protected readonly select = inject(NB_SELECT);
 
-  readonly id = `neo-select-option-${nextSelectOptionId++}`;
+  readonly id = `nb-select-option-${this.idGenerator.next()}`;
   readonly value = input<NbSelectValue | null>(null);
   readonly label = input<string>('');
   readonly disabled = input<boolean, unknown>(false, {

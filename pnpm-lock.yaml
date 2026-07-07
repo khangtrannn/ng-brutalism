@@ -38,9 +38,6 @@ importers:
       '@angular/ssr':
         specifier: 21.2.9
         version: 21.2.9(j3ugs4bmxdpedfa3ju7k7pikq4)
-      clsx:
-        specifier: ^2.1.1
-        version: 2.1.1
       ol:
         specifier: ^10.9.0
         version: 10.9.0
@@ -50,9 +47,6 @@ importers:
       shiki:
         specifier: ^1.29.2
         version: 1.29.2
-      tailwind-merge:
-        specifier: ^3.5.0
-        version: 3.5.0
       tslib:
         specifier: ^2.3.0
         version: 2.8.1
@@ -206,12 +200,6 @@ importers:
       '@angular/core':
         specifier: ^21.0.0
         version: 21.2.9(@angular/compiler@21.2.9)(rxjs@7.8.2)(zone.js@0.15.1)
-      clsx:
-        specifier: ^2.1.1
-        version: 2.1.1
-      tailwind-merge:
-        specifier: ^3.5.0
-        version: 3.5.0
       tailwindcss:
         specifier: ^4.0.0
         version: 4.3.0
@@ -4507,10 +4495,6 @@ packages:
     resolution: {integrity: sha512-JQHZ2QMW6l3aH/j6xCqQThY/9OH4D/9ls34cgkUBiEeocRTU04tHfKPBsUK1PqZCUQM7GiA0IIXJSuXHI64Kbg==}
     engines: {node: '>=0.8'}
 
-  clsx@2.1.1:
-    resolution: {integrity: sha512-eYm0QWBtUrBWZWG0d386OGAw16Z995PiOVo2B7bjWSbHedGl5e0ZWaq65kOGgUSNesEIDkB9ISbTg/JK9dhCZA==}
-    engines: {node: '>=6'}
-
   cluster-key-slot@1.1.2:
     resolution: {integrity: sha512-RMr0FhtfXemyinomL4hrWcYJxmX6deFdCxpJzhDttxgO1+bcCnkk+9drydLVDmAMG7NE6aN/fl4F7ucU/90gAA==}
     engines: {node: '>=0.10.0'}
@@ -8032,9 +8016,6 @@ packages:
   tagged-tag@1.0.0:
     resolution: {integrity: sha512-yEFYrVhod+hdNyx7g5Bnkkb0G6si8HJurOoOEgC8B/O0uXLHlaey/65KRv6cuWBNhBgHKAROVpc7QyYqE5gFng==}
     engines: {node: '>=20'}
-
-  tailwind-merge@3.5.0:
-    resolution: {integrity: sha512-I8K9wewnVDkL1NTGoqWmVEIlUcB9gFriAEkXkfCjX5ib8ezGxtR3xD7iZIxrfArjEsH7F1CHD4RFUtxefdqV/A==}
 
   tailwindcss@4.3.0:
     resolution: {integrity: sha512-y6nxMGB1nMW9R6k96e5gdIFzcfL/gTJRNaqGes1YvkLnPVXzWgbqFF2yLC0T8G774n24cx3Pe8XrKoniCOAH+Q==}
@@ -13787,8 +13768,6 @@ snapshots:
 
   clone@1.0.4: {}
 
-  clsx@2.1.1: {}
-
   cluster-key-slot@1.1.2: {}
 
   code-block-writer@12.0.0: {}
@@ -17957,8 +17936,6 @@ snapshots:
   sync-message-port@1.2.0: {}
 
   tagged-tag@1.0.0: {}
-
-  tailwind-merge@3.5.0: {}
 
   tailwindcss@4.3.0: {}
 

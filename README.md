@@ -130,7 +130,7 @@ direction. Classes are for layout escape hatches.
 
 | Group                  | Primitives                                                              |
 | ---------------------- | ----------------------------------------------------------------------- |
-| Foundation             | Tokens, theme provider, CSS variables, `nbClass`                        |
+| Foundation             | Tokens, theme provider, CSS variables                                   |
 | Layout                 | Stack, Cluster, Split, Section, Separator                               |
 | Surfaces               | Surface, Card, Image Card, Media Frame                                  |
 | Typography             | Text, Display, Title                                                    |

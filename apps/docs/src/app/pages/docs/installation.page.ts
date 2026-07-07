@@ -24,10 +24,9 @@ import { DocsTokens } from '../../docs/docs-tokens';
           Prerequisites
         </h2>
         <p class="mb-2 text-base font-medium">
-          Components are composed from Tailwind utilities applied through
-          <code class="font-mono text-sm">nbClass</code>. The library expects
-          your app to have <strong>Tailwind CSS v4</strong> configured and
-          scanning your project source. The
+          The library expects your app to have
+          <strong>Tailwind CSS v4</strong> configured and scanning your project
+          source. The
           <code class="font-mono text-sm">ng add</code> schematic handles this
           automatically for Angular CLI apps.
         </p>

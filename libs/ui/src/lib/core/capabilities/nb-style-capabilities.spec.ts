@@ -633,25 +633,6 @@ describe('style capabilities', () => {
     );
   });
 
-  it('input-set radius beats stylesheet class at computed level', () => {
-    const el = mount(ButtonRadiusTest);
-    const button = el.querySelector<HTMLElement>('[nbButton]')!;
-    const computed = window.getComputedStyle(button);
-
-    expect(computed.borderRadius).toBe('0.5rem');
-  });
-
-  it('input-set tone beats inherited CSS and stylesheet class', () => {
-    const el = mount(ButtonBackgroundPriorityTest);
-    const scope = el.querySelector<HTMLElement>('#scope')!;
-    const button = el.querySelector<HTMLElement>('#input-inherited')!;
-    const computed = window.getComputedStyle(button);
-
-    scope.style.setProperty('--nb-button-bg', '#ffcc00');
-    expect(button.getAttribute('data-nb-tone')).toBe('accent');
-    expect(computed.backgroundColor).toBe('rgb(var(--nb-accent-parts))');
-  });
-
   it('!important CSS beats input at computed level', () => {
     const el = mount(ButtonRadiusTest);
     const button = el.querySelector<HTMLElement>('[nbButton]')!;

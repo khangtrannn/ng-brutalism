@@ -5,6 +5,7 @@ import {
   PLATFORM_ID,
   inject,
   input,
+  output,
   viewChild,
 } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
@@ -37,6 +38,7 @@ export type NbDialogBorder = NbBorderStrength;
       [style.--nb-dialog-shadow]="shadow()"
       [style.--nb-dialog-border-width]="border()"
       (click)="dismissOnBackdrop($event)"
+      (close)="closed.emit()"
     >
       <ng-content />
     </dialog>
@@ -56,6 +58,7 @@ export class NbDialog implements NbDialogController {
   readonly border = input(null, {
     transform: nbBorderWidthStyleTransform,
   });
+  readonly closed = output<void>();
 
   private readonly isBrowser = isPlatformBrowser(inject(PLATFORM_ID));
   private readonly dialogEl =

@@ -28,9 +28,9 @@ const iconGlyphMap: Record<NbButtonIconSize, NbIconSize> = {
 };
 
 const iconRadiusMap: Record<NbButtonIconShape, string> = {
-  none: '0',
+  none: 'var(--nb-radius-none, 0px)',
   square: 'var(--nb-radius-sm, 0.25rem)',
-  circle: '999px',
+  circle: 'var(--nb-radius-full, 9999px)',
 };
 
 @Component({
@@ -46,10 +46,10 @@ const iconRadiusMap: Record<NbButtonIconShape, string> = {
     '[attr.data-nb-button-trailing-icon]': '""',
     '[attr.data-push]': 'push()',
     '[attr.data-size]': 'size() ?? null',
+    '[attr.data-shape]': 'shape() ?? null',
     '[attr.data-tone]': 'tone() ?? null',
-    '[style.width]': 'sizeVal()',
-    '[style.height]': 'sizeVal()',
-    '[style.borderRadius]': 'radiusVal()',
+    '[style.--nb-button-trailing-icon-size]': 'sizeVal()',
+    '[style.--nb-button-trailing-icon-radius]': 'radiusVal()',
   },
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
@@ -58,6 +58,7 @@ export class NbButtonTrailingIcon {
   readonly shape = input<NbButtonIconShape | undefined>(undefined);
   readonly tone = input<NbButtonIconTone | undefined>(undefined);
   readonly push = input<NbButtonIconPush>('none');
+
   // Optional icon, given as an SVG/image URL. Rendered through nbIcon in mask
   // mode so it tints to the badge's foreground color. Omit to project your own
   // icon as content instead.

@@ -41,6 +41,7 @@ function expectIndicatorOpen(indicator: SVGPathElement, open: boolean): void {
 function expectRegionOpen(region: HTMLElement, open: boolean): void {
   expect(region.getAttribute('data-state')).toBe(open ? 'open' : 'closed');
   expect(region.getAttribute('aria-hidden')).toBe(open ? 'false' : 'true');
+  expect(region.inert).toBe(!open);
 }
 
 @Component({
