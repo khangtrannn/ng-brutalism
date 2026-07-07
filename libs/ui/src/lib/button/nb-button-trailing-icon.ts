@@ -28,9 +28,9 @@ const iconGlyphMap: Record<NbButtonIconSize, NbIconSize> = {
 };
 
 const iconRadiusMap: Record<NbButtonIconShape, string> = {
-  none: 'var(--nb-radius-none, 0px)',
-  square: 'var(--nb-radius-sm, 0.25rem)',
-  circle: 'var(--nb-radius-full, 9999px)',
+  none: 'var(--nb-radius-none)',
+  square: 'var(--nb-radius-sm)',
+  circle: 'var(--nb-radius-full)',
 };
 
 @Component({

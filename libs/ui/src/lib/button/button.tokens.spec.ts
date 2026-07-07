@@ -258,13 +258,13 @@ describe('NbButton token surface', () => {
     expect(button.style.getPropertyValue('box-shadow')).toBe('');
     expect(button.style.getPropertyValue('border-width')).toBe('');
     expect(button.style.getPropertyValue('--nb-button-radius')).toBe(
-      'var(--nb-radius-md, 0.5rem)'
+      'var(--nb-radius-md)'
     );
     expect(button.style.getPropertyValue('--nb-button-shadow')).toBe(
-      'var(--nb-shadow-hard, calc(var(--nb-shadow-offset-x) * 1.5) calc(var(--nb-shadow-offset-y) * 1.5) 0 0 var(--nb-shadow))'
+      'var(--nb-shadow-hard)'
     );
     expect(button.style.getPropertyValue('--nb-button-border-width')).toBe(
-      'var(--nb-border-width-strong, 3px)'
+      'var(--nb-border-width-strong)'
     );
     expect(button.style.cssText).not.toContain('--nb-resolved');
   });
@@ -357,7 +357,7 @@ describe('NbButton token surface', () => {
     );
     expect(
       icon.style.getPropertyValue('--nb-button-trailing-icon-radius')
-    ).toBe('var(--nb-radius-sm, 0.25rem)');
+    ).toBe('var(--nb-radius-sm)');
   });
 
   it('does not regress the default button anatomy data attributes', async () => {

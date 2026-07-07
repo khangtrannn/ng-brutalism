@@ -114,13 +114,13 @@ describe('NbCallout', () => {
     expect(callout.getAttribute('data-layout')).toBe('between');
     expect(callout.hasAttribute('data-radius')).toBe(false);
     expect(callout.style.getPropertyValue('--nb-callout-radius')).toBe(
-      'var(--nb-radius-md, 0.5rem)'
+      'var(--nb-radius-md)'
     );
     expect(callout.style.getPropertyValue('--nb-callout-shadow')).toBe(
       'var(--nb-shadow-offset-x) var(--nb-shadow-offset-y) 0 0 var(--nb-shadow)'
     );
     expect(callout.style.getPropertyValue('--nb-callout-border-width')).toBe(
-      'var(--nb-border-width-thick, 4px)'
+      'var(--nb-border-width-thick)'
     );
     expect(callout.style.getPropertyValue('background')).toBe('');
     expect(callout.style.getPropertyValue('color')).toBe('');
@@ -181,13 +181,13 @@ describe('NbCallout', () => {
     ) as HTMLElement;
 
     expect(callout.style.getPropertyValue('--nb-callout-radius')).toBe(
-      'var(--nb-radius-lg, 0.75rem)'
+      'var(--nb-radius-lg)'
     );
     expect(callout.style.getPropertyValue('--nb-callout-shadow')).toBe(
-      'var(--nb-shadow-hard, calc(var(--nb-shadow-offset-x) * 1.5) calc(var(--nb-shadow-offset-y) * 1.5) 0 0 var(--nb-shadow))'
+      'var(--nb-shadow-hard)'
     );
     expect(callout.style.getPropertyValue('--nb-callout-border-width')).toBe(
-      'var(--nb-border-width-strong, 3px)'
+      'var(--nb-border-width-strong)'
     );
   });
 
@@ -198,13 +198,13 @@ describe('NbCallout', () => {
     ) as HTMLElement;
 
     expect(callout.style.getPropertyValue('--nb-callout-radius')).toBe(
-      'var(--nb-radius-lg, 0.75rem)'
+      'var(--nb-radius-lg)'
     );
     expect(callout.style.getPropertyValue('--nb-callout-shadow')).toBe(
-      'var(--nb-shadow-hard, calc(var(--nb-shadow-offset-x) * 1.5) calc(var(--nb-shadow-offset-y) * 1.5) 0 0 var(--nb-shadow))'
+      'var(--nb-shadow-hard)'
     );
     expect(callout.style.getPropertyValue('--nb-callout-border-width')).toBe(
-      'var(--nb-border-width-strong, 3px)'
+      'var(--nb-border-width-strong)'
     );
 
     fixture.componentInstance.radius.set(null);

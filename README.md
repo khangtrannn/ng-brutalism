@@ -95,24 +95,26 @@ export class App {}
 - **Easy to bend**: CSS custom properties and Tailwind utilities keep theme
   overrides local, visible, and predictable.
 
-Optional — configure a subset of theme tokens from TypeScript at bootstrap.
-Sets the corresponding `--nb-*` custom properties for these keys. Tokens
-outside `NbThemeConfig` (e.g. `--nb-background`, `--nb-field-bg`) must still be
-overridden in CSS.
+Theming is CSS-only: redefine the `--nb-*` custom properties in your own
+stylesheet, after the library's `theme.css` import.
+
+```css
+@import '@ng-brutalism/ui/styles.css';
+
+:root {
+  --nb-primary: #ffd166;
+  --nb-radius: 4px;
+  --nb-border-width: 3px;
+}
+```
+
+`provideNgBrutalism()` registers library providers and takes no theme config.
 
 ```ts
 import { provideNgBrutalism } from '@ng-brutalism/ui';
 
 bootstrapApplication(AppComponent, {
-  providers: [
-    provideNgBrutalism({
-      theme: {
-        primary: '#ffd166',
-        radius: '4px',
-        borderWidth: '3px',
-      },
-    }),
-  ],
+  providers: [provideNgBrutalism()],
 });
 ```
 
@@ -166,7 +168,7 @@ Yes. Components are designed for modern Angular: standalone imports, signal-frie
 The UI package avoids browser-only assumptions in core primitives where possible, and browser-dependent behavior is kept behind Angular platform checks when needed.
 
 **How customizable is the theme?**
-All visual tokens are exposed as CSS custom properties (`--nb-*`). A subset of tokens can also be configured from TypeScript via `provideNgBrutalism({ theme: ... })` at bootstrap.
+All visual tokens are exposed as CSS custom properties (`--nb-*`). Theming is CSS-only — redefine them in your own stylesheet, or swap in one of the `theme-*.css` presets.
 
 **Is ng-brutalism ready for production?**
 It is pre-1.0. Component APIs are usable today, but minor versions may include breaking changes while the library settles.

@@ -1,6 +1,14 @@
-export type NbTone =
+export type NbSemanticTone =
   | 'surface'
   | 'background'
+  | 'primary'
+  | 'secondary'
+  | 'accent'
+  | 'success'
+  | 'warning'
+  | 'danger';
+
+export type NbPaletteTone =
   | 'ink'
   | 'cream'
   | 'white'
@@ -9,10 +17,6 @@ export type NbTone =
   | 'pink'
   | 'mint'
   | 'lavender'
-  | 'blue'
-  | 'primary'
-  | 'secondary'
-  | 'accent'
-  | 'success'
-  | 'warning'
-  | 'danger';
+  | 'blue';
+
+export type NbTone = NbSemanticTone | NbPaletteTone;

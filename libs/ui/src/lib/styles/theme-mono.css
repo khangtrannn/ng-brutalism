@@ -1,0 +1,34 @@
+/* Ink-only preset: no color, a monochrome brutalist rebrand. Import after
+   `theme.css` to override its default palette. */
+:root {
+  --nb-background: #ffffff;
+  --nb-foreground: #000000;
+  --nb-border: #000000;
+  --nb-shadow: #000000;
+  --nb-main: #e5e5e5;
+  --nb-main-foreground: #000000;
+  --nb-surface: #ffffff;
+  --nb-surface-foreground: #000000;
+  --nb-secondary-background: #f0f0f0;
+  --nb-field-bg: #f5f5f5;
+  --nb-cream: #fafafa;
+
+  --nb-yellow: #e5e5e5;
+  --nb-pink: #d4d4d4;
+  --nb-mint: #c7c7c7;
+  --nb-lavender: #bababa;
+  --nb-blue: #a3a3a3;
+
+  --nb-primary: #000000;
+  --nb-primary-foreground: #ffffff;
+  --nb-secondary: #e5e5e5;
+  --nb-secondary-foreground: #000000;
+  --nb-accent: #404040;
+  --nb-accent-foreground: #ffffff;
+  --nb-danger: #171717;
+  --nb-danger-foreground: #ffffff;
+  --nb-success: #525252;
+  --nb-success-foreground: #ffffff;
+  --nb-warning: #737373;
+  --nb-warning-foreground: #ffffff;
+}

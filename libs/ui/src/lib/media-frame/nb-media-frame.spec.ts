@@ -90,13 +90,13 @@ describe('NbMediaFrame', () => {
     expect(frame.style.getPropertyValue('box-shadow')).toBe('');
     expect(frame.style.getPropertyValue('border-width')).toBe('');
     expect(frame.style.getPropertyValue('--nb-media-frame-radius')).toBe(
-      'var(--nb-radius-xl, 1rem)'
+      'var(--nb-radius-xl)'
     );
     expect(frame.style.getPropertyValue('--nb-media-frame-shadow')).toBe(
-      'var(--nb-shadow-hard, calc(var(--nb-shadow-offset-x) * 1.5) calc(var(--nb-shadow-offset-y) * 1.5) 0 0 var(--nb-shadow))'
+      'var(--nb-shadow-hard)'
     );
     expect(frame.style.getPropertyValue('--nb-media-frame-border-width')).toBe(
-      'var(--nb-border-width-strong, 3px)'
+      'var(--nb-border-width-strong)'
     );
     expect(frame.style.cssText).not.toContain('--nb-resolved');
   });

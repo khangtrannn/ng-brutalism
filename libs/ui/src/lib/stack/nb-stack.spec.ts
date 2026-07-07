@@ -73,9 +73,9 @@ describe('NbStack', () => {
     expect(stack.getAttribute('data-justify')).toBe('center');
     expect(stack.getAttribute('data-separator')).toBe('dashed');
     expect(stack.style.getPropertyValue('gap')).toBe('');
-    expect(stack.style.getPropertyValue('--nb-stack-gap')).toBe('var(--nb-space-xl, 1.5rem)');
+    expect(stack.style.getPropertyValue('--nb-stack-gap')).toBe('var(--nb-space-xl)');
     expect(stack.style.getPropertyValue('--nb-stack-separator-gap')).toBe(
-      'var(--nb-space-xl, 1.5rem)'
+      'var(--nb-space-xl)'
     );
     expect(stack.className).toBe('');
     expect(stack.style.cssText).not.toContain('--nb-resolved');

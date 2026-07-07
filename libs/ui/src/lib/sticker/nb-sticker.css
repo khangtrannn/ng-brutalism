@@ -92,7 +92,7 @@
     padding-block: var(--nb-sticker-padding-block);
     overflow-wrap: break-word;
     color: var(--nb-sticker-ink, var(--nb-sticker-tone-fg, var(--_nb-tone-fg, var(--nb-black, #050505))));
-    font-family: var(--nb-font-display, system-ui, sans-serif);
+    font-family: var(--nb-font-display);
     font-size: var(--nb-sticker-font-size);
     font-weight: 950;
     line-height: 0.9;

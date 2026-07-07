@@ -68,13 +68,13 @@ describe('NbAvatar token surface', () => {
     expect(avatar.style.getPropertyValue('box-shadow')).toBe('');
     expect(avatar.style.getPropertyValue('border-width')).toBe('');
     expect(avatar.style.getPropertyValue('--nb-avatar-radius')).toBe(
-      'var(--nb-radius-full, 9999px)'
+      'var(--nb-radius-full)'
     );
     expect(avatar.style.getPropertyValue('--nb-avatar-shadow')).toBe(
-      'var(--nb-shadow-sm, calc(var(--nb-shadow-offset-x) * 0.5) calc(var(--nb-shadow-offset-y) * 0.5) 0 0 var(--nb-shadow))'
+      'var(--nb-shadow-sm)'
     );
     expect(avatar.style.getPropertyValue('--nb-avatar-border-width')).toBe(
-      'var(--nb-border-width-thin, 1px)'
+      'var(--nb-border-width-thin)'
     );
   });
 

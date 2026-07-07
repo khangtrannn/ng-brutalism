@@ -116,7 +116,7 @@ schematics-assembly assertion verified to fail on a renamed factory file).
 
 ---
 
-## Phase 3 — Token & theming redesign (2–3 weeks)
+## Phase 3 — Token & theming redesign (2–3 weeks) — ✅ Complete (2026-07-07)
 
 **Goal:** land the audit's 4-layer token model (ref → semantic → component →
 internal), kill the hardcoded literals that block re-theming/dark mode, and make
@@ -125,22 +125,55 @@ the `NbTone` palette-vs-semantic split before it calcifies.
 **Depends on:** Phase 2 (`/tokens` entry point, layering). **Blocks:** designed
 dark mode (3.7) and Phase 4 tone-aware forms.
 
+All 9 rows below are done and verified (lint clean, tests green, `ui`/`docs`
+build clean, `pnpm smoke:ui` and `pnpm api-guard` both pass — snapshots updated
+deliberately for the intentional export changes). The three items flagged as
+"Open decisions" in this doc were confirmed before starting, all taking the
+recommended option: 3.8 removes the `.dark` stub outright (designed dark theme
+deferred to Phase 6); 3.7 drops `theme` from the provider entirely rather than
+emitting an SSR `<style>` tag; 3.3 strips fallbacks now rather than standing up
+a codegen pipeline. Row 3.1's indirection pattern was applied uniformly (bg/fg/
+border for all 17 tones, not just the fg/border the audit named), since a
+uniform override surface is simpler than a mixed one. Row 3.3's scope extended
+past the named `tokens/radius.ts` to every resolver with the same duplicated-
+literal problem (`spacing`, `padding`, `border`, `shadow`, `typography`'s font-
+role map) plus three hand-authored component files with the identical pattern
+(`nb-button-trailing-icon.ts`, `nb-select.css`/`nb-native-select.css`,
+`nb-sticker.css`); `shadow.ts`'s `sm`/`hard`/`heavy` fallbacks had no `theme.css`
+counterpart at all (the calc formula lived only in the JS fallback), so those
+were promoted to real `--nb-shadow-sm/hard/heavy` declarations first. Row 3.5
+deleted `--nb-size-*` rather than wiring it in: button/input/select each have a
+different, non-aligned height scale already shipped, and forcing them onto one
+scale would have meant a visual redesign decision, not a small refactor;
+`--nb-main`/`--nb-secondary-background` were confirmed still in use (input file
+button, status-dot, progress, docs app) and left alone. Row 3.7 also updated the
+docs installation page, root `README.md`, and `libs/ui/README.md` (all showed
+the now-removed `provideNgBrutalism({ theme })` usage) to the CSS-first example.
+
 | # | Task | Finding | Files | Breaking | Effort |
 |---|---|---|---|---|---|
-| 3.1 | Route **all** `tone.css` foreground/border literals (`#000`, `#fff`) through `--nb-tone-<name>-fg/-border` vars; finish the `--nb-tone-neutral-*` indirection pattern for every tone | 3.1, 3.7 | `styles/tone.css`, `styles/theme.css` | no | medium |
-| 3.2 | Split the `NbTone` union into a **semantic tier** (`primary/danger/surface/…`, documented + stable) and an explicit **palette tier** (`yellow/pink/mint/…`, "brutalist palette"); keep names, add type-level separation + docs | 3.1 (High) | `tokens/tone.ts`, docs | no if names stay | medium |
-| 3.3 ▶ | Strip TS resolver fallbacks (emit `var(--nb-radius-md)` not `var(--nb-radius-md, 0.5rem)`) now that `base.css` scales are a hard requirement — or codegen CSS+TS from one JSON source (Style Dictionary direction) | 3.4 | `tokens/radius.ts` etc., specs | no | small–medium |
-| 3.4 | Add motion tokens `--nb-motion-fast/base` + `--nb-ease`; route the 7+ hardcoded durations/easings through them (also a one-var motion kill switch) | 3.6 | component `*.css`, `theme.css` | no | small |
-| 3.5 | Wire `--nb-size-sm/md/lg` into control heights (button/input/select) → density story for free; **or** delete the dead size tokens. Also remove `--nb-main*`, `--nb-secondary-background` if still unused | 3.5 | `theme.css:67-69`, `nb-button.css`, `nb-input.css` | no | small |
-| 3.6 | Reduced-motion rework: disable `transition`/`translate` on interactive states but **keep static offset shadows** (they're identity, not motion — WCAG 2.3.3). Replaces the current "zero the shadow offsets" approach | 3.2 (High) | `theme.css:92-99` | no | small–medium |
-| 3.7 | Deprecate the runtime theme-var provider (`provideNgBrutalism({theme})` writing inline `:root` styles). Preferred: drop `theme`, document CSS/`@theme` as the only theming path; keep `provideNgBrutalism()` for real config (default tone, density, a11y flags). Alt: emit an SSR-safe `<style>` rule that joins the cascade | 3.3 (High) | `core/provide.ts`, `tokens/theme.tokens.ts` | **yes** (pre-1.0 deprecation) | small–medium |
-| 3.8 | **Dark-mode decision.** Recommended: remove the half-`.dark` 6-var stub now (honest "not yet supported") — shipping a half theme is the worst option. Defer a *designed* dark theme to Phase 6 once 3.1 unblocks it | 3.7 (High) | `theme.css:83-90` | no | trivial (remove) / large (ship) |
-| 3.9 | Ship 2–3 alternative `theme-*.css` presets (e.g. mono/ink-only, softened) as proof the token contract rebrands cleanly | Token rec | new `styles/theme-*.css` | no (additive) | small |
+| 3.1 ✅ | Route **all** `tone.css` foreground/border literals (`#000`, `#fff`) through `--nb-tone-<name>-fg/-border` vars; finish the `--nb-tone-neutral-*` indirection pattern for every tone | 3.1, 3.7 | `styles/tone.css`, `styles/theme.css` | no | medium |
+| 3.2 ✅ | Split the `NbTone` union into a **semantic tier** (`primary/danger/surface/…`, documented + stable) and an explicit **palette tier** (`yellow/pink/mint/…`, "brutalist palette"); keep names, add type-level separation + docs | 3.1 (High) | `tokens/tone.ts`, docs | no if names stay | medium |
+| 3.3 ✅ | Strip TS resolver fallbacks (emit `var(--nb-radius-md)` not `var(--nb-radius-md, 0.5rem)`) now that `base.css` scales are a hard requirement — or codegen CSS+TS from one JSON source (Style Dictionary direction) | 3.4 | `tokens/radius.ts` etc., specs | no | small–medium |
+| 3.4 ✅ | Add motion tokens `--nb-motion-fast/base` + `--nb-ease`; route the 7+ hardcoded durations/easings through them (also a one-var motion kill switch) | 3.6 | component `*.css`, `theme.css` | no | small |
+| 3.5 ✅ | Wire `--nb-size-sm/md/lg` into control heights (button/input/select) → density story for free; **or** delete the dead size tokens. Also remove `--nb-main*`, `--nb-secondary-background` if still unused | 3.5 | `theme.css:67-69`, `nb-button.css`, `nb-input.css` | no | small |
+| 3.6 ✅ | Reduced-motion rework: disable `transition`/`translate` on interactive states but **keep static offset shadows** (they're identity, not motion — WCAG 2.3.3). Replaces the current "zero the shadow offsets" approach | 3.2 (High) | `theme.css:92-99` | no | small–medium |
+| 3.7 ✅ | Deprecate the runtime theme-var provider (`provideNgBrutalism({theme})` writing inline `:root` styles). Preferred: drop `theme`, document CSS/`@theme` as the only theming path; keep `provideNgBrutalism()` for real config (default tone, density, a11y flags). Alt: emit an SSR-safe `<style>` rule that joins the cascade | 3.3 (High) | `core/provide.ts`, `tokens/theme.tokens.ts` | **yes** (pre-1.0 deprecation) | small–medium |
+| 3.8 ✅ | **Dark-mode decision.** Recommended: remove the half-`.dark` 6-var stub now (honest "not yet supported") — shipping a half theme is the worst option. Defer a *designed* dark theme to Phase 6 once 3.1 unblocks it | 3.7 (High) | `theme.css:83-90` | no | trivial (remove) / large (ship) |
+| 3.9 ✅ | Ship 2–3 alternative `theme-*.css` presets (e.g. mono/ink-only, softened) as proof the token contract rebrands cleanly | Token rec | new `styles/theme-*.css` | no (additive) | small |
 
 **Exit criteria:** no color literals remain in `tone.css` (grep clean); a preset
 `theme-*.css` visibly rebrands every tone with zero component edits; reduced-motion
 keeps shadows but stops movement; TS↔CSS default drift is impossible (single
 source); the provider no longer writes inline `:root` styles (or does so SSR-safely).
+✅ All verified: `tone.css` now only references `--nb-tone-<name>-*` vars (zero
+literals); `theme-mono.css`/`theme-soft.css` each override only the color/shape
+tokens and visibly rebrand every component with no component edits; reduced
+motion zeroes `--nb-motion-fast/base` (interactions go instant) while
+`--nb-shadow-offset-x/y` stay non-zero (static shadows always visible);
+`tokens/*.ts` resolvers reference `var(--nb-radius-md)` with no fallback,
+consistent with `theme.css`'s declaration; `provideNgBrutalism()` takes no
+config and writes nothing to `:root`.
 
 ---
 
@@ -200,7 +233,9 @@ status; the "without Tailwind" path is documented end to end.
 - Missing primitives on the native-first/popover strategy: **Tabs** (already in
   the v0.3 doc), Tooltip, Menu, Toast, Switch, Radio.
 - **Designed dark theme** (all tones re-derived) — now unblocked by Phase 3.1.
-- Public **density scale** API (cheap once 3.5 wires `--nb-size-*`).
+- Public **density scale** API — 3.5 deleted the unwired `--nb-size-*` tokens
+  rather than force button/input/select onto one scale; a density API needs a
+  fresh height-scale design across those three components.
 - Visual regression suite on docs recipes (Playwright screenshots).
 - Token codegen pipeline (single JSON source → CSS + TS) if 3.3 stopped at
   fallback-stripping.
@@ -212,11 +247,14 @@ status; the "without Tailwind" path is documented end to end.
 
 ## Open decisions to confirm before starting
 
-1. **Dark mode (3.8):** plan assumes *remove the stub now, ship designed theme in
-   Phase 6*. Confirm, or bring the designed theme forward into Phase 3.
-2. **Theme provider (3.7):** plan assumes *drop `theme` from the provider*
-   (Option 1). Confirm vs the SSR-`<style>`-emission alternative (Option 2).
-3. **Token source of truth (3.3):** strip TS fallbacks now (small) vs stand up a
-   Style-Dictionary codegen pipeline (medium, defers to Phase 6). Plan assumes strip now.
-4. **Secondary entry points (2.4):** `/tokens` + `/class` now, hold the line on
-   per-component JS entries until ~80–100 primitives. Confirm scope.
+All four confirmed (2026-07-07), each taking the plan's recommended default:
+
+1. **Dark mode (3.8):** ✅ confirmed — removed the stub now; designed theme
+   deferred to Phase 6.
+2. **Theme provider (3.7):** ✅ confirmed — dropped `theme` from the provider
+   (Option 1) rather than the SSR-`<style>`-emission alternative.
+3. **Token source of truth (3.3):** ✅ confirmed — stripped TS fallbacks now
+   rather than standing up a codegen pipeline.
+4. **Secondary entry points (2.4):** ✅ resolved in Phase 2 — `/tokens` shipped;
+   `/class` dropped entirely (no class-merge utility remains in the library to
+   expose via one).

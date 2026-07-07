@@ -9,12 +9,12 @@ export type NbSpacing =
 
 const SPACING_VALUES: Record<NbSpacing, string> = {
   none: '0px',
-  xs: 'var(--nb-space-xs, 0.25rem)',
-  sm: 'var(--nb-space-sm, 0.5rem)',
-  md: 'var(--nb-space-md, 0.75rem)',
-  lg: 'var(--nb-space-lg, 1rem)',
-  xl: 'var(--nb-space-xl, 1.5rem)',
-  '2xl': 'var(--nb-space-2xl, 2rem)',
+  xs: 'var(--nb-space-xs)',
+  sm: 'var(--nb-space-sm)',
+  md: 'var(--nb-space-md)',
+  lg: 'var(--nb-space-lg)',
+  xl: 'var(--nb-space-xl)',
+  '2xl': 'var(--nb-space-2xl)',
 };
 
 export function nbSpacingValue(spacing: NbSpacing): string {

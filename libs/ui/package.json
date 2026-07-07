@@ -81,6 +81,14 @@
       "style": "./styles/theme.css",
       "default": "./styles/theme.css"
     },
+    "./theme-mono.css": {
+      "style": "./styles/theme-mono.css",
+      "default": "./styles/theme-mono.css"
+    },
+    "./theme-soft.css": {
+      "style": "./styles/theme-soft.css",
+      "default": "./styles/theme-soft.css"
+    },
     "./accordion.css": {
       "style": "./accordion/nb-accordion.css",
       "default": "./accordion/nb-accordion.css"

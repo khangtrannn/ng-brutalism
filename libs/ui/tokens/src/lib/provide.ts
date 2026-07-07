@@ -1,70 +1,12 @@
-import {
-  EnvironmentProviders,
-  inject,
-  makeEnvironmentProviders,
-  PLATFORM_ID,
-  provideAppInitializer,
-  DOCUMENT,
-} from '@angular/core';
-import { isPlatformBrowser } from '@angular/common';
-import { NB_THEME_CONFIG, NbThemeConfig } from './theme.tokens';
+import { EnvironmentProviders, makeEnvironmentProviders } from '@angular/core';
 
-function applyThemeVars(doc: Document, config: NbThemeConfig): void {
-  const root = doc.documentElement;
-  const map: Record<keyof NbThemeConfig, string> = {
-    primary: '--nb-primary',
-    secondary: '--nb-secondary',
-    accent: '--nb-accent',
-    yellow: '--nb-yellow',
-    pink: '--nb-pink',
-    mint: '--nb-mint',
-    lavender: '--nb-lavender',
-    blue: '--nb-blue',
-    cream: '--nb-cream',
-    danger: '--nb-danger',
-    success: '--nb-success',
-    warning: '--nb-warning',
-    radius: '--nb-radius',
-    borderWidth: '--nb-border-width',
-    shadowOffsetX: '--nb-shadow-offset-x',
-    shadowOffsetY: '--nb-shadow-offset-y',
-    fontSans: '--nb-font-sans',
-    fontMono: '--nb-font-mono',
-  };
-
-  for (const [key, cssVar] of Object.entries(map)) {
-    const value = config[key as keyof NbThemeConfig];
-    if (value !== undefined) {
-      root.style.setProperty(cssVar, value);
-    }
-  }
-}
-
-export interface NbConfig {
-  theme?: NbThemeConfig;
-}
-
-export function provideNgBrutalism(
-  config: NbConfig = {}
-): EnvironmentProviders {
-  return makeEnvironmentProviders([
-    {
-      provide: NB_THEME_CONFIG,
-      useValue: config.theme ?? {},
-    },
-    provideAppInitializer(() => {
-      const initializerFn = (() => {
-        const doc = inject(DOCUMENT);
-        const platformId = inject(PLATFORM_ID);
-        const themeConfig = inject(NB_THEME_CONFIG);
-
-        return () => {
-          if (isPlatformBrowser(platformId)) {
-            applyThemeVars(doc, themeConfig);
-          }
-        };
-      })();
-      return initializerFn();
-    }),
-  ]);
+/**
+ * Registers ng-brutalism environment providers. Theming is CSS-only — redefine
+ * the `--nb-*` custom properties in your own stylesheet (or swap in one of the
+ * `theme-*.css` presets) rather than configuring theme values here. This
+ * function is the reserved home for future runtime config (default tone,
+ * density, a11y flags).
+ */
+export function provideNgBrutalism(): EnvironmentProviders {
+  return makeEnvironmentProviders([]);
 }

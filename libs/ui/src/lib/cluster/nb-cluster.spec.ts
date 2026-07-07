@@ -89,10 +89,10 @@ describe('NbCluster', () => {
 
     expect(cluster.getAttribute('data-separator')).toBe('dashed');
     expect(cluster.style.getPropertyValue('gap')).toBe('');
-    expect(cluster.style.getPropertyValue('--nb-cluster-gap')).toBe('var(--nb-space-lg, 1rem)');
+    expect(cluster.style.getPropertyValue('--nb-cluster-gap')).toBe('var(--nb-space-lg)');
     expect(cluster.style.getPropertyValue('column-gap')).toBe('0px');
     expect(cluster.style.getPropertyValue('--nb-cluster-separator-gap')).toBe(
-      'calc(var(--nb-space-lg, 1rem) * 0.5)'
+      'calc(var(--nb-space-lg) * 0.5)'
     );
     expect(cluster.className).toBe('');
   });
@@ -119,7 +119,7 @@ describe('NbCluster', () => {
 
     expect(cluster.style.getPropertyValue('padding')).toBe('');
     expect(cluster.style.getPropertyValue('--nb-cluster-padding')).toBe(
-      'var(--nb-padding-lg, 1.5rem)'
+      'var(--nb-padding-lg)'
     );
     expect(cluster.style.cssText).not.toContain('--nb-resolved');
     expect(cluster.className).toBe('');
@@ -135,7 +135,7 @@ describe('NbCluster', () => {
     expect(cluster.getAttribute('data-justify')).toBe('between');
     expect(cluster.getAttribute('data-wrap')).toBe('nowrap');
     expect(cluster.style.getPropertyValue('gap')).toBe('');
-    expect(cluster.style.getPropertyValue('--nb-cluster-gap')).toBe('var(--nb-space-xl, 1.5rem)');
+    expect(cluster.style.getPropertyValue('--nb-cluster-gap')).toBe('var(--nb-space-xl)');
     expect(cluster.className).toBe('');
   });
 });

@@ -1,8 +1,5 @@
 export { provideNgBrutalism } from './lib/provide';
-export type { NbConfig } from './lib/provide';
-export { NB_THEME_CONFIG } from './lib/theme.tokens';
-export type { NbThemeConfig } from './lib/theme.tokens';
-export type { NbTone } from './lib/tone';
+export type { NbTone, NbSemanticTone, NbPaletteTone } from './lib/tone';
 
 export type { NbRadius } from './lib/radius';
 export { nbRadiusValue } from './lib/radius';

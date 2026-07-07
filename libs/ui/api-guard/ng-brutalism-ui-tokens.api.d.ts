@@ -1,33 +1,28 @@
-import { InjectionToken, EnvironmentProviders } from '@angular/core';
+import { EnvironmentProviders } from '@angular/core';
 
-interface NbThemeConfig {
-    primary?: string;
-    secondary?: string;
-    accent?: string;
-    yellow?: string;
-    pink?: string;
-    mint?: string;
-    lavender?: string;
-    blue?: string;
-    cream?: string;
-    danger?: string;
-    success?: string;
-    warning?: string;
-    radius?: string;
-    borderWidth?: string;
-    shadowOffsetX?: string;
-    shadowOffsetY?: string;
-    fontSans?: string;
-    fontMono?: string;
-}
-declare const NB_THEME_CONFIG: InjectionToken<NbThemeConfig>;
+/**
+ * Registers ng-brutalism environment providers. Theming is CSS-only — redefine
+ * the `--nb-*` custom properties in your own stylesheet (or swap in one of the
+ * `theme-*.css` presets) rather than configuring theme values here. This
+ * function is the reserved home for future runtime config (default tone,
+ * density, a11y flags).
+ */
+declare function provideNgBrutalism(): EnvironmentProviders;
 
-interface NbConfig {
-    theme?: NbThemeConfig;
-}
-declare function provideNgBrutalism(config?: NbConfig): EnvironmentProviders;
-
-type NbTone = 'surface' | 'background' | 'ink' | 'cream' | 'white' | 'black' | 'yellow' | 'pink' | 'mint' | 'lavender' | 'blue' | 'primary' | 'secondary' | 'accent' | 'success' | 'warning' | 'danger';
+/**
+ * Documented, stable tones. These map to role-based tokens (`--nb-primary`,
+ * `--nb-surface`, …) that a rebrand is expected to redefine — the safe tier
+ * for a consumer to build on.
+ */
+type NbSemanticTone = 'surface' | 'background' | 'primary' | 'secondary' | 'accent' | 'success' | 'warning' | 'danger';
+/**
+ * The brutalist palette tier — named colors (`yellow`, `pink`, …) and the
+ * ink/paper extremes. These describe a specific hue rather than a role, so a
+ * rebrand may reinterpret or drop them; treat them as decorative, not
+ * load-bearing.
+ */
+type NbPaletteTone = 'ink' | 'cream' | 'white' | 'black' | 'yellow' | 'pink' | 'mint' | 'lavender' | 'blue';
+type NbTone = NbSemanticTone | NbPaletteTone;
 
 /**
  * Shared brutalist radius scale. One geometry per token across all primitives —
@@ -106,5 +101,5 @@ type NbUnderlineWidth = 'auto' | 'xs' | 'sm' | 'md' | 'lg' | 'full';
 declare function nbUnderlineGapValue(gap: NbUnderlineGap): string;
 declare function nbUnderlineWidthValue(width: NbUnderlineWidth): string | null;
 
-export { NB_THEME_CONFIG, nbBorderWidthValue, nbPaddingValue, nbRadiusValue, nbShadowValue, nbSpacingValue, nbTypographyFontValue, nbUnderlineGapValue, nbUnderlineWidthValue, provideNgBrutalism };
-export type { NbBorderStrength, NbConfig, NbDivider, NbFontWeight, NbLayoutAlign, NbLayoutJustify, NbLayoutSeparator, NbPadding, NbRadius, NbShadow, NbSpacing, NbTextTracking, NbThemeConfig, NbTone, NbTypographyFont, NbUnderlineGap, NbUnderlineVariant, NbUnderlineWidth };
+export { nbBorderWidthValue, nbPaddingValue, nbRadiusValue, nbShadowValue, nbSpacingValue, nbTypographyFontValue, nbUnderlineGapValue, nbUnderlineWidthValue, provideNgBrutalism };
+export type { NbBorderStrength, NbDivider, NbFontWeight, NbLayoutAlign, NbLayoutJustify, NbLayoutSeparator, NbPadding, NbPaletteTone, NbRadius, NbSemanticTone, NbShadow, NbSpacing, NbTextTracking, NbTone, NbTypographyFont, NbUnderlineGap, NbUnderlineVariant, NbUnderlineWidth };

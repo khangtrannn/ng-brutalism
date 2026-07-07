@@ -56,10 +56,10 @@
     border: 0;
     background: transparent;
     color: var(--nb-select-fg, var(--nb-surface-foreground));
-    font-family: var(--nb-font-mono, monospace);
+    font-family: var(--nb-font-mono);
     font-size: 1rem;
     font-weight: 700;
-    transition: all 150ms;
+    transition: all var(--nb-motion-fast);
   }
 
   :where(nb-select[data-in-group] [data-slot='select-trigger']) {
@@ -128,10 +128,10 @@
     border: 0;
     background: transparent;
     color: var(--nb-select-fg, var(--nb-select-tone-fg, var(--_nb-tone-fg, var(--nb-surface-foreground))));
-    font-family: var(--nb-font-mono, monospace);
+    font-family: var(--nb-font-mono);
     font-size: 1rem;
     font-weight: 700;
-    transition: color 150ms, background-color 150ms;
+    transition: color var(--nb-motion-fast), background-color var(--nb-motion-fast);
   }
 
   :where(nb-select-option [data-slot='select-option-button'][data-selected]) {

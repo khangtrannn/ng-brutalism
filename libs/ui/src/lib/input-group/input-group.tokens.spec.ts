@@ -89,7 +89,7 @@ describe('NbInputGroup token surface', () => {
     const group = findGroup(fixture);
 
     expect(group.style.getPropertyValue('--nb-input-group-radius')).toBe(
-      'var(--nb-radius-lg, 0.75rem)'
+      'var(--nb-radius-lg)'
     );
     expect(group.style.getPropertyValue('border-radius')).toBe('');
   });

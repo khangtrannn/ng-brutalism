@@ -155,14 +155,14 @@ describe('NbAccordion token surface', () => {
     expect(itemHost.style.getPropertyValue('box-shadow')).toBe('');
     expect(itemHost.style.getPropertyValue('border-width')).toBe('');
     expect(itemHost.style.getPropertyValue('--nb-accordion-item-radius')).toBe(
-      'var(--nb-radius-lg, 0.75rem)'
+      'var(--nb-radius-lg)'
     );
     expect(itemHost.style.getPropertyValue('--nb-accordion-item-shadow')).toBe(
-      'var(--nb-shadow-hard, calc(var(--nb-shadow-offset-x) * 1.5) calc(var(--nb-shadow-offset-y) * 1.5) 0 0 var(--nb-shadow))'
+      'var(--nb-shadow-hard)'
     );
     expect(
       itemHost.style.getPropertyValue('--nb-accordion-item-border-width')
-    ).toBe('var(--nb-border-width-strong, 3px)');
+    ).toBe('var(--nb-border-width-strong)');
     expect(itemHost.style.getPropertyValue('--nb-accordion-item-bg')).toBe('');
     expect(itemHost.style.cssText).not.toContain('--nb-resolved');
   });

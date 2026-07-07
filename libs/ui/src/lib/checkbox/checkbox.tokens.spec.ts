@@ -47,7 +47,7 @@ describe('NbCheckbox token surface', () => {
     const checkbox = findCheckbox(fixture);
 
     expect(checkbox.style.getPropertyValue('--nb-checkbox-radius')).toBe(
-      'var(--nb-radius-full, 9999px)'
+      'var(--nb-radius-full)'
     );
     expect(checkbox.style.getPropertyValue('border-radius')).toBe('');
   });

@@ -80,7 +80,7 @@ describe('NbSection', () => {
     expect(section.getAttribute('data-divider')).toBe('top');
     expect(section.style.getPropertyValue('padding')).toBe('');
     expect(section.style.getPropertyValue('--nb-section-padding')).toBe(
-      'var(--nb-padding-lg, 1.5rem)'
+      'var(--nb-padding-lg)'
     );
     expect(section.className).toBe('');
   });
@@ -95,7 +95,7 @@ describe('NbSection', () => {
     expect(section.getAttribute('data-divider-style')).toBe('dashed');
     expect(section.style.getPropertyValue('padding')).toBe('');
     expect(section.style.getPropertyValue('--nb-section-padding')).toBe(
-      'var(--nb-padding-xl, 2rem)'
+      'var(--nb-padding-xl)'
     );
     expect(section.className).toBe('');
     expect(section.className).not.toContain('border-solid');
@@ -123,7 +123,7 @@ describe('NbSection', () => {
     expect(section.className).toBe('');
     expect(section.style.getPropertyValue('margin-inline')).toBe('');
     expect(section.style.getPropertyValue('--nb-section-padding')).toBe(
-      'var(--nb-padding-lg, 1.5rem)'
+      'var(--nb-padding-lg)'
     );
   });
 });

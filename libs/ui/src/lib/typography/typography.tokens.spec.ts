@@ -23,10 +23,10 @@ describe('NbTypography token surface', () => {
   });
 
   it.each([
-    ['body', 'var(--nb-font-body, var(--nb-font-sans))'],
-    ['display', 'var(--nb-font-display, var(--nb-font-sans))'],
-    ['accent', 'var(--nb-font-accent, var(--nb-font-sans))'],
-    ['mono', 'var(--nb-font-mono, monospace)'],
+    ['body', 'var(--nb-font-body)'],
+    ['display', 'var(--nb-font-display)'],
+    ['accent', 'var(--nb-font-accent)'],
+    ['mono', 'var(--nb-font-mono)'],
   ] satisfies Array<[NbTypographyFont, string]>)(
     'font="%s" writes the resolved stack to --nb-typography-font',
     async (font, expected) => {

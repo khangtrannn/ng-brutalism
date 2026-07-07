@@ -67,16 +67,19 @@ import { DocsTokens } from '../../docs/docs-tokens';
         <docs-code-block title="src/styles.css" [code]="stylesCode" />
       </section>
 
-      <section id="provider">
+      <section id="theming">
         <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">
-          Provider (optional)
+          Theming
         </h2>
         <p class="mb-5 text-base font-medium">
-          The provider is only needed if you want to override theme tokens from
-          Angular config. The simpler alternative is to redefine the CSS custom
-          properties in your own stylesheet.
+          Theming is CSS-only: redefine the <code class="font-mono text-sm">--nb-*</code>
+          custom properties in your own stylesheet, after the library's
+          <code class="font-mono text-sm">theme.css</code> import.
+          <code class="font-mono text-sm">provideNgBrutalism()</code> registers
+          library providers and takes no theme config.
         </p>
         <docs-code-block title="app.config.ts" [code]="providerCode" />
+        <docs-code-block title="src/styles.css" [code]="themeOverrideCode" />
       </section>
 
       <docs-tokens component="theme" />
@@ -103,15 +106,16 @@ pnpm add @ng-brutalism/ui`;
 import { provideNgBrutalism } from '@ng-brutalism/ui';
 
 export const appConfig: ApplicationConfig = {
-  providers: [
-    provideNgBrutalism({
-      theme: {
-        radius: '0px',
-        borderWidth: '3px',
-      },
-    }),
-  ],
+  providers: [provideNgBrutalism()],
 };`;
+
+  protected readonly themeOverrideCode = `@import "tailwindcss";
+@import '@ng-brutalism/ui/styles.css';
+
+:root {
+  --nb-radius: 0px;
+  --nb-border-width: 3px;
+}`;
 
   protected readonly usageCode = `import { Component } from '@angular/core';
 import { NbButton } from '@ng-brutalism/ui';

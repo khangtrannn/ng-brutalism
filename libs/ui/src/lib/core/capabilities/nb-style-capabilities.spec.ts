@@ -277,7 +277,7 @@ describe('style capabilities', () => {
 
     expect(surface.style.getPropertyValue('border-radius')).toBe('');
     expect(surface.style.getPropertyValue('--nb-surface-radius')).toBe(
-      'var(--nb-radius-xl, 1rem)'
+      'var(--nb-radius-xl)'
     );
     expect(surface.getAttribute('data-nb-tone')).toBe('mint');
     expect(surface.style.getPropertyValue('background')).toBe('');
@@ -374,7 +374,7 @@ describe('style capabilities', () => {
 
     expect(frame.style.getPropertyValue('box-shadow')).toBe('');
     expect(frame.style.getPropertyValue('--nb-media-frame-shadow')).toBe(
-      'var(--nb-shadow-hard, calc(var(--nb-shadow-offset-x) * 1.5) calc(var(--nb-shadow-offset-y) * 1.5) 0 0 var(--nb-shadow))'
+      'var(--nb-shadow-hard)'
     );
     expect(frame.style.cssText).not.toContain('--nb-resolved');
   });
@@ -384,7 +384,7 @@ describe('style capabilities', () => {
     const stack = el.querySelector<HTMLElement>('[nbStack]')!;
 
     expect(stack.style.getPropertyValue('gap')).toBe('');
-    expect(stack.style.getPropertyValue('--nb-stack-gap')).toBe('var(--nb-space-lg, 1rem)');
+    expect(stack.style.getPropertyValue('--nb-stack-gap')).toBe('var(--nb-space-lg)');
     expect(stack.style.cssText).not.toContain('--nb-resolved');
   });
 
@@ -414,13 +414,13 @@ describe('style capabilities', () => {
     expect(button.style.getPropertyValue('box-shadow')).toBe('');
     expect(button.style.getPropertyValue('border-width')).toBe('');
     expect(button.style.getPropertyValue('--nb-icon-button-radius')).toBe(
-      'var(--nb-radius-md, 0.5rem)'
+      'var(--nb-radius-md)'
     );
     expect(button.style.getPropertyValue('--nb-icon-button-shadow')).toBe(
-      'var(--nb-shadow-hard, calc(var(--nb-shadow-offset-x) * 1.5) calc(var(--nb-shadow-offset-y) * 1.5) 0 0 var(--nb-shadow))'
+      'var(--nb-shadow-hard)'
     );
     expect(button.style.getPropertyValue('--nb-icon-button-border-width')).toBe(
-      'var(--nb-border-width-strong, 3px)'
+      'var(--nb-border-width-strong)'
     );
     expect(button.style.cssText).not.toContain('--nb-resolved');
   });
@@ -430,7 +430,7 @@ describe('style capabilities', () => {
     const chip = el.querySelector<HTMLElement>('[nbChip]')!;
 
     expect(chip.style.getPropertyValue('border-width')).toBe('');
-    expect(chip.style.getPropertyValue('--nb-chip-border-width')).toBe('var(--nb-border-width-strong, 3px)');
+    expect(chip.style.getPropertyValue('--nb-chip-border-width')).toBe('var(--nb-border-width-strong)');
     expect(chip.style.cssText).not.toContain('--nb-resolved');
   });
 
@@ -440,7 +440,7 @@ describe('style capabilities', () => {
 
     expect(button.style.getPropertyValue('border-width')).toBe('');
     expect(button.style.getPropertyValue('--nb-button-border-width')).toBe(
-      'var(--nb-border-width-strong, 3px)'
+      'var(--nb-border-width-strong)'
     );
   });
 
@@ -463,7 +463,7 @@ describe('style capabilities', () => {
     expect(badge.style.getPropertyValue('background')).toBe('');
     expect(badge.style.getPropertyValue('border-width')).toBe('');
     expect(badge.style.getPropertyValue('--nb-badge-border-width')).toBe(
-      'var(--nb-border-width-strong, 3px)'
+      'var(--nb-border-width-strong)'
     );
     expect(badge.style.cssText).not.toContain('--nb-resolved');
   });
@@ -478,12 +478,12 @@ describe('style capabilities', () => {
     expect(card.style.getPropertyValue('box-shadow')).toBe('');
     expect(card.style.getPropertyValue('border-width')).toBe('');
     expect(card.style.getPropertyValue('--nb-card-radius')).toBe(
-      'var(--nb-radius-xl, 1rem)'
+      'var(--nb-radius-xl)'
     );
     expect(card.style.getPropertyValue('--nb-card-shadow')).toBe(
-      'var(--nb-shadow-heavy, calc(var(--nb-shadow-offset-x) * 2.5) calc(var(--nb-shadow-offset-y) * 2.5) 0 0 var(--nb-shadow))'
+      'var(--nb-shadow-heavy)'
     );
-    expect(card.style.getPropertyValue('--nb-card-border-width')).toBe('var(--nb-border-width-thick, 4px)');
+    expect(card.style.getPropertyValue('--nb-card-border-width')).toBe('var(--nb-border-width-thick)');
     expect(card.style.cssText).not.toContain('--nb-resolved');
   });
 
@@ -495,7 +495,7 @@ describe('style capabilities', () => {
     expect(card.style.getPropertyValue('background')).toBe('');
     expect(card.style.getPropertyValue('border-width')).toBe('');
     expect(card.style.getPropertyValue('--nb-image-card-border-width')).toBe(
-      'var(--nb-border-width-thin, 1px)'
+      'var(--nb-border-width-thin)'
     );
     expect(card.style.cssText).not.toContain('--nb-resolved');
   });
@@ -514,13 +514,13 @@ describe('style capabilities', () => {
     expect(chips[2].className).toContain('rounded-full');
     expect(chips[2].style.getPropertyValue('border-radius')).toBe('');
     expect(chips[2].style.getPropertyValue('--nb-chip-radius')).toBe(
-      'var(--nb-radius-sm, 0.25rem)'
+      'var(--nb-radius-sm)'
     );
 
     expect(chips[3].style.getPropertyValue('border-radius')).toBe('');
     expect(chips[4].style.getPropertyValue('border-radius')).toBe('');
     expect(chips[4].style.getPropertyValue('--nb-chip-radius')).toBe(
-      'var(--nb-radius-xl, 1rem)'
+      'var(--nb-radius-xl)'
     );
   });
 
@@ -552,7 +552,7 @@ describe('style capabilities', () => {
 
     expect(outer.style.getPropertyValue('border-radius')).toBe('');
     expect(outer.style.getPropertyValue('--nb-surface-radius')).toBe(
-      'var(--nb-radius-xl, 1rem)'
+      'var(--nb-radius-xl)'
     );
     expect(inner.style.getPropertyValue('border-radius')).toBe('');
     expect(inner.style.getPropertyValue('--nb-surface-radius')).toBe('');
@@ -573,41 +573,41 @@ describe('style capabilities', () => {
     expect(chips[1].style.getPropertyValue('box-shadow')).toBe('');
     expect(chips[1].style.getPropertyValue('border-width')).toBe('');
     expect(chips[1].style.getPropertyValue('--nb-chip-shadow')).toBe(
-      'var(--nb-shadow-hard, calc(var(--nb-shadow-offset-x) * 1.5) calc(var(--nb-shadow-offset-y) * 1.5) 0 0 var(--nb-shadow))'
+      'var(--nb-shadow-hard)'
     );
     expect(chips[1].style.getPropertyValue('--nb-chip-border-width')).toBe(
-      'var(--nb-border-width-strong, 3px)'
+      'var(--nb-border-width-strong)'
     );
 
     expect(chips[2].style.getPropertyValue('box-shadow')).toBe('');
     expect(chips[3].style.getPropertyValue('box-shadow')).toBe('');
     expect(chips[3].style.getPropertyValue('border-width')).toBe('');
     expect(chips[3].style.getPropertyValue('--nb-chip-shadow')).toBe(
-      'var(--nb-shadow-heavy, calc(var(--nb-shadow-offset-x) * 2.5) calc(var(--nb-shadow-offset-y) * 2.5) 0 0 var(--nb-shadow))'
+      'var(--nb-shadow-heavy)'
     );
     expect(chips[3].style.getPropertyValue('--nb-chip-border-width')).toBe(
-      'var(--nb-border-width-thick, 4px)'
+      'var(--nb-border-width-thick)'
     );
 
     expect(surfaces[0].className).toContain('p-0');
     expect(surfaces[0].style.getPropertyValue('padding')).toBe('');
     expect(surfaces[1].style.getPropertyValue('padding')).toBe('');
     expect(surfaces[1].style.getPropertyValue('--nb-surface-padding')).toBe(
-      'var(--nb-padding-lg, 1.5rem)'
+      'var(--nb-padding-lg)'
     );
     expect(surfaces[2].style.getPropertyValue('padding')).toBe('');
     expect(surfaces[3].style.getPropertyValue('padding')).toBe('');
     expect(surfaces[3].style.getPropertyValue('--nb-surface-padding')).toBe(
-      'var(--nb-padding-xl, 2rem)'
+      'var(--nb-padding-xl)'
     );
 
     expect(stacks[0].className).toContain('gap-1');
     expect(stacks[0].style.getPropertyValue('gap')).toBe('');
     expect(stacks[1].style.getPropertyValue('gap')).toBe('');
-    expect(stacks[1].style.getPropertyValue('--nb-stack-gap')).toBe('var(--nb-space-lg, 1rem)');
+    expect(stacks[1].style.getPropertyValue('--nb-stack-gap')).toBe('var(--nb-space-lg)');
     expect(stacks[2].style.getPropertyValue('gap')).toBe('');
     expect(stacks[3].style.getPropertyValue('gap')).toBe('');
-    expect(stacks[3].style.getPropertyValue('--nb-stack-gap')).toBe('var(--nb-space-xl, 1.5rem)');
+    expect(stacks[3].style.getPropertyValue('--nb-stack-gap')).toBe('var(--nb-space-xl)');
   });
 
   it('nbCluster separator derives spacing from actual gap and neutralizes column gap', () => {
@@ -615,10 +615,10 @@ describe('style capabilities', () => {
     const cluster = el.querySelector<HTMLElement>('[nbCluster]')!;
 
     expect(cluster.style.getPropertyValue('gap')).toBe('');
-    expect(cluster.style.getPropertyValue('--nb-cluster-gap')).toBe('var(--nb-space-2xl, 2rem)');
+    expect(cluster.style.getPropertyValue('--nb-cluster-gap')).toBe('var(--nb-space-2xl)');
     expect(cluster.style.getPropertyValue('column-gap')).toBe('0px');
     expect(cluster.style.getPropertyValue('--nb-cluster-separator-gap')).toBe(
-      'calc(var(--nb-space-2xl, 2rem) * 0.5)'
+      'calc(var(--nb-space-2xl) * 0.5)'
     );
     expect(cluster.style.cssText).not.toContain('--nb-resolved');
   });
@@ -629,7 +629,7 @@ describe('style capabilities', () => {
 
     expect(button.style.getPropertyValue('border-radius')).toBe('');
     expect(button.style.getPropertyValue('--nb-button-radius')).toBe(
-      'var(--nb-radius-md, 0.5rem)'
+      'var(--nb-radius-md)'
     );
   });
 

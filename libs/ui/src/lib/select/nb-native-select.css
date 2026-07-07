@@ -5,7 +5,7 @@
     padding: 0.875rem 1.25rem;
     padding-inline-end: 2.5rem;
     appearance: none;
-    font-family: var(--nb-font-mono, monospace);
+    font-family: var(--nb-font-mono);
     font-size: 1rem;
     font-weight: 500;
     background-color: var(--nb-select-bg, var(--_nb-tone-bg, var(--nb-surface)));

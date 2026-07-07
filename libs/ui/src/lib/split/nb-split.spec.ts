@@ -102,10 +102,10 @@ describe('NbSplit', () => {
     expect(split.style.getPropertyValue('gap')).toBe('');
     expect(split.style.getPropertyValue('padding')).toBe('');
     expect(split.style.getPropertyValue('--nb-split-gap')).toBe(
-      'var(--nb-space-2xl, 2rem)'
+      'var(--nb-space-2xl)'
     );
     expect(split.style.getPropertyValue('--nb-split-padding')).toBe(
-      'var(--nb-padding-xl, 2rem)'
+      'var(--nb-padding-xl)'
     );
     expect(split.className).toBe('');
   });

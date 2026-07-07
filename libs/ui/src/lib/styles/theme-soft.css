@@ -1,0 +1,43 @@
+:root {
+  --nb-background: #fdfcfb;
+  --nb-foreground: #2b2b2b;
+  --nb-border: #2b2b2b;
+  --nb-shadow: #2b2b2b;
+  --nb-main: #f6e9c9;
+  --nb-main-foreground: #2b2b2b;
+  --nb-surface: #ffffff;
+  --nb-surface-foreground: #2b2b2b;
+  --nb-secondary-background: #f3f1ee;
+  --nb-field-bg: #f6f0e4;
+  --nb-cream: #faf6ef;
+
+  --nb-yellow: #f6d999;
+  --nb-pink: #f3b8cf;
+  --nb-mint: #b9e8d3;
+  --nb-lavender: #cdc0f0;
+  --nb-blue: #b7dff0;
+
+  --nb-primary: #f2a6d6;
+  --nb-primary-foreground: #2b2b2b;
+  --nb-secondary: #cdb8ef;
+  --nb-secondary-foreground: #2b2b2b;
+  --nb-accent: #a8dff0;
+  --nb-accent-foreground: #2b2b2b;
+  --nb-danger: #f0a0a8;
+  --nb-danger-foreground: #2b2b2b;
+  --nb-success: #a3e0c4;
+  --nb-success-foreground: #2b2b2b;
+  --nb-warning: #f3c98f;
+  --nb-warning-foreground: #2b2b2b;
+
+  --nb-radius: 0.5rem;
+  --nb-radius-sm: 0.375rem;
+  --nb-radius-md: 0.75rem;
+  --nb-radius-lg: 1rem;
+  --nb-radius-xl: 1.5rem;
+
+  --nb-shadow-offset-x: 3px;
+  --nb-shadow-offset-y: 3px;
+  --nb-reverse-shadow-offset-x: -3px;
+  --nb-reverse-shadow-offset-y: -3px;
+}

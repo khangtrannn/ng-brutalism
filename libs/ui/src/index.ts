@@ -1,9 +1,5 @@
-// Foundation — token types, resolvers, NbThemeConfig, and the provider also
-// live at the `@ng-brutalism/ui/tokens` entry point for consumers who want
-// them without pulling in component code. Re-exported here for compat.
 export {
   provideNgBrutalism,
-  NB_THEME_CONFIG,
   nbRadiusValue,
   nbShadowValue,
   nbBorderWidthValue,
@@ -14,9 +10,9 @@ export {
   nbUnderlineWidthValue,
 } from '@ng-brutalism/ui/tokens';
 export type {
-  NbConfig,
-  NbThemeConfig,
   NbTone,
+  NbSemanticTone,
+  NbPaletteTone,
   NbRadius,
   NbShadow,
   NbBorderStrength,

@@ -73,10 +73,10 @@ describe('NbTextarea token surface', () => {
     const textarea = findTextarea(fixture);
 
     expect(textarea.style.getPropertyValue('--nb-textarea-radius')).toBe(
-      'var(--nb-radius-lg, 0.75rem)'
+      'var(--nb-radius-lg)'
     );
     expect(textarea.style.getPropertyValue('--nb-textarea-shadow')).toBe(
-      'var(--nb-shadow-hard, calc(var(--nb-shadow-offset-x) * 1.5) calc(var(--nb-shadow-offset-y) * 1.5) 0 0 var(--nb-shadow))'
+      'var(--nb-shadow-hard)'
     );
     expect(textarea.style.getPropertyValue('border-radius')).toBe('');
     expect(textarea.style.getPropertyValue('box-shadow')).toBe('');
@@ -87,10 +87,10 @@ describe('NbTextarea token surface', () => {
     const textarea = findTextarea(fixture);
 
     expect(textarea.style.getPropertyValue('--nb-textarea-radius')).toBe(
-      'var(--nb-radius-lg, 0.75rem)'
+      'var(--nb-radius-lg)'
     );
     expect(textarea.style.getPropertyValue('--nb-textarea-shadow')).toBe(
-      'var(--nb-shadow-hard, calc(var(--nb-shadow-offset-x) * 1.5) calc(var(--nb-shadow-offset-y) * 1.5) 0 0 var(--nb-shadow))'
+      'var(--nb-shadow-hard)'
     );
 
     fixture.componentInstance.radius.set(null);

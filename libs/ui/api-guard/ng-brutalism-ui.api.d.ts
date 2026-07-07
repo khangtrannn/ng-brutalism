@@ -1,5 +1,5 @@
 import { NbTone, NbUnderlineVariant, NbUnderlineGap, NbUnderlineWidth, NbRadius, NbShadow, NbBorderStrength, NbFontWeight, NbTypographyFont, NbTextTracking, NbSpacing, NbPadding, NbLayoutAlign, NbLayoutJustify, NbLayoutSeparator, NbDivider } from '@ng-brutalism/ui/tokens';
-export { NB_THEME_CONFIG, NbBorderStrength, NbConfig, NbDivider, NbFontWeight, NbLayoutAlign, NbLayoutJustify, NbLayoutSeparator, NbPadding, NbRadius, NbShadow, NbSpacing, NbTextTracking, NbThemeConfig, NbTone, NbTypographyFont, NbUnderlineGap, NbUnderlineVariant, NbUnderlineWidth, nbBorderWidthValue, nbPaddingValue, nbRadiusValue, nbShadowValue, nbSpacingValue, nbTypographyFontValue, nbUnderlineGapValue, nbUnderlineWidthValue, provideNgBrutalism } from '@ng-brutalism/ui/tokens';
+export { NbBorderStrength, NbDivider, NbFontWeight, NbLayoutAlign, NbLayoutJustify, NbLayoutSeparator, NbPadding, NbPaletteTone, NbRadius, NbSemanticTone, NbShadow, NbSpacing, NbTextTracking, NbTone, NbTypographyFont, NbUnderlineGap, NbUnderlineVariant, NbUnderlineWidth, nbBorderWidthValue, nbPaddingValue, nbRadiusValue, nbShadowValue, nbSpacingValue, nbTypographyFontValue, nbUnderlineGapValue, nbUnderlineWidthValue, provideNgBrutalism } from '@ng-brutalism/ui/tokens';
 import * as _angular_core from '@angular/core';
 import { Signal } from '@angular/core';
 import * as _ng_brutalism_ui from '@ng-brutalism/ui';
@@ -263,19 +263,6 @@ declare class NbDisplay {
     static ɵdir: _angular_core.ɵɵDirectiveDeclaration<NbDisplay, "[nbDisplay]", ["nbDisplay"], { "size": { "alias": "size"; "required": false; "isSignal": true; }; "weight": { "alias": "weight"; "required": false; "isSignal": true; }; "fluid": { "alias": "fluid"; "required": false; "isSignal": true; }; "tracking": { "alias": "tracking"; "required": false; "isSignal": true; }; "leading": { "alias": "leading"; "required": false; "isSignal": true; }; }, {}, never, never, true, [{ directive: typeof NbUnderlineCapability; inputs: { "underline": "underline"; "underlineGap": "underlineGap"; "underlineWidth": "underlineWidth"; }; outputs: {}; }, { directive: typeof NbResetMarginCapability; inputs: { "reset": "reset"; }; outputs: {}; }]>;
 }
 
-/**
- * Typography context. Picks a font *role* and writes the resolved stack as
- * `font-family` on the host so every descendant primitive (nbText, nbDisplay,
- * nbButton, nbChip, nbMediaItemTitle, …) inherits it through the cascade — no
- * raw font-family strings in templates.
- *
- * Precedence falls out of the cascade: a nested context overrides an outer one
- * (closest wins), and an inline token override (`--nb-font-accent: …`) wins over
- * the preset because the resolved value reads that token first.
- *
- * Also available as the `typography` input on nbSurface, which composes this
- * directive directly.
- */
 declare class NbTypography {
     readonly font: _angular_core.InputSignal<NbTypographyFont>;
     protected readonly fontValue: _angular_core.Signal<string | null>;

@@ -74,7 +74,7 @@
     text-align: left;
     font-size: 1rem;
     font-weight: 700;
-    transition: all 200ms;
+    transition: all var(--nb-motion-base);
   }
 
   :where(nb-accordion-trigger [data-slot='accordion-trigger-button']:focus-visible) {
@@ -122,7 +122,7 @@
     font-size: 0.875rem;
     font-weight: 500;
     grid-template-rows: 0fr;
-    transition: grid-template-rows 200ms ease-out;
+    transition: grid-template-rows var(--nb-motion-base) var(--nb-ease);
   }
 
   :where(nb-accordion-content div[role='region'][data-state='open']) {

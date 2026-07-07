@@ -647,19 +647,19 @@ const componentTokens: Record<DocsTokenComponent, DocsToken[]> = {
       usage: 'Reverse shadow vertical offset',
     },
     {
-      name: '--nb-size-sm',
-      defaultValue: '2rem',
-      usage: 'Small size scale token',
+      name: '--nb-motion-fast',
+      defaultValue: '150ms',
+      usage: 'Duration for interactive hover/press transitions',
     },
     {
-      name: '--nb-size-md',
-      defaultValue: '2.5rem',
-      usage: 'Medium size scale token',
+      name: '--nb-motion-base',
+      defaultValue: '200ms',
+      usage: 'Duration for structural transitions (e.g. accordion expand/collapse)',
     },
     {
-      name: '--nb-size-lg',
-      defaultValue: '3rem',
-      usage: 'Large size scale token',
+      name: '--nb-ease',
+      defaultValue: 'ease-out',
+      usage: 'Shared easing curve for component transitions',
     },
     {
       name: '--nb-font-sans',

@@ -115,13 +115,13 @@ describe('NbSurface', () => {
     expect(surface.style.getPropertyValue('border-width')).toBe('');
     expect(surface.style.getPropertyValue('box-shadow')).toBe('');
     expect(surface.style.getPropertyValue('--nb-surface-radius')).toBe(
-      'var(--nb-radius-xl, 1rem)'
+      'var(--nb-radius-xl)'
     );
     expect(surface.style.getPropertyValue('--nb-surface-border-width')).toBe(
-      'var(--nb-border-width-thick, 4px)'
+      'var(--nb-border-width-thick)'
     );
     expect(surface.style.getPropertyValue('--nb-surface-shadow')).toBe(
-      'var(--nb-shadow-heavy, calc(var(--nb-shadow-offset-x) * 2.5) calc(var(--nb-shadow-offset-y) * 2.5) 0 0 var(--nb-shadow))'
+      'var(--nb-shadow-heavy)'
     );
     expect(surface.style.cssText).not.toContain('--nb-resolved');
     expect(surface.getAttribute('data-clip')).toBe('');
@@ -177,13 +177,13 @@ describe('NbSurface', () => {
     expect(surface.style.getPropertyValue('box-shadow')).toBe('');
     expect(surface.style.getPropertyValue('border-radius')).toBe('');
     expect(surface.style.getPropertyValue('--nb-surface-border-width')).toBe(
-      'var(--nb-border-width-strong, 3px)'
+      'var(--nb-border-width-strong)'
     );
     expect(surface.style.getPropertyValue('--nb-surface-shadow')).toBe(
-      'var(--nb-shadow-hard, calc(var(--nb-shadow-offset-x) * 1.5) calc(var(--nb-shadow-offset-y) * 1.5) 0 0 var(--nb-shadow))'
+      'var(--nb-shadow-hard)'
     );
     expect(surface.style.getPropertyValue('--nb-surface-radius')).toBe(
-      'var(--nb-radius-lg, 0.75rem)'
+      'var(--nb-radius-lg)'
     );
     expect(surface.getAttribute('data-layout')).toBe('stack');
     expect(surface.getAttribute('data-clip')).toBe('');
@@ -201,7 +201,7 @@ describe('NbSurface', () => {
     expect(surface.style.getPropertyValue('padding')).toBe('');
     expect(surface.style.getPropertyValue('border-width')).toBe('');
     expect(surface.style.getPropertyValue('box-shadow')).toBe('');
-    expect(surface.style.getPropertyValue('--nb-surface-padding')).toBe('var(--nb-padding-md, 1rem)');
+    expect(surface.style.getPropertyValue('--nb-surface-padding')).toBe('var(--nb-padding-md)');
     expect(surface.style.getPropertyValue('--nb-surface-border-width')).toBe(
       '0px'
     );

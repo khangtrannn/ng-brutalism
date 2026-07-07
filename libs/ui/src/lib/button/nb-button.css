@@ -23,7 +23,7 @@
       --nb-button-shadow,
       var(--nb-shadow-offset-x) var(--nb-shadow-offset-y) 0 0 var(--nb-shadow)
     );
-    transition: all 150ms ease-out;
+    transition: all var(--nb-motion-fast) var(--nb-ease);
   }
 
   :where(button[nbButton], a[nbButton]) svg {

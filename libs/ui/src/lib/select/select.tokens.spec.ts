@@ -72,10 +72,10 @@ describe('NbSelect token surface', () => {
     const select = findCustomSelect(fixture);
 
     expect(select.style.getPropertyValue('--nb-select-radius')).toBe(
-      'var(--nb-radius-lg, 0.75rem)'
+      'var(--nb-radius-lg)'
     );
     expect(select.style.getPropertyValue('--nb-select-shadow')).toBe(
-      'var(--nb-shadow-hard, calc(var(--nb-shadow-offset-x) * 1.5) calc(var(--nb-shadow-offset-y) * 1.5) 0 0 var(--nb-shadow))'
+      'var(--nb-shadow-hard)'
     );
     expect(select.style.getPropertyValue('border-radius')).toBe('');
     expect(select.style.getPropertyValue('box-shadow')).toBe('');

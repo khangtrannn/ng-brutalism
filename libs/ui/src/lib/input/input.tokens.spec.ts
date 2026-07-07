@@ -109,12 +109,12 @@ describe('NbInput token surface', () => {
 
     expect(input.getAttribute('data-size')).toBe('lg');
     expect(input.getAttribute('data-nb-tone')).toBe('warning');
-    expect(input.style.getPropertyValue('--nb-input-border-width')).toBe('var(--nb-border-width-strong, 3px)');
+    expect(input.style.getPropertyValue('--nb-input-border-width')).toBe('var(--nb-border-width-strong)');
     expect(input.style.getPropertyValue('--nb-input-radius')).toBe(
-      'var(--nb-radius-lg, 0.75rem)'
+      'var(--nb-radius-lg)'
     );
     expect(input.style.getPropertyValue('--nb-input-shadow')).toBe(
-      'var(--nb-shadow-hard, calc(var(--nb-shadow-offset-x) * 1.5) calc(var(--nb-shadow-offset-y) * 1.5) 0 0 var(--nb-shadow))'
+      'var(--nb-shadow-hard)'
     );
     expect(input.style.getPropertyValue('background-color')).toBe('');
     expect(input.style.getPropertyValue('border-color')).toBe('');
@@ -148,7 +148,7 @@ describe('NbInput token surface', () => {
     const fixture = await createFixture(MutableBorderInputTokenTest);
     const input = findInput(fixture);
 
-    expect(input.style.getPropertyValue('--nb-input-border-width')).toBe('var(--nb-border-width-thick, 4px)');
+    expect(input.style.getPropertyValue('--nb-input-border-width')).toBe('var(--nb-border-width-thick)');
 
     fixture.componentInstance.border.set(null);
     fixture.detectChanges();
@@ -161,10 +161,10 @@ describe('NbInput token surface', () => {
     const input = findInput(fixture);
 
     expect(input.style.getPropertyValue('--nb-input-radius')).toBe(
-      'var(--nb-radius-lg, 0.75rem)'
+      'var(--nb-radius-lg)'
     );
     expect(input.style.getPropertyValue('--nb-input-shadow')).toBe(
-      'var(--nb-shadow-hard, calc(var(--nb-shadow-offset-x) * 1.5) calc(var(--nb-shadow-offset-y) * 1.5) 0 0 var(--nb-shadow))'
+      'var(--nb-shadow-hard)'
     );
 
     fixture.componentInstance.radius.set(null);
