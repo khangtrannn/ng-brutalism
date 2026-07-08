@@ -49,11 +49,13 @@ class FlushSectionTest {}
 
 describe('NbSection', () => {
   it('applies default classes and metadata', async () => {
+    // Arrange
     const fixture = await createFixture(DefaultSectionTest);
     const section = fixture.nativeElement.querySelector(
       '[nbSection]'
     ) as HTMLElement;
 
+    // Assert
     expect(section.getAttribute('data-nb-section')).toBe('');
     expect(section.getAttribute('data-padding')).toBeNull();
     expect(section.getAttribute('data-divider')).toBe('none');
@@ -70,11 +72,13 @@ describe('NbSection', () => {
   });
 
   it('renders a top divider with the configured padding', async () => {
+    // Arrange
     const fixture = await createFixture(TopDividerSectionTest);
     const section = fixture.nativeElement.querySelector(
       '[nbSection]'
     ) as HTMLElement;
 
+    // Assert
     expect(section.getAttribute('data-divider')).toBe('top');
     expect(section.style.getPropertyValue('padding')).toBe('');
     expect(section.style.getPropertyValue('--nb-section-padding')).toBe(
@@ -84,11 +88,13 @@ describe('NbSection', () => {
   });
 
   it('maps block divider with dashed style', async () => {
+    // Arrange
     const fixture = await createFixture(DashedBlockSectionTest);
     const section = fixture.nativeElement.querySelector(
       '[nbSection]'
     ) as HTMLElement;
 
+    // Assert
     expect(section.getAttribute('data-divider')).toBe('block');
     expect(section.getAttribute('data-divider-style')).toBe('dashed');
     expect(section.style.getPropertyValue('padding')).toBe('');
@@ -100,11 +106,13 @@ describe('NbSection', () => {
   });
 
   it('switches to flex with justify-between and align-items mapping', async () => {
+    // Arrange
     const fixture = await createFixture(BetweenLayoutSectionTest);
     const section = fixture.nativeElement.querySelector(
       '[nbSection]'
     ) as HTMLElement;
 
+    // Assert
     expect(section.getAttribute('data-layout')).toBe('between');
     expect(section.getAttribute('data-align')).toBe('center');
     expect(section.className).toBe('');
@@ -112,11 +120,13 @@ describe('NbSection', () => {
   });
 
   it('applies negative inline margins when flush is set', async () => {
+    // Arrange
     const fixture = await createFixture(FlushSectionTest);
     const section = fixture.nativeElement.querySelector(
       '[nbSection]'
     ) as HTMLElement;
 
+    // Assert
     expect(section.getAttribute('data-flush')).toBe('');
     expect(section.className).toBe('');
     expect(section.style.getPropertyValue('margin-inline')).toBe('');

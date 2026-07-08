@@ -67,11 +67,13 @@ class ThickDividerSplitTest {}
 
 describe('NbSplit', () => {
   it('applies default split classes and metadata', async () => {
+    // Arrange
     const fixture = await createFixture(DefaultSplitTest);
     const split = fixture.nativeElement.querySelector(
       '[nbSplit]'
     ) as HTMLElement;
 
+    // Assert
     expect(split.getAttribute('data-nb-split')).toBe('');
     expect(split.getAttribute('data-ratio')).toBe('1:1');
     expect(split.getAttribute('data-gap')).toBeNull();
@@ -88,11 +90,13 @@ describe('NbSplit', () => {
   });
 
   it('maps ratio, gap, padding, collapse, and alignment', async () => {
+    // Arrange
     const fixture = await createFixture(CustomSplitTest);
     const split = fixture.nativeElement.querySelector(
       '[nbSplit]'
     ) as HTMLElement;
 
+    // Assert
     expect(split.getAttribute('data-ratio')).toBe('3:1');
     expect(split.getAttribute('data-collapse')).toBe('lg');
     expect(split.getAttribute('data-align')).toBe('end');
@@ -109,43 +113,51 @@ describe('NbSplit', () => {
   });
 
   it('sizes the first column to fill and the second to its content', async () => {
+    // Arrange
     const fixture = await createFixture(FillAutoSplitTest);
     const split = fixture.nativeElement.querySelector(
       '[nbSplit]'
     ) as HTMLElement;
 
+    // Assert
     expect(split.getAttribute('data-ratio')).toBe('fill:auto');
     expect(split.className).toBe('');
   });
 
   it('draws a solid separator, hidden until the collapse breakpoint', async () => {
+    // Arrange
     const fixture = await createFixture(SolidDividerSplitTest);
     const split = fixture.nativeElement.querySelector(
       '[nbSplit]'
     ) as HTMLElement;
 
+    // Assert
     expect(split.getAttribute('data-separator')).toBe('solid');
     expect(split.getAttribute('data-collapse')).toBe('md');
     expect(split.className).toBe('');
   });
 
   it('draws a dashed separator that is always visible when it never collapses', async () => {
+    // Arrange
     const fixture = await createFixture(DashedDividerSplitTest);
     const split = fixture.nativeElement.querySelector(
       '[nbSplit]'
     ) as HTMLElement;
 
+    // Assert
     expect(split.getAttribute('data-separator')).toBe('dashed');
     expect(split.getAttribute('data-collapse')).toBe('none');
     expect(split.className).toBe('');
   });
 
   it('draws a thick separator, revealed at the lg breakpoint', async () => {
+    // Arrange
     const fixture = await createFixture(ThickDividerSplitTest);
     const split = fixture.nativeElement.querySelector(
       '[nbSplit]'
     ) as HTMLElement;
 
+    // Assert
     expect(split.getAttribute('data-separator')).toBe('thick');
     expect(split.getAttribute('data-collapse')).toBe('lg');
     expect(split.className).toBe('');

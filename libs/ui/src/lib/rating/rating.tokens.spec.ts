@@ -16,28 +16,34 @@ class RatingTokenTest {
 
 describe('NbRating token surface', () => {
   it('leaves filled-star color to CSS token fallbacks', async () => {
+    // Arrange
     const fixture = await createFixture();
     const rating = findRating(fixture);
     const filledStar = findFilledStar(fixture);
 
+    // Assert
     expect(rating.getAttribute('data-nb-tone')).toBeNull();
     expect(filledStar.style.getPropertyValue('color')).toBe('');
     expect(filledStar.getAttribute('data-filled')).toBe('');
   });
 
   it('reflects tone semantically without writing final colors inline', async () => {
+    // Arrange
     const fixture = await createFixture({ tone: 'success' });
     const rating = findRating(fixture);
     const filledStar = findFilledStar(fixture);
 
+    // Assert
     expect(rating.getAttribute('data-nb-tone')).toBe('success');
     expect(filledStar.style.getPropertyValue('color')).toBe('');
   });
 
   it('keeps fill count as runtime data-filled state', async () => {
+    // Arrange
     const fixture = await createFixture({ value: 2 });
     const stars = findStars(fixture);
 
+    // Assert
     expect(stars.filter((s) => s.hasAttribute('data-filled'))).toHaveLength(
       2
     );

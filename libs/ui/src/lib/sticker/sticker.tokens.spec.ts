@@ -32,10 +32,12 @@ class StickerTokenTest {
 
 describe('NbSticker token surface', () => {
   it('renders the default sandbox sticker shape and leaves fill to CSS token fallbacks', async () => {
+    // Arrange
     const fixture = await createFixture();
     const sticker = findSticker(fixture);
     const shape = findShape(fixture);
 
+    // Assert
     expect(sticker.getAttribute('data-shape')).toBe('burst');
     expect(sticker.getAttribute('role')).toBe('img');
     expect(sticker.getAttribute('data-nb-tone')).toBeNull();
@@ -45,6 +47,7 @@ describe('NbSticker token surface', () => {
   });
 
   it('reflects tone semantically without writing final fill/ink inline', async () => {
+    // Arrange
     const fixture = await createFixture({
       shape: 'star',
       tone: 'pink',
@@ -53,6 +56,7 @@ describe('NbSticker token surface', () => {
     const sticker = findSticker(fixture);
     const svg = sticker.querySelector('svg') as SVGElement;
 
+    // Assert
     expect(sticker.getAttribute('data-shape')).toBe('star');
     expect(sticker.getAttribute('data-nb-tone')).toBe('pink');
     expect(sticker.style.getPropertyValue('--nb-sticker-fill')).toBe('');
@@ -61,6 +65,7 @@ describe('NbSticker token surface', () => {
   });
 
   it('keeps decorative shapes and extended tones valid', async () => {
+    // Arrange
     const fixture = await createFixture({
       shape: 'splat',
       tone: 'warning',
@@ -68,30 +73,37 @@ describe('NbSticker token surface', () => {
     });
     const sticker = findSticker(fixture);
 
+    // Assert
     expect(sticker.getAttribute('data-shape')).toBe('splat');
     expect(sticker.getAttribute('data-nb-tone')).toBe('warning');
     expect(sticker.style.getPropertyValue('--nb-sticker-rotate')).toBe('12deg');
   });
 
   it('does not write --nb-sticker-rotate or --nb-sticker-scale when unset', async () => {
+    // Arrange
     const fixture = await createFixture();
     const sticker = findSticker(fixture);
 
+    // Assert
     expect(sticker.style.getPropertyValue('--nb-sticker-rotate')).toBe('');
     expect(sticker.style.getPropertyValue('--nb-sticker-scale')).toBe('');
   });
 
   it('writes --nb-sticker-scale when size is explicit', async () => {
+    // Arrange
     const fixture = await createFixture({ size: 1.5 });
     const sticker = findSticker(fixture);
 
+    // Assert
     expect(sticker.style.getPropertyValue('--nb-sticker-scale')).toBe('1.5');
   });
 
   it('can be marked decorative', async () => {
+    // Arrange
     const fixture = await createFixture({ decorative: true });
     const sticker = findSticker(fixture);
 
+    // Assert
     expect(sticker.getAttribute('aria-hidden')).toBe('true');
     expect(sticker.hasAttribute('role')).toBe(false);
   });

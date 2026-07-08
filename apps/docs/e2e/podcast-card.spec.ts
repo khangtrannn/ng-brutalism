@@ -6,7 +6,10 @@ test.describe('podcast card recipe', () => {
   });
 
   test('renders the podcast card', async ({ page }) => {
+    // Arrange
     const card = page.locator('recipe-podcast-card');
+
+    // Assert
     await expect(card).toBeVisible();
 
     await expect(card.getByText('Build Loud FM')).toBeVisible();
@@ -17,8 +20,10 @@ test.describe('podcast card recipe', () => {
   });
 
   test('"Podcast" chip uses padding="lg"', async ({ page }) => {
+    // Arrange
     const chip = page.locator('[nbChip]', { hasText: 'Podcast' }).first();
 
+    // Assert
     await expect(chip).toBeVisible();
     await expect(chip).toHaveAttribute('data-padding', 'lg');
 
@@ -41,8 +46,10 @@ test.describe('podcast card recipe', () => {
   test('default chips render with padding="md" (smaller than lg)', async ({
     page,
   }) => {
+    // Arrange
     const chip = page.locator('[nbChip]', { hasText: '45 MIN' }).first();
 
+    // Assert
     await expect(chip).toBeVisible();
     await expect(chip).toHaveAttribute('data-padding', 'md');
 

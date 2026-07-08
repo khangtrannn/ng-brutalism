@@ -30,22 +30,28 @@ class FieldLabelTest {}
 
 describe('NbLabel', () => {
   it('renders without a for attribute when standalone and unset', async () => {
+    // Arrange
     const fixture = await createFixture(BareLabelTest);
 
+    // Assert
     expect(findLabel(fixture).getAttribute('for')).toBeNull();
   });
 
   it('keeps an explicit for attribute untouched', async () => {
+    // Arrange
     const fixture = await createFixture(ExplicitForLabelTest);
 
+    // Assert
     expect(findLabel(fixture).getAttribute('for')).toBe('explicit-id');
   });
 
   it('adopts the enclosing NbField controlId when for is unset', async () => {
+    // Arrange
     const fixture = await createFixture(FieldLabelTest);
     const field = fixture.nativeElement.querySelector('nb-field');
     const label = findLabel(fixture);
 
+    // Assert
     expect(label.getAttribute('for')).toBeTruthy();
     expect(label.getAttribute('for')).toContain('nb-field-control-');
     expect(field).not.toBeNull();

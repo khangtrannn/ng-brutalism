@@ -15,9 +15,11 @@ class DisplayTokenTest {
 
 describe('NbDisplay token surface', () => {
   it('reflects typography state as data attributes, leaving final properties to CSS', async () => {
+    // Arrange
     const fixture = await createFixture();
     const display = findDisplay(fixture);
 
+    // Assert
     expect(display.style.getPropertyValue('font-size')).toBe('');
     expect(display.style.getPropertyValue('font-weight')).toBe('');
     expect(display.style.getPropertyValue('color')).toBe('');
@@ -32,18 +34,24 @@ describe('NbDisplay token surface', () => {
   });
 
   it('reflects fluid as a boolean data attribute', async () => {
+    // Arrange
     const fixture = await createFixture({ fluid: true });
     const display = findDisplay(fixture);
 
+    // Assert
     expect(display.getAttribute('data-fluid')).toBe('');
     expect(display.style.getPropertyValue('font-size')).toBe('');
   });
 
   it('allows local --nb-display-size customization since no inline style is written', async () => {
+    // Arrange
     const fixture = await createFixture();
     const display = findDisplay(fixture);
+
+    // Act
     display.style.setProperty('--nb-display-size', '6rem');
 
+    // Assert
     expect(display.style.getPropertyValue('--nb-display-size')).toBe('6rem');
   });
 });

@@ -10,8 +10,11 @@ describe('App', () => {
   });
 
   it('should create the app', () => {
+    // Arrange
     const fixture = TestBed.createComponent(App);
     const app = fixture.componentInstance;
+
+    // Assert
     expect(app).toBeTruthy();
   });
 });

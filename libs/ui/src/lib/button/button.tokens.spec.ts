@@ -111,10 +111,12 @@ class TrailingIconTokenTest {}
 
 describe('NbButton token surface', () => {
   it('reads its scoped tokens instead of global tokens directly', async () => {
+    // Arrange
     const fixture = await createFixture();
     const button = findButton(fixture);
     const cls = button.className;
 
+    // Assert
     expect(cls).not.toMatch(/(?:^|\s)nb-tone(?:\s|$)/);
     expect(cls).not.toMatch(/(?:^|\s)nb-border-width(?:\s|$)/);
     expect(cls).not.toMatch(/(?:^|\s)nb-radius(?:\s|$)/);
@@ -128,9 +130,11 @@ describe('NbButton token surface', () => {
   });
 
   it('uses the default tone (primary) when tone is omitted', async () => {
+    // Arrange
     const fixture = await createFixture();
     const button = findButton(fixture);
 
+    // Assert
     expect(button.style.getPropertyValue('background')).toBe('');
     expect(button.style.getPropertyValue('color')).toBe('');
     expect(button.style.getPropertyValue('border-color')).toBe('');
@@ -139,6 +143,7 @@ describe('NbButton token surface', () => {
   });
 
   it('reflects tone semantically without writing final colors inline', async () => {
+    // Arrange
     await TestBed.configureTestingModule({
       imports: [ToneInputButtonTokenTest],
     }).compileComponents();
@@ -148,6 +153,7 @@ describe('NbButton token surface', () => {
       'button[nbButton]'
     ) as HTMLButtonElement;
 
+    // Assert
     expect(button.getAttribute('data-nb-tone')).toBe('yellow');
     expect(button.style.getPropertyValue('background')).toBe('');
     expect(button.style.getPropertyValue('color')).toBe('');
@@ -157,6 +163,7 @@ describe('NbButton token surface', () => {
   });
 
   it('keeps an inline button token local to that button', async () => {
+    // Arrange
     await TestBed.configureTestingModule({
       imports: [LocalScopedButtonTokenTest],
     }).compileComponents();
@@ -166,6 +173,7 @@ describe('NbButton token surface', () => {
     const local = host.querySelector<HTMLButtonElement>('#local')!;
     const sibling = host.querySelector<HTMLButtonElement>('#sibling')!;
 
+    // Assert
     expect(local.style.getPropertyValue('--nb-button-bg')).toBe('red');
     expect(local.style.getPropertyValue('background')).toBe('');
     expect(sibling.style.getPropertyValue('--nb-button-bg')).toBe('');
@@ -175,6 +183,7 @@ describe('NbButton token surface', () => {
   });
 
   it('lets parent-scoped button tokens apply to all descendant buttons', async () => {
+    // Arrange
     await TestBed.configureTestingModule({
       imports: [ParentScopedButtonTokenTest],
     }).compileComponents();
@@ -186,6 +195,7 @@ describe('NbButton token surface', () => {
       scope.querySelectorAll<HTMLButtonElement>('button[nbButton]')
     );
 
+    // Assert
     expect(scope.style.getPropertyValue('--nb-button-bg')).toBe('red');
     expect(buttons).toHaveLength(2);
     for (const button of buttons) {
@@ -196,9 +206,11 @@ describe('NbButton token surface', () => {
   });
 
   it('leaves scalar visual defaults to CSS token fallbacks', async () => {
+    // Arrange
     const fixture = await createFixture();
     const button = findButton(fixture);
 
+    // Assert
     expect(button.style.getPropertyValue('border-width')).toBe('');
     expect(button.style.getPropertyValue('border-radius')).toBe('');
     expect(button.style.getPropertyValue('box-shadow')).toBe('');
@@ -221,9 +233,11 @@ describe('NbButton token surface', () => {
   ] satisfies Array<[NbButtonTone, string, string]>)(
     'tone="%s" reflects semantically and leaves public tokens user-owned',
     async (tone) => {
+      // Arrange
       const fixture = await createFixture({ tone });
       const button = findButton(fixture);
 
+      // Assert
       expect(button.getAttribute('data-nb-tone')).toBe(tone);
       expect(button.style.getPropertyValue('background')).toBe('');
       expect(button.style.getPropertyValue('color')).toBe('');
@@ -238,15 +252,18 @@ describe('NbButton token surface', () => {
   );
 
   it('shadow="none" writes the public shadow variable', async () => {
+    // Arrange
     const fixture = await createFixture({ shadow: 'none' });
     const button = findButton(fixture);
 
+    // Assert
     expect(button.style.getPropertyValue('box-shadow')).toBe('');
     expect(button.style.getPropertyValue('--nb-button-shadow')).toBe('none');
     expect(button.style.cssText).not.toContain('--nb-resolved');
   });
 
   it('explicit scalar inputs write public CSS variables', async () => {
+    // Arrange
     const fixture = await createFixture({
       radius: 'md',
       shadow: 'hard',
@@ -254,6 +271,7 @@ describe('NbButton token surface', () => {
     });
     const button = findButton(fixture);
 
+    // Assert
     expect(button.style.getPropertyValue('border-radius')).toBe('');
     expect(button.style.getPropertyValue('box-shadow')).toBe('');
     expect(button.style.getPropertyValue('border-width')).toBe('');
@@ -270,20 +288,25 @@ describe('NbButton token surface', () => {
   });
 
   it('press="reverse" changes only the interaction direction', async () => {
+    // Arrange
     const fixture = await createPressFixture('reverse');
     const button = findPressButton(fixture);
 
+    // Assert
     expect(button.getAttribute('data-press')).toBe('reverse');
   });
 
   it('press="none" disables hover translation', async () => {
+    // Arrange
     const fixture = await createPressFixture('none');
     const button = findPressButton(fixture);
 
+    // Assert
     expect(button.getAttribute('data-press')).toBe('none');
   });
 
   it('fullWidth bare attribute makes the button full width', async () => {
+    // Arrange
     await TestBed.configureTestingModule({
       imports: [FullWidthButtonTest],
     }).compileComponents();
@@ -293,10 +316,12 @@ describe('NbButton token surface', () => {
       'button[nbButton]'
     ) as HTMLButtonElement;
 
+    // Assert
     expect(button.getAttribute('data-full-width')).toBe('');
   });
 
   it('does not push trailing icons by default', async () => {
+    // Arrange
     await TestBed.configureTestingModule({
       imports: [TrailingIconDefaultTest],
     }).compileComponents();
@@ -306,6 +331,7 @@ describe('NbButton token surface', () => {
       '[nbButtonTrailingIcon]'
     ) as HTMLElement;
 
+    // Assert
     expect(icon.className).toBe('');
     expect(icon.getAttribute('data-push')).toBe('none');
     expect(icon.getAttribute('data-size')).toBe('md');
@@ -321,6 +347,7 @@ describe('NbButton token surface', () => {
   });
 
   it('pushes trailing icons to the end when requested', async () => {
+    // Arrange
     await TestBed.configureTestingModule({
       imports: [TrailingIconPushEndTest],
     }).compileComponents();
@@ -330,11 +357,13 @@ describe('NbButton token surface', () => {
       '[nbButtonTrailingIcon]'
     ) as HTMLElement;
 
+    // Assert
     expect(icon.className).toBe('');
     expect(icon.getAttribute('data-push')).toBe('end');
   });
 
   it('writes trailing icon scalar inputs to public CSS variables', async () => {
+    // Arrange
     await TestBed.configureTestingModule({
       imports: [TrailingIconTokenTest],
     }).compileComponents();
@@ -344,6 +373,7 @@ describe('NbButton token surface', () => {
       '[nbButtonTrailingIcon]'
     ) as HTMLElement;
 
+    // Assert
     expect(icon.getAttribute('data-size')).toBe('lg');
     expect(icon.getAttribute('data-shape')).toBe('square');
     expect(icon.getAttribute('data-tone')).toBe('inverse');
@@ -361,9 +391,11 @@ describe('NbButton token surface', () => {
   });
 
   it('does not regress the default button anatomy data attributes', async () => {
+    // Arrange
     const fixture = await createFixture();
     const button = findButton(fixture);
 
+    // Assert
     expect(button.getAttribute('data-press')).toBe('push');
     expect(button.getAttribute('data-size')).toBe('md');
     expect(button.getAttribute('data-full-width')).toBeNull();

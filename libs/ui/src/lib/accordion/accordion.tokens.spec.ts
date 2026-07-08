@@ -72,9 +72,11 @@ class ItemCapabilityAccordionTokenTest {}
 
 describe('NbAccordion token surface', () => {
   it('leaves default item visuals to component CSS token fallbacks', async () => {
+    // Arrange
     const fixture = await createFixture();
     const itemHost = findItemHost(fixture);
 
+    // Assert
     expect(itemHost.style.cssText).not.toContain('--nb-resolved');
     expect(itemHost.style.getPropertyValue('background')).toBe('');
     expect(itemHost.style.getPropertyValue('color')).toBe('');
@@ -95,9 +97,11 @@ describe('NbAccordion token surface', () => {
   });
 
   it('item host is the surface slot with no inner surface wrapper', async () => {
+    // Arrange
     const fixture = await createFixture();
     const itemHost = findItemHost(fixture);
 
+    // Assert
     expect(itemHost.getAttribute('data-slot')).toBe('accordion-item-surface');
     expect(itemHost.className.trim()).toBe('');
     expect(itemHost.className).not.toContain('nb-main');
@@ -108,18 +112,22 @@ describe('NbAccordion token surface', () => {
   });
 
   it('item host does not carry legacy capability marker classes', async () => {
+    // Arrange
     const fixture = await createFixture();
     const itemHost = findItemHost(fixture);
 
+    // Assert
     expect(itemHost.classList.contains('nb-tone')).toBe(false);
     expect(itemHost.classList.contains('nb-radius')).toBe(false);
     expect(itemHost.classList.contains('nb-border-width')).toBe(false);
   });
 
   it('trigger button has no reactive class binding — styling is in component CSS', async () => {
+    // Arrange
     const fixture = await createFixture();
     const trigger = findTrigger(fixture);
 
+    // Assert
     expect(trigger.className.trim()).toBe('');
     expect(trigger.style.getPropertyValue('background-color')).toBe('');
     expect(trigger.style.getPropertyValue('color')).toBe('');
@@ -127,6 +135,7 @@ describe('NbAccordion token surface', () => {
   });
 
   it('trigger tone writes tone state without repainting item or content', async () => {
+    // Arrange
     const fixture = await createFixture(TriggerToneAccordionTokenTest);
     const itemHost = findItemHost(fixture);
     const triggerHost = fixture.nativeElement.querySelector(
@@ -135,6 +144,7 @@ describe('NbAccordion token surface', () => {
     const trigger = findTrigger(fixture);
     const content = findContent(fixture);
 
+    // Assert
     expect(triggerHost.getAttribute('data-nb-tone')).toBe('yellow');
     expect(trigger.style.getPropertyValue('background-color')).toBe('');
     expect(trigger.style.getPropertyValue('--nb-accordion-trigger-bg')).toBe('');
@@ -144,9 +154,11 @@ describe('NbAccordion token surface', () => {
   });
 
   it('item visual inputs write semantic state and public scalar variables', async () => {
+    // Arrange
     const fixture = await createFixture(ItemCapabilityAccordionTokenTest);
     const itemHost = findItemHost(fixture);
 
+    // Assert
     expect(itemHost.getAttribute('data-nb-tone')).toBe('cream');
     expect(itemHost.style.getPropertyValue('background')).toBe('');
     expect(itemHost.style.getPropertyValue('color')).toBe('');
@@ -168,9 +180,11 @@ describe('NbAccordion token surface', () => {
   });
 
   it('content region has no reactive class binding and tracks state via data-state', async () => {
+    // Arrange
     const fixture = await createFixture();
     const content = findContent(fixture);
 
+    // Assert
     expect(content.className.trim()).toBe('');
     expect(content.getAttribute('data-state')).toBe('open');
     expect(content.getAttribute('aria-hidden')).toBe('false');

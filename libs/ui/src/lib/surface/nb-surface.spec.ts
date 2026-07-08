@@ -67,11 +67,13 @@ class HeaderBandSurfaceTest {}
 
 describe('NbSurface', () => {
   it('applies default brutalist surface classes, metadata, and component variables', async () => {
+    // Arrange
     const fixture = await createFixture(DefaultSurfaceTest);
     const surface = fixture.nativeElement.querySelector(
       '[nbSurface]'
     ) as HTMLElement;
 
+    // Assert
     expect(surface.getAttribute('data-nb-surface')).toBe('');
     expect(surface.getAttribute('data-nb-tone')).toBeNull();
     expect(surface.getAttribute('data-radius')).toBeNull();
@@ -100,11 +102,13 @@ describe('NbSurface', () => {
   });
 
   it('maps tone, radius, border, shadow, and bare clip attributes', async () => {
+    // Arrange
     const fixture = await createFixture(RecipeSurfaceTest);
     const surface = fixture.nativeElement.querySelector(
       '[nbSurface]'
     ) as HTMLElement;
 
+    // Assert
     expect(surface.getAttribute('data-size')).toBe('lg');
     expect(surface.getAttribute('data-layout')).toBe('center');
     expect(surface.getAttribute('data-nb-tone')).toBe('cream');
@@ -136,6 +140,7 @@ describe('NbSurface', () => {
   ] satisfies readonly [NbSurfaceTone][])(
     'reflects %s as semantic tone state without writing final colors',
     async (tone) => {
+      // Arrange
       const fixture = await createFixture(ToneSurfaceTest, (instance) => {
         instance.tone = tone;
       });
@@ -144,6 +149,7 @@ describe('NbSurface', () => {
         '[nbSurface]'
       ) as HTMLElement;
 
+      // Assert
       expect(surface.getAttribute('data-nb-tone')).toBe(tone);
       expect(surface.style.getPropertyValue('background')).toBe('');
       expect(surface.style.getPropertyValue('color')).toBe('');
@@ -152,6 +158,7 @@ describe('NbSurface', () => {
   );
 
   it('leaves component-specific public CSS variables open for tone overrides', async () => {
+    // Arrange
     const fixture = await createFixture(ToneSurfaceTest, (instance) => {
       instance.tone = 'mint';
     });
@@ -159,6 +166,7 @@ describe('NbSurface', () => {
       '[nbSurface]'
     ) as HTMLElement;
 
+    // Assert
     expect(surface.getAttribute('data-nb-tone')).toBe('mint');
     expect(surface.style.getPropertyValue('background')).toBe('');
     expect(surface.style.getPropertyValue('--nb-surface-bg')).toBe('');
@@ -166,11 +174,13 @@ describe('NbSurface', () => {
   });
 
   it('supports strong stacked surfaces for compact card shells', async () => {
+    // Arrange
     const fixture = await createFixture(FlightCardSurfaceTest);
     const surface = fixture.nativeElement.querySelector(
       '[nbSurface]'
     ) as HTMLElement;
 
+    // Assert
     expect(surface.getAttribute('data-layout')).toBe('stack');
     expect(surface.style.getPropertyValue('border-width')).toBe('');
     expect(surface.style.getPropertyValue('box-shadow')).toBe('');
@@ -190,11 +200,13 @@ describe('NbSurface', () => {
   });
 
   it('supports row header bands with padding and a bottom edge', async () => {
+    // Arrange
     const fixture = await createFixture(HeaderBandSurfaceTest);
     const surface = fixture.nativeElement.querySelector(
       '[nbSurface]'
     ) as HTMLElement;
 
+    // Assert
     expect(surface.getAttribute('data-edge')).toBe('bottom');
     expect(surface.getAttribute('data-layout')).toBe('row');
     expect(surface.style.getPropertyValue('padding')).toBe('');

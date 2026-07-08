@@ -26,16 +26,20 @@ class SelectFormTest {
 
 describe('NbSelect as a ControlValueAccessor', () => {
   it('reflects the initial FormControl value via writeValue', async () => {
+    // Arrange
     const fixture = await createFixture();
     const trigger = findTrigger(fixture);
 
+    // Assert
     expect(trigger.textContent?.trim()).toBe('Starter');
   });
 
   it('propagates a selection back to the FormControl (onChange)', async () => {
+    // Arrange
     const fixture = await createFixture();
     const trigger = findTrigger(fixture);
 
+    // Act
     trigger.click();
     fixture.detectChanges();
 
@@ -45,15 +49,19 @@ describe('NbSelect as a ControlValueAccessor', () => {
     options[1].click();
     fixture.detectChanges();
 
+    // Assert
     expect(fixture.componentInstance.control.value).toBe('team');
   });
 
   it('marks the control touched when the listbox closes (onTouched)', async () => {
+    // Arrange
     const fixture = await createFixture();
     const trigger = findTrigger(fixture);
 
+    // Assert
     expect(fixture.componentInstance.control.touched).toBe(false);
 
+    // Act
     trigger.click();
     fixture.detectChanges();
     trigger.dispatchEvent(
@@ -62,40 +70,51 @@ describe('NbSelect as a ControlValueAccessor', () => {
     fixture.detectChanges();
     await Promise.resolve();
 
+    // Assert
     expect(fixture.componentInstance.control.touched).toBe(true);
   });
 
   it('disables the trigger when the FormControl is disabled (setDisabledState)', async () => {
+    // Arrange
     const fixture = await createFixture();
     const trigger = findTrigger(fixture);
 
+    // Assert
     expect(trigger.disabled).toBe(false);
 
+    // Act
     fixture.componentInstance.control.disable();
     fixture.detectChanges();
 
+    // Assert
     expect(trigger.disabled).toBe(true);
   });
 
   it('reflects required and invalid state from NgControl', async () => {
+    // Arrange
     const fixture = await createFixture();
     const trigger = findTrigger(fixture);
 
+    // Assert
     expect(trigger.getAttribute('aria-required')).toBe('true');
     expect(trigger.getAttribute('aria-invalid')).toBeNull();
 
+    // Act
     fixture.componentInstance.control.setValue(null);
     fixture.detectChanges();
     await Promise.resolve();
     fixture.detectChanges();
 
+    // Assert
     expect(trigger.getAttribute('aria-invalid')).toBeNull();
 
+    // Act
     fixture.componentInstance.control.markAsTouched();
     fixture.detectChanges();
     await Promise.resolve();
     fixture.detectChanges();
 
+    // Assert
     expect(trigger.getAttribute('aria-invalid')).toBe('true');
   });
 });

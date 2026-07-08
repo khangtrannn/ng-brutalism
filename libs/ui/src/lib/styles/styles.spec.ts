@@ -35,28 +35,34 @@ const exportTarget = (entry: CssExport | undefined): string | undefined =>
 
 describe('styles.css component registry', () => {
   it('imports every component stylesheet', () => {
+    // Arrange
     const missing = componentCss.filter(
       (path) => !stylesCss.includes(`'../${path}'`)
     );
 
+    // Assert
     expect(missing, `component CSS not imported in styles.css: ${missing.join(', ')}`).toEqual([]);
   });
 
   it('has no dangling @import pointing at a missing file', () => {
+    // Arrange
     const dangling = localImports.filter((path) => !existsSync(join(stylesDir, path)));
 
+    // Assert
     expect(dangling, `styles.css imports missing files: ${dangling.join(', ')}`).toEqual([]);
   });
 });
 
 describe('package.json css subpath exports', () => {
   it('exposes a subpath export for every component stylesheet', () => {
+    // Arrange
     const missing = componentCss.filter((path) => {
       const file = path.split('/').pop() as string;
       const key = `./${file.replace(/^nb-/, '')}`;
       return exportTarget(cssExports[key]) !== `./${path}`;
     });
 
+    // Assert
     expect(
       missing,
       `component CSS missing a matching exports entry in package.json: ${missing.join(', ')}`
@@ -64,6 +70,7 @@ describe('package.json css subpath exports', () => {
   });
 
   it('has no css export pointing at a missing file', () => {
+    // Arrange
     const dangling = Object.entries(cssExports)
       .filter(([key]) => key.endsWith('.css'))
       .filter(([, entry]) => {
@@ -72,6 +79,7 @@ describe('package.json css subpath exports', () => {
       })
       .map(([key]) => key);
 
+    // Assert
     expect(
       dangling,
       `package.json exports point at missing files: ${dangling.join(', ')}`

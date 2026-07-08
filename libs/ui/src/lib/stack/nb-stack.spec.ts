@@ -45,11 +45,13 @@ class ThickStackTest {}
 
 describe('NbStack', () => {
   it('applies default vertical rhythm classes and metadata', async () => {
+    // Arrange
     const fixture = await createFixture(DefaultStackTest);
     const stack = fixture.nativeElement.querySelector(
       '[nbStack]'
     ) as HTMLElement;
 
+    // Assert
     expect(stack.getAttribute('data-nb-stack')).toBe('');
     expect(stack.getAttribute('data-gap')).toBeNull();
     expect(stack.getAttribute('data-align')).toBe('stretch');
@@ -62,11 +64,13 @@ describe('NbStack', () => {
   });
 
   it('maps gap, alignment, justification, and dashed separators', async () => {
+    // Arrange
     const fixture = await createFixture(DashedStackTest);
     const stack = fixture.nativeElement.querySelector(
       '[nbStack]'
     ) as HTMLElement;
 
+    // Assert
     expect(stack.getAttribute('data-align')).toBe('start');
     expect(stack.getAttribute('data-justify')).toBe('center');
     expect(stack.getAttribute('data-separator')).toBe('dashed');
@@ -79,17 +83,21 @@ describe('NbStack', () => {
     expect(stack.style.cssText).not.toContain('--nb-resolved');
   });
   it('solid separator is reflected via the data attribute', async () => {
+    // Arrange
     const fixture = await createFixture(SolidStackTest);
     const stack = fixture.nativeElement.querySelector('[nbStack]') as HTMLElement;
 
+    // Assert
     expect(stack.getAttribute('data-separator')).toBe('solid');
     expect(stack.className).toBe('');
   });
 
   it('thick separator is reflected via the data attribute', async () => {
+    // Arrange
     const fixture = await createFixture(ThickStackTest);
     const stack = fixture.nativeElement.querySelector('[nbStack]') as HTMLElement;
 
+    // Assert
     expect(stack.getAttribute('data-separator')).toBe('thick');
     expect(stack.className).toBe('');
   });

@@ -29,31 +29,37 @@ class ChipGroupTest {}
 
 describe('NbChip', () => {
   it('renders projected content without an icon slot by default', async () => {
+    // Arrange
     const fixture = await createFixture(DefaultChipTest);
     const chip = fixture.nativeElement.querySelector(
       'span[nbChip]'
     ) as HTMLElement;
 
+    // Assert
     expect(chip.getAttribute('data-nb-chip')).toBe('');
     expect(chip.textContent?.trim()).toBe('New');
     expect(chip.querySelector('[nbIcon]')).toBeNull();
   });
 
   it('renders a leading icon in mask mode, decorative, when icon is set', async () => {
+    // Arrange
     const fixture = await createFixture(IconChipTest);
     const icon = fixture.nativeElement.querySelector('[nbIcon]') as HTMLElement;
 
+    // Assert
     expect(icon).not.toBeNull();
     expect(icon.getAttribute('aria-hidden')).toBe('true');
     expect(icon.getAttribute('data-size')).toBe('sm');
   });
 
   it('writes the size input to the shared --nb-chip-padding variable', async () => {
+    // Arrange
     const fixture = await createFixture(IconChipTest);
     const chip = fixture.nativeElement.querySelector(
       'span[nbChip]'
     ) as HTMLElement;
 
+    // Assert
     expect(chip.style.getPropertyValue('--nb-chip-padding')).toBe(
       '0.5rem 1rem'
     );
@@ -62,11 +68,13 @@ describe('NbChip', () => {
 
 describe('NbChipGroup', () => {
   it('reflects direction and align as data attributes', async () => {
+    // Arrange
     const fixture = await createFixture(ChipGroupTest);
     const group = fixture.nativeElement.querySelector(
       '[nbChipGroup]'
     ) as HTMLElement;
 
+    // Assert
     expect(group.getAttribute('data-direction')).toBe('vertical');
     expect(group.getAttribute('data-align')).toBe('center');
   });

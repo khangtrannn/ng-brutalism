@@ -18,9 +18,11 @@ class LiveStatusDotTest {}
 
 describe('NbStatusDot', () => {
   it('defaults to an online, md dot with an accessible role and label', async () => {
+    // Arrange
     const fixture = await createFixture(DefaultStatusDotTest);
     const dot = findDot(fixture);
 
+    // Assert
     expect(dot.getAttribute('data-state')).toBe('online');
     expect(dot.getAttribute('data-size')).toBe('md');
     expect(dot.getAttribute('role')).toBe('img');
@@ -28,9 +30,11 @@ describe('NbStatusDot', () => {
   });
 
   it('reflects state and size inputs, updating the aria-label to match', async () => {
+    // Arrange
     const fixture = await createFixture(LiveStatusDotTest);
     const dot = findDot(fixture);
 
+    // Assert
     expect(dot.getAttribute('data-state')).toBe('live');
     expect(dot.getAttribute('data-size')).toBe('lg');
     expect(dot.getAttribute('aria-label')).toBe('Status: live');

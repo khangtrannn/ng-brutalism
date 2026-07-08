@@ -4,6 +4,7 @@ test.describe('composition docs page', () => {
   test('underlined display headings shrink-wrap percentage underline widths', async ({
     page,
   }) => {
+    // Arrange
     await page.goto('/composition/stack-and-cluster');
 
     const heading = page
@@ -24,6 +25,7 @@ test.describe('composition docs page', () => {
       };
     });
 
+    // Assert
     expect(metrics.alignSelf).toBe('flex-start');
     expect(metrics.headingWidth).toBeLessThan(metrics.stackWidth * 0.6);
     expect(metrics.underlineWidth).toBeCloseTo(metrics.headingWidth * 0.45, 0);

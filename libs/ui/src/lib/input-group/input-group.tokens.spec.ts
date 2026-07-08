@@ -45,11 +45,13 @@ class RadiusInputGroupTest {}
 
 describe('NbInputGroup token surface', () => {
   it('emits no internal styling classes — anatomy lives in styles.css and data-attrs', async () => {
+    // Arrange
     const fixture = await createFixture();
     const group = findGroup(fixture);
     const prefix = findPrefix(fixture);
     const suffix = findSuffix(fixture);
 
+    // Assert
     expect(group.className).toBe('');
     expect(prefix.className).toBe('');
     expect(suffix.className).toBe('');
@@ -58,11 +60,13 @@ describe('NbInputGroup token surface', () => {
   });
 
   it('does not funnel radius/background through local CSS vars — public hooks stay user-owned', async () => {
+    // Arrange
     const fixture = await createFixture();
     const group = findGroup(fixture);
     const prefix = findPrefix(fixture);
     const suffix = findSuffix(fixture);
 
+    // Assert
     expect(group.style.getPropertyValue('--nb-input-group-bg')).toBe('');
     expect(group.style.getPropertyValue('--nb-input-group-border')).toBe('');
     expect(group.style.getPropertyValue('--nb-input-group-radius')).toBe('');
@@ -74,10 +78,12 @@ describe('NbInputGroup token surface', () => {
   });
 
   it('reflects alignment through the data attribute', async () => {
+    // Arrange
     const fixture = await createFixture(StretchAlignTest);
     const prefix = findPrefix(fixture);
     const suffix = findSuffix(fixture);
 
+    // Assert
     expect(prefix.getAttribute('data-align')).toBe('stretch');
     expect(suffix.getAttribute('data-align')).toBe('stretch');
     expect(prefix.className).toBe('');
@@ -85,9 +91,11 @@ describe('NbInputGroup token surface', () => {
   });
 
   it('writes the radius input to the public CSS variable', async () => {
+    // Arrange
     const fixture = await createFixture(RadiusInputGroupTest);
     const group = findGroup(fixture);
 
+    // Assert
     expect(group.style.getPropertyValue('--nb-input-group-radius')).toBe(
       'var(--nb-radius-lg)'
     );

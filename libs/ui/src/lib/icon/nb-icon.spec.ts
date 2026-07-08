@@ -56,9 +56,11 @@ describe('NbIcon', () => {
   });
 
   it('decorative icon gets aria-hidden and no role', async () => {
+    // Arrange
     const fixture = await createFixture(DecorativeIconTest);
     const icon = findIcon(fixture);
 
+    // Assert
     expect(icon.getAttribute('aria-hidden')).toBe('true');
     expect(icon.getAttribute('role')).toBeNull();
     expect(icon.getAttribute('aria-label')).toBeNull();
@@ -67,18 +69,22 @@ describe('NbIcon', () => {
   });
 
   it('labeled icon gets role="img" and aria-label', async () => {
+    // Arrange
     const fixture = await createFixture(LabeledIconTest);
     const icon = findIcon(fixture);
 
+    // Assert
     expect(icon.getAttribute('role')).toBe('img');
     expect(icon.getAttribute('aria-label')).toBe('Star');
     expect(icon.getAttribute('aria-hidden')).toBeNull();
   });
 
   it('mask mode sets mask-image inline and leaves colorization to CSS', async () => {
+    // Arrange
     const fixture = await createFixture(MaskModeIconTest);
     const icon = findIcon(fixture);
 
+    // Assert
     expect(icon.style.maskImage).toContain('url(');
     expect(icon.style.backgroundImage).toBe('');
     expect(icon.style.backgroundColor).toBe('');
@@ -86,28 +92,35 @@ describe('NbIcon', () => {
   });
 
   it('image mode sets background-image and suppresses mask', async () => {
+    // Arrange
     const fixture = await createFixture(ImageModeIconTest);
     const icon = findIcon(fixture);
 
+    // Assert
     expect(icon.style.backgroundImage).toContain('url(');
     expect(icon.style.maskImage).toBe('');
   });
 
   it('assigns --nb-icon-color CSS variable for override support', async () => {
+    // Arrange
     const fixture = await createFixture(ToneIconTest);
     const icon = findIcon(fixture);
 
+    // Assert
     expect(icon.getAttribute('data-icon-tone')).toBe('danger');
     expect(icon.getAttribute('data-tone')).toBeNull();
     expect(icon.style.getPropertyValue('--nb-icon-color')).toBeTruthy();
   });
 
   it('warns once in dev mode when icon is neither decorative nor labeled', async () => {
+    // Arrange
     const warn = vi.spyOn(console, 'warn').mockImplementation(() => undefined);
     const fixture = await createFixture(BareIconTest);
 
+    // Act
     fixture.detectChanges();
 
+    // Assert
     expect(warn).toHaveBeenCalledTimes(1);
     expect(warn).toHaveBeenCalledWith(
       '[ng-brutalism] nbIcon should be marked decorative or given a label.'

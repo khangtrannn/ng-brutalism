@@ -34,24 +34,29 @@ class FieldTest {
 
 describe('NbField', () => {
   it('links the label to the control via for/id', async () => {
+    // Arrange
     const fixture = await createFixture();
     const label = findLabel(fixture);
     const input = findInput(fixture);
 
+    // Assert
     expect(label.getAttribute('for')).toBe(input.id);
     expect(input.id).toBeTruthy();
   });
 
   it('links the description into aria-describedby immediately', async () => {
+    // Arrange
     const fixture = await createFixture();
     const input = findInput(fixture);
     const description = findDescription(fixture);
 
+    // Assert
     expect(input.getAttribute('aria-describedby')).toBe(description.id);
     expect(input.getAttribute('aria-invalid')).toBeNull();
   });
 
   it('adds the error id to aria-describedby and sets aria-invalid once touched+invalid', async () => {
+    // Arrange
     const fixture = await createFixture();
     const input = findInput(fixture);
     const description = findDescription(fixture);
@@ -59,11 +64,13 @@ describe('NbField', () => {
 
     expect(error.hidden).toBe(true);
 
+    // Act
     fixture.componentInstance.control.markAsTouched();
     fixture.detectChanges();
     await Promise.resolve();
     fixture.detectChanges();
 
+    // Assert
     expect(input.getAttribute('aria-invalid')).toBe('true');
     expect(input.getAttribute('aria-describedby')).toBe(
       `${description.id} ${error.id}`
@@ -72,22 +79,28 @@ describe('NbField', () => {
   });
 
   it('reflects aria-required from the control validator', async () => {
+    // Arrange
     const fixture = await createFixture();
     const input = findInput(fixture);
 
+    // Assert
     expect(input.getAttribute('aria-required')).toBe('true');
   });
 
   it('has no axe violations, valid or touched+invalid', async () => {
+    // Arrange
     const fixture = await createFixture();
 
+    // Assert
     expect(await axe(fixture.nativeElement)).toHaveNoViolations();
 
+    // Act
     fixture.componentInstance.control.markAsTouched();
     fixture.detectChanges();
     await Promise.resolve();
     fixture.detectChanges();
 
+    // Assert
     expect(await axe(fixture.nativeElement)).toHaveNoViolations();
   });
 });

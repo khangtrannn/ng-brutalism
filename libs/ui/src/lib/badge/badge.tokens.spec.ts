@@ -29,9 +29,11 @@ class BadgeTokenTest {
 
 describe('NbBadge token surface', () => {
   it('leaves default visuals to CSS token fallbacks', async () => {
+    // Arrange
     const fixture = await createFixture();
     const badge = findBadge(fixture);
 
+    // Assert
     expect(badge.getAttribute('data-nb-tone')).toBeNull();
     expect(badge.style.getPropertyValue('background')).toBe('');
     expect(badge.style.getPropertyValue('color')).toBe('');
@@ -47,10 +49,12 @@ describe('NbBadge token surface', () => {
   });
 
   it('does not emit legacy token utility classes', async () => {
+    // Arrange
     const fixture = await createFixture();
     const badge = findBadge(fixture);
     const cls = badge.className;
 
+    // Assert
     expect(cls).not.toMatch(/(?:^|\s)nb-tone(?:\s|$)/);
     expect(cls).not.toMatch(/(?:^|\s)nb-border-width(?:\s|$)/);
     expect(cls).not.toMatch(/(?:^|\s)nb-radius(?:\s|$)/);
@@ -72,9 +76,11 @@ describe('NbBadge token surface', () => {
   ] satisfies Array<[NbBadgeTone]>)(
     'tone="%s" reflects semantically without writing final colors inline',
     async (tone) => {
+      // Arrange
       const fixture = await createFixture({ tone });
       const badge = findBadge(fixture);
 
+      // Assert
       expect(badge.getAttribute('data-nb-tone')).toBe(tone);
       expect(badge.style.getPropertyValue('background')).toBe('');
       expect(badge.style.getPropertyValue('color')).toBe('');
@@ -85,6 +91,7 @@ describe('NbBadge token surface', () => {
   );
 
   it('writes explicit scalar inputs to public CSS variables', async () => {
+    // Arrange
     const fixture = await createFixture({
       radius: 'sm',
       shadow: 'hard',
@@ -92,6 +99,7 @@ describe('NbBadge token surface', () => {
     });
     const badge = findBadge(fixture);
 
+    // Assert
     expect(badge.style.getPropertyValue('border-radius')).toBe('');
     expect(badge.style.getPropertyValue('box-shadow')).toBe('');
     expect(badge.style.getPropertyValue('border-width')).toBe('');
@@ -105,9 +113,11 @@ describe('NbBadge token surface', () => {
   });
 
   it('keeps anatomy out of host classes', async () => {
+    // Arrange
     const fixture = await createFixture();
     const badge = findBadge(fixture);
 
+    // Assert
     expect(badge.className).toBe('');
     expect(badge.getAttribute('data-nb-badge')).toBe('');
   });

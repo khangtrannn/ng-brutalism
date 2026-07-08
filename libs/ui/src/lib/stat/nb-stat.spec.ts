@@ -18,9 +18,11 @@ class RowStatTest {}
 
 describe('NbStat', () => {
   it('renders the value and label in the default column direction', async () => {
+    // Arrange
     const fixture = await createFixture(DefaultStatTest);
     const stat = findStat(fixture);
 
+    // Assert
     expect(stat.getAttribute('data-direction')).toBe('column');
     expect(
       stat.querySelector('[data-slot="stat-value"]')?.textContent?.trim()
@@ -31,8 +33,10 @@ describe('NbStat', () => {
   });
 
   it('reflects the direction input as a data attribute', async () => {
+    // Arrange
     const fixture = await createFixture(RowStatTest);
 
+    // Assert
     expect(findStat(fixture).getAttribute('data-direction')).toBe('row');
   });
 });

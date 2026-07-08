@@ -56,29 +56,36 @@ class DialogDismissibleTest {
 
 describe('NbDialog', () => {
   it('emits closed whenever the native dialog fires its close event', async () => {
+    // Arrange
     const fixture = await createFixture();
     const dialogEl = findDialogEl(fixture);
 
+    // Act
     dialogEl.dispatchEvent(new Event('close'));
 
+    // Assert
     expect(fixture.componentInstance.closedCount).toBe(1);
   });
 
   it('closes on backdrop click by default (dismissible)', async () => {
+    // Arrange
     const fixture = await createDismissibleFixture();
     const dialogEl = findDialogEl(fixture);
     const closeSpy = vi
       .spyOn(fixture.componentInstance.dialog(), 'close')
       .mockImplementation(() => undefined);
 
+    // Act
     dialogEl.dispatchEvent(
       new MouseEvent('click', { bubbles: true, cancelable: true })
     );
 
+    // Assert
     expect(closeSpy).toHaveBeenCalledTimes(1);
   });
 
   it('does not close on backdrop click when dismissible is false', async () => {
+    // Arrange
     const fixture = await createDismissibleFixture();
     fixture.componentInstance.dismissible.set(false);
     fixture.detectChanges();
@@ -87,22 +94,27 @@ describe('NbDialog', () => {
       .spyOn(fixture.componentInstance.dialog(), 'close')
       .mockImplementation(() => undefined);
 
+    // Act
     dialogEl.dispatchEvent(
       new MouseEvent('click', { bubbles: true, cancelable: true })
     );
 
+    // Assert
     expect(closeSpy).not.toHaveBeenCalled();
   });
 
   it('has no axe violations while open', async () => {
+    // Arrange
     const fixture = await createContentFixture();
     const dialogEl = fixture.nativeElement.querySelector(
       'dialog'
     ) as HTMLDialogElement;
 
+    // Act
     dialogEl.setAttribute('open', '');
     fixture.detectChanges();
 
+    // Assert
     expect(await axe(fixture.nativeElement)).toHaveNoViolations();
   });
 });

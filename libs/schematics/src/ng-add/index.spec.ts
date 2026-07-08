@@ -10,14 +10,17 @@ const collectionPath = join(__dirname, '../testing/collection.json');
 
 describe('@ng-brutalism/ui ng-add', () => {
   it('fails when angular.json is missing', async () => {
+    // Arrange
     const runner = createRunner();
 
+    // Assert
     await expect(
       runner.runSchematic('ng-add', {}, Tree.empty())
     ).rejects.toThrow('Could not find angular.json');
   });
 
   it('configures a single Angular CLI application without project option', async () => {
+    // Arrange
     const runner = createRunner();
     const tree = createWorkspaceTree({
       projects: {
@@ -25,8 +28,10 @@ describe('@ng-brutalism/ui ng-add', () => {
       },
     });
 
+    // Act
     const result = await runner.runSchematic('ng-add', {}, tree);
 
+    // Assert
     expect(result.readText('/src/styles.css')).toBe(
       '@import "tailwindcss";\n' +
         "@import '@ng-brutalism/ui/styles.css';\n\n" +
@@ -35,6 +40,7 @@ describe('@ng-brutalism/ui ng-add', () => {
   });
 
   it('requires project option for multi-app workspaces', async () => {
+    // Arrange
     const runner = createRunner();
     const tree = createWorkspaceTree({
       projects: {
@@ -43,12 +49,14 @@ describe('@ng-brutalism/ui ng-add', () => {
       },
     });
 
+    // Assert
     await expect(runner.runSchematic('ng-add', {}, tree)).rejects.toThrow(
       'Multiple Angular application projects were found'
     );
   });
 
   it('uses the requested project in a multi-app workspace', async () => {
+    // Arrange
     const runner = createRunner();
     const tree = createWorkspaceTree({
       projects: {
@@ -61,12 +69,14 @@ describe('@ng-brutalism/ui ng-add', () => {
       '.admin { display: block; }\n'
     );
 
+    // Act
     const result = await runner.runSchematic(
       'ng-add',
       { project: 'admin' },
       tree
     );
 
+    // Assert
     expect(result.readText('/projects/admin/src/styles.scss')).toContain(
       "@import '@ng-brutalism/ui/styles.css';"
     );
@@ -74,6 +84,7 @@ describe('@ng-brutalism/ui ng-add', () => {
   });
 
   it('does not duplicate existing imports', async () => {
+    // Arrange
     const runner = createRunner();
     const tree = createWorkspaceTree({
       projects: {
@@ -87,8 +98,10 @@ describe('@ng-brutalism/ui ng-add', () => {
         'body { margin: 0; }\n'
     );
 
+    // Act
     const result = await runner.runSchematic('ng-add', {}, tree);
 
+    // Assert
     expect(result.readText('/src/styles.css')).toBe(
       '@import "tailwindcss";\n' +
         "@import '@ng-brutalism/ui/styles.css';\n\n" +
@@ -97,6 +110,7 @@ describe('@ng-brutalism/ui ng-add', () => {
   });
 
   it('creates and wires src/styles.css when no global stylesheet exists', async () => {
+    // Arrange
     const runner = createRunner();
     const workspace = {
       projects: {
@@ -107,7 +121,10 @@ describe('@ng-brutalism/ui ng-add', () => {
     const tree = createWorkspaceTree(workspace);
     tree.delete('/src/styles.css');
 
+    // Act
     const result = await runner.runSchematic('ng-add', {}, tree);
+
+    // Assert
     const angularJson = JSON.parse(result.readText('/angular.json'));
 
     expect(result.readText('/src/styles.css')).toBe(
@@ -119,6 +136,7 @@ describe('@ng-brutalism/ui ng-add', () => {
   });
 
   it('preserves existing Tailwind package setup', async () => {
+    // Arrange
     const runner = createRunner();
     const tree = createWorkspaceTree({
       projects: {
@@ -130,8 +148,10 @@ describe('@ng-brutalism/ui ng-add', () => {
       JSON.stringify({ devDependencies: { tailwindcss: '^4.0.0' } }, null, 2)
     );
 
+    // Act
     const result = await runner.runSchematic('ng-add', {}, tree);
 
+    // Assert
     expect(result.readText('/package.json')).toBe(
       JSON.stringify({ devDependencies: { tailwindcss: '^4.0.0' } }, null, 2)
     );
@@ -141,6 +161,7 @@ describe('@ng-brutalism/ui ng-add', () => {
   });
 
   it('is idempotent on a second run', async () => {
+    // Arrange
     const runner = createRunner();
     const tree = createWorkspaceTree({
       projects: {
@@ -148,11 +169,13 @@ describe('@ng-brutalism/ui ng-add', () => {
       },
     });
 
+    // Act
     const firstRun = await runner.runSchematic('ng-add', {}, tree);
     const firstStyles = firstRun.readText('/src/styles.css');
     const firstPackageJson = firstRun.readText('/package.json');
     const secondRun = await runner.runSchematic('ng-add', {}, firstRun);
 
+    // Assert
     expect(secondRun.readText('/src/styles.css')).toBe(firstStyles);
     expect(secondRun.readText('/package.json')).toBe(firstPackageJson);
   });

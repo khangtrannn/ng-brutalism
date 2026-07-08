@@ -64,11 +64,13 @@ class SharedGapInputHalftoneTest {}
 
 describe('NbHalftone', () => {
   it('keeps the existing default corner halftone behavior', async () => {
+    // Arrange
     const fixture = await createFixture(DefaultHalftoneTest);
     const halftone = fixture.nativeElement.querySelector(
       '[nbHalftone]'
     ) as HTMLElement;
 
+    // Assert
     expect(halftone.getAttribute('data-nb-halftone')).toBe('');
     expect(halftone.getAttribute('data-shape')).toBe('square');
     expect(halftone.className).toBe('');
@@ -78,21 +80,25 @@ describe('NbHalftone', () => {
   });
 
   it('keeps legacy element selector compatibility', async () => {
+    // Arrange
     const fixture = await createFixture(LegacyElementHalftoneTest);
     const halftone = fixture.nativeElement.querySelector(
       'nb-halftone'
     ) as HTMLElement;
 
+    // Assert
     expect(halftone.getAttribute('data-nb-halftone')).toBe('');
     expect(halftone.querySelectorAll('circle')).toHaveLength(49);
   });
 
   it('applies the rectangle shape class and accessibility metadata', async () => {
+    // Arrange
     const fixture = await createFixture(RectangleHalftoneTest);
     const halftone = fixture.nativeElement.querySelector(
       '[nbHalftone]'
     ) as HTMLElement;
 
+    // Assert
     expect(halftone.getAttribute('data-nb-halftone')).toBe('');
     expect(halftone.getAttribute('data-shape')).toBe('rectangle');
     expect(halftone.classList).not.toContain('absolute');
@@ -101,51 +107,61 @@ describe('NbHalftone', () => {
   });
 
   it('sets rectangle default rows and columns', async () => {
+    // Arrange
     const fixture = await createFixture(RectangleHalftoneTest);
     const halftone = fixture.nativeElement.querySelector(
       '[nbHalftone]'
     ) as HTMLElement;
 
+    // Assert
     expect(halftone.style.getPropertyValue('--nb-halftone-rows')).toBe('3');
     expect(halftone.style.getPropertyValue('--nb-halftone-columns')).toBe('13');
   });
 
   it('sets custom rectangle rows and columns', async () => {
+    // Arrange
     const fixture = await createFixture(CustomRectangleHalftoneTest);
     const halftone = fixture.nativeElement.querySelector(
       '[nbHalftone]'
     ) as HTMLElement;
 
+    // Assert
     expect(halftone.style.getPropertyValue('--nb-halftone-rows')).toBe('4');
     expect(halftone.style.getPropertyValue('--nb-halftone-columns')).toBe('10');
   });
 
   it('allows CSS custom properties to tune the rectangle rhythm', async () => {
+    // Arrange
     const fixture = await createFixture(CustomCssVariableHalftoneTest);
     const halftone = fixture.nativeElement.querySelector(
       '[nbHalftone]'
     ) as HTMLElement;
 
+    // Assert
     expect(halftone.style.getPropertyValue('--nb-halftone-dot-size')).toBe('10px');
   });
 
   it('allows inputs to tune the rectangle rhythm', async () => {
+    // Arrange
     const fixture = await createFixture(CustomInputHalftoneTest);
     const halftone = fixture.nativeElement.querySelector(
       '[nbHalftone]'
     ) as HTMLElement;
 
+    // Assert
     expect(halftone.style.getPropertyValue('--nb-halftone-dot-size')).toBe('8px');
     expect(halftone.style.getPropertyValue('--nb-halftone-gap-x')).toBe('28px');
     expect(halftone.style.getPropertyValue('--nb-halftone-gap-y')).toBe('27px');
   });
 
   it('uses gap as the shared rectangle rhythm fallback', async () => {
+    // Arrange
     const fixture = await createFixture(SharedGapInputHalftoneTest);
     const halftone = fixture.nativeElement.querySelector(
       '[nbHalftone]'
     ) as HTMLElement;
 
+    // Assert
     expect(halftone.style.getPropertyValue('--nb-halftone-gap-x')).toBe('24px');
     expect(halftone.style.getPropertyValue('--nb-halftone-gap-y')).toBe('24px');
   });

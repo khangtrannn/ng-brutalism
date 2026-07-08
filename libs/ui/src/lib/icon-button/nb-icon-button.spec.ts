@@ -26,9 +26,11 @@ class IconSlotButtonTest {}
 
 describe('NbIconButton', () => {
   it('defaults to a square, md button with no icon slot', async () => {
+    // Arrange
     const fixture = await createFixture(DefaultIconButtonTest);
     const button = findButton(fixture);
 
+    // Assert
     expect(button.getAttribute('data-nb-icon-button')).toBe('');
     expect(button.getAttribute('data-shape')).toBe('square');
     expect(button.getAttribute('data-size')).toBe('md');
@@ -36,10 +38,12 @@ describe('NbIconButton', () => {
   });
 
   it('renders a decorative icon slot sized to match the size input', async () => {
+    // Arrange
     const fixture = await createFixture(IconSlotButtonTest);
     const button = findButton(fixture);
     const icon = button.querySelector('[nbIcon]') as HTMLElement;
 
+    // Assert
     expect(button.getAttribute('data-shape')).toBe('circle');
     expect(button.getAttribute('data-size')).toBe('lg');
     expect(icon).not.toBeNull();

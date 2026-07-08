@@ -35,34 +35,51 @@ class AccordionKeyboardTest {}
 
 describe('NbAccordion keyboard completion (APG)', () => {
   it('ArrowDown/ArrowUp move focus between headers, skipping disabled items and wrapping at the ends', async () => {
+    // Arrange
     const fixture = await createFixture();
     const [first, , third] = triggers(fixture);
 
+    // Act
     first.focus();
     first.dispatchEvent(keydown('ArrowDown'));
     fixture.detectChanges();
+
+    // Assert
     expect(document.activeElement).toBe(third);
 
+    // Act
     third.dispatchEvent(keydown('ArrowDown'));
     fixture.detectChanges();
+
+    // Assert
     expect(document.activeElement).toBe(first);
 
+    // Act
     first.dispatchEvent(keydown('ArrowUp'));
     fixture.detectChanges();
+
+    // Assert
     expect(document.activeElement).toBe(third);
   });
 
   it('Home/End move focus to the first/last header', async () => {
+    // Arrange
     const fixture = await createFixture();
     const [first, , third] = triggers(fixture);
 
+    // Act
     first.focus();
     first.dispatchEvent(keydown('End'));
     fixture.detectChanges();
+
+    // Assert
     expect(document.activeElement).toBe(third);
 
+    // Act
     third.dispatchEvent(keydown('Home'));
     fixture.detectChanges();
+
+    // Assert
     expect(document.activeElement).toBe(first);
   });
 });

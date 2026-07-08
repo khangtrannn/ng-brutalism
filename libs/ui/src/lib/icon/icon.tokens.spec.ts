@@ -21,27 +21,33 @@ class IconTokenTest {
 
 describe('NbIcon token surface', () => {
   it('reflects size as a data attribute, leaving width/height to CSS', async () => {
+    // Arrange
     const fixture = await createFixture();
     const icon = findIcon(fixture);
 
+    // Assert
     expect(icon.getAttribute('data-size')).toBe('md');
     expect(icon.style.getPropertyValue('width')).toBe('');
     expect(icon.style.getPropertyValue('height')).toBe('');
   });
 
   it('does not write --nb-icon-color when tone is unset', async () => {
+    // Arrange
     const fixture = await createFixture();
     const icon = findIcon(fixture);
 
+    // Assert
     expect(icon.getAttribute('data-icon-tone')).toBeNull();
     expect(icon.style.getPropertyValue('--nb-icon-color')).toBe('');
     expect(icon.style.getPropertyValue('color')).toBe('');
   });
 
   it('writes --nb-icon-color when tone is explicit', async () => {
+    // Arrange
     const fixture = await createFixture({ tone: 'danger' });
     const icon = findIcon(fixture);
 
+    // Assert
     expect(icon.getAttribute('data-icon-tone')).toBe('danger');
     expect(icon.style.getPropertyValue('--nb-icon-color')).toBe(
       'var(--nb-danger)'
@@ -49,9 +55,11 @@ describe('NbIcon token surface', () => {
   });
 
   it('reflects an explicit size change as a data attribute', async () => {
+    // Arrange
     const fixture = await createFixture({ size: 'xl' });
     const icon = findIcon(fixture);
 
+    // Assert
     expect(icon.getAttribute('data-size')).toBe('xl');
   });
 });

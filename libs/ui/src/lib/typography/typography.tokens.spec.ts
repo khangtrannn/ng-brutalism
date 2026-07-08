@@ -14,9 +14,11 @@ class TypographyTokenTest {
 
 describe('NbTypography token surface', () => {
   it('inherit role writes no font-family override', async () => {
+    // Arrange
     const fixture = await createFixture();
     const host = findHost(fixture);
 
+    // Assert
     expect(host.getAttribute('data-nb-typography')).toBe('inherit');
     expect(host.style.getPropertyValue('--nb-typography-font')).toBe('');
     expect(host.style.getPropertyValue('font-family')).toBe('');
@@ -30,9 +32,11 @@ describe('NbTypography token surface', () => {
   ] satisfies Array<[NbTypographyFont, string]>)(
     'font="%s" writes the resolved stack to --nb-typography-font',
     async (font, expected) => {
+      // Arrange
       const fixture = await createFixture({ font });
       const host = findHost(fixture);
 
+      // Assert
       expect(host.getAttribute('data-nb-typography')).toBe(font);
       expect(host.style.getPropertyValue('--nb-typography-font')).toBe(
         expected

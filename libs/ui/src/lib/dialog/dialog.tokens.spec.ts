@@ -31,9 +31,11 @@ class DialogTokenTest {}
 
 describe('NbDialog token surface', () => {
   it('leaves default visuals to CSS token fallbacks on the dialog element', async () => {
+    // Arrange
     const fixture = await createFixture();
     const dialog = findDialog(fixture);
 
+    // Assert
     expect(dialog.style.getPropertyValue('background')).toBe('');
     expect(dialog.style.getPropertyValue('color')).toBe('');
     expect(dialog.style.getPropertyValue('border-color')).toBe('');
@@ -45,9 +47,11 @@ describe('NbDialog token surface', () => {
   });
 
   it('does not emit legacy token utility classes', async () => {
+    // Arrange
     const fixture = await createFixture();
     const cls = findDialog(fixture).className;
 
+    // Assert
     expect(cls).not.toMatch(/(?:^|\s)nb-tone(?:\s|$)/);
     expect(cls).not.toContain('bg-(--nb-dialog-bg)');
     expect(cls).not.toContain('text-(--nb-dialog-fg)');
@@ -63,6 +67,7 @@ describe('NbDialog token surface', () => {
   });
 
   it('declares and reads the dialog sub-part tokens', async () => {
+    // Arrange
     const fixture = await createFixture();
     const host = fixture.nativeElement as HTMLElement;
 
@@ -70,6 +75,7 @@ describe('NbDialog token surface', () => {
     const content = findSlot(host, 'dialog-content');
     const actions = findSlot(host, 'dialog-actions');
 
+    // Assert
     expect(description.className).toBe('');
     expect(description.getAttribute('data-slot')).toBe('dialog-description');
 
@@ -81,9 +87,11 @@ describe('NbDialog token surface', () => {
   });
 
   it('keeps dialog surface anatomy out of classes', async () => {
+    // Arrange
     const fixture = await createFixture();
     const dialog = findDialog(fixture);
 
+    // Assert
     expect(dialog.className).toBe('');
     expect(dialog.getAttribute('data-slot')).toBe('dialog-surface');
   });

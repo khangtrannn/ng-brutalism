@@ -29,9 +29,11 @@ class AvatarTokenTest {
 
 describe('NbAvatar token surface', () => {
   it('leaves default visuals to CSS token fallbacks', async () => {
+    // Arrange
     const fixture = await createFixture();
     const avatar = findAvatar(fixture);
 
+    // Assert
     expect(avatar.style.getPropertyValue('background')).toBe('');
     expect(avatar.style.getPropertyValue('color')).toBe('');
     expect(avatar.style.getPropertyValue('border-color')).toBe('');
@@ -46,9 +48,11 @@ describe('NbAvatar token surface', () => {
   });
 
   it('reflects tone semantically without writing final colors inline', async () => {
+    // Arrange
     const fixture = await createFixture({ tone: 'secondary' });
     const avatar = findAvatar(fixture);
 
+    // Assert
     expect(avatar.getAttribute('data-nb-tone')).toBe('secondary');
     expect(avatar.style.getPropertyValue('background')).toBe('');
     expect(avatar.style.getPropertyValue('color')).toBe('');
@@ -57,6 +61,7 @@ describe('NbAvatar token surface', () => {
   });
 
   it('writes explicit scalar inputs to public CSS variables', async () => {
+    // Arrange
     const fixture = await createFixture({
       radius: 'full',
       shadow: 'sm',
@@ -64,6 +69,7 @@ describe('NbAvatar token surface', () => {
     });
     const avatar = findAvatar(fixture);
 
+    // Assert
     expect(avatar.style.getPropertyValue('border-radius')).toBe('');
     expect(avatar.style.getPropertyValue('box-shadow')).toBe('');
     expect(avatar.style.getPropertyValue('border-width')).toBe('');
@@ -79,10 +85,12 @@ describe('NbAvatar token surface', () => {
   });
 
   it('does not emit legacy token utility classes', async () => {
+    // Arrange
     const fixture = await createFixture();
     const avatar = findAvatar(fixture);
     const cls = avatar.className;
 
+    // Assert
     expect(cls).not.toMatch(/(?:^|\s)nb-tone(?:\s|$)/);
     expect(cls).not.toMatch(/(?:^|\s)nb-border-width(?:\s|$)/);
     expect(cls).not.toMatch(/(?:^|\s)nb-radius(?:\s|$)/);
@@ -97,9 +105,11 @@ describe('NbAvatar token surface', () => {
   });
 
   it('keeps anatomy out of host classes', async () => {
+    // Arrange
     const fixture = await createFixture();
     const avatar = findAvatar(fixture);
 
+    // Assert
     expect(avatar.className).toBe('');
     expect(avatar.getAttribute('data-slot')).toBe('avatar');
   });

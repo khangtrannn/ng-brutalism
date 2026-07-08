@@ -46,17 +46,21 @@ class NativeSelectTokenTest {}
 
 describe('NbSelect token surface', () => {
   it('does not emit legacy capability marker classes', async () => {
+    // Arrange
     const fixture = await createFixture(SelectTokenTest);
     const select = findCustomSelect(fixture);
 
+    // Assert
     expect(select.className).not.toMatch(/(?:^|\s)nb-tone(?:\s|$)/);
     expect(select.className).not.toMatch(/(?:^|\s)nb-border-width(?:\s|$)/);
   });
 
   it('leaves default visuals to CSS token fallbacks', async () => {
+    // Arrange
     const fixture = await createFixture(SelectTokenTest);
     const select = findCustomSelect(fixture);
 
+    // Assert
     expect(select.style.getPropertyValue('background-color')).toBe('');
     expect(select.style.getPropertyValue('color')).toBe('');
     expect(select.style.getPropertyValue('border-color')).toBe('');
@@ -68,9 +72,11 @@ describe('NbSelect token surface', () => {
   });
 
   it('writes radius/shadow inputs to public CSS variables', async () => {
+    // Arrange
     const fixture = await createFixture(ValueSelectTokenTest);
     const select = findCustomSelect(fixture);
 
+    // Assert
     expect(select.style.getPropertyValue('--nb-select-radius')).toBe(
       'var(--nb-radius-lg)'
     );
@@ -82,9 +88,11 @@ describe('NbSelect token surface', () => {
   });
 
   it('keeps radius in CSS instead of local class tokens', async () => {
+    // Arrange
     const fixture = await createFixture(SelectTokenTest);
     const cls = findCustomSelect(fixture).className;
 
+    // Assert
     expect(cls).not.toContain('--nb-resolved');
     expect(cls).not.toContain('[--nb-select-fg:');
     expect(cls).not.toContain('[--nb-select-border:');
@@ -93,10 +101,12 @@ describe('NbSelect token surface', () => {
   });
 
   it('uses data slots instead of trigger token classes', async () => {
+    // Arrange
     const fixture = await createFixture(SelectTokenTest);
     const select = findCustomSelect(fixture);
     const trigger = findTrigger(fixture);
 
+    // Assert
     expect(trigger.className).toBe('');
     expect(trigger.getAttribute('data-slot')).toBe('select-trigger');
     expect(findTriggerText(fixture).className).toBe('');
@@ -106,7 +116,10 @@ describe('NbSelect token surface', () => {
   });
 
   it('uses the scoped listbox background and border tokens', async () => {
+    // Arrange
     const fixture = await createFixture(SelectTokenTest);
+
+    // Act
     findTrigger(fixture).click();
     fixture.detectChanges();
 
@@ -119,6 +132,7 @@ describe('NbSelect token surface', () => {
     const cls = listbox.className;
     const optionCls = option.className;
 
+    // Assert
     expect(cls).toBe('');
     expect(listbox.getAttribute('data-slot')).toBe('select-listbox');
     expect(optionCls).toBe('');
@@ -129,20 +143,24 @@ describe('NbSelect token surface', () => {
   });
 
   it('keeps custom select anatomy out of classes', async () => {
+    // Arrange
     const fixture = await createFixture(SelectTokenTest);
     const select = findCustomSelect(fixture);
     const trigger = findTrigger(fixture);
     const cls = select.className;
 
+    // Assert
     expect(cls).toBe('');
     expect(select.getAttribute('data-nb-select')).toBe('');
     expect(trigger.className).toBe('');
   });
 
   it('uses the same placeholder color as inputs and textareas', async () => {
+    // Arrange
     const fixture = await createFixture(SelectTokenTest);
     const value = findTriggerText(fixture);
 
+    // Assert
     expect(value.textContent?.trim()).toBe('Pick one');
     expect(value.className).toBe('');
     expect(value.getAttribute('data-placeholder')).toBe('');
@@ -152,17 +170,21 @@ describe('NbSelect token surface', () => {
 
 describe('NbNativeSelect directive token surface', () => {
   it('emits no internal styling classes — anatomy lives in styles.css and data-attrs', async () => {
+    // Arrange
     const fixture = await createFixture(NativeSelectTokenTest);
     const select = findNativeSelect(fixture);
 
+    // Assert
     expect(select.className).toBe('');
     expect(select.getAttribute('data-in-group')).toBeNull();
   });
 
   it('leaves radius and shadow to CSS token fallbacks instead of local class vars', async () => {
+    // Arrange
     const fixture = await createFixture(NativeSelectTokenTest);
     const select = findNativeSelect(fixture);
 
+    // Assert
     expect(select.style.getPropertyValue('--nb-select-radius')).toBe('');
     expect(select.style.getPropertyValue('border-radius')).toBe('');
     expect(select.style.getPropertyValue('box-shadow')).toBe('');
@@ -170,9 +192,11 @@ describe('NbNativeSelect directive token surface', () => {
   });
 
   it('writes the focus ring color from the tone capability for CSS to consume', async () => {
+    // Arrange
     const fixture = await createFixture(NativeSelectTokenTest);
     const select = findNativeSelect(fixture);
 
+    // Assert
     expect(select.style.getPropertyValue('--nb-select-focus-ring-color')).toBe('');
   });
 });

@@ -32,6 +32,7 @@ describe('NbMarquee', () => {
   });
 
   it('duplicates the content strip into an aria-hidden clone for seamless looping', async () => {
+    // Arrange
     const fixture = await createFixture(DefaultMarqueeTest);
     await Promise.resolve();
     fixture.detectChanges();
@@ -40,12 +41,14 @@ describe('NbMarquee', () => {
       '[data-slot="marquee-strip"]'
     );
 
+    // Assert
     expect(strips.length).toBe(2);
     expect(strips[1].getAttribute('aria-hidden')).toBe('true');
     expect(strips[1].textContent?.trim()).toBe('Brutalist');
   });
 
   it('defaults to pause-on-hover with no reverse direction', async () => {
+    // Arrange
     const fixture = await createFixture(DefaultMarqueeTest);
     const wrapper = fixture.nativeElement.querySelector(
       '[data-slot="marquee-wrapper"]'
@@ -54,11 +57,13 @@ describe('NbMarquee', () => {
       '[data-slot="marquee-strip"]'
     ) as HTMLElement;
 
+    // Assert
     expect(wrapper.getAttribute('data-pause-on-hover')).toBe('');
     expect(strip.getAttribute('data-reverse')).toBeNull();
   });
 
   it('reflects reverse and pauseOnHover inputs as data attributes', async () => {
+    // Arrange
     const fixture = await createFixture(ConfiguredMarqueeTest);
     const wrapper = fixture.nativeElement.querySelector(
       '[data-slot="marquee-wrapper"]'
@@ -67,6 +72,7 @@ describe('NbMarquee', () => {
       '[data-slot="marquee-strip"]'
     ) as HTMLElement;
 
+    // Assert
     expect(wrapper.getAttribute('data-pause-on-hover')).toBeNull();
     expect(strip.getAttribute('data-reverse')).toBe('');
   });

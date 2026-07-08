@@ -20,27 +20,33 @@ class ProgressTokenTest {
 
 describe('NbProgress token surface', () => {
   it('leaves default fill color to CSS token fallbacks', async () => {
+    // Arrange
     const fixture = await createFixture();
     const progress = findProgress(fixture);
     const fill = findFill(fixture);
 
+    // Assert
     expect(progress.getAttribute('data-nb-tone')).toBeNull();
     expect(fill.style.getPropertyValue('background-color')).toBe('');
   });
 
   it('reflects tone semantically without writing final colors inline', async () => {
+    // Arrange
     const fixture = await createFixture({ tone: 'danger' });
     const progress = findProgress(fixture);
     const fill = findFill(fixture);
 
+    // Assert
     expect(progress.getAttribute('data-nb-tone')).toBe('danger');
     expect(fill.style.getPropertyValue('background-color')).toBe('');
   });
 
   it('keeps runtime fill width as the only inline style on the fill element', async () => {
+    // Arrange
     const fixture = await createFixture({ value: 25 });
     const fill = findFill(fixture);
 
+    // Assert
     expect(fill.style.width).toBe('25%');
   });
 });

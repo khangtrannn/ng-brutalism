@@ -23,80 +23,107 @@ class SelectKeyboardTest {}
 
 describe('NbSelect keyboard completion (APG listbox)', () => {
   it('Home/End move focus to the first/last option', async () => {
+    // Arrange
     const fixture = await createFixture();
     const options = openAndGetOptions(fixture);
 
+    // Act
     options[1].focus();
     options[1].dispatchEvent(keydown('End'));
     fixture.detectChanges();
+
+    // Assert
     expect(document.activeElement).toBe(options[2]);
 
+    // Act
     options[2].dispatchEvent(keydown('Home'));
     fixture.detectChanges();
+
+    // Assert
     expect(document.activeElement).toBe(options[0]);
   });
 
   it('typeahead jumps to the option whose label starts with the typed letter', async () => {
+    // Arrange
     const fixture = await createFixture();
     const options = openAndGetOptions(fixture);
 
+    // Act
     options[0].focus();
     options[0].dispatchEvent(keydown('c'));
     fixture.detectChanges();
 
+    // Assert
     expect(document.activeElement).toBe(options[2]);
   });
 
   it('Tab closes the popup without preventing default focus movement', async () => {
+    // Arrange
     const fixture = await createFixture();
     const options = openAndGetOptions(fixture);
     const trigger = findTrigger(fixture);
 
     const event = keydown('Tab');
     const preventDefaultSpy = vi.spyOn(event, 'preventDefault');
+
+    // Act
     options[0].dispatchEvent(event);
     fixture.detectChanges();
 
+    // Assert
     expect(preventDefaultSpy).not.toHaveBeenCalled();
     expect(trigger.getAttribute('aria-expanded')).toBe('false');
   });
 
   it('Escape on the trigger closes an open listbox', async () => {
+    // Arrange
     const fixture = await createFixture();
     const trigger = findTrigger(fixture);
 
+    // Act
     trigger.click();
     fixture.detectChanges();
+
+    // Assert
     expect(trigger.getAttribute('aria-expanded')).toBe('true');
 
+    // Act
     trigger.dispatchEvent(keydown('Escape'));
     fixture.detectChanges();
 
+    // Assert
     expect(trigger.getAttribute('aria-expanded')).toBe('false');
   });
 
   it('marks a disabled option aria-disabled but keeps it focusable and reachable via arrow keys', async () => {
+    // Arrange
     const fixture = await createFixture();
     const options = openAndGetOptions(fixture);
 
+    // Assert
     expect(options[1].hasAttribute('disabled')).toBe(false);
     expect(options[1].getAttribute('aria-disabled')).toBe('true');
 
+    // Act
     options[0].focus();
     options[0].dispatchEvent(keydown('ArrowDown'));
     fixture.detectChanges();
 
+    // Assert
     expect(document.activeElement).toBe(options[1]);
   });
 
   it('does not select a disabled option on click', async () => {
+    // Arrange
     const fixture = await createFixture();
     const trigger = findTrigger(fixture);
     const options = openAndGetOptions(fixture);
 
+    // Act
     options[1].click();
     fixture.detectChanges();
 
+    // Assert
     expect(trigger.getAttribute('aria-expanded')).toBe('true');
     expect(trigger.textContent?.trim()).toBe('Pick one');
   });

@@ -120,13 +120,16 @@ class InitialValueAccordionTest {}
 
 describe('NbAccordion', () => {
   it('opens one item at a time in single mode', async () => {
+    // Arrange
     const fixture = await createFixture(SingleAccordionTest);
     const [firstButton, secondButton] = buttons(fixture);
     const [firstRegion, secondRegion] = regions(fixture);
 
+    // Act
     firstButton.click();
     fixture.detectChanges();
 
+    // Assert
     expect(firstButton.getAttribute('aria-expanded')).toBe('true');
     expect(secondButton.getAttribute('aria-expanded')).toBe('false');
     expectIndicatorOpen(indicators(fixture)[0], true);
@@ -134,9 +137,11 @@ describe('NbAccordion', () => {
     expectRegionOpen(firstRegion, true);
     expectRegionOpen(secondRegion, false);
 
+    // Act
     secondButton.click();
     fixture.detectChanges();
 
+    // Assert
     expect(firstButton.getAttribute('aria-expanded')).toBe('false');
     expect(secondButton.getAttribute('aria-expanded')).toBe('true');
     expectIndicatorOpen(indicators(fixture)[0], false);
@@ -146,40 +151,49 @@ describe('NbAccordion', () => {
   });
 
   it('keeps the open single item open when collapsible is false', async () => {
+    // Arrange
     const fixture = await createFixture(SingleAccordionTest);
     const [button] = buttons(fixture);
 
+    // Act
     button.click();
     fixture.detectChanges();
     button.click();
     fixture.detectChanges();
 
+    // Assert
     expect(button.getAttribute('aria-expanded')).toBe('true');
     expectRegionOpen(regions(fixture)[0], true);
   });
 
   it('closes the open single item when collapsible is true', async () => {
+    // Arrange
     const fixture = await createFixture(CollapsibleAccordionTest);
     const [button] = buttons(fixture);
 
+    // Act
     button.click();
     fixture.detectChanges();
     button.click();
     fixture.detectChanges();
 
+    // Assert
     expect(button.getAttribute('aria-expanded')).toBe('false');
     expectRegionOpen(regions(fixture)[0], false);
   });
 
   it('allows multiple items to stay open in multiple mode', async () => {
+    // Arrange
     const fixture = await createFixture(MultipleAccordionTest);
     const [firstButton, secondButton] = buttons(fixture);
     const [firstRegion, secondRegion] = regions(fixture);
 
+    // Act
     firstButton.click();
     secondButton.click();
     fixture.detectChanges();
 
+    // Assert
     expect(firstButton.getAttribute('aria-expanded')).toBe('true');
     expect(secondButton.getAttribute('aria-expanded')).toBe('true');
     expectRegionOpen(firstRegion, true);
@@ -187,22 +201,27 @@ describe('NbAccordion', () => {
   });
 
   it('does not toggle a disabled item', async () => {
+    // Arrange
     const fixture = await createFixture(DisabledItemAccordionTest);
     const [button] = buttons(fixture);
 
+    // Act
     button.click();
     fixture.detectChanges();
 
+    // Assert
     expect(button.disabled).toBe(true);
     expect(button.getAttribute('aria-expanded')).toBe('false');
     expectRegionOpen(regions(fixture)[0], false);
   });
 
   it('sets initial value via [value] binding and connects trigger and content ids', async () => {
+    // Arrange
     const fixture = await createFixture(InitialValueAccordionTest);
     const [button] = buttons(fixture);
     const [region] = regions(fixture);
 
+    // Assert
     expect(button.getAttribute('aria-expanded')).toBe('true');
     expectRegionOpen(region, true);
     expect(button.getAttribute('aria-controls')).toBe(region.id);
@@ -214,13 +233,17 @@ describe('NbAccordion', () => {
   });
 
   it('has no axe violations, closed or with an item open', async () => {
+    // Arrange
     const fixture = await createFixture(SingleAccordionTest);
 
+    // Assert
     expect(await axe(fixture.nativeElement)).toHaveNoViolations();
 
+    // Act
     buttons(fixture)[0].click();
     fixture.detectChanges();
 
+    // Assert
     expect(await axe(fixture.nativeElement)).toHaveNoViolations();
   });
 });

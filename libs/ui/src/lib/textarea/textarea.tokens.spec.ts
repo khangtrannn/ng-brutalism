@@ -41,27 +41,33 @@ class MutableRadiusTextareaTokenTest {
 
 describe('NbTextarea token surface', () => {
   it('emits no internal styling classes — anatomy lives in styles.css and data-attrs', async () => {
+    // Arrange
     const fixture = await createFixture();
     const textarea = findTextarea(fixture);
 
+    // Assert
     expect(textarea.className).toBe('');
     expect(textarea.getAttribute('data-size')).toBe('md');
     expect(textarea.getAttribute('data-in-group')).toBeNull();
   });
 
   it('leaves default visuals to CSS token fallbacks', async () => {
+    // Arrange
     const fixture = await createFixture();
     const textarea = findTextarea(fixture);
 
+    // Assert
     expect(textarea.style.getPropertyValue('background-color')).toBe('');
     expect(textarea.style.getPropertyValue('border-width')).toBe('');
     expect(textarea.style.cssText).not.toContain('--nb-resolved');
   });
 
   it('leaves radius/shadow to CSS token fallbacks when unset', async () => {
+    // Arrange
     const fixture = await createFixture();
     const textarea = findTextarea(fixture);
 
+    // Assert
     expect(textarea.style.getPropertyValue('--nb-textarea-radius')).toBe('');
     expect(textarea.style.getPropertyValue('--nb-textarea-shadow')).toBe('');
     expect(textarea.style.getPropertyValue('border-radius')).toBe('');
@@ -69,9 +75,11 @@ describe('NbTextarea token surface', () => {
   });
 
   it('writes radius/shadow inputs to public CSS variables', async () => {
+    // Arrange
     const fixture = await createFixture(ValueTextareaTokenTest);
     const textarea = findTextarea(fixture);
 
+    // Assert
     expect(textarea.style.getPropertyValue('--nb-textarea-radius')).toBe(
       'var(--nb-radius-lg)'
     );
@@ -83,9 +91,11 @@ describe('NbTextarea token surface', () => {
   });
 
   it('removes inline radius/shadow public CSS variables when bound inputs become null', async () => {
+    // Arrange
     const fixture = await createFixture(MutableRadiusTextareaTokenTest);
     const textarea = findTextarea(fixture);
 
+    // Assert
     expect(textarea.style.getPropertyValue('--nb-textarea-radius')).toBe(
       'var(--nb-radius-lg)'
     );
@@ -93,18 +103,22 @@ describe('NbTextarea token surface', () => {
       'var(--nb-shadow-hard)'
     );
 
+    // Act
     fixture.componentInstance.radius.set(null);
     fixture.componentInstance.shadow.set(null);
     fixture.detectChanges();
 
+    // Assert
     expect(textarea.style.getPropertyValue('--nb-textarea-radius')).toBe('');
     expect(textarea.style.getPropertyValue('--nb-textarea-shadow')).toBe('');
   });
 
   it('writes the focus ring color from the tone capability for CSS to consume', async () => {
+    // Arrange
     const fixture = await createFixture();
     const textarea = findTextarea(fixture);
 
+    // Assert
     expect(
       textarea.style.getPropertyValue('--nb-textarea-focus-ring-color')
     ).toBe('');

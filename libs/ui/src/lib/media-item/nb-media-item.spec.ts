@@ -109,6 +109,7 @@ class SurfaceBooleanIconMediaItemTest {}
 
 describe('NbMediaItem', () => {
   it('supports nbSurface as the media icon frame', async () => {
+    // Arrange
     const fixture = await createFixture(SurfaceIconMediaItemTest);
     const item = fixture.nativeElement.querySelector(
       '[nbMediaItem]'
@@ -117,6 +118,7 @@ describe('NbMediaItem', () => {
       '[nbSurface]'
     ) as HTMLElement;
 
+    // Assert
     expect(item.getAttribute('data-nb-media-item')).toBe('');
     expect(item.className).toBe('');
     expect(surface.getAttribute('data-nb-surface')).toBe('');
@@ -125,6 +127,7 @@ describe('NbMediaItem', () => {
   });
 
   it('renders icon, title, and description from inputs', async () => {
+    // Arrange
     const fixture = await createFixture(InputMediaItemTest);
     const item = fixture.nativeElement.querySelector(
       'nb-media-item'
@@ -137,6 +140,7 @@ describe('NbMediaItem', () => {
       '[data-nb-media-item-description]'
     ) as HTMLElement;
 
+    // Assert
     expect(item.getAttribute('data-nb-media-item')).toBe('');
     expect(image.getAttribute('src')).toBe('/icons/ticket.png');
     expect(image.getAttribute('alt')).toBe('Ticket');
@@ -150,11 +154,13 @@ describe('NbMediaItem', () => {
   });
 
   it('renders a framed icon from inputs', async () => {
+    // Arrange
     const fixture = await createFixture(InputSurfaceIconMediaItemTest);
     const icon = fixture.nativeElement.querySelector(
       '[data-nb-media-item-icon]'
     ) as HTMLElement;
 
+    // Assert
     expect(icon.getAttribute('data-surface')).toBe('true');
     expect(icon.hasAttribute('data-background')).toBe(false);
     expect(icon.style.getPropertyValue('--nb-media-item-icon-bg')).toBe(
@@ -164,6 +170,7 @@ describe('NbMediaItem', () => {
   });
 
   it('supports a projected title with input icon and description', async () => {
+    // Arrange
     const fixture = await createFixture(MixedInputAndProjectedTitleMediaItemTest);
     const item = fixture.nativeElement.querySelector(
       'nb-media-item'
@@ -176,6 +183,7 @@ describe('NbMediaItem', () => {
       '[data-nb-media-item-description]'
     ) as HTMLElement;
 
+    // Assert
     expect(image.getAttribute('src')).toBe('/icons/plane.png');
     expect(image.getAttribute('alt')).toBe('Flight');
     expect(item.style.getPropertyValue('--nb-media-item-title-size')).toBe(
@@ -191,6 +199,7 @@ describe('NbMediaItem', () => {
   });
 
   it('supports element selectors for custom content', async () => {
+    // Arrange
     const fixture = await createFixture(ElementMediaItemTest);
     const item = fixture.nativeElement.querySelector(
       'nb-media-item'
@@ -200,12 +209,14 @@ describe('NbMediaItem', () => {
       'nb-media-item-description'
     ) as HTMLElement;
 
+    // Assert
     expect(item.getAttribute('data-nb-media-item')).toBe('');
     expect(title.getAttribute('data-nb-media-item-title')).toBe('');
     expect(description.getAttribute('data-nb-media-item-description')).toBe('');
   });
 
   it('supports nbMediaItemIcon with a surface frame', async () => {
+    // Arrange
     const fixture = await createFixture(SurfaceBooleanIconMediaItemTest);
     const item = fixture.nativeElement.querySelector(
       '[nbMediaItem]'
@@ -214,6 +225,7 @@ describe('NbMediaItem', () => {
       '[nbMediaItemIcon]'
     ) as HTMLElement;
 
+    // Assert
     expect(item.className).toBe('');
     expect(icon.getAttribute('data-nb-media-item-icon')).toBe('');
     expect(icon.getAttribute('data-surface')).toBe('true');

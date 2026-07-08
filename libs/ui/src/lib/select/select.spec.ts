@@ -85,17 +85,20 @@ class SelectObjectValueTest {
 
 describe('NbSelect', () => {
   it('uses the same focus treatment as inputs and textareas', async () => {
+    // Arrange
     const fixture = await createFixture(SelectTest);
     const select = fixture.nativeElement.querySelector(
       'nb-select'
     ) as HTMLElement;
 
+    // Assert
     expect(select.className).toBe('');
     expect(select.getAttribute('data-nb-select')).toBe('');
     expect(select.className).not.toContain('focus-within:ring-(--nb-focus');
   });
 
   it('keeps the border token consistent while open', async () => {
+    // Arrange
     const fixture = await createFixture(SelectTest);
     const select = fixture.nativeElement.querySelector(
       'nb-select'
@@ -104,6 +107,7 @@ describe('NbSelect', () => {
       'button[aria-haspopup="listbox"]'
     ) as HTMLButtonElement;
 
+    // Act
     trigger.click();
     fixture.detectChanges();
 
@@ -111,6 +115,7 @@ describe('NbSelect', () => {
       '[role="listbox"]'
     ) as HTMLElement;
 
+    // Assert
     expect(select.className).toBe('');
     expect(listbox.className).toBe('');
     expect(listbox.getAttribute('data-slot')).toBe('select-listbox');
@@ -119,22 +124,27 @@ describe('NbSelect', () => {
   });
 
   it('opens on trigger click and selects an option', async () => {
+    // Arrange
     const fixture = await createFixture(SelectTest);
     const trigger = fixture.nativeElement.querySelector(
       'button[aria-haspopup="listbox"]'
     ) as HTMLButtonElement;
 
+    // Assert
     expect(trigger.textContent?.trim()).toBe('Pick one');
     expect(trigger.getAttribute('aria-expanded')).toBe('false');
 
+    // Act
     trigger.click();
     fixture.detectChanges();
 
+    // Assert
     expect(trigger.getAttribute('aria-expanded')).toBe('true');
     expect(
       fixture.nativeElement.querySelector('[role="listbox"]')
     ).not.toBeNull();
 
+    // Act
     const [firstOption] = Array.from(
       fixture.nativeElement.querySelectorAll('[role="option"]')
     ) as HTMLButtonElement[];
@@ -142,38 +152,49 @@ describe('NbSelect', () => {
     firstOption.click();
     fixture.detectChanges();
 
+    // Assert
     expect(trigger.getAttribute('aria-expanded')).toBe('false');
     expect(fixture.nativeElement.querySelector('[role="listbox"]')).toBeNull();
     expect(trigger.textContent?.replace(/\s+/g, ' ').trim()).toBe('Worldwide');
   });
 
   it('closes when a click lands outside the select', async () => {
+    // Arrange
     const fixture = await createFixture(SelectTest);
     const trigger = fixture.nativeElement.querySelector(
       'button[aria-haspopup="listbox"]'
     ) as HTMLButtonElement;
 
+    // Act
     trigger.click();
     fixture.detectChanges();
+
+    // Assert
     expect(trigger.getAttribute('aria-expanded')).toBe('true');
 
+    // Act
     document.body.click();
     fixture.detectChanges();
 
+    // Assert
     expect(trigger.getAttribute('aria-expanded')).toBe('false');
   });
 
   it('highlights the reset option without showing a selected icon', async () => {
+    // Arrange
     const fixture = await createFixture(SelectWithResetOptionTest);
     const trigger = fixture.nativeElement.querySelector(
       'button[aria-haspopup="listbox"]'
     ) as HTMLButtonElement;
 
+    // Assert
     expect(trigger.textContent?.replace(/\s+/g, ' ').trim()).toBe('Worldwide');
 
+    // Act
     trigger.click();
     fixture.detectChanges();
 
+    // Assert
     let [resetOption, selectedOption] = Array.from(
       fixture.nativeElement.querySelectorAll('[role="option"]')
     ) as HTMLButtonElement[];
@@ -184,16 +205,20 @@ describe('NbSelect', () => {
     expect(selectedOption.getAttribute('data-selected')).toBe('');
     expect(selectedOption.querySelector('svg')).not.toBeNull();
 
+    // Act
     resetOption.click();
     fixture.detectChanges();
 
+    // Assert
     expect(trigger.textContent?.replace(/\s+/g, ' ').trim()).toBe(
       'Select location'
     );
 
+    // Act
     trigger.click();
     fixture.detectChanges();
 
+    // Assert
     [resetOption, selectedOption] = Array.from(
       fixture.nativeElement.querySelectorAll('[role="option"]')
     ) as HTMLButtonElement[];
@@ -205,6 +230,7 @@ describe('NbSelect', () => {
   });
 
   it('reflects the disabled input on the trigger and host', async () => {
+    // Arrange
     const fixture = await createFixture(DisabledSelectTest);
     const select = fixture.nativeElement.querySelector(
       'nb-select'
@@ -213,40 +239,50 @@ describe('NbSelect', () => {
       'button[aria-haspopup="listbox"]'
     ) as HTMLButtonElement;
 
+    // Assert
     expect(trigger.disabled).toBe(true);
     expect(select.getAttribute('data-disabled')).toBe('');
 
+    // Act
     trigger.click();
     fixture.detectChanges();
 
+    // Assert
     expect(trigger.getAttribute('aria-expanded')).toBe('false');
     expect(fixture.nativeElement.querySelector('[role="listbox"]')).toBeNull();
   });
 
   it('has no axe violations, closed or open', async () => {
+    // Arrange
     const fixture = await createFixture(SelectTest);
 
+    // Assert
     expect(await axe(fixture.nativeElement)).toHaveNoViolations();
 
+    // Act
     const trigger = fixture.nativeElement.querySelector(
       'button[aria-haspopup="listbox"]'
     ) as HTMLButtonElement;
     trigger.click();
     fixture.detectChanges();
 
+    // Assert
     expect(await axe(fixture.nativeElement)).toHaveNoViolations();
   });
 });
 
 describe('NbSelect with compareWith', () => {
   it('selects an object-valued option by structural equality', async () => {
+    // Arrange
     const fixture = await createFixture(SelectObjectValueTest);
     const trigger = fixture.nativeElement.querySelector(
       'button[aria-haspopup="listbox"]'
     ) as HTMLButtonElement;
 
+    // Assert
     expect(trigger.textContent?.replace(/\s+/g, ' ').trim()).toBe('Canada');
 
+    // Act
     trigger.click();
     fixture.detectChanges();
 
@@ -257,6 +293,7 @@ describe('NbSelect with compareWith', () => {
       option.textContent?.includes('Canada')
     );
 
+    // Assert
     expect(canada?.getAttribute('aria-selected')).toBe('true');
   });
 });
@@ -306,47 +343,57 @@ class NativeSelectInGroupTest {}
 
 describe('NbSelect inside NbInputGroup', () => {
   it('strips its own border and shadow when inside a group', async () => {
+    // Arrange
     const fixture = await createFixture(SelectInGroupTest);
     const trigger = fixture.nativeElement.querySelector(
       'button[aria-haspopup="listbox"]'
     ) as HTMLButtonElement;
 
+    // Assert
     expect(trigger.className).not.toContain('border-2');
     expect(trigger.className).not.toContain('shadow-nb');
     expect(trigger.className).not.toContain('rounded-nb');
   });
 
   it('adopts flex-fill and transparent background when inside a group', async () => {
+    // Arrange
     const fixture = await createFixture(SelectInGroupTest);
     const trigger = fixture.nativeElement.querySelector(
       'button[aria-haspopup="listbox"]'
     ) as HTMLButtonElement;
 
+    // Assert
     expect(trigger.className).toBe('');
     expect(trigger.getAttribute('data-slot')).toBe('select-trigger');
   });
 
   it('uses the same focus-within treatment as grouped inputs', async () => {
+    // Arrange
     const fixture = await createFixture(SelectInGroupTest);
     const group = fixture.nativeElement.querySelector(
       'nb-input-group'
     ) as HTMLElement;
 
+    // Assert
     expect(group.className).toBe('');
     expect(group.style.getPropertyValue('--nb-input-group-border')).toBe('');
   });
 
   it('still opens and selects an option when inside a group', async () => {
+    // Arrange
     const fixture = await createFixture(SelectInGroupTest);
     const trigger = fixture.nativeElement.querySelector(
       'button[aria-haspopup="listbox"]'
     ) as HTMLButtonElement;
 
+    // Act
     trigger.click();
     fixture.detectChanges();
 
+    // Assert
     expect(trigger.getAttribute('aria-expanded')).toBe('true');
 
+    // Act
     const [firstOption] = Array.from(
       fixture.nativeElement.querySelectorAll('[role="option"]')
     ) as HTMLButtonElement[];
@@ -354,6 +401,7 @@ describe('NbSelect inside NbInputGroup', () => {
     firstOption.click();
     fixture.detectChanges();
 
+    // Assert
     expect(trigger.getAttribute('aria-expanded')).toBe('false');
     expect(trigger.textContent?.replace(/\s+/g, ' ').trim()).toBe('Option A');
   });
@@ -361,11 +409,13 @@ describe('NbSelect inside NbInputGroup', () => {
 
 describe('NbNativeSelect directive inside NbInputGroup', () => {
   it('strips its own border and shadow when inside a group', async () => {
+    // Arrange
     const fixture = await createFixture(NativeSelectInGroupTest);
     const select = fixture.nativeElement.querySelector(
       'select[nbSelect]'
     ) as HTMLSelectElement;
 
+    // Assert
     expect(select.getAttribute('data-in-group')).toBe('');
     expect(select.style.borderWidth).toBe('');
     expect(select.className).not.toContain('shadow-nb');
@@ -373,21 +423,25 @@ describe('NbNativeSelect directive inside NbInputGroup', () => {
   });
 
   it('adopts flex-fill and transparent background when inside a group', async () => {
+    // Arrange
     const fixture = await createFixture(NativeSelectInGroupTest);
     const select = fixture.nativeElement.querySelector(
       'select[nbSelect]'
     ) as HTMLSelectElement;
 
+    // Assert
     expect(select.getAttribute('data-in-group')).toBe('');
     expect(select.style.backgroundColor).toBe('');
   });
 
   it('uses the same focus-within treatment as grouped inputs', async () => {
+    // Arrange
     const fixture = await createFixture(NativeSelectInGroupTest);
     const group = fixture.nativeElement.querySelector(
       'nb-input-group'
     ) as HTMLElement;
 
+    // Assert
     expect(group.className).toBe('');
     expect(group.style.getPropertyValue('--nb-input-group-border')).toBe('');
   });

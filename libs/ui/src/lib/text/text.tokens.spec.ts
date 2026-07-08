@@ -26,9 +26,11 @@ class TextTokenTest {
 
 describe('NbText token surface', () => {
   it('leaves final typography properties to CSS, reflecting state as data attributes', async () => {
+    // Arrange
     const fixture = await createFixture();
     const text = findText(fixture);
 
+    // Assert
     expect(text.style.getPropertyValue('color')).toBe('');
     expect(text.style.getPropertyValue('font-size')).toBe('');
     expect(text.style.getPropertyValue('font-weight')).toBe('');
@@ -42,17 +44,21 @@ describe('NbText token surface', () => {
   });
 
   it('does not write --nb-text-color or data-nb-tone when tone is unset', async () => {
+    // Arrange
     const fixture = await createFixture();
     const text = findText(fixture);
 
+    // Assert
     expect(text.getAttribute('data-nb-tone')).toBeNull();
     expect(text.style.getPropertyValue('--nb-text-color')).toBe('');
   });
 
   it('reflects semantic tone members through data-nb-tone and writes the resolved color', async () => {
+    // Arrange
     const fixture = await createFixture({ tone: 'danger' });
     const text = findText(fixture);
 
+    // Assert
     expect(text.getAttribute('data-nb-tone')).toBe('danger');
     expect(text.style.getPropertyValue('--nb-text-color')).toBe(
       'var(--nb-danger)'
@@ -60,9 +66,11 @@ describe('NbText token surface', () => {
   });
 
   it('supports text-specific color intents that are not part of the shared tone recipe', async () => {
+    // Arrange
     const fixture = await createFixture({ tone: 'muted' });
     const text = findText(fixture);
 
+    // Assert
     expect(text.getAttribute('data-nb-tone')).toBe('muted');
     expect(text.style.getPropertyValue('--nb-text-color')).toContain(
       'color-mix'
@@ -70,25 +78,31 @@ describe('NbText token surface', () => {
   });
 
   it('reflects size as a data attribute, not a final inline style', async () => {
+    // Arrange
     const fixture = await createFixture({ size: 'xl' });
     const text = findText(fixture);
 
+    // Assert
     expect(text.getAttribute('data-size')).toBe('xl');
     expect(text.style.getPropertyValue('font-size')).toBe('');
   });
 
   it('reflects transform as a data attribute', async () => {
+    // Arrange
     const fixture = await createFixture({ transform: 'uppercase' });
     const text = findText(fixture);
 
+    // Assert
     expect(text.getAttribute('data-transform')).toBe('uppercase');
     expect(text.style.getPropertyValue('text-transform')).toBe('');
   });
 
   it('keeps anatomy out of host classes', async () => {
+    // Arrange
     const fixture = await createFixture();
     const text = findText(fixture);
 
+    // Assert
     expect(text.className).toBe('');
     expect(text.getAttribute('data-nb-text')).toBe('');
   });

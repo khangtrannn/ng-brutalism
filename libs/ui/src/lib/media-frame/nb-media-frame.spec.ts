@@ -42,11 +42,13 @@ class ToneMediaFrameTest {
 
 describe('NbMediaFrame', () => {
   it('applies default media frame classes and metadata', async () => {
+    // Arrange
     const fixture = await createFixture(DefaultMediaFrameTest);
     const frame = fixture.nativeElement.querySelector(
       '[nbMediaFrame]'
     ) as HTMLElement;
 
+    // Assert
     expect(frame.getAttribute('data-nb-media-frame')).toBe('');
     expect(frame.getAttribute('data-nb-tone')).toBeNull();
     expect(frame.getAttribute('data-ratio')).toBe('auto');
@@ -75,11 +77,13 @@ describe('NbMediaFrame', () => {
   });
 
   it('maps tone, ratio, fit, radius, and shadow attributes', async () => {
+    // Arrange
     const fixture = await createFixture(ValueMediaFrameTest);
     const frame = fixture.nativeElement.querySelector(
       '[nbMediaFrame]'
     ) as HTMLElement;
 
+    // Assert
     expect(frame.getAttribute('data-ratio')).toBe('21/9');
     expect(frame.getAttribute('data-fit')).toBe('contain');
     expect(frame.getAttribute('data-nb-tone')).toBe('lavender');
@@ -101,6 +105,7 @@ describe('NbMediaFrame', () => {
   });
 
   it('supports portrait media ratios', async () => {
+    // Arrange
     @Component({
       imports: [NbMediaFrame],
       template: `<div nbMediaFrame ratio="3/4"></div>`,
@@ -112,6 +117,7 @@ describe('NbMediaFrame', () => {
       '[nbMediaFrame]'
     ) as HTMLElement;
 
+    // Assert
     expect(frame.getAttribute('data-ratio')).toBe('3/4');
     expect(frame.className).toBe('');
   });
@@ -125,6 +131,7 @@ describe('NbMediaFrame', () => {
   ] satisfies readonly [NbMediaFrameTone][])(
     'reflects %s as semantic tone state without writing final colors',
     async (tone) => {
+      // Arrange
       const fixture = await createFixture(ToneMediaFrameTest, (instance) => {
         instance.tone = tone;
       });
@@ -133,6 +140,7 @@ describe('NbMediaFrame', () => {
         '[nbMediaFrame]'
       ) as HTMLElement;
 
+      // Assert
       expect(frame.getAttribute('data-nb-tone')).toBe(tone);
       expect(frame.style.getPropertyValue('background')).toBe('');
       expect(frame.style.getPropertyValue('color')).toBe('');

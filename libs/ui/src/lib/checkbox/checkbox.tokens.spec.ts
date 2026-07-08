@@ -25,9 +25,11 @@ class CheckboxTokenTest {
 
 describe('NbCheckbox token surface', () => {
   it('leaves checked color tokens unset and omits tone state when tone is omitted', async () => {
+    // Arrange
     const fixture = await createFixture();
     const checkbox = findCheckbox(fixture);
 
+    // Assert
     expect(checkbox.style.getPropertyValue('--nb-checkbox-bg')).toBe('');
     expect(checkbox.style.getPropertyValue('--nb-checkbox-fg')).toBe('');
     expect(checkbox.getAttribute('data-nb-tone')).toBeNull();
@@ -35,17 +37,21 @@ describe('NbCheckbox token surface', () => {
   });
 
   it('leaves radius to CSS token fallback when unset', async () => {
+    // Arrange
     const fixture = await createFixture();
     const checkbox = findCheckbox(fixture);
 
+    // Assert
     expect(checkbox.style.getPropertyValue('--nb-checkbox-radius')).toBe('');
     expect(checkbox.style.getPropertyValue('border-radius')).toBe('');
   });
 
   it('writes the radius input to the public CSS variable', async () => {
+    // Arrange
     const fixture = await createFixture({ radius: 'full' });
     const checkbox = findCheckbox(fixture);
 
+    // Assert
     expect(checkbox.style.getPropertyValue('--nb-checkbox-radius')).toBe(
       'var(--nb-radius-full)'
     );
@@ -53,9 +59,11 @@ describe('NbCheckbox token surface', () => {
   });
 
   it('reflects tone semantically without writing final colors inline', async () => {
+    // Arrange
     const fixture = await createFixture({ tone: 'success' });
     const checkbox = findCheckbox(fixture);
 
+    // Assert
     expect(checkbox.getAttribute('data-nb-tone')).toBe('success');
     expect(checkbox.getAttribute('data-tone')).toBeNull();
     expect(checkbox.style.getPropertyValue('--nb-checkbox-bg')).toBe('');
@@ -65,18 +73,22 @@ describe('NbCheckbox token surface', () => {
   });
 
   it('keeps checked state styling in CSS instead of classes', async () => {
+    // Arrange
     const fixture = await createFixture();
     const checkbox = findCheckbox(fixture);
 
+    // Assert
     expect(checkbox.className).toBe('');
     expect(checkbox.getAttribute('data-nb-tone')).toBeNull();
     expect(checkbox.getAttribute('data-tone')).toBeNull();
   });
 
   it('uses CSS for outline and focus ring anatomy', async () => {
+    // Arrange
     const fixture = await createFixture();
     const cls = findCheckbox(fixture).className;
 
+    // Assert
     expect(cls).toBe('');
     expect(cls).not.toContain('outline-(--nb-checkbox-border)');
     expect(cls).not.toContain('focus-visible:ring-(--nb-checkbox-border)');
@@ -85,18 +97,22 @@ describe('NbCheckbox token surface', () => {
   it.each([['sm'], ['md'], ['lg']] satisfies Array<[NbCheckboxSize, string]>)(
     'size="%s" is reflected as a data attribute',
     async (size) => {
+      // Arrange
       const fixture = await createFixture({ size });
       const checkbox = findCheckbox(fixture);
 
+      // Assert
       expect(checkbox.getAttribute('data-size')).toBe(size);
       expect(checkbox.className).toBe('');
     }
   );
 
   it('keeps default checkbox anatomy out of classes', async () => {
+    // Arrange
     const fixture = await createFixture();
     const checkbox = findCheckbox(fixture);
 
+    // Assert
     expect(checkbox.className).toBe('');
     expect(checkbox.getAttribute('data-size')).toBe('md');
   });

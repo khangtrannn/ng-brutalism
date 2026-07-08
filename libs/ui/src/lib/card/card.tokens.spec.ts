@@ -55,9 +55,11 @@ class CardTokenTest {
 
 describe('NbCard token surface', () => {
   it('leaves default visuals to CSS token fallbacks', async () => {
+    // Arrange
     const fixture = await createFixture();
     const card = findCard(fixture);
 
+    // Assert
     expect(card.style.getPropertyValue('background')).toBe('');
     expect(card.style.getPropertyValue('color')).toBe('');
     expect(card.style.getPropertyValue('border-color')).toBe('');
@@ -72,6 +74,7 @@ describe('NbCard token surface', () => {
   });
 
   it('writes explicit scalar inputs to public CSS variables', async () => {
+    // Arrange
     const fixture = await createFixture({
       radius: 'xl',
       shadow: 'heavy',
@@ -79,6 +82,7 @@ describe('NbCard token surface', () => {
     });
     const card = findCard(fixture);
 
+    // Assert
     expect(card.style.getPropertyValue('border-radius')).toBe('');
     expect(card.style.getPropertyValue('box-shadow')).toBe('');
     expect(card.style.getPropertyValue('border-width')).toBe('');
@@ -93,9 +97,11 @@ describe('NbCard token surface', () => {
   });
 
   it('reflects tone semantically without writing final colors inline', async () => {
+    // Arrange
     const fixture = await createFixture({ tone: 'mint' });
     const card = findCard(fixture);
 
+    // Assert
     expect(card.getAttribute('data-nb-tone')).toBe('mint');
     expect(card.style.getPropertyValue('background')).toBe('');
     expect(card.style.getPropertyValue('color')).toBe('');
@@ -104,10 +110,12 @@ describe('NbCard token surface', () => {
   });
 
   it('does not emit legacy token utility classes', async () => {
+    // Arrange
     const fixture = await createFixture();
     const card = findCard(fixture);
     const cls = card.className;
 
+    // Assert
     expect(cls).not.toMatch(/(?:^|\s)nb-tone(?:\s|$)/);
     expect(cls).not.toMatch(/(?:^|\s)nb-border-width(?:\s|$)/);
     expect(cls).not.toMatch(/(?:^|\s)nb-radius(?:\s|$)/);
@@ -123,17 +131,21 @@ describe('NbCard token surface', () => {
   });
 
   it('keeps host anatomy out of classes', async () => {
+    // Arrange
     const fixture = await createFixture();
     const card = findCard(fixture);
 
+    // Assert
     expect(card.className).toBe('');
     expect(card.getAttribute('data-slot')).toBe('card');
   });
 
   it('keeps sub-part anatomy out of classes while retaining slots', async () => {
+    // Arrange
     const fixture = await createFixture();
     const host = fixture.nativeElement as HTMLElement;
 
+    // Assert
     expect(findSlot(host, 'card-header').className).toBe('');
     expect(findSlot(host, 'card-title').className).toBe('');
     expect(findSlot(host, 'card-description').className).toBe('');

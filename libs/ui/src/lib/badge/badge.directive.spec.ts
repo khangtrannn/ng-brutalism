@@ -12,11 +12,13 @@ class BadgeTest {}
 
 describe('NbBadge', () => {
   it('leaves radius defaults to CSS token fallbacks', async () => {
+    // Arrange
     const fixture = await createFixture(BadgeTest);
     const badge = fixture.nativeElement.querySelector(
       'span[nbBadge]'
     ) as HTMLSpanElement;
 
+    // Assert
     expect(badge.className).not.toMatch(/(?:^|\s)nb-radius(?:\s|$)/);
     expect(badge.style.getPropertyValue('border-radius')).toBe('');
     expect(badge.style.cssText).not.toContain('--nb-resolved');

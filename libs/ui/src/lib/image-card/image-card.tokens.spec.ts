@@ -35,9 +35,11 @@ class ImageCardTokenTest {
 
 describe('NbImageCard token surface', () => {
   it('leaves default visuals to CSS token fallbacks', async () => {
+    // Arrange
     const fixture = await createFixture();
     const imageCard = findImageCard(fixture);
 
+    // Assert
     expect(imageCard.style.getPropertyValue('background')).toBe('');
     expect(imageCard.style.getPropertyValue('color')).toBe('');
     expect(imageCard.style.getPropertyValue('border-color')).toBe('');
@@ -54,9 +56,11 @@ describe('NbImageCard token surface', () => {
   });
 
   it('reflects tone semantically without writing final colors inline', async () => {
+    // Arrange
     const fixture = await createFixture({ tone: 'pink' });
     const imageCard = findImageCard(fixture);
 
+    // Assert
     expect(imageCard.getAttribute('data-nb-tone')).toBe('pink');
     expect(imageCard.style.getPropertyValue('background')).toBe('');
     expect(imageCard.style.getPropertyValue('color')).toBe('');
@@ -65,6 +69,7 @@ describe('NbImageCard token surface', () => {
   });
 
   it('writes explicit scalar inputs to public CSS variables', async () => {
+    // Arrange
     const fixture = await createFixture({
       radius: 'lg',
       shadow: 'hard',
@@ -72,6 +77,7 @@ describe('NbImageCard token surface', () => {
     });
     const imageCard = findImageCard(fixture);
 
+    // Assert
     expect(imageCard.style.getPropertyValue('border-radius')).toBe('');
     expect(imageCard.style.getPropertyValue('box-shadow')).toBe('');
     expect(imageCard.style.getPropertyValue('border-width')).toBe('');
@@ -87,10 +93,12 @@ describe('NbImageCard token surface', () => {
   });
 
   it('does not emit legacy token utility classes', async () => {
+    // Arrange
     const fixture = await createFixture();
     const imageCard = findImageCard(fixture);
     const cls = imageCard.className;
 
+    // Assert
     expect(cls).not.toMatch(/(?:^|\s)nb-tone(?:\s|$)/);
     expect(cls).not.toMatch(/(?:^|\s)nb-border-width(?:\s|$)/);
     expect(cls).not.toMatch(/(?:^|\s)nb-radius(?:\s|$)/);
@@ -106,17 +114,21 @@ describe('NbImageCard token surface', () => {
   });
 
   it('does not put caption divider styles on the image', async () => {
+    // Arrange
     const fixture = await createFixture();
     const image = findImage(fixture);
 
+    // Assert
     expect(image.className).toBe('');
     expect(image.getAttribute('data-slot')).toBe('image-card-image');
   });
 
   it('leaves caption divider fallbacks to CSS', async () => {
+    // Arrange
     const fixture = await createFixture();
     const caption = findCaption(fixture);
 
+    // Assert
     expect(caption.style.getPropertyValue('border-top-width')).toBe('');
     expect(caption.style.getPropertyValue('border-top-color')).toBe('');
     expect(caption.style.cssText).not.toContain('--nb-resolved');
@@ -124,9 +136,11 @@ describe('NbImageCard token surface', () => {
   });
 
   it('keeps image-card anatomy out of host classes', async () => {
+    // Arrange
     const fixture = await createFixture();
     const imageCard = findImageCard(fixture);
 
+    // Assert
     expect(imageCard.className).toBe('');
     expect(imageCard.getAttribute('data-slot')).toBe('image-card');
   });

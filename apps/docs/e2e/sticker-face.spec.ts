@@ -1,6 +1,7 @@
 import { test, expect } from '@playwright/test';
 
 test('sticker face eyes are vertically aligned', async ({ page }) => {
+  // Arrange
   await page.goto('/components/sticker');
 
   const face = page.locator('nb-sticker-face').first();
@@ -14,6 +15,7 @@ test('sticker face eyes are vertically aligned', async ({ page }) => {
     eyes.nth(1).boundingBox(),
   ]);
 
+  // Assert
   expect(leftBox).not.toBeNull();
   expect(rightBox).not.toBeNull();
 
@@ -24,6 +26,7 @@ test('sticker face eyes are vertically aligned', async ({ page }) => {
 });
 
 test('sticker face is centered within the star sticker', async ({ page }) => {
+  // Arrange
   await page.goto('/components/sticker');
 
   const starSticker = page.locator('[data-shape="star"]').first();
@@ -37,6 +40,7 @@ test('sticker face is centered within the star sticker', async ({ page }) => {
     face.boundingBox(),
   ]);
 
+  // Assert
   expect(stickerBox).not.toBeNull();
   expect(faceBox).not.toBeNull();
 

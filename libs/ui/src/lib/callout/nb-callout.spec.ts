@@ -82,11 +82,13 @@ class MutableRadiusCalloutTest {
 
 describe('NbCallout', () => {
   it('applies default high-emphasis callout metadata without writing inline token vars', async () => {
+    // Arrange
     const fixture = await createFixture(DefaultCalloutTest);
     const callout = fixture.nativeElement.querySelector(
       '[nbCallout]'
     ) as HTMLElement;
 
+    // Assert
     expect(callout.getAttribute('data-nb-callout')).toBe('');
     expect(callout.hasAttribute('data-radius')).toBe(false);
     expect(callout.getAttribute('data-nb-tone')).toBeNull();
@@ -104,11 +106,13 @@ describe('NbCallout', () => {
   });
 
   it('writes radius and shadow inputs to public CSS variables and data-nb-tone for tone', async () => {
+    // Arrange
     const fixture = await createFixture(ValueCalloutTest);
     const callout = fixture.nativeElement.querySelector(
       '[nbCallout]'
     ) as HTMLElement;
 
+    // Assert
     expect(callout.getAttribute('data-nb-tone')).toBe('pink');
     expect(callout.getAttribute('data-size')).toBe('xl');
     expect(callout.getAttribute('data-layout')).toBe('between');
@@ -138,6 +142,7 @@ describe('NbCallout', () => {
   ] satisfies readonly [NbCalloutTone][])(
     'reflects tone as a semantic data attribute for %s',
     async (tone) => {
+      // Arrange
       const fixture = await createFixture(ToneCalloutTest, (instance) => {
         instance.tone = tone;
       });
@@ -146,6 +151,7 @@ describe('NbCallout', () => {
         '[nbCallout]'
       ) as HTMLElement;
 
+      // Assert
       expect(callout.getAttribute('data-nb-tone')).toBe(tone);
       expect(callout.style.getPropertyValue('--nb-callout-radius')).toBe('');
       expect(callout.style.getPropertyValue('--nb-callout-shadow')).toBe('');
@@ -156,6 +162,7 @@ describe('NbCallout', () => {
   );
 
   it('lets inherited CSS variable customization stay in play when scalar inputs are absent', async () => {
+    // Arrange
     const fixture = await createFixture(ToneCalloutTest, (instance) => {
       instance.tone = 'warning';
     });
@@ -165,6 +172,7 @@ describe('NbCallout', () => {
       '[nbCallout]'
     ) as HTMLElement;
 
+    // Assert
     expect(wrapper.style.getPropertyValue('--nb-callout-radius')).toBe(
       'var(--nb-radius-none)'
     );
@@ -175,11 +183,13 @@ describe('NbCallout', () => {
   });
 
   it('lets scalar inputs win over inherited customization through inline CSS variables', async () => {
+    // Arrange
     const fixture = await createFixture(RadiusOverrideCalloutTest);
     const callout = fixture.nativeElement.querySelector(
       '[nbCallout]'
     ) as HTMLElement;
 
+    // Assert
     expect(callout.style.getPropertyValue('--nb-callout-radius')).toBe(
       'var(--nb-radius-lg)'
     );
@@ -192,11 +202,13 @@ describe('NbCallout', () => {
   });
 
   it('removes inline public CSS variables when bound scalar inputs become null', async () => {
+    // Arrange
     const fixture = await createFixture(MutableRadiusCalloutTest);
     const callout = fixture.nativeElement.querySelector(
       '[nbCallout]'
     ) as HTMLElement;
 
+    // Assert
     expect(callout.style.getPropertyValue('--nb-callout-radius')).toBe(
       'var(--nb-radius-lg)'
     );
@@ -207,11 +219,13 @@ describe('NbCallout', () => {
       'var(--nb-border-width-strong)'
     );
 
+    // Act
     fixture.componentInstance.radius.set(null);
     fixture.componentInstance.shadow.set(null);
     fixture.componentInstance.border.set(null);
     fixture.detectChanges();
 
+    // Assert
     expect(callout.style.getPropertyValue('--nb-callout-radius')).toBe('');
     expect(callout.style.getPropertyValue('--nb-callout-shadow')).toBe('');
     expect(callout.style.getPropertyValue('--nb-callout-border-width')).toBe(
@@ -220,12 +234,14 @@ describe('NbCallout', () => {
   });
 
   it('keeps the public border-width variable in every size rule', () => {
+    // Arrange
     const css = readCalloutCss();
     const sizeBlocks = css.match(/\[data-size='[a-z]+'\]\)\s*\{[^}]*\}/g) ?? [];
     const borderBlocks = sizeBlocks.filter((block) =>
       block.includes('border-width:')
     );
 
+    // Assert
     expect(borderBlocks.length).toBeGreaterThan(0);
     for (const block of borderBlocks) {
       expect(block).toMatch(/border-width:\s*var\(--nb-callout-border-width,/);

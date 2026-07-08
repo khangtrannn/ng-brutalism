@@ -19,9 +19,11 @@ class SeparatorTokenTest {
 
 describe('NbSeparator token surface', () => {
   it('leaves border/layout final properties to CSS, reflecting state as data attributes', async () => {
+    // Arrange
     const fixture = await createFixture();
     const separator = findSeparator(fixture);
 
+    // Assert
     expect(separator.getAttribute('data-orientation')).toBe('horizontal');
     expect(separator.getAttribute('data-variant')).toBe('solid');
     expect(separator.getAttribute('aria-orientation')).toBe('horizontal');
@@ -34,24 +36,30 @@ describe('NbSeparator token surface', () => {
   });
 
   it('reflects vertical orientation as a data attribute', async () => {
+    // Arrange
     const fixture = await createFixture({ orientation: 'vertical' });
     const separator = findSeparator(fixture);
 
+    // Assert
     expect(separator.getAttribute('data-orientation')).toBe('vertical');
     expect(separator.getAttribute('aria-orientation')).toBe('vertical');
   });
 
   it('reflects variant as a data attribute', async () => {
+    // Arrange
     const fixture = await createFixture({ variant: 'thick' });
     const separator = findSeparator(fixture);
 
+    // Assert
     expect(separator.getAttribute('data-variant')).toBe('thick');
   });
 
   it('keeps anatomy out of host classes', async () => {
+    // Arrange
     const fixture = await createFixture();
     const separator = findSeparator(fixture);
 
+    // Assert
     expect(separator.className).toBe('');
     expect(separator.getAttribute('data-nb-separator')).toBe('');
   });

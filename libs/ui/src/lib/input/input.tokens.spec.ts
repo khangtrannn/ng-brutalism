@@ -66,9 +66,11 @@ class MutableRadiusInputTokenTest {
 
 describe('NbInput token surface', () => {
   it('emits no internal styling classes — anatomy lives in styles.css and data-attrs', async () => {
+    // Arrange
     const fixture = await createFixture();
     const input = findInput(fixture);
 
+    // Assert
     expect(input.className).toBe('');
     expect(input.getAttribute('data-size')).toBe('md');
     expect(input.getAttribute('data-nb-tone')).toBeNull();
@@ -76,9 +78,11 @@ describe('NbInput token surface', () => {
   });
 
   it('leaves default visuals to CSS token fallbacks', async () => {
+    // Arrange
     const fixture = await createFixture();
     const input = findInput(fixture);
 
+    // Assert
     expect(input.style.getPropertyValue('background-color')).toBe('');
     expect(input.style.getPropertyValue('border-color')).toBe('');
     expect(input.style.getPropertyValue('border-width')).toBe('');
@@ -87,9 +91,11 @@ describe('NbInput token surface', () => {
   });
 
   it('leaves radius/shadow to CSS token fallbacks when unset', async () => {
+    // Arrange
     const fixture = await createFixture();
     const input = findInput(fixture);
 
+    // Assert
     expect(input.style.getPropertyValue('--nb-input-radius')).toBe('');
     expect(input.style.getPropertyValue('--nb-input-shadow')).toBe('');
     expect(input.style.getPropertyValue('border-radius')).toBe('');
@@ -97,16 +103,20 @@ describe('NbInput token surface', () => {
   });
 
   it('does not write the focus ring color inline', async () => {
+    // Arrange
     const fixture = await createFixture();
     const input = findInput(fixture);
 
+    // Assert
     expect(input.style.getPropertyValue('--nb-input-focus-ring-color')).toBe('');
   });
 
   it('reflects tone semantically and writes border/radius/shadow inputs to public CSS variables', async () => {
+    // Arrange
     const fixture = await createFixture(ValueInputTokenTest);
     const input = findInput(fixture);
 
+    // Assert
     expect(input.getAttribute('data-size')).toBe('lg');
     expect(input.getAttribute('data-nb-tone')).toBe('warning');
     expect(input.style.getPropertyValue('--nb-input-border-width')).toBe('var(--nb-border-width-strong)');
@@ -130,11 +140,13 @@ describe('NbInput token surface', () => {
   ] satisfies readonly [NbInputTone][])(
     'reflects %s as semantic tone state without writing final colors',
     async (tone) => {
+      // Arrange
       const fixture = await createFixture(ToneInputTokenTest, (instance) => {
         instance.tone = tone;
       });
       const input = findInput(fixture);
 
+      // Assert
       expect(input.getAttribute('data-nb-tone')).toBe(tone);
       expect(input.style.getPropertyValue('background-color')).toBe('');
       expect(input.style.getPropertyValue('border-color')).toBe('');
@@ -145,21 +157,27 @@ describe('NbInput token surface', () => {
   );
 
   it('removes inline public CSS variables when bound scalar inputs become null', async () => {
+    // Arrange
     const fixture = await createFixture(MutableBorderInputTokenTest);
     const input = findInput(fixture);
 
+    // Assert
     expect(input.style.getPropertyValue('--nb-input-border-width')).toBe('var(--nb-border-width-thick)');
 
+    // Act
     fixture.componentInstance.border.set(null);
     fixture.detectChanges();
 
+    // Assert
     expect(input.style.getPropertyValue('--nb-input-border-width')).toBe('');
   });
 
   it('removes inline radius/shadow public CSS variables when bound inputs become null', async () => {
+    // Arrange
     const fixture = await createFixture(MutableRadiusInputTokenTest);
     const input = findInput(fixture);
 
+    // Assert
     expect(input.style.getPropertyValue('--nb-input-radius')).toBe(
       'var(--nb-radius-lg)'
     );
@@ -167,10 +185,12 @@ describe('NbInput token surface', () => {
       'var(--nb-shadow-hard)'
     );
 
+    // Act
     fixture.componentInstance.radius.set(null);
     fixture.componentInstance.shadow.set(null);
     fixture.detectChanges();
 
+    // Assert
     expect(input.style.getPropertyValue('--nb-input-radius')).toBe('');
     expect(input.style.getPropertyValue('--nb-input-shadow')).toBe('');
   });

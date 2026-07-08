@@ -12,11 +12,13 @@ class TitleTest {}
 
 describe('NbTitle', () => {
   it('marks the host with the wave underline data attributes', async () => {
+    // Arrange
     const fixture = await createFixture(TitleTest);
     const title = fixture.nativeElement.querySelector(
       'h1[nbTitle]'
     ) as HTMLElement;
 
+    // Assert
     expect(title.getAttribute('data-nb-title')).toBe('');
     expect(title.getAttribute('data-underline')).toBe('wave');
     expect(title.textContent?.trim()).toBe('Ng Brutalism');

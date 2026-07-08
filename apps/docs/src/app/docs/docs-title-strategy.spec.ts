@@ -2,6 +2,7 @@ import { getDocsPageSeo } from './docs-title-strategy';
 
 describe('docs SEO metadata', () => {
   it('uses the final static URL as the canonical URL for component pages', () => {
+    // Assert
     expect(getDocsPageSeo('/components/button?utm_source=test')).toEqual({
       title: 'Neo-Brutalist Angular Button | Ng Brutalism',
       description:
@@ -19,12 +20,14 @@ describe('docs SEO metadata', () => {
   });
 
   it('keeps docs introduction canonicalized to its own URL', () => {
+    // Assert
     expect(getDocsPageSeo('/docs/introduction').canonicalUrl).toBe(
       'https://ngbrutalism.khangtran.dev/docs/introduction/'
     );
   });
 
   it('uses indexable metadata for the FAQ content-depth page', () => {
+    // Assert
     expect(getDocsPageSeo('/docs/faq')).toMatchObject({
       title: 'FAQ | Ng Brutalism',
       description:
@@ -38,6 +41,7 @@ describe('docs SEO metadata', () => {
   });
 
   it('uses website metadata for the dedicated home page', () => {
+    // Assert
     expect(getDocsPageSeo('/')).toMatchObject({
       title: 'Ng Brutalism — Neo-Brutalist Angular UI Primitive Library',
       canonicalUrl: 'https://ngbrutalism.khangtran.dev/',
@@ -49,6 +53,7 @@ describe('docs SEO metadata', () => {
   });
 
   it('keeps layout-only routes crawlable but out of the index', () => {
+    // Assert
     expect(getDocsPageSeo('/components')).toMatchObject({
       title: 'Components | Ng Brutalism',
       canonicalUrl: 'https://ngbrutalism.khangtran.dev/components/',
@@ -59,6 +64,7 @@ describe('docs SEO metadata', () => {
   });
 
   it('marks unknown routes noindex so 404-style pages do not pollute search', () => {
+    // Assert
     expect(
       getDocsPageSeo('/missing/launch-page?utm_source=test')
     ).toMatchObject({
