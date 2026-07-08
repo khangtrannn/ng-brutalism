@@ -123,6 +123,9 @@ export class NbSelect implements NbSelectController, ControlValueAccessor {
   readonly size = input<NbSelectSize>('md');
   readonly placeholder = input<string>('Select an option');
   readonly value = model<NbSelectValue | null>(null);
+  readonly compareWith = input<
+    (a: NbSelectValue | null, b: NbSelectValue | null) => boolean
+  >((a, b) => a === b);
   readonly disabled = input(false, {
     transform: booleanAttribute,
   });
@@ -149,9 +152,11 @@ export class NbSelect implements NbSelectController, ControlValueAccessor {
     () => this.field?.controlId ?? this.triggerId
   );
 
-  protected readonly selectedOption = computed(() =>
-    this.options().find((option) => option.value() === this.value())
-  );
+  protected readonly selectedOption = computed(() => {
+    const compare = this.compareWith();
+    const value = this.value();
+    return this.options().find((option) => compare(option.value(), value));
+  });
 
   protected readonly selectedLabel = computed(
     () => this.selectedOption()?.label() ?? ''
@@ -251,7 +256,7 @@ export class NbSelect implements NbSelectController, ControlValueAccessor {
   }
 
   isSelected(value: NbSelectValue | null): boolean {
-    return this.value() === value;
+    return this.compareWith()(this.value(), value);
   }
 
   selectOption(option: NbSelectOption): void {

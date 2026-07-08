@@ -55,13 +55,13 @@ for (const { dist, snapshot } of entryPoints) {
   }
 
   const baseline = readFileSync(snapshotPath, 'utf8');
-  if (current !== baseline) {
+  if (normalize(current) !== normalize(baseline)) {
     console.error(
       `\nPublic API for "${dist}" changed but its snapshot wasn't updated.\n` +
         `If this change is intentional, run "pnpm api-guard:update" and commit ` +
         `libs/ui/api-guard/${snapshot}.\n`
     );
-    printDiff(baseline, current);
+    printDiff(normalize(baseline), normalize(current));
     failed = true;
   }
 }
@@ -77,6 +77,19 @@ if (failed) {
 console.log(
   shouldUpdate ? 'API snapshots updated.' : 'API guard passed: no unreviewed public API changes.'
 );
+
+// Normalizes a rolled-up .d.ts before diffing: strips JSDoc/block comments and
+// blank lines so cosmetic churn from ng-packagr (dropped comments, blank-line
+// shifts) can't fail the guard. Real API changes — added/removed/renamed
+// exports or changed signatures — survive normalization and still trip it.
+function normalize(source) {
+  return source
+    .replace(/\/\*[\s\S]*?\*\//g, '')
+    .split('\n')
+    .map((line) => line.replace(/\s+$/, ''))
+    .filter((line) => line.trim() !== '')
+    .join('\n');
+}
 
 function printDiff(baseline, current) {
   const baseLines = baseline.split('\n');

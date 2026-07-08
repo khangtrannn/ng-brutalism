@@ -482,7 +482,7 @@ hover-translate press behavior).
 - `NbChipGroup` decoupled from `../text` — now imports `NbTextTracking` from
   `tokens/typography` directly.
 
-### Deferred (see `docs/architecture/capability-discovery.md`)
+### Deferred (see `docs/_archive/capability-discovery.md`)
 - `NbPressCapability` — Button/IconButton hover-translate stays local.
 - `NbFocusCapability`, `NbDisabledCapability` — accessibility chapter.
 - `NbControlSizeCapability`, `NbAlign/NbJustifyCapability` — record only.

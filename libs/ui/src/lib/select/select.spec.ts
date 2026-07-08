@@ -8,6 +8,7 @@ import { NbInputPrefix } from '../input-group/nb-input-group-prefix';
 import { NbSelect } from './nb-select';
 import { NbNativeSelect } from './nb-native-select';
 import { NbSelectOption } from './nb-select-option';
+import type { NbSelectValue } from './select.types';
 
 @Component({
   imports: [NbSelect, NbSelectOption],
@@ -53,6 +54,35 @@ class SelectWithResetOptionTest {}
   `,
 })
 class DisabledSelectTest {}
+
+interface Country {
+  id: string;
+  name: string;
+}
+
+@Component({
+  imports: [NbSelect, NbSelectOption],
+  template: `
+    <nb-select
+      placeholder="Pick a country"
+      [value]="selected"
+      [compareWith]="compareById"
+    >
+      <nb-select-option [value]="us" label="United States"
+        >United States</nb-select-option
+      >
+      <nb-select-option [value]="ca" label="Canada">Canada</nb-select-option>
+    </nb-select>
+  `,
+})
+class SelectObjectValueTest {
+  readonly us: Country = { id: 'us', name: 'United States' };
+  readonly ca: Country = { id: 'ca', name: 'Canada' };
+  // Structurally equal to `ca` but a different reference: only compareById matches it.
+  readonly selected: Country = { id: 'ca', name: 'Canada' };
+  readonly compareById = (a: NbSelectValue | null, b: NbSelectValue | null) =>
+    (a as Country | null)?.id === (b as Country | null)?.id;
+}
 
 describe('NbSelect', () => {
   it('uses the same focus treatment as inputs and textareas', async () => {
@@ -206,6 +236,31 @@ describe('NbSelect', () => {
     fixture.detectChanges();
 
     expect(await axe(fixture.nativeElement)).toHaveNoViolations();
+  });
+});
+
+describe('NbSelect with compareWith', () => {
+  it('selects an object-valued option by structural equality', async () => {
+    const fixture = await createFixture(SelectObjectValueTest);
+    const trigger = fixture.nativeElement.querySelector(
+      'button[aria-haspopup="listbox"]'
+    ) as HTMLButtonElement;
+
+    // The bound value is a different object reference than the Canada option,
+    // so only compareById (not the default ===) can resolve the selection.
+    expect(trigger.textContent?.replace(/\s+/g, ' ').trim()).toBe('Canada');
+
+    trigger.click();
+    fixture.detectChanges();
+
+    const options = Array.from(
+      fixture.nativeElement.querySelectorAll('[role="option"]')
+    ) as HTMLButtonElement[];
+    const canada = options.find((option) =>
+      option.textContent?.includes('Canada')
+    );
+
+    expect(canada?.getAttribute('aria-selected')).toBe('true');
   });
 });
 

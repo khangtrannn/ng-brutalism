@@ -57,10 +57,7 @@ Agent session protocol:
 | `docs/components/design-props.md` | **Canonical entry point** — design-prop vocabulary (7 categories), 5 archetypes, per-component prop matrix, standard-input vs CSS-only-hook tiers | Yes |
 | `docs/components/composition-philosophy.md` | ng-brutalism + `nbText` + Tailwind boundary — when to add an input vs. reach for Tailwind | Yes |
 | `docs/architecture/token-customization.md` | Current CSS-first token customization architecture — rationale, rules, and accepted direction | Yes |
-| `docs/architecture/customization-flexibility-plan.md` | Radix-inspired customization extensions — 4 proposed tracks (tones registry, asChild, controlled/uncontrolled, a11y capabilities) | Yes |
-| `docs/architecture/v0.3-refactor-plan.md` | v0.3 decisions — capability gap (Track 1), Tabs primitive model, Signal Forms demo strategy, interactive component seam | Yes |
-| `docs/architecture/design-system-audit-2026-07-06.md` | Full design-system audit vs mature libraries — severity-ranked findings, token/API/a11y/testing recommendations, phased roadmap | No |
-| `docs/architecture/design-system-refactor-plan-2026-07-07.md` | Executable 6-phase refactor plan derived from the audit — per-phase goal, ordered tasks (finding→files→breaking→effort), exit criteria, open decisions | Yes |
+| `docs/architecture/library-audit-2026-07-08.md` | Library implementation audit — strengths, severity-ranked findings, and next-action plan | No |
 | `docs/components/contact-dialog/PLAN.md` | Contact dialog redesign — status + design decisions | Yes |
 | `docs/adr/0001-dialog-native-element.md` | ADR: why native `<dialog>` over overlay approach | No |
 | `CONTEXT.md` (root) | Project glossary — `Nb` prefix, v0.x contract, CSS transform patterns | Yes |
@@ -82,6 +79,7 @@ Completed work — read-only historical reference.
 
 `docs/_archive/` contains completed release plans, launch plans, frozen audits,
 superseded architecture plans, and dated SEO sprint artifacts. Check there for
-historical context such as v0.1/v0.2 planning, the 2026-05-22 SEO audit, token
-customization migration notes, CSS co-location audits, and design-props rollout
-history.
+historical context such as v0.1/v0.2 planning, the 2026-05-22 SEO audit, the
+2026-07-06 design-system audit and 2026-07-07 refactor plan, the v0.3 refactor
+plan and customization-flexibility extensions, token customization migration
+notes, CSS co-location audits, and design-props rollout history.

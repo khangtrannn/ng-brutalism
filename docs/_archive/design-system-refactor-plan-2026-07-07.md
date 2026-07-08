@@ -1,7 +1,7 @@
 # Design-System Refactor Plan — @ng-brutalism/ui
 
 > Date: 2026-07-07 · Companion to the immutable audit
-> `docs/architecture/design-system-audit-2026-07-06.md`.
+> `docs/_archive/design-system-audit-2026-07-06.md`.
 > This is the **executable** version of the audit's roadmap: per-phase goal,
 > ordered tasks, files touched, breaking flag, effort, and exit criteria.
 > Mutable — check items off and log completions in `docs/components/progress.md`.

@@ -24,10 +24,10 @@ For history and details, read the domain's own `progress.md`.
 
 ## Components
 **Status:** Design-system audit (2026-07-06) + refactor plan (2026-07-07) landed. Refactor Phases 1–5 complete: release blockers, packaging, token/theming redesign, a11y/forms hardening, and public docs/adoption all shipped.
-**Last action:** Phase 5 shipped: 8 new public pages (`NbField` component page — a Phase 4 primitive that had shipped with zero docs — plus 7 Concepts/Project guides: Design Props, Customization, Dark Mode & Theming, Forms Integration, Accessibility, SSR & Hydration, Without Tailwind, Comparison, Versioning & Roadmap); a real token-reference generator (`apps/docs/scripts/generate-token-reference.mjs`, parses `var(--nb-x, fallback)` call sites + declarations straight out of shipped CSS) replaced the hand-maintained `docs-tokens.ts` map that was missing 16 of 36 components, wired into `docs:tokens:check`/`:update` + a new CI step; a `DocsStatusBadge` component now marks every component page Stable/Preview (plus a sidebar tag for Preview); all 37 component pages gained a tiered Accessibility section (deep keyboard/ARIA prose for ~13 interactive components, a one-line APG-N/A statement for the rest); FAQ's "Tailwind required" answer and both READMEs' "recipes ship" wording were corrected to match Phase 2/audit reality. Verified via `lint`/`test`/`build:docs`/`validate:docs-routes`/`docs:tokens:check`/`smoke:ui` all green plus a live-browser Playwright spot-check (zero console errors). Found and flagged (not fixed, out of scope): `api-guard` fails on a pure JSDoc-comment-loss artifact in ng-packagr's `.d.ts` rollup, unrelated to this phase (`ui:lint`/`ui:test`/`smoke:ui` all confirm the library itself is unaffected).
-**Next:** No active Phase 1–5 work remaining. Phase 6 (post-1.0 track — Tabs/Tooltip/Menu/Toast/Switch/Radio, designed dark theme, density scale API, visual regression suite) is unscheduled.
+**Last action:** Library audit (2026-07-08) fixes shipped: api-guard normalizer now strips JSDoc/blank-line drift from ng-packagr's `.d.ts` rollup so the guard can't fail on that cosmetic artifact again, baseline regenerated (H1); CHANGELOG `[Unreleased]`→`[0.3.0]` written + `libs/ui/package.json` bumped 0.2.0→0.3.0 (H2); the 5 completed arch docs archived to `docs/_archive/` with INDEX/progress refs repointed (H3); `NbSelect` gained a `compareWith` input (value type widened to allow objects) with a spec covering object selection by structural equality (L1). Green on `ui` lint/test/build/api-guard.
+**Next:** Deferred as roadmap: dark theme (M1, explicitly out of scope now), Playwright visual-regression suite (M2), Phase 6 primitives (L2 — Tabs/Switch/Radio/Tooltip/Menu/Toast). Release: commit + tag/publish 0.3.0 via `docs/release/RELEASE.md` when ready. See `docs/architecture/library-audit-2026-07-08.md`.
 **Goal:** ✅ Hardening completed (Phases 0–8). ✅ Design-props coverage completed. ✅ Refactor Phases 1–5 complete.
-→ Arch: `docs/architecture/token-customization.md` · Design props: `docs/components/design-props.md` · Audit: `docs/architecture/design-system-audit-2026-07-06.md` · Refactor plan: `docs/architecture/design-system-refactor-plan-2026-07-07.md` · History: `docs/_archive/token-customization-hardening.md`, `docs/_archive/design-props-plan.md`
+→ Arch: `docs/architecture/token-customization.md` · Design props: `docs/components/design-props.md` · Audit: `docs/architecture/library-audit-2026-07-08.md` · History: `docs/_archive/design-system-audit-2026-07-06.md`, `docs/_archive/design-system-refactor-plan-2026-07-07.md`, `docs/_archive/token-customization-hardening.md`, `docs/_archive/design-props-plan.md`
 
 ---
 
@@ -48,6 +48,6 @@ For history and details, read the domain's own `progress.md`.
 ---
 
 ## Release
-**Status:** v0.2.0 package metadata and changelog are present in repo; verify npm/GitHub release state before the next publish.
-**Next:** Resolve current lint/test blockers, run visual QA, then follow `docs/release/RELEASE.md` for any publish or patch release.
+**Status:** 0.3.0 prepared in-repo: CHANGELOG `[0.3.0]` entry written and `libs/ui/package.json` bumped to 0.3.0. Not yet committed/tagged/published.
+**Next:** Commit the audit fixes, then follow `docs/release/RELEASE.md` steps 3–7 (commit → build → tag → GitHub release → npm publish) to ship 0.3.0.
 → Runbook: `docs/release/RELEASE.md` · Historical scope: `docs/_archive/v0.2.0-plan.md`

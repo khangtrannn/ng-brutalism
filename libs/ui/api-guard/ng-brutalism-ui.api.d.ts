@@ -392,7 +392,7 @@ declare class NbNativeSelect {
     static ɵdir: _angular_core.ɵɵDirectiveDeclaration<NbNativeSelect, "select[nbSelect]", ["nbSelect"], { "tone": { "alias": "tone"; "required": false; "isSignal": true; }; "border": { "alias": "border"; "required": false; "isSignal": true; }; }, {}, never, never, true, never>;
 }
 
-type NbSelectValue = string | number;
+type NbSelectValue = string | number | object;
 type NbSelectSize = 'sm' | 'md' | 'lg';
 interface NbSelectController {
     readonly isDisabled: () => boolean;
@@ -440,6 +440,7 @@ declare class NbSelect implements NbSelectController, ControlValueAccessor {
     readonly size: _angular_core.InputSignal<NbSelectSize>;
     readonly placeholder: _angular_core.InputSignal<string>;
     readonly value: _angular_core.ModelSignal<NbSelectValue | null>;
+    readonly compareWith: _angular_core.InputSignal<(a: NbSelectValue | null, b: NbSelectValue | null) => boolean>;
     readonly disabled: _angular_core.InputSignalWithTransform<boolean, unknown>;
     private readonly cvaDisabled;
     readonly isDisabled: _angular_core.Signal<boolean>;
@@ -483,7 +484,7 @@ declare class NbSelect implements NbSelectController, ControlValueAccessor {
     closeOnOutsideClick(event: MouseEvent): void;
     private focusRelativeOption;
     static ɵfac: _angular_core.ɵɵFactoryDeclaration<NbSelect, never>;
-    static ɵcmp: _angular_core.ɵɵComponentDeclaration<NbSelect, "nb-select", ["nbSelect"], { "border": { "alias": "border"; "required": false; "isSignal": true; }; "radius": { "alias": "radius"; "required": false; "isSignal": true; }; "shadow": { "alias": "shadow"; "required": false; "isSignal": true; }; "size": { "alias": "size"; "required": false; "isSignal": true; }; "placeholder": { "alias": "placeholder"; "required": false; "isSignal": true; }; "value": { "alias": "value"; "required": false; "isSignal": true; }; "disabled": { "alias": "disabled"; "required": false; "isSignal": true; }; "ariaLabel": { "alias": "aria-label"; "required": false; "isSignal": true; }; "ariaLabelledby": { "alias": "aria-labelledby"; "required": false; "isSignal": true; }; "open": { "alias": "open"; "required": false; "isSignal": true; }; }, { "value": "valueChange"; "open": "openChange"; }, ["options"], ["*"], true, [{ directive: typeof NbToneCapability; inputs: { "tone": "tone"; }; outputs: {}; }]>;
+    static ɵcmp: _angular_core.ɵɵComponentDeclaration<NbSelect, "nb-select", ["nbSelect"], { "border": { "alias": "border"; "required": false; "isSignal": true; }; "radius": { "alias": "radius"; "required": false; "isSignal": true; }; "shadow": { "alias": "shadow"; "required": false; "isSignal": true; }; "size": { "alias": "size"; "required": false; "isSignal": true; }; "placeholder": { "alias": "placeholder"; "required": false; "isSignal": true; }; "value": { "alias": "value"; "required": false; "isSignal": true; }; "compareWith": { "alias": "compareWith"; "required": false; "isSignal": true; }; "disabled": { "alias": "disabled"; "required": false; "isSignal": true; }; "ariaLabel": { "alias": "aria-label"; "required": false; "isSignal": true; }; "ariaLabelledby": { "alias": "aria-labelledby"; "required": false; "isSignal": true; }; "open": { "alias": "open"; "required": false; "isSignal": true; }; }, { "value": "valueChange"; "open": "openChange"; }, ["options"], ["*"], true, [{ directive: typeof NbToneCapability; inputs: { "tone": "tone"; }; outputs: {}; }]>;
 }
 
 type NbBadgeTone = NbTone;

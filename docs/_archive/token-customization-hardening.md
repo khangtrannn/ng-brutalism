@@ -7,7 +7,7 @@ Scope: Hardening pass on the finished CSS-first token customization architecture
 Related (live) documents:
 
 - `docs/architecture/token-customization.md` — canonical architecture rationale (still the source of truth for the pattern).
-- `docs/architecture/customization-flexibility-plan.md` — separate, forward-looking Radix-inspired extensions.
+- `docs/_archive/customization-flexibility-plan.md` — separate, forward-looking Radix-inspired extensions.
 
 Superseded / archived by this doc:
 

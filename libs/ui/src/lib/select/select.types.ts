@@ -2,7 +2,7 @@ import { InjectionToken } from '@angular/core';
 
 import type { NbSelectOption } from './nb-select-option';
 
-export type NbSelectValue = string | number;
+export type NbSelectValue = string | number | object;
 
 export type NbSelectSize = 'sm' | 'md' | 'lg';
 

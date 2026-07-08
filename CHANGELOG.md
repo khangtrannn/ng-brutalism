@@ -7,6 +7,36 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.3.0] — 2026-07-08
+
+`v0.3.0` centers on token customization. A new `@ng-brutalism/ui/tokens`
+secondary entry point exposes the shared token vocabulary — type contracts and
+value resolvers — as importable TypeScript, and per-component CSS exports let
+consumers pull in only the styles they use.
+
+### Added
+
+- **`@ng-brutalism/ui/tokens` entry point** — the shared token vocabulary as
+  importable TypeScript: tone, spacing, padding, radius, border, shadow,
+  typography, layout, divider, and underline contracts, their matching `nb*Value`
+  resolver functions, and `provideNgBrutalism`.
+- **Per-component CSS exports** — each component ships its own stylesheet through
+  the package `exports` map for opt-in, tree-shakeable styling alongside the
+  single `styles.css` entry point.
+- **`compareWith` input on `NbSelect`** — supply a custom equality function so
+  object-valued options select correctly (matches Angular Material / Radix
+  semantics). Defaults to reference equality, so primitive values are unchanged.
+
+### Changed
+
+- **Token customization overhaul** — component theming now resolves through a
+  three-tier CSS variable system (raw palette → `--nb-tone-*` slots →
+  per-component `--nb-<component>-*` hooks), unifying how tone, border, radius,
+  and shadow inputs map to CSS.
+- **`NbSelect` value type widened** from `string | number` to
+  `string | number | object` so `compareWith` can drive object selection. Widening
+  only; existing primitive values are unaffected.
+
 ## [0.2.0] — 2026-06-02
 
 `v0.2.0` introduces a stronger composition system for building brutalist Angular UIs. The new layout grammar — Surface, Section, Stack, Cluster, and Split — lets you compose full card layouts, multi-column pages, and recipe UIs entirely from library primitives with consistent token-driven spacing, border, shadow, and typography.

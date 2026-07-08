@@ -28,18 +28,8 @@ declare function nbSpacingValue(spacing: NbSpacing): string;
 type NbPadding = 'none' | 'xs' | 'sm' | 'md' | 'lg' | 'xl';
 declare function nbPaddingValue(padding: NbPadding): string;
 
-/**
- * Divider line placement between layout regions. Distinct from `border`
- * (outline strength): `divider` describes *which side(s)* carry a separating
- * line, while `border` describes *how thick* an element's outline is.
- */
 type NbDivider = 'none' | 'top' | 'right' | 'bottom' | 'left' | 'block' | 'inline' | 'all';
 
-/**
- * Shared layout vocabulary for composition primitives. These are type
- * contracts only: each primitive's CSS still owns what the values mean for its
- * own layout model.
- */
 type NbLayoutAlign = 'stretch' | 'start' | 'center' | 'end';
 type NbLayoutJustify = 'start' | 'center' | 'end' | 'between';
 type NbLayoutSeparator = 'none' | 'solid' | 'dashed' | 'thick';
