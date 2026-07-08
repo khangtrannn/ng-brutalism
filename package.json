@@ -16,6 +16,8 @@
     "smoke:ui": "node tools/package-smoke/run.mjs",
     "api-guard": "node tools/api-guard/run.mjs",
     "api-guard:update": "node tools/api-guard/run.mjs --update",
+    "docs:tokens:check": "node apps/docs/scripts/generate-token-reference.mjs",
+    "docs:tokens:update": "node apps/docs/scripts/generate-token-reference.mjs --update",
     "test": "nx affected --target=test",
     "lint": "nx affected --target=lint"
   },

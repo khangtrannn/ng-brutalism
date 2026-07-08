@@ -4,10 +4,20 @@ import { NbChip, NbChipGroup } from '@ng-brutalism/ui';
 import { DocsCodeBlock } from '../../docs/docs-code-block';
 import { DocsExample } from '../../docs/docs-example';
 import { DocsSourceTile } from '../../docs/docs-source-tile';
+import { DocsStatusBadge } from '../../docs/docs-status-badge';
+import { DocsTokens } from '../../docs/docs-tokens';
 
 @Component({
   selector: 'docs-chip-page',
-  imports: [DocsCodeBlock, DocsExample, DocsSourceTile, NbChip, NbChipGroup],
+  imports: [
+    DocsCodeBlock,
+    DocsExample,
+    DocsSourceTile,
+    DocsStatusBadge,
+    DocsTokens,
+    NbChip,
+    NbChipGroup,
+  ],
   template: `
     <article>
       <header id="overview" class="relative mb-10 scroll-mt-32">
@@ -23,6 +33,7 @@ import { DocsSourceTile } from '../../docs/docs-source-tile';
         </div>
 
         <div class="mt-7 flex flex-wrap items-center gap-3">
+          <docs-status-badge status="stable" />
           <div class="nb-stat-tile nb-stat-tile--yellow">
             <span class="nb-stat-tile__value">span</span>
             <span class="nb-stat-tile__label">Host element</span>
@@ -174,47 +185,20 @@ import { DocsSourceTile } from '../../docs/docs-source-tile';
         <p class="mt-6 mb-4 font-bold">NbChipGroup</p>
         <p class="font-medium">Wrapper directive with <code class="font-mono">flex flex-wrap gap-2</code>. No inputs — use Tailwind or inline styles to override spacing.</p>
 
-        <p class="mt-6 mb-4 font-bold">CSS tokens</p>
-        <div
-          class="overflow-x-auto border-2 border-(--nb-border) bg-nb-surface shadow-[5px_5px_0_0_var(--nb-shadow)]"
-        >
-          <table class="w-full min-w-160 border-collapse text-left">
-            <thead class="bg-nb-secondary text-nb-secondary-fg">
-              <tr>
-                <th class="border-b-2 border-r-2 border-(--nb-border) px-4 py-3 font-bold">Token</th>
-                <th class="border-b-2 border-r-2 border-(--nb-border) px-4 py-3 font-bold">Default</th>
-                <th class="border-b-2 border-(--nb-border) px-4 py-3 font-bold">Description</th>
-              </tr>
-            </thead>
-            <tbody class="font-medium">
-              <tr>
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">--nb-chip-bg</td>
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">var(--nb-surface)</td>
-                <td class="px-4 py-3">Background color.</td>
-              </tr>
-              <tr>
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">--nb-chip-fg</td>
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">var(--nb-foreground)</td>
-                <td class="px-4 py-3">Text and icon color.</td>
-              </tr>
-              <tr>
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">--nb-chip-radius</td>
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">0px</td>
-                <td class="px-4 py-3">Corner radius.</td>
-              </tr>
-              <tr>
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">--nb-chip-shadow</td>
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">2px 2px 0 0 var(--nb-shadow)</td>
-                <td class="px-4 py-3">Box shadow.</td>
-              </tr>
-              <tr>
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">--nb-chip-icon-size</td>
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">0.75rem</td>
-                <td class="px-4 py-3">Projected SVG size.</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
+      </section>
+
+      <docs-tokens component="chip" />
+
+      <section id="accessibility">
+        <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">Accessibility</h2>
+        <p class="font-medium">
+          <strong>APG pattern:</strong> N/A — a chip is a
+          <code class="font-mono">&lt;span&gt;</code>, presentational by
+          default. When used as a removable/selectable control (not
+          currently built in), give it a real interactive role and
+          keyboard handling rather than relying on the visual style alone.
+          <strong>Status:</strong> Stable.
+        </p>
       </section>
     </article>
   `,

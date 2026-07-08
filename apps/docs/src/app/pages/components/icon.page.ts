@@ -14,6 +14,8 @@ import {
 import { DocsCodeBlock } from '../../docs/docs-code-block';
 import { DocsExample } from '../../docs/docs-example';
 import { DocsSourceTile } from '../../docs/docs-source-tile';
+import { DocsStatusBadge } from '../../docs/docs-status-badge';
+import { DocsTokens } from '../../docs/docs-tokens';
 
 interface IconSizeDemo {
   readonly value: NbIconSize;
@@ -30,6 +32,8 @@ interface IconToneDemo {
     DocsCodeBlock,
     DocsExample,
     DocsSourceTile,
+    DocsStatusBadge,
+    DocsTokens,
     NbButton,
     NbButtonTrailingIcon,
     NbCallout,
@@ -54,6 +58,7 @@ interface IconToneDemo {
         </div>
 
         <div class="mt-7 flex flex-wrap items-center gap-3">
+          <docs-status-badge status="stable" />
           <div class="nb-stat-tile nb-stat-tile--yellow">
             <span class="nb-stat-tile__value">5</span>
             <span class="nb-stat-tile__label">Sizes</span>
@@ -239,6 +244,8 @@ interface IconToneDemo {
           </div>
         </docs-example>
       </section>
+
+      <docs-tokens component="icon" />
 
       <section id="api">
         <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">API</h2>

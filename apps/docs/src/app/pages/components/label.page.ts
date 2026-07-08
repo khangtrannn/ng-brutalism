@@ -4,6 +4,7 @@ import { NbCheckbox, NbInput, NbLabel } from '@ng-brutalism/ui';
 import { DocsCodeBlock } from '../../docs/docs-code-block';
 import { DocsExample } from '../../docs/docs-example';
 import { DocsSourceTile } from '../../docs/docs-source-tile';
+import { DocsStatusBadge } from '../../docs/docs-status-badge';
 import { DocsTokens } from '../../docs/docs-tokens';
 
 @Component({
@@ -12,6 +13,7 @@ import { DocsTokens } from '../../docs/docs-tokens';
         DocsCodeBlock,
         DocsExample,
         DocsSourceTile,
+        DocsStatusBadge,
         DocsTokens,
         NbCheckbox,
         NbInput,
@@ -31,6 +33,7 @@ import { DocsTokens } from '../../docs/docs-tokens';
         </div>
 
         <div class="mt-7 flex flex-wrap items-center gap-3">
+          <docs-status-badge status="stable" />
           <div class="nb-stat-tile nb-stat-tile--yellow">
             <span class="nb-stat-tile__value">FOR</span>
             <span class="nb-stat-tile__label">htmlFor sync</span>
@@ -93,6 +96,15 @@ import { DocsTokens } from '../../docs/docs-tokens';
       </section>
 
       <docs-tokens component="label" />
+
+      <section id="accessibility">
+        <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">Accessibility</h2>
+        <p class="font-medium">
+          <strong>APG pattern:</strong> N/A — Label is a structural text marker
+          that associates descriptive text with a form control, not an
+          interactive widget. <strong>Status:</strong> Stable.
+        </p>
+      </section>
 
       <section id="api">
         <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">API</h2>

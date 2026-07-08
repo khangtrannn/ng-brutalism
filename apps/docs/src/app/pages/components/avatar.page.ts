@@ -4,6 +4,7 @@ import { NbAvatar } from '@ng-brutalism/ui';
 import { DocsCodeBlock } from '../../docs/docs-code-block';
 import { DocsExample } from '../../docs/docs-example';
 import { DocsSourceTile } from '../../docs/docs-source-tile';
+import { DocsStatusBadge } from '../../docs/docs-status-badge';
 import { DocsTokens } from '../../docs/docs-tokens';
 
 @Component({
@@ -12,6 +13,7 @@ import { DocsTokens } from '../../docs/docs-tokens';
         DocsCodeBlock,
         DocsExample,
         DocsSourceTile,
+        DocsStatusBadge,
         DocsTokens,
         NbAvatar,
     ],
@@ -29,6 +31,7 @@ import { DocsTokens } from '../../docs/docs-tokens';
         </div>
 
         <div class="mt-7 flex flex-wrap items-center gap-3">
+          <docs-status-badge status="stable" />
           <div class="nb-stat-tile nb-stat-tile--pink">
             <span class="nb-stat-tile__value">IMG</span>
             <span class="nb-stat-tile__label">or Text</span>
@@ -61,6 +64,13 @@ import { DocsTokens } from '../../docs/docs-tokens';
       </section>
 
       <docs-tokens component="avatar" />
+
+      <section id="accessibility">
+        <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">Accessibility</h2>
+        <p class="font-medium">
+          <strong>APG pattern:</strong> N/A — Avatar is static, presentational content that renders a user's image or initials fallback, not an interactive widget. <strong>Status:</strong> Stable.
+        </p>
+      </section>
 
       <section id="api">
         <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">API</h2>

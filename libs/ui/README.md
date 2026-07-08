@@ -24,7 +24,7 @@ If you like shadcn/ui or daisyUI, but for Angular and built around brutalism.
 
 v0.2.0 ships a full composition system. The new layout grammar — **Surface, Section, Stack, Cluster, and Split** — lets you compose complete card layouts, multi-column pages, and recipe UIs entirely from library primitives with consistent token-driven spacing, border, shadow, and typography.
 
-New primitives: `NbSurface`, `NbSection`, `NbStack`, `NbCluster`, `NbSplit`, `NbMediaFrame`, `NbText`, `NbDisplay`, `NbStat`, `NbRating`, `NbProgress`, `NbStatusDot`, `NbCallout`, `NbMediaItem`, `NbAvatarGroup`, `NbChip`, `NbChipGroup`, `NbIconButton`, `NbSticker`, `NbHalftone`, `NbSeparator` — plus three ready-made composition recipes.
+New primitives: `NbSurface`, `NbSection`, `NbStack`, `NbCluster`, `NbSplit`, `NbMediaFrame`, `NbText`, `NbDisplay`, `NbStat`, `NbRating`, `NbProgress`, `NbStatusDot`, `NbCallout`, `NbMediaItem`, `NbAvatarGroup`, `NbChip`, `NbChipGroup`, `NbIconButton`, `NbSticker`, `NbHalftone`, `NbSeparator` — plus three copy-paste composition recipes in the docs.
 
 See the [full changelog](https://github.com/khangtrannn/ng-brutalism/blob/main/CHANGELOG.md) for details and migration notes.
 
@@ -128,7 +128,7 @@ direction. Classes are for layout escape hatches.
 
 ## Compositions
 
-Three ready-made recipes ship with v0.2.0, each assembled entirely from library primitives:
+Three recipes are copy-paste compositions in the docs, not package exports — each assembled entirely from library primitives:
 
 <p>
   <img src="https://raw.githubusercontent.com/khangtrannn/ng-brutalism/main/docs/assets/compositions/personal-profile.png" width="32%" alt="Open to Work Card — personal profile composition built from Surface, Split, Chip, and MediaFrame primitives" />

@@ -37,6 +37,48 @@ export const DOCS_PUBLIC_ROUTES = [
     changefreq: 'weekly',
   },
   {
+    path: '/docs/design-props',
+    file: 'docs/design-props.page.ts',
+    priority: '0.8',
+    changefreq: 'weekly',
+  },
+  {
+    path: '/docs/customization',
+    file: 'docs/customization.page.ts',
+    priority: '0.8',
+    changefreq: 'weekly',
+  },
+  {
+    path: '/docs/theming',
+    file: 'docs/theming.page.ts',
+    priority: '0.8',
+    changefreq: 'weekly',
+  },
+  {
+    path: '/docs/forms',
+    file: 'docs/forms.page.ts',
+    priority: '0.8',
+    changefreq: 'weekly',
+  },
+  {
+    path: '/docs/accessibility',
+    file: 'docs/accessibility.page.ts',
+    priority: '0.8',
+    changefreq: 'weekly',
+  },
+  {
+    path: '/docs/ssr',
+    file: 'docs/ssr.page.ts',
+    priority: '0.8',
+    changefreq: 'weekly',
+  },
+  {
+    path: '/docs/without-tailwind',
+    file: 'docs/without-tailwind.page.ts',
+    priority: '0.8',
+    changefreq: 'weekly',
+  },
+  {
     path: '/composition/overview',
     file: 'composition/overview.page.ts',
     priority: '0.8',
@@ -147,6 +189,12 @@ export const DOCS_PUBLIC_ROUTES = [
   {
     path: '/components/display',
     file: 'components/display.page.ts',
+    priority: '0.7',
+    changefreq: 'weekly',
+  },
+  {
+    path: '/components/field',
+    file: 'components/field.page.ts',
     priority: '0.7',
     changefreq: 'weekly',
   },
@@ -304,6 +352,18 @@ export const DOCS_PUBLIC_ROUTES = [
     path: '/showcase/portfolio',
     file: 'showcase/portfolio/index.page.ts',
     priority: '0.6',
+    changefreq: 'monthly',
+  },
+  {
+    path: '/docs/comparison',
+    file: 'docs/comparison.page.ts',
+    priority: '0.7',
+    changefreq: 'monthly',
+  },
+  {
+    path: '/docs/versioning',
+    file: 'docs/versioning.page.ts',
+    priority: '0.7',
     changefreq: 'monthly',
   },
 ] as const satisfies readonly DocsPublicRoute[];

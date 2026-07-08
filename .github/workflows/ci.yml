@@ -63,5 +63,8 @@ jobs:
       - name: Public API guard
         run: pnpm api-guard
 
+      - name: Docs token reference check
+        run: pnpm docs:tokens:check
+
       - name: Build, pack, ng add, and ng build @ng-brutalism/ui
         run: pnpm smoke:ui

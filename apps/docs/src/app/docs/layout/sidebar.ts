@@ -5,6 +5,7 @@ import {
 import { RouterLink, RouterLinkActive } from '@angular/router';
 
 import { DOC_NAV } from '../nav';
+import { docsComponentStatus } from '../docs-component-status';
 
 const GROUP_COLORS = ['yellow', 'pink', 'mint', 'lavender'] as const;
 
@@ -44,6 +45,9 @@ const GROUP_COLORS = ['yellow', 'pink', 'mint', 'lavender'] as const;
               >
                 <span class="sidebar-link__bullet" aria-hidden="true"></span>
                 {{ item.label }}
+                @if (isPreview(item.path)) {
+                  <span class="sidebar-link__preview">Preview</span>
+                }
               </a>
             }
           </div>
@@ -142,6 +146,18 @@ const GROUP_COLORS = ['yellow', 'pink', 'mint', 'lavender'] as const;
       background: transparent;
     }
 
+    .sidebar-link__preview {
+      margin-left: auto;
+      padding: 0.1rem 0.4rem;
+      border: 2px solid var(--nb-border);
+      background: var(--nb-yellow);
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
     .sidebar-group[data-color="yellow"] .sidebar-link:hover .sidebar-link__bullet { background: var(--nb-yellow); }
     .sidebar-group[data-color="pink"] .sidebar-link:hover .sidebar-link__bullet { background: var(--nb-pink); }
     .sidebar-group[data-color="mint"] .sidebar-link:hover .sidebar-link__bullet { background: var(--nb-mint); }
@@ -194,5 +210,10 @@ export class NbDocsSidebar {
 
   protected groupColor(index: number): (typeof GROUP_COLORS)[number] {
     return GROUP_COLORS[index % GROUP_COLORS.length];
+  }
+
+  protected isPreview(path: string): boolean {
+    const slug = path.match(/^\/components\/(.+)$/)?.[1];
+    return !!slug && docsComponentStatus[slug] === 'preview';
   }
 }

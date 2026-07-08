@@ -1,9 +1,11 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { RouterLink } from '@angular/router';
 import { NbCheckbox, NbLabel } from '@ng-brutalism/ui';
 
 import { DocsCodeBlock } from '../../docs/docs-code-block';
 import { DocsExample } from '../../docs/docs-example';
 import { DocsSourceTile } from '../../docs/docs-source-tile';
+import { DocsStatusBadge } from '../../docs/docs-status-badge';
 import { DocsTokens } from '../../docs/docs-tokens';
 
 @Component({
@@ -12,9 +14,11 @@ import { DocsTokens } from '../../docs/docs-tokens';
         DocsCodeBlock,
         DocsExample,
         DocsSourceTile,
+        DocsStatusBadge,
         DocsTokens,
         NbCheckbox,
         NbLabel,
+        RouterLink,
     ],
     template: `
     <article>
@@ -30,6 +34,7 @@ import { DocsTokens } from '../../docs/docs-tokens';
         </div>
 
         <div class="mt-7 flex flex-wrap items-center gap-3">
+          <docs-status-badge status="stable" />
           <div class="nb-stat-tile nb-stat-tile--yellow">
             <span class="nb-stat-tile__value">3</span>
             <span class="nb-stat-tile__label">Sizes</span>
@@ -94,6 +99,31 @@ import { DocsTokens } from '../../docs/docs-tokens';
       </section>
 
       <docs-tokens component="checkbox" />
+
+      <section id="accessibility">
+        <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">Accessibility</h2>
+        <p class="font-medium">
+          <strong>APG pattern:</strong>
+          <a
+            href="https://www.w3.org/WAI/ARIA/apg/patterns/checkbox/"
+            target="_blank"
+            rel="noreferrer"
+            class="underline"
+            >Checkbox</a
+          >
+          · <strong>Status:</strong> Stable. Renders a real
+          <code class="font-mono">&lt;input type="checkbox"&gt;</code>, so
+          checked state, keyboard toggling with Space, and
+          <code class="font-mono">formControlName</code>/
+          <code class="font-mono">[(ngModel)]</code> binding all come from
+          the browser and Angular's built-in
+          <code class="font-mono">DefaultValueAccessor</code> — no custom
+          ARIA state to keep in sync. Pair it with
+          <code class="font-mono">nbLabel</code> (or wrap both in
+          <a routerLink="/components/field" class="underline">nb-field</a>) so the
+          checkbox has an accessible name.
+        </p>
+      </section>
 
       <section id="api">
         <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">API</h2>

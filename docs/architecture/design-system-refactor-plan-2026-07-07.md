@@ -255,7 +255,7 @@ API promotion, with zero console errors.
 
 ---
 
-## Phase 5 — Documentation & adoption (1–2 weeks)
+## Phase 5 — Documentation & adoption (1–2 weeks) — ✅ Complete (2026-07-08)
 
 **Goal:** the public site documents the library's best feature (theming) and
 everything Phases 1–4 made true. Highest-ROI item in the audit — content mostly
@@ -263,18 +263,74 @@ already exists internally.
 
 **Depends on:** Phases 3–4 (docs must describe the final token/forms/a11y state).
 
+All 6 rows below are done and verified (lint clean, `docs` + `ui` tests green,
+`pnpm build:docs` + `validate:docs-routes` pass with 60 registered/discovered
+routes, `pnpm docs:tokens:check` clean, `pnpm smoke:ui` green, a live-browser
+Playwright spot-check across 4 pages showed zero console errors). Row 5.2's
+"generated" token table is a real generator
+(`apps/docs/scripts/generate-token-reference.mjs`, wired into `docs:tokens:check`/
+`:update` and a new CI step in `package-smoke`), not a rename of the old
+hand-maintained map — it parses every component's shipped CSS directly
+(`var(--nb-x, fallback)` call sites plus direct custom-property declarations,
+skipping `--_nb-*` private vars), which is how the 16-of-36-components gap the
+audit flagged got closed permanently instead of just backfilled. Two
+components (`chip`, `media-item`) had a second, hand-written "CSS tokens"
+table duplicating the generated one after the addition — removed in favor of
+the single generated table, since the generated data was strictly more
+complete. Row 5.4's status badge is `DocsStatusBadge`
+(`apps/docs/src/app/docs/docs-status-badge.ts`), rendered in every component
+page header and, for `preview`-status components only, as a small tag in the
+sidebar. Row 5.4's a11y notes landed tiered per a confirmed decision: ~13
+genuinely interactive components (`select`, `dialog`, `accordion`,
+`checkbox`, `button`, `chip`, `input`, `textarea`, `input-group`, `field`,
+`marquee`, `icon-button`, plus `icon`'s pre-existing section) got real
+prose — APG pattern link, keyboard table where applicable, ARIA behavior
+sourced from the actual Phase 4 spec files, not aspirational — while the
+remaining ~24 static/indicator components got a one-line "APG pattern: N/A"
+statement, still satisfying the literal exit criterion without inventing
+interaction stories that don't exist. Row 5.1's `NbField` primitive
+(shipped in Phase 4 with zero docs footprint — no nav entry, no status, no
+page) was added as component #37 alongside this phase's work, since the new
+Forms Integration guide needed something real to point at. Row 5.6 turned
+out to already be build-generated from `DOCS_PUBLIC_ROUTES` +
+`docs-seo-data.ts` (`apps/docs/scripts/build-seo-artifacts.mjs`), not
+hand-maintained as it first appeared — so "extending" it was just keeping
+every new page's route/SEO-description registration current, which
+`validate-public-routes.mjs` enforces as a hard CI gate.
+
 | # | Task | Finding | Source |
 |---|---|---|---|
-| 5.1 | Port `design-props.md` §1–2 (design-props vocabulary) + `token-customization.md` (inputs vs CSS vars vs classes mental model) to public site | 11.1 (Critical adoption) | internal docs |
-| 5.2 | Generated token reference table (every `--nb-*` var + default) | 11.1 | `theme.css` |
-| 5.3 | New guide pages: Customization, Dark mode & theming (matching the 3.8 decision), SSR & hydration, Forms integration, Accessibility statement, "without Tailwind" | 11.2 | — |
-| 5.4 | Per-component page additions: API table, CSS-variable table, a11y notes, Status badge (Stable/Preview) | 11.2, 8.3 | — |
-| 5.5 | Project pages: Comparison / "when not to use", v0.x breaking-change contract; fix README wording ("recipes ship" → "recipes are copy-paste, not exports") | 11.2, 4.4, 12 | `CONTEXT.md` |
-| 5.6 | Extend `llms.txt` as docs grow | 11.3 | — |
+| 5.1 ✅ | Port `design-props.md` §1–2 (design-props vocabulary) + `token-customization.md` (inputs vs CSS vars vs classes mental model) to public site | 11.1 (Critical adoption) | internal docs |
+| 5.2 ✅ | Generated token reference table (every `--nb-*` var + default) | 11.1 | `theme.css` |
+| 5.3 ✅ | New guide pages: Customization, Dark mode & theming (matching the 3.8 decision), SSR & hydration, Forms integration, Accessibility statement, "without Tailwind" | 11.2 | — |
+| 5.4 ✅ | Per-component page additions: API table, CSS-variable table, a11y notes, Status badge (Stable/Preview) | 11.2, 8.3 | — |
+| 5.5 ✅ | Project pages: Comparison / "when not to use", v0.x breaking-change contract; fix README wording ("recipes ship" → "recipes are copy-paste, not exports") | 11.2, 4.4, 12 | `CONTEXT.md` |
+| 5.6 ✅ | Extend `llms.txt` as docs grow | 11.3 | — |
 
 **Exit criteria:** a first-time visitor can discover the input↔CSS-var single-slot
 contract without reading source; every component page states its APG pattern +
 status; the "without Tailwind" path is documented end to end.
+✅ All verified: `/docs/customization` states the precedence contract (input
+writes inline → CSS cascade → `!important` escape hatch) with a runnable
+input/CSS-equivalence example; all 37 component pages (36 + the new `field`)
+carry a Status badge and an Accessibility section stating an APG pattern or
+"N/A"; `/docs/without-tailwind` documents the manual, schematic-free setup
+end to end and the FAQ's previously-contradictory "Yes, required" answer was
+corrected to match the Phase 2.1 optional-peer reality.
+
+**Known pre-existing, unrelated issue found during verification:** `pnpm
+api-guard` fails on `ng-brutalism-ui-tokens.d.ts` — but the failure is a pure
+JSDoc-comment loss in ng-packagr's `.d.ts` rollup (confirmed via a
+sort-and-diff: every type/function declaration is byte-identical between the
+checked-in snapshot and the fresh build; only two comment blocks are
+missing), not a real export change. `libs/ui/src` has zero uncommitted
+changes from this phase, and the snapshot and its source were last touched
+in the same prior commit, so this predates Phase 5 and isn't caused by it.
+`ui:lint`, `ui:test`, and `smoke:ui` (pack → `ng add` → `ng build` a fresh
+app) all pass, confirming the library itself is unaffected — this is
+specifically the `.d.ts`-diffing tool being comment-order-sensitive. Left
+uninvestigated/unfixed as out of scope for a documentation phase; worth a
+follow-up.
 
 ---
 

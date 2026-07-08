@@ -40,6 +40,83 @@ export const docsNavGroups: readonly DocsNavGroup[] = [
     ],
   },
   {
+    label: 'Concepts',
+    items: [
+      {
+        label: 'Design Props',
+        path: '/docs/design-props',
+        toc: [
+          { label: 'Overview', fragment: 'overview' },
+          { label: 'Vocabulary', fragment: 'vocabulary' },
+          { label: 'Archetypes', fragment: 'archetypes' },
+          { label: 'Example', fragment: 'example' },
+        ],
+      },
+      {
+        label: 'Customization',
+        path: '/docs/customization',
+        toc: [
+          { label: 'Overview', fragment: 'overview' },
+          { label: 'Core rule', fragment: 'mental-model' },
+          { label: 'Precedence contract', fragment: 'precedence' },
+          { label: 'Choosing a scope', fragment: 'scope' },
+          { label: 'Tone', fragment: 'tone' },
+        ],
+      },
+      {
+        label: 'Dark Mode & Theming',
+        path: '/docs/theming',
+        toc: [
+          { label: 'Overview', fragment: 'overview' },
+          { label: 'Presets', fragment: 'presets' },
+          { label: 'Building your own', fragment: 'building-your-own' },
+          { label: 'Dark mode', fragment: 'dark-mode' },
+        ],
+      },
+      {
+        label: 'Forms Integration',
+        path: '/docs/forms',
+        toc: [
+          { label: 'Overview', fragment: 'overview' },
+          { label: 'Native controls', fragment: 'native-controls' },
+          { label: 'NbSelect', fragment: 'select-cva' },
+          { label: 'Field linking', fragment: 'field-linking' },
+          { label: 'Validation states', fragment: 'validation-states' },
+        ],
+      },
+      {
+        label: 'Accessibility',
+        path: '/docs/accessibility',
+        toc: [
+          { label: 'Overview', fragment: 'overview' },
+          { label: 'APG patterns', fragment: 'apg-patterns' },
+          { label: 'Testing policy', fragment: 'testing-policy' },
+          { label: 'Disabled semantics', fragment: 'keyboard-support' },
+        ],
+      },
+      {
+        label: 'SSR & Hydration',
+        path: '/docs/ssr',
+        toc: [
+          { label: 'Overview', fragment: 'overview' },
+          { label: 'Stable id generation', fragment: 'id-generation' },
+          { label: 'Zoneless', fragment: 'zoneless' },
+          { label: 'Browser-only behavior', fragment: 'browser-checks' },
+        ],
+      },
+      {
+        label: 'Without Tailwind',
+        path: '/docs/without-tailwind',
+        toc: [
+          { label: 'Overview', fragment: 'overview' },
+          { label: "Why it's optional", fragment: 'why-optional' },
+          { label: 'Setup', fragment: 'manual-setup' },
+          { label: 'What you lose', fragment: 'what-you-lose' },
+        ],
+      },
+    ],
+  },
+  {
     label: 'Composition',
     items: [
       {
@@ -142,6 +219,31 @@ export const docsNavGroups: readonly DocsNavGroup[] = [
     ],
   },
   {
+    label: 'Project',
+    items: [
+      {
+        label: 'Comparison',
+        path: '/docs/comparison',
+        toc: [
+          { label: 'Overview', fragment: 'overview' },
+          { label: 'When it fits', fragment: 'when-to-use' },
+          { label: "When it doesn't", fragment: 'when-not-to-use' },
+          { label: 'Customization model', fragment: 'customization-model' },
+        ],
+      },
+      {
+        label: 'Versioning & Roadmap',
+        path: '/docs/versioning',
+        toc: [
+          { label: 'Overview', fragment: 'overview' },
+          { label: 'The v0.x contract', fragment: 'v0x-contract' },
+          { label: 'v1.0 gate', fragment: 'v1-gate' },
+          { label: "What's been hardened", fragment: 'hardening-status' },
+        ],
+      },
+    ],
+  },
+  {
     label: 'Primitives',
     items: [
       {
@@ -155,6 +257,7 @@ export const docsNavGroups: readonly DocsNavGroup[] = [
           { label: 'Multiple', fragment: 'multiple' },
           { label: 'Disabled item', fragment: 'disabled-item' },
           { label: 'Default opened item', fragment: 'default-open' },
+          { label: 'Accessibility', fragment: 'accessibility' },
           { label: 'API', fragment: 'api' },
         ],
       },
@@ -185,6 +288,7 @@ export const docsNavGroups: readonly DocsNavGroup[] = [
           { label: 'Full width', fragment: 'full-width' },
           { label: 'Disabled', fragment: 'disabled' },
           { label: 'Anchor usage', fragment: 'anchor-usage' },
+          { label: 'Accessibility', fragment: 'accessibility' },
           { label: 'API', fragment: 'api' },
         ],
       },
@@ -215,6 +319,7 @@ export const docsNavGroups: readonly DocsNavGroup[] = [
           { label: 'Usage', fragment: 'usage' },
           { label: 'Tones', fragment: 'tones' },
           { label: 'With Icon', fragment: 'with-icon' },
+          { label: 'Accessibility', fragment: 'accessibility' },
           { label: 'API', fragment: 'api' },
         ],
       },
@@ -246,6 +351,18 @@ export const docsNavGroups: readonly DocsNavGroup[] = [
           { label: 'Sizes', fragment: 'sizes' },
           { label: 'Color', fragment: 'color' },
           { label: 'Custom Size', fragment: 'custom-size' },
+          { label: 'API', fragment: 'api' },
+        ],
+      },
+      {
+        label: 'Field',
+        path: '/components/field',
+        toc: [
+          { label: 'Overview', fragment: 'overview' },
+          { label: 'Preview', fragment: 'preview' },
+          { label: 'Usage', fragment: 'usage' },
+          { label: 'Invalid state', fragment: 'invalid-state' },
+          { label: 'Accessibility', fragment: 'accessibility' },
           { label: 'API', fragment: 'api' },
         ],
       },
@@ -286,6 +403,7 @@ export const docsNavGroups: readonly DocsNavGroup[] = [
           { label: 'Shapes', fragment: 'shapes' },
           { label: 'Sizes', fragment: 'sizes' },
           { label: 'Tones', fragment: 'tones' },
+          { label: 'Accessibility', fragment: 'accessibility' },
           { label: 'API', fragment: 'api' },
         ],
       },
@@ -302,6 +420,7 @@ export const docsNavGroups: readonly DocsNavGroup[] = [
           { label: 'With Label', fragment: 'with-label' },
           { label: 'Textarea', fragment: 'textarea' },
           { label: 'Disabled', fragment: 'disabled' },
+          { label: 'Accessibility', fragment: 'accessibility' },
           { label: 'API', fragment: 'api' },
         ],
       },
@@ -390,6 +509,7 @@ export const docsNavGroups: readonly DocsNavGroup[] = [
           { label: 'Input Group', fragment: 'input-group' },
           { label: 'Disabled', fragment: 'disabled' },
           { label: 'Custom Background', fragment: 'custom-background' },
+          { label: 'Accessibility', fragment: 'accessibility' },
           { label: 'API', fragment: 'api' },
         ],
       },

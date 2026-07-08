@@ -4,10 +4,19 @@ import { NbStatusDot } from '@ng-brutalism/ui';
 import { DocsCodeBlock } from '../../docs/docs-code-block';
 import { DocsExample } from '../../docs/docs-example';
 import { DocsSourceTile } from '../../docs/docs-source-tile';
+import { DocsStatusBadge } from '../../docs/docs-status-badge';
+import { DocsTokens } from '../../docs/docs-tokens';
 
 @Component({
   selector: 'docs-status-dot-page',
-  imports: [DocsCodeBlock, DocsExample, DocsSourceTile, NbStatusDot],
+  imports: [
+    DocsCodeBlock,
+    DocsExample,
+    DocsSourceTile,
+    DocsStatusBadge,
+    DocsTokens,
+    NbStatusDot,
+  ],
   template: `
     <article>
       <header id="overview" class="relative mb-10 scroll-mt-32">
@@ -22,6 +31,7 @@ import { DocsSourceTile } from '../../docs/docs-source-tile';
         </div>
 
         <div class="mt-7 flex flex-wrap items-center gap-3">
+          <docs-status-badge status="stable" />
           <div class="nb-stat-tile nb-stat-tile--yellow">
             <span class="nb-stat-tile__value">span</span>
             <span class="nb-stat-tile__label">Host element</span>
@@ -81,6 +91,15 @@ import { DocsSourceTile } from '../../docs/docs-source-tile';
             </div>
           </div>
         </docs-example>
+      </section>
+
+      <docs-tokens component="status-dot" />
+
+      <section id="accessibility">
+        <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">Accessibility</h2>
+        <p class="font-medium">
+          <strong>APG pattern:</strong> N/A — StatusDot is a static presence/availability indicator, not an interactive widget. <strong>Status:</strong> Stable.
+        </p>
       </section>
 
       <section id="api">

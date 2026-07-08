@@ -97,9 +97,17 @@ import { NbButton } from '@ng-brutalism/ui';
           Does it require Tailwind CSS v4?
         </h2>
         <p class="text-base font-medium">
-          Yes. Ng Brutalism is built around Tailwind CSS v4 and CSS custom
-          properties. It ships with an Angular CLI schematic that helps you get
-          the required styling setup ready out of the box.
+          No — <code class="font-mono text-sm">tailwindcss</code> is an
+          optional peer dependency. Component styling ships as a static,
+          self-contained CSS file that needs no Tailwind processing to
+          render correctly. The <code class="font-mono text-sm">ng add</code>
+          schematic sets up Tailwind CSS v4 by default as a convenience for
+          your own app code, but it isn't required by the library itself —
+          see
+          <a routerLink="/docs/without-tailwind" class="underline"
+            >Without Tailwind</a
+          >
+          for manual setup.
         </p>
       </section>
 
@@ -139,7 +147,9 @@ import { NbButton } from '@ng-brutalism/ui';
           Some Angular libraries focus on unstyled or lightly styled primitives.
           Ng Brutalism takes a more visual-first approach: the brutalist look
           ships with the primitives, then CSS tokens and Tailwind utilities let
-          you tune it from there.
+          you tune it from there. See the
+          <a routerLink="/docs/comparison" class="underline">Comparison</a>
+          page for when that tradeoff — and when it doesn't — fits your project.
         </p>
       </section>
 
@@ -152,7 +162,11 @@ import { NbButton } from '@ng-brutalism/ui';
           API changes can happen while the library hardens. It is a good fit for
           prototypes, portfolios, launch pages, side projects, and teams willing
           to track early releases. For conservative enterprise systems, wait for
-          a later stable release.
+          a later stable release — see
+          <a routerLink="/docs/versioning" class="underline">Versioning &amp; Roadmap</a>
+          for the exact v1.0 criteria, and
+          <a routerLink="/docs/comparison" class="underline">Comparison</a>
+          for when another library is the better fit today.
         </p>
       </section>
 
@@ -192,10 +206,13 @@ import { NbButton } from '@ng-brutalism/ui';
           Does it work with SSR?
         </h2>
         <p class="text-base font-medium">
-          The docs site itself is prerendered with Analog and Angular. The UI
-          package avoids browser-only assumptions in core primitives where
-          possible, and browser-dependent behavior is kept behind Angular
-          platform checks when needed.
+          Yes. The docs site itself is prerendered with Analog and Angular.
+          The UI package avoids browser-only assumptions in core primitives,
+          generates ids through an injectable counter so hydration can't
+          mismatch, and keeps browser-dependent behavior behind Angular
+          platform checks. See
+          <a routerLink="/docs/ssr" class="underline">SSR &amp; Hydration</a>
+          for details.
         </p>
       </section>
 

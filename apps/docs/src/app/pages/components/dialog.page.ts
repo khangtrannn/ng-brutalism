@@ -3,6 +3,7 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { DocsCodeBlock } from '../../docs/docs-code-block';
 import { DocsExample } from '../../docs/docs-example';
 import { DocsSourceTile } from '../../docs/docs-source-tile';
+import { DocsStatusBadge } from '../../docs/docs-status-badge';
 import { DocsTokens } from '../../docs/docs-tokens';
 import { ContactUsDialog } from './examples/contact-us-dialog';
 
@@ -12,6 +13,7 @@ import { ContactUsDialog } from './examples/contact-us-dialog';
         DocsCodeBlock,
         DocsExample,
         DocsSourceTile,
+        DocsStatusBadge,
         DocsTokens,
         ContactUsDialog,
     ],
@@ -30,6 +32,7 @@ import { ContactUsDialog } from './examples/contact-us-dialog';
         </div>
 
         <div class="mt-7 flex flex-wrap items-center gap-3">
+          <docs-status-badge status="stable" />
           <div class="nb-stat-tile nb-stat-tile--yellow">
             <span class="nb-stat-tile__value">6</span>
             <span class="nb-stat-tile__label">Parts</span>
@@ -80,6 +83,44 @@ import { ContactUsDialog } from './examples/contact-us-dialog';
       </section>
 
       <docs-tokens component="dialog" />
+
+      <section id="accessibility">
+        <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">Accessibility</h2>
+        <p class="mb-4 font-medium">
+          <strong>APG pattern:</strong>
+          <a
+            href="https://www.w3.org/WAI/ARIA/apg/patterns/dialog-modal/"
+            target="_blank"
+            rel="noreferrer"
+            class="underline"
+            >Dialog (Modal)</a
+          >
+          · <strong>Status:</strong> Stable.
+        </p>
+        <p class="mb-4 font-medium">
+          Built on the native <code class="font-mono">&lt;dialog&gt;</code>
+          element's <code class="font-mono">showModal()</code>, so focus
+          trapping, <code class="font-mono">Escape</code>-to-close, and
+          <code class="font-mono">role="dialog"</code>/
+          <code class="font-mono">aria-modal</code> come from the browser
+          itself rather than a hand-rolled implementation. Opening locks
+          <code class="font-mono">body</code> scroll; the
+          <code class="font-mono">dismissible</code> input controls whether a
+          backdrop click closes it, and a <code class="font-mono">close</code>/
+          <code class="font-mono">cancel</code> output syncs consumer state
+          on every close path (backdrop, Escape, or
+          <code class="font-mono">[nbDialogClose]</code>).
+        </p>
+        <p class="font-medium">
+          Initial focus follows native behavior — the browser focuses the
+          first <code class="font-mono">[autofocus]</code> or focusable
+          element inside, so make sure at least one exists. Verified with
+          <code class="font-mono">vitest-axe</code> against a fixture with
+          the native <code class="font-mono">open</code> attribute set
+          directly (jsdom doesn't implement
+          <code class="font-mono">showModal()</code>).
+        </p>
+      </section>
 
       <section id="api">
         <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">API</h2>

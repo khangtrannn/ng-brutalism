@@ -14,6 +14,7 @@ export const docsComponentStatus: Readonly<Record<string, NbComponentStatus>> =
     cluster: 'stable',
     dialog: 'stable',
     display: 'stable',
+    field: 'stable',
     halftone: 'stable',
     icon: 'stable',
     'icon-button': 'stable',

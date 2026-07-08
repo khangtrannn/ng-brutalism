@@ -11,6 +11,7 @@ import {
 import { DocsCodeBlock } from '../../docs/docs-code-block';
 import { DocsExample } from '../../docs/docs-example';
 import { DocsSourceTile } from '../../docs/docs-source-tile';
+import { DocsStatusBadge } from '../../docs/docs-status-badge';
 import { DocsTokens } from '../../docs/docs-tokens';
 
 @Component({
@@ -19,6 +20,7 @@ import { DocsTokens } from '../../docs/docs-tokens';
         DocsCodeBlock,
         DocsExample,
         DocsSourceTile,
+        DocsStatusBadge,
         DocsTokens,
         NbInput,
         NbInputGroup,
@@ -41,6 +43,7 @@ import { DocsTokens } from '../../docs/docs-tokens';
         </div>
 
         <div class="mt-7 flex flex-wrap items-center gap-3">
+          <docs-status-badge status="stable" />
           <div class="nb-stat-tile nb-stat-tile--yellow">
             <span class="nb-stat-tile__value">3</span>
             <span class="nb-stat-tile__label">Parts</span>
@@ -121,6 +124,21 @@ import { DocsTokens } from '../../docs/docs-tokens';
       </section>
 
       <docs-tokens component="input-group" />
+
+      <section id="accessibility">
+        <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">Accessibility</h2>
+        <p class="font-medium">
+          <strong>APG pattern:</strong> N/A — a visual wrapper around a real
+          <code class="font-mono">&lt;input&gt;</code> or
+          <code class="font-mono">&lt;textarea&gt;</code>; the prefix/suffix
+          addons are presentational and don't participate in the form
+          control's accessible name. <strong>Status:</strong> Stable. Label
+          the inner control the same way you would a bare
+          <code class="font-mono">nbInput</code> — the addon text alone
+          isn't a substitute for a <code class="font-mono">nbLabel</code> or
+          <code class="font-mono">aria-label</code>.
+        </p>
+      </section>
 
       <section id="api">
         <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">API</h2>

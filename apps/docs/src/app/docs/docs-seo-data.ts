@@ -53,6 +53,22 @@ export const PAGE_DESCRIPTIONS: Record<string, string> = {
   '/docs/faq':
     'Ng Brutalism FAQ for Angular developers. Learn what the neo-brutalist Angular primitive library and composition system is, why it uses Tailwind v4, how it compares, and whether it fits your project.',
 
+  // Concepts
+  '/docs/design-props':
+    'The Ng Brutalism design-prop vocabulary: tone, size, radius, shadow, border, spacing, and typography, and the 5 component archetypes that use them.',
+  '/docs/customization':
+    'How Ng Brutalism customization works: one public CSS variable per token, the input/CSS precedence contract, and how to scope an override.',
+  '/docs/theming':
+    'Theme Ng Brutalism with the built-in mono and soft presets or a custom palette, and the current status of dark mode support.',
+  '/docs/forms':
+    'Use Ng Brutalism controls with Angular Reactive Forms: native-element controls, NbSelect ControlValueAccessor, and NbField label/error linking.',
+  '/docs/accessibility':
+    'Ng Brutalism accessibility statement: APG patterns per interactive component, the vitest-axe testing policy, and keyboard support.',
+  '/docs/ssr':
+    'Server-side rendering and hydration in Ng Brutalism: stable id generation, zoneless change detection, and browser-only behavior guards.',
+  '/docs/without-tailwind':
+    'Use Ng Brutalism without installing Tailwind CSS — component styling ships as a static, self-contained CSS file.',
+
   // Composition
   '/composition/overview':
     'Learn the Ng Brutalism composition system: Surface, Section, Stack, Cluster, Split, Button, Chip, Text, and Title working together.',
@@ -90,6 +106,8 @@ export const PAGE_DESCRIPTIONS: Record<string, string> = {
     'Neo-brutalist Dialog (modal) component for Angular. Accessible native brutalist modal with keyboard focus management.',
   '/components/display':
     'Use Display for loud Angular hero text, editorial headings, and oversized brutalist type with token-friendly sizing.',
+  '/components/field':
+    'Use Field to wire Angular Reactive Forms controls to accessible labels, descriptions, and error messages with generated ids and aria-describedby.',
   '/components/halftone':
     'Use Halftone to add graphic brutalist texture, dotted overlays, and punchy Angular composition accents.',
   '/components/icon':
@@ -150,6 +168,12 @@ export const PAGE_DESCRIPTIONS: Record<string, string> = {
   // Showcase
   '/showcase/portfolio':
     'Portfolio showcase built with Ng Brutalism — see the neo-brutalist Angular primitive library and composition system in action.',
+
+  // Project
+  '/docs/comparison':
+    'When Ng Brutalism fits and when it doesn\'t, compared with Angular Material, PrimeNG, Taiga UI, and headless-first libraries.',
+  '/docs/versioning':
+    'Ng Brutalism versioning: the pre-1.0 API-stability contract and the two conditions required before v1.0.0 ships.',
 };
 
 export interface DocsPageSeo {

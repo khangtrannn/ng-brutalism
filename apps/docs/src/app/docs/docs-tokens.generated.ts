@@ -1,0 +1,458 @@
+// GENERATED FILE — do not hand-edit.
+// Source: apps/docs/scripts/generate-token-reference.mjs
+// Regenerate with `pnpm docs:tokens:update` after changing component CSS.
+
+export interface DocsToken {
+  name: string;
+  defaultValue: string;
+  usage: string;
+}
+
+export type DocsTokenComponent =
+  | 'accordion'
+  | 'avatar'
+  | 'avatar-group'
+  | 'badge'
+  | 'button'
+  | 'callout'
+  | 'card'
+  | 'checkbox'
+  | 'chip'
+  | 'cluster'
+  | 'dialog'
+  | 'display'
+  | 'field'
+  | 'halftone'
+  | 'icon'
+  | 'icon-button'
+  | 'image-card'
+  | 'input'
+  | 'input-group'
+  | 'label'
+  | 'marquee'
+  | 'media-frame'
+  | 'media-item'
+  | 'progress'
+  | 'rating'
+  | 'section'
+  | 'select'
+  | 'separator'
+  | 'split'
+  | 'stack'
+  | 'stat'
+  | 'status-dot'
+  | 'sticker'
+  | 'surface'
+  | 'text'
+  | 'textarea'
+  | 'title'
+  | 'theme';
+
+export const sharedTokens: DocsToken[] = [
+    { name: "--nb-background", defaultValue: "#ffffff", usage: "Default surface background color" },
+    { name: "--nb-foreground", defaultValue: "#000000", usage: "Default foreground text color" },
+    { name: "--nb-border", defaultValue: "#000000", usage: "Border color and focus ring color" },
+    { name: "--nb-shadow", defaultValue: "#000000", usage: "Offset shadow color" },
+    { name: "--nb-radius", defaultValue: "0rem", usage: "Corner radius through the rounded-nb utility" },
+    { name: "--nb-shadow-offset-x", defaultValue: "4px", usage: "Horizontal shadow and press offset" },
+    { name: "--nb-shadow-offset-y", defaultValue: "4px", usage: "Vertical shadow and press offset" },
+  ];
+
+export const componentTokens: Record<DocsTokenComponent, DocsToken[]> = {
+  'accordion': [
+    { name: "--nb-accordion-content-bg", defaultValue: "var(--nb-accordion-item-bg, transparent)", usage: "Accordion content background color" },
+    { name: "--nb-accordion-content-fg", defaultValue: "var(--nb-accordion-item-fg, inherit)", usage: "Accordion content text color" },
+    { name: "--nb-accordion-item-bg", defaultValue: "var(--_nb-tone-bg, var(--nb-surface))", usage: "Accordion item background color" },
+    { name: "--nb-accordion-item-border-color", defaultValue: "var(--_nb-tone-border-color, var(--nb-border))", usage: "Accordion item border color" },
+    { name: "--nb-accordion-item-border-width", defaultValue: "var(--nb-border-width)", usage: "Accordion item border width" },
+    { name: "--nb-accordion-item-fg", defaultValue: "var(--_nb-tone-fg, var(--nb-surface-foreground))", usage: "Accordion item text color" },
+    { name: "--nb-accordion-item-radius", defaultValue: "var(--nb-radius)", usage: "Accordion item corner radius" },
+    { name: "--nb-accordion-item-shadow", defaultValue: "var(--nb-shadow-offset-x) var(--nb-shadow-offset-y) 0 0 var(--nb-shadow)", usage: "Accordion item box shadow" },
+    { name: "--nb-accordion-trigger-bg", defaultValue: "var(--_nb-tone-bg)", usage: "Accordion trigger background color" },
+    { name: "--nb-accordion-trigger-border-color", defaultValue: "var(--_nb-tone-border-color)", usage: "Accordion trigger focus outline" },
+    { name: "--nb-accordion-trigger-fg", defaultValue: "var(--_nb-tone-fg)", usage: "Accordion trigger text color" },
+    { name: "--nb-accordion-trigger-icon-size", defaultValue: "1.5rem", usage: "Accordion trigger icon size" },
+    { name: "--nb-accordion-trigger-icon-stroke", defaultValue: "3", usage: "Accordion stroke width" },
+    { name: "--nb-accordion-trigger-min-height", defaultValue: "3.5rem", usage: "Accordion trigger minimum size" },
+  ],
+  'avatar': [
+    { name: "--nb-avatar-bg", defaultValue: "var(--nb-surface)", usage: "Avatar background color" },
+    { name: "--nb-avatar-border-color", defaultValue: "var(--nb-border)", usage: "Avatar border color" },
+    { name: "--nb-avatar-border-width", defaultValue: "var(--nb-border-width)", usage: "Avatar border width" },
+    { name: "--nb-avatar-fg", defaultValue: "var(--nb-surface-foreground)", usage: "Avatar text color" },
+    { name: "--nb-avatar-radius", defaultValue: "9999px", usage: "Avatar corner radius" },
+    { name: "--nb-avatar-shadow", defaultValue: "2px 2px 0 0 var(--nb-shadow)", usage: "Avatar box shadow" },
+  ],
+  'avatar-group': [],
+  'badge': [
+    { name: "--nb-badge-bg", defaultValue: "var(--_nb-tone-bg, #ffffff)", usage: "Badge background color" },
+    { name: "--nb-badge-border-color", defaultValue: "var(--_nb-tone-border-color, var(--nb-border))", usage: "Badge border color" },
+    { name: "--nb-badge-border-width", defaultValue: "var(--nb-border-width)", usage: "Badge border width" },
+    { name: "--nb-badge-fg", defaultValue: "var(--_nb-tone-fg, #000000)", usage: "Badge text color" },
+    { name: "--nb-badge-radius", defaultValue: "9999px", usage: "Badge corner radius" },
+    { name: "--nb-badge-shadow", defaultValue: "2px 2px 0 0 var(--nb-shadow)", usage: "Badge box shadow" },
+  ],
+  'button': [
+    { name: "--nb-button-bg", defaultValue: "var(--_nb-tone-bg, var(--nb-primary))", usage: "Button background color" },
+    { name: "--nb-button-border-color", defaultValue: "var(--_nb-tone-border-color, var(--nb-border))", usage: "Button border color" },
+    { name: "--nb-button-border-width", defaultValue: "var(--nb-border-width)", usage: "Button border width" },
+    { name: "--nb-button-fg", defaultValue: "var(--_nb-tone-fg, var(--nb-primary-foreground))", usage: "Button text color" },
+    { name: "--nb-button-radius", defaultValue: "var(--nb-radius)", usage: "Button corner radius" },
+    { name: "--nb-button-shadow", defaultValue: "var(--nb-shadow-offset-x) var(--nb-shadow-offset-y) 0 0 var(--nb-shadow)", usage: "Button box shadow" },
+    { name: "--nb-button-trailing-icon-bg", defaultValue: "transparent", usage: "Button trailing icon background color" },
+    { name: "--nb-button-trailing-icon-color", defaultValue: "currentColor", usage: "Button trailing icon text color" },
+    { name: "--nb-button-trailing-icon-radius", defaultValue: "inherit", usage: "Button trailing icon corner radius" },
+    { name: "--nb-button-trailing-icon-size", defaultValue: "—", usage: "Button trailing icon size" },
+  ],
+  'callout': [
+    { name: "--nb-callout-bg", defaultValue: "var(--_nb-tone-bg, var(--nb-tone-neutral-bg))", usage: "Callout background color" },
+    { name: "--nb-callout-border-color", defaultValue: "var(--_nb-tone-border-color, var(--nb-tone-neutral-border))", usage: "Callout border color" },
+    { name: "--nb-callout-border-width", defaultValue: "3px", usage: "Callout border width" },
+    { name: "--nb-callout-fg", defaultValue: "var(--_nb-tone-fg, var(--nb-tone-neutral-fg))", usage: "Callout text color" },
+    { name: "--nb-callout-radius", defaultValue: "var(--nb-radius)", usage: "Callout corner radius" },
+    { name: "--nb-callout-shadow", defaultValue: "var(--nb-shadow-offset-x) var(--nb-shadow-offset-y) 0 0 var(--nb-shadow)", usage: "Callout box shadow" },
+  ],
+  'card': [
+    { name: "--nb-card-bg", defaultValue: "var(--_nb-tone-bg, var(--nb-background))", usage: "Card background color" },
+    { name: "--nb-card-border-color", defaultValue: "var(--_nb-tone-border-color, var(--nb-border))", usage: "Card border color" },
+    { name: "--nb-card-border-width", defaultValue: "var(--nb-border-width)", usage: "Card border width" },
+    { name: "--nb-card-fg", defaultValue: "var(--_nb-tone-fg, var(--nb-foreground))", usage: "Card text color" },
+    { name: "--nb-card-radius", defaultValue: "var(--nb-radius)", usage: "Card corner radius" },
+    { name: "--nb-card-shadow", defaultValue: "var(--nb-shadow-offset-x) var(--nb-shadow-offset-y) 0 0 var(--nb-shadow)", usage: "Card box shadow" },
+  ],
+  'checkbox': [
+    { name: "--nb-checkbox-bg", defaultValue: "var(--_nb-tone-bg, var(--nb-primary))", usage: "Checkbox background color" },
+    { name: "--nb-checkbox-fg", defaultValue: "var(--_nb-tone-fg, var(--nb-primary-foreground))", usage: "Checkbox text color" },
+    { name: "--nb-checkbox-radius", defaultValue: "var(--nb-radius)", usage: "Checkbox corner radius" },
+  ],
+  'chip': [
+    { name: "--nb-chip-bg", defaultValue: "var(--_nb-tone-bg, var(--nb-surface))", usage: "Chip background color" },
+    { name: "--nb-chip-border-color", defaultValue: "var(--_nb-tone-border-color, var(--nb-border))", usage: "Chip border color" },
+    { name: "--nb-chip-border-width", defaultValue: "var(--nb-border-width)", usage: "Chip border width" },
+    { name: "--nb-chip-fg", defaultValue: "var(--_nb-tone-fg, var(--nb-surface-foreground))", usage: "Chip text color" },
+    { name: "--nb-chip-group-gap", defaultValue: "0.5rem", usage: "Chip group gap between items" },
+    { name: "--nb-chip-group-tracking", defaultValue: "-0.025em", usage: "Chip group letter spacing" },
+    { name: "--nb-chip-icon-size", defaultValue: "0.75rem", usage: "Chip icon size" },
+    { name: "--nb-chip-padding", defaultValue: "0.125rem 0.625rem", usage: "Chip padding" },
+    { name: "--nb-chip-radius", defaultValue: "var(--nb-radius)", usage: "Chip corner radius" },
+    { name: "--nb-chip-shadow", defaultValue: "2px 2px 0 0 var(--nb-shadow)", usage: "Chip box shadow" },
+  ],
+  'cluster': [
+    { name: "--nb-cluster-gap", defaultValue: "0.75rem", usage: "Cluster gap between items" },
+    { name: "--nb-cluster-padding", defaultValue: "0px", usage: "Cluster padding" },
+    { name: "--nb-cluster-separator-gap", defaultValue: "calc(var(--nb-cluster-gap, 0.75rem) * 0.5)", usage: "Cluster separator sets `margin-inline-start`" },
+  ],
+  'dialog': [
+    { name: "--nb-dialog-actions-bg", defaultValue: "transparent", usage: "Dialog actions background color" },
+    { name: "--nb-dialog-bg", defaultValue: "var(--_nb-tone-bg, #ffffff)", usage: "Dialog background color" },
+    { name: "--nb-dialog-border-color", defaultValue: "var(--_nb-tone-border-color, var(--nb-border))", usage: "Dialog border color" },
+    { name: "--nb-dialog-border-width", defaultValue: "var(--nb-border-width)", usage: "Dialog border width" },
+    { name: "--nb-dialog-content-bg", defaultValue: "transparent", usage: "Dialog content background color" },
+    { name: "--nb-dialog-description-fg", defaultValue: "#4b5563", usage: "Dialog description text color" },
+    { name: "--nb-dialog-fg", defaultValue: "var(--_nb-tone-fg, #000000)", usage: "Dialog text color" },
+    { name: "--nb-dialog-radius", defaultValue: "var(--nb-radius)", usage: "Dialog corner radius" },
+    { name: "--nb-dialog-shadow", defaultValue: "6px 6px 0 0 var(--nb-shadow)", usage: "Dialog box shadow" },
+  ],
+  'display': [
+    { name: "--nb-display-color", defaultValue: "currentColor", usage: "Display text color" },
+    { name: "--nb-display-leading", defaultValue: "1", usage: "Display line height" },
+    { name: "--nb-display-size", defaultValue: "2rem", usage: "Display font size" },
+    { name: "--nb-display-tracking", defaultValue: "0", usage: "Display letter spacing" },
+    { name: "--nb-display-weight", defaultValue: "400", usage: "Display font weight" },
+  ],
+  'field': [],
+  'halftone': [
+    { name: "--nb-halftone-color", defaultValue: "var(--nb-border)", usage: "Halftone fill color" },
+    { name: "--nb-halftone-columns", defaultValue: "—", usage: "Halftone size" },
+    { name: "--nb-halftone-dot-size", defaultValue: "8px", usage: "Halftone dot sets `nb-halftone-dot-size`" },
+    { name: "--nb-halftone-gap-x", defaultValue: "28px", usage: "Halftone sets `nb-halftone-gap-x`" },
+    { name: "--nb-halftone-gap-y", defaultValue: "27px", usage: "Halftone sets `nb-halftone-gap-y`" },
+    { name: "--nb-halftone-rows", defaultValue: "—", usage: "Halftone size" },
+  ],
+  'icon': [
+    { name: "--nb-icon-color", defaultValue: "currentColor", usage: "Icon text color" },
+    { name: "--nb-icon-size", defaultValue: "0.75rem", usage: "Icon size" },
+  ],
+  'icon-button': [
+    { name: "--nb-icon-button-bg", defaultValue: "var(--_nb-tone-bg, var(--nb-surface))", usage: "Icon Button background color" },
+    { name: "--nb-icon-button-border-color", defaultValue: "var(--_nb-tone-border-color, var(--nb-border))", usage: "Icon Button border color" },
+    { name: "--nb-icon-button-border-width", defaultValue: "var(--nb-border-width)", usage: "Icon Button border width" },
+    { name: "--nb-icon-button-fg", defaultValue: "var(--_nb-tone-fg, var(--nb-surface-foreground))", usage: "Icon Button text color" },
+    { name: "--nb-icon-button-radius", defaultValue: "var(--nb-radius)", usage: "Icon Button corner radius" },
+    { name: "--nb-icon-button-shadow", defaultValue: "var(--nb-shadow-offset-x) var(--nb-shadow-offset-y) 0 0 var(--nb-shadow)", usage: "Icon Button box shadow" },
+  ],
+  'image-card': [
+    { name: "--nb-image-card-bg", defaultValue: "var(--_nb-tone-bg, var(--nb-background))", usage: "Image Card background color" },
+    { name: "--nb-image-card-border-color", defaultValue: "var(--_nb-tone-border-color, var(--nb-border))", usage: "Image Card border color" },
+    { name: "--nb-image-card-border-width", defaultValue: "var(--nb-border-width)", usage: "Image Card border width" },
+    { name: "--nb-image-card-fg", defaultValue: "var(--_nb-tone-fg, var(--nb-foreground))", usage: "Image Card text color" },
+    { name: "--nb-image-card-radius", defaultValue: "var(--nb-radius)", usage: "Image Card corner radius" },
+    { name: "--nb-image-card-shadow", defaultValue: "var(--nb-shadow-offset-x) var(--nb-shadow-offset-y) 0 0 var(--nb-shadow)", usage: "Image Card box shadow" },
+  ],
+  'input': [
+    { name: "--nb-input-bg", defaultValue: "var(--_nb-tone-bg, var(--nb-surface))", usage: "Input background color" },
+    { name: "--nb-input-border-color", defaultValue: "var(--_nb-tone-border-color, var(--nb-border))", usage: "Input border color" },
+    { name: "--nb-input-border-width", defaultValue: "var(--nb-border-width)", usage: "Input border width" },
+    { name: "--nb-input-fg", defaultValue: "var(--_nb-tone-fg, var(--nb-surface-foreground))", usage: "Input text color" },
+    { name: "--nb-input-focus-ring-color", defaultValue: "var(--nb-input-border-color, var(--_nb-tone-border-color, var(--nb-border)))", usage: "Input focus ring focus outline" },
+    { name: "--nb-input-radius", defaultValue: "var(--nb-radius)", usage: "Input corner radius" },
+    { name: "--nb-input-shadow", defaultValue: "var(--nb-shadow-offset-x) var(--nb-shadow-offset-y) 0 var(--nb-shadow)", usage: "Input box shadow" },
+  ],
+  'input-group': [
+    { name: "--nb-input-group-addon-bg", defaultValue: "#ffd24a", usage: "Input Group addon background color" },
+    { name: "--nb-input-group-bg", defaultValue: "var(--nb-input-bg, var(--nb-field-bg))", usage: "Input Group background color" },
+    { name: "--nb-input-group-border", defaultValue: "var(--nb-border)", usage: "Input Group border color" },
+    { name: "--nb-input-group-prefix-bg", defaultValue: "var(--nb-input-group-addon-bg, #ffd24a)", usage: "Input Group prefix background color" },
+    { name: "--nb-input-group-radius", defaultValue: "var(--nb-radius)", usage: "Input Group corner radius" },
+    { name: "--nb-input-group-suffix-bg", defaultValue: "var(--nb-input-group-addon-bg, #ffd24a)", usage: "Input Group suffix background color" },
+  ],
+  'label': [],
+  'marquee': [
+    { name: "--nb-marquee-duration", defaultValue: "5s", usage: "Marquee animation duration" },
+  ],
+  'media-frame': [
+    { name: "--nb-media-frame-bg", defaultValue: "var(--_nb-tone-bg, var(--nb-surface))", usage: "Media Frame background color" },
+    { name: "--nb-media-frame-border-color", defaultValue: "var(--_nb-tone-border-color, var(--nb-border))", usage: "Media Frame border color" },
+    { name: "--nb-media-frame-border-width", defaultValue: "var(--nb-border-width)", usage: "Media Frame border width" },
+    { name: "--nb-media-frame-fg", defaultValue: "var(--_nb-tone-fg, var(--nb-surface-foreground))", usage: "Media Frame text color" },
+    { name: "--nb-media-frame-radius", defaultValue: "var(--nb-radius)", usage: "Media Frame corner radius" },
+    { name: "--nb-media-frame-shadow", defaultValue: "none", usage: "Media Frame box shadow" },
+  ],
+  'media-item': [
+    { name: "--nb-media-item-bg", defaultValue: "var(--_nb-tone-bg, var(--nb-surface))", usage: "Media Item background color" },
+    { name: "--nb-media-item-border-color", defaultValue: "var(--_nb-tone-border-color, var(--nb-border))", usage: "Media Item border color" },
+    { name: "--nb-media-item-description-default-size", defaultValue: "0.5625rem", usage: "Media Item description default font size" },
+    { name: "--nb-media-item-description-opacity", defaultValue: "0.7", usage: "Media Item opacity" },
+    { name: "--nb-media-item-description-size", defaultValue: "var(--nb-media-item-description-default-size)", usage: "Media Item description font size" },
+    { name: "--nb-media-item-fg", defaultValue: "var(--_nb-tone-fg, inherit)", usage: "Media Item text color" },
+    { name: "--nb-media-item-gap", defaultValue: "0.375rem", usage: "Media Item gap between items" },
+    { name: "--nb-media-item-icon-bg", defaultValue: "—", usage: "Media Item icon background color" },
+    { name: "--nb-media-item-icon-size", defaultValue: "1rem", usage: "Media Item icon maximum size" },
+    { name: "--nb-media-item-radius", defaultValue: "var(--nb-radius)", usage: "Media Item corner radius" },
+    { name: "--nb-media-item-surface-size", defaultValue: "2rem", usage: "Media Item surface size" },
+    { name: "--nb-media-item-title-default-size", defaultValue: "0.75rem", usage: "Media Item title default font size" },
+    { name: "--nb-media-item-title-font-family", defaultValue: "inherit", usage: "Media Item font family" },
+    { name: "--nb-media-item-title-size", defaultValue: "var(--nb-media-item-title-default-size)", usage: "Media Item title font size" },
+  ],
+  'progress': [
+    { name: "--nb-progress-fill-bg", defaultValue: "var(--nb-progress-tone-bg, var(--_nb-tone-bg, var(--nb-primary)))", usage: "Progress fill background color" },
+    { name: "--nb-progress-tone-bg", defaultValue: "var(--_nb-tone-bg)", usage: "Progress tone background color" },
+    { name: "--nb-progress-track-bg", defaultValue: "var(--nb-secondary-background)", usage: "Progress track background color" },
+  ],
+  'rating': [
+    { name: "--nb-rating-empty", defaultValue: "var(--nb-border)", usage: "Rating text color" },
+    { name: "--nb-rating-fill", defaultValue: "var(--nb-rating-tone-bg, var(--_nb-tone-bg, var(--nb-warning)))", usage: "Rating text color" },
+    { name: "--nb-rating-size", defaultValue: "1.25rem", usage: "Rating font size" },
+    { name: "--nb-rating-tone-bg", defaultValue: "var(--_nb-tone-bg)", usage: "Rating tone text color" },
+  ],
+  'section': [
+    { name: "--nb-section-padding", defaultValue: "1rem", usage: "Section padding" },
+  ],
+  'select': [
+    { name: "--nb-select-bg", defaultValue: "var(--_nb-tone-bg, var(--nb-surface))", usage: "Select background color" },
+    { name: "--nb-select-border-color", defaultValue: "var(--_nb-tone-border-color, var(--nb-border))", usage: "Select border color" },
+    { name: "--nb-select-border-width", defaultValue: "var(--nb-border-width)", usage: "Select border width" },
+    { name: "--nb-select-fg", defaultValue: "var(--_nb-tone-fg, var(--nb-surface-foreground))", usage: "Select text color" },
+    { name: "--nb-select-listbox-bg", defaultValue: "var(--nb-select-bg, var(--nb-select-tone-bg, var(--_nb-tone-bg, var(--nb-surface))))", usage: "Select listbox background color" },
+    { name: "--nb-select-radius", defaultValue: "var(--nb-radius)", usage: "Select corner radius" },
+    { name: "--nb-select-shadow", defaultValue: "var(--nb-shadow-offset-x) var(--nb-shadow-offset-y) 0 0 var(--nb-shadow)", usage: "Select box shadow" },
+    { name: "--nb-select-tone-bg", defaultValue: "var(--_nb-tone-bg)", usage: "Select tone background color" },
+    { name: "--nb-select-tone-border-color", defaultValue: "var(--_nb-tone-border-color)", usage: "Select tone border" },
+    { name: "--nb-select-tone-fg", defaultValue: "var(--_nb-tone-fg)", usage: "Select tone text color" },
+  ],
+  'separator': [
+    { name: "--nb-separator-color", defaultValue: "var(--nb-border)", usage: "Separator border color" },
+    { name: "--nb-separator-thickness", defaultValue: "2px", usage: "Separator border width" },
+  ],
+  'split': [
+    { name: "--nb-split-columns", defaultValue: "minmax(0, 1fr) minmax(0, 1fr)", usage: "Split column layout" },
+    { name: "--nb-split-gap", defaultValue: "1rem", usage: "Split gap between items" },
+    { name: "--nb-split-padding", defaultValue: "0px", usage: "Split padding" },
+    { name: "--nb-split-separator-gap", defaultValue: "var(--nb-split-gap, 1rem)", usage: "Split separator sets `inset-inline-end`" },
+  ],
+  'stack': [
+    { name: "--nb-stack-gap", defaultValue: "0.75rem", usage: "Stack gap between items" },
+    { name: "--nb-stack-separator-gap", defaultValue: "var(--nb-stack-gap, 0.75rem)", usage: "Stack separator padding" },
+  ],
+  'stat': [
+    { name: "--nb-stat-label-fg", defaultValue: "var(--nb-foreground)", usage: "Stat label text color" },
+    { name: "--nb-stat-label-size", defaultValue: "0.625rem", usage: "Stat label font size" },
+    { name: "--nb-stat-value-size", defaultValue: "1.5rem", usage: "Stat value font size" },
+  ],
+  'status-dot': [
+    { name: "--nb-status-dot-radius", defaultValue: "9999px", usage: "Status Dot corner radius" },
+  ],
+  'sticker': [
+    { name: "--nb-sticker-face-ink", defaultValue: "var(--nb-sticker-ink, #050505)", usage: "Sticker fill color" },
+    { name: "--nb-sticker-face-size", defaultValue: "3.5rem", usage: "Sticker face size" },
+    { name: "--nb-sticker-fill", defaultValue: "var(--nb-sticker-tone-bg, var(--_nb-tone-bg, var(--nb-mint, #9af7b5)))", usage: "Sticker fill color" },
+    { name: "--nb-sticker-font-size", defaultValue: "1.5rem", usage: "Sticker font font size" },
+    { name: "--nb-sticker-ink", defaultValue: "var(--nb-sticker-tone-fg, var(--_nb-tone-fg, var(--nb-black, #050505)))", usage: "Sticker stroke color" },
+    { name: "--nb-sticker-min-block-size", defaultValue: "8.75rem", usage: "Sticker min block minimum size" },
+    { name: "--nb-sticker-padding-block", defaultValue: "3rem", usage: "Sticker padding" },
+    { name: "--nb-sticker-padding-inline", defaultValue: "3.5rem", usage: "Sticker padding" },
+    { name: "--nb-sticker-rotate", defaultValue: "-6deg", usage: "Sticker sets `transform`" },
+    { name: "--nb-sticker-scale", defaultValue: "1", usage: "Sticker sets `transform`" },
+    { name: "--nb-sticker-shadow", defaultValue: "var(--nb-shadow, var(--nb-black, #050505))", usage: "Sticker fill color" },
+    { name: "--nb-sticker-shadow-x", defaultValue: "6px", usage: "Sticker sets `transform`" },
+    { name: "--nb-sticker-shadow-y", defaultValue: "6px", usage: "Sticker sets `transform`" },
+    { name: "--nb-sticker-size", defaultValue: "6rem", usage: "Sticker size" },
+    { name: "--nb-sticker-stroke-width", defaultValue: "5px", usage: "Sticker stroke stroke width" },
+    { name: "--nb-sticker-tone-bg", defaultValue: "var(--_nb-tone-bg)", usage: "Sticker tone fill color" },
+    { name: "--nb-sticker-tone-fg", defaultValue: "var(--_nb-tone-fg)", usage: "Sticker tone stroke color" },
+  ],
+  'surface': [
+    { name: "--nb-surface-bg", defaultValue: "var(--_nb-tone-bg, var(--nb-surface))", usage: "Surface background color" },
+    { name: "--nb-surface-border-color", defaultValue: "var(--_nb-tone-border-color, var(--nb-border))", usage: "Surface border color" },
+    { name: "--nb-surface-border-width", defaultValue: "var(--nb-border-width)", usage: "Surface border width" },
+    { name: "--nb-surface-fg", defaultValue: "var(--_nb-tone-fg, var(--nb-surface-foreground))", usage: "Surface text color" },
+    { name: "--nb-surface-foreground", defaultValue: "—", usage: "Surface text color" },
+    { name: "--nb-surface-padding", defaultValue: "0px", usage: "Surface padding" },
+    { name: "--nb-surface-radius", defaultValue: "var(--nb-radius)", usage: "Surface corner radius" },
+    { name: "--nb-surface-shadow", defaultValue: "var(--nb-shadow-offset-x) var(--nb-shadow-offset-y) 0 0 var(--nb-shadow)", usage: "Surface box shadow" },
+  ],
+  'text': [
+    { name: "--nb-text-color", defaultValue: "var(--nb-foreground)", usage: "Text text color" },
+    { name: "--nb-text-line-height", defaultValue: "1rem", usage: "Text line line height" },
+    { name: "--nb-text-measure", defaultValue: "none", usage: "Text maximum size" },
+    { name: "--nb-text-size", defaultValue: "0.75rem", usage: "Text font size" },
+    { name: "--nb-text-tracking", defaultValue: "-0.025em", usage: "Text letter spacing" },
+    { name: "--nb-text-transform", defaultValue: "none", usage: "Text text transform" },
+    { name: "--nb-text-weight", defaultValue: "400", usage: "Text font weight" },
+  ],
+  'textarea': [
+    { name: "--nb-textarea-bg", defaultValue: "var(--_nb-tone-bg, var(--nb-surface))", usage: "Textarea background color" },
+    { name: "--nb-textarea-border-color", defaultValue: "var(--_nb-tone-border-color, var(--nb-border))", usage: "Textarea border color" },
+    { name: "--nb-textarea-border-width", defaultValue: "var(--nb-border-width)", usage: "Textarea border width" },
+    { name: "--nb-textarea-fg", defaultValue: "var(--_nb-tone-fg, var(--nb-surface-foreground))", usage: "Textarea text color" },
+    { name: "--nb-textarea-radius", defaultValue: "var(--nb-radius)", usage: "Textarea corner radius" },
+    { name: "--nb-textarea-shadow", defaultValue: "var(--nb-shadow-offset-x) var(--nb-shadow-offset-y) 0 var(--nb-shadow)", usage: "Textarea box shadow" },
+  ],
+  'title': [
+    { name: "--nb-title-font-size", defaultValue: "1.75rem", usage: "Title font font size" },
+    { name: "--nb-title-font-weight", defaultValue: "900", usage: "Title font font weight" },
+    { name: "--nb-title-line-height", defaultValue: "1.05", usage: "Title line line height" },
+    { name: "--nb-title-wave-color", defaultValue: "#a78bfa", usage: "Title wave background color" },
+    { name: "--nb-title-wave-gap", defaultValue: "0", usage: "Title wave spacing" },
+    { name: "--nb-title-wave-height", defaultValue: "0.625rem", usage: "Title wave size" },
+    { name: "--nb-title-wave-width", defaultValue: "min(9rem, 100%)", usage: "Title wave size" },
+  ],
+  'theme': [
+    { name: "--nb-main", defaultValue: "oklch(90% 0.15 95)", usage: "Strong component fills" },
+    { name: "--nb-main-foreground", defaultValue: "oklch(10% 0 0)", usage: "Text on main fills" },
+    { name: "--nb-surface", defaultValue: "#ffffff", usage: "Component surface background" },
+    { name: "--nb-surface-foreground", defaultValue: "#000000", usage: "Text on component surfaces" },
+    { name: "--nb-secondary-background", defaultValue: "oklch(96% 0 0)", usage: "Subtle secondary backgrounds" },
+    { name: "--nb-field-bg", defaultValue: "#faf3d6", usage: "Shared field background" },
+    { name: "--nb-yellow", defaultValue: "#ffd24a", usage: "Brutalist palette color \"yellow\"" },
+    { name: "--nb-pink", defaultValue: "#ff7eb6", usage: "Brutalist palette color \"pink\"" },
+    { name: "--nb-mint", defaultValue: "#9bf2cf", usage: "Brutalist palette color \"mint\"" },
+    { name: "--nb-lavender", defaultValue: "#b8a4ff", usage: "Brutalist palette color \"lavender\"" },
+    { name: "--nb-blue", defaultValue: "#8ae9ff", usage: "Brutalist palette color \"blue\"" },
+    { name: "--nb-cream", defaultValue: "#faf6f0", usage: "Brutalist palette color \"cream\"" },
+    { name: "--nb-primary", defaultValue: "#ff90e8", usage: "Primary accent color" },
+    { name: "--nb-primary-foreground", defaultValue: "#000000", usage: "Text on primary surfaces" },
+    { name: "--nb-secondary", defaultValue: "#c8a2ff", usage: "Secondary accent color" },
+    { name: "--nb-secondary-foreground", defaultValue: "#000000", usage: "Text on secondary surfaces" },
+    { name: "--nb-accent", defaultValue: "#8ae9ff", usage: "Accent color" },
+    { name: "--nb-accent-foreground", defaultValue: "#000000", usage: "Text on accent surfaces" },
+    { name: "--nb-danger", defaultValue: "#ff4f8a", usage: "Danger states" },
+    { name: "--nb-danger-foreground", defaultValue: "#000000", usage: "Text on danger surfaces" },
+    { name: "--nb-success", defaultValue: "#63e6be", usage: "Success states" },
+    { name: "--nb-success-foreground", defaultValue: "#000000", usage: "Text on success surfaces" },
+    { name: "--nb-warning", defaultValue: "#ff9c42", usage: "Warning states" },
+    { name: "--nb-warning-foreground", defaultValue: "#000000", usage: "Text on warning surfaces" },
+    { name: "--nb-tone-neutral-bg", defaultValue: "var(--nb-surface)", usage: "\"neutral\" tone background color" },
+    { name: "--nb-tone-neutral-fg", defaultValue: "var(--nb-surface-foreground)", usage: "\"neutral\" tone foreground / text color" },
+    { name: "--nb-tone-neutral-border", defaultValue: "var(--nb-border)", usage: "\"neutral\" tone border color" },
+    { name: "--nb-tone-surface-bg", defaultValue: "var(--nb-surface)", usage: "\"surface\" tone background color" },
+    { name: "--nb-tone-surface-fg", defaultValue: "var(--nb-surface-foreground)", usage: "\"surface\" tone foreground / text color" },
+    { name: "--nb-tone-surface-border", defaultValue: "var(--nb-border)", usage: "\"surface\" tone border color" },
+    { name: "--nb-tone-background-bg", defaultValue: "var(--nb-background)", usage: "\"background\" tone background color" },
+    { name: "--nb-tone-background-fg", defaultValue: "var(--nb-foreground)", usage: "\"background\" tone foreground / text color" },
+    { name: "--nb-tone-background-border", defaultValue: "var(--nb-border)", usage: "\"background\" tone border color" },
+    { name: "--nb-tone-ink-bg", defaultValue: "#000000", usage: "\"ink\" tone background color" },
+    { name: "--nb-tone-ink-fg", defaultValue: "#ffffff", usage: "\"ink\" tone foreground / text color" },
+    { name: "--nb-tone-ink-border", defaultValue: "var(--nb-border)", usage: "\"ink\" tone border color" },
+    { name: "--nb-tone-cream-bg", defaultValue: "var(--nb-cream)", usage: "\"cream\" tone background color" },
+    { name: "--nb-tone-cream-fg", defaultValue: "#000000", usage: "\"cream\" tone foreground / text color" },
+    { name: "--nb-tone-cream-border", defaultValue: "var(--nb-border)", usage: "\"cream\" tone border color" },
+    { name: "--nb-tone-white-bg", defaultValue: "#ffffff", usage: "\"white\" tone background color" },
+    { name: "--nb-tone-white-fg", defaultValue: "#000000", usage: "\"white\" tone foreground / text color" },
+    { name: "--nb-tone-white-border", defaultValue: "var(--nb-border)", usage: "\"white\" tone border color" },
+    { name: "--nb-tone-black-bg", defaultValue: "#000000", usage: "\"black\" tone background color" },
+    { name: "--nb-tone-black-fg", defaultValue: "#ffffff", usage: "\"black\" tone foreground / text color" },
+    { name: "--nb-tone-black-border", defaultValue: "var(--nb-border)", usage: "\"black\" tone border color" },
+    { name: "--nb-tone-yellow-bg", defaultValue: "var(--nb-yellow)", usage: "\"yellow\" tone background color" },
+    { name: "--nb-tone-yellow-fg", defaultValue: "#000000", usage: "\"yellow\" tone foreground / text color" },
+    { name: "--nb-tone-yellow-border", defaultValue: "var(--nb-border)", usage: "\"yellow\" tone border color" },
+    { name: "--nb-tone-pink-bg", defaultValue: "var(--nb-pink)", usage: "\"pink\" tone background color" },
+    { name: "--nb-tone-pink-fg", defaultValue: "#000000", usage: "\"pink\" tone foreground / text color" },
+    { name: "--nb-tone-pink-border", defaultValue: "var(--nb-border)", usage: "\"pink\" tone border color" },
+    { name: "--nb-tone-mint-bg", defaultValue: "var(--nb-mint)", usage: "\"mint\" tone background color" },
+    { name: "--nb-tone-mint-fg", defaultValue: "#000000", usage: "\"mint\" tone foreground / text color" },
+    { name: "--nb-tone-mint-border", defaultValue: "var(--nb-border)", usage: "\"mint\" tone border color" },
+    { name: "--nb-tone-lavender-bg", defaultValue: "var(--nb-lavender)", usage: "\"lavender\" tone background color" },
+    { name: "--nb-tone-lavender-fg", defaultValue: "#000000", usage: "\"lavender\" tone foreground / text color" },
+    { name: "--nb-tone-lavender-border", defaultValue: "var(--nb-border)", usage: "\"lavender\" tone border color" },
+    { name: "--nb-tone-blue-bg", defaultValue: "var(--nb-blue)", usage: "\"blue\" tone background color" },
+    { name: "--nb-tone-blue-fg", defaultValue: "#000000", usage: "\"blue\" tone foreground / text color" },
+    { name: "--nb-tone-blue-border", defaultValue: "var(--nb-border)", usage: "\"blue\" tone border color" },
+    { name: "--nb-tone-primary-bg", defaultValue: "var(--nb-primary)", usage: "\"primary\" tone background color" },
+    { name: "--nb-tone-primary-fg", defaultValue: "var(--nb-primary-foreground)", usage: "\"primary\" tone foreground / text color" },
+    { name: "--nb-tone-primary-border", defaultValue: "var(--nb-border)", usage: "\"primary\" tone border color" },
+    { name: "--nb-tone-secondary-bg", defaultValue: "var(--nb-secondary)", usage: "\"secondary\" tone background color" },
+    { name: "--nb-tone-secondary-fg", defaultValue: "var(--nb-secondary-foreground)", usage: "\"secondary\" tone foreground / text color" },
+    { name: "--nb-tone-secondary-border", defaultValue: "var(--nb-border)", usage: "\"secondary\" tone border color" },
+    { name: "--nb-tone-accent-bg", defaultValue: "var(--nb-accent)", usage: "\"accent\" tone background color" },
+    { name: "--nb-tone-accent-fg", defaultValue: "var(--nb-accent-foreground)", usage: "\"accent\" tone foreground / text color" },
+    { name: "--nb-tone-accent-border", defaultValue: "var(--nb-border)", usage: "\"accent\" tone border color" },
+    { name: "--nb-tone-success-bg", defaultValue: "var(--nb-success)", usage: "\"success\" tone background color" },
+    { name: "--nb-tone-success-fg", defaultValue: "var(--nb-success-foreground)", usage: "\"success\" tone foreground / text color" },
+    { name: "--nb-tone-success-border", defaultValue: "var(--nb-border)", usage: "\"success\" tone border color" },
+    { name: "--nb-tone-warning-bg", defaultValue: "var(--nb-warning)", usage: "\"warning\" tone background color" },
+    { name: "--nb-tone-warning-fg", defaultValue: "var(--nb-warning-foreground)", usage: "\"warning\" tone foreground / text color" },
+    { name: "--nb-tone-warning-border", defaultValue: "var(--nb-border)", usage: "\"warning\" tone border color" },
+    { name: "--nb-tone-danger-bg", defaultValue: "var(--nb-danger)", usage: "\"danger\" tone background color" },
+    { name: "--nb-tone-danger-fg", defaultValue: "var(--nb-danger-foreground)", usage: "\"danger\" tone foreground / text color" },
+    { name: "--nb-tone-danger-border", defaultValue: "var(--nb-border)", usage: "\"danger\" tone border color" },
+    { name: "--nb-border-width", defaultValue: "2px", usage: "Border width token available to consumers" },
+    { name: "--nb-reverse-shadow-offset-x", defaultValue: "-4px", usage: "Reverse shadow horizontal offset" },
+    { name: "--nb-reverse-shadow-offset-y", defaultValue: "-4px", usage: "Reverse shadow vertical offset" },
+    { name: "--nb-motion-fast", defaultValue: "150ms", usage: "Duration for interactive hover/press transitions" },
+    { name: "--nb-motion-base", defaultValue: "200ms", usage: "Duration for structural transitions (e.g. accordion expand/collapse)" },
+    { name: "--nb-ease", defaultValue: "ease-out", usage: "Shared easing curve for component transitions" },
+    { name: "--nb-shadow-sm", defaultValue: "calc(var(--nb-shadow-offset-x) * 0.5)\n    calc(var(--nb-shadow-offset-y) * 0.5) 0 0 var(--nb-shadow)", usage: "\"sm\" shadow preset" },
+    { name: "--nb-shadow-hard", defaultValue: "calc(var(--nb-shadow-offset-x) * 1.5)\n    calc(var(--nb-shadow-offset-y) * 1.5) 0 0 var(--nb-shadow)", usage: "\"hard\" shadow preset" },
+    { name: "--nb-shadow-heavy", defaultValue: "calc(var(--nb-shadow-offset-x) * 2.5)\n    calc(var(--nb-shadow-offset-y) * 2.5) 0 0 var(--nb-shadow)", usage: "\"heavy\" shadow preset" },
+    { name: "--nb-radius-none", defaultValue: "0px", usage: "Corner radius scale step \"none\"" },
+    { name: "--nb-radius-sm", defaultValue: "0.25rem", usage: "Corner radius scale step \"sm\"" },
+    { name: "--nb-radius-md", defaultValue: "0.5rem", usage: "Corner radius scale step \"md\"" },
+    { name: "--nb-radius-lg", defaultValue: "0.75rem", usage: "Corner radius scale step \"lg\"" },
+    { name: "--nb-radius-xl", defaultValue: "1rem", usage: "Corner radius scale step \"xl\"" },
+    { name: "--nb-radius-full", defaultValue: "9999px", usage: "Corner radius scale step \"full\"" },
+    { name: "--nb-border-width-thin", defaultValue: "1px", usage: "Border width scale step \"thin\"" },
+    { name: "--nb-border-width-strong", defaultValue: "3px", usage: "Border width scale step \"strong\"" },
+    { name: "--nb-border-width-thick", defaultValue: "4px", usage: "Border width scale step \"thick\"" },
+    { name: "--nb-space-xs", defaultValue: "0.25rem", usage: "Spacing scale step \"xs\"" },
+    { name: "--nb-space-sm", defaultValue: "0.5rem", usage: "Spacing scale step \"sm\"" },
+    { name: "--nb-space-md", defaultValue: "0.75rem", usage: "Spacing scale step \"md\"" },
+    { name: "--nb-space-lg", defaultValue: "1rem", usage: "Spacing scale step \"lg\"" },
+    { name: "--nb-space-xl", defaultValue: "1.5rem", usage: "Spacing scale step \"xl\"" },
+    { name: "--nb-space-2xl", defaultValue: "2rem", usage: "Spacing scale step \"2xl\"" },
+    { name: "--nb-padding-xs", defaultValue: "0.5rem", usage: "Padding scale step \"xs\"" },
+    { name: "--nb-padding-sm", defaultValue: "0.75rem", usage: "Padding scale step \"sm\"" },
+    { name: "--nb-padding-md", defaultValue: "1rem", usage: "Padding scale step \"md\"" },
+    { name: "--nb-padding-lg", defaultValue: "1.5rem", usage: "Padding scale step \"lg\"" },
+    { name: "--nb-padding-xl", defaultValue: "2rem", usage: "Padding scale step \"xl\"" },
+    { name: "--nb-font-sans", defaultValue: "system-ui, sans-serif", usage: "Default body font" },
+    { name: "--nb-font-mono", defaultValue: "monospace", usage: "Monospace font token" },
+    { name: "--nb-font-body", defaultValue: "var(--nb-font-sans)", usage: "Font family alias for body text" },
+    { name: "--nb-font-display", defaultValue: "var(--nb-font-sans)", usage: "Font family alias for display text" },
+    { name: "--nb-font-accent", defaultValue: "var(--nb-font-sans)", usage: "Font family alias for accent text" },
+    { name: "--nb-font-weight-normal", defaultValue: "500", usage: "Default body font weight" },
+    { name: "--nb-font-weight-bold", defaultValue: "700", usage: "Bold component font weight" },
+    { name: "--nb-focus-ring", defaultValue: "3px solid var(--nb-foreground)", usage: "Focus outline utility" },
+    { name: "--nb-focus-ring-offset", defaultValue: "2px", usage: "Focus outline offset" },
+  ],
+};

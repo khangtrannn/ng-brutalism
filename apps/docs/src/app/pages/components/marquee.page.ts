@@ -4,6 +4,7 @@ import { NbMarquee, NbMarqueeItem } from '@ng-brutalism/ui';
 import { DocsCodeBlock } from '../../docs/docs-code-block';
 import { DocsExample } from '../../docs/docs-example';
 import { DocsSourceTile } from '../../docs/docs-source-tile';
+import { DocsStatusBadge } from '../../docs/docs-status-badge';
 import { DocsTokens } from '../../docs/docs-tokens';
 
 interface MarqueeSkill {
@@ -18,6 +19,7 @@ interface MarqueeSkill {
         DocsCodeBlock,
         DocsExample,
         DocsSourceTile,
+        DocsStatusBadge,
         DocsTokens,
         NbMarquee,
         NbMarqueeItem,
@@ -36,6 +38,7 @@ interface MarqueeSkill {
         </div>
 
         <div class="mt-7 flex flex-wrap items-center gap-3">
+          <docs-status-badge status="preview" />
           <div class="nb-stat-tile nb-stat-tile--yellow">
             <span class="nb-stat-tile__value">∞</span>
             <span class="nb-stat-tile__label">Loop</span>
@@ -175,6 +178,19 @@ interface MarqueeSkill {
       </section>
 
       <docs-tokens component="marquee" />
+
+      <section id="accessibility">
+        <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">Accessibility</h2>
+        <p class="font-medium">
+          <strong>APG pattern:</strong> N/A — a decorative scrolling ticker,
+          not an interactive widget. <strong>Status:</strong> Preview. The
+          animation freezes under
+          <code class="font-mono">prefers-reduced-motion: reduce</code>
+          (WCAG 2.2.2, Pause/Stop/Hide) rather than just slowing down, and
+          pauses on hover by default so the content can be read without
+          chasing it.
+        </p>
+      </section>
 
       <section id="api">
         <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">API</h2>

@@ -16,6 +16,8 @@ import {
 import { DocsCodeBlock } from '../../docs/docs-code-block';
 import { DocsExample } from '../../docs/docs-example';
 import { DocsSourceTile } from '../../docs/docs-source-tile';
+import { DocsStatusBadge } from '../../docs/docs-status-badge';
+import { DocsTokens } from '../../docs/docs-tokens';
 
 interface ClusterGapDemo {
   readonly value: NbClusterGap;
@@ -48,6 +50,8 @@ interface ClusterSeparatorDemo {
     DocsCodeBlock,
     DocsExample,
     DocsSourceTile,
+    DocsStatusBadge,
+    DocsTokens,
     NbButton,
     NbCluster,
     NbDisplay,
@@ -70,6 +74,7 @@ interface ClusterSeparatorDemo {
         </div>
 
         <div class="mt-7 flex flex-wrap items-center gap-3">
+          <docs-status-badge status="stable" />
           <div class="nb-stat-tile nb-stat-tile--yellow">
             <span class="nb-stat-tile__value">7</span>
             <span class="nb-stat-tile__label">Gaps</span>
@@ -365,6 +370,15 @@ interface ClusterSeparatorDemo {
           CSS variable with Tailwind arbitrary properties.
         </p>
         <docs-code-block [code]="responsiveExampleCode" />
+      </section>
+
+      <docs-tokens component="cluster" />
+
+      <section id="accessibility">
+        <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">Accessibility</h2>
+        <p class="font-medium">
+          <strong>APG pattern:</strong> N/A — Cluster is a static, presentational layout primitive for flowing children inline, not an interactive widget. <strong>Status:</strong> Stable.
+        </p>
       </section>
 
       <section id="api">

@@ -4,6 +4,8 @@ import { NbSticker, NbStickerFace } from '@ng-brutalism/ui';
 import { DocsCodeBlock } from '../../docs/docs-code-block';
 import { DocsExample } from '../../docs/docs-example';
 import { DocsSourceTile } from '../../docs/docs-source-tile';
+import { DocsStatusBadge } from '../../docs/docs-status-badge';
+import { DocsTokens } from '../../docs/docs-tokens';
 
 @Component({
   selector: 'docs-sticker-page',
@@ -11,6 +13,8 @@ import { DocsSourceTile } from '../../docs/docs-source-tile';
     DocsCodeBlock,
     DocsExample,
     DocsSourceTile,
+    DocsStatusBadge,
+    DocsTokens,
     NbSticker,
     NbStickerFace,
   ],
@@ -29,6 +33,7 @@ import { DocsSourceTile } from '../../docs/docs-source-tile';
         </div>
 
         <div class="mt-7 flex flex-wrap items-center gap-3">
+          <docs-status-badge status="stable" />
           <div class="nb-stat-tile nb-stat-tile--yellow">
             <span class="nb-stat-tile__value">4</span>
             <span class="nb-stat-tile__label">Shapes</span>
@@ -227,6 +232,15 @@ import { DocsSourceTile } from '../../docs/docs-source-tile';
             <nb-sticker tone="mint" [rotate]="12">+12</nb-sticker>
           </div>
         </docs-example>
+      </section>
+
+      <docs-tokens component="sticker" />
+
+      <section id="accessibility">
+        <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">Accessibility</h2>
+        <p class="font-medium">
+          <strong>APG pattern:</strong> N/A — Sticker is a decorative SVG callout graphic, not an interactive widget. <strong>Status:</strong> Stable.
+        </p>
       </section>
 
       <section id="api">

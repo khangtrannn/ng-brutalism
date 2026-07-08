@@ -13,6 +13,8 @@ import {
 import { DocsCodeBlock } from '../../docs/docs-code-block';
 import { DocsExample } from '../../docs/docs-example';
 import { DocsSourceTile } from '../../docs/docs-source-tile';
+import { DocsStatusBadge } from '../../docs/docs-status-badge';
+import { DocsTokens } from '../../docs/docs-tokens';
 
 interface VariantDemo {
   readonly value: NbMediaItemVariant;
@@ -42,6 +44,8 @@ interface AlignDemo {
     DocsCodeBlock,
     DocsExample,
     DocsSourceTile,
+    DocsStatusBadge,
+    DocsTokens,
     NbMediaItem,
     NbMediaItemTitle,
     NbSeparator,
@@ -62,6 +66,7 @@ interface AlignDemo {
         </div>
 
         <div class="mt-7 flex flex-wrap items-center gap-3">
+          <docs-status-badge status="stable" />
           <div class="nb-stat-tile nb-stat-tile--yellow">
             <span class="nb-stat-tile__value">Tone</span>
             <span class="nb-stat-tile__label">Shared vocabulary</span>
@@ -308,6 +313,17 @@ interface AlignDemo {
         </docs-example>
       </section>
 
+      <docs-tokens component="media-item" />
+
+      <section id="accessibility">
+        <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">Accessibility</h2>
+        <p class="font-medium">
+          <strong>APG pattern:</strong> N/A — Media Item is static,
+          presentational content pairing an icon or image with a title and
+          description, not an interactive widget. <strong>Status:</strong> Stable.
+        </p>
+      </section>
+
       <section id="api">
         <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">API</h2>
 
@@ -550,84 +566,6 @@ interface AlignDemo {
                   <code class="font-mono">nbMediaItemDescription</code> for
                   custom description markup.
                 </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-
-        <h3 class="mt-8 mb-3 text-lg font-bold">CSS Tokens</h3>
-        <div
-          class="overflow-x-auto border-2 border-(--nb-border) bg-nb-surface shadow-[5px_5px_0_0_var(--nb-shadow)]"
-        >
-          <table class="w-full min-w-140 border-collapse text-left">
-            <thead class="bg-nb-secondary text-nb-secondary-fg">
-              <tr>
-                <th
-                  class="border-b-2 border-r-2 border-(--nb-border) px-4 py-3 font-bold"
-                >
-                  Token
-                </th>
-                <th
-                  class="border-b-2 border-r-2 border-(--nb-border) px-4 py-3 font-bold"
-                >
-                  Default
-                </th>
-                <th class="border-b-2 border-(--nb-border) px-4 py-3 font-bold">
-                  Description
-                </th>
-              </tr>
-            </thead>
-            <tbody class="font-medium">
-              <tr class="border-b-2 border-(--nb-border)">
-                <td
-                  class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
-                >
-                  --nb-media-item-icon-size
-                </td>
-                <td class="border-r-2 border-(--nb-border) px-4 py-3">
-                  Depends on <code class="font-mono">size</code>
-                </td>
-                <td class="px-4 py-3">
-                  Controls projected and input icon dimensions.
-                </td>
-              </tr>
-              <tr class="border-b-2 border-(--nb-border)">
-                <td
-                  class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
-                >
-                  --nb-media-item-title-size
-                </td>
-                <td class="border-r-2 border-(--nb-border) px-4 py-3">
-                  Depends on <code class="font-mono">size</code>
-                </td>
-                <td class="px-4 py-3">
-                  Controls title text size for input and projected titles.
-                </td>
-              </tr>
-              <tr class="border-b-2 border-(--nb-border)">
-                <td
-                  class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
-                >
-                  --nb-media-item-title-font-family
-                </td>
-                <td class="border-r-2 border-(--nb-border) px-4 py-3">
-                  var(--font-sans)
-                </td>
-                <td class="px-4 py-3">
-                  Controls title font family without adding utility classes to
-                  the title slot.
-                </td>
-              </tr>
-              <tr>
-                <td
-                  class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
-                >
-                  --nb-media-item-description-size
-                </td>
-                <td class="border-r-2 border-(--nb-border) px-4 py-3">
-                  Depends on <code class="font-mono">size</code>
-                </td>
-                <td class="px-4 py-3">Controls secondary label text size.</td>
               </tr>
             </tbody>
           </table>

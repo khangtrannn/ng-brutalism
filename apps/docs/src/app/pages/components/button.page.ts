@@ -9,6 +9,7 @@ import {
 import { DocsCodeBlock } from '../../docs/docs-code-block';
 import { DocsExample } from '../../docs/docs-example';
 import { DocsSourceTile } from '../../docs/docs-source-tile';
+import { DocsStatusBadge } from '../../docs/docs-status-badge';
 import { DocsTokens } from '../../docs/docs-tokens';
 
 @Component({
@@ -17,6 +18,7 @@ import { DocsTokens } from '../../docs/docs-tokens';
     DocsCodeBlock,
     DocsExample,
     DocsSourceTile,
+    DocsStatusBadge,
     DocsTokens,
     NbButton,
     NbButtonTrailingIcon,
@@ -37,6 +39,7 @@ import { DocsTokens } from '../../docs/docs-tokens';
         </div>
 
         <div class="mt-7 flex flex-wrap items-center gap-3">
+          <docs-status-badge status="stable" />
           <div class="nb-stat-tile nb-stat-tile--yellow">
             <span class="nb-stat-tile__value">Tone</span>
             <span class="nb-stat-tile__label">Shared vocabulary</span>
@@ -215,6 +218,28 @@ import { DocsTokens } from '../../docs/docs-tokens';
       </section>
 
       <docs-tokens component="button" />
+
+      <section id="accessibility">
+        <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">Accessibility</h2>
+        <p class="font-medium">
+          <strong>APG pattern:</strong>
+          <a
+            href="https://www.w3.org/WAI/ARIA/apg/patterns/button/"
+            target="_blank"
+            rel="noreferrer"
+            class="underline"
+            >Button</a
+          >
+          · <strong>Status:</strong> Stable. Renders a real
+          <code class="font-mono">&lt;button&gt;</code> (or
+          <code class="font-mono">&lt;a&gt;</code> when used as a link), so
+          Enter/Space activation, focus, and the
+          <code class="font-mono">disabled</code> attribute all come from
+          native HTML semantics rather than ARIA reimplementation. When used
+          as an anchor, give it an accessible name the same way you would
+          any link — visible text or <code class="font-mono">aria-label</code>.
+        </p>
+      </section>
 
       <section id="api">
         <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">API</h2>
