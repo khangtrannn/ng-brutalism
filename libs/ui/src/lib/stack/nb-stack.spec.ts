@@ -51,8 +51,6 @@ describe('NbStack', () => {
     ) as HTMLElement;
 
     expect(stack.getAttribute('data-nb-stack')).toBe('');
-    // No gap input set — capability attr stays absent; CSS fallback owns the
-    // default gap. Attribute presence means "consumer chose this".
     expect(stack.getAttribute('data-gap')).toBeNull();
     expect(stack.getAttribute('data-align')).toBe('stretch');
     expect(stack.getAttribute('data-justify')).toBe('start');

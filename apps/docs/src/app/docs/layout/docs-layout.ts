@@ -17,7 +17,6 @@ import { NbDocsToc } from './toc';
     ],
     template: `
     <div class="relative min-h-screen overflow-x-clip">
-      <!-- Decorative floating shapes -->
       <span
         aria-hidden="true"
         class="pointer-events-none fixed top-40 left-2 hidden h-14 w-14 rotate-12 border-4 border-(--nb-border) bg-(--nb-pink) shadow-[5px_5px_0_0_var(--nb-shadow)] xl:block"

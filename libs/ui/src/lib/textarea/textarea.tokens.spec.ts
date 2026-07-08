@@ -105,7 +105,6 @@ describe('NbTextarea token surface', () => {
     const fixture = await createFixture();
     const textarea = findTextarea(fixture);
 
-    // No explicit tone — capability resolves nothing, CSS falls back to public hooks.
     expect(
       textarea.style.getPropertyValue('--nb-textarea-focus-ring-color')
     ).toBe('');

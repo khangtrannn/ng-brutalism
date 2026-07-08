@@ -20,19 +20,16 @@ export type NbDisplayWeight = NbFontWeight;
 export type NbDisplayTracking = 'normal' | 'tight' | 'tighter';
 export type NbDisplayLeading = 'none' | 'tight' | 'display';
 
-// Alias of the shared underline variant — keeps the public type name stable.
 export type NbDisplayUnderline = NbUnderlineVariant;
 
 @Directive({
   selector: '[nbDisplay]',
   exportAs: 'nbDisplay',
   hostDirectives: [
-    // underline variant + optional gap/width overrides
     {
       directive: NbUnderlineCapability,
       inputs: ['underline', 'underlineGap', 'underlineWidth'],
     },
-    // reset input → margin: 0 (removes native heading margin)
     { directive: NbResetMarginCapability, inputs: ['reset'] },
   ],
   host: {
@@ -55,8 +52,6 @@ export class NbDisplay {
   });
   readonly tracking = input<NbDisplayTracking>('tight');
   readonly leading = input<NbDisplayLeading>('none');
-  // underline / underlineGap / underlineWidth / reset → composed capabilities
-
   private readonly underlineCapability = inject(NbUnderlineCapability);
 
   protected readonly underlineGapStyle = computed(() =>

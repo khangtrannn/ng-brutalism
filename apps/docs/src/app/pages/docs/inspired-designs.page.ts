@@ -64,7 +64,6 @@ export default class InspiredDesignsPage {
     this.selected.set(null);
   }
 
-  // tw/th = thumb dimensions (360px wide, height proportional)
   protected readonly images = [
     {
       src: 'charity-card-feed-100-families.png',

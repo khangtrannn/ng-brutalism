@@ -333,7 +333,6 @@ export default class CommonPatternsPage {
          shadow="hard" border="strong" clip>
   <div nbSection padding="lg">
     <div nbSplit ratio="1:2" gap="lg" collapse="sm" align="center">
-      <!-- Stat or media placeholder -->
       <div>42</div>
 
       <div nbStack gap="xs">

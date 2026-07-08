@@ -19,8 +19,6 @@ const iconSizeMap: Record<NbButtonIconSize, string> = {
   lg: '2.5rem',
 };
 
-// Glyph size for the internal `nbIcon`, sized to sit comfortably inside the
-// badge box defined by `size` above (roughly half the box).
 const iconGlyphMap: Record<NbButtonIconSize, NbIconSize> = {
   sm: 'xs',
   md: 'sm',
@@ -60,9 +58,6 @@ export class NbButtonTrailingIcon {
   readonly tone = input<NbButtonIconTone | undefined>(undefined);
   readonly push = input<NbButtonIconPush>('none');
 
-  // Optional icon, given as an SVG/image URL. Rendered through nbIcon in mask
-  // mode so it tints to the badge's foreground color. Omit to project your own
-  // icon as content instead.
   readonly icon = input<string>();
 
   protected readonly sizeVal = computed(() => {

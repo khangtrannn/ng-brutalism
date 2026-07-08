@@ -12,13 +12,11 @@ import type {
   NbShadow,
   NbTone,
 } from '@ng-brutalism/ui/tokens';
-// Public type aliases point at the shared token contracts.
 export type NbMediaFrameTone = NbTone;
 export type NbMediaFrameRadius = NbRadius;
 export type NbMediaFrameShadow = NbShadow;
 export type NbMediaFrameBorder = NbBorderStrength;
 
-// Media-frame-specific anatomy.
 export type NbMediaFrameRatio =
   | 'auto'
   | '1/1'

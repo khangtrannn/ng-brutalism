@@ -78,7 +78,6 @@ interface Country {
 class SelectObjectValueTest {
   readonly us: Country = { id: 'us', name: 'United States' };
   readonly ca: Country = { id: 'ca', name: 'Canada' };
-  // Structurally equal to `ca` but a different reference: only compareById matches it.
   readonly selected: Country = { id: 'ca', name: 'Canada' };
   readonly compareById = (a: NbSelectValue | null, b: NbSelectValue | null) =>
     (a as Country | null)?.id === (b as Country | null)?.id;
@@ -246,8 +245,6 @@ describe('NbSelect with compareWith', () => {
       'button[aria-haspopup="listbox"]'
     ) as HTMLButtonElement;
 
-    // The bound value is a different object reference than the Canada option,
-    // so only compareById (not the default ===) can resolve the selection.
     expect(trigger.textContent?.replace(/\s+/g, ' ').trim()).toBe('Canada');
 
     trigger.click();

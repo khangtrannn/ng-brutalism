@@ -41,7 +41,6 @@ describe('NbAccordion keyboard completion (APG)', () => {
     first.focus();
     first.dispatchEvent(keydown('ArrowDown'));
     fixture.detectChanges();
-    // The middle item is disabled, so ArrowDown skips straight to the third.
     expect(document.activeElement).toBe(third);
 
     third.dispatchEvent(keydown('ArrowDown'));

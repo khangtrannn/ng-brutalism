@@ -89,9 +89,6 @@ describe('NbSelect as a ControlValueAccessor', () => {
     await Promise.resolve();
     fixture.detectChanges();
 
-    // Invalid state is gated on touched/dirty (no error shown before the
-    // user has interacted with the control), matching the field-level
-    // convention used by NbField.
     expect(trigger.getAttribute('aria-invalid')).toBeNull();
 
     fixture.componentInstance.control.markAsTouched();

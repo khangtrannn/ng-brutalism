@@ -48,7 +48,6 @@ describe('NbMediaFrame', () => {
     ) as HTMLElement;
 
     expect(frame.getAttribute('data-nb-media-frame')).toBe('');
-    // No style inputs set — CSS fallback owns the visual defaults.
     expect(frame.getAttribute('data-nb-tone')).toBeNull();
     expect(frame.getAttribute('data-ratio')).toBe('auto');
     expect(frame.getAttribute('data-fit')).toBe('cover');

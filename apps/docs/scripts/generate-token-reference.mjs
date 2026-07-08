@@ -1,15 +1,5 @@
 #!/usr/bin/env node
 
-// Generates the per-component + shared CSS custom-property reference table
-// consumed by `DocsTokens` (apps/docs/src/app/docs/docs-tokens.ts) by
-// parsing the actual `--nb-*` declarations and `var(--nb-*, fallback)`
-// consumption sites out of each component's CSS under libs/ui/src/lib.
-// This replaces a hand-maintained map that had silently drifted (16 of 36
-// components had no token table at all) with a source that can't drift,
-// following the same checked-in-diff convention as tools/api-guard/run.mjs:
-// default = check mode (fails if the checked-in file is stale), `--update`
-// regenerates it.
-
 import { existsSync, readdirSync, readFileSync, statSync, writeFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import path from 'node:path';
@@ -32,10 +22,6 @@ const SHARED_TOKEN_NAMES = [
   '--nb-background',
 ];
 
-// Hand-written usage prose worth preserving verbatim (low-churn, already
-// well-described foundational tokens). Anything in theme.css not listed
-// here gets a heuristically-derived description instead — see
-// `themeHeuristic()`.
 const THEME_OVERRIDES = {
   '--nb-border': 'Border color and focus ring color',
   '--nb-shadow': 'Offset shadow color',
@@ -129,9 +115,6 @@ const PROPERTY_PHRASES = {
   translate: 'Shadow / press offset',
 };
 
-// Suffix -> pseudo-property, used when a token is only ever *declared*
-// (`--nb-x-bg: ...;`) with no property-context consumption site in the
-// same component's CSS.
 const SUFFIX_PSEUDO_PROPERTY = [
   ['-border-color', 'border-color'],
   ['-border-width', 'border-width'],
@@ -204,14 +187,10 @@ console.log(
   `Token reference is up to date (${componentSlugs.length} components).`
 );
 
-// ---------------------------------------------------------------------------
-
 function stripComments(css) {
   return css.replace(/\/\*[\s\S]*?\*\//g, '');
 }
 
-// Extract `property: value;` declarations from a CSS string. Doesn't care
-// which selector a declaration lives under — only the property/value pair.
 function extractDeclarations(css) {
   const decls = [];
   const re = /([a-zA-Z-]+|--[a-zA-Z0-9-]+)\s*:\s*([^;{}]+);/g;
@@ -222,9 +201,6 @@ function extractDeclarations(css) {
   return decls;
 }
 
-// Find every `var(--nb-...)` call in a value string, returning
-// {name, fallback} pairs. Fallback is resolved with a balanced-paren scan
-// since fallbacks commonly nest further var() calls.
 function findVarCalls(value) {
   const calls = [];
   const re = /var\(\s*(--nb-[a-zA-Z0-9-]+)/g;
@@ -300,10 +276,6 @@ function pseudoPropertyFor(name) {
   return null;
 }
 
-// The part of the var name between the component prefix and the trailing
-// property-ish suffix (e.g. `--nb-accordion-trigger-bg` -> "trigger") — lets
-// sibling tokens on one component (content-bg / item-bg / trigger-bg) read
-// as distinct rows instead of three identical "Accordion background color"s.
 function slotFor(slug, name) {
   const remainder = name.slice(`--nb-${slug}-`.length);
   for (const [suffix] of SUFFIX_PSEUDO_PROPERTY) {

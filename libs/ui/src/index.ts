@@ -29,17 +29,12 @@ export type {
   NbUnderlineWidth,
 } from '@ng-brutalism/ui/tokens';
 
-// Angular private internals — exported only because Angular requires classes
-// referenced by `hostDirectives` to be reachable from the package entrypoint
-// (NG3001). These ɵ-prefixed names are not public API and must not be imported
-// by application code; compose public primitives such as nbSurface/nbButton.
 export {
   NbToneCapability as ɵNbToneCapability,
   NbUnderlineCapability as ɵNbUnderlineCapability,
   NbResetMarginCapability as ɵNbResetMarginCapability,
 } from './lib/core/capabilities';
 
-// Components
 export { NbCheckbox } from './lib/checkbox';
 export type { NbCheckboxSize } from './lib/checkbox';
 export {

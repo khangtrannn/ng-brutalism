@@ -20,12 +20,10 @@ import { NbDocsNavbar } from '../docs/layout/navbar';
       <nb-docs-navbar />
 
       <div class="flex pt-32">
-        <!-- 404 Sidebar -->
         <aside
           class="fixed top-32 left-8 hidden h-[calc(100vh-9rem)] w-72 overflow-y-auto border-4 border-(--nb-border) bg-(--nb-paper) px-4 py-5 shadow-[8px_8px_0_0_var(--nb-shadow)] lg:block"
           aria-label="404 page navigation"
         >
-          <!-- ERROR section -->
           <section>
             <div class="mb-3 flex items-center justify-between gap-3 px-1">
               <span
@@ -50,7 +48,6 @@ import { NbDocsNavbar } from '../docs/layout/navbar';
 
           <div class="my-3 border-t-[3px] border-dashed border-(--nb-border)"></div>
 
-          <!-- QUICK LINKS section -->
           <section>
             <div class="mb-3 flex items-center justify-between gap-3 px-1">
               <span
@@ -76,7 +73,6 @@ import { NbDocsNavbar } from '../docs/layout/navbar';
             </div>
           </section>
 
-          <!-- TIP card -->
           <div class="mt-4 border-4 border-(--nb-border) bg-(--nb-lavender) p-4 shadow-[4px_4px_0_0_var(--nb-shadow)]">
             <span
               class="mb-2 inline-flex items-center border-3 border-(--nb-border) bg-(--nb-mint) px-2 py-0.5 shadow-[2px_2px_0_0_var(--nb-shadow)]"
@@ -95,20 +91,17 @@ import { NbDocsNavbar } from '../docs/layout/navbar';
           </div>
         </aside>
 
-        <!-- Main content -->
         <main class="docs-grid-bg min-h-[calc(100vh-8rem)] w-full min-w-0 flex-1 px-5 py-12 lg:ml-80 lg:mr-52 lg:px-8">
           <div class="mx-auto w-full min-w-0 max-w-3xl">
             <div class="not-found-card relative border-4 border-(--nb-border) bg-(--nb-paper) p-8 shadow-[10px_10px_0_0_var(--nb-shadow)] sm:p-10">
 
               <div class="grid gap-6 md:grid-cols-[1fr_auto] md:items-center">
                 <div>
-                  <!-- Eyebrow -->
                   <span
                     class="mb-4 inline-block border-3 border-(--nb-border) bg-(--nb-lavender) px-3 py-1 shadow-[3px_3px_0_0_var(--nb-shadow)]"
                     style="font-family:var(--font-mono);font-size:0.75rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase"
                   >UH OH!</span>
 
-                  <!-- Heading -->
                   <div class="mb-4">
                     <p
                       class="m-0 leading-none uppercase"
@@ -120,17 +113,14 @@ import { NbDocsNavbar } from '../docs/layout/navbar';
                     >PAGE NOT<br>FOUND</p>
                   </div>
 
-                  <!-- Yellow underline decoration -->
                   <div class="mb-6 h-3 w-20 border-3 border-(--nb-border) bg-(--nb-yellow) shadow-[3px_3px_0_0_var(--nb-shadow)]"></div>
 
-                  <!-- Description -->
                   <p class="mb-6 text-base font-semibold leading-relaxed" style="font-family:var(--font-sans)">
                     The page you're looking for<br>
                     took a hard left.<br>
                     Let's get you back to the docs.
                   </p>
 
-                  <!-- Buttons -->
                   <div class="flex flex-wrap gap-3">
                     <a
                       routerLink="/docs/introduction"
@@ -145,7 +135,6 @@ import { NbDocsNavbar } from '../docs/layout/navbar';
                   </div>
                 </div>
 
-                <!-- 404 character image -->
                 <div class="hidden md:flex items-center justify-center p-4">
                   <img
                     src="/404.png"
@@ -156,7 +145,6 @@ import { NbDocsNavbar } from '../docs/layout/navbar';
                 </div>
               </div>
 
-              <!-- Stat tiles -->
               <div class="mt-8 grid grid-cols-2 gap-3 sm:grid-cols-4">
                 <div class="nb-stat-tile nb-stat-tile--yellow">
                   <span class="nb-stat-tile__value">NG</span>
@@ -182,7 +170,6 @@ import { NbDocsNavbar } from '../docs/layout/navbar';
           </div>
         </main>
 
-        <!-- Right TOC -->
         <aside
           class="fixed top-32 right-8 hidden h-[calc(100vh-9rem)] w-48 shrink-0 overflow-y-auto border-4 border-(--nb-border) bg-(--nb-paper) p-4 shadow-[8px_8px_0_0_var(--nb-shadow)] lg:block"
           aria-label="On this page"

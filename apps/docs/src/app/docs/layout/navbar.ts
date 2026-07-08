@@ -201,8 +201,6 @@ export class NbDocsNavbar {
     return 'docs';
   });
 
-  // Resets to false whenever the URL changes, so route navigation
-  // auto-closes the mobile drawer.
   protected readonly menuOpen = linkedSignal({
     source: this.currentUrl,
     computation: () => false,

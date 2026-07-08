@@ -13,7 +13,6 @@ test.describe('nbText docs page', () => {
   test('stat tiles show correct counts', async ({ page }) => {
     const header = page.locator('header#overview');
 
-    // 4 data tiles + 1 source tile (also uses nb-stat-tile)
     await expect(header.locator('.nb-stat-tile')).toHaveCount(5);
 
     await expect(header.locator('.nb-stat-tile--yellow .nb-stat-tile__label')).toHaveText('Sizes');
@@ -22,7 +21,6 @@ test.describe('nbText docs page', () => {
     await expect(header.locator('.nb-stat-tile--yellow .nb-stat-tile__value')).toHaveText('5');
     await expect(header.locator('.nb-stat-tile--mint .nb-stat-tile__value')).toHaveText('6');
     await expect(header.locator('.nb-stat-tile--pink .nb-stat-tile__value')).toHaveText('10');
-    // Inputs tile: two lavender tiles (data + source), filter by label
     await expect(
       header.locator('.nb-stat-tile--lavender').filter({ hasText: 'Inputs' }).locator('.nb-stat-tile__value')
     ).toHaveText('8');
@@ -39,7 +37,6 @@ test.describe('nbText docs page', () => {
     const sizes = page.locator('section#sizes [nbText]');
     await expect(sizes).toHaveCount(5);
 
-    // Verify visual progression: xl text should be taller than xs text
     const xsBox = await sizes.nth(0).boundingBox();
     const xlBox = await sizes.nth(4).boundingBox();
     expect(xsBox).not.toBeNull();
@@ -62,7 +59,6 @@ test.describe('nbText docs page', () => {
     const transforms = page.locator('section#transform [nbText]');
     await expect(transforms).toHaveCount(4);
 
-    // The uppercase variant is identified by its data-transform attribute
     const upperText = page.locator('section#transform [data-transform="uppercase"]');
     await expect(upperText).toBeVisible();
   });
@@ -76,13 +72,10 @@ test.describe('nbText docs page', () => {
     const measures = page.locator('section#measure [nbText]');
     await expect(measures).toHaveCount(5);
 
-    // Wider measure means wider max-width — check that md is wider than xs
     const xsBox = await measures.nth(1).boundingBox();
     const mdBox = await measures.nth(3).boundingBox();
     expect(xsBox).not.toBeNull();
     expect(mdBox).not.toBeNull();
-    // md measure (36rem) should allow a wider rendered width than xs (20rem)
-    // given the paragraph is long enough to hit the cap
     expect(mdBox!.width).toBeGreaterThanOrEqual(xsBox!.width);
   });
 
@@ -90,7 +83,6 @@ test.describe('nbText docs page', () => {
     const leadings = page.locator('section#leading [nbText]');
     await expect(leadings).toHaveCount(4);
 
-    // relaxed leading should produce taller paragraph than tight leading
     const tightBox = await leadings.nth(1).boundingBox();
     const relaxedBox = await leadings.nth(3).boundingBox();
     expect(tightBox).not.toBeNull();

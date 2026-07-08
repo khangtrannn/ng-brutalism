@@ -430,9 +430,7 @@ export default class SplitPage {
 <div nbSplit ratio="3:1">...</div>
 <div nbSplit ratio="1:2">...</div>
 <div nbSplit ratio="1:3">...</div>
-<!-- first column fills, second hugs its content -->
 <div nbSplit ratio="fill:auto">...</div>
-<!-- first column hugs its content, second fills -->
 <div nbSplit ratio="auto:fill">...</div>`;
 
   protected readonly spacingExampleCode = `<div nbSplit gap="xl" padding="lg">

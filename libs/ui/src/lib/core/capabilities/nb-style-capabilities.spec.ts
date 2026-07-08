@@ -643,8 +643,6 @@ describe('style capabilities', () => {
   });
 });
 
-// ─── NbText capability composition ───────────────────────────────────────────
-
 @Component({
   imports: [NbText],
   template: `<p nbText>Default</p>`,
@@ -715,7 +713,6 @@ describe('NbText + NbDisplay capability composition', () => {
     expect(p.getAttribute('data-measure')).toBe('md');
     expect(p.getAttribute('data-nb-tone')).toBe('muted');
     expect(p.getAttribute('data-tone')).toBeNull();
-    // muted tone resolves to a public CSS var, not a final color
     expect(p.style.getPropertyValue('--nb-text-color')).toContain(
       'var(--nb-foreground)'
     );
@@ -746,8 +743,6 @@ describe('NbText + NbDisplay capability composition', () => {
     expect(p.style.getPropertyValue('margin')).toBe('');
   });
 });
-
-// ─── NbDisplay capability composition ────────────────────────────────────────
 
 @Component({
   imports: [NbDisplay],
@@ -866,8 +861,6 @@ describe('NbDisplay capability composition', () => {
     const el = mount(DisplayCssVarOverrideTest);
     const h = el.querySelector<HTMLElement>('[nbDisplay]')!;
 
-    // nbDisplay never binds --nb-display-size itself; CSS reads it as the
-    // font-size override hook, so the static inline declaration is untouched.
     expect(h.style.getPropertyValue('--nb-display-size')).toBe('6rem');
   });
 

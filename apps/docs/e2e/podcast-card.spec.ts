@@ -9,7 +9,6 @@ test.describe('podcast card recipe', () => {
     const card = page.locator('recipe-podcast-card');
     await expect(card).toBeVisible();
 
-    // Key content from the card template.
     await expect(card.getByText('Build Loud FM')).toBeVisible();
     await expect(
       card.getByRole('heading', { name: /DESIGN.*SYSTEMS.*THAT SCALE/s })
@@ -23,7 +22,6 @@ test.describe('podcast card recipe', () => {
     await expect(chip).toBeVisible();
     await expect(chip).toHaveAttribute('data-padding', 'lg');
 
-    // padding="lg" maps to px-4 py-2 -> 16px / 8px.
     const padding = await chip.evaluate((el) => {
       const s = getComputedStyle(el);
       return {
@@ -48,7 +46,6 @@ test.describe('podcast card recipe', () => {
     await expect(chip).toBeVisible();
     await expect(chip).toHaveAttribute('data-padding', 'md');
 
-    // padding="md" maps to px-2.5 py-0.5 -> 10px / 2px.
     const padding = await chip.evaluate((el) => {
       const s = getComputedStyle(el);
       return { left: s.paddingLeft, top: s.paddingTop };

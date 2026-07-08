@@ -10,7 +10,6 @@ import { DOCS_PUBLIC_ROUTES } from './src/app/docs/docs-public-routes';
 const chromeDevToolsProbePath =
   '/.well-known/appspecific/com.chrome.devtools.json';
 
-// https://vitejs.dev/config/
 export default defineConfig(({ mode }) => {
   return {
     root: __dirname,

@@ -173,7 +173,6 @@ describe('NbNativeSelect directive token surface', () => {
     const fixture = await createFixture(NativeSelectTokenTest);
     const select = findNativeSelect(fixture);
 
-    // No explicit tone — capability resolves nothing, CSS falls back to public hooks.
     expect(select.style.getPropertyValue('--nb-select-focus-ring-color')).toBe('');
   });
 });

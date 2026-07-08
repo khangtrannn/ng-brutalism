@@ -73,7 +73,6 @@ describe('NbSurface', () => {
     ) as HTMLElement;
 
     expect(surface.getAttribute('data-nb-surface')).toBe('');
-    // No style inputs set — CSS fallback owns the visual defaults.
     expect(surface.getAttribute('data-nb-tone')).toBeNull();
     expect(surface.getAttribute('data-radius')).toBeNull();
     expect(surface.getAttribute('data-border')).toBeNull();

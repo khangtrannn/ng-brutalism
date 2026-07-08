@@ -220,9 +220,6 @@ describe('NbCallout', () => {
   });
 
   it('keeps the public border-width variable in every size rule', () => {
-    // data-size always matches (it defaults to 'lg'), and size rules follow
-    // the base rule at equal :where() specificity — a raw border-width there
-    // would always win and silently defeat the `border` input.
     const css = readCalloutCss();
     const sizeBlocks = css.match(/\[data-size='[a-z]+'\]\)\s*\{[^}]*\}/g) ?? [];
     const borderBlocks = sizeBlocks.filter((block) =>

@@ -47,10 +47,6 @@ const iconSizeMap: Record<NbIconButtonSize, NbIconSize> = {
 export class NbIconButton {
   readonly shape = input<NbIconButtonShape>('square');
   readonly size = input<NbIconButtonSize>('md');
-  // Optional icon, given as an SVG/image URL. Rendered through nbIcon in mask
-  // mode so it tints to the button's foreground color and sizes to match the
-  // button. For full-color or custom icons, project an `<svg>`/`nbIcon` as
-  // content instead — the internal slot is only used when `icon` is set.
   readonly icon = input<string>();
   readonly radius = input(null, {
     transform: nbRadiusStyleTransform,

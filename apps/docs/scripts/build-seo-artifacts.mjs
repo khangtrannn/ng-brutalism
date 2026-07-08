@@ -1,9 +1,5 @@
 #!/usr/bin/env node
 
-// Generates sitemap.xml and llms.txt for the docs site. Sources lastmod from
-// `git log` per route file and descriptions from docs-title-strategy.ts so
-// there's a single source of truth for page metadata.
-
 import { execFileSync } from 'node:child_process';
 import { mkdirSync, writeFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';

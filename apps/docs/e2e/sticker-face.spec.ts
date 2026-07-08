@@ -26,7 +26,6 @@ test('sticker face eyes are vertically aligned', async ({ page }) => {
 test('sticker face is centered within the star sticker', async ({ page }) => {
   await page.goto('/components/sticker');
 
-  // Use the star in the shapes section (has fixed size, easier to measure)
   const starSticker = page.locator('[data-shape="star"]').first();
   const face = starSticker.locator('nb-sticker-face');
 
@@ -46,7 +45,6 @@ test('sticker face is centered within the star sticker', async ({ page }) => {
   const faceCenterX = faceBox!.x + faceBox!.width / 2;
   const faceCenterY = faceBox!.y + faceBox!.height / 2;
 
-  // Face should be within 8% of the sticker's center in both axes
   const toleranceX = stickerBox!.width * 0.08;
   const toleranceY = stickerBox!.height * 0.08;
 

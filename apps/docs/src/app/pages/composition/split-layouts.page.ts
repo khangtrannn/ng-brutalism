@@ -207,16 +207,12 @@ export default class SplitLayoutsPage {
     },
   ];
 
-  protected readonly ratiosCode = `<!-- Equal columns -->
-<section nbSplit ratio="1:1" gap="lg" collapse="md">...</section>
+  protected readonly ratiosCode = `<section nbSplit ratio="1:1" gap="lg" collapse="md">...</section>
 
-<!-- Wide main + narrow aside (2:1) -->
 <section nbSplit ratio="2:1" gap="lg" collapse="md">...</section>
 
-<!-- Very wide main + narrow panel (3:1) -->
 <section nbSplit ratio="3:1" gap="xl" collapse="lg">...</section>
 
-<!-- Fixed aside, flexible main -->
 <section nbSplit ratio="fill:auto" gap="lg" collapse="md">...</section>`;
 
   protected readonly heroSplitCode = `<section nbSplit ratio="2:1" gap="lg" collapse="md" align="stretch">

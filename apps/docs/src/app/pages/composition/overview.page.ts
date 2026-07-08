@@ -434,12 +434,10 @@ export default class CompositionOverviewPage {
   </div>
 </article>`;
 
-  protected readonly customizationCode = `<!-- Step 1: use public inputs first -->
-<div nbSurface tone="cream" radius="xl" shadow="hard">
+  protected readonly customizationCode = `<div nbSurface tone="cream" radius="xl" shadow="hard">
   Token-driven surface
 </div>
 
-<!-- Step 2: CSS variables for fine-grained control -->
 <div
   nbSurface
   tone="cream"
@@ -448,7 +446,6 @@ export default class CompositionOverviewPage {
   Custom surface background
 </div>
 
-<!-- Overrides are local — only this element is affected -->
 <div
   nbSurface
   style="--nb-shadow-offset-x: 12px; --nb-shadow-offset-y: 12px"

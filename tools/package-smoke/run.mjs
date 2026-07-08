@@ -1,10 +1,5 @@
 #!/usr/bin/env node
 
-// Proves the published @ng-brutalism/ui artifact actually installs and works:
-// build -> npm pack -> `ng new` a throwaway app -> `ng add` the tarball ->
-// `ng build` against it. Catches exports-map/sideEffects/schematics
-// regressions that unit tests can't see, since those only run against source.
-
 import { spawnSync } from 'node:child_process';
 import {
   mkdtempSync,
@@ -97,11 +92,6 @@ export class App {}
   );
 }
 
-// Verifies the hand-rolled schematics assembly (libs/ui/project.json's build
-// target cpSync's dist/libs/schematics/src into dist/ui/schematics) actually
-// produced a working `ng add`: collection.json exists, and every schematic's
-// factory module resolves and exports a rule-factory function. A renamed file
-// in libs/schematics would otherwise ship a broken `ng add` silently.
 function assertSchematicsAssembled(distDir) {
   const collectionPath = join(distDir, 'schematics/collection.json');
   const collection = JSON.parse(readFileSync(collectionPath, 'utf8'));

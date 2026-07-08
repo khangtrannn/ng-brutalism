@@ -306,8 +306,7 @@ import { NbButton } from '@ng-brutalism/ui';
 })
 export class ShipButton {}`;
 
-  protected readonly compositionCode = `<!-- Surface wraps. Section divides. Stack and Cluster compose. -->
-<article nbSurface tone="cream" radius="xl" shadow="hard" border="strong" clip>
+  protected readonly compositionCode = `<article nbSurface tone="cream" radius="xl" shadow="hard" border="strong" clip>
   <header nbSection padding="lg" divider="bottom">
     <div nbCluster gap="sm" align="center" justify="between">
       <h2 nbTitle>Launch checklist</h2>

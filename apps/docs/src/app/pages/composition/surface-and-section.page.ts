@@ -432,8 +432,7 @@ export default class SurfaceAndSectionPage {
   </footer>
 </article>`;
 
-  protected readonly clipCode = `<!-- clip keeps inner content within the radius -->
-<article nbSurface tone="cream" radius="xl" shadow="hard" clip class="relative">
+  protected readonly clipCode = `<article nbSurface tone="cream" radius="xl" shadow="hard" clip class="relative">
   <header nbSection padding="md" divider="bottom" class="relative bg-(--nb-blue)">
     <div class="absolute -right-5 -top-5 size-16 rounded-full bg-(--nb-yellow)"></div>
     <div class="absolute -left-8 bottom-5 h-5 w-36 rotate-[-12deg] bg-(--nb-primary)"></div>
@@ -441,7 +440,6 @@ export default class SurfaceAndSectionPage {
   <div nbSection padding="md">Decorative children are clipped by the surface.</div>
 </article>
 
-<!-- without clip, the same children can bleed through rounded corners -->
 <article nbSurface tone="cream" radius="xl" shadow="hard" class="relative">
   <header nbSection padding="md" divider="bottom" class="relative bg-(--nb-blue)">
     <div class="absolute -right-5 -top-5 size-16 rounded-full bg-(--nb-yellow)"></div>

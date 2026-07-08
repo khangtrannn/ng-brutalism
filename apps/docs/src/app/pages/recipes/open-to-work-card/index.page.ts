@@ -281,13 +281,11 @@ export default class OpenToWorkCardRecipePage {
   protected readonly templateCode = `<div nbCluster justify="center" padding="xl" class="otw-stage">
 <article nbSurface tone="cream" border="strong" shadow="hard" radius="xl"
          class="relative max-w-[860px]">
-  <!-- Decorative star sticker overflowing the corner -->
   <nb-sticker shape="star" tone="pink" decorative [rotate]="10"
               class="absolute -top-7 -right-4 z-20">
     <nb-sticker-face />
   </nb-sticker>
 
-  <!-- Top: portrait + identity -->
   <div nbSplit ratio="1:1" gap="xl" padding="lg" collapse="sm" align="start">
     <div nbMediaFrame ratio="3/4" tone="pink" border="strong" radius="lg" shadow="none">
       <img src="/open-to-work/khang-avatar.png" alt="Illustration of Nora Chen" />
@@ -309,12 +307,10 @@ export default class OpenToWorkCardRecipePage {
         </span>
       </div>
 
-      <!-- Decorative dotted grid (docs-local CSS, radial-gradient dots) -->
       <span class="otw-dots block" aria-hidden="true"></span>
     </div>
   </div>
 
-  <!-- Skills + bio -->
   <div nbSection padding="lg">
     <div nbStack gap="lg" align="start">
       <div nbChipGroup gap="sm" radius="sm" shadow="hard"
@@ -330,7 +326,6 @@ export default class OpenToWorkCardRecipePage {
     </div>
   </div>
 
-  <!-- Footer: socials + CTA -->
   <div nbSection divider="top" padding="lg">
     <div nbSplit ratio="1:1" gap="lg" collapse="sm" align="center">
       <div nbCluster gap="sm" align="center">

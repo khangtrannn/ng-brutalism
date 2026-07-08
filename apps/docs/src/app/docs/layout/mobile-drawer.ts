@@ -286,7 +286,6 @@ export class NbDocsMobileDrawer {
   }));
 
   constructor() {
-    // Sync drawer open state to body scroll lock (imperative DOM API).
     effect(() => {
       if (!this.isBrowser) return;
       this.document.body.style.overflow = this.open() ? 'hidden' : '';

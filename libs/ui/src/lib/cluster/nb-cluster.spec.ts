@@ -58,8 +58,6 @@ describe('NbCluster', () => {
     ) as HTMLElement;
 
     expect(cluster.getAttribute('data-nb-cluster')).toBe('');
-    // No gap/padding inputs set — capability attrs stay absent; CSS fallback owns
-    // the visual defaults. Attribute presence means "consumer chose this".
     expect(cluster.getAttribute('data-gap')).toBeNull();
     expect(cluster.getAttribute('data-align')).toBe('center');
     expect(cluster.getAttribute('data-justify')).toBe('start');

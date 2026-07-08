@@ -309,16 +309,12 @@ interface IconToneDemo {
 export default class IconPage {
   protected readonly importCode = `import { NbIcon } from '@ng-brutalism/ui';`;
 
-  protected readonly usageCode = `<!-- Decorative icon (no meaning beyond adjacent text) -->
-<span nbIcon src="/icons/plane.svg" size="sm" decorative></span>
+  protected readonly usageCode = `<span nbIcon src="/icons/plane.svg" size="sm" decorative></span>
 
-<!-- Meaningful standalone icon -->
 <span nbIcon src="/icons/warning.svg" size="md" tone="danger" label="Warning"></span>
 
-<!-- Larger, colored icon -->
 <span nbIcon src="/icons/star.svg" size="xl" tone="warning" decorative></span>
 
-<!-- Image mode for colorful/illustrated assets -->
 <span nbIcon src="/icons/avatar-badge.png" mode="image" size="xl" label="Verified"></span>`;
 
   protected readonly previewCode = `<span nbIcon src="/icons/plane.svg" size="xl" tone="primary" decorative></span>
@@ -344,23 +340,17 @@ export default class IconPage {
 <span nbIcon src="/icons/star.svg" size="md" tone="success" decorative></span>
 <span nbIcon src="/icons/star.svg" size="md" tone="warning" decorative></span>`;
 
-  protected readonly modesCode = `<!-- mask: paints the SVG with the tone color -->
-<span nbIcon src="/icons/plane.svg" size="xl" mode="mask" tone="primary" decorative></span>
+  protected readonly modesCode = `<span nbIcon src="/icons/plane.svg" size="xl" mode="mask" tone="primary" decorative></span>
 
-<!-- image: preserves original asset colors -->
 <span nbIcon src="/icons/illustrated-plane.png" size="xl" mode="image" decorative></span>`;
 
-  protected readonly a11yCode = `<!-- Decorative — icon is supplementary to adjacent text -->
-<span nbIcon src="/icons/star.svg" size="lg" tone="warning" decorative></span>
+  protected readonly a11yCode = `<span nbIcon src="/icons/star.svg" size="lg" tone="warning" decorative></span>
 
-<!-- Meaningful — icon stands alone and must be labelled -->
 <span nbIcon src="/icons/star.svg" size="lg" tone="warning" label="Top rated"></span>
 
-<!-- Avoid — ambiguous accessibility state -->
 <span nbIcon src="/icons/star.svg" size="lg" tone="warning"></span>`;
 
-  protected readonly compositionCode = `<!-- Icons inside chips -->
-<div nbChipGroup>
+  protected readonly compositionCode = `<div nbChipGroup>
   <span nbChip tone="mint">
     <span nbIcon src="/icons/plane.svg" size="sm" decorative></span>
     Flight included
@@ -375,7 +365,6 @@ export default class IconPage {
   </span>
 </div>
 
-<!-- Icon inside button trailing slot -->
 <button nbButton>
   Book Trip
   <span nbButtonTrailingIcon class="...">

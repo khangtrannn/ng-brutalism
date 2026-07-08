@@ -287,7 +287,6 @@ export default class DisplayPage {
   protected readonly underlineExampleCode = `<h2 nbDisplay size="lg" underline="bar" class="uppercase">SHIP IT</h2>
 <h2 nbDisplay size="lg" underline="wave" class="uppercase">STAY SHARP</h2>
 
-<!-- Recolor / resize with tokens -->
 <h2
   nbDisplay
   size="lg"

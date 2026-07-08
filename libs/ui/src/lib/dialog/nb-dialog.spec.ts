@@ -100,8 +100,6 @@ describe('NbDialog', () => {
       'dialog'
     ) as HTMLDialogElement;
 
-    // jsdom doesn't implement showModal(); set `open` directly so axe scans
-    // the dialog's content as a real assistive-tech user would see it.
     dialogEl.setAttribute('open', '');
     fixture.detectChanges();
 

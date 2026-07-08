@@ -1,5 +1,3 @@
-/* Ink-only preset: no color, a monochrome brutalist rebrand. Import after
-   `theme.css` to override its default palette. */
 :root {
   --nb-background: #ffffff;
   --nb-foreground: #000000;

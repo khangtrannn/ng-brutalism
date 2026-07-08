@@ -450,27 +450,22 @@ interface TextLeadingDemo {
 export default class TextPage {
   protected readonly importCode = `import { NbText } from '@ng-brutalism/ui';`;
 
-  protected readonly usageCode = `<!-- Body text -->
-<p nbText>
+  protected readonly usageCode = `<p nbText>
   Build loud interfaces with sharp Angular primitives.
 </p>
 
-<!-- Muted description with line-length cap -->
 <p nbText tone="muted" measure="md">
   A token-driven neo-brutalist Angular UI library for expressive product interfaces.
 </p>
 
-<!-- Brand / name text -->
 <span nbText size="xl" weight="extrabold">
   Roam &amp; Go
 </span>
 
-<!-- Metadata label -->
 <span nbText size="sm" weight="bold" transform="uppercase" tracking="wide">
   New release
 </span>
 
-<!-- Long-form article text -->
 <p nbText size="lg" leading="relaxed" measure="lg">
   Brutalist interfaces work best when layout, typography, and contrast are intentional.
 </p>`;
@@ -520,19 +515,14 @@ export default class TextPage {
 <span nbText weight="black" transform="uppercase" tracking="wide">New release</span>
 <span nbText weight="black" transform="uppercase" tracking="wider">New release</span>`;
 
-  protected readonly measureCode = `<!-- no cap -->
-<p nbText measure="none">A token-driven neo-brutalist Angular UI library...</p>
+  protected readonly measureCode = `<p nbText measure="none">A token-driven neo-brutalist Angular UI library...</p>
 
-<!-- 20rem -->
 <p nbText tone="muted" measure="xs">A token-driven neo-brutalist Angular UI library...</p>
 
-<!-- 28rem -->
 <p nbText tone="muted" measure="sm">A token-driven neo-brutalist Angular UI library...</p>
 
-<!-- 36rem -->
 <p nbText tone="muted" measure="md">A token-driven neo-brutalist Angular UI library...</p>
 
-<!-- 44rem -->
 <p nbText tone="muted" measure="lg">A token-driven neo-brutalist Angular UI library...</p>`;
 
   protected readonly leadingCode = `<p nbText size="md" measure="sm" leading="none">...</p>
@@ -548,7 +538,6 @@ export default class TextPage {
   Stay Sharp
 </span>
 
-<!-- Recolor with a token -->
 <span
   nbText
   size="2xl"

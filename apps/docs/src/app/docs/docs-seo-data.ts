@@ -1,7 +1,3 @@
-// Pure data + helpers shared by DocsTitleStrategy (runtime) and the
-// build-seo-artifacts script (build time). Must not import Angular APIs so
-// the build script can load it via jiti.
-
 import { findDocsNavItem } from './docs.navigation';
 
 export const APP_TITLE = 'Ng Brutalism';
@@ -18,10 +14,7 @@ export const AUTHOR_X_URL = 'https://x.com/mktrann';
 export const AUTHOR_LINKEDIN_URL = 'https://www.linkedin.com/in/khangtrann';
 export const REPO_URL = 'https://github.com/khangtrannn/ng-brutalism';
 export const NPM_URL = 'https://www.npmjs.com/package/@ng-brutalism/ui';
-// Kept in sync with libs/ui/package.json by the release flow.
 export const LIB_VERSION = '0.2.0';
-// Coarse fallback dates for TechArticle JSON-LD. Could be replaced by a
-// build-time per-page manifest later; for now they apply uniformly.
 export const PUBLISHED_DATE = '2025-10-01';
 export const MODIFIED_DATE = '2026-05-23';
 
@@ -40,10 +33,8 @@ export const SOFTWARE_KEYWORDS = [
 ];
 
 export const PAGE_DESCRIPTIONS: Record<string, string> = {
-  // Home
   '/': 'Ng Brutalism is a neo-brutalist Angular UI primitive library and composition system for building loud Angular interfaces with Surface, Section, Stack, Cluster, Split, actions, forms, media, and recipes.',
 
-  // Getting started
   '/docs/introduction':
     'Get started with Ng Brutalism — a neo-brutalist Angular UI primitive library and composition system built with signals, zoneless change detection, and Tailwind v4.',
   '/docs/installation':
@@ -53,7 +44,6 @@ export const PAGE_DESCRIPTIONS: Record<string, string> = {
   '/docs/faq':
     'Ng Brutalism FAQ for Angular developers. Learn what the neo-brutalist Angular primitive library and composition system is, why it uses Tailwind v4, how it compares, and whether it fits your project.',
 
-  // Concepts
   '/docs/design-props':
     'The Ng Brutalism design-prop vocabulary: tone, size, radius, shadow, border, spacing, and typography, and the 5 component archetypes that use them.',
   '/docs/customization':
@@ -69,7 +59,6 @@ export const PAGE_DESCRIPTIONS: Record<string, string> = {
   '/docs/without-tailwind':
     'Use Ng Brutalism without installing Tailwind CSS — component styling ships as a static, self-contained CSS file.',
 
-  // Composition
   '/composition/overview':
     'Learn the Ng Brutalism composition system: Surface, Section, Stack, Cluster, Split, Button, Chip, Text, and Title working together.',
   '/composition/surface-and-section':
@@ -81,7 +70,6 @@ export const PAGE_DESCRIPTIONS: Record<string, string> = {
   '/composition/common-patterns':
     'Copy-paste Ng Brutalism composition patterns for card shells, toolbars, feature stacks, callout panels, two-column cards, and primitives-used panels.',
 
-  // Components — /components/* (demo pages)
   '/components/accordion':
     'Neo-brutalist Accordion component for Angular. Dense disclosure panels with keyboard navigation and signal-driven state.',
   '/components/avatar':
@@ -157,7 +145,6 @@ export const PAGE_DESCRIPTIONS: Record<string, string> = {
   '/components/title':
     'Neo-brutalist Title component for Angular. Decorative heading with custom wave underline and mixed content support.',
 
-  // Recipes
   '/recipes/travel-card':
     'Build a loud travel card recipe from reusable ng-brutalism primitives like Surface, Stack, Cluster, Split, and Media Item.',
   '/recipes/podcast-card':
@@ -165,11 +152,9 @@ export const PAGE_DESCRIPTIONS: Record<string, string> = {
   '/recipes/open-to-work-card':
     'Open to Work Card recipe for Ng Brutalism. Compose surface, media frame, chips, icon actions, button, and sticker primitives into a loud profile card for portfolios and hiring pages.',
 
-  // Showcase
   '/showcase/portfolio':
     'Portfolio showcase built with Ng Brutalism — see the neo-brutalist Angular primitive library and composition system in action.',
 
-  // Project
   '/docs/comparison':
     'When Ng Brutalism fits and when it doesn\'t, compared with Angular Material, PrimeNG, Taiga UI, and headless-first libraries.',
   '/docs/versioning':

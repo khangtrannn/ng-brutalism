@@ -94,7 +94,6 @@ interface AlignDemo {
         <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">Preview</h2>
         <docs-example [code]="defaultExampleCode">
           <div class="grid w-full max-w-100 grid-cols-1 gap-6 p-4">
-            <!-- YOUR FLIGHT card -->
             <div
               nbSurface
               border="strong"
@@ -678,8 +677,7 @@ export default class MediaItemPage {
   </div>
 </div>`;
 
-  protected readonly variantsExampleCode = `<!-- plain: no container, just layout -->
-<nb-media-item
+  protected readonly variantsExampleCode = `<nb-media-item
   variant="plain"
   size="md"
   icon="/icons/star.png"
@@ -688,7 +686,6 @@ export default class MediaItemPage {
   description="Unlimited features"
 />
 
-<!-- boxed: border + offset shadow -->
 <nb-media-item
   variant="boxed"
   size="md"
@@ -699,7 +696,6 @@ export default class MediaItemPage {
   description="Unlimited features"
 />
 
-<!-- chip: fully-rounded pill -->
 <nb-media-item
   variant="chip"
   size="md"
@@ -732,8 +728,7 @@ export default class MediaItemPage {
   description="128 shots"
 />`;
 
-  protected readonly withDescriptionCode = `<!-- title only -->
-<nb-media-item
+  protected readonly withDescriptionCode = `<nb-media-item
   variant="plain"
   size="md"
   icon="/icons/ticket.png"
@@ -741,7 +736,6 @@ export default class MediaItemPage {
   title="Boarding Pass"
 />
 
-<!-- title + description -->
 <nb-media-item
   variant="plain"
   size="md"
@@ -781,8 +775,7 @@ export default class MediaItemPage {
   description="Up to 23kg included"
 />`;
 
-  protected readonly alignmentExampleCode = `<!-- start (default) -->
-<nb-media-item
+  protected readonly alignmentExampleCode = `<nb-media-item
   variant="boxed"
   size="md"
   tone="yellow"
@@ -793,7 +786,6 @@ export default class MediaItemPage {
   description="140+ destinations"
 />
 
-<!-- center -->
 <nb-media-item
   variant="boxed"
   size="md"
@@ -805,7 +797,6 @@ export default class MediaItemPage {
   description="140+ destinations"
 />
 
-<!-- between: stretches to full width -->
 <nb-media-item
   variant="boxed"
   size="md"

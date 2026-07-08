@@ -12,15 +12,12 @@ const publicDir = path.resolve(__dirname, '../public');
 
 const SITE_URL = 'https://ngbrutalism.khangtran.dev';
 
-// Index pages that resolve to a section root and intentionally render
-// `noindex, follow` listings — they live outside DOCS_PUBLIC_ROUTES on purpose.
 const INDEX_PAGE_FILES = new Set([
   'components.page.ts',
   'docs.page.ts',
   'recipes.page.ts',
 ]);
 
-// Catch-all / private routes that should never appear in DOCS_PUBLIC_ROUTES.
 const PRIVATE_PAGE_FILES = new Set(['[...not-found].page.ts']);
 
 const jiti = createJiti(import.meta.url, { interopDefault: true });

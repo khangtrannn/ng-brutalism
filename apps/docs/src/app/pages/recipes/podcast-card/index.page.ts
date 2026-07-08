@@ -287,7 +287,6 @@ export default class PodcastCardRecipePage {
 
   protected readonly templateCode = `<div nbCluster justify="center" padding="lg" class="podcast-stage">
 <div nbSurface clip tone="cream" border="strong" shadow="hard" radius="xl">
-  <!-- Header: podcast chip + menu -->
   <div nbSection padding="lg">
     <div nbCluster gap="md" align="center" justify="between">
       <span nbChip tone="pink" radius="md" class="uppercase font-bold">
@@ -298,7 +297,6 @@ export default class PodcastCardRecipePage {
     </div>
   </div>
 
-  <!-- Brand row -->
   <div nbSection padding="lg">
     <div nbCluster gap="md" align="center">
       <img src="/podcast-card/bfm-logo.png" alt="Build Loud FM logo" />
@@ -306,21 +304,18 @@ export default class PodcastCardRecipePage {
     </div>
   </div>
 
-  <!-- Episode badge -->
   <div nbSection padding="lg">
     <span nbChip tone="yellow" radius="md" class="uppercase font-bold">
       EP 42
     </span>
   </div>
 
-  <!-- Hero title -->
   <div nbSection padding="lg">
     <h1 nbDisplay class="uppercase">
       Design<br />Systems<br />That Scale
     </h1>
   </div>
 
-  <!-- Metadata chips -->
   <div nbSection padding="lg">
     <div nbChipGroup gap="sm" radius="sm" shadow="none" transform="uppercase">
       <span nbChip tone="mint" class="text-xs">
@@ -338,14 +333,12 @@ export default class PodcastCardRecipePage {
     </div>
   </div>
 
-  <!-- Description -->
   <div nbSection padding="lg">
     <p nbText size="md" weight="medium" tone="muted">
       Practical strategies for building design systems that grow with your product.
     </p>
   </div>
 
-  <!-- Host section -->
   <div nbSection divider="top" padding="lg">
     <div nbCluster gap="lg" align="center">
       <img src="/podcast-card/avatar.png" alt="Kai Nguyen"
@@ -364,12 +357,10 @@ export default class PodcastCardRecipePage {
          class="absolute left-6 top-6 -z-10"></div>
   </div>
 
-  <!-- Audio player (waveform asset) -->
   <div nbSection padding="lg">
     <img src="/podcast-card/timeline.png" alt="Episode player" class="w-full" />
   </div>
 
-  <!-- Footer actions -->
   <div nbSection padding="lg">
     <div nbCluster gap="md" justify="between">
       <button nbButton tone="lavender" size="xl" radius="md" class="flex-1">
@@ -384,7 +375,6 @@ export default class PodcastCardRecipePage {
     </div>
   </div>
 
-  <!-- Overflowing decorations -->
   <nb-sticker shape="star" tone="lavender" [rotate]="10">
     <nb-sticker-face />
   </nb-sticker>

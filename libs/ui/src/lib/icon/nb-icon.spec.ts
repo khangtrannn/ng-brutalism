@@ -81,8 +81,6 @@ describe('NbIcon', () => {
 
     expect(icon.style.maskImage).toContain('url(');
     expect(icon.style.backgroundImage).toBe('');
-    // background-color (the mask colorization paint) is CSS-owned via
-    // [data-mode='mask'], not written inline.
     expect(icon.style.backgroundColor).toBe('');
     expect(icon.getAttribute('data-mode')).toBe('mask');
   });

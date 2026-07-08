@@ -285,7 +285,6 @@ export default class TravelCardRecipePage {
 
   protected readonly templateCode = `<div nbCluster justify="center" padding="xl" class="travel-stage">
 <div nbSurface clip tone="cream" border="strong" shadow="hard" radius="xl">
-  <!-- Hero banner with floating sticker -->
   <div class="relative">
     <nb-sticker
       shape="burst"
@@ -302,7 +301,6 @@ export default class TravelCardRecipePage {
     </div>
   </div>
 
-  <!-- Headline + trip meta -->
   <div nbSplit ratio="2:1" gap="xl" padding="lg" collapse="md" separator="solid">
     <div nbStack gap="lg">
       <div nbCluster gap="md" align="center">
@@ -329,7 +327,6 @@ export default class TravelCardRecipePage {
     </div>
   </div>
 
-  <!-- Features + CTA -->
   <div nbSection divider="top" padding="lg">
     <div nbSplit ratio="2:1" gap="lg" collapse="md">
       <div nbCluster gap="lg" align="center" separator="dashed">

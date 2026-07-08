@@ -53,7 +53,6 @@
     }
   }
 
-  /* `::after` on the first column draws the separator line, centered in the gap. */
   :where([data-nb-split][data-separator='solid'] > *:first-child),
   :where([data-nb-split][data-separator='dashed'] > *:first-child),
   :where([data-nb-split][data-separator='thick'] > *:first-child) {
@@ -85,8 +84,6 @@
     border-inline-end-style: solid;
   }
 
-  /* Hide the separator while stacked into a single column, reveal it at the
-     same breakpoint where the columns appear, so it tracks `collapse`. */
   :where([data-nb-split][data-separator]:not([data-separator='none'])[data-collapse='sm'] > *:first-child)::after {
     display: none;
   }

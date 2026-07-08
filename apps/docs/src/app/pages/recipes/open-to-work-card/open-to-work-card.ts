@@ -64,7 +64,6 @@ interface OtwLink {
         radius="xl"
         class="relative w-full max-w-215 [--nb-surface-bg:#fff3e0]"
       >
-        <!-- Decorative star sticker overflowing the top-right corner -->
         <nb-sticker
           shape="star"
           tone="pink"
@@ -75,7 +74,6 @@ interface OtwLink {
           <nb-sticker-face />
         </nb-sticker>
 
-        <!-- Top: portrait + identity -->
         <div
           nbSplit
           ratio="1:1"
@@ -135,7 +133,6 @@ interface OtwLink {
           </div>
         </div>
 
-        <!-- Skills + bio -->
         <div nbSection padding="lg">
           <div nbStack gap="lg" align="start">
             <div
@@ -159,7 +156,6 @@ interface OtwLink {
           </div>
         </div>
 
-        <!-- Footer: socials + CTA -->
         <div nbSection divider="top" padding="lg">
           <div nbSplit ratio="1:1" gap="lg" collapse="sm" align="center">
             <div nbCluster gap="sm" align="center">
@@ -208,13 +204,11 @@ interface OtwLink {
   `,
   styles: `
     :host {
-      /* Recipe-level palette — not library tokens, scoped to this demo. */
       --otw-pink: #ff8ac7;
       --otw-paper-grid: #eadfca;
       display: block;
     }
 
-    /* Warm cream grid-paper backdrop, CSS-only. */
     .otw-stage {
       background-color: #fff8e8;
       background-image:

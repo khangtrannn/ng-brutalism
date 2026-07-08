@@ -1,7 +1,3 @@
-/* styles.css - full bundle: base (tokens, tone, reset) + every component.
-   The one-line default. To ship only the components you use, import
-   `@ng-brutalism/ui/base.css` plus the individual component stylesheets
-   instead (see README). */
 @import './base.css';
 
 @import '../accordion/nb-accordion.css';

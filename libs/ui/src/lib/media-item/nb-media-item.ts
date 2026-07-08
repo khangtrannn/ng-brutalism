@@ -16,7 +16,6 @@ export type NbMediaItemAlign = 'start' | 'center' | 'between';
 
 export type NbMediaItemSize = 'xs' | 'sm' | 'md' | 'lg';
 
-// Tone is the shared color vocabulary; MediaItem does not redefine it.
 export type NbMediaItemTone = NbTone;
 
 @Component({

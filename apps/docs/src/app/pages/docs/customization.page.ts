@@ -110,30 +110,24 @@ import { DocsCodeBlock } from '../../docs/docs-code-block';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export default class CustomizationPage {
-  protected readonly cssRuleCode = `/* nb-callout.css */
-[data-nb-callout] {
+  protected readonly cssRuleCode = `[data-nb-callout] {
   border-radius: var(--nb-callout-radius, 0.75rem);
 }`;
 
-  protected readonly equivalentCode = `<!-- Input -->
-<div nbCallout radius="xl">...</div>
+  protected readonly equivalentCode = `<div nbCallout radius="xl">...</div>
 
-<!-- CSS -->
 <div nbCallout class="marketing-callout">...</div>
 
 .marketing-callout {
   --nb-callout-radius: var(--nb-radius-xl);
 }`;
 
-  protected readonly scopesCode = `/* One instance: use the input */
-<nb-card radius="xl">...</nb-card>
+  protected readonly scopesCode = `<nb-card radius="xl">...</nb-card>
 
-/* Every card in a section: scope the CSS */
 .pricing-section nb-card {
   --nb-card-radius: var(--nb-radius-xl);
 }
 
-/* Every card in the app: :root */
 :root {
   --nb-card-radius: var(--nb-radius-xl);
 }`;

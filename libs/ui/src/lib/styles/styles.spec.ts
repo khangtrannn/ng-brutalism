@@ -3,13 +3,6 @@ import { join, sep } from 'node:path';
 
 import { describe, expect, it } from 'vitest';
 
-// styles.css hand-maintains one `@import` per component stylesheet, and
-// package.json hand-maintains one subpath export per component stylesheet (so
-// consumers can opt into per-component CSS). A missing entry in either registry
-// ships a component with zero styles and no build/test error, so this spec
-// asserts both registries stay in sync with the files on disk, both directions.
-// `import.meta.url` isn't a real file: URL under the Analog transform, so
-// anchor on cwd: nx runs from the workspace root, vitest from the project root.
 const libDir = [
   join(process.cwd(), 'libs/ui/src/lib'),
   join(process.cwd(), 'src/lib'),
@@ -32,9 +25,6 @@ const localImports = [...stylesCss.matchAll(/@import\s+'(\.\.\/[^']+\.css)'/g)].
   (match) => match[1]
 );
 
-// exports paths are dist-relative; dist root mirrors src/lib (ng-package copies
-// src/lib/** to the package root), so `./button/nb-button.css` resolves back to
-// `<libDir>/button/nb-button.css` and `./styles/base.css` to `<libDir>/styles/base.css`.
 type CssExport = string | { style?: string; default?: string };
 const packageJson = JSON.parse(
   readFileSync(join(libDir, '..', '..', 'package.json'), 'utf8')
