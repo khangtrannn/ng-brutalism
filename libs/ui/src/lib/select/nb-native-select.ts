@@ -19,6 +19,6 @@ export class NbNativeSelect {
     transform: nbBorderWidthStyleTransform,
   });
 
-  private readonly group = inject(NB_INPUT_GROUP, { optional: true });
-  protected readonly isInGroup = this.group !== null;
+  #group = inject(NB_INPUT_GROUP, { optional: true });
+  protected readonly isInGroup = this.#group !== null;
 }

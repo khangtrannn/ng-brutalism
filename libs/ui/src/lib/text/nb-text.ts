@@ -82,16 +82,16 @@ export class NbText {
   readonly measure = input<NbTextMeasure>('none');
   readonly leading = input<NbTextLeading>('normal');
 
-  private readonly underlineCapability = inject(NbUnderlineCapability);
+  #underlineCapability = inject(NbUnderlineCapability);
 
   protected readonly colorValue = computed(() => {
     const tone = this.tone();
     return tone ? toneMap[tone] : null;
   });
   protected readonly underlineGapStyle = computed(() =>
-    this.underlineCapability.gap()
+    this.#underlineCapability.gap()
   );
   protected readonly underlineWidthStyle = computed(() =>
-    this.underlineCapability.width()
+    this.#underlineCapability.width()
   );
 }

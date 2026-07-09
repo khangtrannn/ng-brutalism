@@ -98,17 +98,17 @@ const TYPEAHEAD_RESET_MS = 500;
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NbSelect implements NbSelectController, ControlValueAccessor {
-  private readonly element = inject<ElementRef<HTMLElement>>(ElementRef);
-  private readonly group = inject(NB_INPUT_GROUP, { optional: true });
-  private readonly idGenerator = inject(NbIdGenerator);
-  private readonly document = inject(DOCUMENT);
-  private readonly isBrowser = isPlatformBrowser(inject(PLATFORM_ID));
-  private readonly ngControl = inject(NgControl, {
+  #element = inject<ElementRef<HTMLElement>>(ElementRef);
+  #group = inject(NB_INPUT_GROUP, { optional: true });
+  #idGenerator = inject(NbIdGenerator);
+  #document = inject(DOCUMENT);
+  #isBrowser = isPlatformBrowser(inject(PLATFORM_ID));
+  #ngControl = inject(NgControl, {
     optional: true,
     self: true,
   });
   protected readonly field = inject(NB_FIELD, { optional: true });
-  protected readonly isInGroup = this.group !== null;
+  protected readonly isInGroup = this.#group !== null;
 
   readonly border = input(null, {
     transform: nbBorderWidthStyleTransform,
@@ -129,8 +129,8 @@ export class NbSelect implements NbSelectController, ControlValueAccessor {
   readonly disabled = input(false, {
     transform: booleanAttribute,
   });
-  private readonly cvaDisabled = signal(false);
-  readonly isDisabled = computed(() => this.disabled() || this.cvaDisabled());
+  #cvaDisabled = signal(false);
+  readonly isDisabled = computed(() => this.disabled() || this.#cvaDisabled());
   readonly ariaLabel = input<string | null>(null, { alias: 'aria-label' });
   readonly ariaLabelledby = input<string | null>(null, {
     alias: 'aria-labelledby',
@@ -144,7 +144,7 @@ export class NbSelect implements NbSelectController, ControlValueAccessor {
 
   readonly open = model<boolean>(false);
 
-  readonly id = this.idGenerator.next();
+  readonly id = this.#idGenerator.next();
   readonly triggerId = `nb-select-trigger-${this.id}`;
   readonly listboxId = `nb-select-listbox-${this.id}`;
 
@@ -162,9 +162,9 @@ export class NbSelect implements NbSelectController, ControlValueAccessor {
     () => this.selectedOption()?.label() ?? ''
   );
 
-  private readonly controlStatus = trackControlStatus(() => this.ngControl);
-  protected readonly invalid = this.controlStatus.invalid;
-  protected readonly required = this.controlStatus.required;
+  #controlStatus = trackControlStatus(() => this.#ngControl);
+  protected readonly invalid = this.#controlStatus.invalid;
+  protected readonly required = this.#controlStatus.required;
 
   private onChange: (value: NbSelectValue | null) => void = () => {};
   private onTouched: () => void = () => {};
@@ -173,26 +173,26 @@ export class NbSelect implements NbSelectController, ControlValueAccessor {
   private typeaheadTimeoutId: ReturnType<typeof setTimeout> | undefined;
 
   constructor() {
-    if (this.ngControl) {
-      this.ngControl.valueAccessor = this;
+    if (this.#ngControl) {
+      this.#ngControl.valueAccessor = this;
     }
 
     effect((onCleanup) => {
-      if (!this.isBrowser || !this.open()) {
+      if (!this.#isBrowser || !this.open()) {
         return;
       }
 
       const handleOutsideClick = (event: MouseEvent) =>
         this.closeOnOutsideClick(event);
 
-      this.document.addEventListener('click', handleOutsideClick);
+      this.#document.addEventListener('click', handleOutsideClick);
       onCleanup(() =>
-        this.document.removeEventListener('click', handleOutsideClick)
+        this.#document.removeEventListener('click', handleOutsideClick)
       );
     });
 
     effect((onCleanup) => {
-      if (!this.isBrowser || !this.open()) {
+      if (!this.#isBrowser || !this.open()) {
         return;
       }
 
@@ -208,7 +208,7 @@ export class NbSelect implements NbSelectController, ControlValueAccessor {
       const reposition = () => this.positionListbox(listbox, triggerEl);
       reposition();
 
-      const view = this.document.defaultView;
+      const view = this.#document.defaultView;
       view?.addEventListener('scroll', reposition, true);
       view?.addEventListener('resize', reposition);
 
@@ -252,7 +252,7 @@ export class NbSelect implements NbSelectController, ControlValueAccessor {
   }
 
   setDisabledState(isDisabled: boolean): void {
-    this.cvaDisabled.set(isDisabled);
+    this.#cvaDisabled.set(isDisabled);
   }
 
   isSelected(value: NbSelectValue | null): boolean {
@@ -354,7 +354,7 @@ export class NbSelect implements NbSelectController, ControlValueAccessor {
   }
 
   closeOnOutsideClick(event: MouseEvent): void {
-    if (!this.element.nativeElement.contains(event.target as Node)) {
+    if (!this.#element.nativeElement.contains(event.target as Node)) {
       this.open.set(false);
     }
   }

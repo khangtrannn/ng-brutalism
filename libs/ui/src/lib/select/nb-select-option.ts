@@ -47,12 +47,12 @@ import { NB_SELECT, type NbSelectValue } from './select.types';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NbSelectOption {
-  private readonly element = inject<ElementRef<HTMLElement>>(ElementRef);
-  private readonly idGenerator = inject(NbIdGenerator);
+  #element = inject<ElementRef<HTMLElement>>(ElementRef);
+  #idGenerator = inject(NbIdGenerator);
 
   protected readonly select = inject(NB_SELECT);
 
-  readonly id = `nb-select-option-${this.idGenerator.next()}`;
+  readonly id = `nb-select-option-${this.#idGenerator.next()}`;
   readonly value = input<NbSelectValue | null>(null);
   readonly label = input<string>('');
   readonly disabled = input<boolean, unknown>(false, {
@@ -74,7 +74,7 @@ export class NbSelectOption {
   );
 
   focus(): void {
-    this.element.nativeElement.querySelector('button')?.focus();
+    this.#element.nativeElement.querySelector('button')?.focus();
   }
 
   selectOptionOnKey(event: KeyboardEvent): void {

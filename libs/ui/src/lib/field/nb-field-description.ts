@@ -10,7 +10,7 @@ import { NbIdGenerator } from '../core/id-generator';
   },
 })
 export class NbFieldDescription {
-  private readonly idGenerator = inject(NbIdGenerator);
+  #idGenerator = inject(NbIdGenerator);
 
-  readonly id = `nb-field-description-${this.idGenerator.next()}`;
+  readonly id = `nb-field-description-${this.#idGenerator.next()}`;
 }

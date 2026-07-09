@@ -10,11 +10,11 @@ import { NB_FIELD } from '../field/field.types';
   },
 })
 export class NbLabel {
-  private readonly field = inject(NB_FIELD, { optional: true });
+  #field = inject(NB_FIELD, { optional: true });
 
   readonly for = input<string | undefined>(undefined);
 
   protected readonly forId = computed(
-    () => this.for() ?? this.field?.controlId ?? null
+    () => this.for() ?? this.#field?.controlId ?? null
   );
 }

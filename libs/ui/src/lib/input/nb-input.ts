@@ -50,8 +50,8 @@ export class NbInput {
   });
   readonly id = input<string | undefined>(undefined);
 
-  private readonly group = inject(NB_INPUT_GROUP, { optional: true });
-  protected readonly isInGroup = this.group !== null;
+  #group = inject(NB_INPUT_GROUP, { optional: true });
+  protected readonly isInGroup = this.#group !== null;
 
   protected readonly field = inject(NB_FIELD, { optional: true });
 

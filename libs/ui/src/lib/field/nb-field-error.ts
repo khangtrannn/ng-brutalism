@@ -12,8 +12,8 @@ import { NB_FIELD } from './field.types';
   },
 })
 export class NbFieldError {
-  private readonly idGenerator = inject(NbIdGenerator);
+  #idGenerator = inject(NbIdGenerator);
   protected readonly field = inject(NB_FIELD, { optional: true });
 
-  readonly id = `nb-field-error-${this.idGenerator.next()}`;
+  readonly id = `nb-field-error-${this.#idGenerator.next()}`;
 }

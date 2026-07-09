@@ -61,9 +61,9 @@ export class NbMarquee {
     viewChild.required<ElementRef<HTMLElement>>('strip1');
   private readonly strip2 =
     viewChild.required<ElementRef<HTMLElement>>('strip2');
-  private readonly destroyRef = inject(DestroyRef);
-  private readonly isBrowser = isPlatformBrowser(inject(PLATFORM_ID));
-  private readonly widthScale = signal(1);
+  #destroyRef = inject(DestroyRef);
+  #isBrowser = isPlatformBrowser(inject(PLATFORM_ID));
+  #widthScale = signal(1);
 
   protected readonly scaledDuration = computed(() => {
     const duration = this.duration();
@@ -73,11 +73,11 @@ export class NbMarquee {
       return duration;
     }
 
-    return `${durationMs * this.widthScale()}ms`;
+    return `${durationMs * this.#widthScale()}ms`;
   });
 
   constructor() {
-    if (!this.isBrowser) {
+    if (!this.#isBrowser) {
       return;
     }
 
@@ -102,7 +102,7 @@ export class NbMarquee {
       resizeObserver.observe(this.wrapper().nativeElement);
       resizeObserver.observe(this.strip1().nativeElement);
 
-      this.destroyRef.onDestroy(() => {
+      this.#destroyRef.onDestroy(() => {
         mutationObserver.disconnect();
         resizeObserver.disconnect();
       });
@@ -124,11 +124,11 @@ export class NbMarquee {
     const contentWidth = this.strip1().nativeElement.scrollWidth;
 
     if (wrapperWidth <= 0 || contentWidth <= 0) {
-      this.widthScale.set(1);
+      this.#widthScale.set(1);
       return;
     }
 
-    this.widthScale.set(Math.max(1, contentWidth / wrapperWidth));
+    this.#widthScale.set(Math.max(1, contentWidth / wrapperWidth));
   }
 
   private durationToMs(duration: string): number | null {

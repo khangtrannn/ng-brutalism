@@ -52,12 +52,12 @@ export class NbDisplay {
   });
   readonly tracking = input<NbDisplayTracking>('tight');
   readonly leading = input<NbDisplayLeading>('none');
-  private readonly underlineCapability = inject(NbUnderlineCapability);
+  #underlineCapability = inject(NbUnderlineCapability);
 
   protected readonly underlineGapStyle = computed(() =>
-    this.underlineCapability.gap()
+    this.#underlineCapability.gap()
   );
   protected readonly underlineWidthStyle = computed(() =>
-    this.underlineCapability.width()
+    this.#underlineCapability.width()
   );
 }

@@ -65,18 +65,18 @@ export class NbDialog implements NbDialogController {
   readonly dismissible = input(true, { transform: booleanAttribute });
   readonly closed = output<void>();
 
-  private readonly isBrowser = isPlatformBrowser(inject(PLATFORM_ID));
+  #isBrowser = isPlatformBrowser(inject(PLATFORM_ID));
   private readonly dialogEl =
     viewChild.required<ElementRef<HTMLDialogElement>>('dialogEl');
 
   open(): void {
-    if (this.isBrowser) {
+    if (this.#isBrowser) {
       this.dialogEl().nativeElement.showModal();
     }
   }
 
   close(): void {
-    if (this.isBrowser) {
+    if (this.#isBrowser) {
       this.dialogEl().nativeElement.close();
     }
   }

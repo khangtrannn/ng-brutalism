@@ -25,17 +25,17 @@ import { NB_FIELD, type NbFieldContext } from './field.types';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NbField implements NbFieldContext {
-  private readonly idGenerator = inject(NbIdGenerator);
+  #idGenerator = inject(NbIdGenerator);
 
-  readonly controlId = `nb-field-control-${this.idGenerator.next()}`;
+  readonly controlId = `nb-field-control-${this.#idGenerator.next()}`;
 
   private readonly ngControl = contentChild(NgControl, { descendants: true });
   private readonly description = contentChild(NbFieldDescription);
   private readonly error = contentChild(NbFieldError);
 
-  private readonly controlStatus = trackControlStatus(() => this.ngControl());
-  readonly invalid = this.controlStatus.invalid;
-  readonly required = this.controlStatus.required;
+  #controlStatus = trackControlStatus(() => this.ngControl());
+  readonly invalid = this.#controlStatus.invalid;
+  readonly required = this.#controlStatus.required;
 
   readonly describedBy = computed(() => {
     const ids = [
