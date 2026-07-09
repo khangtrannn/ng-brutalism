@@ -15,7 +15,7 @@ import { ChangeDetectionStrategy, Component, input } from '@angular/core';
     </span>
   `,
   host: {
-    '[attr.data-slot]': '"stat"',
+    'data-slot': 'stat',
     '[attr.data-direction]': 'direction()',
   },
   changeDetection: ChangeDetectionStrategy.OnPush,

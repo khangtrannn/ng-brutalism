@@ -1,4 +1,4 @@
-@layer base {
+@layer components {
   :where([data-nb-display]) {
     color: var(--nb-display-color, currentColor);
   }
@@ -67,7 +67,9 @@
   :where([data-nb-display][data-leading='display']) {
     line-height: var(--nb-display-leading, 0.84);
   }
+}
 
+@layer base {
   :where([data-nb-display][data-underline]) {
     display: inline-flex;
     flex-direction: column;

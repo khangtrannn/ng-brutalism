@@ -7,7 +7,7 @@ export type NbSeparatorVariant = 'solid' | 'dashed' | 'thick';
   selector: 'hr[nbSeparator]',
   exportAs: 'nbSeparator',
   host: {
-    '[attr.data-nb-separator]': '""',
+    'data-nb-separator': '',
     '[attr.data-orientation]': 'orientation()',
     '[attr.data-variant]': 'variant()',
     '[attr.aria-orientation]': 'orientation()',

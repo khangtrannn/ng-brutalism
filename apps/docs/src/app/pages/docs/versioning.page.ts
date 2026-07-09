@@ -30,9 +30,11 @@ import { NbCallout } from '@ng-brutalism/ui';
           exist yet.
         </p>
         <div nbCallout tone="warning" size="sm">
-          Pre-1.0 breaking changes are called out per-release in
-          <code class="font-mono">CHANGELOG.md</code> at the repository
-          root.
+          <p class="normal-case">
+            Pre-1.0 breaking changes are called out per-release in
+            <code class="font-mono">CHANGELOG.md</code> at the repository
+            root.
+          </p>
         </div>
       </section>
 

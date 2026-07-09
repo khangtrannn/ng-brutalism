@@ -27,6 +27,10 @@ function regions<T>(fixture: ComponentFixture<T>): HTMLElement[] {
   return Array.from(fixture.nativeElement.querySelectorAll('[role="region"]'));
 }
 
+function items<T>(fixture: ComponentFixture<T>): HTMLElement[] {
+  return Array.from(fixture.nativeElement.querySelectorAll('nb-accordion-item'));
+}
+
 function indicators<T>(fixture: ComponentFixture<T>): SVGPathElement[] {
   return Array.from(
     fixture.nativeElement.querySelectorAll('nb-accordion-trigger svg path')
@@ -229,6 +233,11 @@ describe('NbAccordion', () => {
     expect(accordion(fixture).getAttribute('data-orientation')).toBe(
       'vertical'
     );
+    expect(items(fixture)[0].hasAttribute('data-nb-accordion-item')).toBe(true);
+    expect(items(fixture)[0].getAttribute('data-slot')).toBe(
+      'accordion-item-surface'
+    );
+    expect(items(fixture)[0].getAttribute('data-orientation')).toBe('vertical');
     expect(region.getAttribute('data-orientation')).toBe('vertical');
   });
 

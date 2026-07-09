@@ -20,7 +20,7 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
   `,
   host: {
     'aria-hidden': 'true',
-    '[attr.data-nb-sticker-face]': '""',
+    'data-nb-sticker-face': '',
   },
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

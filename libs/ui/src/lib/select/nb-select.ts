@@ -86,7 +86,7 @@ const TYPEAHEAD_RESET_MS = 500;
   providers: [{ provide: NB_SELECT, useExisting: NbSelect }],
   hostDirectives: [{ directive: NbToneCapability, inputs: ['tone'] }],
   host: {
-    '[attr.data-nb-select]': '""',
+    'data-nb-select': '',
     '[attr.data-state]': 'open() ? "open" : "closed"',
     '[attr.data-disabled]': 'isDisabled() ? "" : null',
     '[attr.data-in-group]': 'isInGroup ? "" : null',

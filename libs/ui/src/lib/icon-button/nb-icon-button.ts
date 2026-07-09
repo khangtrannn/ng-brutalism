@@ -37,7 +37,7 @@ const iconSizeMap: Record<NbIconButtonSize, NbIconSize> = {
   host: {
     '[attr.data-shape]': 'shape()',
     '[attr.data-size]': 'size()',
-    '[attr.data-nb-icon-button]': '""',
+    'data-nb-icon-button': '',
     '[style.--nb-icon-button-radius]': 'radius()',
     '[style.--nb-icon-button-shadow]': 'shadow()',
     '[style.--nb-icon-button-border-width]': 'border()',

@@ -55,7 +55,7 @@ function nbStickerScaleTransform(value: unknown): string | null {
   hostDirectives: [{ directive: NbToneCapability, inputs: ['tone'] }],
   host: {
     '[attr.data-shape]': 'shape()',
-    '[attr.data-nb-sticker]': '""',
+    'data-nb-sticker': '',
     '[attr.aria-hidden]': 'decorative() ? "true" : null',
     '[attr.role]': 'decorative() ? null : "img"',
     '[style.--nb-sticker-rotate]': 'rotate()',

@@ -40,7 +40,7 @@ const toneMap: Record<NbIconTone, string> = {
   selector: '[nbIcon]',
   exportAs: 'nbIcon',
   host: {
-    '[attr.data-nb-icon]': '""',
+    'data-nb-icon': '',
     '[attr.data-size]': 'size()',
     '[attr.data-icon-tone]': 'tone() ?? null',
     '[attr.data-mode]': 'mode()',

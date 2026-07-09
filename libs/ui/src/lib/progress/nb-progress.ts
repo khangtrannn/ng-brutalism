@@ -27,7 +27,7 @@ export type NbProgressTone = NbTone;
   `,
   hostDirectives: [{ directive: NbToneCapability, inputs: ['tone'] }],
   host: {
-    '[attr.data-nb-progress]': '""',
+    'data-nb-progress': '',
   },
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

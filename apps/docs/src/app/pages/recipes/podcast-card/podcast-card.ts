@@ -60,7 +60,13 @@ import {
         >
           <div nbSection padding="lg" class="relative z-10">
             <div nbStack gap="lg">
-              <div nbCluster gap="md" align="center" justify="between">
+              <div
+                nbCluster
+                gap="md"
+                align="center"
+                justify="between"
+                padding="none"
+              >
                 <span
                   nbChip
                   padding="lg"
@@ -74,7 +80,7 @@ import {
                 </span>
               </div>
 
-              <div nbCluster gap="lg" align="center">
+              <div nbCluster gap="lg" align="center" padding="none">
                 <img
                   src="/podcast-card/bfm-logo.png"
                   alt="Build Loud FM logo"
@@ -153,7 +159,7 @@ import {
 
           <div nbSection divider="top" padding="lg" class="z-10">
             <div nbStack gap="md" class="relative z-10">
-              <div nbCluster gap="lg" align="start">
+              <div nbCluster gap="lg" align="start" padding="none">
                 <img
                   src="/podcast-card/avatar.png"
                   alt="Kai Nguyen"
@@ -165,7 +171,7 @@ import {
                     <span nbText size="xl" weight="extrabold">Kai Nguyen</span>
                     <span nbText size="md" tone="muted">Host</span>
 
-                    <div nbCluster gap="sm" align="center">
+                    <div nbCluster gap="sm" align="center" padding="none">
                       <span nbStatusDot state="online"></span>
                       <span
                         nbText
@@ -189,7 +195,13 @@ import {
                 </div>
               </div>
 
-              <div nbCluster gap="md" align="center" justify="between">
+              <div
+                nbCluster
+                gap="md"
+                align="center"
+                justify="between"
+                padding="none"
+              >
                 <button
                   nbButton
                   tone="lavender"

@@ -22,7 +22,7 @@ export type NbBadgeBorder = NbBorderStrength;
   exportAs: 'nbBadge',
   hostDirectives: [{ directive: NbToneCapability, inputs: ['tone'] }],
   host: {
-    '[attr.data-nb-badge]': '""',
+    'data-nb-badge': '',
     '[style.--nb-badge-radius]': 'radius()',
     '[style.--nb-badge-shadow]': 'shadow()',
     '[style.--nb-badge-border-width]': 'border()',

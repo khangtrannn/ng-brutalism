@@ -42,7 +42,7 @@ import { NB_SELECT, type NbSelectValue } from './select.types';
     </button>
   `,
   host: {
-    '[attr.data-nb-select-option]': '""',
+    'data-nb-select-option': '',
   },
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

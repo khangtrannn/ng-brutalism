@@ -16,7 +16,7 @@ export type NbStatusDotRadius = NbRadius;
     '[attr.aria-label]': 'ariaLabel()',
     '[attr.data-state]': 'state()',
     '[attr.data-size]': 'size()',
-    '[attr.data-nb-status-dot]': '""',
+    'data-nb-status-dot': '',
     '[style.--nb-status-dot-radius]': 'radius()',
   },
 })

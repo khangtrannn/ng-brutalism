@@ -39,14 +39,14 @@ import { NB_ACCORDION } from './accordion.types';
     </h3>
   `,
   host: {
-    '[attr.data-nb-accordion-trigger]': '""',
+    'data-nb-accordion-trigger': '',
   },
   hostDirectives: [{ directive: NbToneCapability, inputs: ['tone'] }],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NbAccordionTrigger {
   readonly item = inject(NbAccordionItem);
-  private readonly accordion = inject(NB_ACCORDION);
+  #accordion = inject(NB_ACCORDION);
   private readonly button =
     viewChild.required<ElementRef<HTMLButtonElement>>('button');
 
@@ -58,19 +58,19 @@ export class NbAccordionTrigger {
     switch (event.key) {
       case 'ArrowUp':
         event.preventDefault();
-        this.accordion.focusPreviousTrigger(this);
+        this.#accordion.focusPreviousTrigger(this);
         break;
       case 'ArrowDown':
         event.preventDefault();
-        this.accordion.focusNextTrigger(this);
+        this.#accordion.focusNextTrigger(this);
         break;
       case 'Home':
         event.preventDefault();
-        this.accordion.focusFirstTrigger();
+        this.#accordion.focusFirstTrigger();
         break;
       case 'End':
         event.preventDefault();
-        this.accordion.focusLastTrigger();
+        this.#accordion.focusLastTrigger();
         break;
     }
   }

@@ -158,7 +158,7 @@ interface OtwLink {
 
         <div nbSection divider="top" padding="lg">
           <div nbSplit ratio="1:1" gap="lg" collapse="sm" align="center">
-            <div nbCluster gap="sm" align="center">
+            <div nbCluster gap="sm" align="center" padding="none">
               @for (link of profile.links; track link.label) {
               <button
                 nbIconButton

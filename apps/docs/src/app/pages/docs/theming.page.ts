@@ -74,11 +74,13 @@ import { DocsCodeBlock } from '../../docs/docs-code-block';
           Dark mode
         </h2>
         <div nbCallout tone="warning" size="sm">
-          <strong>Not shipped yet.</strong> An earlier partial
-          <code class="font-mono">.dark</code> stub covering 6 variables was
-          removed rather than left half-finished — a token model that only
-          re-derives a handful of variables produces a visibly broken dark
-          mode, which is worse than no dark mode at all.
+          <p class="normal-case">
+            <strong>Not shipped yet.</strong> An earlier partial
+            <code class="font-mono">.dark</code> stub covering 6 variables was
+            removed rather than left half-finished — a token model that only
+            re-derives a handful of variables produces a visibly broken dark
+            mode, which is worse than no dark mode at all.
+          </p>
         </div>
         <p class="mt-4 font-medium">
           A designed dark theme — every tone re-derived, not just the base

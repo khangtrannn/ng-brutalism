@@ -59,7 +59,7 @@ const toneMap: Record<NbTextTone, string> = {
     { directive: NbResetMarginCapability, inputs: ['reset'] },
   ],
   host: {
-    '[attr.data-nb-text]': '""',
+    'data-nb-text': '',
     '[attr.data-size]': 'size()',
     '[attr.data-weight]': 'weight()',
     '[attr.data-nb-tone]': 'tone() ?? null',

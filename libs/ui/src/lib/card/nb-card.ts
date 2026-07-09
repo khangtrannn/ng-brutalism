@@ -24,7 +24,7 @@ export type NbCardBorder = NbBorderStrength;
   template: `<ng-content />`,
   hostDirectives: [{ directive: NbToneCapability, inputs: ['tone'] }],
   host: {
-    '[attr.data-slot]': '"card"',
+    'data-slot': 'card',
     '[style.--nb-card-radius]': 'radius()',
     '[style.--nb-card-shadow]': 'shadow()',
     '[style.--nb-card-border-width]': 'border()',
@@ -48,7 +48,7 @@ export class NbCard {
   exportAs: 'nbCardHeader',
   template: `<ng-content />`,
   host: {
-    '[attr.data-slot]': '"card-header"',
+    'data-slot': 'card-header',
   },
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
@@ -59,7 +59,7 @@ export class NbCardHeader {}
   exportAs: 'nbCardTitle',
   template: `<ng-content />`,
   host: {
-    '[attr.data-slot]': '"card-title"',
+    'data-slot': 'card-title',
   },
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
@@ -70,7 +70,7 @@ export class NbCardTitle {}
   exportAs: 'nbCardDescription',
   template: `<ng-content />`,
   host: {
-    '[attr.data-slot]': '"card-description"',
+    'data-slot': 'card-description',
   },
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
@@ -81,7 +81,7 @@ export class NbCardDescription {}
   exportAs: 'nbCardActions',
   template: `<ng-content />`,
   host: {
-    '[attr.data-slot]': '"card-actions"',
+    'data-slot': 'card-actions',
     '[attr.data-align]': 'align()',
   },
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -95,7 +95,7 @@ export class NbCardActions {
   exportAs: 'nbCardContent',
   template: `<ng-content />`,
   host: {
-    '[attr.data-slot]': '"card-content"',
+    'data-slot': 'card-content',
   },
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
@@ -106,7 +106,7 @@ export class NbCardContent {}
   exportAs: 'nbCardFooter',
   template: `<ng-content />`,
   host: {
-    '[attr.data-slot]': '"card-footer"',
+    'data-slot': 'card-footer',
   },
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

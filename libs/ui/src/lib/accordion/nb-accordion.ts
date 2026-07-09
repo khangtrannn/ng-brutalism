@@ -25,8 +25,8 @@ import {
     </div>
   `,
   host: {
-    '[attr.data-nb-accordion]': '""',
-    '[attr.data-orientation]': '"vertical"',
+    'data-nb-accordion': '',
+    'data-orientation': 'vertical',
     '[attr.data-type]': 'type()',
   },
   providers: [{ provide: NB_ACCORDION, useExisting: NbAccordion }],

@@ -19,7 +19,7 @@ import { NB_FIELD, type NbFieldContext } from './field.types';
   template: `<ng-content />`,
   providers: [{ provide: NB_FIELD, useExisting: NbField }],
   host: {
-    '[attr.data-nb-field]': '""',
+    'data-nb-field': '',
     '[attr.data-invalid]': 'invalid() ? "" : null',
   },
   changeDetection: ChangeDetectionStrategy.OnPush,

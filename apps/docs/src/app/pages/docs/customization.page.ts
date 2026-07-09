@@ -72,11 +72,14 @@ import { DocsCodeBlock } from '../../docs/docs-code-block';
           </li>
         </ol>
         <div nbCallout tone="danger" size="sm" class="mb-2">
-          <strong>Don't set both</strong> an input and a same-name CSS
-          variable override on the <em>same element</em> — the input's inline
-          value always wins there, so the CSS rule silently does nothing.
-          Use the input for one-off, per-instance overrides; use a CSS rule
-          when you want to restyle every instance under a selector.
+          <p class="normal-case">
+            <strong>Don't set both</strong> an input and a same-name CSS
+            variable override on the <em>same element</em> — the input's
+            inline value always wins there, so the CSS rule silently does
+            nothing. Use the input for one-off, per-instance overrides; use a
+            CSS rule when you want to restyle every instance under a
+            selector.
+          </p>
         </div>
       </section>
 

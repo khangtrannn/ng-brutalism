@@ -33,7 +33,7 @@ export type NbSplitSeparator = NbLayoutSeparator;
   selector: '[nbSplit]',
   exportAs: 'nbSplit',
   host: {
-    '[attr.data-nb-split]': '""',
+    'data-nb-split': '',
     '[attr.data-ratio]': 'ratio()',
     '[attr.data-collapse]': 'collapse()',
     '[attr.data-align]': 'align()',

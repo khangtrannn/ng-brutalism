@@ -14,7 +14,7 @@ import { ChangeDetectionStrategy, Component, input } from '@angular/core';
     }
   `,
   host: {
-    '[attr.data-nb-avatar-group]': '""',
+    'data-nb-avatar-group': '',
   },
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

@@ -4,7 +4,7 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
   selector: 'nb-marquee-item',
   exportAs: 'nbMarqueeItem',
   host: {
-    '[attr.data-nb-marquee-item]': '""',
+    'data-nb-marquee-item': '',
   },
   template: `<ng-content />`,
   changeDetection: ChangeDetectionStrategy.OnPush,

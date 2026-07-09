@@ -4,8 +4,8 @@ import { Directive } from '@angular/core';
   selector: '[nbTitle]',
   exportAs: 'nbTitle',
   host: {
-    '[attr.data-nb-title]': '""',
-    '[attr.data-underline]': '"wave"',
+    'data-nb-title': '',
+    'data-underline': 'wave',
   },
 })
 export class NbTitle {}

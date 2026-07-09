@@ -33,7 +33,7 @@ export type NbDisplayUnderline = NbUnderlineVariant;
     { directive: NbResetMarginCapability, inputs: ['reset'] },
   ],
   host: {
-    '[attr.data-nb-display]': '""',
+    'data-nb-display': '',
     '[attr.data-size]': 'size()',
     '[attr.data-weight]': 'weight()',
     '[attr.data-tracking]': 'tracking()',

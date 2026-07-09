@@ -7,12 +7,12 @@ import { NbAccordionItem } from './nb-accordion-item';
   exportAs: 'nbAccordionContent',
   template: `
     <div
-      [id]="item.contentId"
       role="region"
-      [attr.aria-labelledby]="item.triggerId"
       data-slot="accordion-content"
-      [attr.data-state]="item.open() ? 'open' : 'closed'"
       data-orientation="vertical"
+      [id]="item.contentId"
+      [attr.aria-labelledby]="item.triggerId"
+      [attr.data-state]="item.open() ? 'open' : 'closed'"
       [attr.aria-hidden]="!item.open()"
       [inert]="!item.open()"
     >
@@ -22,7 +22,7 @@ import { NbAccordionItem } from './nb-accordion-item';
     </div>
   `,
   host: {
-    '[attr.data-nb-accordion-content]': '""',
+    'data-nb-accordion-content': '',
   },
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

@@ -54,7 +54,7 @@ const nbChipSizeStyleTransform = nbTokenStyleTransform<NbChipSize>(
     <ng-content />
   `,
   host: {
-    '[attr.data-nb-chip]': '""',
+    'data-nb-chip': '',
     '[style.--nb-chip-padding]': 'size()',
     '[style.--nb-chip-radius]': 'radius()',
     '[style.--nb-chip-shadow]': 'shadow()',
@@ -92,7 +92,7 @@ export type NbChipGroupGap = NbSpacing;
     '[style.--nb-chip-radius]': 'chipRadiusValue()',
     '[style.--nb-chip-shadow]': 'chipShadowValue()',
     '[style.text-transform]': 'transformValue()',
-    '[attr.data-nb-chip-group]': '""',
+    'data-nb-chip-group': '',
     '[attr.data-direction]': 'direction()',
     '[attr.data-align]': 'align()',
     '[attr.data-tracking]': 'tracking()',

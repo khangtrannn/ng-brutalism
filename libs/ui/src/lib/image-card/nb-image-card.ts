@@ -32,7 +32,7 @@ export type NbImageCardBorder = NbBorderStrength;
   `,
   hostDirectives: [{ directive: NbToneCapability, inputs: ['tone'] }],
   host: {
-    '[attr.data-slot]': '"image-card"',
+    'data-slot': 'image-card',
     '[style.--nb-image-card-radius]': 'radius()',
     '[style.--nb-image-card-shadow]': 'shadow()',
     '[style.--nb-image-card-border-width]': 'border()',
@@ -58,7 +58,7 @@ export class NbImageCard {
   exportAs: 'nbImageCardCaption',
   template: `<ng-content />`,
   host: {
-    '[attr.data-slot]': '"image-card-caption"',
+    'data-slot': 'image-card-caption',
   },
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

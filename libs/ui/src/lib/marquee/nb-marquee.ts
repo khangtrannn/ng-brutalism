@@ -18,7 +18,7 @@ import {
   selector: 'nb-marquee',
   exportAs: 'nbMarquee',
   host: {
-    '[attr.data-nb-marquee]': '""',
+    'data-nb-marquee': '',
   },
   template: `
     <div

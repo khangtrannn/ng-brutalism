@@ -85,7 +85,7 @@ import {
           separator="solid"
         >
           <div nbStack gap="lg">
-            <div nbCluster gap="md" align="center">
+            <div nbCluster gap="md" align="center" padding="none">
               <img
                 src="/tokyo-city-escape/roam-go-logo.png"
                 alt="Roam & Go logo"
@@ -144,7 +144,13 @@ import {
 
         <div nbSection divider="top" padding="lg">
           <div nbSplit ratio="2:1" gap="lg" collapse="md">
-            <div nbCluster gap="2xl" align="center" separator="dashed">
+            <div
+              nbCluster
+              gap="lg"
+              align="center"
+              separator="dashed"
+              padding="none"
+            >
               <nb-media-item
                 size="xs"
                 icon="/tokyo-city-escape/central-locations.png"

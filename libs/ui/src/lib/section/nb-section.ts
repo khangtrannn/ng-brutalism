@@ -20,7 +20,7 @@ export type NbSectionAlign = NbLayoutAlign;
   selector: '[nbSection]',
   exportAs: 'nbSection',
   host: {
-    '[attr.data-nb-section]': '""',
+    'data-nb-section': '',
     '[attr.data-divider]': 'divider()',
     '[attr.data-divider-style]': 'dividerStyle()',
     '[attr.data-layout]': 'layout()',

@@ -4,7 +4,7 @@ import { Directive } from '@angular/core';
   selector: '[nbDialogTitle]',
   exportAs: 'nbDialogTitle',
   host: {
-    '[attr.data-slot]': '"dialog-title"',
+    'data-slot': 'dialog-title',
   },
 })
 export class NbDialogTitle {}

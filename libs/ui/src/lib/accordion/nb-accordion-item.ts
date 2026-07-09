@@ -23,11 +23,11 @@ let nextAccordionItemId = 0;
   template: `<ng-content />`,
   hostDirectives: [{ directive: NbToneCapability, inputs: ['tone'] }],
   host: {
-    '[attr.data-nb-accordion-item]': '""',
-    '[attr.data-slot]': '"accordion-item-surface"',
+    'data-nb-accordion-item': '',
+    'data-slot': 'accordion-item-surface',
+    'data-orientation': 'vertical',
     '[attr.data-state]': 'open() ? "open" : "closed"',
     '[attr.data-disabled]': 'disabled() ? "" : null',
-    '[attr.data-orientation]': '"vertical"',
     '[style.--nb-accordion-item-radius]': 'radius()',
     '[style.--nb-accordion-item-shadow]': 'shadow()',
     '[style.--nb-accordion-item-border-width]': 'border()',
@@ -35,9 +35,9 @@ let nextAccordionItemId = 0;
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NbAccordionItem {
-  private readonly id = nextAccordionItemId++;
+  #id = nextAccordionItemId++;
 
-  readonly value = input<string>(`neo-accordion-item-${this.id}`);
+  readonly value = input<string>(`neo-accordion-item-${this.#id}`);
   readonly disabled = input<boolean, unknown>(false, {
     transform: booleanAttribute,
   });
@@ -51,16 +51,16 @@ export class NbAccordionItem {
     transform: nbBorderWidthStyleTransform,
   });
 
-  private readonly accordion = inject(NB_ACCORDION);
+  #accordion = inject(NB_ACCORDION);
 
-  readonly triggerId = `neo-accordion-trigger-${this.id}`;
-  readonly contentId = `neo-accordion-content-${this.id}`;
+  readonly triggerId = `neo-accordion-trigger-${this.#id}`;
+  readonly contentId = `neo-accordion-content-${this.#id}`;
 
-  readonly open = computed(() => this.accordion.isItemOpen(this.value()));
+  readonly open = computed(() => this.#accordion.isItemOpen(this.value()));
 
   toggle(): void {
     if (!this.disabled()) {
-      this.accordion.toggleItem(this.value());
+      this.#accordion.toggleItem(this.value());
     }
   }
 }

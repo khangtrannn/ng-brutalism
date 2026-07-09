@@ -31,7 +31,7 @@ const RECTANGLE_DEFAULT_COLUMNS = 13;
   host: {
     '[attr.aria-hidden]': '"true"',
     '[attr.data-shape]': 'shape()',
-    '[attr.data-nb-halftone]': '""',
+    'data-nb-halftone': '',
     '[style.--nb-halftone-color]': 'color()',
     '[style.--nb-halftone-dot-size.px]': 'size()',
     '[style.--nb-halftone-gap-x.px]': 'resolvedGapXInput()',

@@ -28,7 +28,7 @@ export type NbRatingTone = NbTone;
   host: {
     '[attr.aria-label]': 'ariaLabel()',
     '[attr.role]': '"img"',
-    '[attr.data-nb-rating]': '""',
+    'data-nb-rating': '',
   },
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

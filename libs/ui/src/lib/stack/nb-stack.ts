@@ -19,7 +19,7 @@ export type NbStackSeparator = NbLayoutSeparator;
   selector: '[nbStack]',
   exportAs: 'nbStack',
   host: {
-    '[attr.data-nb-stack]': '""',
+    'data-nb-stack': '',
     '[attr.data-align]': 'align()',
     '[attr.data-justify]': 'justify()',
     '[attr.data-separator]': 'separator()',

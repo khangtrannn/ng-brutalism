@@ -28,7 +28,7 @@ export type NbCalloutBorder = NbBorderStrength;
   exportAs: 'nbCallout',
   hostDirectives: [{ directive: NbToneCapability, inputs: ['tone'] }],
   host: {
-    '[attr.data-nb-callout]': '""',
+    'data-nb-callout': '',
     '[attr.data-size]': 'size()',
     '[attr.data-layout]': 'layout()',
     '[style.--nb-callout-radius]': 'radius()',

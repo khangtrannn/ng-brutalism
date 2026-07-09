@@ -33,7 +33,7 @@ export type NbMediaFrameFit = 'cover' | 'contain' | 'fill';
   exportAs: 'nbMediaFrame',
   hostDirectives: [{ directive: NbToneCapability, inputs: ['tone'] }],
   host: {
-    '[attr.data-nb-media-frame]': '""',
+    'data-nb-media-frame': '',
     '[attr.data-ratio]': 'ratio()',
     '[attr.data-fit]': 'fit()',
     '[style.--nb-media-frame-radius]': 'radius()',

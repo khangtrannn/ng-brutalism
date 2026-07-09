@@ -27,7 +27,7 @@ export type NbClusterSeparator = NbLayoutSeparator;
   selector: '[nbCluster]',
   exportAs: 'nbCluster',
   host: {
-    '[attr.data-nb-cluster]': '""',
+    'data-nb-cluster': '',
     '[attr.data-align]': 'align()',
     '[attr.data-justify]': 'justify()',
     '[attr.data-wrap]': 'wrap()',

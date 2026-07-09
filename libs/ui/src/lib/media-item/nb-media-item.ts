@@ -58,7 +58,7 @@ export type NbMediaItemTone = NbTone;
   `,
   hostDirectives: [{ directive: NbToneCapability, inputs: ['tone'] }],
   host: {
-    '[attr.data-nb-media-item]': '""',
+    'data-nb-media-item': '',
     '[attr.data-variant]': 'variant()',
     '[attr.data-orientation]': 'orientation()',
     '[attr.data-align]': 'align()',
@@ -82,7 +82,7 @@ export class NbMediaItem {
   selector: 'nb-media-item-icon, [nbMediaItemIcon]',
   exportAs: 'nbMediaItemIcon',
   host: {
-    '[attr.data-nb-media-item-icon]': '""',
+    'data-nb-media-item-icon': '',
     '[attr.data-surface]': 'surface()',
     '[style.--nb-media-item-icon-bg]': 'surface() ? background() : null',
   },
@@ -98,7 +98,7 @@ export class NbMediaItemIcon {
   selector: 'nb-media-item-title, [nbMediaItemTitle]',
   exportAs: 'nbMediaItemTitle',
   host: {
-    '[attr.data-nb-media-item-title]': '""',
+    'data-nb-media-item-title': '',
   },
 })
 export class NbMediaItemTitle {}
@@ -107,7 +107,7 @@ export class NbMediaItemTitle {}
   selector: 'nb-media-item-description, [nbMediaItemDescription]',
   exportAs: 'nbMediaItemDescription',
   host: {
-    '[attr.data-nb-media-item-description]': '""',
+    'data-nb-media-item-description': '',
   },
 })
 export class NbMediaItemDescription {}

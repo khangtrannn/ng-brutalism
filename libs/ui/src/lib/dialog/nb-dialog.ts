@@ -48,7 +48,7 @@ export type NbDialogBorder = NbBorderStrength;
     </dialog>
   `,
   providers: [{ provide: NB_DIALOG, useExisting: NbDialog }],
-  host: { '[attr.data-slot]': '"dialog"' },
+  host: { 'data-slot': 'dialog' },
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NbDialog implements NbDialogController {

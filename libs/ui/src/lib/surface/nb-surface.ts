@@ -34,7 +34,7 @@ export type NbSurfaceEdge = 'none' | 'top' | 'bottom';
     { directive: NbTypography, inputs: ['font: typography'] },
   ],
   host: {
-    '[attr.data-nb-surface]': '""',
+    'data-nb-surface': '',
     '[attr.data-size]': 'size()',
     '[attr.data-layout]': 'layout()',
     '[attr.data-edge]': 'edge()',

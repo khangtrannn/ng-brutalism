@@ -42,7 +42,7 @@ const iconRadiusMap: Record<NbButtonIconShape, string> = {
     <ng-content />
   `,
   host: {
-    '[attr.data-nb-button-trailing-icon]': '""',
+    'data-nb-button-trailing-icon': '',
     '[attr.data-push]': 'push()',
     '[attr.data-size]': 'size() ?? null',
     '[attr.data-shape]': 'shape() ?? null',

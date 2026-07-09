@@ -5,7 +5,7 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
   exportAs: 'nbDialogActions',
   template: `<ng-content />`,
   host: {
-    '[attr.data-slot]': '"dialog-actions"',
+    'data-slot': 'dialog-actions',
   },
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
