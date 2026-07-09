@@ -89,7 +89,7 @@
 
   :where(nb-accordion-trigger [data-slot='accordion-trigger-button'][data-state='open']) {
     border-bottom-style: solid;
-    border-bottom-width: var(--nb-accordion-item-border-width, inherit);
+    border-bottom-width: var(--nb-accordion-item-border-width, var(--nb-border-width));
     border-bottom-color: var(--nb-accordion-trigger-border-color, var(--nb-accordion-item-border-color, var(--nb-border)));
   }
 
