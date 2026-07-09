@@ -38,6 +38,8 @@ export type NbInputShadow = NbShadow;
   },
 })
 export class NbInput {
+  #group = inject(NB_INPUT_GROUP, { optional: true });
+
   readonly size = input<NbInputSize>('md');
   readonly border = input(null, {
     transform: nbBorderWidthStyleTransform,
@@ -50,7 +52,6 @@ export class NbInput {
   });
   readonly id = input<string | undefined>(undefined);
 
-  #group = inject(NB_INPUT_GROUP, { optional: true });
   protected readonly isInGroup = this.#group !== null;
 
   protected readonly field = inject(NB_FIELD, { optional: true });

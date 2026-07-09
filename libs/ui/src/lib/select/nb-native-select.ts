@@ -14,11 +14,12 @@ import { NB_INPUT_GROUP } from '../input-group/input-group.types';
   },
 })
 export class NbNativeSelect {
+  #group = inject(NB_INPUT_GROUP, { optional: true });
+
   readonly tone = input<NbTone | undefined>(undefined);
   readonly border = input(null, {
     transform: nbBorderWidthStyleTransform,
   });
 
-  #group = inject(NB_INPUT_GROUP, { optional: true });
   protected readonly isInGroup = this.#group !== null;
 }

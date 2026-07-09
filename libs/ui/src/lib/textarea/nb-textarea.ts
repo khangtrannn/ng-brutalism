@@ -27,6 +27,8 @@ import type { NbTextareaSize } from './textarea.types';
   },
 })
 export class NbTextarea {
+  #group = inject(NB_INPUT_GROUP, { optional: true });
+
   readonly size = input<NbTextareaSize>('md');
   readonly tone = input<NbTone | undefined>(undefined);
   readonly border = input(null, {
@@ -40,7 +42,6 @@ export class NbTextarea {
   });
   readonly id = input<string | undefined>(undefined);
 
-  #group = inject(NB_INPUT_GROUP, { optional: true });
   protected readonly isInGroup = this.#group !== null;
 
   protected readonly field = inject(NB_FIELD, { optional: true });

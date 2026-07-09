@@ -39,8 +39,8 @@ interface AngularTarget {
 }
 
 interface StyleEntryObject {
-  input?: string;
   [key: string]: unknown;
+  input?: string;
 }
 
 type StyleEntry = string | StyleEntryObject;

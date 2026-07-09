@@ -107,6 +107,9 @@ export class NbSelect implements NbSelectController, ControlValueAccessor {
     optional: true,
     self: true,
   });
+  #cvaDisabled = signal(false);
+  #controlStatus = trackControlStatus(() => this.#ngControl);
+
   protected readonly field = inject(NB_FIELD, { optional: true });
   protected readonly isInGroup = this.#group !== null;
 
@@ -129,7 +132,6 @@ export class NbSelect implements NbSelectController, ControlValueAccessor {
   readonly disabled = input(false, {
     transform: booleanAttribute,
   });
-  #cvaDisabled = signal(false);
   readonly isDisabled = computed(() => this.disabled() || this.#cvaDisabled());
   readonly ariaLabel = input<string | null>(null, { alias: 'aria-label' });
   readonly ariaLabelledby = input<string | null>(null, {
@@ -162,12 +164,8 @@ export class NbSelect implements NbSelectController, ControlValueAccessor {
     () => this.selectedOption()?.label() ?? ''
   );
 
-  #controlStatus = trackControlStatus(() => this.#ngControl);
   protected readonly invalid = this.#controlStatus.invalid;
   protected readonly required = this.#controlStatus.required;
-
-  private onChange: (value: NbSelectValue | null) => void = () => {};
-  private onTouched: () => void = () => {};
 
   private typeaheadBuffer = '';
   private typeaheadTimeoutId: ReturnType<typeof setTimeout> | undefined;
@@ -229,6 +227,9 @@ export class NbSelect implements NbSelectController, ControlValueAccessor {
       wasOpen = isOpen;
     });
   }
+
+  private onChange: (value: NbSelectValue | null) => void = () => {};
+  private onTouched: () => void = () => {};
 
   private positionListbox(listbox: HTMLElement, triggerEl: HTMLElement): void {
     const rect = triggerEl.getBoundingClientRect();

@@ -26,6 +26,7 @@ import { NB_FIELD, type NbFieldContext } from './field.types';
 })
 export class NbField implements NbFieldContext {
   #idGenerator = inject(NbIdGenerator);
+  #controlStatus = trackControlStatus(() => this.ngControl());
 
   readonly controlId = `nb-field-control-${this.#idGenerator.next()}`;
 
@@ -33,7 +34,6 @@ export class NbField implements NbFieldContext {
   private readonly description = contentChild(NbFieldDescription);
   private readonly error = contentChild(NbFieldError);
 
-  #controlStatus = trackControlStatus(() => this.ngControl());
   readonly invalid = this.#controlStatus.invalid;
   readonly required = this.#controlStatus.required;
 

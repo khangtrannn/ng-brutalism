@@ -15,6 +15,20 @@ module.exports = tseslint.config(
       '@angular-eslint/no-input-rename': 'error',
       '@angular-eslint/no-output-rename': 'error',
       '@angular-eslint/use-lifecycle-interface': 'warn',
+      '@typescript-eslint/member-ordering': [
+        'error',
+        {
+          default: [
+            'signature',
+            ['#private-static-field', '#private-instance-field'],
+            'field',
+            'static-initialization',
+            'constructor',
+            ['#private-static-method', '#private-instance-method'],
+            'method',
+          ],
+        },
+      ],
     },
   },
   {

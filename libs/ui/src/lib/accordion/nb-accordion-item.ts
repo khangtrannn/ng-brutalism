@@ -36,6 +36,10 @@ let nextAccordionItemId = 0;
 })
 export class NbAccordionItem {
   #id = nextAccordionItemId++;
+  #accordion = inject(NB_ACCORDION);
+
+  readonly triggerId = `neo-accordion-trigger-${this.#id}`;
+  readonly contentId = `neo-accordion-content-${this.#id}`;
 
   readonly value = input<string>(`neo-accordion-item-${this.#id}`);
   readonly disabled = input<boolean, unknown>(false, {
@@ -50,11 +54,6 @@ export class NbAccordionItem {
   readonly border = input(null, {
     transform: nbBorderWidthStyleTransform,
   });
-
-  #accordion = inject(NB_ACCORDION);
-
-  readonly triggerId = `neo-accordion-trigger-${this.#id}`;
-  readonly contentId = `neo-accordion-content-${this.#id}`;
 
   readonly open = computed(() => this.#accordion.isItemOpen(this.value()));
 

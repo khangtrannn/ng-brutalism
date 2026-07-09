@@ -47,6 +47,10 @@ import {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NbMarquee {
+  #destroyRef = inject(DestroyRef);
+  #isBrowser = isPlatformBrowser(inject(PLATFORM_ID));
+  #widthScale = signal(1);
+
   readonly duration = input<string>('5s');
   readonly reverse = input<boolean, unknown>(false, {
     transform: booleanAttribute,
@@ -61,9 +65,6 @@ export class NbMarquee {
     viewChild.required<ElementRef<HTMLElement>>('strip1');
   private readonly strip2 =
     viewChild.required<ElementRef<HTMLElement>>('strip2');
-  #destroyRef = inject(DestroyRef);
-  #isBrowser = isPlatformBrowser(inject(PLATFORM_ID));
-  #widthScale = signal(1);
 
   protected readonly scaledDuration = computed(() => {
     const duration = this.duration();

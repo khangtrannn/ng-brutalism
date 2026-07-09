@@ -52,6 +52,8 @@ export type NbDialogBorder = NbBorderStrength;
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NbDialog implements NbDialogController {
+  #isBrowser = isPlatformBrowser(inject(PLATFORM_ID));
+
   readonly tone = input<NbTone | undefined>(undefined);
   readonly radius = input(null, {
     transform: nbRadiusStyleTransform,
@@ -65,7 +67,6 @@ export class NbDialog implements NbDialogController {
   readonly dismissible = input(true, { transform: booleanAttribute });
   readonly closed = output<void>();
 
-  #isBrowser = isPlatformBrowser(inject(PLATFORM_ID));
   private readonly dialogEl =
     viewChild.required<ElementRef<HTMLDialogElement>>('dialogEl');
 

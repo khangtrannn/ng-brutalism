@@ -74,6 +74,8 @@ const toneMap: Record<NbTextTone, string> = {
   },
 })
 export class NbText {
+  #underlineCapability = inject(NbUnderlineCapability);
+
   readonly size = input<NbTextSize>('md');
   readonly weight = input<NbTextWeight>('normal');
   readonly tone = input<NbTextTone | undefined>(undefined);
@@ -81,8 +83,6 @@ export class NbText {
   readonly tracking = input<NbTextTracking>('normal');
   readonly measure = input<NbTextMeasure>('none');
   readonly leading = input<NbTextLeading>('normal');
-
-  #underlineCapability = inject(NbUnderlineCapability);
 
   protected readonly colorValue = computed(() => {
     const tone = this.tone();

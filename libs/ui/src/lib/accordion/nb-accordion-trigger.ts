@@ -45,8 +45,9 @@ import { NB_ACCORDION } from './accordion.types';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NbAccordionTrigger {
-  readonly item = inject(NbAccordionItem);
   #accordion = inject(NB_ACCORDION);
+
+  readonly item = inject(NbAccordionItem);
   private readonly button =
     viewChild.required<ElementRef<HTMLButtonElement>>('button');
 

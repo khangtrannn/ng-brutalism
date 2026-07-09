@@ -45,6 +45,8 @@ export type NbDisplayUnderline = NbUnderlineVariant;
   },
 })
 export class NbDisplay {
+  #underlineCapability = inject(NbUnderlineCapability);
+
   readonly size = input<NbDisplaySize>('md');
   readonly weight = input<NbDisplayWeight>('black');
   readonly fluid = input<boolean, unknown>(false, {
@@ -52,7 +54,6 @@ export class NbDisplay {
   });
   readonly tracking = input<NbDisplayTracking>('tight');
   readonly leading = input<NbDisplayLeading>('none');
-  #underlineCapability = inject(NbUnderlineCapability);
 
   protected readonly underlineGapStyle = computed(() =>
     this.#underlineCapability.gap()
