@@ -12,11 +12,14 @@ export { nbSpacingValue } from './lib/spacing';
 export type { NbPadding } from './lib/padding';
 export { nbPaddingValue } from './lib/padding';
 export type { NbDivider } from './lib/divider';
+export type { NbControlSize, NbSize, NbSizeXs } from './lib/size';
 export type {
   NbLayoutAlign,
   NbLayoutJustify,
   NbLayoutSeparator,
+  NbOrientation,
 } from './lib/layout';
+export type { NbIconShape } from './lib/shape';
 export type {
   NbFontWeight,
   NbTypographyFont,

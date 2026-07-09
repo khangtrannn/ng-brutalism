@@ -1,7 +1,12 @@
 import { Directive, input } from '@angular/core';
 
-export type NbSeparatorOrientation = 'horizontal' | 'vertical';
-export type NbSeparatorVariant = 'solid' | 'dashed' | 'thick';
+import type {
+  NbLayoutSeparator,
+  NbOrientation,
+} from '@ng-brutalism/ui/tokens';
+
+export type NbSeparatorOrientation = NbOrientation;
+export type NbSeparatorVariant = Exclude<NbLayoutSeparator, 'none'>;
 
 @Directive({
   selector: 'hr[nbSeparator]',

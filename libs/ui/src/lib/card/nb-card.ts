@@ -8,11 +8,12 @@ import {
 } from '../core/input-transforms';
 import type {
   NbBorderStrength,
+  NbLayoutAlign,
   NbRadius,
   NbShadow,
   NbTone,
 } from '@ng-brutalism/ui/tokens';
-export type NbCardActionsAlign = 'start' | 'end';
+export type NbCardActionsAlign = Extract<NbLayoutAlign, 'start' | 'end'>;
 export type NbCardTone = NbTone;
 export type NbCardRadius = NbRadius;
 export type NbCardShadow = NbShadow;

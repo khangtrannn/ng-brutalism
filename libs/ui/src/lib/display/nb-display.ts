@@ -12,10 +12,11 @@ import {
 } from '../core/capabilities';
 import {
   type NbFontWeight,
+  type NbSize,
   type NbUnderlineVariant,
 } from '@ng-brutalism/ui/tokens';
 
-export type NbDisplaySize = 'sm' | 'md' | 'lg' | 'xl';
+export type NbDisplaySize = NbSize;
 export type NbDisplayWeight = NbFontWeight;
 export type NbDisplayTracking = 'normal' | 'tight' | 'tighter';
 export type NbDisplayLeading = 'none' | 'tight' | 'display';

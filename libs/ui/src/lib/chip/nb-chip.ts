@@ -16,6 +16,8 @@ import {
 } from '../core/input-transforms';
 import { NbIcon, type NbIconSize } from '../icon';
 import type {
+  NbLayoutAlign,
+  NbOrientation,
   NbRadius,
   NbShadow,
   NbSpacing,
@@ -80,8 +82,8 @@ export class NbChip {
   readonly iconSize = input<NbIconSize>('sm');
 }
 
-export type NbChipGroupDirection = 'horizontal' | 'vertical';
-export type NbChipGroupAlign = 'start' | 'center' | 'end' | 'stretch';
+export type NbChipGroupDirection = NbOrientation;
+export type NbChipGroupAlign = NbLayoutAlign;
 export type NbChipGroupGap = NbSpacing;
 
 @Directive({

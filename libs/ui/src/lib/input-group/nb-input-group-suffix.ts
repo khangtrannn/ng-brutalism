@@ -1,8 +1,8 @@
 import { Directive, input } from '@angular/core';
 
-import { NB_INPUT_SUFFIX } from './input-group.types';
+import { NB_INPUT_SUFFIX, type NbInputAffixAlign } from './input-group.types';
 
-export type NbInputSuffixAlign = 'center' | 'stretch';
+export type NbInputSuffixAlign = NbInputAffixAlign;
 
 @Directive({
   selector: '[nbInputSuffix]',

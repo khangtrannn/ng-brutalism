@@ -216,7 +216,7 @@ interface CalloutShadowDemo {
               <tr class="border-b-2 border-(--nb-border)">
                 <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">size</td>
                 <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">'sm' | 'md' | 'lg' | 'xl'</td>
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">'lg'</td>
+                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">'md'</td>
                 <td class="px-4 py-3">Height, padding, type size, radius, and border weight preset.</td>
               </tr>
               <tr class="border-b-2 border-(--nb-border)">

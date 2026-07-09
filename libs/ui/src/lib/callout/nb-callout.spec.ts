@@ -92,7 +92,7 @@ describe('NbCallout', () => {
     expect(callout.getAttribute('data-nb-callout')).toBe('');
     expect(callout.hasAttribute('data-radius')).toBe(false);
     expect(callout.getAttribute('data-nb-tone')).toBeNull();
-    expect(callout.getAttribute('data-size')).toBe('lg');
+    expect(callout.getAttribute('data-size')).toBe('md');
     expect(callout.getAttribute('data-layout')).toBe('inline');
     expect(callout.style.getPropertyValue('--nb-callout-radius')).toBe('');
     expect(callout.style.getPropertyValue('--nb-callout-shadow')).toBe('');

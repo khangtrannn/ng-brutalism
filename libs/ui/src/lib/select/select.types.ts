@@ -1,10 +1,11 @@
 import { InjectionToken } from '@angular/core';
 
+import type { NbControlSize } from '@ng-brutalism/ui/tokens';
 import type { NbSelectOption } from './nb-select-option';
 
 export type NbSelectValue = string | number | object;
 
-export type NbSelectSize = 'sm' | 'md' | 'lg';
+export type NbSelectSize = NbControlSize;
 
 export interface NbSelectController {
   readonly isDisabled: () => boolean;

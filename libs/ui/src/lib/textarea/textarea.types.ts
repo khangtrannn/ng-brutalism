@@ -1,1 +1,3 @@
-export type NbTextareaSize = 'md' | 'sm' | 'lg';
+import type { NbControlSize } from '@ng-brutalism/ui/tokens';
+
+export type NbTextareaSize = NbControlSize;

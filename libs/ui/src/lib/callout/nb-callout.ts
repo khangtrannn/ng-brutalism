@@ -9,15 +9,17 @@ import {
 import type {
   NbBorderStrength,
   NbRadius,
+  NbShadow,
+  NbSize,
   NbTone,
 } from '@ng-brutalism/ui/tokens';
 export type NbCalloutTone = NbTone;
 
-export type NbCalloutSize = 'sm' | 'md' | 'lg' | 'xl';
+export type NbCalloutSize = NbSize;
 
 export type NbCalloutLayout = 'inline' | 'between' | 'center';
 
-export type NbCalloutShadow = 'none' | 'md' | 'hard';
+export type NbCalloutShadow = NbShadow;
 
 export type NbCalloutRadius = NbRadius;
 
@@ -37,7 +39,7 @@ export type NbCalloutBorder = NbBorderStrength;
   },
 })
 export class NbCallout {
-  readonly size = input<NbCalloutSize>('lg');
+  readonly size = input<NbCalloutSize>('md');
   readonly layout = input<NbCalloutLayout>('inline');
   readonly radius = input(null, {
     transform: nbRadiusStyleTransform,

@@ -6,15 +6,23 @@ import {
   input,
 } from '@angular/core';
 import { NbToneCapability } from '../core/capabilities';
-import type { NbTone } from '@ng-brutalism/ui/tokens';
+import type {
+  NbLayoutJustify,
+  NbOrientation,
+  NbSizeXs,
+  NbTone,
+} from '@ng-brutalism/ui/tokens';
 
 export type NbMediaItemVariant = 'plain' | 'boxed' | 'chip';
 
-export type NbMediaItemOrientation = 'horizontal' | 'vertical';
+export type NbMediaItemOrientation = NbOrientation;
 
-export type NbMediaItemAlign = 'start' | 'center' | 'between';
+export type NbMediaItemAlign = Extract<
+  NbLayoutJustify,
+  'start' | 'center' | 'between'
+>;
 
-export type NbMediaItemSize = 'xs' | 'sm' | 'md' | 'lg';
+export type NbMediaItemSize = NbSizeXs;
 
 export type NbMediaItemTone = NbTone;
 

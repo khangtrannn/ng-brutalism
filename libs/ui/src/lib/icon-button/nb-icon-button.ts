@@ -12,9 +12,10 @@ import {
   nbShadowStyleTransform,
 } from '../core/input-transforms';
 import { NbIcon, type NbIconSize } from '../icon';
+import type { NbIconShape, NbSize } from '@ng-brutalism/ui/tokens';
 
-export type NbIconButtonShape = 'square' | 'circle';
-export type NbIconButtonSize = 'sm' | 'md' | 'lg' | 'xl';
+export type NbIconButtonShape = NbIconShape;
+export type NbIconButtonSize = NbSize;
 
 const iconSizeMap: Record<NbIconButtonSize, NbIconSize> = {
   sm: 'sm',
