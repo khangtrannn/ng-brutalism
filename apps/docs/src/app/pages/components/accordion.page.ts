@@ -28,7 +28,7 @@ import { DocsTokens } from '../../docs/docs-tokens';
         NbButton,
     ],
     template: `
-    <article>
+    <article style="--nb-accordion-trigger-bg: var(--nb-yellow)">
       <header id="overview" class="relative mb-10 scroll-mt-32">
         <div class="mb-5">
           <p>Neo-Brutalist Angular Accordion</p>
@@ -145,7 +145,7 @@ import { DocsTokens } from '../../docs/docs-tokens';
               <button
                 nbButton
                 size="sm"
-                tone="success"
+                tone="warning"
                 type="button"
                 (click)="controlledValue.set('details')"
               >
@@ -154,6 +154,7 @@ import { DocsTokens } from '../../docs/docs-tokens';
               <button
                 nbButton
                 size="sm"
+                tone="warning"
                 type="button"
                 (click)="controlledValue.set(null)"
               >
@@ -483,7 +484,7 @@ readonly controlledValue = signal<string | string[] | null>('overview');`;
     <button
       nbButton
       size="sm"
-      tone="success"
+      tone="warning"
       type="button"
       (click)="controlledValue.set('details')"
     >
@@ -492,6 +493,7 @@ readonly controlledValue = signal<string | string[] | null>('overview');`;
     <button
       nbButton
       size="sm"
+      tone="warning"
       type="button"
       (click)="controlledValue.set(null)"
     >

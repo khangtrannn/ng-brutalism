@@ -260,13 +260,55 @@ function collectComponentTokens(slug, cssFiles) {
     const usage = usageMap.get(name);
     const declared = declMap.get(name);
     const property = usage?.property ?? pseudoPropertyFor(name);
-    const defaultValue = declared ?? usage?.fallback ?? '—';
+    const defaultValue = collapseToneVars(declared ?? usage?.fallback ?? '—');
     return {
       name,
       defaultValue,
       usage: phraseFor(slug, property, name),
     };
   });
+}
+
+function collapseToneVars(value) {
+  const marker = 'var(--_nb-tone-';
+  let result = value;
+  let sawTone = false;
+  let usedPlaceholder = false;
+
+  let idx;
+  while ((idx = result.indexOf(marker)) !== -1) {
+    let depth = 0;
+    let commaIdx = -1;
+    let closeIdx = -1;
+    for (let i = idx + 4; i < result.length; i++) {
+      const ch = result[i];
+      if (ch === '(') {
+        depth++;
+      } else if (ch === ')') {
+        if (depth === 0) {
+          closeIdx = i;
+          break;
+        }
+        depth--;
+      } else if (ch === ',' && depth === 0 && commaIdx === -1) {
+        commaIdx = i;
+      }
+    }
+    if (closeIdx === -1) break; // malformed, bail out rather than loop forever
+
+    const fallback =
+      commaIdx > -1 ? result.slice(commaIdx + 1, closeIdx).trim() : null;
+    const replacement = fallback ?? 'current tone';
+    if (!fallback) usedPlaceholder = true;
+
+    result = result.slice(0, idx) + replacement + result.slice(closeIdx + 1);
+    sawTone = true;
+  }
+
+  if (sawTone && !usedPlaceholder) {
+    result += ' (tone-aware)';
+  }
+  return result;
 }
 
 function pseudoPropertyFor(name) {
