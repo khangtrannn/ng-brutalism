@@ -149,7 +149,7 @@ import { DocsCodeBlock, DocsExample, DocsSourceTile, DocsStatusBadge, DocsTokens
           · <strong>Status:</strong> Stable. A real
           <code class="font-mono">&lt;button&gt;</code>, so activation and
           focus come from native HTML. Because it's icon-only, there's no
-          visible text to supply the accessible name — always set
+          visible text to supply the accessible name - always set
           <code class="font-mono">aria-label</code> (every example on this
           page does).
         </p>
@@ -186,7 +186,7 @@ import { DocsCodeBlock, DocsExample, DocsSourceTile, DocsStatusBadge, DocsTokens
                 <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">tone</td>
                 <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">NbTone</td>
                 <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">'default'</td>
-                <td class="px-4 py-3">Shared color tone — writes background, foreground, and border color.</td>
+                <td class="px-4 py-3">Shared color tone - writes background, foreground, and border color.</td>
               </tr>
               <tr class="border-b-2 border-(--nb-border)">
                 <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">radius</td>
@@ -204,12 +204,12 @@ import { DocsCodeBlock, DocsExample, DocsSourceTile, DocsStatusBadge, DocsTokens
                 <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">border</td>
                 <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">NbBorderStrength</td>
                 <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">'default'</td>
-                <td class="px-4 py-3">Outline strength — writes the border width.</td>
+                <td class="px-4 py-3">Outline strength - writes the border width.</td>
               </tr>
               <tr>
                 <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">icon</td>
                 <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">string</td>
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">—</td>
+                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">-</td>
                 <td class="px-4 py-3">SVG/image URL rendered internally via nbIcon (mask mode, sized to the button). Omit to project your own icon.</td>
               </tr>
             </tbody>

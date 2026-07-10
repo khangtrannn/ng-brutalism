@@ -46,8 +46,8 @@ import { NbButton } from '@ng-brutalism/ui';
           Ng Brutalism is a neo-brutalist Angular UI primitive library and
           composition system published as
           <code class="font-mono text-sm">&#64;ng-brutalism/ui</code>. It gives
-          modern Angular apps directive-first primitives — Surface, Section,
-          Stack, Cluster, Split, Button, Chip, and more — with hard borders,
+          modern Angular apps directive-first primitives - Surface, Section,
+          Stack, Cluster, Split, Button, Chip, and more - with hard borders,
           offset shadows, punchy colors, and Tailwind CSS v4 styling ergonomics.
         </p>
         <p class="text-base font-medium">
@@ -97,12 +97,12 @@ import { NbButton } from '@ng-brutalism/ui';
           Does it require Tailwind CSS v4?
         </h2>
         <p class="text-base font-medium">
-          No — <code class="font-mono text-sm">tailwindcss</code> is an
+          No - <code class="font-mono text-sm">tailwindcss</code> is an
           optional peer dependency. Component styling ships as a static,
           self-contained CSS file that needs no Tailwind processing to
           render correctly. The <code class="font-mono text-sm">ng add</code>
           schematic sets up Tailwind CSS v4 by default as a convenience for
-          your own app code, but it isn't required by the library itself —
+          your own app code, but it isn't required by the library itself -
           see
           <a routerLink="/docs/without-tailwind" class="underline"
             >Without Tailwind</a
@@ -149,7 +149,7 @@ import { NbButton } from '@ng-brutalism/ui';
           ships with the primitives, then CSS tokens and Tailwind utilities let
           you tune it from there. See the
           <a routerLink="/docs/comparison" class="underline">Comparison</a>
-          page for when that tradeoff — and when it doesn't — fits your project.
+          page for when that tradeoff - and when it doesn't - fits your project.
         </p>
       </section>
 
@@ -162,7 +162,7 @@ import { NbButton } from '@ng-brutalism/ui';
           API changes can happen while the library hardens. It is a good fit for
           prototypes, portfolios, launch pages, side projects, and teams willing
           to track early releases. For conservative enterprise systems, wait for
-          a later stable release — see
+          a later stable release - see
           <a routerLink="/docs/versioning" class="underline">Versioning &amp; Roadmap</a>
           for the exact v1.0 criteria, and
           <a routerLink="/docs/comparison" class="underline">Comparison</a>

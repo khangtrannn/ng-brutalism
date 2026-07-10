@@ -18,7 +18,7 @@ import { OpenToWorkCard } from './open-to-work-card';
             A loud profile card composition for portfolios, hiring pages, and
             creator profiles. Composes surface, media frame, chips, icon
             actions, button, and decorative sticker primitives into a real
-            personal profile card — proof that ng-brutalism builds product UI,
+            personal profile card - proof that ng-brutalism builds product UI,
             not just isolated demos.
           </p>
         </div>
@@ -84,7 +84,7 @@ import { OpenToWorkCard } from './open-to-work-card';
             ></span>
             <a class="underline" [routerLink]="item.path">{{ item.name }}</a>
             <span class="text-sm font-normal opacity-80"
-              >— {{ item.role }}</span
+              >- {{ item.role }}</span
             >
           </li>
           }
@@ -194,7 +194,7 @@ export default class OpenToWorkCardRecipePage {
     {
       primitive: 'nbSurface',
       description:
-        'Outer card shell — cream tone, xl radius, hard shadow, and clip.',
+        'Outer card shell - cream tone, xl radius, hard shadow, and clip.',
     },
     {
       primitive: 'nbSplit',

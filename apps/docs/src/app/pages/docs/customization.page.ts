@@ -16,7 +16,7 @@ import { DocsCodeBlock } from '@ng-brutalism/docs-ui';
           <p class="mt-3 max-w-3xl text-base font-medium sm:text-lg">
             ng-brutalism has one customization surface, not three. Angular
             inputs and CSS custom properties write to the
-            <strong>same public slot</strong> — there's no separate class API
+            <strong>same public slot</strong> - there's no separate class API
             and no input-only escape hatch. Once you know the rule, you can
             predict how any override resolves without reading source.
           </p>
@@ -32,7 +32,7 @@ import { DocsCodeBlock } from '@ng-brutalism/docs-ui';
           gets exactly one public CSS variable. A design-prop input writes an
           inline value onto that variable; a CSS rule targeting the same
           variable resolves through the normal cascade. Both paths land on
-          the identical property — there's nothing input-specific about what
+          the identical property - there's nothing input-specific about what
           an input does under the hood.
         </p>
         <docs-code-block title="Component CSS" [code]="cssRuleCode" />
@@ -49,13 +49,13 @@ import { DocsCodeBlock } from '@ng-brutalism/docs-ui';
         </h2>
         <p class="mb-4 font-medium">
           When nothing about a slot has been touched on a given element,
-          resolution follows the normal CSS cascade — local rule, then
+          resolution follows the normal CSS cascade - local rule, then
           inherited rule, then the component's built-in fallback:
         </p>
         <ol class="mb-5 list-decimal space-y-2 pl-6 font-medium">
           <li>
             An input on the element writes the variable
-            <strong>inline</strong> — inline styles win over any stylesheet
+            <strong>inline</strong> - inline styles win over any stylesheet
             rule, including your own, short of <code class="font-mono">!important</code>.
           </li>
           <li>
@@ -66,7 +66,7 @@ import { DocsCodeBlock } from '@ng-brutalism/docs-ui';
           </li>
           <li>
             <code class="font-mono">!important</code> on a stylesheet rule
-            beats an inline input value — the one documented escape hatch,
+            beats an inline input value - the one documented escape hatch,
             useful when a consumer needs to force an override for an
             accessibility fix regardless of what inputs are set upstream.
           </li>
@@ -74,7 +74,7 @@ import { DocsCodeBlock } from '@ng-brutalism/docs-ui';
         <div nbCallout tone="danger" size="sm" class="mb-2">
           <p class="normal-case">
             <strong>Don't set both</strong> an input and a same-name CSS
-            variable override on the <em>same element</em> — the input's
+            variable override on the <em>same element</em> - the input's
             inline value always wins there, so the CSS rule silently does
             nothing. Use the input for one-off, per-instance overrides; use a
             CSS rule when you want to restyle every instance under a
@@ -99,7 +99,7 @@ import { DocsCodeBlock } from '@ng-brutalism/docs-ui';
         </h2>
         <p class="font-medium">
           Scalar props (radius, shadow, padding...) are single variables.
-          <code class="font-mono">tone</code> is semantic instead — setting it
+          <code class="font-mono">tone</code> is semantic instead - setting it
           reflects <code class="font-mono">data-nb-tone="..."</code> on the
           host, and a whole recipe of background/foreground/border variables
           resolves from that attribute through

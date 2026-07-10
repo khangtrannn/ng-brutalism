@@ -40,7 +40,7 @@ import { DocsCodeBlock, DocsExample } from '@ng-brutalism/docs-ui';
         <p class="max-w-3xl text-base font-medium sm:text-lg">
           v0.2.0 introduces a composition system for building loud,
           token-driven, Angular-first brutalist UIs. Small primitives that lock
-          together like LEGO — each primitive owns one job, and they compose to
+          together like LEGO - each primitive owns one job, and they compose to
           build anything.
         </p>
       </header>
@@ -97,7 +97,7 @@ import { DocsCodeBlock, DocsExample } from '@ng-brutalism/docs-ui';
       <section id="example" nbStack gap="md" class="scroll-mt-32">
         <h2 data-docs-heading class="text-2xl font-bold">Rendered example</h2>
         <p class="text-base font-medium">
-          A complete panel built with composition primitives only — no class
+          A complete panel built with composition primitives only - no class
           soup required.
         </p>
 
@@ -150,19 +150,19 @@ import { DocsCodeBlock, DocsExample } from '@ng-brutalism/docs-ui';
       <section id="before-after" nbStack gap="md" class="scroll-mt-32 w-full">
         <h2 data-docs-heading class="text-2xl font-bold">Before / after</h2>
         <p class="text-base font-medium">
-          The same brutalist card — one written with raw Tailwind classes, one
+          The same brutalist card - one written with raw Tailwind classes, one
           with composition primitives.
         </p>
         <div nbStack class="w-full" gap="2xl" align="start">
           <div nbStack gap="xs" class="w-full">
             <p class="font-mono text-xs font-bold uppercase opacity-70">
-              Before — class soup
+              Before - class soup
             </p>
             <docs-code-block title="HTML" [code]="beforeCode" />
           </div>
           <div nbStack class="w-full" gap="xs">
             <p class="font-mono text-xs font-bold uppercase opacity-70">
-              After — composition
+              After - composition
             </p>
             <docs-code-block title="Template" [code]="afterCode" />
           </div>
@@ -368,7 +368,7 @@ export default class CompositionOverviewPage {
     { name: 'clip', description: 'Keep inner regions inside the outer radius' },
     {
       name: 'divider',
-      description: 'Border between regions — top, bottom, etc.',
+      description: 'Border between regions - top, bottom, etc.',
     },
   ];
 

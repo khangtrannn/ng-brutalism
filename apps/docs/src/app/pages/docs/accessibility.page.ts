@@ -22,7 +22,7 @@ import { NbCallout } from '@ng-brutalism/ui';
             >
             pattern, are scanned with <code class="font-mono">vitest-axe</code>,
             and have a keyboard-completion spec covering the pattern's full
-            interaction model — not just a smoke test.
+            interaction model - not just a smoke test.
           </p>
         </div>
       </header>
@@ -69,7 +69,7 @@ import { NbCallout } from '@ng-brutalism/ui';
                   <a routerLink="/components/icon" class="underline">Icon</a>
                 </td>
                 <td class="border-r-2 border-(--nb-border) px-4 py-3">Image / decorative graphic</td>
-                <td class="px-4 py-3">No explicit default — <code class="font-mono">decorative</code> or <code class="font-mono">label</code> is required</td>
+                <td class="px-4 py-3">No explicit default - <code class="font-mono">decorative</code> or <code class="font-mono">label</code> is required</td>
               </tr>
             </tbody>
           </table>
@@ -88,7 +88,7 @@ import { NbCallout } from '@ng-brutalism/ui';
         <p class="mb-4 font-medium">
           <code class="font-mono">vitest-axe</code> runs against real rendered
           fixtures for dialog, select, accordion, and
-          <a routerLink="/components/field" class="underline">field</a> — both
+          <a routerLink="/components/field" class="underline">field</a> - both
           closed/valid and open/invalid states, since an invalid,
           error-linked control is a distinct accessibility surface from a
           clean one. The dialog fixture sets the native
@@ -100,7 +100,7 @@ import { NbCallout } from '@ng-brutalism/ui';
             The select popup's escape from an <code class="font-mono">overflow:hidden</code>
             ancestor and the <code class="font-mono">formControlName</code>
             round-trip are the two things the unit-test suite can't prove on
-            its own — both were confirmed in a real Chromium session
+            its own - both were confirmed in a real Chromium session
             (Playwright) with zero console errors.
           </p>
         </div>
@@ -113,13 +113,13 @@ import { NbCallout } from '@ng-brutalism/ui';
         <p class="font-medium">
           <code class="font-mono">nb-select</code> options use
           <code class="font-mono">aria-disabled</code> and stay
-          keyboard-reachable-but-not-activatable, per APG — arrow/Home/End/
+          keyboard-reachable-but-not-activatable, per APG - arrow/Home/End/
           typeahead can land on them, but they can't be selected.
           <code class="font-mono">nb-accordion</code> headers use real
           <code class="font-mono">disabled</code> buttons instead and are
           skipped entirely by header navigation, since a genuinely disabled
           <code class="font-mono">&lt;button&gt;</code> can't receive focus at
-          all — the two components intentionally follow different disabled
+          all - the two components intentionally follow different disabled
           semantics because their underlying elements do.
         </p>
       </section>

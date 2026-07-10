@@ -67,7 +67,7 @@ import { DocsExample } from '@ng-brutalism/docs-ui';
 
       <section id="stack-example" class="scroll-mt-32">
         <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">
-          Stack — vertical card content
+          Stack - vertical card content
         </h2>
         <p class="mb-6 text-base font-medium">
           A job card using Stack to control vertical rhythm between title,
@@ -86,7 +86,7 @@ import { DocsExample } from '@ng-brutalism/docs-ui';
 
       <section id="cluster-example" class="scroll-mt-32">
         <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">
-          Cluster — chip group
+          Cluster - chip group
         </h2>
         <p class="mb-6 text-base font-medium">
           A Cluster wraps chips inline, letting them reflow naturally without
@@ -141,7 +141,7 @@ import { DocsExample } from '@ng-brutalism/docs-ui';
         </h2>
         <p class="mb-5 text-base font-medium">
           Both Stack and Cluster use the same gap scale. Pick the right gap
-          for the relationship between items — tight for related items, wider
+          for the relationship between items - tight for related items, wider
           for distinct groups.
         </p>
         <div class="grid gap-4 border-3 border-(--nb-border) bg-white p-5 shadow-[5px_5px_0_0_var(--nb-shadow)]">
@@ -200,42 +200,42 @@ export default class StackAndClusterPage {
     {
       name: 'gap',
       primitive: 'nbStack',
-      description: 'Vertical spacing — xs, sm, md, lg, xl',
+      description: 'Vertical spacing - xs, sm, md, lg, xl',
     },
     {
       name: 'align',
       primitive: 'nbStack',
-      description: 'Cross-axis — stretch, start, center, end',
+      description: 'Cross-axis - stretch, start, center, end',
     },
     {
       name: 'justify',
       primitive: 'nbStack',
-      description: 'Main-axis — start, center, end, between',
+      description: 'Main-axis - start, center, end, between',
     },
     {
       name: 'separator',
       primitive: 'nbStack',
-      description: 'Divider between children — none, solid, dashed, thick',
+      description: 'Divider between children - none, solid, dashed, thick',
     },
     {
       name: 'gap',
       primitive: 'nbCluster',
-      description: 'Horizontal spacing — xs, sm, md, lg, xl',
+      description: 'Horizontal spacing - xs, sm, md, lg, xl',
     },
     {
       name: 'align',
       primitive: 'nbCluster',
-      description: 'Cross-axis — start, center, end, baseline, stretch',
+      description: 'Cross-axis - start, center, end, baseline, stretch',
     },
     {
       name: 'justify',
       primitive: 'nbCluster',
-      description: 'Main-axis — start, center, end, between',
+      description: 'Main-axis - start, center, end, between',
     },
     {
       name: 'wrap',
       primitive: 'nbCluster',
-      description: 'Wrapping — wrap (default), nowrap',
+      description: 'Wrapping - wrap (default), nowrap',
     },
   ];
 

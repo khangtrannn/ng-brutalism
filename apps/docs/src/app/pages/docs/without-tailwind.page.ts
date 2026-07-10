@@ -15,7 +15,7 @@ import { DocsCodeBlock } from '@ng-brutalism/docs-ui';
           <p class="mt-3 max-w-3xl text-base font-medium sm:text-lg">
             <code class="font-mono">tailwindcss</code> is an optional peer
             dependency. Component styling ships as a static, self-contained
-            CSS file — it does not require Tailwind to build or process it.
+            CSS file - it does not require Tailwind to build or process it.
           </p>
         </div>
       </header>
@@ -25,14 +25,14 @@ import { DocsCodeBlock } from '@ng-brutalism/docs-ui';
           Why it's optional
         </h2>
         <p class="mb-4 font-medium">
-          Every component's stylesheet is hand-authored, plain CSS — custom
+          Every component's stylesheet is hand-authored, plain CSS - custom
           properties, native
           <code class="font-mono">@layer</code>, ordinary selectors like
           <code class="font-mono">:where(span[nbBadge])</code>. There is no
           <code class="font-mono">@apply</code>, no Tailwind utility class,
           and no <code class="font-mono">@import "tailwindcss"</code> inside
           any file the library ships. <code class="font-mono">@ng-brutalism/ui/styles.css</code>
-          is the fully bundled output — importing it is enough for every
+          is the fully bundled output - importing it is enough for every
           component to render correctly, with zero build-time processing.
         </p>
         <div nbCallout tone="mint" size="sm">
@@ -49,7 +49,7 @@ import { DocsCodeBlock } from '@ng-brutalism/docs-ui';
           Setup
         </h2>
         <p class="mb-4 font-medium">
-          Skip the <code class="font-mono">ng add</code> schematic — it
+          Skip the <code class="font-mono">ng add</code> schematic - it
           assumes Tailwind because most consumers want it for their
           <em>own</em> app code, not because the library needs it. Install
           the package directly and import the stylesheet:
@@ -62,7 +62,7 @@ import { DocsCodeBlock } from '@ng-brutalism/docs-ui';
         />
         <p class="mt-4 font-medium">
           <code class="font-mono">provideNgBrutalism()</code> still needs to
-          be registered — it's unrelated to styling, it wires up library
+          be registered - it's unrelated to styling, it wires up library
           providers like <code class="font-mono">NbIdGenerator</code>.
         </p>
       </section>
@@ -75,7 +75,7 @@ import { DocsCodeBlock } from '@ng-brutalism/docs-ui';
           Nothing in the library itself. Component visuals, tones, presets,
           and the CSS-variable customization surface all work identically.
           The only thing you give up is using Tailwind utility classes
-          <em>in your own templates</em> — if you want those too, add
+          <em>in your own templates</em> - if you want those too, add
           <code class="font-mono">tailwindcss</code> back as a normal
           dependency of your app; it composes fine alongside
           ng-brutalism's static CSS either way.

@@ -12,7 +12,7 @@ import { RouterLink } from '@angular/router';
           <h1>Comparison</h1>
           <p class="mt-3 max-w-3xl text-base font-medium sm:text-lg">
             Ng Brutalism starts from a narrower design promise than most
-            Angular UI libraries — neo-brutalist, opinionated visuals rather
+            Angular UI libraries - neo-brutalist, opinionated visuals rather
             than a neutral base you theme into your own look. That tradeoff
             is a good fit for some projects and a bad fit for others.
           </p>
@@ -24,7 +24,7 @@ import { RouterLink } from '@angular/router';
           When it fits
         </h2>
         <ul class="list-disc space-y-2 pl-6 font-medium">
-          <li>You want the brutalist look on day one — chunky borders, offset shadows, punchy tones — without hand-rolling it.</li>
+          <li>You want the brutalist look on day one - chunky borders, offset shadows, punchy tones - without hand-rolling it.</li>
           <li>Portfolios, launch pages, side projects, prototypes, or products where a bold visual identity is the point.</li>
           <li>You're comfortable tuning CSS variables and Tailwind utilities close to the markup instead of a large theme-object abstraction.</li>
           <li>You're building with modern Angular (signals, zoneless, standalone) and don't need to support older Angular versions.</li>
@@ -41,7 +41,7 @@ import { RouterLink } from '@angular/router';
             <p class="mt-2 text-sm font-medium">
               The brutalist aesthetic is the product, not a skin you remove.
               If you need a visually neutral, low-contrast enterprise look,
-              this library fights you the whole way — reach for
+              this library fights you the whole way - reach for
               <a href="https://material.angular.dev" target="_blank" rel="noreferrer" class="underline">Angular Material</a>
               or <a href="https://primeng.org" target="_blank" rel="noreferrer" class="underline">PrimeNG</a> instead.
             </p>
@@ -66,7 +66,7 @@ import { RouterLink } from '@angular/router';
           <div class="border-3 border-(--nb-border) bg-nb-surface p-5 shadow-[5px_5px_0_0_var(--nb-shadow)]">
             <h3 class="font-heading text-lg font-black uppercase">Zero breaking-change tolerance</h3>
             <p class="mt-2 text-sm font-medium">
-              The library is pre-1.0 — minor versions can still carry
+              The library is pre-1.0 - minor versions can still carry
               breaking API changes. See
               <a routerLink="/docs/versioning" class="underline">Versioning &amp; Roadmap</a>
               for the exact v1.0 criteria before betting a large, slow-moving
@@ -84,7 +84,7 @@ import { RouterLink } from '@angular/router';
           Where many Angular libraries centralize theming in a large
           TypeScript config or theme object, ng-brutalism resolves every
           scalar visual property to a single public
-          <code class="font-mono">--nb-*</code> CSS variable — inputs and CSS
+          <code class="font-mono">--nb-*</code> CSS variable - inputs and CSS
           overrides write the same slot. See
           <a routerLink="/docs/customization" class="underline">Customization</a>
           for the full model, or

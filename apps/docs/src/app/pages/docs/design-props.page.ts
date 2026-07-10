@@ -23,10 +23,10 @@ import { DocsCodeBlock } from '@ng-brutalism/docs-ui';
 
       <section id="vocabulary">
         <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">
-          The vocabulary — 7 categories
+          The vocabulary - 7 categories
         </h2>
         <p class="mb-5 text-base font-medium">
-          A component only exposes the categories that make sense for it —
+          A component only exposes the categories that make sense for it -
           see <a href="#archetypes" class="underline">archetypes</a> below.
           The core rule that makes this vocabulary predictable: the Angular
           input and the CSS customization variable write the
@@ -71,7 +71,7 @@ import { DocsCodeBlock } from '@ng-brutalism/docs-ui';
               <tr class="border-b-2 border-(--nb-border)">
                 <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">border</td>
                 <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">NbBorderStrength</td>
-                <td class="px-4 py-3">Width only — border <em>color</em> always comes from tone.</td>
+                <td class="px-4 py-3">Width only - border <em>color</em> always comes from tone.</td>
               </tr>
               <tr class="border-b-2 border-(--nb-border)">
                 <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">spacing</td>
@@ -135,7 +135,7 @@ import { DocsCodeBlock } from '@ng-brutalism/docs-ui';
           <div nbCard tone="surface" class="p-5 sm:col-span-2">
             <h3 class="font-heading text-lg font-black uppercase">Indicator / leaf</h3>
             <p class="mt-2 text-sm font-medium">
-              Exempt by design, usually tone-only —
+              Exempt by design, usually tone-only -
               <code class="font-mono">badge</code>, <code class="font-mono">avatar</code>,
               <code class="font-mono">status-dot</code>, <code class="font-mono">progress</code>,
               <code class="font-mono">rating</code>, <code class="font-mono">separator</code>.
@@ -149,7 +149,7 @@ import { DocsCodeBlock } from '@ng-brutalism/docs-ui';
         <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">Example</h2>
         <p class="mb-4 font-medium">
           An input and a CSS override targeting the same category resolve to
-          the same visual result — pick whichever fits the scope of the
+          the same visual result - pick whichever fits the scope of the
           change. See the
           <a routerLink="/docs/customization" class="underline">Customization</a>
           guide for how the two interact when both are present.

@@ -117,7 +117,7 @@ import { DocsCodeBlock, DocsExample, DocsSourceTile, DocsStatusBadge, DocsTokens
         </docs-example>
         <p class="mt-4 font-medium">
           For full-color or labeled icons, project any element as content
-          instead — the leading slot is only used when
+          instead - the leading slot is only used when
           <code class="font-mono">icon</code> is set.
         </p>
       </section>
@@ -165,7 +165,7 @@ import { DocsCodeBlock, DocsExample, DocsSourceTile, DocsStatusBadge, DocsTokens
               <tr>
                 <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">icon</td>
                 <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">string</td>
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">—</td>
+                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">-</td>
                 <td class="px-4 py-3">URL of a leading SVG icon, tinted to the chip's foreground via nbIcon mask mode.</td>
               </tr>
               <tr>
@@ -179,7 +179,7 @@ import { DocsCodeBlock, DocsExample, DocsSourceTile, DocsStatusBadge, DocsTokens
         </div>
 
         <p class="mt-6 mb-4 font-bold">NbChipGroup</p>
-        <p class="font-medium">Wrapper directive with <code class="font-mono">flex flex-wrap gap-2</code>. No inputs — use Tailwind or inline styles to override spacing.</p>
+        <p class="font-medium">Wrapper directive with <code class="font-mono">flex flex-wrap gap-2</code>. No inputs - use Tailwind or inline styles to override spacing.</p>
 
       </section>
 
@@ -188,7 +188,7 @@ import { DocsCodeBlock, DocsExample, DocsSourceTile, DocsStatusBadge, DocsTokens
       <section id="accessibility">
         <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">Accessibility</h2>
         <p class="font-medium">
-          <strong>APG pattern:</strong> N/A — a chip is a
+          <strong>APG pattern:</strong> N/A - a chip is a
           <code class="font-mono">&lt;span&gt;</code>, presentational by
           default. When used as a removable/selectable control (not
           currently built in), give it a real interactive role and

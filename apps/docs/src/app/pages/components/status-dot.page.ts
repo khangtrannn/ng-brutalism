@@ -21,7 +21,7 @@ import { DocsCodeBlock, DocsExample, DocsSourceTile, DocsStatusBadge, DocsTokens
           <h1>StatusDot</h1>
           <p class="mt-3 max-w-3xl text-base font-medium sm:text-lg">
             A directive on <code class="font-mono">&lt;span&gt;</code> that renders a status
-            indicator dot. Three states — online, offline, and live — cover presence, availability,
+            indicator dot. Three states - online, offline, and live - cover presence, availability,
             and real-time streaming use cases.
           </p>
         </div>
@@ -73,17 +73,17 @@ import { DocsCodeBlock, DocsExample, DocsSourceTile, DocsStatusBadge, DocsTokens
             <div class="flex items-center gap-3">
               <span nbStatusDot state="online"></span>
               <span class="font-bold">online</span>
-              <span class="font-medium text-sm">— green fill, indicates active presence</span>
+              <span class="font-medium text-sm">- green fill, indicates active presence</span>
             </div>
             <div class="flex items-center gap-3">
               <span nbStatusDot state="offline"></span>
               <span class="font-bold">offline</span>
-              <span class="font-medium text-sm">— muted fill, indicates unavailability</span>
+              <span class="font-medium text-sm">- muted fill, indicates unavailability</span>
             </div>
             <div class="flex items-center gap-3">
               <span nbStatusDot state="live"></span>
               <span class="font-bold">live</span>
-              <span class="font-medium text-sm">— red pulsing dot, indicates real-time broadcast</span>
+              <span class="font-medium text-sm">- red pulsing dot, indicates real-time broadcast</span>
             </div>
           </div>
         </docs-example>
@@ -94,7 +94,7 @@ import { DocsCodeBlock, DocsExample, DocsSourceTile, DocsStatusBadge, DocsTokens
       <section id="accessibility">
         <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">Accessibility</h2>
         <p class="font-medium">
-          <strong>APG pattern:</strong> N/A — StatusDot is a static presence/availability indicator, not an interactive widget. <strong>Status:</strong> Stable.
+          <strong>APG pattern:</strong> N/A - StatusDot is a static presence/availability indicator, not an interactive widget. <strong>Status:</strong> Stable.
         </p>
       </section>
 

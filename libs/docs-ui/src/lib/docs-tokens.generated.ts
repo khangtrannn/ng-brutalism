@@ -1,4 +1,4 @@
-// GENERATED FILE — do not hand-edit.
+// GENERATED FILE - do not hand-edit.
 // Source: apps/docs/scripts/generate-token-reference.mjs
 // Regenerate with `pnpm docs:tokens:update` after changing component CSS.
 
@@ -102,7 +102,7 @@ export const componentTokens: Record<DocsTokenComponent, DocsToken[]> = {
     { name: "--nb-button-trailing-icon-bg", defaultValue: "transparent", usage: "Button trailing icon background color" },
     { name: "--nb-button-trailing-icon-color", defaultValue: "currentColor", usage: "Button trailing icon text color" },
     { name: "--nb-button-trailing-icon-radius", defaultValue: "inherit", usage: "Button trailing icon corner radius" },
-    { name: "--nb-button-trailing-icon-size", defaultValue: "—", usage: "Button trailing icon size" },
+    { name: "--nb-button-trailing-icon-size", defaultValue: "-", usage: "Button trailing icon size" },
   ],
   'callout': [
     { name: "--nb-callout-bg", defaultValue: "var(--nb-tone-neutral-bg) (tone-aware)", usage: "Callout background color" },
@@ -164,11 +164,11 @@ export const componentTokens: Record<DocsTokenComponent, DocsToken[]> = {
   'field': [],
   'halftone': [
     { name: "--nb-halftone-color", defaultValue: "var(--nb-border)", usage: "Halftone fill color" },
-    { name: "--nb-halftone-columns", defaultValue: "—", usage: "Halftone size" },
+    { name: "--nb-halftone-columns", defaultValue: "-", usage: "Halftone size" },
     { name: "--nb-halftone-dot-size", defaultValue: "8px", usage: "Halftone dot sets `nb-halftone-dot-size`" },
     { name: "--nb-halftone-gap-x", defaultValue: "28px", usage: "Halftone sets `nb-halftone-gap-x`" },
     { name: "--nb-halftone-gap-y", defaultValue: "27px", usage: "Halftone sets `nb-halftone-gap-y`" },
-    { name: "--nb-halftone-rows", defaultValue: "—", usage: "Halftone size" },
+    { name: "--nb-halftone-rows", defaultValue: "-", usage: "Halftone size" },
   ],
   'icon': [
     { name: "--nb-icon-color", defaultValue: "currentColor", usage: "Icon text color" },
@@ -227,7 +227,7 @@ export const componentTokens: Record<DocsTokenComponent, DocsToken[]> = {
     { name: "--nb-media-item-description-size", defaultValue: "var(--nb-media-item-description-default-size)", usage: "Media Item description font size" },
     { name: "--nb-media-item-fg", defaultValue: "inherit (tone-aware)", usage: "Media Item text color" },
     { name: "--nb-media-item-gap", defaultValue: "0.375rem", usage: "Media Item gap between items" },
-    { name: "--nb-media-item-icon-bg", defaultValue: "—", usage: "Media Item icon background color" },
+    { name: "--nb-media-item-icon-bg", defaultValue: "-", usage: "Media Item icon background color" },
     { name: "--nb-media-item-icon-size", defaultValue: "1rem", usage: "Media Item icon maximum size" },
     { name: "--nb-media-item-radius", defaultValue: "var(--nb-radius)", usage: "Media Item corner radius" },
     { name: "--nb-media-item-surface-size", defaultValue: "2rem", usage: "Media Item surface size" },
@@ -307,7 +307,7 @@ export const componentTokens: Record<DocsTokenComponent, DocsToken[]> = {
     { name: "--nb-surface-border-color", defaultValue: "var(--nb-border) (tone-aware)", usage: "Surface border color" },
     { name: "--nb-surface-border-width", defaultValue: "var(--nb-border-width)", usage: "Surface border width" },
     { name: "--nb-surface-fg", defaultValue: "var(--nb-surface-foreground) (tone-aware)", usage: "Surface text color" },
-    { name: "--nb-surface-foreground", defaultValue: "—", usage: "Surface text color" },
+    { name: "--nb-surface-foreground", defaultValue: "-", usage: "Surface text color" },
     { name: "--nb-surface-padding", defaultValue: "0px", usage: "Surface padding" },
     { name: "--nb-surface-radius", defaultValue: "var(--nb-radius)", usage: "Surface corner radius" },
     { name: "--nb-surface-shadow", defaultValue: "var(--nb-shadow-offset-x) var(--nb-shadow-offset-y) 0 0 var(--nb-shadow)", usage: "Surface box shadow" },

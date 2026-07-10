@@ -3,7 +3,7 @@ import { findDocsNavItem } from './docs.navigation';
 export const APP_TITLE = 'Ng Brutalism';
 export const SITE_URL = 'https://ngbrutalism.khangtran.dev';
 export const OG_IMAGE_URL = `${SITE_URL}/og.png`;
-export const OG_IMAGE_ALT = 'Ng Brutalism — Neo-Brutalist Angular UI Library';
+export const OG_IMAGE_ALT = 'Ng Brutalism - Neo-Brutalist Angular UI Library';
 export const OG_LOCALE = 'en_US';
 export const DEFAULT_DESCRIPTION =
   'Neo-brutalist Angular UI primitive library and composition system. Build loud Angular interfaces with Surface, Section, Stack, Cluster, Split, directive APIs, signals, Tailwind v4, chunky borders, crisp shadows, and punchy colors.';
@@ -36,7 +36,7 @@ export const PAGE_DESCRIPTIONS: Record<string, string> = {
   '/': 'Ng Brutalism is a neo-brutalist Angular UI primitive library and composition system for building loud Angular interfaces with Surface, Section, Stack, Cluster, Split, actions, forms, media, and recipes.',
 
   '/docs/introduction':
-    'Get started with Ng Brutalism — a neo-brutalist Angular UI primitive library and composition system built with signals, zoneless change detection, and Tailwind v4.',
+    'Get started with Ng Brutalism - a neo-brutalist Angular UI primitive library and composition system built with signals, zoneless change detection, and Tailwind v4.',
   '/docs/installation':
     'Install @ng-brutalism/ui in your Angular project. Requires a modern Angular setup, Tailwind v4, and Node 20+.',
   '/docs/inspired-designs':
@@ -57,7 +57,7 @@ export const PAGE_DESCRIPTIONS: Record<string, string> = {
   '/docs/ssr':
     'Server-side rendering and hydration in Ng Brutalism: stable id generation, zoneless change detection, and browser-only behavior guards.',
   '/docs/without-tailwind':
-    'Use Ng Brutalism without installing Tailwind CSS — component styling ships as a static, self-contained CSS file.',
+    'Use Ng Brutalism without installing Tailwind CSS - component styling ships as a static, self-contained CSS file.',
 
   '/composition/overview':
     'Learn the Ng Brutalism composition system: Surface, Section, Stack, Cluster, Split, Button, Chip, Text, and Title working together.',
@@ -79,7 +79,7 @@ export const PAGE_DESCRIPTIONS: Record<string, string> = {
   '/components/badge':
     'Neo-brutalist Badge component for Angular. Punchy status labels with thick borders and high-contrast colors.',
   '/components/button':
-    'Neo-brutalist Button primitive for Angular. Hard borders, offset shadows, and tone-driven styling — built with directive APIs and signals.',
+    'Neo-brutalist Button primitive for Angular. Hard borders, offset shadows, and tone-driven styling - built with directive APIs and signals.',
   '/components/callout':
     'Use Callout to highlight important messages with chunky borders, loud tones, and sharp Angular-first composition.',
   '/components/card':
@@ -153,7 +153,7 @@ export const PAGE_DESCRIPTIONS: Record<string, string> = {
     'Open to Work Card recipe for Ng Brutalism. Compose surface, media frame, chips, icon actions, button, and sticker primitives into a loud profile card for portfolios and hiring pages.',
 
   '/showcase/portfolio':
-    'Portfolio showcase built with Ng Brutalism — see the neo-brutalist Angular primitive library and composition system in action.',
+    'Portfolio showcase built with Ng Brutalism - see the neo-brutalist Angular primitive library and composition system in action.',
 
   '/docs/comparison':
     'When Ng Brutalism fits and when it doesn\'t, compared with Angular Material, PrimeNG, Taiga UI, and headless-first libraries.',
@@ -263,7 +263,7 @@ function formatPageTitle(path: string, pageTitle: string): string {
   }
 
   if (path === '/') {
-    return `${APP_TITLE} — ${pageTitle}`;
+    return `${APP_TITLE} - ${pageTitle}`;
   }
 
   return `${pageTitle} | ${APP_TITLE}`;
@@ -299,7 +299,7 @@ export const FAQ_ITEMS: Array<{ question: string; answer: string }> = [
   {
     question: 'What is Ng Brutalism?',
     answer:
-      'Ng Brutalism is a neo-brutalist Angular UI primitive library and composition system published as @ng-brutalism/ui. It gives modern Angular apps directive-first primitives — Surface, Section, Stack, Cluster, Split, Button, Chip, and more — with hard borders, offset shadows, punchy colors, and Tailwind CSS v4 styling ergonomics.',
+      'Ng Brutalism is a neo-brutalist Angular UI primitive library and composition system published as @ng-brutalism/ui. It gives modern Angular apps directive-first primitives - Surface, Section, Stack, Cluster, Split, Button, Chip, and more - with hard borders, offset shadows, punchy colors, and Tailwind CSS v4 styling ergonomics.',
   },
   {
     question: 'Why build it for Angular?',
@@ -320,7 +320,7 @@ export const FAQ_ITEMS: Array<{ question: string; answer: string }> = [
     question:
       'How is it different from Angular Material, PrimeNG, Taiga UI, or Spartan?',
     answer:
-      'Ng Brutalism starts from a narrower design promise: neo-brutalist components that look opinionated on day one. The library leans on CSS tokens and Tailwind utilities rather than a large theme abstraction — you tune borders, shadows, colors, and local component accents close to the markup. Where other libraries focus on unstyled primitives, Ng Brutalism takes a visual-first approach.',
+      'Ng Brutalism starts from a narrower design promise: neo-brutalist components that look opinionated on day one. The library leans on CSS tokens and Tailwind utilities rather than a large theme abstraction - you tune borders, shadows, colors, and local component accents close to the markup. Where other libraries focus on unstyled primitives, Ng Brutalism takes a visual-first approach.',
   },
   {
     question: 'Is it production ready?',

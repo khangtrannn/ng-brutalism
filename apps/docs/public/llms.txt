@@ -9,8 +9,8 @@
 
 ## Pages
 
-- [Ng Brutalism — Neo-Brutalist Angular UI Primitive Library](https://ngbrutalism.khangtran.dev/): Ng Brutalism is a neo-brutalist Angular UI primitive library and composition system for building loud Angular interfaces with Surface, Section, Stack, Cluster, Split, actions, forms, media, and recipes.
-- [Introduction | Ng Brutalism](https://ngbrutalism.khangtran.dev/docs/introduction/): Get started with Ng Brutalism — a neo-brutalist Angular UI primitive library and composition system built with signals, zoneless change detection, and Tailwind v4.
+- [Ng Brutalism - Neo-Brutalist Angular UI Primitive Library](https://ngbrutalism.khangtran.dev/): Ng Brutalism is a neo-brutalist Angular UI primitive library and composition system for building loud Angular interfaces with Surface, Section, Stack, Cluster, Split, actions, forms, media, and recipes.
+- [Introduction | Ng Brutalism](https://ngbrutalism.khangtran.dev/docs/introduction/): Get started with Ng Brutalism - a neo-brutalist Angular UI primitive library and composition system built with signals, zoneless change detection, and Tailwind v4.
 - [Installation | Ng Brutalism](https://ngbrutalism.khangtran.dev/docs/installation/): Install @ng-brutalism/ui in your Angular project. Requires a modern Angular setup, Tailwind v4, and Node 20+.
 - [Inspired Designs | Ng Brutalism](https://ngbrutalism.khangtran.dev/docs/inspired-designs/): Explore the visual references behind Ng Brutalism: loud layouts, chunky borders, bold color, and Angular UI patterns with bite.
 - [FAQ | Ng Brutalism](https://ngbrutalism.khangtran.dev/docs/faq/): Ng Brutalism FAQ for Angular developers. Learn what the neo-brutalist Angular primitive library and composition system is, why it uses Tailwind v4, how it compares, and whether it fits your project.
@@ -20,13 +20,13 @@
 - [Forms Integration | Ng Brutalism](https://ngbrutalism.khangtran.dev/docs/forms/): Use Ng Brutalism controls with Angular Reactive Forms: native-element controls, NbSelect ControlValueAccessor, and NbField label/error linking.
 - [Accessibility | Ng Brutalism](https://ngbrutalism.khangtran.dev/docs/accessibility/): Ng Brutalism accessibility statement: APG patterns per interactive component, the vitest-axe testing policy, and keyboard support.
 - [SSR & Hydration | Ng Brutalism](https://ngbrutalism.khangtran.dev/docs/ssr/): Server-side rendering and hydration in Ng Brutalism: stable id generation, zoneless change detection, and browser-only behavior guards.
-- [Without Tailwind | Ng Brutalism](https://ngbrutalism.khangtran.dev/docs/without-tailwind/): Use Ng Brutalism without installing Tailwind CSS — component styling ships as a static, self-contained CSS file.
+- [Without Tailwind | Ng Brutalism](https://ngbrutalism.khangtran.dev/docs/without-tailwind/): Use Ng Brutalism without installing Tailwind CSS - component styling ships as a static, self-contained CSS file.
 - [Overview | Ng Brutalism](https://ngbrutalism.khangtran.dev/composition/overview/): Learn the Ng Brutalism composition system: Surface, Section, Stack, Cluster, Split, Button, Chip, Text, and Title working together.
 - [Surface & Section | Ng Brutalism](https://ngbrutalism.khangtran.dev/composition/surface-and-section/): Compose Angular card shells and panel regions with nbSurface and nbSection, including headers, bodies, footers, dividers, and clipping.
 - [Stack & Cluster | Ng Brutalism](https://ngbrutalism.khangtran.dev/composition/stack-and-cluster/): Use nbStack and nbCluster to build vertical rhythm, inline groups, responsive chips, action rows, and composed brutalist Angular cards.
 - [Split Layouts | Ng Brutalism](https://ngbrutalism.khangtran.dev/composition/split-layouts/): Build responsive two-column Angular layouts with nbSplit, including hero splits, media/content pairs, ratios, collapse points, and split APIs.
 - [Common Patterns | Ng Brutalism](https://ngbrutalism.khangtran.dev/composition/common-patterns/): Copy-paste Ng Brutalism composition patterns for card shells, toolbars, feature stacks, callout panels, two-column cards, and primitives-used panels.
-- [Neo-Brutalist Angular Button | Ng Brutalism](https://ngbrutalism.khangtran.dev/components/button/): Neo-brutalist Button primitive for Angular. Hard borders, offset shadows, and tone-driven styling — built with directive APIs and signals.
+- [Neo-Brutalist Angular Button | Ng Brutalism](https://ngbrutalism.khangtran.dev/components/button/): Neo-brutalist Button primitive for Angular. Hard borders, offset shadows, and tone-driven styling - built with directive APIs and signals.
 - [Neo-Brutalist Angular Card | Ng Brutalism](https://ngbrutalism.khangtran.dev/components/card/): Neo-brutalist Card component for Angular. Bold content blocks with thick borders and offset shadows.
 - [Neo-Brutalist Angular Dialog | Ng Brutalism](https://ngbrutalism.khangtran.dev/components/dialog/): Neo-brutalist Dialog (modal) component for Angular. Accessible native brutalist modal with keyboard focus management.
 - [Neo-Brutalist Angular Accordion | Ng Brutalism](https://ngbrutalism.khangtran.dev/components/accordion/): Neo-brutalist Accordion component for Angular. Dense disclosure panels with keyboard navigation and signal-driven state.
@@ -66,6 +66,6 @@
 - [Travel Card | Ng Brutalism](https://ngbrutalism.khangtran.dev/recipes/travel-card/): Build a loud travel card recipe from reusable ng-brutalism primitives like Surface, Stack, Cluster, Split, and Media Item.
 - [Podcast Card | Ng Brutalism](https://ngbrutalism.khangtran.dev/recipes/podcast-card/): Podcast Card recipe for Ng Brutalism. Compose neo-brutalist Angular primitives into a bold audio episode card with chips, host metadata, waveform player, and CTA.
 - [Open to Work Card | Ng Brutalism](https://ngbrutalism.khangtran.dev/recipes/open-to-work-card/): Open to Work Card recipe for Ng Brutalism. Compose surface, media frame, chips, icon actions, button, and sticker primitives into a loud profile card for portfolios and hiring pages.
-- [Portfolio Showcase | Ng Brutalism](https://ngbrutalism.khangtran.dev/showcase/portfolio/): Portfolio showcase built with Ng Brutalism — see the neo-brutalist Angular primitive library and composition system in action.
+- [Portfolio Showcase | Ng Brutalism](https://ngbrutalism.khangtran.dev/showcase/portfolio/): Portfolio showcase built with Ng Brutalism - see the neo-brutalist Angular primitive library and composition system in action.
 - [Comparison | Ng Brutalism](https://ngbrutalism.khangtran.dev/docs/comparison/): When Ng Brutalism fits and when it doesn't, compared with Angular Material, PrimeNG, Taiga UI, and headless-first libraries.
 - [Versioning & Roadmap | Ng Brutalism](https://ngbrutalism.khangtran.dev/docs/versioning/): Ng Brutalism versioning: the pre-1.0 API-stability contract and the two conditions required before v1.0.0 ships.

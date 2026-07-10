@@ -113,7 +113,7 @@ import { DocsCodeBlock, DocsExample, DocsSourceTile, DocsStatusBadge, DocsTokens
           <code class="font-mono">formControlName</code>/
           <code class="font-mono">[(ngModel)]</code> binding all come from
           the browser and Angular's built-in
-          <code class="font-mono">DefaultValueAccessor</code> — no custom
+          <code class="font-mono">DefaultValueAccessor</code> - no custom
           ARIA state to keep in sync. Pair it with
           <code class="font-mono">nbLabel</code> (or wrap both in
           <a routerLink="/components/field" class="underline">nb-field</a>) so the

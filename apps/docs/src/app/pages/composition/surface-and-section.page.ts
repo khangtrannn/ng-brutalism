@@ -77,7 +77,7 @@ import { DocsExample } from '@ng-brutalism/docs-ui';
           Basic panel
         </h2>
         <p class="mb-6 text-base font-medium">
-          A surface with a header region and a body region — the minimal card
+          A surface with a header region and a body region - the minimal card
           shell.
         </p>
 
@@ -355,22 +355,22 @@ export default class SurfaceAndSectionPage {
       name: 'tone',
       primitive: 'nbSurface',
       description:
-        'Color theme — cream, yellow, pink, mint, lavender, black, white, etc.',
+        'Color theme - cream, yellow, pink, mint, lavender, black, white, etc.',
     },
     {
       name: 'radius',
       primitive: 'nbSurface',
-      description: 'Corner shape — none, xs, sm, md, lg, xl, full',
+      description: 'Corner shape - none, xs, sm, md, lg, xl, full',
     },
     {
       name: 'shadow',
       primitive: 'nbSurface',
-      description: 'Brutalist offset depth — none, sm, default, hard, heavy',
+      description: 'Brutalist offset depth - none, sm, default, hard, heavy',
     },
     {
       name: 'border',
       primitive: 'nbSurface',
-      description: 'Outline strength — none, thin, default, strong, thick',
+      description: 'Outline strength - none, thin, default, strong, thick',
     },
     {
       name: 'clip',
@@ -380,18 +380,18 @@ export default class SurfaceAndSectionPage {
     {
       name: 'padding',
       primitive: 'nbSection',
-      description: 'Internal space — none, xs, sm, md, lg, xl',
+      description: 'Internal space - none, xs, sm, md, lg, xl',
     },
     {
       name: 'divider',
       primitive: 'nbSection',
       description:
-        'Divider position — top, bottom, left, right, block (top + bottom), inline (left + right), all, none',
+        'Divider position - top, bottom, left, right, block (top + bottom), inline (left + right), all, none',
     },
     {
       name: 'layout',
       primitive: 'nbSection',
-      description: 'Flex layout — default, center, between',
+      description: 'Flex layout - default, center, between',
     },
   ];
 

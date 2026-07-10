@@ -273,7 +273,7 @@ interface AlignDemo {
               tone="cream"
               icon="/icons/baggage.png"
               iconAlt="Baggage"
-              [title]="size.label + ' — Checked Baggage'"
+              [title]="size.label + ' - Checked Baggage'"
               description="Up to 23kg included"
             />
             }
@@ -290,7 +290,7 @@ interface AlignDemo {
             @for (align of alignments; track align.value) {
             <div class="flex flex-col gap-2">
               <span class="text-xs font-black uppercase opacity-60"
-                >{{ align.label }} — {{ align.description }}</span
+                >{{ align.label }} - {{ align.description }}</span
               >
               <nb-media-item
                 variant="boxed"
@@ -313,7 +313,7 @@ interface AlignDemo {
       <section id="accessibility">
         <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">Accessibility</h2>
         <p class="font-medium">
-          <strong>APG pattern:</strong> N/A — Media Item is static,
+          <strong>APG pattern:</strong> N/A - Media Item is static,
           presentational content pairing an icon or image with a title and
           description, not an interactive widget. <strong>Status:</strong> Stable.
         </p>
@@ -453,7 +453,7 @@ interface AlignDemo {
                   'default'
                 </td>
                 <td class="px-4 py-3">
-                  Shared color tone — writes background, foreground, and border
+                  Shared color tone - writes background, foreground, and border
                   color. Background paint applies to
                   <code class="font-mono">boxed</code> and
                   <code class="font-mono">chip</code> variants.
@@ -747,7 +747,7 @@ export default class MediaItemPage {
   tone="cream"
   icon="/icons/baggage.png"
   iconAlt="Baggage"
-  title="SM — Checked Baggage"
+  title="SM - Checked Baggage"
   description="Up to 23kg included"
 />
 
@@ -757,7 +757,7 @@ export default class MediaItemPage {
   tone="cream"
   icon="/icons/baggage.png"
   iconAlt="Baggage"
-  title="MD — Checked Baggage"
+  title="MD - Checked Baggage"
   description="Up to 23kg included"
 />
 
@@ -767,7 +767,7 @@ export default class MediaItemPage {
   tone="cream"
   icon="/icons/baggage.png"
   iconAlt="Baggage"
-  title="LG — Checked Baggage"
+  title="LG - Checked Baggage"
   description="Up to 23kg included"
 />`;
 
@@ -808,7 +808,7 @@ export default class MediaItemPage {
     {
       value: 'plain',
       label: 'Plain',
-      description: 'No container — just gap, icon size, and typography',
+      description: 'No container - just gap, icon size, and typography',
     },
     {
       value: 'boxed',
@@ -818,7 +818,7 @@ export default class MediaItemPage {
     {
       value: 'chip',
       label: 'Chip',
-      description: 'Fully-rounded pill — great for status or tags',
+      description: 'Fully-rounded pill - great for status or tags',
     },
   ] satisfies readonly VariantDemo[];
 

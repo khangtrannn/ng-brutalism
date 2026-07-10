@@ -72,7 +72,7 @@ interface TextLeadingDemo {
           <h1>Text</h1>
           <p class="mt-3 max-w-3xl text-base font-medium sm:text-lg">
             <code class="font-mono">nbText</code> is an attribute directive for
-            general-purpose typography — body copy, labels, brand names,
+            general-purpose typography - body copy, labels, brand names,
             metadata, and captions. It composes cleanly with semantic HTML
             elements and other primitives without creating a wrapper element.
           </p>
@@ -138,7 +138,7 @@ interface TextLeadingDemo {
               <div class="flex items-baseline gap-4">
                 <span class="w-10 font-mono text-xs font-bold text-right opacity-50 shrink-0">{{ s.value }}</span>
                 <span nbText [size]="s.value" weight="medium">
-                  The quick brown fox — {{ s.px }}
+                  The quick brown fox - {{ s.px }}
                 </span>
               </div>
             }
@@ -192,7 +192,7 @@ interface TextLeadingDemo {
               <div class="flex items-baseline gap-4">
                 <span class="w-24 font-mono text-xs font-bold text-right opacity-50 shrink-0">{{ t.value }}</span>
                 <span nbText size="md" weight="bold" [transform]="t.value">
-                  Flight Included — Tokyo City Escape
+                  Flight Included - Tokyo City Escape
                 </span>
               </div>
             }
@@ -236,7 +236,7 @@ interface TextLeadingDemo {
             @for (m of measures; track m.value) {
               <div nbStack gap="xs">
                 <span class="font-mono text-xs font-bold opacity-50">
-                  measure="{{ m.value }}" — {{ m.rem }}
+                  measure="{{ m.value }}" - {{ m.rem }}
                 </span>
                 <p nbText tone="muted" [measure]="m.value">
                   A token-driven neo-brutalist Angular UI library for expressive
@@ -262,7 +262,7 @@ interface TextLeadingDemo {
             @for (l of leadings; track l.value) {
               <div nbStack gap="xs">
                 <span class="font-mono text-xs font-bold opacity-50">
-                  leading="{{ l.value }}" — {{ l.numeric }}
+                  leading="{{ l.value }}" - {{ l.numeric }}
                 </span>
                 <p nbText size="md" measure="sm" [leading]="l.value">
                   Brutalist interfaces work best when layout, typography, and
@@ -278,7 +278,7 @@ interface TextLeadingDemo {
         <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">Underline</h2>
         <p class="mb-4 font-medium">
           <code class="font-mono">underline="bar"</code> adds a built-in accent
-          bar beneath the text — handy for brand names and section labels with no
+          bar beneath the text - handy for brand names and section labels with no
           extra markup. Use <code class="font-mono">"wave"</code> for the squiggly
           variant. Recolor and resize it with the
           <code class="font-mono">--nb-underline-color</code>,
@@ -362,7 +362,7 @@ interface TextLeadingDemo {
       <section id="accessibility">
         <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">Accessibility</h2>
         <p class="font-medium">
-          <strong>APG pattern:</strong> N/A — Text is a typography directive for static body and label copy, not an interactive widget. <strong>Status:</strong> Stable.
+          <strong>APG pattern:</strong> N/A - Text is a typography directive for static body and label copy, not an interactive widget. <strong>Status:</strong> Stable.
         </p>
       </section>
 
@@ -477,11 +477,11 @@ export default class TextPage {
   New release
 </span>`;
 
-  protected readonly sizesCode = `<span nbText size="xs">The quick brown fox — 0.75rem</span>
-<span nbText size="sm">The quick brown fox — 0.875rem</span>
-<span nbText size="md">The quick brown fox — 1rem</span>
-<span nbText size="lg">The quick brown fox — 1.125rem</span>
-<span nbText size="xl">The quick brown fox — 1.25rem</span>`;
+  protected readonly sizesCode = `<span nbText size="xs">The quick brown fox - 0.75rem</span>
+<span nbText size="sm">The quick brown fox - 0.875rem</span>
+<span nbText size="md">The quick brown fox - 1rem</span>
+<span nbText size="lg">The quick brown fox - 1.125rem</span>
+<span nbText size="xl">The quick brown fox - 1.25rem</span>`;
 
   protected readonly weightsCode = `<span nbText size="lg" weight="normal">Build loud. Stay sharp.</span>
 <span nbText size="lg" weight="medium">Build loud. Stay sharp.</span>
@@ -501,10 +501,10 @@ export default class TextPage {
 <span nbText tone="success">Neo-Brutalism is intentional.</span>
 <span nbText tone="warning">Neo-Brutalism is intentional.</span>`;
 
-  protected readonly transformCode = `<span nbText weight="bold" transform="none">Flight Included — Tokyo City Escape</span>
-<span nbText weight="bold" transform="uppercase">Flight Included — Tokyo City Escape</span>
-<span nbText weight="bold" transform="lowercase">Flight Included — Tokyo City Escape</span>
-<span nbText weight="bold" transform="capitalize">Flight Included — Tokyo City Escape</span>`;
+  protected readonly transformCode = `<span nbText weight="bold" transform="none">Flight Included - Tokyo City Escape</span>
+<span nbText weight="bold" transform="uppercase">Flight Included - Tokyo City Escape</span>
+<span nbText weight="bold" transform="lowercase">Flight Included - Tokyo City Escape</span>
+<span nbText weight="bold" transform="capitalize">Flight Included - Tokyo City Escape</span>`;
 
   protected readonly trackingCode = `<span nbText weight="black" transform="uppercase" tracking="tight">New release</span>
 <span nbText weight="black" transform="uppercase" tracking="normal">New release</span>

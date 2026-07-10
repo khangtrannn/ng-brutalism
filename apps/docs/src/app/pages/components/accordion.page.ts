@@ -247,7 +247,7 @@ import { DocsCodeBlock, DocsExample, DocsSourceTile, DocsStatusBadge, DocsTokens
 
         <p class="font-medium">
           Triggers use real <code class="font-mono">disabled</code> buttons,
-          not <code class="font-mono">aria-disabled</code> — a genuinely
+          not <code class="font-mono">aria-disabled</code> - a genuinely
           disabled button can't receive focus, so header navigation skips
           disabled items entirely rather than landing on an inert stop.
           Closed content is bound with <code class="font-mono">[inert]</code>

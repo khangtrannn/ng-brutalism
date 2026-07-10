@@ -21,8 +21,8 @@ import { DocsCodeBlock, DocsExample, DocsSourceTile, DocsStatusBadge, DocsTokens
           <h1>Display</h1>
           <p class="mt-3 max-w-3xl text-base font-medium sm:text-lg">
             A directive for mega-sized display text. Apply it to
-            <strong>any element</strong> — a heading, a
-            <code class="font-mono">span</code>, a stat — to get ultra-bold,
+            <strong>any element</strong> - a heading, a
+            <code class="font-mono">span</code>, a stat - to get ultra-bold,
             tight-leading display typography. It's purely presentational, so
             keep your semantics correct and let the directive handle the look.
           </p>
@@ -74,7 +74,7 @@ import { DocsCodeBlock, DocsExample, DocsSourceTile, DocsStatusBadge, DocsTokens
               <p
                 class="mb-1 font-mono text-xs font-bold uppercase text-(--nb-border)"
               >
-                size="sm" — 2rem
+                size="sm" - 2rem
               </p>
               <h2 nbDisplay size="sm" class="uppercase">PRO PLAN</h2>
             </div>
@@ -82,7 +82,7 @@ import { DocsCodeBlock, DocsExample, DocsSourceTile, DocsStatusBadge, DocsTokens
               <p
                 class="mb-1 font-mono text-xs font-bold uppercase text-(--nb-border)"
               >
-                size="md" — 3rem
+                size="md" - 3rem
               </p>
               <h2 nbDisplay size="md" class="uppercase">INDIE CUP</h2>
             </div>
@@ -90,7 +90,7 @@ import { DocsCodeBlock, DocsExample, DocsSourceTile, DocsStatusBadge, DocsTokens
               <p
                 class="mb-1 font-mono text-xs font-bold uppercase text-(--nb-border)"
               >
-                size="lg" — 3.75rem
+                size="lg" - 3.75rem
               </p>
               <h2 nbDisplay size="lg" class="uppercase">NORA CHEN</h2>
             </div>
@@ -98,7 +98,7 @@ import { DocsCodeBlock, DocsExample, DocsSourceTile, DocsStatusBadge, DocsTokens
               <p
                 class="mb-1 font-mono text-xs font-bold uppercase text-(--nb-border)"
               >
-                size="xl" — 5rem
+                size="xl" - 5rem
               </p>
               <h2 nbDisplay size="xl" class="uppercase">GO</h2>
             </div>
@@ -126,7 +126,7 @@ import { DocsCodeBlock, DocsExample, DocsSourceTile, DocsStatusBadge, DocsTokens
           Any Element
         </h2>
         <p class="mb-4 font-medium">
-          <code class="font-mono">nbDisplay</code> is presentational — apply it
+          <code class="font-mono">nbDisplay</code> is presentational - apply it
           to a <code class="font-mono">span</code>,
           <code class="font-mono">div</code>, or anything else when display type
           isn't a heading (stats, prices, badges). Pick the element for its
@@ -146,7 +146,7 @@ import { DocsCodeBlock, DocsExample, DocsSourceTile, DocsStatusBadge, DocsTokens
         </h2>
         <p class="mb-4 font-medium">
           <code class="font-mono">underline="bar"</code> draws a built-in accent
-          bar beneath the text — no extra markup. Use
+          bar beneath the text - no extra markup. Use
           <code class="font-mono">"wave"</code> for the squiggly variant. The
           bar is decorative (rendered as a pseudo-element, kept out of the
           accessibility tree). Tune it with the
@@ -178,7 +178,7 @@ import { DocsCodeBlock, DocsExample, DocsSourceTile, DocsStatusBadge, DocsTokens
       <section id="accessibility">
         <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">Accessibility</h2>
         <p class="font-medium">
-          <strong>APG pattern:</strong> N/A — Display is a static, presentational typography directive for oversized text, not an interactive widget. <strong>Status:</strong> Stable.
+          <strong>APG pattern:</strong> N/A - Display is a static, presentational typography directive for oversized text, not an interactive widget. <strong>Status:</strong> Stable.
         </p>
       </section>
 

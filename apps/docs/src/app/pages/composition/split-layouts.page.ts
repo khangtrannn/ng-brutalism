@@ -34,7 +34,7 @@ import { DocsCodeBlock, DocsExample } from '@ng-brutalism/docs-ui';
         <p class="eyebrow">Composition</p>
         <h1>Split Layouts</h1>
         <p class="mt-3 max-w-3xl text-base font-medium sm:text-lg">
-          <code class="font-mono">nbSplit</code> creates two-region layouts —
+          <code class="font-mono">nbSplit</code> creates two-region layouts -
           hero sections, media/content pairs, sidebar layouts, pricing sections,
           and profile cards. It replaces repeated grid boilerplate with a
           single, responsive primitive.
@@ -59,7 +59,7 @@ import { DocsCodeBlock, DocsExample } from '@ng-brutalism/docs-ui';
           Hero split
         </h2>
         <p class="mb-6 text-base font-medium">
-          A wide main area paired with a narrower aside — a typical hero
+          A wide main area paired with a narrower aside - a typical hero
           layout. The aside stacks below on small screens when
           <code class="font-mono">collapse="md"</code>.
         </p>
@@ -99,7 +99,7 @@ import { DocsCodeBlock, DocsExample } from '@ng-brutalism/docs-ui';
           Media / content split
         </h2>
         <p class="mb-6 text-base font-medium">
-          Equal columns — a media placeholder on the left and rich content
+          Equal columns - a media placeholder on the left and rich content
           on the right. Classic recipe card or feature block pattern.
         </p>
 
@@ -173,7 +173,7 @@ import { DocsCodeBlock, DocsExample } from '@ng-brutalism/docs-ui';
 export default class SplitLayoutsPage {
   protected readonly whenToUse = [
     'Hero layout with a wide main area and a narrower sidebar or aside',
-    'Media/content pairs — image on one side, description on the other',
+    'Media/content pairs - image on one side, description on the other',
     'Pricing sections with features on the left and a highlighted card on the right',
     'Profile cards with an avatar panel and identity/details panel',
     'Any layout where two sibling regions need proportional width',
@@ -182,27 +182,27 @@ export default class SplitLayoutsPage {
   protected readonly keyInputs = [
     {
       name: 'ratio',
-      description: 'Column proportions — 1:1, 2:1, 3:1, 1:2, 1:3, fill:auto, auto:fill',
+      description: 'Column proportions - 1:1, 2:1, 3:1, 1:2, 1:3, fill:auto, auto:fill',
     },
     {
       name: 'collapse',
-      description: 'Breakpoint where columns stack — none, sm, md, lg',
+      description: 'Breakpoint where columns stack - none, sm, md, lg',
     },
     {
       name: 'gap',
-      description: 'Space between the two columns — xs, sm, md, lg, xl',
+      description: 'Space between the two columns - xs, sm, md, lg, xl',
     },
     {
       name: 'align',
-      description: 'Cross-axis alignment — start, center, end, stretch',
+      description: 'Cross-axis alignment - start, center, end, stretch',
     },
     {
       name: 'separator',
-      description: 'Vertical divider — none, solid, dashed, thick',
+      description: 'Vertical divider - none, solid, dashed, thick',
     },
     {
       name: 'padding',
-      description: 'Inner padding on the split container — xs, sm, md, lg, xl',
+      description: 'Inner padding on the split container - xs, sm, md, lg, xl',
     },
   ];
 

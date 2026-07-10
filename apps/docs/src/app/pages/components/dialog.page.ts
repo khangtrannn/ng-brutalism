@@ -20,7 +20,7 @@ import { ContactUsDialog } from './examples/contact-us-dialog';
           <p>Neo-Brutalist Angular Dialog</p>
           <h1>Dialog</h1>
           <p class="mt-3 max-w-3xl text-base font-medium sm:text-lg">
-            The neo-brutalist Angular Dialog component — a brutalist modal
+            The neo-brutalist Angular Dialog component - a brutalist modal
             built on the native
             <code class="font-mono">&lt;dialog&gt;</code> element. Compound API
             with SSR-safe open/close. Click the backdrop to dismiss.
@@ -73,7 +73,7 @@ import { ContactUsDialog } from './examples/contact-us-dialog';
           focusable element inside the dialog. Add
           <code class="font-mono">autofocus</code> to whichever control should
           receive focus first (usually the primary action or the first form
-          field) — <code class="font-mono">NbDialog</code> does not manage a
+          field) - <code class="font-mono">NbDialog</code> does not manage a
           focus trap beyond what the native element already provides.
         </p>
       </section>
@@ -108,7 +108,7 @@ import { ContactUsDialog } from './examples/contact-us-dialog';
           <code class="font-mono">[nbDialogClose]</code>).
         </p>
         <p class="font-medium">
-          Initial focus follows native behavior — the browser focuses the
+          Initial focus follows native behavior - the browser focuses the
           first <code class="font-mono">[autofocus]</code> or focusable
           element inside, so make sure at least one exists. Verified with
           <code class="font-mono">vitest-axe</code> against a fixture with

@@ -22,7 +22,7 @@ import { DocsCodeBlock, DocsExample, DocsSourceTile, DocsStatusBadge, DocsTokens
           <p class="mt-3 max-w-3xl text-base font-medium sm:text-lg">
             A directive on <code class="font-mono">&lt;hr&gt;</code> for visual
             section dividers. Supports horizontal and vertical orientations with
-            solid, dashed, and thick variants — a structural staple in every
+            solid, dashed, and thick variants - a structural staple in every
             brutalist card layout.
           </p>
         </div>
@@ -123,7 +123,7 @@ import { DocsCodeBlock, DocsExample, DocsSourceTile, DocsStatusBadge, DocsTokens
       <section id="accessibility">
         <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">Accessibility</h2>
         <p class="font-medium">
-          <strong>APG pattern:</strong> N/A — Separator is static, presentational content that draws a dividing line, not an interactive widget. <strong>Status:</strong> Stable.
+          <strong>APG pattern:</strong> N/A - Separator is static, presentational content that draws a dividing line, not an interactive widget. <strong>Status:</strong> Stable.
         </p>
       </section>
 

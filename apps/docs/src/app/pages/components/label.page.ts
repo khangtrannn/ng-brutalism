@@ -96,7 +96,7 @@ import { DocsCodeBlock, DocsExample, DocsSourceTile, DocsStatusBadge, DocsTokens
       <section id="accessibility">
         <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">Accessibility</h2>
         <p class="font-medium">
-          <strong>APG pattern:</strong> N/A — Label is a structural text marker
+          <strong>APG pattern:</strong> N/A - Label is a structural text marker
           that associates descriptive text with a form control, not an
           interactive widget. <strong>Status:</strong> Stable.
         </p>

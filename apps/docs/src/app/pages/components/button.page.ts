@@ -233,7 +233,7 @@ import { DocsCodeBlock, DocsExample, DocsSourceTile, DocsStatusBadge, DocsTokens
           <code class="font-mono">disabled</code> attribute all come from
           native HTML semantics rather than ARIA reimplementation. When used
           as an anchor, give it an accessible name the same way you would
-          any link — visible text or <code class="font-mono">aria-label</code>.
+          any link - visible text or <code class="font-mono">aria-label</code>.
         </p>
       </section>
 

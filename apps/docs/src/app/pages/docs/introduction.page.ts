@@ -252,7 +252,7 @@ import { DocsCodeBlock } from '@ng-brutalism/docs-ui';
         <p class="mb-5 text-base font-medium">
           v0.2.0 introduces a stronger composition system for building loud,
           token-driven, Angular-first brutalist UIs. Small primitives that lock
-          together like LEGO — each primitive owns one job.
+          together like LEGO - each primitive owns one job.
         </p>
         <p class="mb-5 text-base font-medium">
           <code class="font-mono">nbSurface</code> creates the panel.

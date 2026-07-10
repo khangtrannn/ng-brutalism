@@ -18,7 +18,7 @@ import { PodcastCard } from './podcast-card';
             A loud podcast episode card composing surface, display, chip, media
             item, icon, and button primitives into a reusable audio-content
             layout. Demonstrates that the same primitive building blocks compose
-            across media types — travel, jobs, and now audio.
+            across media types - travel, jobs, and now audio.
           </p>
         </div>
 
@@ -83,7 +83,7 @@ import { PodcastCard } from './podcast-card';
             ></span>
             <a class="underline" [routerLink]="item.path">{{ item.name }}</a>
             <span class="text-sm font-normal opacity-80"
-              >— {{ item.role }}</span
+              >- {{ item.role }}</span
             >
           </li>
           }
@@ -203,7 +203,7 @@ export default class PodcastCardRecipePage {
     {
       primitive: 'nbSurface',
       description:
-        'Outer card shell and inner audio player panel — cream tone, hard shadow, clip.',
+        'Outer card shell and inner audio player panel - cream tone, hard shadow, clip.',
     },
     {
       primitive: 'nbSection',

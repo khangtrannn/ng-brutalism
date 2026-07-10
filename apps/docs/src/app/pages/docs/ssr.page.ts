@@ -35,13 +35,13 @@ import { DocsCodeBlock } from '@ng-brutalism/docs-ui';
         <docs-code-block title="core/id-generator.ts" [code]="idGeneratorCode" />
         <p class="mt-4 font-medium">
           A module-level counter is shared across every request a Node
-          process serves — under SSR, that means id
+          process serves - under SSR, that means id
           <code class="font-mono">#47</code> on the server can become id
           <code class="font-mono">#3</code> on a fresh client bootstrap,
           producing a hydration mismatch on any component that
           reads/writes an id-derived attribute. An injectable counter is
           scoped per Angular injector, so a new SSR render and a new client
-          bootstrap each start from zero independently — server and client
+          bootstrap each start from zero independently - server and client
           markup always agree.
         </p>
       </section>
@@ -64,18 +64,18 @@ import { DocsCodeBlock } from '@ng-brutalism/docs-ui';
           Browser-only behavior
         </h2>
         <p class="mb-4 font-medium">
-          Where a feature genuinely has no server-side equivalent — the
+          Where a feature genuinely has no server-side equivalent - the
           native <code class="font-mono">&lt;dialog&gt;</code> element's
           <code class="font-mono">showModal()</code>, the select popup's
           Popover-API positioning, clipboard access in code-block copy
-          buttons — the browser-dependent call is guarded behind Angular's
+          buttons - the browser-dependent call is guarded behind Angular's
           platform checks (<code class="font-mono">isPlatformBrowser</code>)
           rather than assumed to exist.
         </p>
         <div nbCallout tone="mint" size="sm">
           <p class="normal-case">
             If you hit a hydration mismatch that isn't covered here, it's a
-            bug — please open an issue with a minimal repro.
+            bug - please open an issue with a minimal repro.
           </p>
         </div>
       </section>

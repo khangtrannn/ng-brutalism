@@ -14,8 +14,8 @@ import { DocsCodeBlock } from '@ng-brutalism/docs-ui';
           <h1>Dark Mode &amp; Theming</h1>
           <p class="mt-3 max-w-3xl text-base font-medium sm:text-lg">
             Every visual token flows through <code class="font-mono">--nb-*</code>
-            CSS variables, so a full rebrand — including the entire 16-tone
-            palette — is a stylesheet swap, not a component edit.
+            CSS variables, so a full rebrand - including the entire 16-tone
+            palette - is a stylesheet swap, not a component edit.
           </p>
         </div>
       </header>
@@ -37,7 +37,7 @@ import { DocsCodeBlock } from '@ng-brutalism/docs-ui';
           <div class="border-3 border-(--nb-border) bg-nb-surface p-5 shadow-[5px_5px_0_0_var(--nb-shadow)]">
             <h3 class="font-heading text-lg font-black uppercase">theme-mono.css</h3>
             <p class="mt-2 text-sm font-medium">
-              Ink-only rebrand — every accent and tone collapses to a
+              Ink-only rebrand - every accent and tone collapses to a
               grayscale ramp, no hue anywhere. Proves the token contract
               doesn't assume color.
             </p>
@@ -45,7 +45,7 @@ import { DocsCodeBlock } from '@ng-brutalism/docs-ui';
           <div class="border-3 border-(--nb-border) bg-nb-surface p-5 shadow-[5px_5px_0_0_var(--nb-shadow)]">
             <h3 class="font-heading text-lg font-black uppercase">theme-soft.css</h3>
             <p class="mt-2 text-sm font-medium">
-              Softened palette — muted pastels and a warmer neutral base,
+              Softened palette - muted pastels and a warmer neutral base,
               same brutalist borders and shadows underneath.
             </p>
           </div>
@@ -59,7 +59,7 @@ import { DocsCodeBlock } from '@ng-brutalism/docs-ui';
         <p class="mb-4 font-medium">
           A preset is nothing more than a <code class="font-mono">:root</code>
           block redefining the base palette and semantic colors from
-          <code class="font-mono">theme.css</code> — the same mechanism
+          <code class="font-mono">theme.css</code> - the same mechanism
           covered in
           <code class="font-mono">--nb-*</code> variables described in the
           <a href="/docs/customization" class="underline">Customization</a>
@@ -77,14 +77,14 @@ import { DocsCodeBlock } from '@ng-brutalism/docs-ui';
           <p class="normal-case">
             <strong>Not shipped yet.</strong> An earlier partial
             <code class="font-mono">.dark</code> stub covering 6 variables was
-            removed rather than left half-finished — a token model that only
+            removed rather than left half-finished - a token model that only
             re-derives a handful of variables produces a visibly broken dark
             mode, which is worse than no dark mode at all.
           </p>
         </div>
         <p class="mt-4 font-medium">
-          A designed dark theme — every tone re-derived, not just the base
-          palette — is tracked as future work once the full token surface
+          A designed dark theme - every tone re-derived, not just the base
+          palette - is tracked as future work once the full token surface
           (now complete) makes it a straightforward derivation rather than a
           guess. Until then, use <code class="font-mono">theme-mono.css</code>
           or a custom preset if you need a darker default.

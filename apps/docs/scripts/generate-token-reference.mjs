@@ -144,7 +144,7 @@ const SUFFIX_PSEUDO_PROPERTY = [
 // interactive archetypes must expose the color-surface hook set so a consumer
 // can retheme them from CSS without an ergonomic input. Anatomy hooks (size
 // presets, min-height, padding) are deliberately Tier 2 and NOT part of this
-// contract — which is why button height / status-dot width stay hardcoded.
+// contract - which is why button height / status-dot width stay hardcoded.
 // Documented partials (checkbox, input-group) list only the hooks they
 // intentionally expose; keep this map and the §4 table in sync.
 const SURFACE_HOOKS = [
@@ -171,7 +171,7 @@ const HOOK_CONTRACT = {
   chip: contractHooks('chip', SURFACE_HOOKS),
   // accordion exposes the surface set on its item sub-part, not the root.
   accordion: contractHooks('accordion-item', SURFACE_HOOKS),
-  // Documented partials — see design-props.md §4:
+  // Documented partials - see design-props.md §4:
   //   checkbox: a small control; border/shadow would be a focus ring, not
   //             elevation, so only bg/fg/radius are public hooks.
   //   input-group: a wrapper; shadow/border-width stay CSS-only, border is a
@@ -335,7 +335,7 @@ function collectComponentTokens(slug, cssFiles) {
     const usage = usageMap.get(name);
     const declared = declMap.get(name);
     const property = usage?.property ?? pseudoPropertyFor(name);
-    const defaultValue = collapseToneVars(declared ?? usage?.fallback ?? '—');
+    const defaultValue = collapseToneVars(declared ?? usage?.fallback ?? '-');
     return {
       name,
       defaultValue,
@@ -506,7 +506,7 @@ function lowerFirst(text) {
 function renderOutput(slugs, componentTokens, sharedTokens) {
   const lines = [];
   lines.push(
-    '// GENERATED FILE — do not hand-edit.',
+    '// GENERATED FILE - do not hand-edit.',
     '// Source: apps/docs/scripts/generate-token-reference.mjs',
     '// Regenerate with `pnpm docs:tokens:update` after changing component CSS.',
     ''

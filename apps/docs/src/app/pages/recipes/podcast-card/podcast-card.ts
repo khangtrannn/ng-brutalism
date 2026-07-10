@@ -189,7 +189,7 @@ import {
 
                   <img
                     src="/podcast-card/timeline.png"
-                    alt="Episode player — playing at 22:15 of 45:00"
+                    alt="Episode player - playing at 22:15 of 45:00"
                     class="w-full"
                   />
                 </div>

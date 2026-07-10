@@ -184,7 +184,7 @@ interface CalloutShadowDemo {
       <section id="accessibility">
         <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">Accessibility</h2>
         <p class="font-medium">
-          <strong>APG pattern:</strong> N/A — Callout is a static, presentational directive for emphasizing a compact value, not an interactive widget. <strong>Status:</strong> Stable.
+          <strong>APG pattern:</strong> N/A - Callout is a static, presentational directive for emphasizing a compact value, not an interactive widget. <strong>Status:</strong> Stable.
         </p>
       </section>
 
@@ -230,7 +230,7 @@ interface CalloutShadowDemo {
               <tr>
                 <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">radius</td>
                 <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">'none' | 'sm' | 'md' | 'lg' | 'xl' | 'full'</td>
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">—</td>
+                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">-</td>
                 <td class="px-4 py-3">Corner radius override. Defaults to the <code class="font-mono">size</code>-derived radius when unset.</td>
               </tr>
             </tbody>

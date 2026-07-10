@@ -17,7 +17,7 @@ import { TravelCard } from './travel-card';
           <p class="mt-3 max-w-3xl text-base font-medium sm:text-lg">
             A bold travel-package card composing the library's media, sticker,
             chip, and display primitives into a single brutalist promo. Hero
-            banner, trip highlights, price, and a call to action — responsive
+            banner, trip highlights, price, and a call to action - responsive
             down to mobile.
           </p>
         </div>
@@ -83,7 +83,7 @@ import { TravelCard } from './travel-card';
             ></span>
             <a class="underline" [routerLink]="item.path">{{ item.name }}</a>
             <span class="text-sm font-normal opacity-80"
-              >— {{ item.role }}</span
+              >- {{ item.role }}</span
             >
           </li>
           }
@@ -240,7 +240,7 @@ export default class TravelCardRecipePage {
     {
       primitive: 'nbSurface',
       description:
-        'Outer card shell — owns tone, radius, shadow, border, and clip.',
+        'Outer card shell - owns tone, radius, shadow, border, and clip.',
     },
     {
       primitive: 'nbMediaFrame',
@@ -266,11 +266,11 @@ export default class TravelCardRecipePage {
     },
     {
       primitive: 'nbSection',
-      description: 'Feature strip at the bottom — padded with a top divider.',
+      description: 'Feature strip at the bottom - padded with a top divider.',
     },
     {
       primitive: 'nbCallout',
-      description: 'Price highlight — large, loud, and offset-shadowed.',
+      description: 'Price highlight - large, loud, and offset-shadowed.',
     },
     {
       primitive: 'nbChip',

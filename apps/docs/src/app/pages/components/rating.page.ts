@@ -96,7 +96,7 @@ import { DocsCodeBlock, DocsExample, DocsSourceTile, DocsStatusBadge, DocsTokens
       <section id="accessibility">
         <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">Accessibility</h2>
         <p class="font-medium">
-          <strong>APG pattern:</strong> N/A — Rating is a static, presentational
+          <strong>APG pattern:</strong> N/A - Rating is a static, presentational
           display that visualizes a star rating value, not an interactive
           widget. <strong>Status:</strong> Stable.
         </p>
@@ -121,7 +121,7 @@ import { DocsCodeBlock, DocsExample, DocsSourceTile, DocsStatusBadge, DocsTokens
                 <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">value</td>
                 <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">number</td>
                 <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">0</td>
-                <td class="px-4 py-3">Rating value. Decimal — rounds to nearest whole star.</td>
+                <td class="px-4 py-3">Rating value. Decimal - rounds to nearest whole star.</td>
               </tr>
               <tr class="border-b-2 border-(--nb-border)">
                 <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">max</td>

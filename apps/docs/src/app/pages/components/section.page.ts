@@ -65,7 +65,7 @@ interface SectionLayoutDemo {
           <h1>Section</h1>
           <p class="mt-3 max-w-3xl text-base font-medium sm:text-lg">
             Use <code class="font-mono">nbSection</code> for the internal
-            regions of a card — headers, body blocks, and footers. It replaces
+            regions of a card - headers, body blocks, and footers. It replaces
             ad-hoc <code class="font-mono">border-t-2 px-6 py-6</code> wrappers
             with a small declarative primitive for padding, border side, and
             inline layout.
@@ -269,7 +269,7 @@ interface SectionLayoutDemo {
           <code class="font-mono">layout="default"</code> keeps block flow.
           <code class="font-mono">layout="center"</code> and
           <code class="font-mono">layout="between"</code> switch to flex with
-          sensible justify defaults — pair with
+          sensible justify defaults - pair with
           <code class="font-mono">align</code> for cross-axis control.
         </p>
         <docs-example [code]="layoutsExampleCode">
@@ -352,7 +352,7 @@ interface SectionLayoutDemo {
               <div nbStack gap="md">
                 <p class="max-w-lg font-medium">
                   Three weeks of guided sessions, live critiques, and a final
-                  brutalist showcase. Bring your most ambitious card layout —
+                  brutalist showcase. Bring your most ambitious card layout -
                   we'll ship it together.
                 </p>
                 <div nbCluster gap="sm">
@@ -381,7 +381,7 @@ interface SectionLayoutDemo {
       <section id="accessibility">
         <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">Accessibility</h2>
         <p class="font-medium">
-          <strong>APG pattern:</strong> N/A — Section is a structural,
+          <strong>APG pattern:</strong> N/A - Section is a structural,
           presentational primitive for laying out the regions within a card,
           not an interactive widget. <strong>Status:</strong> Stable.
         </p>

@@ -144,10 +144,10 @@ interface IconToneDemo {
         <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">Modes</h2>
         <p class="mb-4 font-medium">
           <code class="font-mono">mode="mask"</code> (default) applies the SVG
-          as a CSS mask and paints it with the active tone color — ideal for
+          as a CSS mask and paints it with the active tone color - ideal for
           monochrome SVG icons that should follow the theme.
           <code class="font-mono">mode="image"</code> renders the asset as a
-          background image and preserves its original colors — use this for
+          background image and preserves its original colors - use this for
           colorful illustrations or PNGs.
         </p>
         <docs-example [code]="modesCode">
@@ -170,18 +170,18 @@ interface IconToneDemo {
         <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">Accessibility</h2>
         <p class="mb-4 font-medium">
           Icons must be explicitly marked as decorative or meaningful. There is
-          no silent default — always provide either
+          no silent default - always provide either
           <code class="font-mono">decorative</code> or
           <code class="font-mono">label</code>. Avoid rendering a bare visual
           icon with neither.
         </p>
         <div nbStack gap="md" class="mb-6">
           <div nbCallout tone="mint" size="sm">
-            <strong>Decorative icon</strong> — adds no meaning; hidden from screen readers.
+            <strong>Decorative icon</strong> - adds no meaning; hidden from screen readers.
             Use <code class="font-mono">decorative</code>.
           </div>
           <div nbCallout tone="yellow" size="sm">
-            <strong>Meaningful icon</strong> — communicates information; needs a label.
+            <strong>Meaningful icon</strong> - communicates information; needs a label.
             Use <code class="font-mono">label="..."</code>.
           </div>
         </div>

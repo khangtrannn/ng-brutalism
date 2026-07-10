@@ -219,7 +219,7 @@ import {
             class="underline"
             >Listbox</a
           >
-          · <strong>Status:</strong> Preview — the popup positions itself via
+          · <strong>Status:</strong> Preview - the popup positions itself via
           the native Popover API rather than a CDK-style overlay, confirmed
           in a real browser to escape an <code class="font-mono">overflow:hidden</code>
           ancestor with zero console errors, but the strategy hasn't logged
@@ -251,7 +251,7 @@ import {
               </tr>
               <tr class="border-b-2 border-(--nb-border)">
                 <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">A–Z</td>
-                <td class="px-4 py-3">Typeahead — jump to the next option starting with that letter</td>
+                <td class="px-4 py-3">Typeahead - jump to the next option starting with that letter</td>
               </tr>
               <tr class="border-b-2 border-(--nb-border)">
                 <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">Tab</td>
@@ -267,14 +267,14 @@ import {
 
         <p class="font-medium">
           Disabled options use <code class="font-mono">aria-disabled</code>
-          rather than removing them from the tab sequence — they stay
+          rather than removing them from the tab sequence - they stay
           reachable by arrow/Home/End/typeahead per APG, just not
           selectable. Bound to an Angular <code class="font-mono">NgControl</code>,
           <code class="font-mono">aria-invalid</code> and
           <code class="font-mono">aria-required</code> reflect the control's
           validation state automatically. Verified with
           <code class="font-mono">vitest-axe</code> in both closed and
-          open/invalid states — see <code class="font-mono">select.spec.ts</code>
+          open/invalid states - see <code class="font-mono">select.spec.ts</code>
           and <code class="font-mono">select-keyboard.spec.ts</code>.
         </p>
       </section>

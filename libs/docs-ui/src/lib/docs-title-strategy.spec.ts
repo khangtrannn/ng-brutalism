@@ -6,7 +6,7 @@ describe('docs SEO metadata', () => {
     expect(getDocsPageSeo('/components/button?utm_source=test')).toEqual({
       title: 'Neo-Brutalist Angular Button | Ng Brutalism',
       description:
-        'Neo-brutalist Button primitive for Angular. Hard borders, offset shadows, and tone-driven styling — built with directive APIs and signals.',
+        'Neo-brutalist Button primitive for Angular. Hard borders, offset shadows, and tone-driven styling - built with directive APIs and signals.',
       canonicalUrl: 'https://ngbrutalism.khangtran.dev/components/button/',
       path: '/components/button',
       robots: 'index, follow',
@@ -43,7 +43,7 @@ describe('docs SEO metadata', () => {
   it('uses website metadata for the dedicated home page', () => {
     // Assert
     expect(getDocsPageSeo('/')).toMatchObject({
-      title: 'Ng Brutalism — Neo-Brutalist Angular UI Primitive Library',
+      title: 'Ng Brutalism - Neo-Brutalist Angular UI Primitive Library',
       canonicalUrl: 'https://ngbrutalism.khangtran.dev/',
       path: '/',
       robots: 'index, follow',

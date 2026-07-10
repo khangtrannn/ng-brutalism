@@ -22,7 +22,7 @@ import { DocsCodeBlock, DocsExample, DocsSourceTile, DocsStatusBadge, DocsTokens
           <p class="mt-3 max-w-3xl text-base font-medium sm:text-lg">
             A progress bar component with ARIA progressbar semantics. Supports
             <code class="font-mono">value</code>, <code class="font-mono">max</code>,
-            and 5 tones for different semantic contexts — from fundraising goals to
+            and 5 tones for different semantic contexts - from fundraising goals to
             media playback.
           </p>
         </div>
@@ -92,7 +92,7 @@ import { DocsCodeBlock, DocsExample, DocsSourceTile, DocsStatusBadge, DocsTokens
       <section id="accessibility">
         <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">Accessibility</h2>
         <p class="font-medium">
-          <strong>APG pattern:</strong> N/A — Progress is static, presentational
+          <strong>APG pattern:</strong> N/A - Progress is static, presentational
           content that visualizes a completion percentage, not an interactive
           widget. <strong>Status:</strong> Stable.
         </p>

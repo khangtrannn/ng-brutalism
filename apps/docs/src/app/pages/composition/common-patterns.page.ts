@@ -36,7 +36,7 @@ import { DocsExample } from '@ng-brutalism/docs-ui';
         <h1>Common Patterns</h1>
         <p class="mt-3 max-w-3xl text-base font-medium sm:text-lg">
           Copy-pasteable composition patterns built from ng-brutalism primitives.
-          Each pattern shows the rendered output and the template — adjust
+          Each pattern shows the rendered output and the template - adjust
           tones, radii, and gaps to fit your context.
         </p>
       </header>
@@ -197,7 +197,7 @@ import { DocsExample } from '@ng-brutalism/docs-ui';
           Two-column card
         </h2>
         <p class="mb-6 text-base font-medium">
-          A Surface with Split inside — the simplest media/content or
+          A Surface with Split inside - the simplest media/content or
           stat/description pattern.
         </p>
 

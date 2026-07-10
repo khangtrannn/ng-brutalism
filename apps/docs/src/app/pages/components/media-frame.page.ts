@@ -220,7 +220,7 @@ interface MediaFrameShapeDemo {
       <section id="accessibility">
         <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">Accessibility</h2>
         <p class="font-medium">
-          <strong>APG pattern:</strong> N/A — Media Frame is a static,
+          <strong>APG pattern:</strong> N/A - Media Frame is a static,
           presentational container that frames visual content such as images
           or video, not an interactive widget. <strong>Status:</strong> Stable.
         </p>
@@ -445,37 +445,37 @@ export default class MediaFramePage {
     {
       value: 'auto',
       label: 'Auto',
-      description: 'No ratio enforced — content defines the height',
+      description: 'No ratio enforced - content defines the height',
     },
     {
       value: '1/1',
       label: '1 / 1',
-      description: 'Square — profiles, avatars, album art',
+      description: 'Square - profiles, avatars, album art',
     },
     {
       value: '3/4',
       label: '3 / 4',
-      description: 'Portrait — headshots, covers, vertical art',
+      description: 'Portrait - headshots, covers, vertical art',
     },
     {
       value: '4/3',
       label: '4 / 3',
-      description: 'Classic photo — product cards, listings',
+      description: 'Classic photo - product cards, listings',
     },
     {
       value: '3/2',
       label: '3 / 2',
-      description: 'Editorial — standard photography ratio',
+      description: 'Editorial - standard photography ratio',
     },
     {
       value: '16/9',
       label: '16 / 9',
-      description: 'Video — presentations, hero images',
+      description: 'Video - presentations, hero images',
     },
     {
       value: '21/9',
       label: '21 / 9',
-      description: 'Cinematic — immersive panoramic banners',
+      description: 'Cinematic - immersive panoramic banners',
     },
   ] satisfies readonly MediaFrameRatioDemo[];
 
@@ -483,7 +483,7 @@ export default class MediaFramePage {
     {
       value: 'cover',
       label: 'Cover',
-      description: 'Fills the frame and crops to fit — best for hero images',
+      description: 'Fills the frame and crops to fit - best for hero images',
     },
     {
       value: 'contain',
@@ -500,7 +500,7 @@ export default class MediaFramePage {
   protected readonly shapes = [
     {
       label: 'Sharp',
-      description: 'Hard edges, no shadow — raw brutalist style',
+      description: 'Hard edges, no shadow - raw brutalist style',
       radius: 'none',
       shadow: 'none',
       tone: 'yellow',

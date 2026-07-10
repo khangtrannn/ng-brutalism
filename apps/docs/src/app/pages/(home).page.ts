@@ -259,7 +259,7 @@ export class HomePageDecorator {}
                 Install
               </h2>
               <p class="mb-5 text-base font-medium">
-                Run the Angular CLI schematic — it installs the package,
+                Run the Angular CLI schematic - it installs the package,
                 configures Tailwind CSS v4, and adds the global stylesheet
                 import in one step.
               </p>
