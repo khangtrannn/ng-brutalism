@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-## [0.3.0] — 2026-07-08
+## [0.3.0] — 2026-07-09
 
 `v0.3.0` centers on token customization. A new `@ng-brutalism/ui/tokens`
 secondary entry point exposes the shared token vocabulary — type contracts and
@@ -26,9 +26,26 @@ consumers pull in only the styles they use.
 - **`compareWith` input on `NbSelect`** — supply a custom equality function so
   object-valued options select correctly (matches Angular Material / Radix
   semantics). Defaults to reference equality, so primitive values are unchanged.
+- **Expanded public type surface** — the shared size/orientation/shape
+  vocabulary (`NbSize`, `NbControlSize`, `NbSizeXs`, `NbOrientation`,
+  `NbIconShape`) is now exported from `@ng-brutalism/ui/tokens`, and the
+  per-component input types that were previously defined but unreachable from the
+  root entry (`NbCalloutBorder`, `NbCalloutRadius`, `NbChipRadius`,
+  `NbChipShadow`, `NbChipGroupGap`, `NbClusterPadding`, `NbDialogTone`,
+  `NbDialogRadius`, `NbDialogShadow`, `NbDialogBorder`, `NbInputTone`,
+  `NbInputBorder`, `NbInputRadius`, `NbInputShadow`, `NbInputAffixAlign`,
+  `NbProgressTone`, `NbRatingTone`, `NbStatusDotSize`, `NbStatusDotRadius`,
+  `NbTextUnderline`) are now importable from `@ng-brutalism/ui`.
 
 ### Changed
 
+- **`NbCallout` default `size` changed from `lg` to `md`** — ⚠️ visual default
+  change. A callout without an explicit `size` now renders one step smaller; set
+  `size="lg"` to restore the previous appearance.
+- **Shared token-type consolidation (non-breaking)** — the per-component size
+  unions `NbSplitCollapse`, `NbChipSize`, `NbSurfaceSize`, and `NbIconSize` now
+  compose from the shared `NbControlSize` / `NbSize` / `NbSizeXs` vocabulary. The
+  aliases resolve to identical unions, so no consumer changes are required.
 - **Token customization overhaul** — component theming now resolves through a
   three-tier CSS variable system (raw palette → `--nb-tone-*` slots →
   per-component `--nb-<component>-*` hooks), unifying how tone, border, radius,

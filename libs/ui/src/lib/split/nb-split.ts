@@ -5,6 +5,7 @@ import {
   nbPaddingStyleTransform,
 } from '../core/input-transforms';
 import type {
+  NbControlSize,
   NbLayoutAlign,
   NbLayoutSeparator,
   NbPadding,
@@ -23,7 +24,7 @@ export type NbSplitGap = NbSpacing;
 
 export type NbSplitPadding = NbPadding;
 
-export type NbSplitCollapse = 'none' | 'sm' | 'md' | 'lg';
+export type NbSplitCollapse = 'none' | NbControlSize;
 
 export type NbSplitAlign = NbLayoutAlign;
 

@@ -19,8 +19,8 @@
     flex: 1 1 0%;
     overflow-y: auto;
     padding: 1rem 1.5rem;
-    border-top: 2px solid var(--nb-border);
-    border-bottom: 2px solid var(--nb-border);
+    border-top: var(--nb-border-width) solid var(--nb-border);
+    border-bottom: var(--nb-border-width) solid var(--nb-border);
     background-color: var(--nb-dialog-content-bg, transparent);
   }
 

@@ -1,12 +1,5 @@
 import { EnvironmentProviders } from '@angular/core';
 
-/**
- * Registers ng-brutalism environment providers. Theming is CSS-only — redefine
- * the `--nb-*` custom properties in your own stylesheet (or swap in one of the
- * `theme-*.css` presets) rather than configuring theme values here. This
- * function is the reserved home for future runtime config (default tone,
- * density, a11y flags).
- */
 declare function provideNgBrutalism(): EnvironmentProviders;
 
 type NbSemanticTone = 'surface' | 'background' | 'primary' | 'secondary' | 'accent' | 'success' | 'warning' | 'danger';
@@ -30,9 +23,16 @@ declare function nbPaddingValue(padding: NbPadding): string;
 
 type NbDivider = 'none' | 'top' | 'right' | 'bottom' | 'left' | 'block' | 'inline' | 'all';
 
+type NbControlSize = 'sm' | 'md' | 'lg';
+type NbSize = 'sm' | 'md' | 'lg' | 'xl';
+type NbSizeXs = 'xs' | 'sm' | 'md' | 'lg';
+
 type NbLayoutAlign = 'stretch' | 'start' | 'center' | 'end';
 type NbLayoutJustify = 'start' | 'center' | 'end' | 'between';
 type NbLayoutSeparator = 'none' | 'solid' | 'dashed' | 'thick';
+type NbOrientation = 'horizontal' | 'vertical';
+
+type NbIconShape = 'square' | 'circle';
 
 type NbUnderlineVariant = 'none' | 'bar' | 'wave';
 type NbTextTracking = 'tight' | 'normal' | 'wide' | 'wider';
@@ -45,4 +45,4 @@ declare function nbUnderlineGapValue(gap: NbUnderlineGap): string;
 declare function nbUnderlineWidthValue(width: NbUnderlineWidth): string | null;
 
 export { nbBorderWidthValue, nbPaddingValue, nbRadiusValue, nbShadowValue, nbSpacingValue, nbTypographyFontValue, nbUnderlineGapValue, nbUnderlineWidthValue, provideNgBrutalism };
-export type { NbBorderStrength, NbDivider, NbFontWeight, NbLayoutAlign, NbLayoutJustify, NbLayoutSeparator, NbPadding, NbPaletteTone, NbRadius, NbSemanticTone, NbShadow, NbSpacing, NbTextTracking, NbTone, NbTypographyFont, NbUnderlineGap, NbUnderlineVariant, NbUnderlineWidth };
+export type { NbBorderStrength, NbControlSize, NbDivider, NbFontWeight, NbIconShape, NbLayoutAlign, NbLayoutJustify, NbLayoutSeparator, NbOrientation, NbPadding, NbPaletteTone, NbRadius, NbSemanticTone, NbShadow, NbSize, NbSizeXs, NbSpacing, NbTextTracking, NbTone, NbTypographyFont, NbUnderlineGap, NbUnderlineVariant, NbUnderlineWidth };

@@ -32,6 +32,7 @@
     align-items: stretch;
     gap: var(--nb-chip-group-gap, 0.5rem);
     letter-spacing: var(--nb-chip-group-tracking, normal);
+    text-transform: var(--nb-chip-group-text-transform, none);
   }
 
   :where([nbChipGroup][data-tracking='tight']) {

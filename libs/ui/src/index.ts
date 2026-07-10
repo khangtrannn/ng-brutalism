@@ -19,9 +19,14 @@ export type {
   NbSpacing,
   NbPadding,
   NbDivider,
+  NbControlSize,
+  NbSize,
+  NbSizeXs,
   NbLayoutAlign,
   NbLayoutJustify,
   NbLayoutSeparator,
+  NbOrientation,
+  NbIconShape,
   NbFontWeight,
   NbTypographyFont,
   NbUnderlineVariant,
@@ -99,11 +104,21 @@ export type {
   NbSeparatorOrientation,
   NbSeparatorVariant,
 } from './lib/separator';
-export type { NbInputSize } from './lib/input';
+export type {
+  NbInputBorder,
+  NbInputRadius,
+  NbInputShadow,
+  NbInputSize,
+  NbInputTone,
+} from './lib/input';
 export { NbTextarea } from './lib/textarea';
 export type { NbTextareaSize } from './lib/textarea';
 export { NbInputGroup, NbInputPrefix, NbInputSuffix } from './lib/input-group';
-export type { NbInputPrefixAlign, NbInputSuffixAlign } from './lib/input-group';
+export type {
+  NbInputAffixAlign,
+  NbInputPrefixAlign,
+  NbInputSuffixAlign,
+} from './lib/input-group';
 export { NbNativeSelect, NbSelect, NbSelectOption } from './lib/select';
 export type { NbSelectSize, NbSelectValue } from './lib/select';
 export { NbBadge } from './lib/badge';
@@ -131,6 +146,7 @@ export type {
 } from './lib/media-frame';
 export { NbStat } from './lib/stat';
 export { NbRating } from './lib/rating';
+export type { NbRatingTone } from './lib/rating';
 export {
   NbDialog,
   NbDialogTitle,
@@ -139,18 +155,32 @@ export {
   NbDialogActions,
   NbDialogClose,
 } from './lib/dialog';
+export type {
+  NbDialogBorder,
+  NbDialogRadius,
+  NbDialogShadow,
+  NbDialogTone,
+} from './lib/dialog';
 export { NbStatusDot } from './lib/status-dot';
-export type { NbStatusDotState } from './lib/status-dot';
+export type {
+  NbStatusDotRadius,
+  NbStatusDotSize,
+  NbStatusDotState,
+} from './lib/status-dot';
 export { NbChip, NbChipGroup } from './lib/chip';
 export type {
   NbChipTone,
   NbChipSize,
+  NbChipRadius,
+  NbChipShadow,
   NbChipGroupAlign,
   NbChipGroupDirection,
+  NbChipGroupGap,
 } from './lib/chip';
 export { NbIconButton } from './lib/icon-button';
 export type { NbIconButtonShape, NbIconButtonSize } from './lib/icon-button';
 export { NbProgress } from './lib/progress';
+export type { NbProgressTone } from './lib/progress';
 export { NbAvatarGroup } from './lib/avatar-group';
 export { NbSticker, NbStickerFace } from './lib/sticker';
 export type { NbStickerShape, NbStickerTone } from './lib/sticker';
@@ -179,6 +209,7 @@ export type {
   NbClusterAlign,
   NbClusterGap,
   NbClusterJustify,
+  NbClusterPadding,
   NbClusterSeparator,
   NbClusterWrap,
 } from './lib/cluster';
@@ -201,7 +232,9 @@ export type {
 } from './lib/section';
 export { NbCallout } from './lib/callout';
 export type {
+  NbCalloutBorder,
   NbCalloutLayout,
+  NbCalloutRadius,
   NbCalloutShadow,
   NbCalloutSize,
   NbCalloutTone,
@@ -227,6 +260,7 @@ export type {
   NbTextTone,
   NbTextTracking,
   NbTextTransform,
+  NbTextUnderline,
   NbTextWeight,
 } from './lib/text';
 export { NbIcon } from './lib/icon';

@@ -23,11 +23,11 @@ For history and details, read the domain's own `progress.md`.
 ---
 
 ## Components
-**Status:** Design-system audit (2026-07-06) + refactor plan (2026-07-07) landed. Refactor Phases 1–5 complete: release blockers, packaging, token/theming redesign, a11y/forms hardening, and public docs/adoption all shipped.
-**Last action:** `@typescript-eslint/member-ordering` enabled (2026-07-09) so `#private` fields/`inject()` must precede other class members; 12 components reordered to comply (accordion-item/trigger, dialog, display, field, input, marquee, native-select, select, text, textarea) plus one schematics interface. Rule can't tell `input()`/`computed()`/`inject()` apart, so finer ordering stays a reviewed convention, not linted. Green on `ui`/`docs`/`schematics` lint, build, test.
-**Next:** Deferred as roadmap: dark theme (M1, explicitly out of scope now), Playwright visual-regression suite (M2), Phase 6 primitives (L2 — Tabs/Switch/Radio/Tooltip/Menu/Toast). Release: commit + tag/publish 0.3.0 via `docs/release/RELEASE.md` when ready. See `docs/architecture/library-audit-2026-07-08.md`.
-**Goal:** ✅ Hardening completed (Phases 0–8). ✅ Design-props coverage completed. ✅ Refactor Phases 1–5 complete.
-→ Arch: `docs/architecture/token-customization.md` · Design props: `docs/components/design-props.md` · Audit: `docs/architecture/library-audit-2026-07-08.md` · History: `docs/_archive/design-system-audit-2026-07-06.md`, `docs/_archive/design-system-refactor-plan-2026-07-07.md`, `docs/_archive/token-customization-hardening.md`, `docs/_archive/design-props-plan.md`
+**Status:** Improvement-plan Phases 1–4 landed: type consolidation + public-API export drift closed, export-drift checker gating api-guard, CSS token discipline (border-width var + status-dot reduced-motion + chip text-transform slot), minimum hook-contract check, and JSDoc across the public component API.
+**Last action:** Phase 4 JSDoc on every configurable exported component (pure slot markers left uncommented per feedback); api-guard stays green since its normalizer strips comments. Gates green: lint/test/build/api-guard/docs:tokens:check.
+**Next:** Release 0.3.0 when ready (no publish this pass). Phase 5 roadmap (Playwright visual-regression → dark theme → Phase 6 primitives) not started.
+**Goal:** ✅ Improvement-plan Phases 1–4 complete. Active: Phase 5 roadmap (deferred).
+→ Plan: `docs/architecture/library-improvement-plan-2026-07-09.md` · Arch: `docs/architecture/token-customization.md` · Design props: `docs/components/design-props.md` · Frozen audit: `docs/_archive/library-audit-2026-07-08.md`
 
 ---
 
@@ -48,6 +48,6 @@ For history and details, read the domain's own `progress.md`.
 ---
 
 ## Release
-**Status:** 0.3.0 prepared in-repo: CHANGELOG `[0.3.0]` entry written and `libs/ui/package.json` bumped to 0.3.0. Not yet committed/tagged/published.
-**Next:** Commit the audit fixes, then follow `docs/release/RELEASE.md` steps 3–7 (commit → build → tag → GitHub release → npm publish) to ship 0.3.0.
+**Status:** 0.3.0 finalized in-repo: CHANGELOG `[0.3.0]` complete (callout `lg`→`md` + expanded type surface), `libs/ui/package.json` at 0.3.0, api-guard baseline current. Improvement-plan Phases 1–4 landed. Not tagged/published.
+**Next:** Follow `docs/release/RELEASE.md` steps 3–7 (build → tag → GitHub release → npm publish) to ship 0.3.0 when ready.
 → Runbook: `docs/release/RELEASE.md` · Historical scope: `docs/_archive/v0.2.0-plan.md`

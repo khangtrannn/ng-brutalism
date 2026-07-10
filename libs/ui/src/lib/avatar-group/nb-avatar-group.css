@@ -20,7 +20,7 @@
     flex-shrink: 0;
     align-items: center;
     justify-content: center;
-    border: 2px solid var(--nb-border);
+    border: var(--nb-border-width) solid var(--nb-border);
     border-radius: 9999px;
     background: var(--nb-surface);
     font-size: 0.75rem;

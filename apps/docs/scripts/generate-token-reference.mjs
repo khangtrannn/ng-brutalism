@@ -54,6 +54,8 @@ const THEME_OVERRIDES = {
   '--nb-motion-fast': 'Duration for interactive hover/press transitions',
   '--nb-motion-base':
     'Duration for structural transitions (e.g. accordion expand/collapse)',
+  '--nb-motion-pulse':
+    'Cycle duration for pulsing indicators (e.g. status-dot live state); zeroed under prefers-reduced-motion',
   '--nb-ease': 'Shared easing curve for component transitions',
   '--nb-font-sans': 'Default body font',
   '--nb-font-mono': 'Monospace font token',
@@ -138,6 +140,54 @@ const SUFFIX_PSEUDO_PROPERTY = [
   ['-height', 'width'],
 ];
 
+// Minimum public CSS-var hook contract (design-props.md §4). Surface/box and
+// interactive archetypes must expose the color-surface hook set so a consumer
+// can retheme them from CSS without an ergonomic input. Anatomy hooks (size
+// presets, min-height, padding) are deliberately Tier 2 and NOT part of this
+// contract — which is why button height / status-dot width stay hardcoded.
+// Documented partials (checkbox, input-group) list only the hooks they
+// intentionally expose; keep this map and the §4 table in sync.
+const SURFACE_HOOKS = [
+  'bg',
+  'fg',
+  'border-color',
+  'border-width',
+  'radius',
+  'shadow',
+];
+
+const HOOK_CONTRACT = {
+  button: contractHooks('button', SURFACE_HOOKS),
+  card: contractHooks('card', SURFACE_HOOKS),
+  surface: contractHooks('surface', SURFACE_HOOKS),
+  callout: contractHooks('callout', SURFACE_HOOKS),
+  'media-frame': contractHooks('media-frame', SURFACE_HOOKS),
+  'image-card': contractHooks('image-card', SURFACE_HOOKS),
+  dialog: contractHooks('dialog', SURFACE_HOOKS),
+  'icon-button': contractHooks('icon-button', SURFACE_HOOKS),
+  input: contractHooks('input', SURFACE_HOOKS),
+  textarea: contractHooks('textarea', SURFACE_HOOKS),
+  select: contractHooks('select', SURFACE_HOOKS),
+  chip: contractHooks('chip', SURFACE_HOOKS),
+  // accordion exposes the surface set on its item sub-part, not the root.
+  accordion: contractHooks('accordion-item', SURFACE_HOOKS),
+  // Documented partials — see design-props.md §4:
+  //   checkbox: a small control; border/shadow would be a focus ring, not
+  //             elevation, so only bg/fg/radius are public hooks.
+  //   input-group: a wrapper; shadow/border-width stay CSS-only, border is a
+  //                single color hook (--nb-input-group-border).
+  checkbox: contractHooks('checkbox', ['bg', 'fg', 'radius']),
+  'input-group': [
+    '--nb-input-group-bg',
+    '--nb-input-group-radius',
+    '--nb-input-group-border',
+  ],
+};
+
+function contractHooks(slug, suffixes) {
+  return suffixes.map((suffix) => `--nb-${slug}-${suffix}`);
+}
+
 const shouldUpdate = process.argv.includes('--update');
 
 const componentSlugs = readdirSync(libSrcRoot)
@@ -158,6 +208,21 @@ for (const slug of componentSlugs) {
 
 const { sharedTokens, themeTokens } = collectThemeTokens();
 componentTokens.theme = themeTokens;
+
+const hookViolations = checkHookContract(componentTokens);
+if (hookViolations.length > 0) {
+  console.error(
+    '\nMinimum CSS-var hook contract violated (design-props.md §4):'
+  );
+  for (const { slug, missing } of hookViolations) {
+    console.error(`  ${slug}: missing ${missing.join(', ')}`);
+  }
+  console.error(
+    '\nExpose the missing public --nb-<component>-* hook(s), or record the ' +
+      'exemption in design-props.md §4 and the HOOK_CONTRACT map above.\n'
+  );
+  process.exit(1);
+}
 
 const output = renderOutput(componentSlugs, componentTokens, sharedTokens);
 
@@ -231,6 +296,16 @@ function findVarCalls(value) {
     calls.push({ name, fallback });
   }
   return calls;
+}
+
+function checkHookContract(componentTokens) {
+  const violations = [];
+  for (const [slug, required] of Object.entries(HOOK_CONTRACT)) {
+    const exposed = new Set((componentTokens[slug] ?? []).map((t) => t.name));
+    const missing = required.filter((name) => !exposed.has(name));
+    if (missing.length > 0) violations.push({ slug, missing });
+  }
+  return violations;
 }
 
 function collectComponentTokens(slug, cssFiles) {

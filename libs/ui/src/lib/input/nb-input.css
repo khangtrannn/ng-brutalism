@@ -52,7 +52,7 @@
     background-color: var(--nb-main);
     color: var(--nb-main-foreground);
     border: 0;
-    border-inline-end: 2px solid var(--nb-border);
+    border-inline-end: var(--nb-border-width) solid var(--nb-border);
   }
 
   :where(input[nbInput]:disabled) {

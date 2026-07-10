@@ -6,8 +6,9 @@ import {
   input,
   isDevMode,
 } from '@angular/core';
+import type { NbSizeXs } from '@ng-brutalism/ui/tokens';
 
-export type NbIconSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
+export type NbIconSize = NbSizeXs | 'xl';
 
 export type NbIconTone =
   | 'current'

@@ -116,7 +116,7 @@
     left: -6px;
     width: calc(100% + 12px);
     margin-top: 0.125rem;
-    border: 2px solid
+    border: var(--nb-border-width) solid
       var(--nb-select-border-color, var(--nb-select-tone-border-color, var(--_nb-tone-border-color, var(--nb-border))));
     border-radius: 0 0 var(--nb-select-radius, var(--nb-radius))
       var(--nb-select-radius, var(--nb-radius));

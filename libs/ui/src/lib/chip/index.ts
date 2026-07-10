@@ -6,4 +6,5 @@ export type {
   NbChipShadow,
   NbChipGroupAlign,
   NbChipGroupDirection,
+  NbChipGroupGap,
 } from './nb-chip';

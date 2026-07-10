@@ -2,7 +2,7 @@
   :where(span[nbStatusDot]) {
     display: inline-block;
     flex-shrink: 0;
-    border: 2px solid var(--nb-border);
+    border: var(--nb-border-width) solid var(--nb-border);
     border-radius: var(--nb-status-dot-radius, 9999px);
   }
 
@@ -36,12 +36,19 @@
 
   :where(span[nbStatusDot][data-state='live']) {
     background: var(--nb-danger);
-    animation: nb-status-dot-pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+    animation: nb-status-dot-pulse var(--nb-motion-pulse, 2s)
+      cubic-bezier(0.4, 0, 0.6, 1) infinite;
   }
 }
 
 @keyframes nb-status-dot-pulse {
   50% {
     opacity: 0.5;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :where(span[nbStatusDot][data-state='live']) {
+    animation: none;
   }
 }

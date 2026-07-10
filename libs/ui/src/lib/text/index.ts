@@ -7,5 +7,6 @@ export type {
   NbTextTone,
   NbTextTracking,
   NbTextTransform,
+  NbTextUnderline,
   NbTextWeight,
 } from './nb-text';

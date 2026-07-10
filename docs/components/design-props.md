@@ -163,6 +163,34 @@ methodology behind §3) lives in
 a public slot only becomes a Tier 1 candidate when it's a **standard
 category**, written with a **fallback comma**, on a **non-leaf** primitive.
 
+### Minimum CSS-var hook contract
+
+Tier-1 inputs are optional ergonomics; the **hooks** beneath them are a
+contract. Every **Surface/box** and **Interactive** component exposes the same
+color-surface hook set, so it can be re-themed from CSS even where no ergonomic
+input exists:
+
+`--nb-<component>-bg` · `-fg` · `-border-color` · `-border-width` · `-radius` ·
+`-shadow`  (`accordion` exposes the set on its `accordion-item` sub-part.)
+
+**Anatomy hooks — size-preset `height`/`width`/`min-height`, `padding` — are
+deliberately _not_ in the contract.** They stay hardcoded per size preset (this
+is why `button { height: 2.75rem }` and `status-dot { width: 12px }` expose no
+hook) and graduate to a public `--nb-<component>-*` slot only on a real use
+case. That keeps hook coverage principled rather than arbitrary.
+
+Two documented partials expose less than the full set on purpose:
+
+| Component | Exposes | Why less than the full set |
+|---|---|---|
+| `checkbox` | `bg`, `fg`, `radius` | small control — its border/shadow are a focus ring, not customizable elevation |
+| `input-group` | `bg`, `radius`, `border` (color) | wrapper — `shadow`/`border-width` stay CSS-only; border is a single color hook |
+
+The contract is enforced by `docs:tokens:check` (the `HOOK_CONTRACT` map in
+`apps/docs/scripts/generate-token-reference.mjs`): drop a required hook and
+generation fails until the hook returns or the exemption is recorded both here
+and in the map.
+
 ---
 
 ## 5. Inputs vs CSS variables vs Tailwind
@@ -204,7 +232,34 @@ for the general "when to add an input" test.
 
 ---
 
-## 7. Deep-dive links
+## 7. Public type surface
+
+Every design-prop type a component input accepts is exported publicly so
+consumers can name it (`NbCalloutTone`, `NbSplitCollapse`, …). The contract is
+mechanical: **every `export type Nb*` declared in a component must be reachable
+from the package root** — `@ng-brutalism/ui`, or `@ng-brutalism/ui/tokens` for
+the shared size/layout/shape vocabulary. A type that lives in a component barrel
+but isn't re-exported at root is a bug, not a decision.
+
+This is enforced by `tools/api-export-check/run.mjs`, which runs as part of
+`pnpm api-guard` and fails CI if a declared `Nb*` type can't be imported from
+its root entry. Genuinely-internal types (e.g. the `NbTokenStyleTransform`
+transform-factory helper) are exempted through a small, reason-annotated
+`INTERNAL_ALLOWLIST` in that file — that allowlist is the single source of truth
+for "intentionally not public."
+
+Per-component size unions compose from the shared vocabulary where the scale
+matches (`NbChipSize = 'none' | NbSize`, `NbIconSize = NbSizeXs | 'xl'`, …). Two
+deliberate non-compositions: `NbHalftoneShape` keeps its own
+`'square' | 'circle' | 'rectangle'` union rather than `NbIconShape | 'rectangle'`
+— its `rectangle` case drives different SVG geometry (dot rows vs. a dot grid),
+so borrowing the icon-shape name would imply a shared meaning it doesn't have;
+and `NbTextSize`/`NbTextMeasure` keep bespoke scales because their steps don't
+line up with `NbSize`.
+
+---
+
+## 8. Deep-dive links
 
 - [token-customization.md](../architecture/token-customization.md) — the
   CSS-first architecture: why scalar inputs and CSS variables share one public

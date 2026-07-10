@@ -57,9 +57,9 @@
   }
 
   :where([nbSurface][data-edge='top']) {
-    border-top: 2px solid var(--nb-border);
+    border-top: var(--nb-border-width) solid var(--nb-border);
   }
   :where([nbSurface][data-edge='bottom']) {
-    border-bottom: 2px solid var(--nb-border);
+    border-bottom: var(--nb-border-width) solid var(--nb-border);
   }
 }

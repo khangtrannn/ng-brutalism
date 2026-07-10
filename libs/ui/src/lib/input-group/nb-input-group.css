@@ -3,7 +3,7 @@
     position: relative;
     display: inline-flex;
     width: 100%;
-    border-width: 2px;
+    border-width: var(--nb-border-width);
     border-style: solid;
     border-radius: var(--nb-input-group-radius, var(--nb-radius));
     border-color: var(--nb-input-group-border, var(--nb-border));
@@ -29,7 +29,7 @@
   }
 
   :where([nbInputPrefix]) {
-    border-right-width: 2px;
+    border-right-width: var(--nb-border-width);
     background: var(--nb-input-group-prefix-bg, var(--nb-input-group-addon-bg, #ffd24a));
   }
 
@@ -40,7 +40,7 @@
   }
 
   :where([nbInputSuffix]) {
-    border-left-width: 2px;
+    border-left-width: var(--nb-border-width);
     background: var(--nb-input-group-suffix-bg, var(--nb-input-group-addon-bg, #ffd24a));
   }
 

@@ -20,6 +20,7 @@ import type {
   NbOrientation,
   NbRadius,
   NbShadow,
+  NbSize,
   NbSpacing,
   NbTone,
   NbTextTracking,
@@ -30,7 +31,7 @@ export type NbChipTone = NbTone;
 export type NbChipRadius = NbRadius;
 export type NbChipShadow = NbShadow;
 
-export type NbChipSize = 'none' | 'sm' | 'md' | 'lg' | 'xl';
+export type NbChipSize = 'none' | NbSize;
 
 const chipSizeMap: Record<NbChipSize, string> = {
   none: '0',
@@ -93,7 +94,7 @@ export type NbChipGroupGap = NbSpacing;
     '[style.--nb-chip-group-gap]': 'gap()',
     '[style.--nb-chip-radius]': 'chipRadiusValue()',
     '[style.--nb-chip-shadow]': 'chipShadowValue()',
-    '[style.text-transform]': 'transformValue()',
+    '[style.--nb-chip-group-text-transform]': 'transformValue()',
     'data-nb-chip-group': '',
     '[attr.data-direction]': 'direction()',
     '[attr.data-align]': 'align()',

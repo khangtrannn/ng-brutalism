@@ -94,6 +94,7 @@
 
   --nb-motion-fast: 150ms;
   --nb-motion-base: 200ms;
+  --nb-motion-pulse: 2s;
   --nb-ease: ease-out;
 
   --nb-shadow-sm: calc(var(--nb-shadow-offset-x) * 0.5)
@@ -143,5 +144,6 @@
   :root {
     --nb-motion-fast: 0s;
     --nb-motion-base: 0s;
+    --nb-motion-pulse: 0s;
   }
 }

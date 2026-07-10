@@ -57,7 +57,8 @@ Agent session protocol:
 | `docs/components/design-props.md` | **Canonical entry point** — design-prop vocabulary (7 categories), 5 archetypes, per-component prop matrix, standard-input vs CSS-only-hook tiers | Yes |
 | `docs/components/composition-philosophy.md` | ng-brutalism + `nbText` + Tailwind boundary — when to add an input vs. reach for Tailwind | Yes |
 | `docs/architecture/token-customization.md` | Current CSS-first token customization architecture — rationale, rules, and accepted direction | Yes |
-| `docs/architecture/library-audit-2026-07-08.md` | Library implementation audit — strengths, severity-ranked findings, and next-action plan | No |
+| `docs/architecture/library-improvement-plan-2026-07-09.md` | **Active improvement plan** — audit findings (API export drift, CSS token discipline, a11y, JSDoc) + phased action plan | Yes |
+| `docs/_archive/library-audit-2026-07-08.md` | Frozen library audit (2026-07-08) — baseline for the improvement plan | No |
 | `docs/components/contact-dialog/PLAN.md` | Contact dialog redesign — status + design decisions | Yes |
 | `docs/adr/0001-dialog-native-element.md` | ADR: why native `<dialog>` over overlay approach | No |
 | `CONTEXT.md` (root) | Project glossary — `Nb` prefix, v0.x contract, CSS transform patterns | Yes |

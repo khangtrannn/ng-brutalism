@@ -12,6 +12,7 @@ import type {
   NbPadding,
   NbRadius,
   NbShadow,
+  NbSize,
   NbTone,
 } from '@ng-brutalism/ui/tokens';
 import { NbTypography } from '../typography';
@@ -22,7 +23,7 @@ export type NbSurfaceBorder = NbBorderStrength;
 export type NbSurfaceShadow = NbShadow;
 export type NbSurfacePadding = NbPadding;
 
-export type NbSurfaceSize = 'auto' | 'sm' | 'md' | 'lg' | 'xl';
+export type NbSurfaceSize = 'auto' | NbSize;
 export type NbSurfaceLayout = 'block' | 'center' | 'row' | 'stack';
 export type NbSurfaceEdge = 'none' | 'top' | 'bottom';
 
