@@ -3,7 +3,7 @@
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "libs/schematics/src",
   "projectType": "library",
-  "tags": [],
+  "tags": ["type:util", "scope:ui"],
   "targets": {
     "build": {
       "executor": "@nx/js:tsc",

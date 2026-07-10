@@ -1,7 +1,6 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 
-import { DocsCodeBlock } from '../../docs/docs-code-block';
-import { DocsTokens } from '../../docs/docs-tokens';
+import { DocsCodeBlock, DocsTokens } from '@ng-brutalism/docs-ui';
 
 @Component({
   selector: 'docs-installation-page',

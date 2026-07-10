@@ -10,7 +10,7 @@ import {
   signal,
 } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
-import { Analytics } from '../analytics';
+import { Analytics } from './analytics';
 import {
   DocsCodeChevronIcon,
   DocsCodeCopyIcon,

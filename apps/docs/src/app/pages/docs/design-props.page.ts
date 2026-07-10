@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
 
-import { DocsCodeBlock } from '../../docs/docs-code-block';
+import { DocsCodeBlock } from '@ng-brutalism/docs-ui';
 
 @Component({
   selector: 'docs-design-props-page',

@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
 
-import { NbDocsNavbar } from '../docs/layout/navbar';
+import { NbDocsNavbar } from '@ng-brutalism/docs-ui';
 
 @Component({
   selector: 'docs-not-found-page',

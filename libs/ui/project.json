@@ -12,7 +12,7 @@
       "manifestRootsToUpdate": ["dist/{projectRoot}"]
     }
   },
-  "tags": [],
+  "tags": ["type:ui", "scope:ui"],
   "targets": {
     "build": {
       "executor": "nx:run-commands",

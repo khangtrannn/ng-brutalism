@@ -4,6 +4,7 @@
 @import '@ng-brutalism/ui/styles.css';
 
 @source "../../../libs/ui/src";
+@source "../../../libs/docs-ui/src";
 @source inline("bg-main text-main-foreground border-border shadow-shadow rounded-base bg-background bg-secondary-background font-heading");
 
 @custom-variant dark (&:is(.dark *));

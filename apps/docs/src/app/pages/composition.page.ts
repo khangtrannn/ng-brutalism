@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 
-import { NbDocsLayout } from '../docs/layout/docs-layout';
+import { NbDocsLayout } from '@ng-brutalism/docs-ui';
 
 @Component({
   selector: 'composition-layout-page',

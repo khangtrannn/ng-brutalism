@@ -1,0 +1,22 @@
+{
+  "name": "docs-ui",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/docs-ui/src",
+  "prefix": "docs",
+  "projectType": "library",
+  "tags": ["type:ui", "scope:docs"],
+  "targets": {
+    "test": {
+      "executor": "@nx/vitest:test",
+      "options": {
+        "configFile": "libs/docs-ui/vitest.config.mts"
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint",
+      "options": {
+        "lintFilePatterns": ["libs/docs-ui/**/*.ts", "libs/docs-ui/**/*.html"]
+      }
+    }
+  }
+}

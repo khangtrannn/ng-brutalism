@@ -96,11 +96,13 @@ import { NbCallout } from '@ng-brutalism/ui';
           doesn't implement <code class="font-mono">showModal()</code>.
         </p>
         <div nbCallout tone="mint" size="sm">
-          The select popup's escape from an <code class="font-mono">overflow:hidden</code>
-          ancestor and the <code class="font-mono">formControlName</code>
-          round-trip are the two things the unit-test suite can't prove on
-          its own — both were confirmed in a real Chromium session
-          (Playwright) with zero console errors.
+          <p class="normal-case">
+            The select popup's escape from an <code class="font-mono">overflow:hidden</code>
+            ancestor and the <code class="font-mono">formControlName</code>
+            round-trip are the two things the unit-test suite can't prove on
+            its own — both were confirmed in a real Chromium session
+            (Playwright) with zero console errors.
+          </p>
         </div>
       </section>
 

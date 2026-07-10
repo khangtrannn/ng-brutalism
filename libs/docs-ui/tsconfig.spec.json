@@ -1,0 +1,10 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "outDir": "../../dist/out-tsc",
+    "types": ["vitest/globals", "node"],
+    "module": "preserve",
+    "moduleResolution": "bundler"
+  },
+  "include": ["src/**/*.spec.ts", "src/test-setup.ts"]
+}

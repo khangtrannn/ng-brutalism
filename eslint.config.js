@@ -3,8 +3,34 @@ const tseslint = require('typescript-eslint');
 const angular = require('@angular-eslint/eslint-plugin');
 const angularTemplate = require('@angular-eslint/eslint-plugin-template');
 const templateParser = require('@angular-eslint/template-parser');
+const nx = require('@nx/eslint-plugin');
 
 module.exports = tseslint.config(
+  {
+    files: ['**/*.ts', '**/*.tsx', '**/*.js', '**/*.jsx'],
+    plugins: {
+      '@nx': nx,
+    },
+    rules: {
+      '@nx/enforce-module-boundaries': [
+        'error',
+        {
+          enforceBuildableLibDependency: true,
+          allow: [],
+          depConstraints: [
+            // What a project IS: apps consume libs; libs never consume apps.
+            { sourceTag: 'type:app', onlyDependOnLibsWithTags: ['type:ui', 'type:util'] },
+            { sourceTag: 'type:ui', onlyDependOnLibsWithTags: ['type:ui', 'type:util'] },
+            { sourceTag: 'type:util', onlyDependOnLibsWithTags: ['type:util'] },
+            // Which product it belongs to: the published `ui` scope stays
+            // self-contained; docs may reach into `ui`, never the reverse.
+            { sourceTag: 'scope:ui', onlyDependOnLibsWithTags: ['scope:ui'] },
+            { sourceTag: 'scope:docs', onlyDependOnLibsWithTags: ['scope:docs', 'scope:ui'] },
+          ],
+        },
+      ],
+    },
+  },
   {
     files: ['**/*.ts'],
     extends: [...tseslint.configs.recommended],

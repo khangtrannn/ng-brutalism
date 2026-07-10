@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { NbCallout } from '@ng-brutalism/ui';
 
-import { DocsCodeBlock } from '../../docs/docs-code-block';
+import { DocsCodeBlock } from '@ng-brutalism/docs-ui';
 
 @Component({
   selector: 'docs-customization-page',

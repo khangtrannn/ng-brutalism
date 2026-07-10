@@ -17,7 +17,7 @@ import {
 } from '@analogjs/router';
 import { provideNgBrutalism } from '@ng-brutalism/ui';
 
-import { DocsTitleStrategy } from './docs/docs-title-strategy';
+import { DocsTitleStrategy } from '@ng-brutalism/docs-ui';
 import { DocsErrorHandler } from './stale-build-reload';
 
 export const appConfig: ApplicationConfig = {

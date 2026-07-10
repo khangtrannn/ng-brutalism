@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { NbCallout } from '@ng-brutalism/ui';
 
-import { DocsCodeBlock } from '../../docs/docs-code-block';
+import { DocsCodeBlock } from '@ng-brutalism/docs-ui';
 
 @Component({
   selector: 'docs-without-tailwind-page',
@@ -36,9 +36,11 @@ import { DocsCodeBlock } from '../../docs/docs-code-block';
           component to render correctly, with zero build-time processing.
         </p>
         <div nbCallout tone="mint" size="sm">
-          Verified in CI: a plain <code class="font-mono">npm install</code>
-          of the published tarball with no <code class="font-mono">tailwindcss</code>
-          package present produces no unmet-peer-dependency warning.
+          <p class="normal-case">
+            Verified in CI: a plain <code class="font-mono">npm install</code>
+            of the published tarball with no <code class="font-mono">tailwindcss</code>
+            package present produces no unmet-peer-dependency warning.
+          </p>
         </div>
       </section>
 

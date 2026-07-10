@@ -12,7 +12,7 @@ import {
   NbText,
 } from '@ng-brutalism/ui';
 
-import { DocsExample } from '../../docs/docs-example';
+import { DocsExample } from '@ng-brutalism/docs-ui';
 
 @Component({
   selector: 'docs-composition-common-patterns-page',

@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { NbCallout } from '@ng-brutalism/ui';
 
-import { DocsCodeBlock } from '../../docs/docs-code-block';
+import { DocsCodeBlock } from '@ng-brutalism/docs-ui';
 
 @Component({
   selector: 'docs-forms-page',
@@ -98,13 +98,15 @@ import { DocsCodeBlock } from '../../docs/docs-code-block';
           Validation states
         </h2>
         <div nbCallout tone="mint" size="sm">
-          Invalid styling and <code class="font-mono">nb-field-error</code>
-          visibility both gate on <strong>touched OR dirty</strong> — read via
-          <code class="font-mono">AbstractControl.events</code>, not just
-          <code class="font-mono">statusChanges</code>, so a touched-only
-          transition (e.g. blurring an empty required field) is caught
-          immediately. Errors never appear before the user has interacted
-          with the control.
+          <p class="normal-case">
+            Invalid styling and <code class="font-mono">nb-field-error</code>
+            visibility both gate on <strong>touched OR dirty</strong> — read
+            via <code class="font-mono">AbstractControl.events</code>, not just
+            <code class="font-mono">statusChanges</code>, so a touched-only
+            transition (e.g. blurring an empty required field) is caught
+            immediately. Errors never appear before the user has interacted
+            with the control.
+          </p>
         </div>
       </section>
     </article>

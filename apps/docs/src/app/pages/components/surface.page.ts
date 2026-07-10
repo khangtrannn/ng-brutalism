@@ -7,11 +7,7 @@ import {
   type NbSurfaceTone,
 } from '@ng-brutalism/ui';
 
-import { DocsCodeBlock } from '../../docs/docs-code-block';
-import { DocsExample } from '../../docs/docs-example';
-import { DocsSourceTile } from '../../docs/docs-source-tile';
-import { DocsStatusBadge } from '../../docs/docs-status-badge';
-import { DocsTokens } from '../../docs/docs-tokens';
+import { DocsCodeBlock, DocsExample, DocsSourceTile, DocsStatusBadge, DocsTokens } from '@ng-brutalism/docs-ui';
 
 interface SurfaceToneDemo {
   readonly value: NbSurfaceTone;

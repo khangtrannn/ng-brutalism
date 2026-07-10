@@ -21,6 +21,7 @@
     "esModuleInterop": true,
     "paths": {
       "@ng-brutalism/ui": ["./libs/ui/src/index.ts"],
+      "@ng-brutalism/docs-ui": ["./libs/docs-ui/src/index.ts"],
       "schematics": ["./libs/schematics/src/index.ts"],
       "@ng-brutalism/ui/tokens": ["./libs/ui/tokens/src/index.ts"]
     }

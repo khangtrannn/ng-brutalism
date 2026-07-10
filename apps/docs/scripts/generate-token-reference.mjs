@@ -8,7 +8,7 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const workspaceRoot = path.resolve(__dirname, '../../..');
 const libSrcRoot = path.resolve(workspaceRoot, 'libs/ui/src/lib');
 const themeCssPath = path.resolve(libSrcRoot, 'styles/theme.css');
-const outputPath = path.resolve(__dirname, '../src/app/docs/docs-tokens.generated.ts');
+const outputPath = path.resolve(workspaceRoot, 'libs/docs-ui/src/lib/docs-tokens.generated.ts');
 
 const NON_COMPONENT_DIRS = new Set(['core', 'styles', 'tokens', 'typography']);
 

@@ -12,7 +12,7 @@ import {
   NbTitle,
 } from '@ng-brutalism/ui';
 
-import { NbDocsNavbar } from '../docs/layout/navbar';
+import { NbDocsNavbar } from '@ng-brutalism/docs-ui';
 
 @Component({
   selector: 'docs-home-page-decorator',

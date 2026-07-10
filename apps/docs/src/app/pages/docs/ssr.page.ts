@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { NbCallout } from '@ng-brutalism/ui';
 
-import { DocsCodeBlock } from '../../docs/docs-code-block';
+import { DocsCodeBlock } from '@ng-brutalism/docs-ui';
 
 @Component({
   selector: 'docs-ssr-page',
@@ -73,8 +73,10 @@ import { DocsCodeBlock } from '../../docs/docs-code-block';
           rather than assumed to exist.
         </p>
         <div nbCallout tone="mint" size="sm">
-          If you hit a hydration mismatch that isn't covered here, it's a
-          bug — please open an issue with a minimal repro.
+          <p class="normal-case">
+            If you hit a hydration mismatch that isn't covered here, it's a
+            bug — please open an issue with a minimal repro.
+          </p>
         </div>
       </section>
     </article>

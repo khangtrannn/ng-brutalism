@@ -1,8 +1,7 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
 
-import { DocsCodeBlock } from '../../../docs/docs-code-block';
-import { DocsSourceTile } from '../../../docs/docs-source-tile';
+import { DocsCodeBlock, DocsSourceTile } from '@ng-brutalism/docs-ui';
 
 import { OpenToWorkCard } from './open-to-work-card';
 

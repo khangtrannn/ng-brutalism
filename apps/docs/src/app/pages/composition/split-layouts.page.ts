@@ -11,8 +11,7 @@ import {
   NbText,
 } from '@ng-brutalism/ui';
 
-import { DocsCodeBlock } from '../../docs/docs-code-block';
-import { DocsExample } from '../../docs/docs-example';
+import { DocsCodeBlock, DocsExample } from '@ng-brutalism/docs-ui';
 
 @Component({
   selector: 'docs-composition-split-layouts-page',

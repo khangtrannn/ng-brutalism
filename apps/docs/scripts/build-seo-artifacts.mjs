@@ -25,7 +25,7 @@ const { DOCS_PUBLIC_ROUTES } = await jiti.import(
   path.resolve(__dirname, '../src/app/docs/docs-public-routes.ts')
 );
 const seoData = await jiti.import(
-  path.resolve(__dirname, '../src/app/docs/docs-seo-data.ts')
+  path.resolve(__dirname, '../../../libs/docs-ui/src/lib/docs-seo-data.ts')
 );
 
 const ROUTES = DOCS_PUBLIC_ROUTES;
