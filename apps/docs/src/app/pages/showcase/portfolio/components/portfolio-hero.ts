@@ -7,7 +7,7 @@ import {
 import { toObservable, toSignal } from '@angular/core/rxjs-interop';
 import { NbButton, NbMarquee, NbMarqueeItem, NbTitle } from '@ng-brutalism/ui';
 import { scan, switchMap, takeWhile, timer } from 'rxjs';
-import { ContactUsDialog } from '../../../components/examples/contact-us-dialog';
+import { ContactUsDialog } from '../../../shared/examples/contact-us-dialog';
 import {
   DocsPortfolioGithubIcon,
   DocsPortfolioLinkedinIcon,

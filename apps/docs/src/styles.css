@@ -240,6 +240,27 @@ body::-webkit-scrollbar-thumb {
   transform: rotate(-0.5deg);
 }
 
+[data-docs-content] article > :nth-child(5n + 3) h2[data-docs-heading] {
+  background: var(--nb-pink);
+  transform: rotate(1deg);
+}
+
+[data-docs-content] article > :nth-child(5n + 4) h2[data-docs-heading] {
+  background: var(--nb-lavender);
+  transform: rotate(-1.5deg);
+}
+
+[data-docs-content] article > :nth-child(5n + 5) h2[data-docs-heading] {
+  background: var(--nb-yellow);
+  transform: rotate(0.5deg);
+}
+
+[data-docs-content] article > :nth-child(5n + 6) h2[data-docs-heading] {
+  background: var(--nb-sky);
+  color: #000;
+  transform: rotate(-0.5deg);
+}
+
 [data-docs-content] p {
   line-height: 1.65;
 }

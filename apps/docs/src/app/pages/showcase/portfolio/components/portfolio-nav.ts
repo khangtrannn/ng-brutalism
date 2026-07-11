@@ -6,7 +6,7 @@ import {
   signal,
 } from '@angular/core';
 import { NbButton } from '@ng-brutalism/ui';
-import { ContactUsDialog } from '../../../components/examples/contact-us-dialog';
+import { ContactUsDialog } from '../../../shared/examples/contact-us-dialog';
 
 import type { NavLink } from '../portfolio.types';
 

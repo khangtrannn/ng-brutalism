@@ -12,14 +12,6 @@ const publicDir = path.resolve(__dirname, '../public');
 
 const SITE_URL = 'https://ngbrutalism.khangtran.dev';
 
-const INDEX_PAGE_FILES = new Set([
-  'components.page.ts',
-  'docs.page.ts',
-  'recipes.page.ts',
-]);
-
-const PRIVATE_PAGE_FILES = new Set(['[...not-found].page.ts']);
-
 const jiti = createJiti(import.meta.url, { interopDefault: true });
 const { DOCS_PUBLIC_ROUTES } = await jiti.import(
   path.resolve(__dirname, '../src/app/docs/docs-public-routes.ts')
@@ -126,24 +118,13 @@ function discoverPublicRoutes(root) {
     results.push({ file: homePage, expectedPath: '/' });
   }
 
-  for (const section of ['docs', 'composition', 'components']) {
-    const dir = path.resolve(root, section);
-    if (!existsSync(dir)) continue;
-    for (const entry of readdirSync(dir)) {
-      const full = path.join(dir, entry);
-      if (!statSync(full).isFile()) continue;
-      if (!entry.endsWith('.page.ts')) continue;
-      if (INDEX_PAGE_FILES.has(entry) || PRIVATE_PAGE_FILES.has(entry))
-        continue;
-      const slug = entry.slice(0, -'.page.ts'.length);
-      results.push({
-        file: `${section}/${entry}`,
-        expectedPath: `/${section}/${slug}`,
-      });
-    }
-  }
-
-  for (const section of ['recipes', 'showcase']) {
+  for (const section of [
+    'docs',
+    'composition',
+    'components',
+    'recipes',
+    'showcase',
+  ]) {
     const dir = path.resolve(root, section);
     if (!existsSync(dir)) continue;
     for (const entry of readdirSync(dir)) {
