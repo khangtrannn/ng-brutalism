@@ -133,7 +133,7 @@ import { NbCallout } from '@ng-brutalism/ui';
           <code class="font-mono">open</code> attribute directly, since jsdom
           doesn't implement <code class="font-mono">showModal()</code>.
         </p>
-        <div nbCallout tone="mint" size="sm">
+        <div nbCallout tone="cream" size="sm">
           <p class="normal-case">
             The select popup's escape from an
             <code class="font-mono">overflow:hidden</code> ancestor and the

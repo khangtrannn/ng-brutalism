@@ -156,8 +156,14 @@ function inferLanguage(title: string, code: string): HighlightLanguage {
       .docs-code-block-pre {
         overflow-x: auto;
         overflow-y: hidden;
-        scrollbar-color: var(--nb-yellow) #000;
+        scrollbar-color: transparent transparent;
         scrollbar-width: thin;
+      }
+
+      .docs-code-block-pre:hover,
+      .docs-code-block-pre:focus,
+      .docs-code-block-pre:focus-within {
+        scrollbar-color: var(--nb-yellow) #000;
       }
 
       .docs-code-block-pre::-webkit-scrollbar {
@@ -165,10 +171,17 @@ function inferLanguage(title: string, code: string): HighlightLanguage {
       }
 
       .docs-code-block-pre::-webkit-scrollbar-track {
-        background: #000;
+        background: transparent;
       }
 
       .docs-code-block-pre::-webkit-scrollbar-thumb {
+        background: transparent;
+        border: 2px solid transparent;
+      }
+
+      .docs-code-block-pre:hover::-webkit-scrollbar-thumb,
+      .docs-code-block-pre:focus::-webkit-scrollbar-thumb,
+      .docs-code-block-pre:focus-within::-webkit-scrollbar-thumb {
         background: var(--nb-yellow);
         border: 2px solid #000;
       }

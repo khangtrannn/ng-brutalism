@@ -80,7 +80,7 @@ import { DocsCodeBlock } from '@ng-brutalism/docs-ui';
         <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">
           Dark mode
         </h2>
-        <div nbCallout tone="warning" size="sm">
+        <div nbCallout tone="cream" size="sm">
           <p class="normal-case">
             <strong>Not shipped yet.</strong> An earlier partial
             <code class="font-mono">.dark</code> stub covering 6 variables was

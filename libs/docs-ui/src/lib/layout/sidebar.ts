@@ -199,14 +199,29 @@ const GROUP_COLORS = ['yellow', 'pink', 'mint', 'lavender'] as const;
       background: var(--nb-border);
     }
 
+    .docs-sidebar {
+      scrollbar-width: thin;
+      scrollbar-color: transparent transparent;
+    }
+
+    .docs-sidebar:hover,
+    .docs-sidebar:focus-within {
+      scrollbar-color: var(--nb-border) transparent;
+    }
+
     .docs-sidebar::-webkit-scrollbar {
       width: 6px;
       border-radius: 0;
     }
 
     .docs-sidebar::-webkit-scrollbar-thumb {
-      background: var(--nb-border);
+      background: transparent;
       border-radius: 0;
+    }
+
+    .docs-sidebar:hover::-webkit-scrollbar-thumb,
+    .docs-sidebar:focus-within::-webkit-scrollbar-thumb {
+      background: var(--nb-border);
     }
   `,
     changeDetection: ChangeDetectionStrategy.OnPush

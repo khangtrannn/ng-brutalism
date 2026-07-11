@@ -14,7 +14,7 @@ export const DOCS_PUBLIC_ROUTES = [
   },
   {
     path: '/docs/introduction',
-    file: 'docs/introduction.page.ts',
+    file: 'docs/introduction/index.page.ts',
     priority: '0.9',
     changefreq: 'weekly',
   },

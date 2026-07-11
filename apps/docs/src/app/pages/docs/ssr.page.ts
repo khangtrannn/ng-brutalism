@@ -75,7 +75,7 @@ import { DocsCodeBlock } from '@ng-brutalism/docs-ui';
           (<code class="font-mono">isPlatformBrowser</code>) rather than assumed
           to exist.
         </p>
-        <div nbCallout tone="mint" size="sm">
+        <div nbCallout tone="cream" size="sm">
           <p class="normal-case">
             If you hit a hydration mismatch that isn't covered here, it's a bug
             - please open an issue with a minimal repro.

@@ -72,7 +72,7 @@ import { DocsCodeBlock } from '@ng-brutalism/docs-ui';
             regardless of what inputs are set upstream.
           </li>
         </ol>
-        <div nbCallout tone="danger" size="sm" class="mb-2">
+        <div nbCallout tone="cream" size="sm" class="mb-2">
           <p class="normal-case">
             <strong>Don't set both</strong> an input and a same-name CSS
             variable override on the <em>same element</em> - the input's inline

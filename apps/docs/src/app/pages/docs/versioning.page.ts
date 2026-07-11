@@ -28,7 +28,7 @@ import { NbCallout } from '@ng-brutalism/ui';
           This is stated up front so consumers can set explicit expectations
           rather than assume semver stability that doesn't exist yet.
         </p>
-        <div nbCallout tone="warning" size="sm">
+        <div nbCallout tone="cream" size="sm">
           <p class="normal-case">
             Pre-1.0 breaking changes are called out per-release in
             <code class="font-mono">CHANGELOG.md</code> at the repository root.

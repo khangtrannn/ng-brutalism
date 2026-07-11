@@ -37,7 +37,7 @@ import { DocsCodeBlock } from '@ng-brutalism/docs-ui';
           is the fully bundled output - importing it is enough for every
           component to render correctly, with zero build-time processing.
         </p>
-        <div nbCallout tone="mint" size="sm">
+        <div nbCallout tone="cream" size="sm">
           <p class="normal-case">
             <code class="font-mono">tailwindcss</code> is marked
             <code class="font-mono">optional</code> in the package's

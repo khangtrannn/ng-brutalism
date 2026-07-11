@@ -105,7 +105,7 @@ import { DocsCodeBlock } from '@ng-brutalism/docs-ui';
         <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">
           Validation states
         </h2>
-        <div nbCallout tone="mint" size="sm">
+        <div nbCallout tone="cream" size="sm">
           <p class="normal-case">
             Invalid styling and
             <code class="font-mono">nb-field-error</code> visibility both gate
