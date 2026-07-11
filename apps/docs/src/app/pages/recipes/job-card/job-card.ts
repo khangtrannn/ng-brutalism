@@ -159,7 +159,12 @@ import {
                 Apply Now
               </span>
 
-              <span nbButtonTrailingIcon shape="circle" tone="inverse" size="md">
+              <span
+                nbButtonTrailingIcon
+                shape="circle"
+                tone="inverse"
+                size="md"
+              >
                 <span
                   nbIcon
                   src="/tokyo-city-escape/nb-arrow-right.svg"

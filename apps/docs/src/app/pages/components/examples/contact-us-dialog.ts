@@ -28,33 +28,33 @@ import {
 } from './contact-us-dialog.icons';
 
 @Component({
-    selector: 'contact-us-dialog',
-    imports: [
-        NbButton,
-        NbDialog,
-        NbDialogActions,
-        NbDialogClose,
-        NbDialogContent,
-        NbDialogDescription,
-        NbDialogTitle,
-        NbIconButton,
-        NbInput,
-        NbInputGroup,
-        NbInputPrefix,
-        NbLabel,
-        NbSelect,
-        NbSelectOption,
-        NbTextarea,
-        NbTitle,
-        DocsContactEditIcon,
-        DocsContactMailIcon,
-        DocsContactSendIcon,
-        DocsContactShieldIcon,
-        DocsContactTagIcon,
-        DocsContactUserIcon,
-        DocsContactZigzagIcon,
-    ],
-    template: `
+  selector: 'contact-us-dialog',
+  imports: [
+    NbButton,
+    NbDialog,
+    NbDialogActions,
+    NbDialogClose,
+    NbDialogContent,
+    NbDialogDescription,
+    NbDialogTitle,
+    NbIconButton,
+    NbInput,
+    NbInputGroup,
+    NbInputPrefix,
+    NbLabel,
+    NbSelect,
+    NbSelectOption,
+    NbTextarea,
+    NbTitle,
+    DocsContactEditIcon,
+    DocsContactMailIcon,
+    DocsContactSendIcon,
+    DocsContactShieldIcon,
+    DocsContactTagIcon,
+    DocsContactUserIcon,
+    DocsContactZigzagIcon,
+  ],
+  template: `
     <ng-content>
       <button
         nbButton
@@ -252,7 +252,7 @@ import {
       </nb-dialog-actions>
     </nb-dialog>
   `,
-    changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ContactUsDialog {
   private dialog = viewChild.required<NbDialog>('dialogRef');

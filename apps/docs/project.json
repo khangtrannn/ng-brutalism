@@ -55,6 +55,27 @@
         "lintFilePatterns": ["apps/docs/**/*.ts", "apps/docs/**/*.html"]
       }
     },
+    "format": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "prettier --write \"apps/docs/**/*.{ts,html,css,scss,json,md,mjs,cjs}\"",
+        "cwd": "{workspaceRoot}"
+      }
+    },
+    "format-check": {
+      "executor": "nx:run-commands",
+      "cache": true,
+      "inputs": [
+        "default",
+        "{workspaceRoot}/.prettierrc",
+        "{workspaceRoot}/.prettierignore"
+      ],
+      "outputs": [],
+      "options": {
+        "command": "prettier --check \"apps/docs/**/*.{ts,html,css,scss,json,md,mjs,cjs}\"",
+        "cwd": "{workspaceRoot}"
+      }
+    },
     "build-seo-artifacts": {
       "executor": "nx:run-commands",
       "dependsOn": ["build"],

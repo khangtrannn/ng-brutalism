@@ -2,6 +2,8 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 import {
   NbMediaFrame,
   NbCluster,
+  NbStat,
+  NbSurface,
   type NbMediaFrameFit,
   type NbMediaFrameRadius,
   type NbMediaFrameRatio,
@@ -9,7 +11,13 @@ import {
   type NbMediaFrameTone,
 } from '@ng-brutalism/ui';
 
-import { DocsCodeBlock, DocsExample, DocsSourceTile, DocsStatusBadge, DocsTokens } from '@ng-brutalism/docs-ui';
+import {
+  DocsCodeBlock,
+  DocsExample,
+  DocsSourceTile,
+  DocsStatusBadge,
+  DocsTokens,
+} from '@ng-brutalism/docs-ui';
 
 interface MediaFrameRatioDemo {
   readonly value: NbMediaFrameRatio;
@@ -34,6 +42,8 @@ interface MediaFrameShapeDemo {
 @Component({
   selector: 'docs-media-frame-page',
   imports: [
+    NbStat,
+    NbSurface,
     DocsCodeBlock,
     DocsExample,
     DocsSourceTile,
@@ -57,17 +67,35 @@ interface MediaFrameShapeDemo {
 
         <div class="mt-7 flex flex-wrap items-center gap-3">
           <docs-status-badge status="stable" />
-          <div class="nb-stat-tile nb-stat-tile--yellow">
-            <span class="nb-stat-tile__value">12</span>
-            <span class="nb-stat-tile__label">Tones</span>
+          <div
+            nbSurface
+            tone="yellow"
+            border="strong"
+            padding="sm"
+            layout="stack"
+            class="items-start"
+          >
+            <nb-stat value="12" label="Tones" />
           </div>
-          <div class="nb-stat-tile nb-stat-tile--mint">
-            <span class="nb-stat-tile__value">7</span>
-            <span class="nb-stat-tile__label">Ratios</span>
+          <div
+            nbSurface
+            tone="mint"
+            border="strong"
+            padding="sm"
+            layout="stack"
+            class="items-start"
+          >
+            <nb-stat value="7" label="Ratios" />
           </div>
-          <div class="nb-stat-tile nb-stat-tile--pink">
-            <span class="nb-stat-tile__value">6</span>
-            <span class="nb-stat-tile__label">Shapes</span>
+          <div
+            nbSurface
+            tone="pink"
+            border="strong"
+            padding="sm"
+            layout="stack"
+            class="items-start"
+          >
+            <nb-stat value="6" label="Shapes" />
           </div>
 
           <docs-source-tile
@@ -218,17 +246,20 @@ interface MediaFrameShapeDemo {
       <docs-tokens component="media-frame" />
 
       <section id="accessibility">
-        <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">Accessibility</h2>
+        <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">
+          Accessibility
+        </h2>
         <p class="font-medium">
           <strong>APG pattern:</strong> N/A - Media Frame is a static,
-          presentational container that frames visual content such as images
-          or video, not an interactive widget. <strong>Status:</strong> Stable.
+          presentational container that frames visual content such as images or
+          video, not an interactive widget. <strong>Status:</strong> Stable.
         </p>
       </section>
 
       <section id="api">
         <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">API</h2>
         <div
+          tabindex="0"
           class="overflow-x-auto border-2 border-(--nb-border) bg-nb-surface shadow-[5px_5px_0_0_var(--nb-shadow)]"
         >
           <table class="w-full min-w-180 border-collapse text-left">
@@ -264,8 +295,8 @@ interface MediaFrameShapeDemo {
                 <td
                   class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
                 >
-                  'surface' | 'cream' | 'white' | 'black' | 'yellow' | 'pink'
-                  | 'mint' | 'lavender' | 'blue' | 'primary' | 'secondary' |
+                  'surface' | 'cream' | 'white' | 'black' | 'yellow' | 'pink' |
+                  'mint' | 'lavender' | 'blue' | 'primary' | 'secondary' |
                   'accent' | 'background' | 'ink'
                 </td>
                 <td

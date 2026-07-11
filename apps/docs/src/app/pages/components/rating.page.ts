@@ -1,11 +1,19 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { NbRating } from '@ng-brutalism/ui';
+import { NbRating, NbStat, NbSurface } from '@ng-brutalism/ui';
 
-import { DocsCodeBlock, DocsExample, DocsSourceTile, DocsStatusBadge, DocsTokens } from '@ng-brutalism/docs-ui';
+import {
+  DocsCodeBlock,
+  DocsExample,
+  DocsSourceTile,
+  DocsStatusBadge,
+  DocsTokens,
+} from '@ng-brutalism/docs-ui';
 
 @Component({
   selector: 'docs-rating-page',
   imports: [
+    NbStat,
+    NbSurface,
     DocsCodeBlock,
     DocsExample,
     DocsSourceTile,
@@ -20,8 +28,9 @@ import { DocsCodeBlock, DocsExample, DocsSourceTile, DocsStatusBadge, DocsTokens
           <p>Neo-Brutalist Angular Rating</p>
           <h1>Rating</h1>
           <p class="mt-3 max-w-3xl text-base font-medium sm:text-lg">
-            A read-only star rating display. Accepts a decimal value and rounds to the
-            nearest whole star. Optionally shows a review count. Fully accessible via
+            A read-only star rating display. Accepts a decimal value and rounds
+            to the nearest whole star. Optionally shows a review count. Fully
+            accessible via
             <code class="font-mono">role="img"</code> with an auto-generated
             <code class="font-mono">aria-label</code>.
           </p>
@@ -29,13 +38,25 @@ import { DocsCodeBlock, DocsExample, DocsSourceTile, DocsStatusBadge, DocsTokens
 
         <div class="mt-7 flex flex-wrap items-center gap-3">
           <docs-status-badge status="stable" />
-          <div class="nb-stat-tile nb-stat-tile--yellow">
-            <span class="nb-stat-tile__value">A11y</span>
-            <span class="nb-stat-tile__label">role="img"</span>
+          <div
+            nbSurface
+            tone="yellow"
+            border="strong"
+            padding="sm"
+            layout="stack"
+            class="items-start"
+          >
+            <nb-stat value="A11y" label='role="img"' />
           </div>
-          <div class="nb-stat-tile nb-stat-tile--mint">
-            <span class="nb-stat-tile__value">★</span>
-            <span class="nb-stat-tile__label">Unicode stars</span>
+          <div
+            nbSurface
+            tone="mint"
+            border="strong"
+            padding="sm"
+            layout="stack"
+            class="items-start"
+          >
+            <nb-stat value="★" label="Unicode stars" />
           </div>
 
           <docs-source-tile
@@ -55,7 +76,11 @@ import { DocsCodeBlock, DocsExample, DocsSourceTile, DocsStatusBadge, DocsTokens
 
       <section id="usage">
         <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">Usage</h2>
-        <docs-code-block class="block mb-5" title="Import" [code]="importCode" />
+        <docs-code-block
+          class="block mb-5"
+          title="Import"
+          [code]="importCode"
+        />
         <docs-code-block title="Template" [code]="defaultExampleCode" />
       </section>
 
@@ -73,7 +98,9 @@ import { DocsCodeBlock, DocsExample, DocsSourceTile, DocsStatusBadge, DocsTokens
       </section>
 
       <section id="with-count">
-        <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">With review count</h2>
+        <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">
+          With review count
+        </h2>
         <docs-example [code]="withCountCode">
           <div class="flex flex-col gap-3 p-4">
             <nb-rating [value]="4.5" [count]="1204" />
@@ -83,7 +110,9 @@ import { DocsCodeBlock, DocsExample, DocsSourceTile, DocsStatusBadge, DocsTokens
       </section>
 
       <section id="custom-max">
-        <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">Custom max</h2>
+        <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">
+          Custom max
+        </h2>
         <docs-example [code]="customMaxCode">
           <div class="p-4">
             <nb-rating [value]="7" [max]="10" />
@@ -94,7 +123,9 @@ import { DocsCodeBlock, DocsExample, DocsSourceTile, DocsStatusBadge, DocsTokens
       <docs-tokens component="rating" />
 
       <section id="accessibility">
-        <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">Accessibility</h2>
+        <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">
+          Accessibility
+        </h2>
         <p class="font-medium">
           <strong>APG pattern:</strong> N/A - Rating is a static, presentational
           display that visualizes a star rating value, not an interactive
@@ -105,35 +136,90 @@ import { DocsCodeBlock, DocsExample, DocsSourceTile, DocsStatusBadge, DocsTokens
       <section id="api">
         <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">API</h2>
         <div
+          tabindex="0"
           class="overflow-x-auto border-2 border-(--nb-border) bg-nb-surface shadow-[5px_5px_0_0_var(--nb-shadow)]"
         >
           <table class="w-full min-w-160 border-collapse text-left">
             <thead class="bg-nb-secondary text-nb-secondary-fg">
               <tr>
-                <th class="border-b-2 border-r-2 border-(--nb-border) px-4 py-3 font-bold">Input</th>
-                <th class="border-b-2 border-r-2 border-(--nb-border) px-4 py-3 font-bold">Type</th>
-                <th class="border-b-2 border-r-2 border-(--nb-border) px-4 py-3 font-bold">Default</th>
-                <th class="border-b-2 border-(--nb-border) px-4 py-3 font-bold">Description</th>
+                <th
+                  class="border-b-2 border-r-2 border-(--nb-border) px-4 py-3 font-bold"
+                >
+                  Input
+                </th>
+                <th
+                  class="border-b-2 border-r-2 border-(--nb-border) px-4 py-3 font-bold"
+                >
+                  Type
+                </th>
+                <th
+                  class="border-b-2 border-r-2 border-(--nb-border) px-4 py-3 font-bold"
+                >
+                  Default
+                </th>
+                <th class="border-b-2 border-(--nb-border) px-4 py-3 font-bold">
+                  Description
+                </th>
               </tr>
             </thead>
             <tbody class="font-medium">
               <tr class="border-b-2 border-(--nb-border)">
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">value</td>
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">number</td>
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">0</td>
-                <td class="px-4 py-3">Rating value. Decimal - rounds to nearest whole star.</td>
+                <td
+                  class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
+                >
+                  value
+                </td>
+                <td
+                  class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
+                >
+                  number
+                </td>
+                <td
+                  class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
+                >
+                  0
+                </td>
+                <td class="px-4 py-3">
+                  Rating value. Decimal - rounds to nearest whole star.
+                </td>
               </tr>
               <tr class="border-b-2 border-(--nb-border)">
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">max</td>
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">number</td>
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">5</td>
+                <td
+                  class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
+                >
+                  max
+                </td>
+                <td
+                  class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
+                >
+                  number
+                </td>
+                <td
+                  class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
+                >
+                  5
+                </td>
                 <td class="px-4 py-3">Total number of stars to render.</td>
               </tr>
               <tr>
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">count</td>
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">number | undefined</td>
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">undefined</td>
-                <td class="px-4 py-3">Optional review count shown in parentheses.</td>
+                <td
+                  class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
+                >
+                  count
+                </td>
+                <td
+                  class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
+                >
+                  number | undefined
+                </td>
+                <td
+                  class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
+                >
+                  undefined
+                </td>
+                <td class="px-4 py-3">
+                  Optional review count shown in parentheses.
+                </td>
               </tr>
             </tbody>
           </table>

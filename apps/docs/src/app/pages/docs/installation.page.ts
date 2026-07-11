@@ -25,9 +25,8 @@ import { DocsCodeBlock, DocsTokens } from '@ng-brutalism/docs-ui';
         <p class="mb-2 text-base font-medium">
           The library expects your app to have
           <strong>Tailwind CSS v4</strong> configured and scanning your project
-          source. The
-          <code class="font-mono text-sm">ng add</code> schematic handles this
-          automatically for Angular CLI apps.
+          source. The <code class="font-mono text-sm">ng add</code> schematic
+          handles this automatically for Angular CLI apps.
         </p>
       </section>
 
@@ -67,11 +66,10 @@ import { DocsCodeBlock, DocsTokens } from '@ng-brutalism/docs-ui';
       </section>
 
       <section id="theming">
-        <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">
-          Theming
-        </h2>
+        <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">Theming</h2>
         <p class="mb-5 text-base font-medium">
-          Theming is CSS-only: redefine the <code class="font-mono text-sm">--nb-*</code>
+          Theming is CSS-only: redefine the
+          <code class="font-mono text-sm">--nb-*</code>
           custom properties in your own stylesheet, after the library's
           <code class="font-mono text-sm">theme.css</code> import.
           <code class="font-mono text-sm">provideNgBrutalism()</code> registers

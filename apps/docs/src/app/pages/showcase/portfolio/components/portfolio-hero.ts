@@ -16,17 +16,17 @@ import {
 import type { Skill } from '../portfolio.types';
 
 @Component({
-    selector: 'docs-portfolio-hero',
-    imports: [
-        NbButton,
-        NbMarquee,
-        NbMarqueeItem,
-        NbTitle,
-        ContactUsDialog,
-        DocsPortfolioGithubIcon,
-        DocsPortfolioLinkedinIcon,
-    ],
-    template: `
+  selector: 'docs-portfolio-hero',
+  imports: [
+    NbButton,
+    NbMarquee,
+    NbMarqueeItem,
+    NbTitle,
+    ContactUsDialog,
+    DocsPortfolioGithubIcon,
+    DocsPortfolioLinkedinIcon,
+  ],
+  template: `
     <section
       id="home"
       class="portfolio-grid-section relative flex h-screen max-h-[900px] min-h-[500px] w-full scroll-mt-6 flex-col items-center justify-center overflow-hidden bg-white pb-14 dark:bg-black sm:min-h-[600px] sm:pb-16 md:pb-20"
@@ -69,7 +69,8 @@ import type { Skill } from '../portfolio.types';
               class="inline-block font-bold"
               style="--nb-title-wave-color: #a78bfa; --nb-title-wave-width: 100%; --nb-title-wave-height: 0.35rem; --nb-title-wave-gap: -0.5rem;"
               >Angular</span
-            >. I focus on building modern web applications, exploring open-source, and turning ideas into polished products.
+            >. I focus on building modern web applications, exploring
+            open-source, and turning ideas into polished products.
           </p>
 
           <div
@@ -84,7 +85,9 @@ import type { Skill } from '../portfolio.types';
                 aria-label="GitHub"
                 title="GitHub"
               >
-                <docs-portfolio-github-icon class="h-5 w-5 sm:h-6 sm:w-6 md:h-7 md:w-7" />
+                <docs-portfolio-github-icon
+                  class="h-5 w-5 sm:h-6 sm:w-6 md:h-7 md:w-7"
+                />
               </a>
               <a
                 class="portfolio-social"
@@ -94,7 +97,9 @@ import type { Skill } from '../portfolio.types';
                 aria-label="LinkedIn"
                 title="LinkedIn"
               >
-                <docs-portfolio-linkedin-icon class="h-5 w-5 sm:h-6 sm:w-6 md:h-7 md:w-7" />
+                <docs-portfolio-linkedin-icon
+                  class="h-5 w-5 sm:h-6 sm:w-6 md:h-7 md:w-7"
+                />
               </a>
             </div>
             <contact-us-dialog #contact>
@@ -116,7 +121,10 @@ import type { Skill } from '../portfolio.types';
         >
           <picture>
             <source
-              srcset="/showcase/portfolio/khang-450.webp 450w, /showcase/portfolio/khang-900.webp 900w"
+              srcset="
+                /showcase/portfolio/khang-450.webp 450w,
+                /showcase/portfolio/khang-900.webp 900w
+              "
               sizes="(min-width: 1280px) 450px, (min-width: 1024px) 400px, (min-width: 768px) 300px, (min-width: 640px) 220px, 180px"
               type="image/webp"
             />
@@ -161,7 +169,7 @@ import type { Skill } from '../portfolio.types';
       </div>
     </section>
   `,
-    changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PortfolioHero {
   readonly greeting = input.required<string>();
@@ -173,14 +181,14 @@ export class PortfolioHero {
       switchMap((text) =>
         timer(0, 100).pipe(
           scan((i) => i + 1, 0),
-          takeWhile((i) => i <= text.length),
-        ),
-      ),
+          takeWhile((i) => i <= text.length)
+        )
+      )
     ),
-    { initialValue: 0 },
+    { initialValue: 0 }
   );
 
   protected readonly displayedGreeting = computed(() =>
-    this.greeting().slice(0, this.charIndex()),
+    this.greeting().slice(0, this.charIndex())
   );
 }

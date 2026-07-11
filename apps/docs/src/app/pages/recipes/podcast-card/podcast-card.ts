@@ -123,15 +123,15 @@ import {
                 transform="uppercase"
               >
                 @for (stat of stats; track stat.label) {
-                  <span
-                    nbChip
-                    [tone]="stat.tone"
-                    padding="lg"
-                    [icon]="stat.icon"
-                    class="text-sm font-black"
-                  >
-                    {{ stat.label }}
-                  </span>
+                <span
+                  nbChip
+                  [tone]="stat.tone"
+                  padding="lg"
+                  [icon]="stat.icon"
+                  class="text-sm font-black"
+                >
+                  {{ stat.label }}
+                </span>
                 }
               </div>
 
@@ -302,7 +302,7 @@ export class PodcastCard {
       label: 'UX',
       tone: 'pink',
       icon: '/podcast-card/user.svg',
-    }
+    },
   ] satisfies ReadonlyArray<{
     label: string;
     tone: NbChipTone;

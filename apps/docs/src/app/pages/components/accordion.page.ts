@@ -5,25 +5,35 @@ import {
   NbAccordionItem,
   NbAccordionTrigger,
   NbButton,
+  NbStat,
+  NbSurface,
 } from '@ng-brutalism/ui';
 
-import { DocsCodeBlock, DocsExample, DocsSourceTile, DocsStatusBadge, DocsTokens } from '@ng-brutalism/docs-ui';
+import {
+  DocsCodeBlock,
+  DocsExample,
+  DocsSourceTile,
+  DocsStatusBadge,
+  DocsTokens,
+} from '@ng-brutalism/docs-ui';
 
 @Component({
-    selector: 'docs-accordion-page',
-    imports: [
-        DocsCodeBlock,
-        DocsExample,
-        DocsSourceTile,
-        DocsStatusBadge,
-        DocsTokens,
-        NbAccordion,
-        NbAccordionContent,
-        NbAccordionItem,
-        NbAccordionTrigger,
-        NbButton,
-    ],
-    template: `
+  selector: 'docs-accordion-page',
+  imports: [
+    NbStat,
+    NbSurface,
+    DocsCodeBlock,
+    DocsExample,
+    DocsSourceTile,
+    DocsStatusBadge,
+    DocsTokens,
+    NbAccordion,
+    NbAccordionContent,
+    NbAccordionItem,
+    NbAccordionTrigger,
+    NbButton,
+  ],
+  template: `
     <article style="--nb-accordion-trigger-bg: var(--nb-yellow)">
       <header id="overview" class="relative mb-10 scroll-mt-32">
         <div class="mb-5">
@@ -38,17 +48,35 @@ import { DocsCodeBlock, DocsExample, DocsSourceTile, DocsStatusBadge, DocsTokens
 
         <div class="mt-7 flex flex-wrap items-center gap-3">
           <docs-status-badge status="stable" />
-          <div class="nb-stat-tile nb-stat-tile--yellow">
-            <span class="nb-stat-tile__value">4</span>
-            <span class="nb-stat-tile__label">Parts</span>
+          <div
+            nbSurface
+            tone="yellow"
+            border="strong"
+            padding="sm"
+            layout="stack"
+            class="items-start"
+          >
+            <nb-stat value="4" label="Parts" />
           </div>
-          <div class="nb-stat-tile nb-stat-tile--mint">
-            <span class="nb-stat-tile__value">A11y</span>
-            <span class="nb-stat-tile__label">ARIA-ready</span>
+          <div
+            nbSurface
+            tone="mint"
+            border="strong"
+            padding="sm"
+            layout="stack"
+            class="items-start"
+          >
+            <nb-stat value="A11y" label="ARIA-ready" />
           </div>
-          <div class="nb-stat-tile nb-stat-tile--pink">
-            <span class="nb-stat-tile__value">∞</span>
-            <span class="nb-stat-tile__label">Items</span>
+          <div
+            nbSurface
+            tone="pink"
+            border="strong"
+            padding="sm"
+            layout="stack"
+            class="items-start"
+          >
+            <nb-stat value="∞" label="Items" />
           </div>
 
           <docs-source-tile
@@ -92,7 +120,9 @@ import { DocsCodeBlock, DocsExample, DocsSourceTile, DocsStatusBadge, DocsTokens
       </section>
 
       <section id="multiple">
-        <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">Multiple</h2>
+        <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">
+          Multiple
+        </h2>
         <docs-example [code]="multipleExampleCode">
           <nb-accordion
             class="block w-full max-w-xl"
@@ -122,7 +152,9 @@ import { DocsCodeBlock, DocsExample, DocsSourceTile, DocsStatusBadge, DocsTokens
       </section>
 
       <section id="controlled">
-        <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">Controlled</h2>
+        <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">
+          Controlled
+        </h2>
         <docs-example
           previewPadding="compact"
           [code]="controlledExampleTemplateCode"
@@ -178,7 +210,9 @@ import { DocsCodeBlock, DocsExample, DocsSourceTile, DocsStatusBadge, DocsTokens
       </section>
 
       <section id="disabled">
-        <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">Disabled Item</h2>
+        <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">
+          Disabled Item
+        </h2>
         <docs-example [code]="disabledExampleCode">
           <nb-accordion
             collapsible
@@ -205,7 +239,9 @@ import { DocsCodeBlock, DocsExample, DocsSourceTile, DocsStatusBadge, DocsTokens
       <docs-tokens component="accordion" />
 
       <section id="accessibility">
-        <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">Accessibility</h2>
+        <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">
+          Accessibility
+        </h2>
         <p class="mb-4 font-medium">
           <strong>APG pattern:</strong>
           <a
@@ -219,26 +255,47 @@ import { DocsCodeBlock, DocsExample, DocsSourceTile, DocsStatusBadge, DocsTokens
         </p>
 
         <div
+          tabindex="0"
           class="overflow-x-auto border-2 border-(--nb-border) bg-nb-surface shadow-nb mb-4"
         >
           <table class="w-full min-w-140 border-collapse text-left">
             <thead class="bg-nb-secondary text-nb-secondary-fg">
               <tr>
-                <th class="border-b-2 border-r-2 border-(--nb-border) px-4 py-3 font-bold">Key</th>
-                <th class="border-b-2 border-(--nb-border) px-4 py-3 font-bold">Action</th>
+                <th
+                  class="border-b-2 border-r-2 border-(--nb-border) px-4 py-3 font-bold"
+                >
+                  Key
+                </th>
+                <th class="border-b-2 border-(--nb-border) px-4 py-3 font-bold">
+                  Action
+                </th>
               </tr>
             </thead>
             <tbody class="font-medium">
               <tr class="border-b-2 border-(--nb-border)">
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">Enter / Space</td>
+                <td
+                  class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
+                >
+                  Enter / Space
+                </td>
                 <td class="px-4 py-3">Toggle the focused trigger's panel</td>
               </tr>
               <tr class="border-b-2 border-(--nb-border)">
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">↑ / ↓</td>
-                <td class="px-4 py-3">Move focus between headers, skipping disabled items</td>
+                <td
+                  class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
+                >
+                  ↑ / ↓
+                </td>
+                <td class="px-4 py-3">
+                  Move focus between headers, skipping disabled items
+                </td>
               </tr>
               <tr>
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">Home / End</td>
+                <td
+                  class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
+                >
+                  Home / End
+                </td>
                 <td class="px-4 py-3">Jump focus to the first / last header</td>
               </tr>
             </tbody>
@@ -246,14 +303,13 @@ import { DocsCodeBlock, DocsExample, DocsSourceTile, DocsStatusBadge, DocsTokens
         </div>
 
         <p class="font-medium">
-          Triggers use real <code class="font-mono">disabled</code> buttons,
-          not <code class="font-mono">aria-disabled</code> - a genuinely
-          disabled button can't receive focus, so header navigation skips
-          disabled items entirely rather than landing on an inert stop.
-          Closed content is bound with <code class="font-mono">[inert]</code>
-          so it can't be tabbed into or found by find-in-page while
-          collapsed. Verified with <code class="font-mono">vitest-axe</code>;
-          keyboard walkthrough in
+          Triggers use real <code class="font-mono">disabled</code> buttons, not
+          <code class="font-mono">aria-disabled</code> - a genuinely disabled
+          button can't receive focus, so header navigation skips disabled items
+          entirely rather than landing on an inert stop. Closed content is bound
+          with <code class="font-mono">[inert]</code> so it can't be tabbed into
+          or found by find-in-page while collapsed. Verified with
+          <code class="font-mono">vitest-axe</code>; keyboard walkthrough in
           <code class="font-mono">nb-accordion-keyboard.spec.ts</code>.
         </p>
       </section>
@@ -262,6 +318,7 @@ import { DocsCodeBlock, DocsExample, DocsSourceTile, DocsStatusBadge, DocsTokens
         <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">API</h2>
         <h3 class="mt-6 mb-3 text-xl font-bold">Accordion</h3>
         <div
+          tabindex="0"
           class="overflow-x-auto border-2 border-(--nb-border) bg-nb-surface shadow-nb"
         >
           <table class="w-full min-w-160 border-collapse text-left">
@@ -318,9 +375,7 @@ import { DocsCodeBlock, DocsExample, DocsSourceTile, DocsStatusBadge, DocsTokens
                 </td>
               </tr>
               <tr>
-                <td class="border-r-2 border-(--nb-border) px-4 py-3">
-                  value
-                </td>
+                <td class="border-r-2 border-(--nb-border) px-4 py-3">value</td>
                 <td
                   class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
                 >
@@ -334,6 +389,7 @@ import { DocsCodeBlock, DocsExample, DocsSourceTile, DocsStatusBadge, DocsTokens
 
         <h3 class="mt-8 mb-3 text-xl font-bold">Accordion Item</h3>
         <div
+          tabindex="0"
           class="overflow-x-auto border-2 border-(--nb-border) bg-nb-surface shadow-nb"
         >
           <table class="w-full min-w-160 border-collapse text-left">
@@ -389,6 +445,7 @@ import { DocsCodeBlock, DocsExample, DocsSourceTile, DocsStatusBadge, DocsTokens
 
         <h3 class="mt-8 mb-3 text-xl font-bold">Selectors</h3>
         <div
+          tabindex="0"
           class="overflow-x-auto border-2 border-(--nb-border) bg-nb-surface shadow-nb"
         >
           <table class="w-full min-w-160 border-collapse text-left">
@@ -432,7 +489,7 @@ import { DocsCodeBlock, DocsExample, DocsSourceTile, DocsStatusBadge, DocsTokens
       </section>
     </article>
   `,
-    changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export default class AccordionPage {
   protected readonly controlledValue = signal<string | string[] | null>(

@@ -1,10 +1,10 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { NbButton } from '@ng-brutalism/ui';
+import { NbButton, NbStat, NbSurface } from '@ng-brutalism/ui';
 
 @Component({
   selector: 'docs-faq-page',
-  imports: [NbButton, RouterLink],
+  imports: [NbStat, NbSurface, NbButton, RouterLink],
   template: `
     <article>
       <header id="overview" class="relative mb-10 scroll-mt-32">
@@ -97,13 +97,12 @@ import { NbButton } from '@ng-brutalism/ui';
           Does it require Tailwind CSS v4?
         </h2>
         <p class="text-base font-medium">
-          No - <code class="font-mono text-sm">tailwindcss</code> is an
-          optional peer dependency. Component styling ships as a static,
-          self-contained CSS file that needs no Tailwind processing to
-          render correctly. The <code class="font-mono text-sm">ng add</code>
-          schematic sets up Tailwind CSS v4 by default as a convenience for
-          your own app code, but it isn't required by the library itself -
-          see
+          No - <code class="font-mono text-sm">tailwindcss</code> is an optional
+          peer dependency. Component styling ships as a static, self-contained
+          CSS file that needs no Tailwind processing to render correctly. The
+          <code class="font-mono text-sm">ng add</code>
+          schematic sets up Tailwind CSS v4 by default as a convenience for your
+          own app code, but it isn't required by the library itself - see
           <a routerLink="/docs/without-tailwind" class="underline"
             >Without Tailwind</a
           >
@@ -163,7 +162,9 @@ import { NbButton } from '@ng-brutalism/ui';
           prototypes, portfolios, launch pages, side projects, and teams willing
           to track early releases. For conservative enterprise systems, wait for
           a later stable release - see
-          <a routerLink="/docs/versioning" class="underline">Versioning &amp; Roadmap</a>
+          <a routerLink="/docs/versioning" class="underline"
+            >Versioning &amp; Roadmap</a
+          >
           for the exact v1.0 criteria, and
           <a routerLink="/docs/comparison" class="underline">Comparison</a>
           for when another library is the better fit today.
@@ -188,11 +189,19 @@ import { NbButton } from '@ng-brutalism/ui';
             <div class="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
               @for (component of group.items; track component.path) {
               <a
-                class="nb-stat-tile nb-stat-tile--interactive"
+                nbSurface
+                tone="white"
+                border="strong"
+                padding="sm"
+                layout="stack"
+                interactive
+                class="items-start"
                 [routerLink]="component.path"
               >
-                <span class="nb-stat-tile__value">{{ component.label }}</span>
-                <span class="nb-stat-tile__label">{{ component.summary }}</span>
+                <nb-stat
+                  value="{{ component.label }}"
+                  label="{{ component.summary }}"
+                />
               </a>
               }
             </div>
@@ -206,11 +215,11 @@ import { NbButton } from '@ng-brutalism/ui';
           Does it work with SSR?
         </h2>
         <p class="text-base font-medium">
-          Yes. The docs site itself is prerendered with Analog and Angular.
-          The UI package avoids browser-only assumptions in core primitives,
+          Yes. The docs site itself is prerendered with Analog and Angular. The
+          UI package avoids browser-only assumptions in core primitives,
           generates ids through an injectable counter so hydration can't
-          mismatch, and keeps browser-dependent behavior behind Angular
-          platform checks. See
+          mismatch, and keeps browser-dependent behavior behind Angular platform
+          checks. See
           <a routerLink="/docs/ssr" class="underline">SSR &amp; Hydration</a>
           for details.
         </p>

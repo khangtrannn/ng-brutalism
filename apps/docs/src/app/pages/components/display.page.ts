@@ -1,11 +1,19 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { NbDisplay } from '@ng-brutalism/ui';
+import { NbDisplay, NbStat, NbSurface } from '@ng-brutalism/ui';
 
-import { DocsCodeBlock, DocsExample, DocsSourceTile, DocsStatusBadge, DocsTokens } from '@ng-brutalism/docs-ui';
+import {
+  DocsCodeBlock,
+  DocsExample,
+  DocsSourceTile,
+  DocsStatusBadge,
+  DocsTokens,
+} from '@ng-brutalism/docs-ui';
 
 @Component({
   selector: 'docs-display-page',
   imports: [
+    NbStat,
+    NbSurface,
     DocsCodeBlock,
     DocsExample,
     DocsSourceTile,
@@ -30,17 +38,35 @@ import { DocsCodeBlock, DocsExample, DocsSourceTile, DocsStatusBadge, DocsTokens
 
         <div class="mt-7 flex flex-wrap items-center gap-3">
           <docs-status-badge status="stable" />
-          <div class="nb-stat-tile nb-stat-tile--yellow">
-            <span class="nb-stat-tile__value">any</span>
-            <span class="nb-stat-tile__label">Host element</span>
+          <div
+            nbSurface
+            tone="yellow"
+            border="strong"
+            padding="sm"
+            layout="stack"
+            class="items-start"
+          >
+            <nb-stat value="any" label="Host element" />
           </div>
-          <div class="nb-stat-tile nb-stat-tile--mint">
-            <span class="nb-stat-tile__value">4</span>
-            <span class="nb-stat-tile__label">Display scale</span>
+          <div
+            nbSurface
+            tone="mint"
+            border="strong"
+            padding="sm"
+            layout="stack"
+            class="items-start"
+          >
+            <nb-stat value="4" label="Display scale" />
           </div>
-          <div class="nb-stat-tile nb-stat-tile--pink">
-            <span class="nb-stat-tile__value">7</span>
-            <span class="nb-stat-tile__label">CSS variables</span>
+          <div
+            nbSurface
+            tone="pink"
+            border="strong"
+            padding="sm"
+            layout="stack"
+            class="items-start"
+          >
+            <nb-stat value="7" label="CSS variables" />
           </div>
 
           <docs-source-tile
@@ -176,9 +202,13 @@ import { DocsCodeBlock, DocsExample, DocsSourceTile, DocsStatusBadge, DocsTokens
       <docs-tokens component="display" />
 
       <section id="accessibility">
-        <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">Accessibility</h2>
+        <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">
+          Accessibility
+        </h2>
         <p class="font-medium">
-          <strong>APG pattern:</strong> N/A - Display is a static, presentational typography directive for oversized text, not an interactive widget. <strong>Status:</strong> Stable.
+          <strong>APG pattern:</strong> N/A - Display is a static,
+          presentational typography directive for oversized text, not an
+          interactive widget. <strong>Status:</strong> Stable.
         </p>
       </section>
 
@@ -186,6 +216,7 @@ import { DocsCodeBlock, DocsExample, DocsSourceTile, DocsStatusBadge, DocsTokens
         <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">API</h2>
 
         <div
+          tabindex="0"
           class="overflow-x-auto border-2 border-(--nb-border) bg-nb-surface shadow-[5px_5px_0_0_var(--nb-shadow)]"
         >
           <table class="w-full min-w-160 border-collapse text-left">

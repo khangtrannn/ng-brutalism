@@ -4,6 +4,8 @@ import {
   NbChip,
   NbDisplay,
   NbStack,
+  NbStat,
+  NbSurface,
   NbText,
   type NbTextLeading,
   type NbTextMeasure,
@@ -14,7 +16,13 @@ import {
   type NbTextWeight,
 } from '@ng-brutalism/ui';
 
-import { DocsCodeBlock, DocsExample, DocsSourceTile, DocsStatusBadge, DocsTokens } from '@ng-brutalism/docs-ui';
+import {
+  DocsCodeBlock,
+  DocsExample,
+  DocsSourceTile,
+  DocsStatusBadge,
+  DocsTokens,
+} from '@ng-brutalism/docs-ui';
 
 interface TextSizeDemo {
   readonly value: NbTextSize;
@@ -53,6 +61,8 @@ interface TextLeadingDemo {
 @Component({
   selector: 'docs-text-page',
   imports: [
+    NbStat,
+    NbSurface,
     DocsCodeBlock,
     DocsExample,
     DocsSourceTile,
@@ -80,21 +90,45 @@ interface TextLeadingDemo {
 
         <div class="mt-7 flex flex-wrap items-center gap-3">
           <docs-status-badge status="stable" />
-          <div class="nb-stat-tile nb-stat-tile--yellow">
-            <span class="nb-stat-tile__value">5</span>
-            <span class="nb-stat-tile__label">Sizes</span>
+          <div
+            nbSurface
+            tone="yellow"
+            border="strong"
+            padding="sm"
+            layout="stack"
+            class="items-start"
+          >
+            <nb-stat value="5" label="Sizes" />
           </div>
-          <div class="nb-stat-tile nb-stat-tile--mint">
-            <span class="nb-stat-tile__value">6</span>
-            <span class="nb-stat-tile__label">Weights</span>
+          <div
+            nbSurface
+            tone="mint"
+            border="strong"
+            padding="sm"
+            layout="stack"
+            class="items-start"
+          >
+            <nb-stat value="6" label="Weights" />
           </div>
-          <div class="nb-stat-tile nb-stat-tile--pink">
-            <span class="nb-stat-tile__value">10</span>
-            <span class="nb-stat-tile__label">Tones</span>
+          <div
+            nbSurface
+            tone="pink"
+            border="strong"
+            padding="sm"
+            layout="stack"
+            class="items-start"
+          >
+            <nb-stat value="10" label="Tones" />
           </div>
-          <div class="nb-stat-tile nb-stat-tile--lavender">
-            <span class="nb-stat-tile__value">9</span>
-            <span class="nb-stat-tile__label">Inputs</span>
+          <div
+            nbSurface
+            tone="lavender"
+            border="strong"
+            padding="sm"
+            layout="stack"
+            class="items-start"
+          >
+            <nb-stat value="9" label="Inputs" />
           </div>
 
           <docs-source-tile
@@ -112,7 +146,13 @@ interface TextLeadingDemo {
               Explore iconic neighborhoods, savor local flavors, and make
               unforgettable memories on every trip.
             </p>
-            <span nbText size="sm" weight="bold" transform="uppercase" tracking="wide">
+            <span
+              nbText
+              size="sm"
+              weight="bold"
+              transform="uppercase"
+              tracking="wide"
+            >
               New release
             </span>
           </div>
@@ -126,7 +166,11 @@ interface TextLeadingDemo {
           element. It applies inline styles directly so it never conflicts with
           other attribute directives on the same element.
         </p>
-        <docs-code-block class="block mb-5" title="Import" [code]="importCode" />
+        <docs-code-block
+          class="block mb-5"
+          title="Import"
+          [code]="importCode"
+        />
         <docs-code-block title="Template" [code]="usageCode" />
       </section>
 
@@ -135,12 +179,15 @@ interface TextLeadingDemo {
         <docs-example [code]="sizesCode">
           <div class="p-6 w-full" nbStack gap="md">
             @for (s of sizes; track s.value) {
-              <div class="flex items-baseline gap-4">
-                <span class="w-10 font-mono text-xs font-bold text-right opacity-50 shrink-0">{{ s.value }}</span>
-                <span nbText [size]="s.value" weight="medium">
-                  The quick brown fox - {{ s.px }}
-                </span>
-              </div>
+            <div class="flex items-baseline gap-4">
+              <span
+                class="w-10 font-mono text-xs font-bold text-right opacity-50 shrink-0"
+                >{{ s.value }}</span
+              >
+              <span nbText [size]="s.value" weight="medium">
+                The quick brown fox - {{ s.px }}
+              </span>
+            </div>
             }
           </div>
         </docs-example>
@@ -151,12 +198,15 @@ interface TextLeadingDemo {
         <docs-example [code]="weightsCode">
           <div class="p-6 w-full" nbStack gap="md">
             @for (w of weights; track w.value) {
-              <div class="flex items-baseline gap-4">
-                <span class="w-20 font-mono text-xs font-bold text-right opacity-50 shrink-0">{{ w.value }}</span>
-                <span nbText size="lg" [weight]="w.value">
-                  Build loud. Stay sharp.
-                </span>
-              </div>
+            <div class="flex items-baseline gap-4">
+              <span
+                class="w-20 font-mono text-xs font-bold text-right opacity-50 shrink-0"
+                >{{ w.value }}</span
+              >
+              <span nbText size="lg" [weight]="w.value">
+                Build loud. Stay sharp.
+              </span>
+            </div>
             }
           </div>
         </docs-example>
@@ -171,12 +221,15 @@ interface TextLeadingDemo {
         <docs-example [code]="tonesCode">
           <div class="p-6 w-full" nbStack gap="sm">
             @for (t of tones; track t.value) {
-              <div class="flex items-center gap-4">
-                <span class="w-20 font-mono text-xs font-bold text-right opacity-50 shrink-0">{{ t.value }}</span>
-                <span nbText size="md" weight="semibold" [tone]="t.value">
-                  Neo-Brutalism is intentional.
-                </span>
-              </div>
+            <div class="flex items-center gap-4">
+              <span
+                class="w-20 font-mono text-xs font-bold text-right opacity-50 shrink-0"
+                >{{ t.value }}</span
+              >
+              <span nbText size="md" weight="semibold" [tone]="t.value">
+                Neo-Brutalism is intentional.
+              </span>
+            </div>
             }
           </div>
         </docs-example>
@@ -189,12 +242,15 @@ interface TextLeadingDemo {
         <docs-example [code]="transformCode">
           <div class="p-6 w-full" nbStack gap="md">
             @for (t of transforms; track t.value) {
-              <div class="flex items-baseline gap-4">
-                <span class="w-24 font-mono text-xs font-bold text-right opacity-50 shrink-0">{{ t.value }}</span>
-                <span nbText size="md" weight="bold" [transform]="t.value">
-                  Flight Included - Tokyo City Escape
-                </span>
-              </div>
+            <div class="flex items-baseline gap-4">
+              <span
+                class="w-24 font-mono text-xs font-bold text-right opacity-50 shrink-0"
+                >{{ t.value }}</span
+              >
+              <span nbText size="md" weight="bold" [transform]="t.value">
+                Flight Included - Tokyo City Escape
+              </span>
+            </div>
             }
           </div>
         </docs-example>
@@ -205,19 +261,29 @@ interface TextLeadingDemo {
           Tracking
         </h2>
         <p class="mb-4 font-medium">
-          Letter-spacing. Combine <code class="font-mono">tracking="wide"</code>
-          with <code class="font-mono">transform="uppercase"</code> for classic
+          Letter-spacing. Combine
+          <code class="font-mono">tracking="wide"</code> with
+          <code class="font-mono">transform="uppercase"</code> for classic
           brutalist labels.
         </p>
         <docs-example [code]="trackingCode">
           <div class="p-6 w-full" nbStack gap="md">
             @for (t of trackings; track t.value) {
-              <div class="flex items-baseline gap-4">
-                <span class="w-16 font-mono text-xs font-bold text-right opacity-50 shrink-0">{{ t.value }}</span>
-                <span nbText size="md" weight="black" transform="uppercase" [tracking]="t.value">
-                  New release
-                </span>
-              </div>
+            <div class="flex items-baseline gap-4">
+              <span
+                class="w-16 font-mono text-xs font-bold text-right opacity-50 shrink-0"
+                >{{ t.value }}</span
+              >
+              <span
+                nbText
+                size="md"
+                weight="black"
+                transform="uppercase"
+                [tracking]="t.value"
+              >
+                New release
+              </span>
+            </div>
             }
           </div>
         </docs-example>
@@ -234,15 +300,15 @@ interface TextLeadingDemo {
         <docs-example [code]="measureCode">
           <div class="p-6 w-full" nbStack gap="lg">
             @for (m of measures; track m.value) {
-              <div nbStack gap="xs">
-                <span class="font-mono text-xs font-bold opacity-50">
-                  measure="{{ m.value }}" - {{ m.rem }}
-                </span>
-                <p nbText tone="muted" [measure]="m.value">
-                  A token-driven neo-brutalist Angular UI library for expressive
-                  product interfaces. Build loud. Stay sharp.
-                </p>
-              </div>
+            <div nbStack gap="xs">
+              <span class="font-mono text-xs font-bold opacity-50">
+                measure="{{ m.value }}" - {{ m.rem }}
+              </span>
+              <p nbText tone="muted" [measure]="m.value">
+                A token-driven neo-brutalist Angular UI library for expressive
+                product interfaces. Build loud. Stay sharp.
+              </p>
+            </div>
             }
           </div>
         </docs-example>
@@ -260,27 +326,29 @@ interface TextLeadingDemo {
         <docs-example [code]="leadingCode">
           <div class="p-6 w-full grid grid-cols-1 gap-6 sm:grid-cols-2">
             @for (l of leadings; track l.value) {
-              <div nbStack gap="xs">
-                <span class="font-mono text-xs font-bold opacity-50">
-                  leading="{{ l.value }}" - {{ l.numeric }}
-                </span>
-                <p nbText size="md" measure="sm" [leading]="l.value">
-                  Brutalist interfaces work best when layout, typography, and
-                  contrast are intentional.
-                </p>
-              </div>
+            <div nbStack gap="xs">
+              <span class="font-mono text-xs font-bold opacity-50">
+                leading="{{ l.value }}" - {{ l.numeric }}
+              </span>
+              <p nbText size="md" measure="sm" [leading]="l.value">
+                Brutalist interfaces work best when layout, typography, and
+                contrast are intentional.
+              </p>
+            </div>
             }
           </div>
         </docs-example>
       </section>
 
       <section id="underline">
-        <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">Underline</h2>
+        <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">
+          Underline
+        </h2>
         <p class="mb-4 font-medium">
           <code class="font-mono">underline="bar"</code> adds a built-in accent
-          bar beneath the text - handy for brand names and section labels with no
-          extra markup. Use <code class="font-mono">"wave"</code> for the squiggly
-          variant. Recolor and resize it with the
+          bar beneath the text - handy for brand names and section labels with
+          no extra markup. Use <code class="font-mono">"wave"</code> for the
+          squiggly variant. Recolor and resize it with the
           <code class="font-mono">--nb-underline-color</code>,
           <code class="font-mono">--nb-underline-width</code>,
           <code class="font-mono">--nb-underline-height</code>,
@@ -320,7 +388,14 @@ interface TextLeadingDemo {
         <docs-example [code]="compositionCode">
           <div class="p-6 w-full" nbStack gap="lg">
             <div nbStack gap="xs">
-              <span nbText size="xs" weight="bold" transform="uppercase" tracking="wider" tone="muted">
+              <span
+                nbText
+                size="xs"
+                weight="bold"
+                transform="uppercase"
+                tracking="wider"
+                tone="muted"
+              >
                 Featured deal
               </span>
               <h2 nbDisplay>Build loud.</h2>
@@ -333,20 +408,45 @@ interface TextLeadingDemo {
 
             <div class="flex flex-wrap gap-2">
               <span nbChip tone="mint">
-                <span nbText size="sm" weight="black" transform="uppercase" tracking="wide">
+                <span
+                  nbText
+                  size="sm"
+                  weight="black"
+                  transform="uppercase"
+                  tracking="wide"
+                >
                   Flight included
                 </span>
               </span>
               <span nbChip tone="lavender">
-                <span nbText size="sm" weight="black" transform="uppercase" tracking="wide">
+                <span
+                  nbText
+                  size="sm"
+                  weight="black"
+                  transform="uppercase"
+                  tracking="wide"
+                >
                   Hotel
                 </span>
               </span>
             </div>
 
-            <div nbCallout tone="yellow" size="lg" layout="between" shadow="hard">
+            <div
+              nbCallout
+              tone="yellow"
+              size="lg"
+              layout="between"
+              shadow="hard"
+            >
               <div nbStack gap="none">
-                <span nbText size="xs" weight="bold" transform="uppercase" tracking="wider" tone="muted">
+                <span
+                  nbText
+                  size="xs"
+                  weight="bold"
+                  transform="uppercase"
+                  tracking="wider"
+                  tone="muted"
+                >
                   From
                 </span>
                 <span nbText size="xl" weight="black">$799</span>
@@ -360,80 +460,219 @@ interface TextLeadingDemo {
       <docs-tokens component="text" />
 
       <section id="accessibility">
-        <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">Accessibility</h2>
+        <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">
+          Accessibility
+        </h2>
         <p class="font-medium">
-          <strong>APG pattern:</strong> N/A - Text is a typography directive for static body and label copy, not an interactive widget. <strong>Status:</strong> Stable.
+          <strong>APG pattern:</strong> N/A - Text is a typography directive for
+          static body and label copy, not an interactive widget.
+          <strong>Status:</strong> Stable.
         </p>
       </section>
 
       <section id="api">
         <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">API</h2>
         <div
+          tabindex="0"
           class="overflow-x-auto border-2 border-(--nb-border) bg-nb-surface shadow-[5px_5px_0_0_var(--nb-shadow)]"
         >
           <table class="w-full min-w-200 border-collapse text-left">
             <thead class="bg-nb-secondary text-nb-secondary-fg">
               <tr>
-                <th class="border-b-2 border-r-2 border-(--nb-border) px-4 py-3 font-bold">Input</th>
-                <th class="border-b-2 border-r-2 border-(--nb-border) px-4 py-3 font-bold">Type</th>
-                <th class="border-b-2 border-r-2 border-(--nb-border) px-4 py-3 font-bold">Default</th>
-                <th class="border-b-2 border-(--nb-border) px-4 py-3 font-bold">Description</th>
+                <th
+                  class="border-b-2 border-r-2 border-(--nb-border) px-4 py-3 font-bold"
+                >
+                  Input
+                </th>
+                <th
+                  class="border-b-2 border-r-2 border-(--nb-border) px-4 py-3 font-bold"
+                >
+                  Type
+                </th>
+                <th
+                  class="border-b-2 border-r-2 border-(--nb-border) px-4 py-3 font-bold"
+                >
+                  Default
+                </th>
+                <th class="border-b-2 border-(--nb-border) px-4 py-3 font-bold">
+                  Description
+                </th>
               </tr>
             </thead>
             <tbody class="font-medium">
               <tr class="border-b-2 border-(--nb-border)">
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">size</td>
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">'xs' | 'sm' | 'md' | 'lg' | 'xl'</td>
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">'md'</td>
+                <td
+                  class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
+                >
+                  size
+                </td>
+                <td
+                  class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
+                >
+                  'xs' | 'sm' | 'md' | 'lg' | 'xl'
+                </td>
+                <td
+                  class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
+                >
+                  'md'
+                </td>
                 <td class="px-4 py-3">Font size (0.75 rem – 1.25 rem).</td>
               </tr>
               <tr class="border-b-2 border-(--nb-border)">
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">weight</td>
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">'normal' | 'medium' | 'semibold' | 'bold' | 'extrabold' | 'black'</td>
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">'normal'</td>
+                <td
+                  class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
+                >
+                  weight
+                </td>
+                <td
+                  class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
+                >
+                  'normal' | 'medium' | 'semibold' | 'bold' | 'extrabold' |
+                  'black'
+                </td>
+                <td
+                  class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
+                >
+                  'normal'
+                </td>
                 <td class="px-4 py-3">Font weight (400 – 900).</td>
               </tr>
               <tr class="border-b-2 border-(--nb-border)">
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">tone</td>
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">'default' | 'muted' | 'subtle' | 'inverse' | 'primary' | 'secondary' | 'accent' | 'danger' | 'success' | 'warning'</td>
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">'default'</td>
+                <td
+                  class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
+                >
+                  tone
+                </td>
+                <td
+                  class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
+                >
+                  'default' | 'muted' | 'subtle' | 'inverse' | 'primary' |
+                  'secondary' | 'accent' | 'danger' | 'success' | 'warning'
+                </td>
+                <td
+                  class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
+                >
+                  'default'
+                </td>
                 <td class="px-4 py-3">Text color mapped to a design token.</td>
               </tr>
               <tr class="border-b-2 border-(--nb-border)">
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">transform</td>
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">'none' | 'uppercase' | 'lowercase' | 'capitalize'</td>
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">'none'</td>
+                <td
+                  class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
+                >
+                  transform
+                </td>
+                <td
+                  class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
+                >
+                  'none' | 'uppercase' | 'lowercase' | 'capitalize'
+                </td>
+                <td
+                  class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
+                >
+                  'none'
+                </td>
                 <td class="px-4 py-3">CSS text-transform.</td>
               </tr>
               <tr class="border-b-2 border-(--nb-border)">
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">tracking</td>
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">'tight' | 'normal' | 'wide' | 'wider'</td>
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">'normal'</td>
+                <td
+                  class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
+                >
+                  tracking
+                </td>
+                <td
+                  class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
+                >
+                  'tight' | 'normal' | 'wide' | 'wider'
+                </td>
+                <td
+                  class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
+                >
+                  'normal'
+                </td>
                 <td class="px-4 py-3">Letter-spacing (−0.025 em – 0.05 em).</td>
               </tr>
               <tr class="border-b-2 border-(--nb-border)">
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">measure</td>
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">'none' | 'xs' | 'sm' | 'md' | 'lg'</td>
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">'none'</td>
-                <td class="px-4 py-3">max-width cap for readable line lengths (20 rem – 44 rem).</td>
+                <td
+                  class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
+                >
+                  measure
+                </td>
+                <td
+                  class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
+                >
+                  'none' | 'xs' | 'sm' | 'md' | 'lg'
+                </td>
+                <td
+                  class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
+                >
+                  'none'
+                </td>
+                <td class="px-4 py-3">
+                  max-width cap for readable line lengths (20 rem – 44 rem).
+                </td>
               </tr>
               <tr class="border-b-2 border-(--nb-border)">
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">leading</td>
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">'none' | 'tight' | 'normal' | 'relaxed'</td>
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">'normal'</td>
-                <td class="px-4 py-3">Line-height override. Defaults to a size-matched value.</td>
+                <td
+                  class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
+                >
+                  leading
+                </td>
+                <td
+                  class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
+                >
+                  'none' | 'tight' | 'normal' | 'relaxed'
+                </td>
+                <td
+                  class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
+                >
+                  'normal'
+                </td>
+                <td class="px-4 py-3">
+                  Line-height override. Defaults to a size-matched value.
+                </td>
               </tr>
               <tr class="border-b-2 border-(--nb-border)">
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">underline</td>
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">'none' | 'bar' | 'wave'</td>
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">'none'</td>
-                <td class="px-4 py-3">Built-in accent underline beneath the text. Style it with the <code class="font-mono">--nb-underline-*</code> tokens.</td>
+                <td
+                  class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
+                >
+                  underline
+                </td>
+                <td
+                  class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
+                >
+                  'none' | 'bar' | 'wave'
+                </td>
+                <td
+                  class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
+                >
+                  'none'
+                </td>
+                <td class="px-4 py-3">
+                  Built-in accent underline beneath the text. Style it with the
+                  <code class="font-mono">--nb-underline-*</code> tokens.
+                </td>
               </tr>
               <tr>
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">reset</td>
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">boolean</td>
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">true</td>
-                <td class="px-4 py-3">Sets margin to 0, removing browser paragraph/heading margins so layout primitives own all spacing.</td>
+                <td
+                  class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
+                >
+                  reset
+                </td>
+                <td
+                  class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
+                >
+                  boolean
+                </td>
+                <td
+                  class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
+                >
+                  true
+                </td>
+                <td class="px-4 py-3">
+                  Sets margin to 0, removing browser paragraph/heading margins
+                  so layout primitives own all spacing.
+                </td>
               </tr>
             </tbody>
           </table>

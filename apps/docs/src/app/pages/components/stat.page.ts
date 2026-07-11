@@ -1,11 +1,18 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { NbStat } from '@ng-brutalism/ui';
+import { NbStat, NbSurface } from '@ng-brutalism/ui';
 
-import { DocsCodeBlock, DocsExample, DocsSourceTile, DocsStatusBadge, DocsTokens } from '@ng-brutalism/docs-ui';
+import {
+  DocsCodeBlock,
+  DocsExample,
+  DocsSourceTile,
+  DocsStatusBadge,
+  DocsTokens,
+} from '@ng-brutalism/docs-ui';
 
 @Component({
   selector: 'docs-stat-page',
   imports: [
+    NbSurface,
     DocsCodeBlock,
     DocsExample,
     DocsSourceTile,
@@ -20,21 +27,33 @@ import { DocsCodeBlock, DocsExample, DocsSourceTile, DocsStatusBadge, DocsTokens
           <p>Neo-Brutalist Angular Stat</p>
           <h1>Stat</h1>
           <p class="mt-3 max-w-3xl text-base font-medium sm:text-lg">
-            A compact value + label display for surfacing metrics, prices, counts, and
-            scores. Used throughout brutalist card designs to anchor key numbers with
-            maximum visual weight.
+            A compact value + label display for surfacing metrics, prices,
+            counts, and scores. Used throughout brutalist card designs to anchor
+            key numbers with maximum visual weight.
           </p>
         </div>
 
         <div class="mt-7 flex flex-wrap items-center gap-3">
           <docs-status-badge status="stable" />
-          <div class="nb-stat-tile nb-stat-tile--yellow">
-            <span class="nb-stat-tile__value">2</span>
-            <span class="nb-stat-tile__label">Inputs</span>
+          <div
+            nbSurface
+            tone="yellow"
+            border="strong"
+            padding="sm"
+            layout="stack"
+            class="items-start"
+          >
+            <nb-stat value="2" label="Inputs" />
           </div>
-          <div class="nb-stat-tile nb-stat-tile--mint">
-            <span class="nb-stat-tile__value">2</span>
-            <span class="nb-stat-tile__label">Directions</span>
+          <div
+            nbSurface
+            tone="mint"
+            border="strong"
+            padding="sm"
+            layout="stack"
+            class="items-start"
+          >
+            <nb-stat value="2" label="Directions" />
           </div>
 
           <docs-source-tile
@@ -56,14 +75,21 @@ import { DocsCodeBlock, DocsExample, DocsSourceTile, DocsStatusBadge, DocsTokens
 
       <section id="usage">
         <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">Usage</h2>
-        <docs-code-block class="block mb-5" title="Import" [code]="importCode" />
+        <docs-code-block
+          class="block mb-5"
+          title="Import"
+          [code]="importCode"
+        />
         <docs-code-block title="Template" [code]="defaultExampleCode" />
       </section>
 
       <section id="with-icon">
-        <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">With icon</h2>
+        <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">
+          With icon
+        </h2>
         <p class="mb-4 font-medium">
-          Project any element into the <code class="font-mono">slot="icon"</code>
+          Project any element into the
+          <code class="font-mono">slot="icon"</code>
           slot to prepend it to the stat.
         </p>
         <docs-example [code]="withIconCode">
@@ -76,7 +102,9 @@ import { DocsCodeBlock, DocsExample, DocsSourceTile, DocsStatusBadge, DocsTokens
       </section>
 
       <section id="row-direction">
-        <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">Row direction</h2>
+        <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">
+          Row direction
+        </h2>
         <docs-example [code]="rowDirectionCode">
           <div class="flex flex-col gap-3 p-4">
             <nb-stat value="98%" label="satisfaction" direction="row" />
@@ -88,44 +116,105 @@ import { DocsCodeBlock, DocsExample, DocsSourceTile, DocsStatusBadge, DocsTokens
       <docs-tokens component="stat" />
 
       <section id="accessibility">
-        <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">Accessibility</h2>
+        <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">
+          Accessibility
+        </h2>
         <p class="font-medium">
-          <strong>APG pattern:</strong> N/A - Stat is a static display of a value paired with a label, not an interactive widget. <strong>Status:</strong> Stable.
+          <strong>APG pattern:</strong> N/A - Stat is a static display of a
+          value paired with a label, not an interactive widget.
+          <strong>Status:</strong> Stable.
         </p>
       </section>
 
       <section id="api">
         <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">API</h2>
         <div
+          tabindex="0"
           class="overflow-x-auto border-2 border-(--nb-border) bg-nb-surface shadow-[5px_5px_0_0_var(--nb-shadow)]"
         >
           <table class="w-full min-w-160 border-collapse text-left">
             <thead class="bg-nb-secondary text-nb-secondary-fg">
               <tr>
-                <th class="border-b-2 border-r-2 border-(--nb-border) px-4 py-3 font-bold">Input</th>
-                <th class="border-b-2 border-r-2 border-(--nb-border) px-4 py-3 font-bold">Type</th>
-                <th class="border-b-2 border-r-2 border-(--nb-border) px-4 py-3 font-bold">Default</th>
-                <th class="border-b-2 border-(--nb-border) px-4 py-3 font-bold">Description</th>
+                <th
+                  class="border-b-2 border-r-2 border-(--nb-border) px-4 py-3 font-bold"
+                >
+                  Input
+                </th>
+                <th
+                  class="border-b-2 border-r-2 border-(--nb-border) px-4 py-3 font-bold"
+                >
+                  Type
+                </th>
+                <th
+                  class="border-b-2 border-r-2 border-(--nb-border) px-4 py-3 font-bold"
+                >
+                  Default
+                </th>
+                <th class="border-b-2 border-(--nb-border) px-4 py-3 font-bold">
+                  Description
+                </th>
               </tr>
             </thead>
             <tbody class="font-medium">
               <tr class="border-b-2 border-(--nb-border)">
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">value</td>
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">string</td>
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">required</td>
-                <td class="px-4 py-3">The primary metric value displayed prominently.</td>
+                <td
+                  class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
+                >
+                  value
+                </td>
+                <td
+                  class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
+                >
+                  string
+                </td>
+                <td
+                  class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
+                >
+                  required
+                </td>
+                <td class="px-4 py-3">
+                  The primary metric value displayed prominently.
+                </td>
               </tr>
               <tr class="border-b-2 border-(--nb-border)">
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">label</td>
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">string</td>
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">required</td>
-                <td class="px-4 py-3">Descriptive label rendered below (or beside) the value.</td>
+                <td
+                  class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
+                >
+                  label
+                </td>
+                <td
+                  class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
+                >
+                  string
+                </td>
+                <td
+                  class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
+                >
+                  required
+                </td>
+                <td class="px-4 py-3">
+                  Descriptive label rendered below (or beside) the value.
+                </td>
               </tr>
               <tr>
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">direction</td>
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">'column' | 'row'</td>
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">'column'</td>
-                <td class="px-4 py-3">Stacks value + label vertically or horizontally.</td>
+                <td
+                  class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
+                >
+                  direction
+                </td>
+                <td
+                  class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
+                >
+                  'column' | 'row'
+                </td>
+                <td
+                  class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
+                >
+                  'column'
+                </td>
+                <td class="px-4 py-3">
+                  Stacks value + label vertically or horizontally.
+                </td>
               </tr>
             </tbody>
           </table>

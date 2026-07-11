@@ -56,6 +56,7 @@ function nbStickerScaleTransform(value: unknown): string | null {
   host: {
     '[attr.data-shape]': 'shape()',
     'data-nb-sticker': '',
+    '[attr.aria-label]': 'ariaLabel()',
     '[attr.aria-hidden]': 'decorative() ? "true" : null',
     '[attr.role]': 'decorative() ? null : "img"',
     '[style.--nb-sticker-rotate]': 'rotate()',
@@ -68,6 +69,7 @@ export class NbSticker {
   readonly decorative = input<boolean, unknown>(false, {
     transform: booleanAttribute,
   });
+  readonly ariaLabel = input<string | null>(null, { alias: 'aria-label' });
   readonly rotate = input(null, { transform: nbStickerRotateTransform });
   readonly size = input(null, { transform: nbStickerScaleTransform });
 

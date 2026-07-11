@@ -1,13 +1,20 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import {
   NbSurface,
+  NbStat,
   type NbSurfaceBorder,
   type NbSurfaceRadius,
   type NbSurfaceShadow,
   type NbSurfaceTone,
 } from '@ng-brutalism/ui';
 
-import { DocsCodeBlock, DocsExample, DocsSourceTile, DocsStatusBadge, DocsTokens } from '@ng-brutalism/docs-ui';
+import {
+  DocsCodeBlock,
+  DocsExample,
+  DocsSourceTile,
+  DocsStatusBadge,
+  DocsTokens,
+} from '@ng-brutalism/docs-ui';
 
 interface SurfaceToneDemo {
   readonly value: NbSurfaceTone;
@@ -26,6 +33,7 @@ interface SurfaceShapeDemo {
 @Component({
   selector: 'docs-surface-page',
   imports: [
+    NbStat,
     DocsCodeBlock,
     DocsExample,
     DocsSourceTile,
@@ -50,17 +58,35 @@ interface SurfaceShapeDemo {
 
         <div class="mt-7 flex flex-wrap items-center gap-3">
           <docs-status-badge status="stable" />
-          <div class="nb-stat-tile nb-stat-tile--yellow">
-            <span class="nb-stat-tile__value">div</span>
-            <span class="nb-stat-tile__label">Any host</span>
+          <div
+            nbSurface
+            tone="yellow"
+            border="strong"
+            padding="sm"
+            layout="stack"
+            class="items-start"
+          >
+            <nb-stat value="div" label="Any host" />
           </div>
-          <div class="nb-stat-tile nb-stat-tile--mint">
-            <span class="nb-stat-tile__value">Tone</span>
-            <span class="nb-stat-tile__label">Shared vocabulary</span>
+          <div
+            nbSurface
+            tone="mint"
+            border="strong"
+            padding="sm"
+            layout="stack"
+            class="items-start"
+          >
+            <nb-stat value="Tone" label="Shared vocabulary" />
           </div>
-          <div class="nb-stat-tile nb-stat-tile--pink">
-            <span class="nb-stat-tile__value">CSS</span>
-            <span class="nb-stat-tile__label">Token driven</span>
+          <div
+            nbSurface
+            tone="pink"
+            border="strong"
+            padding="sm"
+            layout="stack"
+            class="items-start"
+          >
+            <nb-stat value="CSS" label="Token driven" />
           </div>
 
           <docs-source-tile
@@ -195,18 +221,50 @@ interface SurfaceShapeDemo {
         </docs-example>
       </section>
 
+      <section id="interactive">
+        <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">
+          Interactive
+        </h2>
+        <p class="mb-4 font-medium">
+          Add the boolean <code class="font-mono">interactive</code> input when
+          a surface is clickable (a link or a custom button). It adds a pointer
+          cursor, lifts the surface with a bigger shadow on hover, presses it
+          into a smaller shadow on click, and resets anchor underline/color so
+          the surface owns the look instead of the browser default.
+        </p>
+        <docs-example [code]="interactiveExampleCode">
+          <a
+            nbSurface
+            tone="yellow"
+            border="strong"
+            padding="sm"
+            layout="stack"
+            interactive
+            href="#interactive"
+            class="items-start"
+          >
+            <nb-stat value="Click" label="Try me" />
+          </a>
+        </docs-example>
+      </section>
+
       <docs-tokens component="surface" />
 
       <section id="accessibility">
-        <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">Accessibility</h2>
+        <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">
+          Accessibility
+        </h2>
         <p class="font-medium">
-          <strong>APG pattern:</strong> N/A - Surface is a layout wrapper with no visual role of its own beyond styling, not an interactive widget. <strong>Status:</strong> Stable.
+          <strong>APG pattern:</strong> N/A - Surface is a layout wrapper with
+          no visual role of its own beyond styling, not an interactive widget.
+          <strong>Status:</strong> Stable.
         </p>
       </section>
 
       <section id="api">
         <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">API</h2>
         <div
+          tabindex="0"
           class="overflow-x-auto border-2 border-(--nb-border) bg-nb-surface shadow-[5px_5px_0_0_var(--nb-shadow)]"
         >
           <table class="w-full min-w-180 border-collapse text-left">
@@ -242,10 +300,9 @@ interface SurfaceShapeDemo {
                 <td
                   class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
                 >
-                  'surface' | 'background' | 'cream' | 'white' |
-                  'black' | 'yellow' | 'pink' | 'mint' | 'lavender' | 'blue' |
-                  'primary' | 'secondary' | 'accent' | 'success' | 'warning' |
-                  'danger'
+                  'surface' | 'background' | 'cream' | 'white' | 'black' |
+                  'yellow' | 'pink' | 'mint' | 'lavender' | 'blue' | 'primary' |
+                  'secondary' | 'accent' | 'success' | 'warning' | 'danger'
                 </td>
                 <td
                   class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
@@ -441,6 +498,28 @@ interface SurfaceShapeDemo {
                   decorations respect the surface radius.
                 </td>
               </tr>
+              <tr>
+                <td
+                  class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
+                >
+                  interactive
+                </td>
+                <td
+                  class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
+                >
+                  boolean
+                </td>
+                <td
+                  class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
+                >
+                  false
+                </td>
+                <td class="px-4 py-3">
+                  Lifts on hover, presses on click, and shows a focus ring. Use
+                  on links and custom clickable surfaces instead of wiring up
+                  hover/active states by hand.
+                </td>
+              </tr>
             </tbody>
           </table>
         </div>
@@ -486,6 +565,18 @@ export default class SurfacePage {
   </div>
   <div class="p-5">Decorative children stay inside the surface radius.</div>
 </article>`;
+
+  protected readonly interactiveExampleCode = `<a
+  nbSurface
+  tone="yellow"
+  border="strong"
+  padding="sm"
+  layout="stack"
+  interactive
+  routerLink="/docs/installation"
+>
+  <nb-stat value="Click" label="Try me" />
+</a>`;
 
   protected readonly tones = [
     {

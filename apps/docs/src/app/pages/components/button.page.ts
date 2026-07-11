@@ -3,14 +3,24 @@ import {
   NbButton,
   NbButtonTrailingIcon,
   NbIcon,
+  NbStat,
+  NbSurface,
   NbText,
 } from '@ng-brutalism/ui';
 
-import { DocsCodeBlock, DocsExample, DocsSourceTile, DocsStatusBadge, DocsTokens } from '@ng-brutalism/docs-ui';
+import {
+  DocsCodeBlock,
+  DocsExample,
+  DocsSourceTile,
+  DocsStatusBadge,
+  DocsTokens,
+} from '@ng-brutalism/docs-ui';
 
 @Component({
   selector: 'docs-button-page',
   imports: [
+    NbStat,
+    NbSurface,
     DocsCodeBlock,
     DocsExample,
     DocsSourceTile,
@@ -36,17 +46,35 @@ import { DocsCodeBlock, DocsExample, DocsSourceTile, DocsStatusBadge, DocsTokens
 
         <div class="mt-7 flex flex-wrap items-center gap-3">
           <docs-status-badge status="stable" />
-          <div class="nb-stat-tile nb-stat-tile--yellow">
-            <span class="nb-stat-tile__value">Tone</span>
-            <span class="nb-stat-tile__label">Shared vocabulary</span>
+          <div
+            nbSurface
+            tone="yellow"
+            border="strong"
+            padding="sm"
+            layout="stack"
+            class="items-start"
+          >
+            <nb-stat value="Tone" label="Shared vocabulary" />
           </div>
-          <div class="nb-stat-tile nb-stat-tile--mint">
-            <span class="nb-stat-tile__value">Size</span>
-            <span class="nb-stat-tile__label">Action scale</span>
+          <div
+            nbSurface
+            tone="mint"
+            border="strong"
+            padding="sm"
+            layout="stack"
+            class="items-start"
+          >
+            <nb-stat value="Size" label="Action scale" />
           </div>
-          <div class="nb-stat-tile nb-stat-tile--pink">
-            <span class="nb-stat-tile__value">Press</span>
-            <span class="nb-stat-tile__label">Button motion</span>
+          <div
+            nbSurface
+            tone="pink"
+            border="strong"
+            padding="sm"
+            layout="stack"
+            class="items-start"
+          >
+            <nb-stat value="Press" label="Button motion" />
           </div>
 
           <docs-source-tile
@@ -216,7 +244,9 @@ import { DocsCodeBlock, DocsExample, DocsSourceTile, DocsStatusBadge, DocsTokens
       <docs-tokens component="button" />
 
       <section id="accessibility">
-        <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">Accessibility</h2>
+        <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">
+          Accessibility
+        </h2>
         <p class="font-medium">
           <strong>APG pattern:</strong>
           <a
@@ -230,10 +260,10 @@ import { DocsCodeBlock, DocsExample, DocsSourceTile, DocsStatusBadge, DocsTokens
           <code class="font-mono">&lt;button&gt;</code> (or
           <code class="font-mono">&lt;a&gt;</code> when used as a link), so
           Enter/Space activation, focus, and the
-          <code class="font-mono">disabled</code> attribute all come from
-          native HTML semantics rather than ARIA reimplementation. When used
-          as an anchor, give it an accessible name the same way you would
-          any link - visible text or <code class="font-mono">aria-label</code>.
+          <code class="font-mono">disabled</code> attribute all come from native
+          HTML semantics rather than ARIA reimplementation. When used as an
+          anchor, give it an accessible name the same way you would any link -
+          visible text or <code class="font-mono">aria-label</code>.
         </p>
       </section>
 
@@ -241,6 +271,7 @@ import { DocsCodeBlock, DocsExample, DocsSourceTile, DocsStatusBadge, DocsTokens
         <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">API</h2>
 
         <div
+          tabindex="0"
           class="overflow-x-auto border-2 border-(--nb-border) bg-nb-surface shadow-[5px_5px_0_0_var(--nb-shadow)]"
         >
           <table class="w-full min-w-160 border-collapse text-left">
@@ -381,6 +412,7 @@ import { DocsCodeBlock, DocsExample, DocsSourceTile, DocsStatusBadge, DocsTokens
 
         <h3 class="mt-8 mb-4 text-xl font-black">Trailing icon API</h3>
         <div
+          tabindex="0"
           class="overflow-x-auto border-2 border-(--nb-border) bg-nb-surface shadow-[5px_5px_0_0_var(--nb-shadow)]"
         >
           <table class="w-full min-w-160 border-collapse text-left">

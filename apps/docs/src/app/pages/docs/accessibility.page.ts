@@ -32,52 +32,90 @@ import { NbCallout } from '@ng-brutalism/ui';
           APG patterns by component
         </h2>
         <div
+          tabindex="0"
           class="overflow-x-auto border-2 border-(--nb-border) bg-nb-surface shadow-[5px_5px_0_0_var(--nb-shadow)]"
         >
           <table class="w-full min-w-160 border-collapse text-left">
             <thead class="bg-nb-secondary text-nb-secondary-fg">
               <tr>
-                <th class="border-b-2 border-r-2 border-(--nb-border) px-4 py-3 font-bold">Component</th>
-                <th class="border-b-2 border-r-2 border-(--nb-border) px-4 py-3 font-bold">APG pattern</th>
-                <th class="border-b-2 border-(--nb-border) px-4 py-3 font-bold">Keyboard coverage</th>
+                <th
+                  class="border-b-2 border-r-2 border-(--nb-border) px-4 py-3 font-bold"
+                >
+                  Component
+                </th>
+                <th
+                  class="border-b-2 border-r-2 border-(--nb-border) px-4 py-3 font-bold"
+                >
+                  APG pattern
+                </th>
+                <th class="border-b-2 border-(--nb-border) px-4 py-3 font-bold">
+                  Keyboard coverage
+                </th>
               </tr>
             </thead>
             <tbody class="font-medium">
               <tr class="border-b-2 border-(--nb-border)">
                 <td class="border-r-2 border-(--nb-border) px-4 py-3">
-                  <a routerLink="/components/select" class="underline">Select</a>
+                  <a routerLink="/components/select" class="underline"
+                    >Select</a
+                  >
                 </td>
-                <td class="border-r-2 border-(--nb-border) px-4 py-3">Listbox</td>
-                <td class="px-4 py-3">Home/End, typeahead, Tab-closes, Escape-on-trigger, disabled-but-reachable</td>
+                <td class="border-r-2 border-(--nb-border) px-4 py-3">
+                  Listbox
+                </td>
+                <td class="px-4 py-3">
+                  Home/End, typeahead, Tab-closes, Escape-on-trigger,
+                  disabled-but-reachable
+                </td>
               </tr>
               <tr class="border-b-2 border-(--nb-border)">
                 <td class="border-r-2 border-(--nb-border) px-4 py-3">
-                  <a routerLink="/components/accordion" class="underline">Accordion</a>
+                  <a routerLink="/components/accordion" class="underline"
+                    >Accordion</a
+                  >
                 </td>
-                <td class="border-r-2 border-(--nb-border) px-4 py-3">Accordion</td>
-                <td class="px-4 py-3">Up/Down/Home/End between headers, skips disabled items</td>
+                <td class="border-r-2 border-(--nb-border) px-4 py-3">
+                  Accordion
+                </td>
+                <td class="px-4 py-3">
+                  Up/Down/Home/End between headers, skips disabled items
+                </td>
               </tr>
               <tr class="border-b-2 border-(--nb-border)">
                 <td class="border-r-2 border-(--nb-border) px-4 py-3">
-                  <a routerLink="/components/dialog" class="underline">Dialog</a>
+                  <a routerLink="/components/dialog" class="underline"
+                    >Dialog</a
+                  >
                 </td>
-                <td class="border-r-2 border-(--nb-border) px-4 py-3">Dialog (modal)</td>
-                <td class="px-4 py-3">Focus trap via native <code class="font-mono">&lt;dialog&gt;</code>, Escape/backdrop close</td>
+                <td class="border-r-2 border-(--nb-border) px-4 py-3">
+                  Dialog (modal)
+                </td>
+                <td class="px-4 py-3">
+                  Focus trap via native
+                  <code class="font-mono">&lt;dialog&gt;</code>, Escape/backdrop
+                  close
+                </td>
               </tr>
               <tr class="last:border-b-0">
                 <td class="border-r-2 border-(--nb-border) px-4 py-3">
                   <a routerLink="/components/icon" class="underline">Icon</a>
                 </td>
-                <td class="border-r-2 border-(--nb-border) px-4 py-3">Image / decorative graphic</td>
-                <td class="px-4 py-3">No explicit default - <code class="font-mono">decorative</code> or <code class="font-mono">label</code> is required</td>
+                <td class="border-r-2 border-(--nb-border) px-4 py-3">
+                  Image / decorative graphic
+                </td>
+                <td class="px-4 py-3">
+                  No explicit default -
+                  <code class="font-mono">decorative</code> or
+                  <code class="font-mono">label</code> is required
+                </td>
               </tr>
             </tbody>
           </table>
         </div>
         <p class="mt-4 text-sm opacity-70">
-          Every other component page states its pattern (or "static content"
-          for non-interactive primitives) and status in its own
-          Accessibility section.
+          Every other component page states its pattern (or "static content" for
+          non-interactive primitives) and status in its own Accessibility
+          section.
         </p>
       </section>
 
@@ -89,19 +127,20 @@ import { NbCallout } from '@ng-brutalism/ui';
           <code class="font-mono">vitest-axe</code> runs against real rendered
           fixtures for dialog, select, accordion, and
           <a routerLink="/components/field" class="underline">field</a> - both
-          closed/valid and open/invalid states, since an invalid,
-          error-linked control is a distinct accessibility surface from a
-          clean one. The dialog fixture sets the native
+          closed/valid and open/invalid states, since an invalid, error-linked
+          control is a distinct accessibility surface from a clean one. The
+          dialog fixture sets the native
           <code class="font-mono">open</code> attribute directly, since jsdom
           doesn't implement <code class="font-mono">showModal()</code>.
         </p>
         <div nbCallout tone="mint" size="sm">
           <p class="normal-case">
-            The select popup's escape from an <code class="font-mono">overflow:hidden</code>
-            ancestor and the <code class="font-mono">formControlName</code>
-            round-trip are the two things the unit-test suite can't prove on
-            its own - both were confirmed in a real Chromium session
-            (Playwright) with zero console errors.
+            The select popup's escape from an
+            <code class="font-mono">overflow:hidden</code> ancestor and the
+            <code class="font-mono">formControlName</code>
+            round-trip are the two things the unit-test suite can't prove on its
+            own - both were confirmed in a real Chromium session (Playwright)
+            with zero console errors.
           </p>
         </div>
       </section>

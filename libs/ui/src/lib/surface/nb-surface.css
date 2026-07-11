@@ -12,7 +12,10 @@
     border-radius: var(--nb-surface-radius, var(--nb-radius));
     box-shadow: var(
       --nb-surface-shadow,
-      var(--nb-shadow-offset-x) var(--nb-shadow-offset-y) 0 0 var(--nb-shadow)
+      var(
+        --nb-surface-shadow-base,
+        var(--nb-shadow-offset-x) var(--nb-shadow-offset-y) 0 0 var(--nb-shadow)
+      )
     );
     padding: var(--nb-surface-padding, 0px);
   }
@@ -61,5 +64,25 @@
   }
   :where([nbSurface][data-edge='bottom']) {
     border-bottom: var(--nb-border-width) solid var(--nb-border);
+  }
+
+  :where([nbSurface][data-interactive]) {
+    cursor: pointer;
+    color: inherit;
+    text-decoration: none;
+    transition: translate var(--nb-motion-fast) var(--nb-ease),
+      box-shadow var(--nb-motion-fast) var(--nb-ease);
+  }
+  :where([nbSurface][data-interactive]):hover {
+    translate: calc(-1 * var(--nb-shadow-offset-x)) calc(-1 * var(--nb-shadow-offset-y));
+    box-shadow: var(--nb-shadow-hard);
+  }
+  :where([nbSurface][data-interactive]):active {
+    translate: var(--nb-shadow-offset-x) var(--nb-shadow-offset-y);
+    box-shadow: var(--nb-shadow-sm);
+  }
+  :where([nbSurface][data-interactive]):focus-visible {
+    outline: var(--nb-focus-ring);
+    outline-offset: var(--nb-focus-ring-offset);
   }
 }

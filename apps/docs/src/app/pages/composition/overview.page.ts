@@ -8,16 +8,19 @@ import {
   NbSection,
   NbSplit,
   NbStack,
+  NbStat,
   NbSurface,
   NbText,
   NbTitle,
 } from '@ng-brutalism/ui';
+import type { NbTone } from '@ng-brutalism/ui/tokens';
 
 import { DocsCodeBlock, DocsExample } from '@ng-brutalism/docs-ui';
 
 @Component({
   selector: 'docs-composition-overview-page',
   imports: [
+    NbStat,
     RouterLink,
     DocsCodeBlock,
     DocsExample,
@@ -34,7 +37,13 @@ import { DocsCodeBlock, DocsExample } from '@ng-brutalism/docs-ui';
   ],
   template: `
     <article nbStack gap="2xl">
-      <header id="overview" nbStack gap="sm" align="start" class="relative scroll-mt-32">
+      <header
+        id="overview"
+        nbStack
+        gap="sm"
+        align="start"
+        class="relative scroll-mt-32"
+      >
         <p class="eyebrow">Composition</p>
         <h1>Build loud. Compose smart.</h1>
         <p class="max-w-3xl text-base font-medium sm:text-lg">
@@ -56,9 +65,12 @@ import { DocsCodeBlock, DocsExample } from '@ng-brutalism/docs-ui';
         <div class="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
           @for (item of primitiveMap; track item.name) {
           <a
-            class="block border-3 border-(--nb-border) p-4 shadow-[4px_4px_0_0_var(--nb-shadow)]"
-            [style.background]="item.color"
+            nbSurface
+            [tone]="item.tone"
+            border="strong"
+            interactive
             [routerLink]="item.path"
+            class="block p-4"
           >
             <code class="font-mono text-sm font-black">{{ item.name }}</code>
             <p class="mt-1 text-sm font-medium">{{ item.role }}</p>
@@ -207,34 +219,55 @@ import { DocsCodeBlock, DocsExample } from '@ng-brutalism/docs-ui';
         <h2 data-docs-heading class="text-2xl font-bold">Explore the system</h2>
         <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-2">
           <a
-            class="nb-stat-tile nb-stat-tile--interactive nb-stat-tile--yellow"
+            nbSurface
+            tone="yellow"
+            border="strong"
+            padding="sm"
+            layout="stack"
+            interactive
             routerLink="/composition/surface-and-section"
+            class="items-start"
           >
-            <span class="nb-stat-tile__value">Surface & Section</span>
-            <span class="nb-stat-tile__label">Panels and regions</span>
+            <nb-stat value="Surface &amp; Section" label="Panels and regions" />
           </a>
           <a
-            class="nb-stat-tile nb-stat-tile--interactive nb-stat-tile--mint"
+            nbSurface
+            tone="mint"
+            border="strong"
+            padding="sm"
+            layout="stack"
+            interactive
             routerLink="/composition/stack-and-cluster"
+            class="items-start"
           >
-            <span class="nb-stat-tile__value">Stack & Cluster</span>
-            <span class="nb-stat-tile__label"
-              >Vertical and horizontal flow</span
-            >
+            <nb-stat
+              value="Stack & Cluster"
+              label="Vertical and horizontal flow"
+            />
           </a>
           <a
-            class="nb-stat-tile nb-stat-tile--interactive nb-stat-tile--pink"
+            nbSurface
+            tone="pink"
+            border="strong"
+            padding="sm"
+            layout="stack"
+            interactive
             routerLink="/composition/split-layouts"
+            class="items-start"
           >
-            <span class="nb-stat-tile__value">Split Layouts</span>
-            <span class="nb-stat-tile__label">Main / aside patterns</span>
+            <nb-stat value="Split Layouts" label="Main / aside patterns" />
           </a>
           <a
-            class="nb-stat-tile nb-stat-tile--interactive nb-stat-tile--lavender"
+            nbSurface
+            tone="lavender"
+            border="strong"
+            padding="sm"
+            layout="stack"
+            interactive
             routerLink="/composition/common-patterns"
+            class="items-start"
           >
-            <span class="nb-stat-tile__value">Common Patterns</span>
-            <span class="nb-stat-tile__label">Copy-pasteable recipes</span>
+            <nb-stat value="Common Patterns" label="Copy-pasteable recipes" />
           </a>
         </div>
       </section>
@@ -243,65 +276,70 @@ import { DocsCodeBlock, DocsExample } from '@ng-brutalism/docs-ui';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export default class CompositionOverviewPage {
-  protected readonly primitiveMap = [
+  protected readonly primitiveMap: {
+    readonly name: string;
+    readonly role: string;
+    readonly tone: NbTone;
+    readonly path: string;
+  }[] = [
     {
       name: 'nbSurface',
       role: 'The brutalist panel',
-      color: 'var(--nb-yellow)',
+      tone: 'yellow',
       path: '/components/surface',
     },
     {
       name: 'nbSection',
       role: 'Regions inside a panel',
-      color: 'var(--nb-mint)',
+      tone: 'mint',
       path: '/components/section',
     },
     {
       name: 'nbStack',
       role: 'Vertical composition',
-      color: 'var(--nb-pink)',
+      tone: 'pink',
       path: '/components/stack',
     },
     {
       name: 'nbCluster',
       role: 'Horizontal / wrapping groups',
-      color: 'var(--nb-lavender)',
+      tone: 'lavender',
       path: '/components/cluster',
     },
     {
       name: 'nbSplit',
       role: 'Main + aside layout',
-      color: 'var(--nb-cream)',
+      tone: 'cream',
       path: '/components/split',
     },
     {
       name: 'nbButton',
       role: 'Action primitive',
-      color: '#ffffff',
+      tone: 'white',
       path: '/components/button',
     },
     {
       name: 'nbChip',
       role: 'Small metadata primitive',
-      color: 'var(--nb-yellow)',
+      tone: 'yellow',
       path: '/components/chip',
     },
     {
       name: 'nbText',
       role: 'Inline / block copy',
-      color: 'var(--nb-mint)',
+      tone: 'mint',
       path: '/components/text',
     },
     {
       name: 'nbTitle',
       role: 'Section heading',
-      color: 'var(--nb-pink)',
+      tone: 'pink',
       path: '/components/title',
     },
     {
       name: 'nbDisplay',
       role: 'Big loud heading',
-      color: 'var(--nb-lavender)',
+      tone: 'lavender',
       path: '/components/display',
     },
   ];

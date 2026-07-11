@@ -5,16 +5,23 @@ import {
   NbDisplay,
   NbSplit,
   NbStack,
+  NbStat,
   NbSurface,
   type NbSplitAlign,
   type NbSplitCollapse,
-  type NbSplitSeparator,
   type NbSplitGap,
   type NbSplitPadding,
   type NbSplitRatio,
+  type NbSplitSeparator,
 } from '@ng-brutalism/ui';
 
-import { DocsCodeBlock, DocsExample, DocsSourceTile, DocsStatusBadge, DocsTokens } from '@ng-brutalism/docs-ui';
+import {
+  DocsCodeBlock,
+  DocsExample,
+  DocsSourceTile,
+  DocsStatusBadge,
+  DocsTokens,
+} from '@ng-brutalism/docs-ui';
 
 interface SplitRatioDemo {
   readonly value: NbSplitRatio;
@@ -49,6 +56,7 @@ interface SplitSeparatorDemo {
 @Component({
   selector: 'docs-split-page',
   imports: [
+    NbStat,
     DocsCodeBlock,
     DocsExample,
     DocsSourceTile,
@@ -76,17 +84,35 @@ interface SplitSeparatorDemo {
 
         <div class="mt-7 flex flex-wrap items-center gap-3">
           <docs-status-badge status="stable" />
-          <div class="nb-stat-tile nb-stat-tile--yellow">
-            <span class="nb-stat-tile__value">7</span>
-            <span class="nb-stat-tile__label">Ratios</span>
+          <div
+            nbSurface
+            tone="yellow"
+            border="strong"
+            padding="sm"
+            layout="stack"
+            class="items-start"
+          >
+            <nb-stat value="7" label="Ratios" />
           </div>
-          <div class="nb-stat-tile nb-stat-tile--mint">
-            <span class="nb-stat-tile__value">4</span>
-            <span class="nb-stat-tile__label">Collapse</span>
+          <div
+            nbSurface
+            tone="mint"
+            border="strong"
+            padding="sm"
+            layout="stack"
+            class="items-start"
+          >
+            <nb-stat value="4" label="Collapse" />
           </div>
-          <div class="nb-stat-tile nb-stat-tile--pink">
-            <span class="nb-stat-tile__value">2</span>
-            <span class="nb-stat-tile__label">Children</span>
+          <div
+            nbSurface
+            tone="pink"
+            border="strong"
+            padding="sm"
+            layout="stack"
+            class="items-start"
+          >
+            <nb-stat value="2" label="Children" />
           </div>
 
           <docs-source-tile
@@ -140,7 +166,11 @@ interface SplitSeparatorDemo {
           <code class="font-mono">separator</code> with
           <code class="font-mono">gap="none"</code>.
         </p>
-        <docs-code-block class="block mb-5" title="Import" [code]="importCode" />
+        <docs-code-block
+          class="block mb-5"
+          title="Import"
+          [code]="importCode"
+        />
         <docs-code-block title="Template" [code]="defaultExampleCode" />
       </section>
 
@@ -149,18 +179,18 @@ interface SplitSeparatorDemo {
         <docs-example [code]="ratiosExampleCode">
           <div class="grid w-full grid-cols-1 gap-4 p-4">
             @for (ratio of ratios; track ratio.value) {
-              <div nbSurface shadow="sm" class="p-3">
-                <div nbSplit [ratio]="ratio.value" gap="sm" collapse="none">
-                  <span
-                    class="border-2 border-(--nb-border) bg-(--nb-yellow) px-3 py-4 text-center font-mono text-xs font-black uppercase"
-                    >{{ ratio.label }} main</span
-                  >
-                  <span
-                    class="border-2 border-(--nb-border) bg-(--nb-mint) px-3 py-4 text-center font-mono text-xs font-black uppercase"
-                    >Aside</span
-                  >
-                </div>
+            <div nbSurface shadow="sm" class="p-3">
+              <div nbSplit [ratio]="ratio.value" gap="sm" collapse="none">
+                <span
+                  class="border-2 border-(--nb-border) bg-(--nb-yellow) px-3 py-4 text-center font-mono text-xs font-black uppercase"
+                  >{{ ratio.label }} main</span
+                >
+                <span
+                  class="border-2 border-(--nb-border) bg-(--nb-mint) px-3 py-4 text-center font-mono text-xs font-black uppercase"
+                  >Aside</span
+                >
               </div>
+            </div>
             }
           </div>
         </docs-example>
@@ -174,38 +204,44 @@ interface SplitSeparatorDemo {
           <div class="grid w-full max-w-3xl shrink-0 gap-6">
             <div class="grid grid-cols-1 gap-4 p-4 sm:grid-cols-2">
               @for (gap of gaps; track gap.value) {
-                <div nbSurface tone="white" shadow="sm">
-                  <div nbSplit gap="sm" padding="sm" collapse="none">
-                    <span class="font-mono text-xs font-black uppercase"
-                      >gap {{ gap.label }}</span
-                    >
-                    <div nbSplit [gap]="gap.value" collapse="none">
-                      <span class="h-9 border-2 border-(--nb-border) bg-(--nb-pink)"></span>
-                      <span class="h-9 border-2 border-(--nb-border) bg-(--nb-blue)"></span>
-                    </div>
+              <div nbSurface tone="white" shadow="sm">
+                <div nbSplit gap="sm" padding="sm" collapse="none">
+                  <span class="font-mono text-xs font-black uppercase"
+                    >gap {{ gap.label }}</span
+                  >
+                  <div nbSplit [gap]="gap.value" collapse="none">
+                    <span
+                      class="h-9 border-2 border-(--nb-border) bg-(--nb-pink)"
+                    ></span>
+                    <span
+                      class="h-9 border-2 border-(--nb-border) bg-(--nb-blue)"
+                    ></span>
                   </div>
                 </div>
+              </div>
               }
             </div>
 
             <div class="grid grid-cols-1 gap-4 p-4 sm:grid-cols-2">
               @for (padding of paddings; track padding.value) {
-                <div nbSurface tone="cream" shadow="sm" class="h-28">
-                  <div
-                    nbSplit
-                    [padding]="padding.value"
-                    gap="sm"
-                    collapse="none"
-                    class="h-full bg-(--nb-cream)"
+              <div nbSurface tone="cream" shadow="sm" class="h-28">
+                <div
+                  nbSplit
+                  [padding]="padding.value"
+                  gap="sm"
+                  collapse="none"
+                  class="h-full bg-(--nb-cream)"
+                >
+                  <span
+                    class="border-2 border-(--nb-border) bg-(--nb-background) p-2 font-mono text-xs font-black uppercase"
+                    >{{ padding.label }}</span
                   >
-                    <span class="border-2 border-(--nb-border) bg-(--nb-background) p-2 font-mono text-xs font-black uppercase"
-                      >{{ padding.label }}</span
-                    >
-                    <span class="border-2 border-(--nb-border) bg-(--nb-mint) p-2 font-black"
-                      >Pad</span
-                    >
-                  </div>
+                  <span
+                    class="border-2 border-(--nb-border) bg-(--nb-mint) p-2 font-black"
+                    >Pad</span
+                  >
                 </div>
+              </div>
               }
             </div>
           </div>
@@ -217,28 +253,31 @@ interface SplitSeparatorDemo {
           Collapse
         </h2>
         <p class="mb-4 font-medium">
-          Split stacks by default until the <code class="font-mono">md</code>
-          breakpoint. Use <code class="font-mono">collapse="none"</code> for a
-          permanent two-column split.
+          Split stacks by default until the
+          <code class="font-mono">md</code> breakpoint. Use
+          <code class="font-mono">collapse="none"</code> for a permanent
+          two-column split.
         </p>
         <docs-example [code]="collapseExampleCode">
           <div class="grid w-full grid-cols-1 gap-4 p-4 md:grid-cols-2">
             @for (collapse of collapses; track collapse.value) {
-              <div nbSurface tone="yellow" shadow="sm" class="p-4">
-                <div nbStack gap="sm">
-                  <span class="font-mono text-xs font-black uppercase">{{
-                    collapse.label
-                  }}</span>
-                  <div nbSplit gap="sm" [collapse]="collapse.value">
-                    <span class="border-2 border-(--nb-border) bg-(--nb-mint) p-3 font-black"
-                      >Main</span
-                    >
-                    <span class="border-2 border-(--nb-border) bg-(--nb-lavender) p-3 font-black"
-                      >Aside</span
-                    >
-                  </div>
+            <div nbSurface tone="yellow" shadow="sm" class="p-4">
+              <div nbStack gap="sm">
+                <span class="font-mono text-xs font-black uppercase">{{
+                  collapse.label
+                }}</span>
+                <div nbSplit gap="sm" [collapse]="collapse.value">
+                  <span
+                    class="border-2 border-(--nb-border) bg-(--nb-mint) p-3 font-black"
+                    >Main</span
+                  >
+                  <span
+                    class="border-2 border-(--nb-border) bg-(--nb-lavender) p-3 font-black"
+                    >Aside</span
+                  >
                 </div>
               </div>
+            </div>
             }
           </div>
         </docs-example>
@@ -251,16 +290,18 @@ interface SplitSeparatorDemo {
         <docs-example [code]="alignmentExampleCode">
           <div class="grid w-full grid-cols-1 gap-4 p-4 sm:grid-cols-2">
             @for (align of alignments; track align.value) {
-              <div nbSurface tone="white" shadow="sm" class="p-4">
-                <div nbSplit gap="sm" [align]="align.value" collapse="none">
-                  <span class="min-h-24 border-2 border-(--nb-border) bg-(--nb-yellow) p-3 font-mono text-xs font-black uppercase"
-                    >{{ align.label }}</span
-                  >
-                  <span class="border-2 border-(--nb-border) bg-(--nb-mint) p-3 font-black"
-                    >Aside</span
-                  >
-                </div>
+            <div nbSurface tone="white" shadow="sm" class="p-4">
+              <div nbSplit gap="sm" [align]="align.value" collapse="none">
+                <span
+                  class="min-h-24 border-2 border-(--nb-border) bg-(--nb-yellow) p-3 font-mono text-xs font-black uppercase"
+                  >{{ align.label }}</span
+                >
+                <span
+                  class="border-2 border-(--nb-border) bg-(--nb-mint) p-3 font-black"
+                  >Aside</span
+                >
               </div>
+            </div>
             }
           </div>
         </docs-example>
@@ -272,23 +313,22 @@ interface SplitSeparatorDemo {
         </h2>
         <docs-example [code]="separatorExampleCode">
           <div class="grid w-full grid-cols-1 gap-4 p-4">
-            @for (separator of separators; track separator.value) {
-              @if (separator.value !== 'none') {
-                <div nbSurface tone="cream" shadow="sm">
-                  <div
-                    nbSplit
-                    ratio="2:1"
-                    gap="lg"
-                    padding="md"
-                    collapse="none"
-                    [separator]="separator.value"
-                  >
-                    <span class="font-black">{{ separator.label }} main</span>
-                    <span class="font-medium">Aside</span>
-                  </div>
-                </div>
-              }
-            }
+            @for (separator of separators; track separator.value) { @if
+            (separator.value !== 'none') {
+            <div nbSurface tone="cream" shadow="sm">
+              <div
+                nbSplit
+                ratio="2:1"
+                gap="lg"
+                padding="md"
+                collapse="none"
+                [separator]="separator.value"
+              >
+                <span class="font-black">{{ separator.label }} main</span>
+                <span class="font-medium">Aside</span>
+              </div>
+            </div>
+            } }
           </div>
         </docs-example>
       </section>
@@ -319,7 +359,9 @@ interface SplitSeparatorDemo {
                 </div>
 
                 <div nbStack gap="sm">
-                  <h3 class="mb-0 text-3xl font-black">Design Systems Sprint</h3>
+                  <h3 class="mb-0 text-3xl font-black">
+                    Design Systems Sprint
+                  </h3>
                   <p class="max-w-lg font-medium">
                     Stack and Cluster handle local rhythm. Split handles the
                     larger main-and-aside card structure.
@@ -328,7 +370,8 @@ interface SplitSeparatorDemo {
               </div>
 
               <div nbStack gap="md" align="start">
-                <span class="border-2 border-(--nb-border) bg-(--nb-yellow) px-4 py-2 font-black shadow-[4px_4px_0_0_var(--nb-shadow)]"
+                <span
+                  class="border-2 border-(--nb-border) bg-(--nb-yellow) px-4 py-2 font-black shadow-[4px_4px_0_0_var(--nb-shadow)]"
                   >12 seats</span
                 >
                 <button nbButton>Enroll</button>
@@ -341,62 +384,168 @@ interface SplitSeparatorDemo {
       <docs-tokens component="split" />
 
       <section id="accessibility">
-        <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">Accessibility</h2>
+        <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">
+          Accessibility
+        </h2>
         <p class="font-medium">
-          <strong>APG pattern:</strong> N/A - Split is a layout primitive for composing two-region content, not an interactive widget. <strong>Status:</strong> Stable.
+          <strong>APG pattern:</strong> N/A - Split is a layout primitive for
+          composing two-region content, not an interactive widget.
+          <strong>Status:</strong> Stable.
         </p>
       </section>
 
       <section id="api">
         <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">API</h2>
         <div
+          tabindex="0"
           class="overflow-x-auto border-2 border-(--nb-border) bg-nb-surface shadow-[5px_5px_0_0_var(--nb-shadow)]"
         >
           <table class="w-full min-w-180 border-collapse text-left">
             <thead class="bg-nb-secondary text-nb-secondary-fg">
               <tr>
-                <th class="border-b-2 border-r-2 border-(--nb-border) px-4 py-3 font-bold">Input</th>
-                <th class="border-b-2 border-r-2 border-(--nb-border) px-4 py-3 font-bold">Type</th>
-                <th class="border-b-2 border-r-2 border-(--nb-border) px-4 py-3 font-bold">Default</th>
-                <th class="border-b-2 border-(--nb-border) px-4 py-3 font-bold">Description</th>
+                <th
+                  class="border-b-2 border-r-2 border-(--nb-border) px-4 py-3 font-bold"
+                >
+                  Input
+                </th>
+                <th
+                  class="border-b-2 border-r-2 border-(--nb-border) px-4 py-3 font-bold"
+                >
+                  Type
+                </th>
+                <th
+                  class="border-b-2 border-r-2 border-(--nb-border) px-4 py-3 font-bold"
+                >
+                  Default
+                </th>
+                <th class="border-b-2 border-(--nb-border) px-4 py-3 font-bold">
+                  Description
+                </th>
               </tr>
             </thead>
             <tbody class="font-medium">
               <tr class="border-b-2 border-(--nb-border)">
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">ratio</td>
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">'1:1' | '2:1' | '3:1' | '1:2' | '1:3' | 'fill:auto' | 'auto:fill'</td>
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">'1:1'</td>
-                <td class="px-4 py-3">Column relationship between main and aside content.</td>
+                <td
+                  class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
+                >
+                  ratio
+                </td>
+                <td
+                  class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
+                >
+                  '1:1' | '2:1' | '3:1' | '1:2' | '1:3' | 'fill:auto' |
+                  'auto:fill'
+                </td>
+                <td
+                  class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
+                >
+                  '1:1'
+                </td>
+                <td class="px-4 py-3">
+                  Column relationship between main and aside content.
+                </td>
               </tr>
               <tr class="border-b-2 border-(--nb-border)">
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">gap</td>
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">'none' | 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl'</td>
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">'lg'</td>
-                <td class="px-4 py-3">Spacing between the two split regions.</td>
+                <td
+                  class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
+                >
+                  gap
+                </td>
+                <td
+                  class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
+                >
+                  'none' | 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl'
+                </td>
+                <td
+                  class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
+                >
+                  'lg'
+                </td>
+                <td class="px-4 py-3">
+                  Spacing between the two split regions.
+                </td>
               </tr>
               <tr class="border-b-2 border-(--nb-border)">
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">padding</td>
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">'none' | 'sm' | 'md' | 'lg' | 'xl'</td>
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">'none'</td>
-                <td class="px-4 py-3">Inner padding for the split container.</td>
+                <td
+                  class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
+                >
+                  padding
+                </td>
+                <td
+                  class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
+                >
+                  'none' | 'sm' | 'md' | 'lg' | 'xl'
+                </td>
+                <td
+                  class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
+                >
+                  'none'
+                </td>
+                <td class="px-4 py-3">
+                  Inner padding for the split container.
+                </td>
               </tr>
               <tr class="border-b-2 border-(--nb-border)">
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">collapse</td>
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">'none' | 'sm' | 'md' | 'lg'</td>
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">'md'</td>
-                <td class="px-4 py-3">Breakpoint where the layout switches from stacked to two columns.</td>
+                <td
+                  class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
+                >
+                  collapse
+                </td>
+                <td
+                  class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
+                >
+                  'none' | 'sm' | 'md' | 'lg'
+                </td>
+                <td
+                  class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
+                >
+                  'md'
+                </td>
+                <td class="px-4 py-3">
+                  Breakpoint where the layout switches from stacked to two
+                  columns.
+                </td>
               </tr>
               <tr class="border-b-2 border-(--nb-border)">
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">align</td>
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">'start' | 'center' | 'end' | 'stretch'</td>
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">'stretch'</td>
-                <td class="px-4 py-3">Cross-axis alignment for the two regions.</td>
+                <td
+                  class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
+                >
+                  align
+                </td>
+                <td
+                  class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
+                >
+                  'start' | 'center' | 'end' | 'stretch'
+                </td>
+                <td
+                  class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
+                >
+                  'stretch'
+                </td>
+                <td class="px-4 py-3">
+                  Cross-axis alignment for the two regions.
+                </td>
               </tr>
               <tr>
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">separator</td>
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">'none' | 'solid' | 'dashed' | 'thick'</td>
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">'none'</td>
-                <td class="px-4 py-3">Inline separator between the two regions. Use with a non-zero gap.</td>
+                <td
+                  class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
+                >
+                  separator
+                </td>
+                <td
+                  class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
+                >
+                  'none' | 'solid' | 'dashed' | 'thick'
+                </td>
+                <td
+                  class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
+                >
+                  'none'
+                </td>
+                <td class="px-4 py-3">
+                  Inline separator between the two regions. Use with a non-zero
+                  gap.
+                </td>
               </tr>
             </tbody>
           </table>

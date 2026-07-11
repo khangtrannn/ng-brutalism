@@ -16,9 +16,9 @@ import { DocsCodeBlock } from '@ng-brutalism/docs-ui';
           <p class="mt-3 max-w-3xl text-base font-medium sm:text-lg">
             Every ng-brutalism control works with
             <code class="font-mono">formControlName</code> and
-            <code class="font-mono">[(ngModel)]</code>. Native-element
-            controls get this for free from Angular; the one non-native
-            control, <code class="font-mono">nb-select</code>, implements
+            <code class="font-mono">[(ngModel)]</code>. Native-element controls
+            get this for free from Angular; the one non-native control,
+            <code class="font-mono">nb-select</code>, implements
             <code class="font-mono">ControlValueAccessor</code> explicitly to
             match.
           </p>
@@ -30,10 +30,14 @@ import { DocsCodeBlock } from '@ng-brutalism/docs-ui';
           Native-element controls
         </h2>
         <p class="mb-4 font-medium">
-          <code class="font-mono">nbInput</code>, <code class="font-mono">nbTextarea</code>,
-          and <code class="font-mono">nbCheckbox</code> are directives on real
-          <code class="font-mono">&lt;input&gt;</code>/<code class="font-mono">&lt;textarea&gt;</code>
-          elements, so Angular's own <code class="font-mono">DefaultValueAccessor</code>
+          <code class="font-mono">nbInput</code>,
+          <code class="font-mono">nbTextarea</code>, and
+          <code class="font-mono">nbCheckbox</code> are directives on real
+          <code class="font-mono">&lt;input&gt;</code>/<code class="font-mono"
+            >&lt;textarea&gt;</code
+          >
+          elements, so Angular's own
+          <code class="font-mono">DefaultValueAccessor</code>
           already handles the value/touched/dirty round-trip - no
           ng-brutalism-specific wiring needed there.
         </p>
@@ -55,24 +59,29 @@ import { DocsCodeBlock } from '@ng-brutalism/docs-ui';
             value into the selected option.
           </li>
           <li>
-            <code class="font-mono">onChange</code>/<code class="font-mono">onTouched</code>
-            fire on close - including the outside-click close path, not just
-            an explicit selection.
+            <code class="font-mono">onChange</code>/<code class="font-mono"
+              >onTouched</code
+            >
+            fire on close - including the outside-click close path, not just an
+            explicit selection.
           </li>
           <li>
             <code class="font-mono">setDisabledState</code> merges with the
-            <code class="font-mono">disabled</code> input rather than
-            fighting it - either source can disable the control.
+            <code class="font-mono">disabled</code> input rather than fighting
+            it - either source can disable the control.
           </li>
           <li>
-            <code class="font-mono">aria-invalid</code>/<code class="font-mono">aria-required</code>
-            reflect straight off the bound <code class="font-mono">NgControl</code>.
+            <code class="font-mono">aria-invalid</code>/<code class="font-mono"
+              >aria-required</code
+            >
+            reflect straight off the bound
+            <code class="font-mono">NgControl</code>.
           </li>
         </ul>
         <docs-code-block title="Template" [code]="selectExampleCode" />
         <p class="mt-4 text-sm opacity-70">
-          Full round-trip coverage - value, touched, dirty, disabled - lives
-          in <code class="font-mono">select-forms.spec.ts</code>; keyboard
+          Full round-trip coverage - value, touched, dirty, disabled - lives in
+          <code class="font-mono">select-forms.spec.ts</code>; keyboard
           completion in <code class="font-mono">select-keyboard.spec.ts</code>.
         </p>
       </section>
@@ -85,8 +94,8 @@ import { DocsCodeBlock } from '@ng-brutalism/docs-ui';
           Wrap a label, control, description, and error message in
           <code class="font-mono">nb-field</code> and every id/
           <code class="font-mono">aria-describedby</code>/
-          <code class="font-mono">aria-invalid</code> link is generated for
-          you - see the
+          <code class="font-mono">aria-invalid</code> link is generated for you
+          - see the
           <a routerLink="/components/field" class="underline">Field</a>
           component page for the full API.
         </p>
@@ -99,13 +108,14 @@ import { DocsCodeBlock } from '@ng-brutalism/docs-ui';
         </h2>
         <div nbCallout tone="mint" size="sm">
           <p class="normal-case">
-            Invalid styling and <code class="font-mono">nb-field-error</code>
-            visibility both gate on <strong>touched OR dirty</strong> - read
-            via <code class="font-mono">AbstractControl.events</code>, not just
+            Invalid styling and
+            <code class="font-mono">nb-field-error</code> visibility both gate
+            on <strong>touched OR dirty</strong> - read via
+            <code class="font-mono">AbstractControl.events</code>, not just
             <code class="font-mono">statusChanges</code>, so a touched-only
             transition (e.g. blurring an empty required field) is caught
-            immediately. Errors never appear before the user has interacted
-            with the control.
+            immediately. Errors never appear before the user has interacted with
+            the control.
           </p>
         </div>
       </section>

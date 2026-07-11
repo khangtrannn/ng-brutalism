@@ -4,14 +4,21 @@ import {
   NbDisplay,
   NbMediaItem,
   NbStack,
+  NbStat,
   NbSurface,
   type NbStackAlign,
-  type NbStackSeparator,
   type NbStackGap,
   type NbStackJustify,
+  type NbStackSeparator,
 } from '@ng-brutalism/ui';
 
-import { DocsCodeBlock, DocsExample, DocsSourceTile, DocsStatusBadge, DocsTokens } from '@ng-brutalism/docs-ui';
+import {
+  DocsCodeBlock,
+  DocsExample,
+  DocsSourceTile,
+  DocsStatusBadge,
+  DocsTokens,
+} from '@ng-brutalism/docs-ui';
 
 interface StackGapDemo {
   readonly value: NbStackGap;
@@ -36,6 +43,7 @@ interface StackSeparatorDemo {
 @Component({
   selector: 'docs-stack-page',
   imports: [
+    NbStat,
     DocsCodeBlock,
     DocsExample,
     DocsSourceTile,
@@ -63,17 +71,35 @@ interface StackSeparatorDemo {
 
         <div class="mt-7 flex flex-wrap items-center gap-3">
           <docs-status-badge status="stable" />
-          <div class="nb-stat-tile nb-stat-tile--yellow">
-            <span class="nb-stat-tile__value">7</span>
-            <span class="nb-stat-tile__label">Gaps</span>
+          <div
+            nbSurface
+            tone="yellow"
+            border="strong"
+            padding="sm"
+            layout="stack"
+            class="items-start"
+          >
+            <nb-stat value="7" label="Gaps" />
           </div>
-          <div class="nb-stat-tile nb-stat-tile--mint">
-            <span class="nb-stat-tile__value">4</span>
-            <span class="nb-stat-tile__label">Alignments</span>
+          <div
+            nbSurface
+            tone="mint"
+            border="strong"
+            padding="sm"
+            layout="stack"
+            class="items-start"
+          >
+            <nb-stat value="4" label="Alignments" />
           </div>
-          <div class="nb-stat-tile nb-stat-tile--pink">
-            <span class="nb-stat-tile__value">3</span>
-            <span class="nb-stat-tile__label">Separators</span>
+          <div
+            nbSurface
+            tone="pink"
+            border="strong"
+            padding="sm"
+            layout="stack"
+            class="items-start"
+          >
+            <nb-stat value="3" label="Separators" />
           </div>
 
           <docs-source-tile
@@ -206,8 +232,8 @@ interface StackSeparatorDemo {
           Separators
         </h2>
         <p class="mb-4 font-medium">
-          Use <code class="font-mono">separator</code> for simple separated lists.
-          The separator padding follows the stack gap.
+          Use <code class="font-mono">separator</code> for simple separated
+          lists. The separator padding follows the stack gap.
         </p>
         <docs-example [code]="separatorExampleCode">
           <div class="grid w-full grid-cols-1 gap-4 p-4 md:grid-cols-2">
@@ -247,15 +273,20 @@ interface StackSeparatorDemo {
       <docs-tokens component="stack" />
 
       <section id="accessibility">
-        <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">Accessibility</h2>
+        <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">
+          Accessibility
+        </h2>
         <p class="font-medium">
-          <strong>APG pattern:</strong> N/A - Stack is a layout wrapper that manages vertical spacing between children, not an interactive widget. <strong>Status:</strong> Stable.
+          <strong>APG pattern:</strong> N/A - Stack is a layout wrapper that
+          manages vertical spacing between children, not an interactive widget.
+          <strong>Status:</strong> Stable.
         </p>
       </section>
 
       <section id="api">
         <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">API</h2>
         <div
+          tabindex="0"
           class="overflow-x-auto border-2 border-(--nb-border) bg-nb-surface shadow-[5px_5px_0_0_var(--nb-shadow)]"
         >
           <table class="w-full min-w-180 border-collapse text-left">

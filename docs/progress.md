@@ -47,6 +47,14 @@ For history and details, read the domain's own `progress.md`.
 
 ---
 
+## Docs Site
+**Status:** Audit complete (2026-07-10). First P0 fix pass in progress: sidebar chip contrast restored, converted `nb-stat` tiles keep docs typography, interactive surface shadow presses work again, peach tiles restored, API guard snapshot updated.
+**Last action:** Corrected the unsafe `DOC_NAV` dead-code claim; `DOC_NAV` is live in sidebar, mobile drawer, and pagination. Fixed stale progress wording for the active fix pass.
+**Next:** Continue P0 backlog — finish replacing old `nb-stat-tile` markup instead of carrying compatibility CSS; add `tabindex=0` to scroll regions (39 pages); then move to docs-ui chrome + `docs/comparison`.
+→ Details: `docs/docs-site/dogfooding-audit-2026-07-10.md`
+
+---
+
 ## Release
 **Status:** 0.3.0 finalized in-repo: CHANGELOG `[0.3.0]` complete (callout `lg`→`md` + expanded type surface), `libs/ui/package.json` at 0.3.0, api-guard baseline current. Improvement-plan Phases 1–4 landed. Not tagged/published.
 **Next:** Follow `docs/release/RELEASE.md` steps 3–7 (build → tag → GitHub release → npm publish) to ship 0.3.0 when ready.

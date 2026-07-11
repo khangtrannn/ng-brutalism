@@ -19,7 +19,8 @@ import {
       </p>
 
       <div
-        class="overflow-x-auto border-2 border-(--nb-border) bg-nb-surface shadow-[5px_5px_0_0_var(--nb-shadow)]"
+        tabindex="0"
+          class="overflow-x-auto border-2 border-(--nb-border) bg-nb-surface shadow-[5px_5px_0_0_var(--nb-shadow)]"
       >
         <table class="w-full min-w-160 border-collapse text-left">
           <thead class="bg-nb-secondary text-nb-secondary-fg">

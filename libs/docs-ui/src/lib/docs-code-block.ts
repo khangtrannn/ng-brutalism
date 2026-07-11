@@ -2,15 +2,16 @@ import { isPlatformBrowser } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
+  PLATFORM_ID,
   computed,
   inject,
   input,
-  PLATFORM_ID,
   resource,
   signal,
 } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Analytics } from './analytics';
+import { NbSurface } from '@ng-brutalism/ui';
 import {
   DocsCodeChevronIcon,
   DocsCodeCopyIcon,
@@ -61,6 +62,7 @@ function inferLanguage(title: string, code: string): HighlightLanguage {
 @Component({
   selector: 'docs-code-block',
   imports: [
+    NbSurface,
     DocsCodeChevronIcon,
     DocsCodeCopyIcon,
     DocsCodeExpandIcon,
@@ -71,10 +73,11 @@ function inferLanguage(title: string, code: string): HighlightLanguage {
   },
   template: `
     <div
+      nbSurface
+      [border]="variant() === 'embedded' ? 'none' : 'thick'"
+      [shadow]="variant() === 'embedded' ? 'none' : 'heavy'"
       class="bg-black text-white"
-      [class.border-4]="variant() === 'standalone'"
-      [class.border-(--nb-border)]="variant() === 'standalone'"
-      [class.shadow-[8px_8px_0_0_var(--nb-shadow)]]="variant() === 'standalone'"
+      [attr.data-embedded]="variant() === 'embedded' ? '' : null"
     >
       <div class="relative bg-black">
         <div
@@ -98,6 +101,7 @@ function inferLanguage(title: string, code: string): HighlightLanguage {
         </button>
 
         <div
+          tabindex="0"
           class="docs-code-block-pre relative"
           [style.max-height.rem]="isCollapsible() && !expanded() ? maxLines() * 1 + 3.25 : null"
         >

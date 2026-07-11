@@ -5,15 +5,22 @@ import {
   NbDisplay,
   NbMediaItem,
   NbMediaItemTitle,
+  NbStat,
   NbSurface,
   type NbClusterAlign,
-  type NbClusterSeparator,
   type NbClusterGap,
   type NbClusterJustify,
+  type NbClusterSeparator,
   type NbClusterWrap,
 } from '@ng-brutalism/ui';
 
-import { DocsCodeBlock, DocsExample, DocsSourceTile, DocsStatusBadge, DocsTokens } from '@ng-brutalism/docs-ui';
+import {
+  DocsCodeBlock,
+  DocsExample,
+  DocsSourceTile,
+  DocsStatusBadge,
+  DocsTokens,
+} from '@ng-brutalism/docs-ui';
 
 interface ClusterGapDemo {
   readonly value: NbClusterGap;
@@ -43,6 +50,7 @@ interface ClusterSeparatorDemo {
 @Component({
   selector: 'docs-cluster-page',
   imports: [
+    NbStat,
     DocsCodeBlock,
     DocsExample,
     DocsSourceTile,
@@ -71,21 +79,45 @@ interface ClusterSeparatorDemo {
 
         <div class="mt-7 flex flex-wrap items-center gap-3">
           <docs-status-badge status="stable" />
-          <div class="nb-stat-tile nb-stat-tile--yellow">
-            <span class="nb-stat-tile__value">7</span>
-            <span class="nb-stat-tile__label">Gaps</span>
+          <div
+            nbSurface
+            tone="yellow"
+            border="strong"
+            padding="sm"
+            layout="stack"
+            class="items-start"
+          >
+            <nb-stat value="7" label="Gaps" />
           </div>
-          <div class="nb-stat-tile nb-stat-tile--mint">
-            <span class="nb-stat-tile__value">5</span>
-            <span class="nb-stat-tile__label">Alignments</span>
+          <div
+            nbSurface
+            tone="mint"
+            border="strong"
+            padding="sm"
+            layout="stack"
+            class="items-start"
+          >
+            <nb-stat value="5" label="Alignments" />
           </div>
-          <div class="nb-stat-tile nb-stat-tile--pink">
-            <span class="nb-stat-tile__value">Wrap</span>
-            <span class="nb-stat-tile__label">Default</span>
+          <div
+            nbSurface
+            tone="pink"
+            border="strong"
+            padding="sm"
+            layout="stack"
+            class="items-start"
+          >
+            <nb-stat value="Wrap" label="Default" />
           </div>
-          <div class="nb-stat-tile nb-stat-tile--lavender">
-            <span class="nb-stat-tile__value">4</span>
-            <span class="nb-stat-tile__label">Separators</span>
+          <div
+            nbSurface
+            tone="lavender"
+            border="strong"
+            padding="sm"
+            layout="stack"
+            class="items-start"
+          >
+            <nb-stat value="4" label="Separators" />
           </div>
 
           <docs-source-tile
@@ -286,18 +318,18 @@ interface ClusterSeparatorDemo {
           Separators
         </h2>
         <p class="mb-4 font-medium">
-          Use <code class="font-mono">separator</code> to render inline separators
-          between cluster children. When a separator is active, gap is collapsed
-          to <code class="font-mono">gap-x-0</code> and children split
-          <code class="font-mono">--nb-cluster-gap</code> across separator margin
-          and padding.
+          Use <code class="font-mono">separator</code> to render inline
+          separators between cluster children. When a separator is active, gap
+          is collapsed to <code class="font-mono">gap-x-0</code> and children
+          split <code class="font-mono">--nb-cluster-gap</code> across separator
+          margin and padding.
         </p>
         <div nbSurface tone="yellow" shadow="sm" class="mb-5 p-4 font-medium">
-          <strong>Separator note:</strong> cluster separators are best for compact,
-          single-row groups like actions, badges, or metadata. When content
-          wraps across rows, CSS cannot reliably detect the first item of each
-          visual row, so a separator may appear at the start of a wrapped line.
-          For heavily wrapping content, prefer
+          <strong>Separator note:</strong> cluster separators are best for
+          compact, single-row groups like actions, badges, or metadata. When
+          content wraps across rows, CSS cannot reliably detect the first item
+          of each visual row, so a separator may appear at the start of a
+          wrapped line. For heavily wrapping content, prefer
           <code class="font-mono">separator="none"</code> or switch to
           <code class="font-mono">nbStack</code>.
         </div>
@@ -371,15 +403,20 @@ interface ClusterSeparatorDemo {
       <docs-tokens component="cluster" />
 
       <section id="accessibility">
-        <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">Accessibility</h2>
+        <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">
+          Accessibility
+        </h2>
         <p class="font-medium">
-          <strong>APG pattern:</strong> N/A - Cluster is a static, presentational layout primitive for flowing children inline, not an interactive widget. <strong>Status:</strong> Stable.
+          <strong>APG pattern:</strong> N/A - Cluster is a static,
+          presentational layout primitive for flowing children inline, not an
+          interactive widget. <strong>Status:</strong> Stable.
         </p>
       </section>
 
       <section id="api">
         <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">API</h2>
         <div
+          tabindex="0"
           class="overflow-x-auto border-2 border-(--nb-border) bg-nb-surface shadow-[5px_5px_0_0_var(--nb-shadow)]"
         >
           <table class="w-full min-w-180 border-collapse text-left">

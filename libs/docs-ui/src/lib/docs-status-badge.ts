@@ -1,17 +1,21 @@
 import { ChangeDetectionStrategy, Component, computed, input } from '@angular/core';
+import { NbStat, NbSurface } from '@ng-brutalism/ui';
 
 import type { NbComponentStatus } from './docs-component-status';
 
 @Component({
   selector: 'docs-status-badge',
+  imports: [NbStat, NbSurface],
   template: `
     <span
-      class="nb-stat-tile"
-      [class.nb-stat-tile--mint]="status() === 'stable'"
-      [class.nb-stat-tile--yellow]="status() === 'preview'"
+      nbSurface
+      [tone]="status() === 'stable' ? 'mint' : 'yellow'"
+      border="strong"
+      padding="sm"
+      layout="stack"
+      class="items-start"
     >
-      <span class="nb-stat-tile__value">{{ label() }}</span>
-      <span class="nb-stat-tile__label">Status</span>
+      <nb-stat [value]="label()" label="Status" />
     </span>
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,

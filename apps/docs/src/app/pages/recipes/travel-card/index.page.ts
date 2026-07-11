@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { NbStat, NbSurface } from '@ng-brutalism/ui';
 
 import { DocsCodeBlock, DocsSourceTile } from '@ng-brutalism/docs-ui';
 
@@ -7,7 +8,14 @@ import { TravelCard } from './travel-card';
 
 @Component({
   selector: 'docs-recipe-travel-card-page',
-  imports: [DocsCodeBlock, DocsSourceTile, TravelCard, RouterLink],
+  imports: [
+    DocsCodeBlock,
+    DocsSourceTile,
+    TravelCard,
+    RouterLink,
+    NbStat,
+    NbSurface,
+  ],
   template: `
     <article>
       <header id="overview" class="relative mb-10 scroll-mt-32">
@@ -23,13 +31,28 @@ import { TravelCard } from './travel-card';
         </div>
 
         <div class="mt-7 flex flex-wrap items-center gap-3">
-          <div class="nb-stat-tile nb-stat-tile--yellow">
-            <span class="nb-stat-tile__value">{{ primitives.length }}</span>
-            <span class="nb-stat-tile__label">primitives</span>
+          <div
+            nbSurface
+            tone="yellow"
+            border="strong"
+            padding="sm"
+            layout="stack"
+            class="items-start"
+          >
+            <nb-stat
+              [value]="primitives.length.toString()"
+              label="primitives"
+            />
           </div>
-          <div class="nb-stat-tile nb-stat-tile--mint">
-            <span class="nb-stat-tile__value">100%</span>
-            <span class="nb-stat-tile__label">Composed</span>
+          <div
+            nbSurface
+            tone="mint"
+            border="strong"
+            padding="sm"
+            layout="stack"
+            class="items-start"
+          >
+            <nb-stat value="100%" label="Composed" />
           </div>
 
           <docs-source-tile

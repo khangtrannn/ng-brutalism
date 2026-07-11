@@ -15,8 +15,8 @@ function isStaleBuildError(error: unknown): boolean {
     error instanceof Error
       ? error.message
       : typeof error === 'string'
-        ? error
-        : String(error);
+      ? error
+      : String(error);
 
   return staleBuildErrorPatterns.some((pattern) => pattern.test(message));
 }

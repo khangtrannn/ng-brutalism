@@ -1,12 +1,32 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { NbButton, NbCard, NbCardActions, NbCardContent, NbCardDescription, NbCardFooter, NbCardHeader, NbCardTitle, NbTitle } from '@ng-brutalism/ui';
+import {
+  NbButton,
+  NbCard,
+  NbCardActions,
+  NbCardContent,
+  NbCardDescription,
+  NbCardFooter,
+  NbCardHeader,
+  NbCardTitle,
+  NbStat,
+  NbSurface,
+  NbTitle,
+} from '@ng-brutalism/ui';
 
-import { DocsCodeBlock, DocsExample, DocsSourceTile, DocsStatusBadge, DocsTokens } from '@ng-brutalism/docs-ui';
+import {
+  DocsCodeBlock,
+  DocsExample,
+  DocsSourceTile,
+  DocsStatusBadge,
+  DocsTokens,
+} from '@ng-brutalism/docs-ui';
 import JobListingCardExample from './examples/job-listing-card';
 
 @Component({
   selector: 'docs-card-page',
   imports: [
+    NbStat,
+    NbSurface,
     DocsCodeBlock,
     DocsExample,
     DocsSourceTile,
@@ -21,8 +41,8 @@ import JobListingCardExample from './examples/job-listing-card';
     NbCardFooter,
     NbCardHeader,
     NbCardTitle,
-    NbTitle
-],
+    NbTitle,
+  ],
   template: `
     <article>
       <header id="overview" class="relative mb-10 scroll-mt-32">
@@ -30,25 +50,43 @@ import JobListingCardExample from './examples/job-listing-card';
           <p>Neo-Brutalist Angular Card</p>
           <h1>Card</h1>
           <p class="mt-3 max-w-3xl text-base font-medium sm:text-lg">
-            The neo-brutalist Angular Card component. A bold content block
-            with header, content, and footer slots wrapped in thick borders
-            and an offset shadow.
+            The neo-brutalist Angular Card component. A bold content block with
+            header, content, and footer slots wrapped in thick borders and an
+            offset shadow.
           </p>
         </div>
 
         <div class="mt-7 flex flex-wrap items-center gap-3">
           <docs-status-badge status="stable" />
-          <div class="nb-stat-tile nb-stat-tile--yellow">
-            <span class="nb-stat-tile__value">7</span>
-            <span class="nb-stat-tile__label">Parts</span>
+          <div
+            nbSurface
+            tone="yellow"
+            border="strong"
+            padding="sm"
+            layout="stack"
+            class="items-start"
+          >
+            <nb-stat value="7" label="Parts" />
           </div>
-          <div class="nb-stat-tile nb-stat-tile--mint">
-            <span class="nb-stat-tile__value">SLOT</span>
-            <span class="nb-stat-tile__label">Composable</span>
+          <div
+            nbSurface
+            tone="mint"
+            border="strong"
+            padding="sm"
+            layout="stack"
+            class="items-start"
+          >
+            <nb-stat value="SLOT" label="Composable" />
           </div>
-          <div class="nb-stat-tile nb-stat-tile--pink">
-            <span class="nb-stat-tile__value">∞</span>
-            <span class="nb-stat-tile__label">Layouts</span>
+          <div
+            nbSurface
+            tone="pink"
+            border="strong"
+            padding="sm"
+            layout="stack"
+            class="items-start"
+          >
+            <nb-stat value="∞" label="Layouts" />
           </div>
 
           <docs-source-tile
@@ -96,6 +134,7 @@ import JobListingCardExample from './examples/job-listing-card';
         </p>
 
         <div
+          tabindex="0"
           class="overflow-x-auto border-2 border-(--nb-border) bg-nb-surface shadow-[5px_5px_0_0_var(--nb-shadow)]"
         >
           <table class="w-full min-w-160 border-collapse text-left">
@@ -209,10 +248,7 @@ import JobListingCardExample from './examples/job-listing-card';
                 Check your inbox for the latest updates from your team.
               </p>
             </nb-card-content>
-            <nb-card-actions
-              align="end"
-              class="gap-2! max-sm:px-3!"
-            >
+            <nb-card-actions align="end" class="gap-2! max-sm:px-3!">
               <button nbButton size="sm" tone="background">
                 Mark all read
               </button>
@@ -225,9 +261,13 @@ import JobListingCardExample from './examples/job-listing-card';
       <docs-tokens component="card" />
 
       <section id="accessibility">
-        <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">Accessibility</h2>
+        <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">
+          Accessibility
+        </h2>
         <p class="font-medium">
-          <strong>APG pattern:</strong> N/A - Card is a static, presentational content container with header, body, and footer slots, not an interactive widget. <strong>Status:</strong> Stable.
+          <strong>APG pattern:</strong> N/A - Card is a static, presentational
+          content container with header, body, and footer slots, not an
+          interactive widget. <strong>Status:</strong> Stable.
         </p>
       </section>
     </article>

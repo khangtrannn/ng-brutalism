@@ -16,7 +16,9 @@ test.describe('podcast card recipe', () => {
     await expect(
       card.getByRole('heading', { name: /DESIGN.*SYSTEMS.*THAT SCALE/s })
     ).toBeVisible();
-    await expect(card.getByRole('button', { name: /Listen Now/i })).toBeVisible();
+    await expect(
+      card.getByRole('button', { name: /Listen Now/i })
+    ).toBeVisible();
   });
 
   test('"Podcast" chip uses padding="lg"', async ({ page }) => {

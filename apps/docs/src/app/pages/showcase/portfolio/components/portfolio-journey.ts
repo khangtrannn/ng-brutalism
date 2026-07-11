@@ -36,9 +36,9 @@ const INITIAL_CENTER: [number, number] = [58, 30];
 const INITIAL_ZOOM = 2;
 
 @Component({
-    selector: 'docs-portfolio-journey',
-    imports: [DocsPortfolioChevronLeftIcon, DocsPortfolioMenuIcon],
-    template: `
+  selector: 'docs-portfolio-journey',
+  imports: [DocsPortfolioChevronLeftIcon, DocsPortfolioMenuIcon],
+  template: `
     <section
       id="journey"
       class="portfolio-grid-section relative scroll-mt-6 bg-white p-2 py-8 sm:p-4 sm:py-12 md:p-6 md:py-16 lg:p-8"
@@ -81,7 +81,9 @@ const INITIAL_ZOOM = 2;
               </button>
             </div>
 
-            <div class="portfolio-journey-timeline-scroll relative flex-1 overflow-y-auto p-3 sm:p-4 md:p-6">
+            <div
+              class="portfolio-journey-timeline-scroll relative flex-1 overflow-y-auto p-3 sm:p-4 md:p-6"
+            >
               @for (entry of timeline(); track entry.id; let index = $index) {
               <button
                 class="relative w-full cursor-pointer rounded-md border-l-4 border-transparent py-3 pl-10 pr-2 text-left transition-colors duration-200 hover:bg-gray-100 sm:py-4 sm:pl-14 sm:pr-4 md:pl-16"
@@ -164,14 +166,15 @@ const INITIAL_ZOOM = 2;
       </div>
     </section>
   `,
-    changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PortfolioJourney {
   readonly activeJourney = input(0);
   readonly timeline = input.required<TimelineEntry[]>();
   readonly activeJourneyChanged = output<number>();
 
-  private readonly mapEl = viewChild.required<ElementRef<HTMLDivElement>>('mapEl');
+  private readonly mapEl =
+    viewChild.required<ElementRef<HTMLDivElement>>('mapEl');
   private readonly destroyRef = inject(DestroyRef);
 
   protected readonly timelineOpen = signal(true);
@@ -276,7 +279,8 @@ export class PortfolioJourney {
         new TileLayer({
           source: new XYZ({
             url: 'https://{a-d}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png',
-            attributions: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors © <a href="https://carto.com/attributions">CARTO</a>',
+            attributions:
+              '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors © <a href="https://carto.com/attributions">CARTO</a>',
           }),
         }),
         this.buildVectorLayer(),

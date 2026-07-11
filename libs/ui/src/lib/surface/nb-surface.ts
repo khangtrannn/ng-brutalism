@@ -40,8 +40,9 @@ export type NbSurfaceEdge = 'none' | 'top' | 'bottom';
     '[attr.data-layout]': 'layout()',
     '[attr.data-edge]': 'edge()',
     '[attr.data-clip]': 'clip() ? "" : null',
+    '[attr.data-interactive]': 'interactive() ? "" : null',
     '[style.--nb-surface-radius]': 'radius()',
-    '[style.--nb-surface-shadow]': 'shadow()',
+    '[style.--nb-surface-shadow-base]': 'shadow()',
     '[style.--nb-surface-border-width]': 'border()',
     '[style.--nb-surface-padding]': 'padding()',
   },
@@ -51,6 +52,9 @@ export class NbSurface {
   readonly layout = input<NbSurfaceLayout>('block');
   readonly edge = input<NbSurfaceEdge>('none');
   readonly clip = input<boolean, unknown>(false, {
+    transform: booleanAttribute,
+  });
+  readonly interactive = input<boolean, unknown>(false, {
     transform: booleanAttribute,
   });
   readonly radius = input(null, {

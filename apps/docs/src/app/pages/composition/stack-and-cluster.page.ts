@@ -34,8 +34,8 @@ import { DocsExample } from '@ng-brutalism/docs-ui';
         <p class="mt-3 max-w-3xl text-base font-medium sm:text-lg">
           <code class="font-mono">nbStack</code> is the default primitive for
           vertical rhythm. <code class="font-mono">nbCluster</code> is the
-          default primitive for inline groups that may wrap. Use them
-          everywhere instead of manually wiring up flex utilities.
+          default primitive for inline groups that may wrap. Use them everywhere
+          instead of manually wiring up flex utilities.
         </p>
       </header>
 
@@ -50,7 +50,8 @@ import { DocsExample } from '@ng-brutalism/docs-ui';
             <h3 class="font-heading text-xl font-black uppercase">nbStack</h3>
             <p class="mt-2 text-sm font-medium">
               Vertical flow with consistent gap. Use for page sections, form
-              groups, card content, lists, and anywhere content stacks top-to-bottom.
+              groups, card content, lists, and anywhere content stacks
+              top-to-bottom.
             </p>
           </div>
           <div
@@ -77,7 +78,16 @@ import { DocsExample } from '@ng-brutalism/docs-ui';
         <docs-example [code]="stackExampleCode">
           <div nbStack gap="md" class="w-full max-w-sm">
             <span nbChip tone="mint" class="self-start">Hiring now</span>
-            <h2 nbDisplay size="sm" underline="bar" underlineGap="xs" class="inline-flex flex-col items-start" style="--nb-underline-width: 80%">Open role</h2>
+            <h2
+              nbDisplay
+              size="sm"
+              underline="bar"
+              underlineGap="xs"
+              class="inline-flex flex-col items-start"
+              style="--nb-underline-width: 80%"
+            >
+              Open role
+            </h2>
             <p nbText>Compose content vertically with predictable spacing.</p>
             <button nbButton tone="yellow" size="lg">Apply now</button>
           </div>
@@ -113,10 +123,27 @@ import { DocsExample } from '@ng-brutalism/docs-ui';
         </p>
 
         <docs-example [code]="combinedCode">
-          <article nbSurface tone="cream" padding="lg" radius="xl" shadow="hard" border="strong" class="w-full max-w-md">
+          <article
+            nbSurface
+            tone="cream"
+            padding="lg"
+            radius="xl"
+            shadow="hard"
+            border="strong"
+            class="w-full max-w-md"
+          >
             <div nbStack gap="lg">
               <div nbStack gap="xs">
-                <h2 nbDisplay size="sm" underline="bar" underlineGap="xs" class="inline-flex flex-col items-start" style="--nb-underline-width: 45%">Senior Angular Engineer</h2>
+                <h2
+                  nbDisplay
+                  size="sm"
+                  underline="bar"
+                  underlineGap="xs"
+                  class="inline-flex flex-col items-start"
+                  style="--nb-underline-width: 45%"
+                >
+                  Senior Angular Engineer
+                </h2>
                 <p nbText tone="muted">Build loud UI primitives.</p>
               </div>
 
@@ -140,20 +167,32 @@ import { DocsExample } from '@ng-brutalism/docs-ui';
           Gap values
         </h2>
         <p class="mb-5 text-base font-medium">
-          Both Stack and Cluster use the same gap scale. Pick the right gap
-          for the relationship between items - tight for related items, wider
-          for distinct groups.
+          Both Stack and Cluster use the same gap scale. Pick the right gap for
+          the relationship between items - tight for related items, wider for
+          distinct groups.
         </p>
-        <div class="grid gap-4 border-3 border-(--nb-border) bg-white p-5 shadow-[5px_5px_0_0_var(--nb-shadow)]">
+        <div
+          class="grid gap-4 border-3 border-(--nb-border) bg-white p-5 shadow-[5px_5px_0_0_var(--nb-shadow)]"
+        >
           @for (gap of gapValues; track gap.value) {
-            <div class="flex items-center gap-6">
-              <code class="w-16 shrink-0 font-mono text-sm font-bold">{{ gap.value }}</code>
-              <div nbStack [gap]="gap.value" class="flex-1">
-                <div class="h-3 border-3 border-(--nb-border)" [style.background]="gap.color"></div>
-                <div class="h-3 border-3 border-(--nb-border)" [style.background]="gap.color"></div>
-              </div>
-              <span class="w-32 shrink-0 text-sm font-medium opacity-70">{{ gap.use }}</span>
+          <div class="flex items-center gap-6">
+            <code class="w-16 shrink-0 font-mono text-sm font-bold">{{
+              gap.value
+            }}</code>
+            <div nbStack [gap]="gap.value" class="flex-1">
+              <div
+                class="h-3 border-3 border-(--nb-border)"
+                [style.background]="gap.color"
+              ></div>
+              <div
+                class="h-3 border-3 border-(--nb-border)"
+                [style.background]="gap.color"
+              ></div>
             </div>
+            <span class="w-32 shrink-0 text-sm font-medium opacity-70">{{
+              gap.use
+            }}</span>
+          </div>
           }
         </div>
       </section>
@@ -164,16 +203,25 @@ import { DocsExample } from '@ng-brutalism/docs-ui';
         </h2>
         <div class="grid gap-3 sm:grid-cols-2">
           @for (input of keyInputs; track input.name) {
-            <div class="border-3 border-(--nb-border) bg-white p-4 shadow-[3px_3px_0_0_var(--nb-shadow)]">
-              <div class="flex items-center gap-2">
-                <code class="font-mono text-sm font-black">{{ input.name }}</code>
-                <span
-                  class="border border-(--nb-border) px-1.5 py-0.5 font-mono text-xs font-bold uppercase"
-                  [style.background]="input.primitive === 'nbStack' ? 'var(--nb-mint)' : 'var(--nb-pink)'"
-                >{{ input.primitive }}</span>
-              </div>
-              <p class="mt-1.5 text-sm font-medium text-black/70">{{ input.description }}</p>
+          <div
+            class="border-3 border-(--nb-border) bg-white p-4 shadow-[3px_3px_0_0_var(--nb-shadow)]"
+          >
+            <div class="flex items-center gap-2">
+              <code class="font-mono text-sm font-black">{{ input.name }}</code>
+              <span
+                class="border border-(--nb-border) px-1.5 py-0.5 font-mono text-xs font-bold uppercase"
+                [style.background]="
+                  input.primitive === 'nbStack'
+                    ? 'var(--nb-mint)'
+                    : 'var(--nb-pink)'
+                "
+                >{{ input.primitive }}</span
+              >
             </div>
+            <p class="mt-1.5 text-sm font-medium text-black/70">
+              {{ input.description }}
+            </p>
+          </div>
           }
         </div>
         <p class="mt-5 text-sm font-medium">
@@ -188,7 +236,11 @@ import { DocsExample } from '@ng-brutalism/docs-ui';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export default class StackAndClusterPage {
-  protected readonly gapValues: { value: NbSpacing; color: string; use: string }[] = [
+  protected readonly gapValues: {
+    value: NbSpacing;
+    color: string;
+    use: string;
+  }[] = [
     { value: 'xs', color: 'var(--nb-yellow)', use: 'Related items' },
     { value: 'sm', color: 'var(--nb-mint)', use: 'Tight groups' },
     { value: 'md', color: 'var(--nb-pink)', use: 'Card sections' },

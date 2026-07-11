@@ -5,52 +5,80 @@ import {
   NbInputPrefix,
   NbInputSuffix,
   NbLabel,
+  NbStat,
+  NbSurface,
   NbTextarea,
 } from '@ng-brutalism/ui';
 
-import { DocsCodeBlock, DocsExample, DocsSourceTile, DocsStatusBadge, DocsTokens } from '@ng-brutalism/docs-ui';
+import {
+  DocsCodeBlock,
+  DocsExample,
+  DocsSourceTile,
+  DocsStatusBadge,
+  DocsTokens,
+} from '@ng-brutalism/docs-ui';
 
 @Component({
-    selector: 'docs-input-group-page',
-    imports: [
-        DocsCodeBlock,
-        DocsExample,
-        DocsSourceTile,
-        DocsStatusBadge,
-        DocsTokens,
-        NbInput,
-        NbInputGroup,
-        NbInputPrefix,
-        NbInputSuffix,
-        NbLabel,
-        NbTextarea,
-    ],
-    template: `
+  selector: 'docs-input-group-page',
+  imports: [
+    NbStat,
+    NbSurface,
+    DocsCodeBlock,
+    DocsExample,
+    DocsSourceTile,
+    DocsStatusBadge,
+    DocsTokens,
+    NbInput,
+    NbInputGroup,
+    NbInputPrefix,
+    NbInputSuffix,
+    NbLabel,
+    NbTextarea,
+  ],
+  template: `
     <article>
       <header id="overview" class="relative mb-10 scroll-mt-32">
         <div class="mb-5">
           <p>Neo-Brutalist Angular Input Group</p>
           <h1>Input Group</h1>
           <p class="mt-3 max-w-3xl text-base font-medium sm:text-lg">
-            The neo-brutalist Angular Input Group component. Combines inputs
-            or textareas with bordered prefix and suffix addons, creating one
+            The neo-brutalist Angular Input Group component. Combines inputs or
+            textareas with bordered prefix and suffix addons, creating one
             continuous brutalist control.
           </p>
         </div>
 
         <div class="mt-7 flex flex-wrap items-center gap-3">
           <docs-status-badge status="stable" />
-          <div class="nb-stat-tile nb-stat-tile--yellow">
-            <span class="nb-stat-tile__value">3</span>
-            <span class="nb-stat-tile__label">Parts</span>
+          <div
+            nbSurface
+            tone="yellow"
+            border="strong"
+            padding="sm"
+            layout="stack"
+            class="items-start"
+          >
+            <nb-stat value="3" label="Parts" />
           </div>
-          <div class="nb-stat-tile nb-stat-tile--mint">
-            <span class="nb-stat-tile__value">FORM</span>
-            <span class="nb-stat-tile__label">Native</span>
+          <div
+            nbSurface
+            tone="mint"
+            border="strong"
+            padding="sm"
+            layout="stack"
+            class="items-start"
+          >
+            <nb-stat value="FORM" label="Native" />
           </div>
-          <div class="nb-stat-tile nb-stat-tile--pink">
-            <span class="nb-stat-tile__value">2</span>
-            <span class="nb-stat-tile__label">Slots</span>
+          <div
+            nbSurface
+            tone="pink"
+            border="strong"
+            padding="sm"
+            layout="stack"
+            class="items-start"
+          >
+            <nb-stat value="2" label="Slots" />
           </div>
 
           <docs-source-tile
@@ -71,12 +99,18 @@ import { DocsCodeBlock, DocsExample, DocsSourceTile, DocsStatusBadge, DocsTokens
 
       <section id="usage">
         <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">Usage</h2>
-        <docs-code-block class="block mb-5" title="Import" [code]="importCode" />
+        <docs-code-block
+          class="block mb-5"
+          title="Import"
+          [code]="importCode"
+        />
         <docs-code-block title="Template" [code]="defaultExampleCode" />
       </section>
 
       <section id="prefix-suffix">
-        <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">Prefix and Suffix</h2>
+        <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">
+          Prefix and Suffix
+        </h2>
         <docs-example [code]="prefixSuffixExampleCode">
           <nb-input-group class="max-w-96">
             <span nbInputPrefix>$</span>
@@ -87,7 +121,9 @@ import { DocsCodeBlock, DocsExample, DocsSourceTile, DocsStatusBadge, DocsTokens
       </section>
 
       <section id="with-label">
-        <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">With Label</h2>
+        <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">
+          With Label
+        </h2>
         <docs-example [code]="withLabelExampleCode">
           <div class="grid w-full max-w-96 gap-2">
             <label nbLabel for="profile-url">Profile URL</label>
@@ -100,17 +136,25 @@ import { DocsCodeBlock, DocsExample, DocsSourceTile, DocsStatusBadge, DocsTokens
       </section>
 
       <section id="textarea">
-        <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">Textarea</h2>
+        <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">
+          Textarea
+        </h2>
         <docs-example [code]="textareaExampleCode">
           <nb-input-group class="max-w-96">
             <span nbInputPrefix align="stretch">TXT</span>
-            <textarea nbTextarea placeholder="Write a note..." rows="4"></textarea>
+            <textarea
+              nbTextarea
+              placeholder="Write a note..."
+              rows="4"
+            ></textarea>
           </nb-input-group>
         </docs-example>
       </section>
 
       <section id="disabled">
-        <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">Disabled</h2>
+        <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">
+          Disabled
+        </h2>
         <docs-example [code]="disabledExampleCode">
           <nb-input-group class="max-w-80">
             <span nbInputPrefix>@</span>
@@ -122,16 +166,18 @@ import { DocsCodeBlock, DocsExample, DocsSourceTile, DocsStatusBadge, DocsTokens
       <docs-tokens component="input-group" />
 
       <section id="accessibility">
-        <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">Accessibility</h2>
+        <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">
+          Accessibility
+        </h2>
         <p class="font-medium">
           <strong>APG pattern:</strong> N/A - a visual wrapper around a real
           <code class="font-mono">&lt;input&gt;</code> or
           <code class="font-mono">&lt;textarea&gt;</code>; the prefix/suffix
-          addons are presentational and don't participate in the form
-          control's accessible name. <strong>Status:</strong> Stable. Label
-          the inner control the same way you would a bare
-          <code class="font-mono">nbInput</code> - the addon text alone
-          isn't a substitute for a <code class="font-mono">nbLabel</code> or
+          addons are presentational and don't participate in the form control's
+          accessible name. <strong>Status:</strong> Stable. Label the inner
+          control the same way you would a bare
+          <code class="font-mono">nbInput</code> - the addon text alone isn't a
+          substitute for a <code class="font-mono">nbLabel</code> or
           <code class="font-mono">aria-label</code>.
         </p>
       </section>
@@ -140,34 +186,73 @@ import { DocsCodeBlock, DocsExample, DocsSourceTile, DocsStatusBadge, DocsTokens
         <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">API</h2>
 
         <div
+          tabindex="0"
           class="overflow-x-auto border-2 border-(--nb-border) bg-nb-surface shadow-[5px_5px_0_0_var(--nb-shadow)]"
         >
           <table class="w-full min-w-160 border-collapse text-left">
             <thead class="bg-nb-secondary text-nb-secondary-fg">
               <tr>
-                <th class="border-b-2 border-r-2 border-(--nb-border) px-4 py-3 font-bold">Selector</th>
-                <th class="border-b-2 border-r-2 border-(--nb-border) px-4 py-3 font-bold">Input</th>
-                <th class="border-b-2 border-r-2 border-(--nb-border) px-4 py-3 font-bold">Type</th>
-                <th class="border-b-2 border-(--nb-border) px-4 py-3 font-bold">Default</th>
+                <th
+                  class="border-b-2 border-r-2 border-(--nb-border) px-4 py-3 font-bold"
+                >
+                  Selector
+                </th>
+                <th
+                  class="border-b-2 border-r-2 border-(--nb-border) px-4 py-3 font-bold"
+                >
+                  Input
+                </th>
+                <th
+                  class="border-b-2 border-r-2 border-(--nb-border) px-4 py-3 font-bold"
+                >
+                  Type
+                </th>
+                <th class="border-b-2 border-(--nb-border) px-4 py-3 font-bold">
+                  Default
+                </th>
               </tr>
             </thead>
             <tbody class="font-medium">
               <tr>
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">nb-input-group</td>
+                <td
+                  class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
+                >
+                  nb-input-group
+                </td>
                 <td class="border-r-2 border-(--nb-border) px-4 py-3">-</td>
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">-</td>
+                <td
+                  class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
+                >
+                  -
+                </td>
                 <td class="px-4 py-3 font-mono text-sm">-</td>
               </tr>
               <tr>
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">[nbInputPrefix]</td>
+                <td
+                  class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
+                >
+                  [nbInputPrefix]
+                </td>
                 <td class="border-r-2 border-(--nb-border) px-4 py-3">align</td>
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">'center' | 'stretch'</td>
+                <td
+                  class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
+                >
+                  'center' | 'stretch'
+                </td>
                 <td class="px-4 py-3 font-mono text-sm">'center'</td>
               </tr>
               <tr>
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">[nbInputSuffix]</td>
+                <td
+                  class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
+                >
+                  [nbInputSuffix]
+                </td>
                 <td class="border-r-2 border-(--nb-border) px-4 py-3">align</td>
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">'center' | 'stretch'</td>
+                <td
+                  class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
+                >
+                  'center' | 'stretch'
+                </td>
                 <td class="px-4 py-3 font-mono text-sm">'center'</td>
               </tr>
             </tbody>
@@ -176,7 +261,7 @@ import { DocsCodeBlock, DocsExample, DocsSourceTile, DocsStatusBadge, DocsTokens
       </section>
     </article>
   `,
-    changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export default class InputGroupPage {
   protected readonly defaultExampleCode = `<nb-input-group class="max-w-80">

@@ -1,11 +1,19 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { NbStatusDot } from '@ng-brutalism/ui';
+import { NbStatusDot, NbStat, NbSurface } from '@ng-brutalism/ui';
 
-import { DocsCodeBlock, DocsExample, DocsSourceTile, DocsStatusBadge, DocsTokens } from '@ng-brutalism/docs-ui';
+import {
+  DocsCodeBlock,
+  DocsExample,
+  DocsSourceTile,
+  DocsStatusBadge,
+  DocsTokens,
+} from '@ng-brutalism/docs-ui';
 
 @Component({
   selector: 'docs-status-dot-page',
   imports: [
+    NbStat,
+    NbSurface,
     DocsCodeBlock,
     DocsExample,
     DocsSourceTile,
@@ -20,21 +28,34 @@ import { DocsCodeBlock, DocsExample, DocsSourceTile, DocsStatusBadge, DocsTokens
           <p>Neo-Brutalist Angular StatusDot</p>
           <h1>StatusDot</h1>
           <p class="mt-3 max-w-3xl text-base font-medium sm:text-lg">
-            A directive on <code class="font-mono">&lt;span&gt;</code> that renders a status
-            indicator dot. Three states - online, offline, and live - cover presence, availability,
-            and real-time streaming use cases.
+            A directive on <code class="font-mono">&lt;span&gt;</code> that
+            renders a status indicator dot. Three states - online, offline, and
+            live - cover presence, availability, and real-time streaming use
+            cases.
           </p>
         </div>
 
         <div class="mt-7 flex flex-wrap items-center gap-3">
           <docs-status-badge status="stable" />
-          <div class="nb-stat-tile nb-stat-tile--yellow">
-            <span class="nb-stat-tile__value">span</span>
-            <span class="nb-stat-tile__label">Host element</span>
+          <div
+            nbSurface
+            tone="yellow"
+            border="strong"
+            padding="sm"
+            layout="stack"
+            class="items-start"
+          >
+            <nb-stat value="span" label="Host element" />
           </div>
-          <div class="nb-stat-tile nb-stat-tile--mint">
-            <span class="nb-stat-tile__value">3</span>
-            <span class="nb-stat-tile__label">States</span>
+          <div
+            nbSurface
+            tone="mint"
+            border="strong"
+            padding="sm"
+            layout="stack"
+            class="items-start"
+          >
+            <nb-stat value="3" label="States" />
           </div>
 
           <docs-source-tile
@@ -62,7 +83,11 @@ import { DocsCodeBlock, DocsExample, DocsSourceTile, DocsStatusBadge, DocsTokens
 
       <section id="usage">
         <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">Usage</h2>
-        <docs-code-block class="block mb-5" title="Import" [code]="importCode" />
+        <docs-code-block
+          class="block mb-5"
+          title="Import"
+          [code]="importCode"
+        />
         <docs-code-block title="Template" [code]="defaultExampleCode" />
       </section>
 
@@ -73,17 +98,23 @@ import { DocsCodeBlock, DocsExample, DocsSourceTile, DocsStatusBadge, DocsTokens
             <div class="flex items-center gap-3">
               <span nbStatusDot state="online"></span>
               <span class="font-bold">online</span>
-              <span class="font-medium text-sm">- green fill, indicates active presence</span>
+              <span class="font-medium text-sm"
+                >- green fill, indicates active presence</span
+              >
             </div>
             <div class="flex items-center gap-3">
               <span nbStatusDot state="offline"></span>
               <span class="font-bold">offline</span>
-              <span class="font-medium text-sm">- muted fill, indicates unavailability</span>
+              <span class="font-medium text-sm"
+                >- muted fill, indicates unavailability</span
+              >
             </div>
             <div class="flex items-center gap-3">
               <span nbStatusDot state="live"></span>
               <span class="font-bold">live</span>
-              <span class="font-medium text-sm">- red pulsing dot, indicates real-time broadcast</span>
+              <span class="font-medium text-sm"
+                >- red pulsing dot, indicates real-time broadcast</span
+              >
             </div>
           </div>
         </docs-example>
@@ -92,43 +123,98 @@ import { DocsCodeBlock, DocsExample, DocsSourceTile, DocsStatusBadge, DocsTokens
       <docs-tokens component="status-dot" />
 
       <section id="accessibility">
-        <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">Accessibility</h2>
+        <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">
+          Accessibility
+        </h2>
         <p class="font-medium">
-          <strong>APG pattern:</strong> N/A - StatusDot is a static presence/availability indicator, not an interactive widget. <strong>Status:</strong> Stable.
+          <strong>APG pattern:</strong> N/A - StatusDot is a static
+          presence/availability indicator, not an interactive widget.
+          <strong>Status:</strong> Stable.
         </p>
       </section>
 
       <section id="api">
         <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">API</h2>
         <div
+          tabindex="0"
           class="overflow-x-auto border-2 border-(--nb-border) bg-nb-surface shadow-[5px_5px_0_0_var(--nb-shadow)]"
         >
           <table class="w-full min-w-160 border-collapse text-left">
             <thead class="bg-nb-secondary text-nb-secondary-fg">
               <tr>
-                <th class="border-b-2 border-r-2 border-(--nb-border) px-4 py-3 font-bold">Input</th>
-                <th class="border-b-2 border-r-2 border-(--nb-border) px-4 py-3 font-bold">Type</th>
-                <th class="border-b-2 border-r-2 border-(--nb-border) px-4 py-3 font-bold">Default</th>
-                <th class="border-b-2 border-(--nb-border) px-4 py-3 font-bold">Description</th>
+                <th
+                  class="border-b-2 border-r-2 border-(--nb-border) px-4 py-3 font-bold"
+                >
+                  Input
+                </th>
+                <th
+                  class="border-b-2 border-r-2 border-(--nb-border) px-4 py-3 font-bold"
+                >
+                  Type
+                </th>
+                <th
+                  class="border-b-2 border-r-2 border-(--nb-border) px-4 py-3 font-bold"
+                >
+                  Default
+                </th>
+                <th class="border-b-2 border-(--nb-border) px-4 py-3 font-bold">
+                  Description
+                </th>
               </tr>
             </thead>
             <tbody class="font-medium">
               <tr>
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">state</td>
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">'online' | 'offline' | 'live'</td>
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">'online'</td>
+                <td
+                  class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
+                >
+                  state
+                </td>
+                <td
+                  class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
+                >
+                  'online' | 'offline' | 'live'
+                </td>
+                <td
+                  class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
+                >
+                  'online'
+                </td>
                 <td class="px-4 py-3">The visual state of the indicator.</td>
               </tr>
               <tr>
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">size</td>
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">'xs' | 'sm' | 'md' | 'lg'</td>
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">'md'</td>
+                <td
+                  class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
+                >
+                  size
+                </td>
+                <td
+                  class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
+                >
+                  'xs' | 'sm' | 'md' | 'lg'
+                </td>
+                <td
+                  class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
+                >
+                  'md'
+                </td>
                 <td class="px-4 py-3">The size of the indicator dot.</td>
               </tr>
               <tr>
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">radius</td>
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">NbRadius</td>
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">'md'</td>
+                <td
+                  class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
+                >
+                  radius
+                </td>
+                <td
+                  class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
+                >
+                  NbRadius
+                </td>
+                <td
+                  class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
+                >
+                  'md'
+                </td>
                 <td class="px-4 py-3">The border radius of the indicator.</td>
               </tr>
             </tbody>

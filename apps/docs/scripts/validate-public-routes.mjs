@@ -39,7 +39,9 @@ for (const route of DOCS_PUBLIC_ROUTES) {
 
   if (seenFiles.has(route.file)) {
     errors.push(
-      `❌ Duplicate file mapping in DOCS_PUBLIC_ROUTES: ${route.file} (used by ${seenFiles.get(route.file)} and ${route.path})`
+      `❌ Duplicate file mapping in DOCS_PUBLIC_ROUTES: ${
+        route.file
+      } (used by ${seenFiles.get(route.file)} and ${route.path})`
     );
   }
   seenFiles.set(route.file, route.path);
@@ -69,7 +71,9 @@ if (existsSync(sitemapPath)) {
   for (const route of DOCS_PUBLIC_ROUTES) {
     const loc = toCanonicalUrl(route.path);
     if (!sitemap.includes(`<loc>${loc}</loc>`)) {
-      errors.push(`❌ Route ${route.path}: missing <loc>${loc}</loc> in sitemap.xml`);
+      errors.push(
+        `❌ Route ${route.path}: missing <loc>${loc}</loc> in sitemap.xml`
+      );
     }
   }
 
@@ -95,7 +99,9 @@ if (existsSync(llmsTxtPath)) {
   for (const route of DOCS_PUBLIC_ROUTES) {
     const canonicalUrl = toCanonicalUrl(route.path);
     if (!llmsTxt.includes(canonicalUrl)) {
-      errors.push(`❌ Route ${route.path}: missing ${canonicalUrl} in llms.txt`);
+      errors.push(
+        `❌ Route ${route.path}: missing ${canonicalUrl} in llms.txt`
+      );
     }
   }
 } else {
@@ -127,7 +133,8 @@ function discoverPublicRoutes(root) {
       const full = path.join(dir, entry);
       if (!statSync(full).isFile()) continue;
       if (!entry.endsWith('.page.ts')) continue;
-      if (INDEX_PAGE_FILES.has(entry) || PRIVATE_PAGE_FILES.has(entry)) continue;
+      if (INDEX_PAGE_FILES.has(entry) || PRIVATE_PAGE_FILES.has(entry))
+        continue;
       const slug = entry.slice(0, -'.page.ts'.length);
       results.push({
         file: `${section}/${entry}`,

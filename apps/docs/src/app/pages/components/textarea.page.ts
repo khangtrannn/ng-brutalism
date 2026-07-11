@@ -1,22 +1,30 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { NbLabel, NbTextarea } from '@ng-brutalism/ui';
+import { NbLabel, NbStat, NbSurface, NbTextarea } from '@ng-brutalism/ui';
 
-import { DocsCodeBlock, DocsExample, DocsSourceTile, DocsStatusBadge, DocsTokens } from '@ng-brutalism/docs-ui';
+import {
+  DocsCodeBlock,
+  DocsExample,
+  DocsSourceTile,
+  DocsStatusBadge,
+  DocsTokens,
+} from '@ng-brutalism/docs-ui';
 
 @Component({
-    selector: 'docs-textarea-page',
-    imports: [
-        DocsCodeBlock,
-        DocsExample,
-        DocsSourceTile,
-        DocsStatusBadge,
-        DocsTokens,
-        NbLabel,
-        NbTextarea,
-        RouterLink,
-    ],
-    template: `
+  selector: 'docs-textarea-page',
+  imports: [
+    NbStat,
+    NbSurface,
+    DocsCodeBlock,
+    DocsExample,
+    DocsSourceTile,
+    DocsStatusBadge,
+    DocsTokens,
+    NbLabel,
+    NbTextarea,
+    RouterLink,
+  ],
+  template: `
     <article>
       <header id="overview" class="relative mb-10 scroll-mt-32">
         <div class="mb-5">
@@ -31,17 +39,35 @@ import { DocsCodeBlock, DocsExample, DocsSourceTile, DocsStatusBadge, DocsTokens
 
         <div class="mt-7 flex flex-wrap items-center gap-3">
           <docs-status-badge status="stable" />
-          <div class="nb-stat-tile nb-stat-tile--yellow">
-            <span class="nb-stat-tile__value">3</span>
-            <span class="nb-stat-tile__label">Sizes</span>
+          <div
+            nbSurface
+            tone="yellow"
+            border="strong"
+            padding="sm"
+            layout="stack"
+            class="items-start"
+          >
+            <nb-stat value="3" label="Sizes" />
           </div>
-          <div class="nb-stat-tile nb-stat-tile--mint">
-            <span class="nb-stat-tile__value">FORM</span>
-            <span class="nb-stat-tile__label">Native</span>
+          <div
+            nbSurface
+            tone="mint"
+            border="strong"
+            padding="sm"
+            layout="stack"
+            class="items-start"
+          >
+            <nb-stat value="FORM" label="Native" />
           </div>
-          <div class="nb-stat-tile nb-stat-tile--pink">
-            <span class="nb-stat-tile__value">A11y</span>
-            <span class="nb-stat-tile__label">Label sync</span>
+          <div
+            nbSurface
+            tone="pink"
+            border="strong"
+            padding="sm"
+            layout="stack"
+            class="items-start"
+          >
+            <nb-stat value="A11y" label="Label sync" />
           </div>
 
           <docs-source-tile
@@ -53,13 +79,21 @@ import { DocsCodeBlock, DocsExample, DocsSourceTile, DocsStatusBadge, DocsTokens
       <section id="preview">
         <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">Preview</h2>
         <docs-example [code]="defaultExampleCode">
-          <textarea nbTextarea placeholder="Write something..." class="w-75"></textarea>
+          <textarea
+            nbTextarea
+            placeholder="Write something..."
+            class="w-75"
+          ></textarea>
         </docs-example>
       </section>
 
       <section id="usage">
         <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">Usage</h2>
-        <docs-code-block class="block mb-5" title="Import" [code]="importCode" />
+        <docs-code-block
+          class="block mb-5"
+          title="Import"
+          [code]="importCode"
+        />
         <docs-code-block title="Template" [code]="defaultExampleCode" />
       </section>
 
@@ -67,26 +101,50 @@ import { DocsCodeBlock, DocsExample, DocsSourceTile, DocsStatusBadge, DocsTokens
         <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">Sizes</h2>
         <docs-example [code]="sizesExampleCode">
           <div class="flex flex-col items-center gap-4">
-            <textarea nbTextarea size="sm" placeholder="Small" class="w-75"></textarea>
+            <textarea
+              nbTextarea
+              size="sm"
+              placeholder="Small"
+              class="w-75"
+            ></textarea>
             <textarea nbTextarea placeholder="Default" class="w-75"></textarea>
-            <textarea nbTextarea size="lg" placeholder="Large" class="w-75"></textarea>
+            <textarea
+              nbTextarea
+              size="lg"
+              placeholder="Large"
+              class="w-75"
+            ></textarea>
           </div>
         </docs-example>
       </section>
 
       <section id="disabled">
-        <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">Disabled</h2>
+        <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">
+          Disabled
+        </h2>
         <docs-example [code]="disabledExampleCode">
-          <textarea nbTextarea placeholder="Disabled" class="w-75" disabled></textarea>
+          <textarea
+            nbTextarea
+            placeholder="Disabled"
+            class="w-75"
+            disabled
+          ></textarea>
         </docs-example>
       </section>
 
       <section id="with-label">
-        <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">With Label</h2>
+        <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">
+          With Label
+        </h2>
         <docs-example [code]="withLabelExampleCode">
           <div class="flex flex-col gap-2">
             <label nbLabel for="message">Message</label>
-            <textarea nbTextarea id="message" placeholder="Enter your message..." class="w-75"></textarea>
+            <textarea
+              nbTextarea
+              id="message"
+              placeholder="Enter your message..."
+              class="w-75"
+            ></textarea>
           </div>
         </docs-example>
       </section>
@@ -94,16 +152,19 @@ import { DocsCodeBlock, DocsExample, DocsSourceTile, DocsStatusBadge, DocsTokens
       <docs-tokens component="textarea" />
 
       <section id="accessibility">
-        <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">Accessibility</h2>
+        <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">
+          Accessibility
+        </h2>
         <p class="font-medium">
-          <strong>APG pattern:</strong> N/A - <code class="font-mono">nbTextarea</code>
-          is a directive on a real <code class="font-mono">&lt;textarea&gt;</code>
-          element, so it inherits native semantics with no separate widget
-          pattern. <strong>Status:</strong> Stable. Pair it with
+          <strong>APG pattern:</strong> N/A -
+          <code class="font-mono">nbTextarea</code> is a directive on a real
+          <code class="font-mono">&lt;textarea&gt;</code> element, so it
+          inherits native semantics with no separate widget pattern.
+          <strong>Status:</strong> Stable. Pair it with
           <code class="font-mono">nbLabel</code> - or wrap both in
           <a routerLink="/components/field" class="underline">nb-field</a> for
-          generated id linking plus description/error wiring - so every
-          textarea has an accessible name.
+          generated id linking plus description/error wiring - so every textarea
+          has an accessible name.
         </p>
       </section>
 
@@ -111,20 +172,35 @@ import { DocsCodeBlock, DocsExample, DocsSourceTile, DocsStatusBadge, DocsTokens
         <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">API</h2>
 
         <div
+          tabindex="0"
           class="overflow-x-auto border-2 border-(--nb-border) bg-nb-surface shadow-[5px_5px_0_0_var(--nb-shadow)]"
         >
           <table class="w-full min-w-160 border-collapse text-left">
             <thead class="bg-nb-secondary text-nb-secondary-fg">
               <tr>
-                <th class="border-b-2 border-r-2 border-(--nb-border) px-4 py-3 font-bold">Input</th>
-                <th class="border-b-2 border-r-2 border-(--nb-border) px-4 py-3 font-bold">Type</th>
-                <th class="border-b-2 border-(--nb-border) px-4 py-3 font-bold">Default</th>
+                <th
+                  class="border-b-2 border-r-2 border-(--nb-border) px-4 py-3 font-bold"
+                >
+                  Input
+                </th>
+                <th
+                  class="border-b-2 border-r-2 border-(--nb-border) px-4 py-3 font-bold"
+                >
+                  Type
+                </th>
+                <th class="border-b-2 border-(--nb-border) px-4 py-3 font-bold">
+                  Default
+                </th>
               </tr>
             </thead>
             <tbody class="font-medium">
               <tr>
                 <td class="border-r-2 border-(--nb-border) px-4 py-3">size</td>
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">'md' | 'sm' | 'lg'</td>
+                <td
+                  class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
+                >
+                  'md' | 'sm' | 'lg'
+                </td>
                 <td class="px-4 py-3 font-mono text-sm">'md'</td>
               </tr>
             </tbody>
@@ -133,7 +209,7 @@ import { DocsCodeBlock, DocsExample, DocsSourceTile, DocsStatusBadge, DocsTokens
       </section>
     </article>
   `,
-    changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export default class TextareaPage {
   protected readonly defaultExampleCode = `<textarea nbTextarea placeholder="Write something..." class="w-75"></textarea>`;

@@ -1,6 +1,12 @@
 #!/usr/bin/env node
 
-import { existsSync, readdirSync, readFileSync, statSync, writeFileSync } from 'node:fs';
+import {
+  existsSync,
+  readdirSync,
+  readFileSync,
+  statSync,
+  writeFileSync,
+} from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import path from 'node:path';
 
@@ -8,7 +14,10 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const workspaceRoot = path.resolve(__dirname, '../../..');
 const libSrcRoot = path.resolve(workspaceRoot, 'libs/ui/src/lib');
 const themeCssPath = path.resolve(libSrcRoot, 'styles/theme.css');
-const outputPath = path.resolve(workspaceRoot, 'libs/docs-ui/src/lib/docs-tokens.generated.ts');
+const outputPath = path.resolve(
+  workspaceRoot,
+  'libs/docs-ui/src/lib/docs-tokens.generated.ts'
+);
 
 const NON_COMPONENT_DIRS = new Set(['core', 'styles', 'tokens', 'typography']);
 
@@ -234,7 +243,10 @@ if (shouldUpdate) {
 
 if (!existsSync(outputPath)) {
   console.error(
-    `Missing ${path.relative(workspaceRoot, outputPath)}. Run "pnpm docs:tokens:update".`
+    `Missing ${path.relative(
+      workspaceRoot,
+      outputPath
+    )}. Run "pnpm docs:tokens:update".`
   );
   process.exit(1);
 }
@@ -242,7 +254,10 @@ if (!existsSync(outputPath)) {
 const current = readFileSync(outputPath, 'utf8');
 if (current !== output) {
   console.error(
-    `${path.relative(workspaceRoot, outputPath)} is stale (component CSS changed since last generation).\n` +
+    `${path.relative(
+      workspaceRoot,
+      outputPath
+    )} is stale (component CSS changed since last generation).\n` +
       'Run "pnpm docs:tokens:update" and commit the result.'
   );
   process.exit(1);
@@ -407,7 +422,7 @@ function slotFor(slug, name) {
 
 function phraseFor(slug, property, name) {
   const base = property
-    ? (PROPERTY_PHRASES[property] ?? genericPropertyPhrase(property))
+    ? PROPERTY_PHRASES[property] ?? genericPropertyPhrase(property)
     : 'Component token';
   const slot = slotFor(slug, name);
   const subject = slot
@@ -456,8 +471,8 @@ function themeHeuristic(name) {
       part === 'bg'
         ? 'background'
         : part === 'fg'
-          ? 'foreground / text'
-          : 'border';
+        ? 'foreground / text'
+        : 'border';
     return `"${tone}" tone ${partLabel} color`;
   }
 
@@ -523,7 +538,11 @@ function renderOutput(slugs, componentTokens, sharedTokens) {
   lines.push(unionMembers + ';');
   lines.push('');
 
-  lines.push('export const sharedTokens: DocsToken[] = ' + renderTokenArray(sharedTokens) + ';');
+  lines.push(
+    'export const sharedTokens: DocsToken[] = ' +
+      renderTokenArray(sharedTokens) +
+      ';'
+  );
   lines.push('');
 
   lines.push(
@@ -543,7 +562,9 @@ function renderTokenArray(tokens) {
   const items = tokens
     .map(
       (t) =>
-        `    { name: ${JSON.stringify(t.name)}, defaultValue: ${JSON.stringify(t.defaultValue)}, usage: ${JSON.stringify(t.usage)} }`
+        `    { name: ${JSON.stringify(t.name)}, defaultValue: ${JSON.stringify(
+          t.defaultValue
+        )}, usage: ${JSON.stringify(t.usage)} }`
     )
     .join(',\n');
   return `[\n${items},\n  ]`;

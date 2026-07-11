@@ -123,22 +123,39 @@ import {
               tracking="wide"
             >
               <span nbChip tone="mint">
-                <span nbIcon src="/tokyo-city-escape/nb-plane-fill.svg" size="sm" decorative></span>
+                <span
+                  nbIcon
+                  src="/tokyo-city-escape/nb-plane-fill.svg"
+                  size="sm"
+                  decorative
+                ></span>
                 Flight included
               </span>
 
               <span nbChip tone="lavender">
-                <span nbIcon src="/tokyo-city-escape/nb-hotel-fill.svg" size="sm" decorative></span>
+                <span
+                  nbIcon
+                  src="/tokyo-city-escape/nb-hotel-fill.svg"
+                  size="sm"
+                  decorative
+                ></span>
                 Hotel
               </span>
 
               <span nbChip tone="pink">
-                <span nbIcon src="/tokyo-city-escape/nb-star-fill.svg" size="sm" decorative></span>
+                <span
+                  nbIcon
+                  src="/tokyo-city-escape/nb-star-fill.svg"
+                  size="sm"
+                  decorative
+                ></span>
                 Top pick
               </span>
             </div>
 
-            <div nbCallout tone="yellow" radius="sm" size="xl" shadow="hard">$799</div>
+            <div nbCallout tone="yellow" radius="sm" size="xl" shadow="hard">
+              $799
+            </div>
           </div>
         </div>
 
@@ -165,7 +182,10 @@ import {
                 <span nbMediaItemTitle>Guided<br />Experiences</span>
               </nb-media-item>
 
-              <nb-media-item size="xs" icon="/tokyo-city-escape/24-7-support.png">
+              <nb-media-item
+                size="xs"
+                icon="/tokyo-city-escape/24-7-support.png"
+              >
                 <span nbMediaItemTitle>24/7<br />Support</span>
               </nb-media-item>
             </div>
@@ -180,8 +200,18 @@ import {
               >
                 Book Trip
               </span>
-              <span nbButtonTrailingIcon shape="circle" tone="inverse" size="md">
-                <span nbIcon src="/tokyo-city-escape/nb-arrow-right.svg" size="sm" decorative></span>
+              <span
+                nbButtonTrailingIcon
+                shape="circle"
+                tone="inverse"
+                size="md"
+              >
+                <span
+                  nbIcon
+                  src="/tokyo-city-escape/nb-arrow-right.svg"
+                  size="sm"
+                  decorative
+                ></span>
               </span>
             </button>
           </div>

@@ -3,6 +3,7 @@ import {
   NbMediaItem,
   NbMediaItemTitle,
   NbSeparator,
+  NbStat,
   NbSurface,
   type NbMediaItemAlign,
   type NbMediaItemOrientation,
@@ -10,7 +11,13 @@ import {
   type NbMediaItemVariant,
 } from '@ng-brutalism/ui';
 
-import { DocsCodeBlock, DocsExample, DocsSourceTile, DocsStatusBadge, DocsTokens } from '@ng-brutalism/docs-ui';
+import {
+  DocsCodeBlock,
+  DocsExample,
+  DocsSourceTile,
+  DocsStatusBadge,
+  DocsTokens,
+} from '@ng-brutalism/docs-ui';
 
 interface VariantDemo {
   readonly value: NbMediaItemVariant;
@@ -37,6 +44,7 @@ interface AlignDemo {
 @Component({
   selector: 'docs-media-item-page',
   imports: [
+    NbStat,
     DocsCodeBlock,
     DocsExample,
     DocsSourceTile,
@@ -63,21 +71,45 @@ interface AlignDemo {
 
         <div class="mt-7 flex flex-wrap items-center gap-3">
           <docs-status-badge status="stable" />
-          <div class="nb-stat-tile nb-stat-tile--yellow">
-            <span class="nb-stat-tile__value">Tone</span>
-            <span class="nb-stat-tile__label">Shared vocabulary</span>
+          <div
+            nbSurface
+            tone="yellow"
+            border="strong"
+            padding="sm"
+            layout="stack"
+            class="items-start"
+          >
+            <nb-stat value="Tone" label="Shared vocabulary" />
           </div>
-          <div class="nb-stat-tile nb-stat-tile--mint">
-            <span class="nb-stat-tile__value">Style</span>
-            <span class="nb-stat-tile__label">Variant API</span>
+          <div
+            nbSurface
+            tone="mint"
+            border="strong"
+            padding="sm"
+            layout="stack"
+            class="items-start"
+          >
+            <nb-stat value="Style" label="Variant API" />
           </div>
-          <div class="nb-stat-tile nb-stat-tile--pink">
-            <span class="nb-stat-tile__value">Size</span>
-            <span class="nb-stat-tile__label">Compact to roomy</span>
+          <div
+            nbSurface
+            tone="pink"
+            border="strong"
+            padding="sm"
+            layout="stack"
+            class="items-start"
+          >
+            <nb-stat value="Size" label="Compact to roomy" />
           </div>
-          <div class="nb-stat-tile nb-stat-tile--lavender">
-            <span class="nb-stat-tile__value">Flow</span>
-            <span class="nb-stat-tile__label">Row or column</span>
+          <div
+            nbSurface
+            tone="lavender"
+            border="strong"
+            padding="sm"
+            layout="stack"
+            class="items-start"
+          >
+            <nb-stat value="Flow" label="Row or column" />
           </div>
 
           <docs-source-tile
@@ -311,11 +343,14 @@ interface AlignDemo {
       <docs-tokens component="media-item" />
 
       <section id="accessibility">
-        <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">Accessibility</h2>
+        <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">
+          Accessibility
+        </h2>
         <p class="font-medium">
           <strong>APG pattern:</strong> N/A - Media Item is static,
           presentational content pairing an icon or image with a title and
-          description, not an interactive widget. <strong>Status:</strong> Stable.
+          description, not an interactive widget.
+          <strong>Status:</strong> Stable.
         </p>
       </section>
 
@@ -324,6 +359,7 @@ interface AlignDemo {
 
         <h3 class="mt-6 mb-3 text-lg font-bold">nb-media-item</h3>
         <div
+          tabindex="0"
           class="overflow-x-auto border-2 border-(--nb-border) bg-nb-surface shadow-[5px_5px_0_0_var(--nb-shadow)]"
         >
           <table class="w-full min-w-180 border-collapse text-left">
@@ -568,6 +604,7 @@ interface AlignDemo {
 
         <h3 class="mt-8 mb-3 text-lg font-bold">Sub-directives</h3>
         <div
+          tabindex="0"
           class="overflow-x-auto border-2 border-(--nb-border) bg-nb-surface shadow-[5px_5px_0_0_var(--nb-shadow)]"
         >
           <table class="w-full min-w-120 border-collapse text-left">

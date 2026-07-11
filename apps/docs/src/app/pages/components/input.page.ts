@@ -1,23 +1,37 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { NbButton, NbInput, NbLabel } from '@ng-brutalism/ui';
+import {
+  NbButton,
+  NbInput,
+  NbLabel,
+  NbStat,
+  NbSurface,
+} from '@ng-brutalism/ui';
 
-import { DocsCodeBlock, DocsExample, DocsSourceTile, DocsStatusBadge, DocsTokens } from '@ng-brutalism/docs-ui';
+import {
+  DocsCodeBlock,
+  DocsExample,
+  DocsSourceTile,
+  DocsStatusBadge,
+  DocsTokens,
+} from '@ng-brutalism/docs-ui';
 
 @Component({
-    selector: 'docs-input-page',
-    imports: [
-        DocsCodeBlock,
-        DocsExample,
-        DocsSourceTile,
-        DocsStatusBadge,
-        DocsTokens,
-        NbButton,
-        NbInput,
-        NbLabel,
-        RouterLink,
-    ],
-    template: `
+  selector: 'docs-input-page',
+  imports: [
+    NbStat,
+    NbSurface,
+    DocsCodeBlock,
+    DocsExample,
+    DocsSourceTile,
+    DocsStatusBadge,
+    DocsTokens,
+    NbButton,
+    NbInput,
+    NbLabel,
+    RouterLink,
+  ],
+  template: `
     <article>
       <header id="overview" class="relative mb-10 scroll-mt-32">
         <div class="mb-5">
@@ -32,17 +46,35 @@ import { DocsCodeBlock, DocsExample, DocsSourceTile, DocsStatusBadge, DocsTokens
 
         <div class="mt-7 flex flex-wrap items-center gap-3">
           <docs-status-badge status="stable" />
-          <div class="nb-stat-tile nb-stat-tile--yellow">
-            <span class="nb-stat-tile__value">3</span>
-            <span class="nb-stat-tile__label">Sizes</span>
+          <div
+            nbSurface
+            tone="yellow"
+            border="strong"
+            padding="sm"
+            layout="stack"
+            class="items-start"
+          >
+            <nb-stat value="3" label="Sizes" />
           </div>
-          <div class="nb-stat-tile nb-stat-tile--mint">
-            <span class="nb-stat-tile__value">FORM</span>
-            <span class="nb-stat-tile__label">Native</span>
+          <div
+            nbSurface
+            tone="mint"
+            border="strong"
+            padding="sm"
+            layout="stack"
+            class="items-start"
+          >
+            <nb-stat value="FORM" label="Native" />
           </div>
-          <div class="nb-stat-tile nb-stat-tile--pink">
-            <span class="nb-stat-tile__value">∞</span>
-            <span class="nb-stat-tile__label">Types</span>
+          <div
+            nbSurface
+            tone="pink"
+            border="strong"
+            padding="sm"
+            layout="stack"
+            class="items-start"
+          >
+            <nb-stat value="∞" label="Types" />
           </div>
 
           <docs-source-tile
@@ -54,7 +86,7 @@ import { DocsCodeBlock, DocsExample, DocsSourceTile, DocsStatusBadge, DocsTokens
       <section id="preview">
         <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">Preview</h2>
         <docs-example [code]="defaultExampleCode">
-          <input nbInput placeholder="Email" class="w-75" />
+          <input nbInput aria-label="Email" placeholder="Email" class="w-75" />
         </docs-example>
       </section>
 
@@ -80,14 +112,24 @@ import { DocsCodeBlock, DocsExample, DocsSourceTile, DocsStatusBadge, DocsTokens
       </section>
 
       <section id="disabled">
-        <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">Disabled</h2>
+        <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">
+          Disabled
+        </h2>
         <docs-example [code]="disabledExampleCode">
-          <input nbInput placeholder="Email" class="w-75" disabled />
+          <input
+            nbInput
+            aria-label="Email"
+            placeholder="Email"
+            class="w-75"
+            disabled
+          />
         </docs-example>
       </section>
 
       <section id="with-label">
-        <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">With Label</h2>
+        <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">
+          With Label
+        </h2>
         <docs-example [code]="withLabelExampleCode">
           <div class="flex flex-col gap-2">
             <label nbLabel for="email">Email</label>
@@ -103,16 +145,13 @@ import { DocsCodeBlock, DocsExample, DocsSourceTile, DocsStatusBadge, DocsTokens
       </section>
 
       <section id="with-button">
-        <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">With Button</h2>
+        <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">
+          With Button
+        </h2>
         <docs-example [code]="withButtonExampleCode">
           <div class="flex gap-2">
             <input nbInput placeholder="Email" class="w-75" />
-            <button
-              nbButton
-              tone="yellow"
-            >
-              Subscribe
-            </button>
+            <button nbButton tone="yellow">Subscribe</button>
           </div>
         </docs-example>
       </section>
@@ -127,17 +166,20 @@ import { DocsCodeBlock, DocsExample, DocsSourceTile, DocsStatusBadge, DocsTokens
       <docs-tokens component="input" />
 
       <section id="accessibility">
-        <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">Accessibility</h2>
+        <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">
+          Accessibility
+        </h2>
         <p class="font-medium">
-          <strong>APG pattern:</strong> N/A - <code class="font-mono">nbInput</code>
-          is a directive on a real <code class="font-mono">&lt;input&gt;</code>
-          element, so it has no separate widget pattern of its own; it
-          inherits whatever native semantics the <code class="font-mono">type</code>
-          attribute implies. <strong>Status:</strong> Stable. Pair it with
+          <strong>APG pattern:</strong> N/A -
+          <code class="font-mono">nbInput</code> is a directive on a real
+          <code class="font-mono">&lt;input&gt;</code> element, so it has no
+          separate widget pattern of its own; it inherits whatever native
+          semantics the <code class="font-mono">type</code> attribute implies.
+          <strong>Status:</strong> Stable. Pair it with
           <code class="font-mono">nbLabel</code> - or wrap both in
           <a routerLink="/components/field" class="underline">nb-field</a> for
-          generated id linking plus description/error wiring - so every
-          input has an accessible name.
+          generated id linking plus description/error wiring - so every input
+          has an accessible name.
         </p>
       </section>
 
@@ -145,6 +187,7 @@ import { DocsCodeBlock, DocsExample, DocsSourceTile, DocsStatusBadge, DocsTokens
         <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">API</h2>
 
         <div
+          tabindex="0"
           class="overflow-x-auto border-2 border-(--nb-border) bg-nb-surface shadow-[5px_5px_0_0_var(--nb-shadow)]"
         >
           <table class="w-full min-w-160 border-collapse text-left">
@@ -181,7 +224,7 @@ import { DocsCodeBlock, DocsExample, DocsSourceTile, DocsStatusBadge, DocsTokens
       </section>
     </article>
   `,
-    changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export default class InputPage {
   protected readonly defaultExampleCode = `<input nbInput placeholder="Email" class="w-75" />`;

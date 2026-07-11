@@ -1,27 +1,36 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { NbStat, NbSurface } from '@ng-brutalism/ui';
 
-import { DocsCodeBlock, DocsExample, DocsSourceTile, DocsStatusBadge, DocsTokens } from '@ng-brutalism/docs-ui';
+import {
+  DocsCodeBlock,
+  DocsExample,
+  DocsSourceTile,
+  DocsStatusBadge,
+  DocsTokens,
+} from '@ng-brutalism/docs-ui';
 import { ContactUsDialog } from './examples/contact-us-dialog';
 
 @Component({
-    selector: 'docs-dialog-page',
-    imports: [
-        DocsCodeBlock,
-        DocsExample,
-        DocsSourceTile,
-        DocsStatusBadge,
-        DocsTokens,
-        ContactUsDialog,
-    ],
-    template: `
+  selector: 'docs-dialog-page',
+  imports: [
+    DocsCodeBlock,
+    DocsExample,
+    DocsSourceTile,
+    DocsStatusBadge,
+    DocsTokens,
+    ContactUsDialog,
+    NbStat,
+    NbSurface,
+  ],
+  template: `
     <article>
       <header id="overview" class="relative mb-10 scroll-mt-32">
         <div class="mb-5">
           <p>Neo-Brutalist Angular Dialog</p>
           <h1>Dialog</h1>
           <p class="mt-3 max-w-3xl text-base font-medium sm:text-lg">
-            The neo-brutalist Angular Dialog component - a brutalist modal
-            built on the native
+            The neo-brutalist Angular Dialog component - a brutalist modal built
+            on the native
             <code class="font-mono">&lt;dialog&gt;</code> element. Compound API
             with SSR-safe open/close. Click the backdrop to dismiss.
           </p>
@@ -29,17 +38,35 @@ import { ContactUsDialog } from './examples/contact-us-dialog';
 
         <div class="mt-7 flex flex-wrap items-center gap-3">
           <docs-status-badge status="stable" />
-          <div class="nb-stat-tile nb-stat-tile--yellow">
-            <span class="nb-stat-tile__value">6</span>
-            <span class="nb-stat-tile__label">Parts</span>
+          <div
+            nbSurface
+            tone="yellow"
+            border="strong"
+            padding="sm"
+            layout="stack"
+            class="items-start"
+          >
+            <nb-stat value="6" label="Parts" />
           </div>
-          <div class="nb-stat-tile nb-stat-tile--mint">
-            <span class="nb-stat-tile__value">SSR</span>
-            <span class="nb-stat-tile__label">Safe</span>
+          <div
+            nbSurface
+            tone="mint"
+            border="strong"
+            padding="sm"
+            layout="stack"
+            class="items-start"
+          >
+            <nb-stat value="SSR" label="Safe" />
           </div>
-          <div class="nb-stat-tile nb-stat-tile--pink">
-            <span class="nb-stat-tile__value">A11Y</span>
-            <span class="nb-stat-tile__label">Native</span>
+          <div
+            nbSurface
+            tone="pink"
+            border="strong"
+            padding="sm"
+            layout="stack"
+            class="items-start"
+          >
+            <nb-stat value="A11Y" label="Native" />
           </div>
 
           <docs-source-tile
@@ -81,7 +108,9 @@ import { ContactUsDialog } from './examples/contact-us-dialog';
       <docs-tokens component="dialog" />
 
       <section id="accessibility">
-        <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">Accessibility</h2>
+        <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">
+          Accessibility
+        </h2>
         <p class="mb-4 font-medium">
           <strong>APG pattern:</strong>
           <a
@@ -94,27 +123,27 @@ import { ContactUsDialog } from './examples/contact-us-dialog';
           · <strong>Status:</strong> Stable.
         </p>
         <p class="mb-4 font-medium">
-          Built on the native <code class="font-mono">&lt;dialog&gt;</code>
-          element's <code class="font-mono">showModal()</code>, so focus
-          trapping, <code class="font-mono">Escape</code>-to-close, and
+          Built on the native
+          <code class="font-mono">&lt;dialog&gt;</code> element's
+          <code class="font-mono">showModal()</code>, so focus trapping,
+          <code class="font-mono">Escape</code>-to-close, and
           <code class="font-mono">role="dialog"</code>/
-          <code class="font-mono">aria-modal</code> come from the browser
-          itself rather than a hand-rolled implementation. Opening locks
+          <code class="font-mono">aria-modal</code> come from the browser itself
+          rather than a hand-rolled implementation. Opening locks
           <code class="font-mono">body</code> scroll; the
           <code class="font-mono">dismissible</code> input controls whether a
           backdrop click closes it, and a <code class="font-mono">close</code>/
-          <code class="font-mono">cancel</code> output syncs consumer state
-          on every close path (backdrop, Escape, or
+          <code class="font-mono">cancel</code> output syncs consumer state on
+          every close path (backdrop, Escape, or
           <code class="font-mono">[nbDialogClose]</code>).
         </p>
         <p class="font-medium">
-          Initial focus follows native behavior - the browser focuses the
-          first <code class="font-mono">[autofocus]</code> or focusable
-          element inside, so make sure at least one exists. Verified with
-          <code class="font-mono">vitest-axe</code> against a fixture with
-          the native <code class="font-mono">open</code> attribute set
-          directly (jsdom doesn't implement
-          <code class="font-mono">showModal()</code>).
+          Initial focus follows native behavior - the browser focuses the first
+          <code class="font-mono">[autofocus]</code> or focusable element
+          inside, so make sure at least one exists. Verified with
+          <code class="font-mono">vitest-axe</code> against a fixture with the
+          native <code class="font-mono">open</code> attribute set directly
+          (jsdom doesn't implement <code class="font-mono">showModal()</code>).
         </p>
       </section>
 
@@ -122,6 +151,7 @@ import { ContactUsDialog } from './examples/contact-us-dialog';
         <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">API</h2>
 
         <div
+          tabindex="0"
           class="overflow-x-auto border-2 border-(--nb-border) bg-nb-surface shadow-[5px_5px_0_0_var(--nb-shadow)]"
         >
           <table class="w-full min-w-160 border-collapse text-left">
@@ -151,8 +181,8 @@ import { ContactUsDialog } from './examples/contact-us-dialog';
                   <code class="font-mono">close()</code> for
                   <code class="font-mono">viewChild</code> access. The
                   <code class="font-mono">dismissible</code> input (default
-                  <code class="font-mono">true</code>) controls whether
-                  clicking the backdrop closes the dialog.
+                  <code class="font-mono">true</code>) controls whether clicking
+                  the backdrop closes the dialog.
                 </td>
               </tr>
               <tr class="border-b-2 border-(--nb-border)">
@@ -212,7 +242,7 @@ import { ContactUsDialog } from './examples/contact-us-dialog';
       </section>
     </article>
   `,
-    changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export default class DialogPage {
   protected readonly importCode = `import {

@@ -1,11 +1,19 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { NbAvatar, NbAvatarGroup } from '@ng-brutalism/ui';
+import { NbAvatar, NbAvatarGroup, NbStat, NbSurface } from '@ng-brutalism/ui';
 
-import { DocsCodeBlock, DocsExample, DocsSourceTile, DocsStatusBadge, DocsTokens } from '@ng-brutalism/docs-ui';
+import {
+  DocsCodeBlock,
+  DocsExample,
+  DocsSourceTile,
+  DocsStatusBadge,
+  DocsTokens,
+} from '@ng-brutalism/docs-ui';
 
 @Component({
   selector: 'docs-avatar-group-page',
   imports: [
+    NbStat,
+    NbSurface,
     DocsCodeBlock,
     DocsExample,
     DocsSourceTile,
@@ -21,21 +29,34 @@ import { DocsCodeBlock, DocsExample, DocsSourceTile, DocsStatusBadge, DocsTokens
           <p>Neo-Brutalist Angular AvatarGroup</p>
           <h1>AvatarGroup</h1>
           <p class="mt-3 max-w-3xl text-base font-medium sm:text-lg">
-            A component that stacks <code class="font-mono">NbAvatar</code> elements
-            with negative overlap and appends an overflow badge when the count exceeds
-            what's shown. Common in charity, event, and social card designs.
+            A component that stacks
+            <code class="font-mono">NbAvatar</code> elements with negative
+            overlap and appends an overflow badge when the count exceeds what's
+            shown. Common in charity, event, and social card designs.
           </p>
         </div>
 
         <div class="mt-7 flex flex-wrap items-center gap-3">
           <docs-status-badge status="stable" />
-          <div class="nb-stat-tile nb-stat-tile--yellow">
-            <span class="nb-stat-tile__value">flex</span>
-            <span class="nb-stat-tile__label">Overlap layout</span>
+          <div
+            nbSurface
+            tone="yellow"
+            border="strong"
+            padding="sm"
+            layout="stack"
+            class="items-start"
+          >
+            <nb-stat value="flex" label="Overlap layout" />
           </div>
-          <div class="nb-stat-tile nb-stat-tile--mint">
-            <span class="nb-stat-tile__value">+N</span>
-            <span class="nb-stat-tile__label">Overflow badge</span>
+          <div
+            nbSurface
+            tone="mint"
+            border="strong"
+            padding="sm"
+            layout="stack"
+            class="items-start"
+          >
+            <nb-stat value="+N" label="Overflow badge" />
           </div>
 
           <docs-source-tile
@@ -59,12 +80,18 @@ import { DocsCodeBlock, DocsExample, DocsSourceTile, DocsStatusBadge, DocsTokens
 
       <section id="usage">
         <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">Usage</h2>
-        <docs-code-block class="block mb-5" title="Import" [code]="importCode" />
+        <docs-code-block
+          class="block mb-5"
+          title="Import"
+          [code]="importCode"
+        />
         <docs-code-block title="Template" [code]="defaultExampleCode" />
       </section>
 
       <section id="no-overflow">
-        <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">Without overflow</h2>
+        <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">
+          Without overflow
+        </h2>
         <docs-example [code]="noOverflowCode">
           <div class="p-4">
             <nb-avatar-group>
@@ -80,32 +107,66 @@ import { DocsCodeBlock, DocsExample, DocsSourceTile, DocsStatusBadge, DocsTokens
       <docs-tokens component="avatar-group" />
 
       <section id="accessibility">
-        <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">Accessibility</h2>
+        <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">
+          Accessibility
+        </h2>
         <p class="font-medium">
-          <strong>APG pattern:</strong> N/A - AvatarGroup is static, presentational layout that stacks avatar images with an overflow count, not an interactive widget. <strong>Status:</strong> Stable.
+          <strong>APG pattern:</strong> N/A - AvatarGroup is static,
+          presentational layout that stacks avatar images with an overflow
+          count, not an interactive widget. <strong>Status:</strong> Stable.
         </p>
       </section>
 
       <section id="api">
         <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">API</h2>
         <div
+          tabindex="0"
           class="overflow-x-auto border-2 border-(--nb-border) bg-nb-surface shadow-[5px_5px_0_0_var(--nb-shadow)]"
         >
           <table class="w-full min-w-160 border-collapse text-left">
             <thead class="bg-nb-secondary text-nb-secondary-fg">
               <tr>
-                <th class="border-b-2 border-r-2 border-(--nb-border) px-4 py-3 font-bold">Input</th>
-                <th class="border-b-2 border-r-2 border-(--nb-border) px-4 py-3 font-bold">Type</th>
-                <th class="border-b-2 border-r-2 border-(--nb-border) px-4 py-3 font-bold">Default</th>
-                <th class="border-b-2 border-(--nb-border) px-4 py-3 font-bold">Description</th>
+                <th
+                  class="border-b-2 border-r-2 border-(--nb-border) px-4 py-3 font-bold"
+                >
+                  Input
+                </th>
+                <th
+                  class="border-b-2 border-r-2 border-(--nb-border) px-4 py-3 font-bold"
+                >
+                  Type
+                </th>
+                <th
+                  class="border-b-2 border-r-2 border-(--nb-border) px-4 py-3 font-bold"
+                >
+                  Default
+                </th>
+                <th class="border-b-2 border-(--nb-border) px-4 py-3 font-bold">
+                  Description
+                </th>
               </tr>
             </thead>
             <tbody class="font-medium">
               <tr>
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">overflow</td>
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">number</td>
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">0</td>
-                <td class="px-4 py-3">Number of hidden members. Renders a <code class="font-mono">+N</code> badge when > 0.</td>
+                <td
+                  class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
+                >
+                  overflow
+                </td>
+                <td
+                  class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
+                >
+                  number
+                </td>
+                <td
+                  class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
+                >
+                  0
+                </td>
+                <td class="px-4 py-3">
+                  Number of hidden members. Renders a
+                  <code class="font-mono">+N</code> badge when > 0.
+                </td>
               </tr>
             </tbody>
           </table>

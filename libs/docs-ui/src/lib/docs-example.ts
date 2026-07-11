@@ -1,9 +1,5 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  input,
-  signal,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, input, signal } from '@angular/core';
+import { NbSurface } from '@ng-brutalism/ui';
 
 import { DocsCodeBlock } from './docs-code-block';
 
@@ -12,9 +8,9 @@ type DocsExamplePreviewPadding = 'default' | 'compact';
 
 @Component({
     selector: 'docs-example',
-    imports: [DocsCodeBlock],
+    imports: [DocsCodeBlock, NbSurface],
     template: `
-    <div class="docs-example border-4 border-(--nb-border) bg-white shadow-[8px_8px_0_0_var(--nb-shadow)]">
+    <div nbSurface border="thick" shadow="heavy" padding="none" class="docs-example bg-white">
       <div
         class="flex items-center border-b-4 border-(--nb-border) bg-white"
       >

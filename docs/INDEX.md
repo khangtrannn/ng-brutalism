@@ -65,6 +65,16 @@ Agent session protocol:
 
 ---
 
+## Docs Site
+**When to read:** working on the docs app itself (`apps/docs`) or docs chrome (`libs/docs-ui`) — page structure, dogfooding the library in the docs, docs a11y, docs-site verification.
+
+| File | Purpose | Mutable? |
+|---|---|---|
+| `docs/docs-site/progress.md` | Live status + shipped log for docs-site work — **read first** | Yes |
+| `docs/docs-site/dogfooding-audit-2026-07-10.md` | Full audit (verify + dogfooding + a11y) with prioritized backlog | Yes |
+
+---
+
 ## Release
 **When to read:** working on npm publishing, versioning, changelogs, GitHub releases, v0.2+ planning.
 

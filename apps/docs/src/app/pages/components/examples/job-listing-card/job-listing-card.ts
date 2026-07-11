@@ -71,7 +71,7 @@ import {
         border="strong"
         shadow="heavy"
         radius="xl"
-        class="w-full max-w-120 overflow-visible"
+        class="w-full max-w-[48rem] overflow-visible"
         style="
           container-type: inline-size;
           --nb-font-accent: 'Patrick Hand', 'Comic Sans MS', 'Bradley Hand',
@@ -111,7 +111,13 @@ import {
 
                 <div nbStack gap="xs">
                   <h2 class="m-0">
-                    <span nbDisplay size="sm" fluid weight="normal" class="block">
+                    <span
+                      nbDisplay
+                      size="sm"
+                      fluid
+                      weight="normal"
+                      class="block"
+                    >
                       Senior Frontend
                     </span>
 
@@ -155,6 +161,7 @@ import {
               align="center"
               radius="none"
               shadow="none"
+              class="job-card-tags"
               style="
                 --nb-icon-size: 1.1rem;
                 --nb-chip-icon-size: 1.1rem;
@@ -231,7 +238,7 @@ import {
 
                 <div
                   nbCluster
-                  gap="lg"
+                  gap="sm"
                   align="start"
                   wrap="nowrap"
                   separator="solid"
@@ -248,7 +255,7 @@ import {
                       aria-hidden="true"
                       class="mt-1.5 size-2.5 shrink-0 rounded-full bg-[#0e47df]"
                     ></span>
-                    <span nbText size="lg" weight="normal" leading="tight">
+                    <span nbText size="md" weight="normal" leading="tight">
                       Angular + TypeScript
                     </span>
                   </span>
@@ -264,7 +271,7 @@ import {
                       aria-hidden="true"
                       class="mt-1.5 size-2.5 shrink-0 rounded-full bg-[#0e47df]"
                     ></span>
-                    <span nbText size="lg" weight="normal" leading="tight">
+                    <span nbText size="md" weight="normal" leading="tight">
                       Design system
                     </span>
                   </span>
@@ -280,7 +287,7 @@ import {
                       aria-hidden="true"
                       class="mt-1.5 size-2.5 shrink-0 rounded-full bg-[#0e47df]"
                     ></span>
-                    <span nbText size="lg" weight="normal" leading="tight">
+                    <span nbText size="md" weight="normal" leading="tight">
                       International team
                     </span>
                   </span>
@@ -291,14 +298,14 @@ import {
         </div>
 
         <div nbSection divider="top" dividerStyle="dashed" padding="lg">
-          <div nbSplit ratio="fill:auto" collapse="none" align="end" gap="sm">
+          <div class="job-card-footer">
             <div
               nbStack
               gap="sm"
+              class="job-card-meta"
               style="
                 --nb-icon-size: 1rem;
                 --nb-media-item-title-size: 1rem;
-                white-space: nowrap;
               "
             >
               <nb-media-item size="sm">
@@ -316,7 +323,14 @@ import {
               </nb-media-item>
             </div>
 
-            <div nbCluster gap="md" align="center" justify="end" wrap="nowrap">
+            <div
+              nbCluster
+              gap="md"
+              align="center"
+              justify="end"
+              wrap="nowrap"
+              class="job-card-actions"
+            >
               <button nbButton type="button" tone="yellow" radius="none">
                 Apply
               </button>
@@ -338,6 +352,64 @@ import {
         </div>
       </article>
     </div>
+  `,
+  styles: `
+    .job-card-footer {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      align-items: end;
+      gap: 1rem;
+    }
+
+    .job-card-meta {
+      min-width: 0;
+    }
+
+    .job-card-meta [nbMediaItemTitle] {
+      white-space: normal;
+      overflow-wrap: anywhere;
+      line-height: 1.1;
+    }
+
+    .job-card-actions {
+      min-width: max-content;
+    }
+
+    .job-card-tags {
+      display: grid;
+      grid-template-columns: repeat(3, max-content);
+      justify-content: start;
+    }
+
+    @container (max-width: 40rem) {
+      .job-card-footer {
+        grid-template-columns: 1fr;
+        align-items: start;
+      }
+
+      .job-card-actions {
+        justify-content: start;
+        min-width: 0;
+      }
+    }
+
+    @container (max-width: 28rem) {
+      .job-card-tags {
+        grid-template-columns: repeat(2, max-content);
+      }
+    }
+
+    @container (max-width: 24rem) {
+      .job-card-actions {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        width: 100%;
+      }
+
+      .job-card-actions button {
+        width: 100%;
+      }
+    }
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

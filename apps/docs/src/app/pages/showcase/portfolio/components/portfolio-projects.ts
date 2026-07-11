@@ -3,9 +3,9 @@ import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import type { Project } from '../portfolio.types';
 
 @Component({
-    selector: 'docs-portfolio-projects',
-    imports: [],
-    template: `
+  selector: 'docs-portfolio-projects',
+  imports: [],
+  template: `
     <section
       id="projects"
       class="portfolio-grid-section relative scroll-mt-6 bg-white p-3 py-8 dark:bg-black sm:p-5 sm:py-12 md:p-8 md:py-16"
@@ -61,7 +61,9 @@ import type { Project } from '../portfolio.types';
               <a
                 class="portfolio-project-link bg-blue-400"
                 [href]="project.github"
-                [attr.target]="isPlaceholderLink(project.github) ? null : '_blank'"
+                [attr.target]="
+                  isPlaceholderLink(project.github) ? null : '_blank'
+                "
                 rel="noreferrer"
                 [attr.aria-disabled]="isPlaceholderLink(project.github)"
                 (click)="openProjectLink($event, project.github)"
@@ -71,7 +73,9 @@ import type { Project } from '../portfolio.types';
               <a
                 class="portfolio-project-link bg-green-400"
                 [href]="project.live"
-                [attr.target]="isPlaceholderLink(project.live) ? null : '_blank'"
+                [attr.target]="
+                  isPlaceholderLink(project.live) ? null : '_blank'
+                "
                 rel="noreferrer"
                 [attr.aria-disabled]="isPlaceholderLink(project.live)"
                 (click)="openProjectLink($event, project.live)"
@@ -85,7 +89,7 @@ import type { Project } from '../portfolio.types';
       </div>
     </section>
   `,
-    changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PortfolioProjects {
   readonly assetPath = input.required<string>();

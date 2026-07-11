@@ -1,11 +1,19 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { NbSeparator } from '@ng-brutalism/ui';
+import { NbSeparator, NbStat, NbSurface } from '@ng-brutalism/ui';
 
-import { DocsCodeBlock, DocsExample, DocsSourceTile, DocsStatusBadge, DocsTokens } from '@ng-brutalism/docs-ui';
+import {
+  DocsCodeBlock,
+  DocsExample,
+  DocsSourceTile,
+  DocsStatusBadge,
+  DocsTokens,
+} from '@ng-brutalism/docs-ui';
 
 @Component({
   selector: 'docs-separator-page',
   imports: [
+    NbStat,
+    NbSurface,
     DocsCodeBlock,
     DocsExample,
     DocsSourceTile,
@@ -29,17 +37,35 @@ import { DocsCodeBlock, DocsExample, DocsSourceTile, DocsStatusBadge, DocsTokens
 
         <div class="mt-7 flex flex-wrap items-center gap-3">
           <docs-status-badge status="stable" />
-          <div class="nb-stat-tile nb-stat-tile--yellow">
-            <span class="nb-stat-tile__value">hr</span>
-            <span class="nb-stat-tile__label">Host element</span>
+          <div
+            nbSurface
+            tone="yellow"
+            border="strong"
+            padding="sm"
+            layout="stack"
+            class="items-start"
+          >
+            <nb-stat value="hr" label="Host element" />
           </div>
-          <div class="nb-stat-tile nb-stat-tile--mint">
-            <span class="nb-stat-tile__value">3</span>
-            <span class="nb-stat-tile__label">Variants</span>
+          <div
+            nbSurface
+            tone="mint"
+            border="strong"
+            padding="sm"
+            layout="stack"
+            class="items-start"
+          >
+            <nb-stat value="3" label="Variants" />
           </div>
-          <div class="nb-stat-tile nb-stat-tile--pink">
-            <span class="nb-stat-tile__value">2</span>
-            <span class="nb-stat-tile__label">Orientations</span>
+          <div
+            nbSurface
+            tone="pink"
+            border="strong"
+            padding="sm"
+            layout="stack"
+            class="items-start"
+          >
+            <nb-stat value="2" label="Orientations" />
           </div>
 
           <docs-source-tile
@@ -61,24 +87,42 @@ import { DocsCodeBlock, DocsExample, DocsSourceTile, DocsStatusBadge, DocsTokens
 
       <section id="usage">
         <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">Usage</h2>
-        <docs-code-block class="block mb-5" title="Import" [code]="importCode" />
+        <docs-code-block
+          class="block mb-5"
+          title="Import"
+          [code]="importCode"
+        />
         <docs-code-block title="Template" [code]="defaultExampleCode" />
       </section>
 
       <section id="variants">
-        <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">Variants</h2>
+        <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">
+          Variants
+        </h2>
         <docs-example [code]="variantsExampleCode">
           <div class="flex w-full flex-col gap-6 p-4">
             <div class="w-full">
-              <p class="mb-3 font-mono text-xs font-bold uppercase text-(--nb-border)">variant="solid" (default)</p>
+              <p
+                class="mb-3 font-mono text-xs font-bold uppercase text-(--nb-border)"
+              >
+                variant="solid" (default)
+              </p>
               <hr nbSeparator />
             </div>
             <div class="w-full">
-              <p class="mb-3 font-mono text-xs font-bold uppercase text-(--nb-border)">variant="dashed"</p>
+              <p
+                class="mb-3 font-mono text-xs font-bold uppercase text-(--nb-border)"
+              >
+                variant="dashed"
+              </p>
               <hr nbSeparator variant="dashed" />
             </div>
             <div class="w-full">
-              <p class="mb-3 font-mono text-xs font-bold uppercase text-(--nb-border)">variant="thick"</p>
+              <p
+                class="mb-3 font-mono text-xs font-bold uppercase text-(--nb-border)"
+              >
+                variant="thick"
+              </p>
               <hr nbSeparator variant="thick" />
             </div>
           </div>
@@ -86,7 +130,9 @@ import { DocsCodeBlock, DocsExample, DocsSourceTile, DocsStatusBadge, DocsTokens
       </section>
 
       <section id="orientation">
-        <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">Vertical</h2>
+        <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">
+          Vertical
+        </h2>
         <p class="mb-4 font-medium">
           Set <code class="font-mono">orientation="vertical"</code> to render a
           column divider. The separator stretches to fill the height of its flex
@@ -104,16 +150,26 @@ import { DocsCodeBlock, DocsExample, DocsSourceTile, DocsStatusBadge, DocsTokens
       </section>
 
       <section id="custom-color">
-        <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">Custom Color</h2>
+        <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">
+          Custom Color
+        </h2>
         <p class="mb-4 font-medium">
-          Override <code class="font-mono">--nb-separator-color</code> inline
-          to use any color without touching the global theme.
+          Override <code class="font-mono">--nb-separator-color</code> inline to
+          use any color without touching the global theme.
         </p>
         <docs-example [code]="customColorExampleCode">
           <div class="flex w-full flex-col gap-4 p-4">
             <hr nbSeparator style="--nb-separator-color: #ff90e8" />
-            <hr nbSeparator variant="thick" style="--nb-separator-color: #8ae9ff" />
-            <hr nbSeparator variant="dashed" style="--nb-separator-color: #c8a2ff" />
+            <hr
+              nbSeparator
+              variant="thick"
+              style="--nb-separator-color: #8ae9ff"
+            />
+            <hr
+              nbSeparator
+              variant="dashed"
+              style="--nb-separator-color: #c8a2ff"
+            />
           </div>
         </docs-example>
       </section>
@@ -121,9 +177,13 @@ import { DocsCodeBlock, DocsExample, DocsSourceTile, DocsStatusBadge, DocsTokens
       <docs-tokens component="separator" />
 
       <section id="accessibility">
-        <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">Accessibility</h2>
+        <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">
+          Accessibility
+        </h2>
         <p class="font-medium">
-          <strong>APG pattern:</strong> N/A - Separator is static, presentational content that draws a dividing line, not an interactive widget. <strong>Status:</strong> Stable.
+          <strong>APG pattern:</strong> N/A - Separator is static,
+          presentational content that draws a dividing line, not an interactive
+          widget. <strong>Status:</strong> Stable.
         </p>
       </section>
 
@@ -131,29 +191,71 @@ import { DocsCodeBlock, DocsExample, DocsSourceTile, DocsStatusBadge, DocsTokens
         <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">API</h2>
 
         <div
+          tabindex="0"
           class="overflow-x-auto border-2 border-(--nb-border) bg-nb-surface shadow-[5px_5px_0_0_var(--nb-shadow)]"
         >
           <table class="w-full min-w-160 border-collapse text-left">
             <thead class="bg-nb-secondary text-nb-secondary-fg">
               <tr>
-                <th class="border-b-2 border-r-2 border-(--nb-border) px-4 py-3 font-bold">Input</th>
-                <th class="border-b-2 border-r-2 border-(--nb-border) px-4 py-3 font-bold">Type</th>
-                <th class="border-b-2 border-r-2 border-(--nb-border) px-4 py-3 font-bold">Default</th>
-                <th class="border-b-2 border-(--nb-border) px-4 py-3 font-bold">Description</th>
+                <th
+                  class="border-b-2 border-r-2 border-(--nb-border) px-4 py-3 font-bold"
+                >
+                  Input
+                </th>
+                <th
+                  class="border-b-2 border-r-2 border-(--nb-border) px-4 py-3 font-bold"
+                >
+                  Type
+                </th>
+                <th
+                  class="border-b-2 border-r-2 border-(--nb-border) px-4 py-3 font-bold"
+                >
+                  Default
+                </th>
+                <th class="border-b-2 border-(--nb-border) px-4 py-3 font-bold">
+                  Description
+                </th>
               </tr>
             </thead>
             <tbody class="font-medium">
               <tr class="border-b-2 border-(--nb-border)">
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">orientation</td>
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">'horizontal' | 'vertical'</td>
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">'horizontal'</td>
+                <td
+                  class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
+                >
+                  orientation
+                </td>
+                <td
+                  class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
+                >
+                  'horizontal' | 'vertical'
+                </td>
+                <td
+                  class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
+                >
+                  'horizontal'
+                </td>
                 <td class="px-4 py-3">Direction of the divider line.</td>
               </tr>
               <tr>
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">variant</td>
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">'solid' | 'dashed' | 'thick'</td>
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">'solid'</td>
-                <td class="px-4 py-3">Line style. <code class="font-mono">thick</code> renders a 4 px border.</td>
+                <td
+                  class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
+                >
+                  variant
+                </td>
+                <td
+                  class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
+                >
+                  'solid' | 'dashed' | 'thick'
+                </td>
+                <td
+                  class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
+                >
+                  'solid'
+                </td>
+                <td class="px-4 py-3">
+                  Line style. <code class="font-mono">thick</code> renders a 4
+                  px border.
+                </td>
               </tr>
             </tbody>
           </table>

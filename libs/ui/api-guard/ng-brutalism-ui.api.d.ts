@@ -704,11 +704,12 @@ interface NbStickerPathConfig {
 declare class NbSticker {
     readonly shape: _angular_core.InputSignal<NbStickerShape>;
     readonly decorative: _angular_core.InputSignalWithTransform<boolean, unknown>;
+    readonly ariaLabel: _angular_core.InputSignal<string | null>;
     readonly rotate: _angular_core.InputSignalWithTransform<string | null, unknown>;
     readonly size: _angular_core.InputSignalWithTransform<string | null, unknown>;
     protected readonly config: _angular_core.Signal<NbStickerPathConfig>;
     static ɵfac: _angular_core.ɵɵFactoryDeclaration<NbSticker, never>;
-    static ɵcmp: _angular_core.ɵɵComponentDeclaration<NbSticker, "nb-sticker", ["nbSticker"], { "shape": { "alias": "shape"; "required": false; "isSignal": true; }; "decorative": { "alias": "decorative"; "required": false; "isSignal": true; }; "rotate": { "alias": "rotate"; "required": false; "isSignal": true; }; "size": { "alias": "size"; "required": false; "isSignal": true; }; }, {}, never, ["*"], true, [{ directive: typeof NbToneCapability; inputs: { "tone": "tone"; }; outputs: {}; }]>;
+    static ɵcmp: _angular_core.ɵɵComponentDeclaration<NbSticker, "nb-sticker", ["nbSticker"], { "shape": { "alias": "shape"; "required": false; "isSignal": true; }; "decorative": { "alias": "decorative"; "required": false; "isSignal": true; }; "ariaLabel": { "alias": "aria-label"; "required": false; "isSignal": true; }; "rotate": { "alias": "rotate"; "required": false; "isSignal": true; }; "size": { "alias": "size"; "required": false; "isSignal": true; }; }, {}, never, ["*"], true, [{ directive: typeof NbToneCapability; inputs: { "tone": "tone"; }; outputs: {}; }]>;
 }
 
 declare class NbStickerFace {

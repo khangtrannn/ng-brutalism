@@ -1,8 +1,6 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
+import { NbChip, NbSurface } from '@ng-brutalism/ui';
 
 import { DOC_NAV } from '../nav';
 import { docsComponentStatus } from '../docs-component-status';
@@ -11,10 +9,14 @@ const GROUP_COLORS = ['yellow', 'pink', 'mint', 'lavender'] as const;
 
 @Component({
     selector: 'nb-docs-sidebar',
-    imports: [RouterLink, RouterLinkActive],
+    imports: [NbChip, NbSurface, RouterLink, RouterLinkActive],
     template: `
     <aside
-      class="docs-sidebar fixed top-32 left-8 hidden h-[calc(100vh-9rem)] w-72 overflow-y-auto border-4 border-(--nb-border) bg-(--nb-paper) px-4 py-5 shadow-[8px_8px_0_0_var(--nb-shadow)] lg:block"
+      nbSurface
+      border="thick"
+      shadow="heavy"
+      padding="md"
+      class="docs-sidebar fixed top-32 left-8 hidden h-[calc(100vh-9rem)] w-72 overflow-y-auto bg-(--nb-paper) lg:block"
       aria-label="Documentation navigation"
     >
       @for (group of nav; track group.label; let first = $first; let idx = $index) {
@@ -24,7 +26,7 @@ const GROUP_COLORS = ['yellow', 'pink', 'mint', 'lavender'] as const;
           [attr.data-color]="groupColor(idx)"
         >
           <div class="sidebar-group__header">
-            <span class="sidebar-group__chip">
+            <span nbChip class="sidebar-group__chip" size="lg" border="strong" shadow="sm">
               {{ group.label }}
             </span>
 
@@ -77,10 +79,8 @@ const GROUP_COLORS = ['yellow', 'pink', 'mint', 'lavender'] as const;
     .sidebar-group__chip {
       display: inline-flex;
       align-items: center;
-      padding: 0.25rem 0.65rem;
-      border: 3px solid var(--nb-border);
       background: var(--nb-yellow);
-      box-shadow: 3px 3px 0 0 var(--nb-shadow);
+      color: var(--nb-black);
       font-family: var(--font-display);
       font-size: 0.78rem;
       font-weight: 900;
@@ -89,9 +89,15 @@ const GROUP_COLORS = ['yellow', 'pink', 'mint', 'lavender'] as const;
       transform: rotate(-2deg);
     }
 
+    .sidebar-group[data-color="yellow"] .sidebar-group__chip {
+      background: var(--nb-yellow);
+      color: var(--nb-black);
+      transform: rotate(-2deg);
+    }
+
     .sidebar-group[data-color="pink"] .sidebar-group__chip {
       background: var(--nb-pink);
-      color: #fff;
+      color: var(--nb-black);
       transform: rotate(1.5deg);
     }
 
@@ -102,7 +108,7 @@ const GROUP_COLORS = ['yellow', 'pink', 'mint', 'lavender'] as const;
 
     .sidebar-group[data-color="lavender"] .sidebar-group__chip {
       background: var(--nb-lavender);
-      color: #fff;
+      color: var(--nb-black);
       transform: rotate(2deg);
     }
 

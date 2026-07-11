@@ -9,6 +9,8 @@
     "analytics:report": "tsx tools/analytics-report/src/index.ts",
     "build:ui": "nx build ui",
     "build:docs": "nx run docs:build-seo-artifacts && pnpm validate:docs-routes",
+    "format:docs": "nx run docs:format",
+    "format:docs:check": "nx run docs:format-check",
     "validate:docs-routes": "node apps/docs/scripts/validate-public-routes.mjs",
     "e2e:docs": "nx e2e docs",
     "serve:docs": "nx serve docs",

@@ -7,6 +7,7 @@ import {
   NbDisplay,
   NbSection,
   NbStack,
+  NbStat,
   NbSurface,
   NbText,
   NbTitle,
@@ -25,13 +26,14 @@ import { NbDocsNavbar } from '@ng-brutalism/docs-ui';
       aria-hidden="true"
       class="pointer-events-none fixed bottom-12 right-4 hidden h-10 w-10 -rotate-12 rounded-full border-4 border-(--nb-border) bg-(--nb-lavender) shadow-[4px_4px_0_0_var(--nb-shadow)] xl:block"
     ></span>
-  `
+  `,
 })
 export class HomePageDecorator {}
 
 @Component({
   selector: 'docs-home-page',
   imports: [
+    NbStat,
     NbButton,
     NbChip,
     NbCluster,
@@ -69,14 +71,18 @@ export class HomePageDecorator {}
                     aria-label="The neo-brutalist Angular UI library"
                   >
                     <span class="block">The neo-brutalist</span>
-                    <span class="mt-3 flex flex-wrap items-center gap-3 sm:mt-4 sm:gap-4">
+                    <span
+                      class="mt-3 flex flex-wrap items-center gap-3 sm:mt-4 sm:gap-4"
+                    >
                       <span
                         class="inline-block rotate-[-1deg] border-4 border-(--nb-border) bg-(--nb-yellow) px-3 py-1 text-[0.72em] leading-none shadow-[7px_7px_0_0_var(--nb-shadow)] sm:px-4 sm:py-2"
                       >
                         Angular
                       </span>
                     </span>
-                    <span class="mt-3 block sm:mt-4 sm:whitespace-nowrap">UI library</span>
+                    <span class="mt-3 block sm:mt-4 sm:whitespace-nowrap"
+                      >UI library</span
+                    >
                   </h1>
 
                   <p
@@ -100,7 +106,11 @@ export class HomePageDecorator {}
                     ergonomics.
                   </p>
 
-                  <div nbCluster gap="sm" class="mt-1 flex flex-wrap gap-2 items-center">
+                  <div
+                    nbCluster
+                    gap="sm"
+                    class="mt-1 flex flex-wrap gap-2 items-center"
+                  >
                     <a
                       class="w-full sm:w-auto inline-flex h-[3.25rem] items-center justify-center px-5 text-lg font-bold whitespace-nowrap"
                       nbButton
@@ -132,21 +142,45 @@ export class HomePageDecorator {}
                   </div>
 
                   <div class="mt-8 flex flex-wrap items-center gap-3">
-                    <div class="nb-stat-tile nb-stat-tile--yellow">
-                      <span class="nb-stat-tile__value">v0.2</span>
-                      <span class="nb-stat-tile__label">Composition system</span>
+                    <div
+                      nbSurface
+                      tone="yellow"
+                      border="strong"
+                      padding="sm"
+                      layout="stack"
+                      class="items-start"
+                    >
+                      <nb-stat value="v0.2" label="Composition system" />
                     </div>
-                    <div class="nb-stat-tile nb-stat-tile--mint">
-                      <span class="nb-stat-tile__value">NG</span>
-                      <span class="nb-stat-tile__label">Modern Angular</span>
+                    <div
+                      nbSurface
+                      tone="mint"
+                      border="strong"
+                      padding="sm"
+                      layout="stack"
+                      class="items-start"
+                    >
+                      <nb-stat value="NG" label="Modern Angular" />
                     </div>
-                    <div class="nb-stat-tile nb-stat-tile--pink">
-                      <span class="nb-stat-tile__value">TW4</span>
-                      <span class="nb-stat-tile__label">Tailwind v4 tokens</span>
+                    <div
+                      nbSurface
+                      tone="pink"
+                      border="strong"
+                      padding="sm"
+                      layout="stack"
+                      class="items-start"
+                    >
+                      <nb-stat value="TW4" label="Tailwind v4 tokens" />
                     </div>
-                    <div class="nb-stat-tile nb-stat-tile--lavender">
-                      <span class="nb-stat-tile__value">MIT</span>
-                      <span class="nb-stat-tile__label">Open source</span>
+                    <div
+                      nbSurface
+                      tone="lavender"
+                      border="strong"
+                      padding="sm"
+                      layout="stack"
+                      class="items-start"
+                    >
+                      <nb-stat value="MIT" label="Open source" />
                     </div>
                   </div>
                 </div>
@@ -255,9 +289,7 @@ export class HomePageDecorator {}
             </section>
 
             <section id="install" class="scroll-mt-32">
-              <h2 data-docs-heading class="mb-5 text-2xl font-bold">
-                Install
-              </h2>
+              <h2 data-docs-heading class="mb-5 text-2xl font-bold">Install</h2>
               <p class="mb-5 text-base font-medium">
                 Run the Angular CLI schematic - it installs the package,
                 configures Tailwind CSS v4, and adds the global stylesheet
@@ -297,43 +329,61 @@ export class HomePageDecorator {}
             </section>
 
             <section id="explore" class="scroll-mt-32">
-              <h2 data-docs-heading class="mb-5 text-2xl font-bold">
-                Explore
-              </h2>
+              <h2 data-docs-heading class="mb-5 text-2xl font-bold">Explore</h2>
               <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
                 <a
-                  class="nb-stat-tile nb-stat-tile--interactive nb-stat-tile--yellow"
+                  nbSurface
+                  tone="yellow"
+                  border="strong"
+                  padding="sm"
+                  layout="stack"
+                  interactive
                   routerLink="/docs/installation"
+                  class="items-start"
                 >
-                  <span class="nb-stat-tile__value">Install</span>
-                  <span class="nb-stat-tile__label"
-                    >Package, styles, tokens</span
-                  >
+                  <nb-stat value="Install" label="Package, styles, tokens" />
                 </a>
                 <a
-                  class="nb-stat-tile nb-stat-tile--interactive nb-stat-tile--mint"
+                  nbSurface
+                  tone="mint"
+                  border="strong"
+                  padding="sm"
+                  layout="stack"
+                  interactive
                   routerLink="/composition/overview"
+                  class="items-start"
                 >
-                  <span class="nb-stat-tile__value">Composition</span>
-                  <span class="nb-stat-tile__label"
-                    >Surface, Stack, Cluster, Split</span
-                  >
+                  <nb-stat
+                    value="Composition"
+                    label="Surface, Stack, Cluster, Split"
+                  />
                 </a>
                 <a
-                  class="nb-stat-tile nb-stat-tile--interactive nb-stat-tile--pink"
+                  nbSurface
+                  tone="pink"
+                  border="strong"
+                  padding="sm"
+                  layout="stack"
+                  interactive
                   routerLink="/components/button"
+                  class="items-start"
                 >
-                  <span class="nb-stat-tile__value">Primitives</span>
-                  <span class="nb-stat-tile__label"
-                    >Composition + UI controls</span
-                  >
+                  <nb-stat
+                    value="Primitives"
+                    label="Composition + UI controls"
+                  />
                 </a>
                 <a
-                  class="nb-stat-tile nb-stat-tile--interactive nb-stat-tile--lavender"
+                  nbSurface
+                  tone="lavender"
+                  border="strong"
+                  padding="sm"
+                  layout="stack"
+                  interactive
                   routerLink="/showcase/portfolio"
+                  class="items-start"
                 >
-                  <span class="nb-stat-tile__value">Showcase</span>
-                  <span class="nb-stat-tile__label">A full portfolio site</span>
+                  <nb-stat value="Showcase" label="A full portfolio site" />
                 </a>
               </div>
             </section>

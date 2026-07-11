@@ -59,11 +59,6 @@ import {
 export default class InspiredDesignsPage {
   protected readonly selected = signal<string | null>(null);
 
-  @HostListener('document:keydown.escape')
-  protected onEscape(): void {
-    this.selected.set(null);
-  }
-
   protected readonly images = [
     {
       src: 'charity-card-feed-100-families.png',
@@ -185,4 +180,9 @@ export default class InspiredDesignsPage {
       th: 288,
     },
   ];
+
+  @HostListener('document:keydown.escape')
+  protected onEscape(): void {
+    this.selected.set(null);
+  }
 }

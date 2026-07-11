@@ -1,21 +1,35 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { NbImageCard, NbImageCardCaption, NbTitle } from '@ng-brutalism/ui';
+import {
+  NbImageCard,
+  NbImageCardCaption,
+  NbStat,
+  NbSurface,
+  NbTitle,
+} from '@ng-brutalism/ui';
 
-import { DocsCodeBlock, DocsExample, DocsSourceTile, DocsStatusBadge, DocsTokens } from '@ng-brutalism/docs-ui';
+import {
+  DocsCodeBlock,
+  DocsExample,
+  DocsSourceTile,
+  DocsStatusBadge,
+  DocsTokens,
+} from '@ng-brutalism/docs-ui';
 
 @Component({
-    selector: 'docs-image-card-page',
-    imports: [
-        DocsCodeBlock,
-        DocsExample,
-        DocsSourceTile,
-        DocsStatusBadge,
-        DocsTokens,
-        NbImageCard,
-        NbImageCardCaption,
-        NbTitle,
-    ],
-    template: `
+  selector: 'docs-image-card-page',
+  imports: [
+    NbStat,
+    NbSurface,
+    DocsCodeBlock,
+    DocsExample,
+    DocsSourceTile,
+    DocsStatusBadge,
+    DocsTokens,
+    NbImageCard,
+    NbImageCardCaption,
+    NbTitle,
+  ],
+  template: `
     <article>
       <header id="overview" class="relative mb-10 scroll-mt-32">
         <div class="mb-5">
@@ -30,17 +44,35 @@ import { DocsCodeBlock, DocsExample, DocsSourceTile, DocsStatusBadge, DocsTokens
 
         <div class="mt-7 flex flex-wrap items-center gap-3">
           <docs-status-badge status="stable" />
-          <div class="nb-stat-tile nb-stat-tile--yellow">
-            <span class="nb-stat-tile__value">2</span>
-            <span class="nb-stat-tile__label">Inputs</span>
+          <div
+            nbSurface
+            tone="yellow"
+            border="strong"
+            padding="sm"
+            layout="stack"
+            class="items-start"
+          >
+            <nb-stat value="2" label="Inputs" />
           </div>
-          <div class="nb-stat-tile nb-stat-tile--mint">
-            <span class="nb-stat-tile__value">A11y</span>
-            <span class="nb-stat-tile__label">Alt + caption</span>
+          <div
+            nbSurface
+            tone="mint"
+            border="strong"
+            padding="sm"
+            layout="stack"
+            class="items-start"
+          >
+            <nb-stat value="A11y" label="Alt + caption" />
           </div>
-          <div class="nb-stat-tile nb-stat-tile--pink">
-            <span class="nb-stat-tile__value">IMG</span>
-            <span class="nb-stat-tile__label">Optimized</span>
+          <div
+            nbSurface
+            tone="pink"
+            border="strong"
+            padding="sm"
+            layout="stack"
+            class="items-start"
+          >
+            <nb-stat value="IMG" label="Optimized" />
           </div>
 
           <docs-source-tile
@@ -72,12 +104,18 @@ import { DocsCodeBlock, DocsExample, DocsSourceTile, DocsStatusBadge, DocsTokens
 
       <section id="usage">
         <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">Usage</h2>
-        <docs-code-block class="block mb-5" title="Import" [code]="importCode" />
+        <docs-code-block
+          class="block mb-5"
+          title="Import"
+          [code]="importCode"
+        />
         <docs-code-block title="Template" [code]="templateCode" />
       </section>
 
       <section id="image-only">
-        <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">Image only</h2>
+        <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">
+          Image only
+        </h2>
         <p class="mb-4 text-sm font-medium">
           When <code class="font-mono">nb-image-card-caption</code> is omitted,
           the caption strip is not rendered.
@@ -94,17 +132,20 @@ import { DocsCodeBlock, DocsExample, DocsSourceTile, DocsStatusBadge, DocsTokens
       <docs-tokens component="image-card" />
 
       <section id="accessibility">
-        <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">Accessibility</h2>
+        <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">
+          Accessibility
+        </h2>
         <p class="font-medium">
-          <strong>APG pattern:</strong> N/A - Image Card is a static, presentational
-          media block that pairs an image with an optional caption, not an
-          interactive widget. <strong>Status:</strong> Stable.
+          <strong>APG pattern:</strong> N/A - Image Card is a static,
+          presentational media block that pairs an image with an optional
+          caption, not an interactive widget. <strong>Status:</strong> Stable.
         </p>
       </section>
 
       <section id="api">
         <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">API</h2>
         <div
+          tabindex="0"
           class="overflow-x-auto border-2 border-(--nb-border) bg-nb-surface shadow-[5px_5px_0_0_var(--nb-shadow)]"
         >
           <table class="w-full min-w-160 border-collapse text-left">
@@ -120,9 +161,7 @@ import { DocsCodeBlock, DocsExample, DocsSourceTile, DocsStatusBadge, DocsTokens
                 >
                   Type
                 </th>
-                <th
-                  class="border-b-2 border-(--nb-border) px-4 py-3 font-bold"
-                >
+                <th class="border-b-2 border-(--nb-border) px-4 py-3 font-bold">
                   Description
                 </th>
               </tr>
@@ -139,9 +178,7 @@ import { DocsCodeBlock, DocsExample, DocsSourceTile, DocsStatusBadge, DocsTokens
                 >
                   string (required)
                 </td>
-                <td
-                  class="border-b-2 border-(--nb-border) px-4 py-3 text-sm"
-                >
+                <td class="border-b-2 border-(--nb-border) px-4 py-3 text-sm">
                   URL of the image to render.
                 </td>
               </tr>
@@ -156,9 +193,7 @@ import { DocsCodeBlock, DocsExample, DocsSourceTile, DocsStatusBadge, DocsTokens
                 >
                   string (required)
                 </td>
-                <td
-                  class="border-b-2 border-(--nb-border) px-4 py-3 text-sm"
-                >
+                <td class="border-b-2 border-(--nb-border) px-4 py-3 text-sm">
                   Alternative text for the image.
                 </td>
               </tr>
@@ -168,12 +203,15 @@ import { DocsCodeBlock, DocsExample, DocsSourceTile, DocsStatusBadge, DocsTokens
 
         <h3 class="mt-8 mb-4 text-xl font-bold">Subcomponents</h3>
         <div
+          tabindex="0"
           class="overflow-x-auto border-2 border-(--nb-border) bg-nb-surface shadow-[5px_5px_0_0_var(--nb-shadow)]"
         >
           <table class="w-full min-w-160 border-collapse text-left">
             <thead class="bg-nb-secondary text-nb-secondary-fg">
               <tr>
-                <th class="border-b-2 border-r-2 border-(--nb-border) px-4 py-3 font-bold">
+                <th
+                  class="border-b-2 border-r-2 border-(--nb-border) px-4 py-3 font-bold"
+                >
                   Selector
                 </th>
                 <th class="border-b-2 border-(--nb-border) px-4 py-3 font-bold">
@@ -183,7 +221,9 @@ import { DocsCodeBlock, DocsExample, DocsSourceTile, DocsStatusBadge, DocsTokens
             </thead>
             <tbody class="font-medium">
               <tr>
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">
+                <td
+                  class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
+                >
                   nb-image-card-caption
                 </td>
                 <td class="px-4 py-3 text-sm">
@@ -196,11 +236,10 @@ import { DocsCodeBlock, DocsExample, DocsSourceTile, DocsStatusBadge, DocsTokens
       </section>
     </article>
   `,
-    changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export default class ImageCardPage {
-  protected readonly previewImage =
-    '/angular-mascot.gif';
+  protected readonly previewImage = '/angular-mascot.gif';
 
   protected readonly importCode = `import { NbImageCard, NbImageCardCaption, NbTitle } from '@ng-brutalism/ui';`;
 

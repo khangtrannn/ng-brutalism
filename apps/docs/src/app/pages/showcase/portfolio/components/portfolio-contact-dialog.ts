@@ -20,22 +20,22 @@ import {
 import { DocsPortfolioContactZigzagIcon } from './portfolio-contact-dialog.icons';
 
 @Component({
-    selector: 'docs-portfolio-contact-dialog',
-    imports: [
-        NbButton,
-        NbDialog,
-        NbDialogActions,
-        NbDialogClose,
-        NbDialogContent,
-        NbDialogDescription,
-        NbDialogTitle,
-        NbIconButton,
-        NbInput,
-        NbLabel,
-        NbTextarea,
-        DocsPortfolioContactZigzagIcon,
-    ],
-    template: `
+  selector: 'docs-portfolio-contact-dialog',
+  imports: [
+    NbButton,
+    NbDialog,
+    NbDialogActions,
+    NbDialogClose,
+    NbDialogContent,
+    NbDialogDescription,
+    NbDialogTitle,
+    NbIconButton,
+    NbInput,
+    NbLabel,
+    NbTextarea,
+    DocsPortfolioContactZigzagIcon,
+  ],
+  template: `
     <button
       nbButton
       (click)="contactDialog.open()"
@@ -183,7 +183,7 @@ import { DocsPortfolioContactZigzagIcon } from './portfolio-contact-dialog.icons
       </nb-dialog-actions>
     </nb-dialog>
   `,
-    changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PortfolioContactDialog {
   private static nextId = 0;

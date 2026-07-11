@@ -1,16 +1,23 @@
 import { ChangeDetectionStrategy, Component, input } from '@angular/core';
+import { NbStat, NbSurface } from '@ng-brutalism/ui';
 
 @Component({
   selector: 'docs-source-tile',
+  imports: [NbStat, NbSurface],
   template: `
     <a
-      class="nb-stat-tile nb-stat-tile--lavender"
+      nbSurface
+      tone="lavender"
+      border="strong"
+      padding="sm"
+      layout="stack"
+      interactive
       [href]="href()"
       target="_blank"
       rel="noreferrer"
+      class="items-start"
     >
-      <span class="nb-stat-tile__value">Source ↗</span>
-      <span class="nb-stat-tile__label">Open Docs</span>
+      <nb-stat value="Source ↗" label="Open Docs" />
     </a>
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,

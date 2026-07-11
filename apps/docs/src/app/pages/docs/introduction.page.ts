@@ -1,12 +1,12 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { NbButton, NbSurface } from '@ng-brutalism/ui';
+import { NbButton, NbStat, NbSurface } from '@ng-brutalism/ui';
 
 import { DocsCodeBlock } from '@ng-brutalism/docs-ui';
 
 @Component({
   selector: 'docs-introduction-page',
-  imports: [DocsCodeBlock, NbButton, NbSurface, RouterLink],
+  imports: [DocsCodeBlock, NbButton, NbStat, NbSurface, RouterLink],
   template: `
     <article>
       <header id="overview" class="relative mb-10 scroll-mt-32">
@@ -93,21 +93,45 @@ import { DocsCodeBlock } from '@ng-brutalism/docs-ui';
         </div>
 
         <div class="mt-7 flex flex-wrap items-center gap-3">
-          <div class="nb-stat-tile nb-stat-tile--yellow">
-            <span class="nb-stat-tile__value">NG</span>
-            <span class="nb-stat-tile__label">Angular native</span>
+          <div
+            nbSurface
+            tone="yellow"
+            border="strong"
+            padding="sm"
+            layout="stack"
+            class="items-start"
+          >
+            <nb-stat value="NG" label="Angular native" />
           </div>
-          <div class="nb-stat-tile nb-stat-tile--mint">
-            <span class="nb-stat-tile__value">A11Y</span>
-            <span class="nb-stat-tile__label">Keyboard ready</span>
+          <div
+            nbSurface
+            tone="mint"
+            border="strong"
+            padding="sm"
+            layout="stack"
+            class="items-start"
+          >
+            <nb-stat value="A11Y" label="Keyboard ready" />
           </div>
-          <div class="nb-stat-tile nb-stat-tile--pink">
-            <span class="nb-stat-tile__value">CSS</span>
-            <span class="nb-stat-tile__label">Token powered</span>
+          <div
+            nbSurface
+            tone="pink"
+            border="strong"
+            padding="sm"
+            layout="stack"
+            class="items-start"
+          >
+            <nb-stat value="CSS" label="Token powered" />
           </div>
-          <div class="nb-stat-tile nb-stat-tile--lavender">
-            <span class="nb-stat-tile__value">Z</span>
-            <span class="nb-stat-tile__label">Zoneless friendly</span>
+          <div
+            nbSurface
+            tone="lavender"
+            border="strong"
+            padding="sm"
+            layout="stack"
+            class="items-start"
+          >
+            <nb-stat value="Z" label="Zoneless friendly" />
           </div>
         </div>
       </header>
@@ -176,71 +200,121 @@ import { DocsCodeBlock } from '@ng-brutalism/docs-ui';
 
         <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           <a
-            class="nb-stat-tile nb-stat-tile--interactive nb-stat-tile--yellow"
+            nbSurface
+            tone="yellow"
+            border="strong"
+            padding="sm"
+            layout="stack"
+            interactive
             routerLink="/composition/overview"
+            class="items-start"
           >
-            <span class="nb-stat-tile__value">Composition Overview</span>
-            <span class="nb-stat-tile__label"
-              >Mental model & decision guide</span
-            >
+            <nb-stat
+              value="Composition Overview"
+              label="Mental model & decision guide"
+            />
           </a>
           <a
-            class="nb-stat-tile nb-stat-tile--interactive nb-stat-tile--mint"
+            nbSurface
+            tone="mint"
+            border="strong"
+            padding="sm"
+            layout="stack"
+            interactive
             routerLink="/composition/surface-and-section"
+            class="items-start"
           >
-            <span class="nb-stat-tile__value">Surface & Section</span>
-            <span class="nb-stat-tile__label">Panels and regions</span>
+            <nb-stat value="Surface & Section" label="Panels and regions" />
           </a>
           <a
-            class="nb-stat-tile nb-stat-tile--interactive nb-stat-tile--pink"
+            nbSurface
+            tone="pink"
+            border="strong"
+            padding="sm"
+            layout="stack"
+            interactive
             routerLink="/composition/stack-and-cluster"
+            class="items-start"
           >
-            <span class="nb-stat-tile__value">Stack & Cluster</span>
-            <span class="nb-stat-tile__label"
-              >Vertical and horizontal flow</span
-            >
+            <nb-stat
+              value="Stack & Cluster"
+              label="Vertical and horizontal flow"
+            />
           </a>
           <a
-            class="nb-stat-tile nb-stat-tile--interactive nb-stat-tile--lavender"
+            nbSurface
+            tone="lavender"
+            border="strong"
+            padding="sm"
+            layout="stack"
+            interactive
             routerLink="/composition/split-layouts"
+            class="items-start"
           >
-            <span class="nb-stat-tile__value">Split Layouts</span>
-            <span class="nb-stat-tile__label">Main / aside patterns</span>
+            <nb-stat value="Split Layouts" label="Main / aside patterns" />
           </a>
           <a
-            class="nb-stat-tile nb-stat-tile--interactive nb-stat-tile--peach"
+            nbSurface
+            tone="white"
+            border="strong"
+            padding="sm"
+            layout="stack"
+            interactive
+            class="items-start"
             routerLink="/composition/common-patterns"
           >
-            <span class="nb-stat-tile__value">Common Patterns</span>
-            <span class="nb-stat-tile__label">Copy-pasteable compositions</span>
+            <nb-stat
+              value="Common Patterns"
+              label="Copy-pasteable compositions"
+            />
           </a>
           <a
-            class="nb-stat-tile nb-stat-tile--interactive"
+            nbSurface
+            tone="white"
+            border="strong"
+            padding="sm"
+            layout="stack"
+            interactive
+            class="items-start"
             routerLink="/docs/installation"
           >
-            <span class="nb-stat-tile__value">Installation</span>
-            <span class="nb-stat-tile__label">Package, styles, tokens</span>
+            <nb-stat value="Installation" label="Package, styles, tokens" />
           </a>
           <a
-            class="nb-stat-tile nb-stat-tile--interactive nb-stat-tile--yellow"
+            nbSurface
+            tone="yellow"
+            border="strong"
+            padding="sm"
+            layout="stack"
+            interactive
+            class="items-start"
             routerLink="/components/button"
           >
-            <span class="nb-stat-tile__value">Button</span>
-            <span class="nb-stat-tile__label">High-impact actions</span>
+            <nb-stat value="Button" label="High-impact actions" />
           </a>
           <a
-            class="nb-stat-tile nb-stat-tile--interactive nb-stat-tile--mint"
+            nbSurface
+            tone="mint"
+            border="strong"
+            padding="sm"
+            layout="stack"
+            interactive
+            class="items-start"
             routerLink="/components/input"
           >
-            <span class="nb-stat-tile__value">Input</span>
-            <span class="nb-stat-tile__label">Sharp form fields</span>
+            <nb-stat value="Input" label="Sharp form fields" />
           </a>
           <a
-            class="nb-stat-tile nb-stat-tile--interactive nb-stat-tile--pink"
+            nbSurface
+            tone="pink"
+            border="strong"
+            padding="sm"
+            layout="stack"
+            interactive
+            class="items-start"
             routerLink="/components/dialog"
           >
-            <span class="nb-stat-tile__value">Dialog</span>
-            <span class="nb-stat-tile__label">Native modal flow</span>
+            <nb-stat value="Dialog" label="Native modal flow" />
           </a>
         </div>
       </section>
@@ -270,20 +344,28 @@ import { DocsCodeBlock } from '@ng-brutalism/docs-ui';
 
         <div class="mt-6 grid gap-3 sm:grid-cols-2">
           <a
-            class="nb-stat-tile nb-stat-tile--interactive nb-stat-tile--yellow"
+            nbSurface
+            tone="yellow"
+            border="strong"
+            padding="sm"
+            layout="stack"
+            interactive
             routerLink="/composition/overview"
+            class="items-start"
           >
-            <span class="nb-stat-tile__value">Overview</span>
-            <span class="nb-stat-tile__label"
-              >Mental model & decision guide</span
-            >
+            <nb-stat value="Overview" label="Mental model & decision guide" />
           </a>
           <a
-            class="nb-stat-tile nb-stat-tile--interactive nb-stat-tile--mint"
+            nbSurface
+            tone="mint"
+            border="strong"
+            padding="sm"
+            layout="stack"
+            interactive
             routerLink="/composition/common-patterns"
+            class="items-start"
           >
-            <span class="nb-stat-tile__value">Patterns</span>
-            <span class="nb-stat-tile__label">Copy-pasteable compositions</span>
+            <nb-stat value="Patterns" label="Copy-pasteable compositions" />
           </a>
         </div>
       </section>

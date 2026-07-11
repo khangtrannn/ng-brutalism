@@ -1,11 +1,12 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { NbStat, NbSurface } from '@ng-brutalism/ui';
 import { RouterLink } from '@angular/router';
 
 import { NbDocsNavbar } from '@ng-brutalism/docs-ui';
 
 @Component({
   selector: 'docs-not-found-page',
-  imports: [RouterLink, NbDocsNavbar],
+  imports: [NbStat, NbSurface, RouterLink, NbDocsNavbar],
   template: `
     <div class="relative min-h-screen overflow-x-clip">
       <span
@@ -29,56 +30,72 @@ import { NbDocsNavbar } from '@ng-brutalism/docs-ui';
               <span
                 class="inline-flex items-center border-3 border-(--nb-border) bg-(--nb-hot) px-[0.65rem] py-1 text-white shadow-[3px_3px_0_0_var(--nb-shadow)]"
                 style="font-family:var(--font-display);font-size:0.78rem;font-weight:900;letter-spacing:0.08em;text-transform:uppercase;transform:rotate(-2deg)"
-              >ERROR</span>
+                >ERROR</span
+              >
               <span
                 class="inline-flex h-6 min-w-[1.5rem] items-center justify-center border-3 border-(--nb-border) bg-(--nb-paper) px-2 shadow-[2px_2px_0_0_var(--nb-shadow)]"
                 style="font-family:var(--font-mono);font-size:0.7rem;font-weight:700"
-              >1</span>
+                >1</span
+              >
             </div>
             <div class="space-y-1">
               <span
                 class="flex cursor-default items-center gap-[0.55rem] border-2 border-(--nb-border) bg-(--nb-yellow) px-3 py-[0.4rem] shadow-[3px_3px_0_0_var(--nb-shadow)]"
                 style="font-family:var(--font-sans);font-size:0.95rem;font-weight:800"
               >
-                <span class="h-2 w-2 shrink-0 border-2 border-(--nb-border) bg-(--nb-border)"></span>
+                <span
+                  class="h-2 w-2 shrink-0 border-2 border-(--nb-border) bg-(--nb-border)"
+                ></span>
                 404 Overview
               </span>
             </div>
           </section>
 
-          <div class="my-3 border-t-[3px] border-dashed border-(--nb-border)"></div>
+          <div
+            class="my-3 border-t-[3px] border-dashed border-(--nb-border)"
+          ></div>
 
           <section>
             <div class="mb-3 flex items-center justify-between gap-3 px-1">
               <span
                 class="inline-flex items-center border-3 border-(--nb-border) bg-(--nb-pink) px-[0.65rem] py-1 text-white shadow-[3px_3px_0_0_var(--nb-shadow)]"
                 style="font-family:var(--font-display);font-size:0.78rem;font-weight:900;letter-spacing:0.08em;text-transform:uppercase;transform:rotate(1.5deg)"
-              >QUICK LINKS</span>
+                >QUICK LINKS</span
+              >
               <span
                 class="inline-flex h-6 min-w-[1.5rem] items-center justify-center border-3 border-(--nb-border) bg-(--nb-paper) px-2 shadow-[2px_2px_0_0_var(--nb-shadow)]"
                 style="font-family:var(--font-mono);font-size:0.7rem;font-weight:700"
-              >4</span>
+                >4</span
+              >
             </div>
             <div class="space-y-1">
               @for (link of quickLinks; track link.path) {
-                <a
-                  [routerLink]="link.path"
-                  class="flex items-center gap-[0.55rem] border-2 border-transparent px-3 py-[0.4rem] transition-transform hover:translate-x-0.5 hover:bg-(--nb-secondary-background)"
-                  style="font-family:var(--font-sans);font-size:0.95rem;font-weight:600;color:var(--nb-foreground)"
-                >
-                  <span class="h-2 w-2 shrink-0 border-2 border-(--nb-border)"></span>
-                  {{ link.label }}
-                </a>
+              <a
+                [routerLink]="link.path"
+                class="flex items-center gap-[0.55rem] border-2 border-transparent px-3 py-[0.4rem] transition-transform hover:translate-x-0.5 hover:bg-(--nb-secondary-background)"
+                style="font-family:var(--font-sans);font-size:0.95rem;font-weight:600;color:var(--nb-foreground)"
+              >
+                <span
+                  class="h-2 w-2 shrink-0 border-2 border-(--nb-border)"
+                ></span>
+                {{ link.label }}
+              </a>
               }
             </div>
           </section>
 
-          <div class="mt-4 border-4 border-(--nb-border) bg-(--nb-lavender) p-4 shadow-[4px_4px_0_0_var(--nb-shadow)]">
+          <div
+            class="mt-4 border-4 border-(--nb-border) bg-(--nb-lavender) p-4 shadow-[4px_4px_0_0_var(--nb-shadow)]"
+          >
             <span
               class="mb-2 inline-flex items-center border-3 border-(--nb-border) bg-(--nb-mint) px-2 py-0.5 shadow-[2px_2px_0_0_var(--nb-shadow)]"
               style="font-family:var(--font-mono);font-size:0.7rem;font-weight:700;letter-spacing:0.06em;text-transform:uppercase"
-            >TIP</span>
-            <p class="mb-3 text-sm font-semibold leading-snug" style="font-family:var(--font-sans)">
+              >TIP</span
+            >
+            <p
+              class="mb-3 text-sm font-semibold leading-snug"
+              style="font-family:var(--font-sans)"
+            >
               Lost? Our search can help you find what you need.
             </p>
             <a
@@ -91,33 +108,46 @@ import { NbDocsNavbar } from '@ng-brutalism/docs-ui';
           </div>
         </aside>
 
-        <main class="docs-grid-bg min-h-[calc(100vh-8rem)] w-full min-w-0 flex-1 px-5 py-12 lg:ml-80 lg:mr-52 lg:px-8">
+        <main
+          class="docs-grid-bg min-h-[calc(100vh-8rem)] w-full min-w-0 flex-1 px-5 py-12 lg:ml-80 lg:mr-52 lg:px-8"
+        >
           <div class="mx-auto w-full min-w-0 max-w-3xl">
-            <div class="not-found-card relative border-4 border-(--nb-border) bg-(--nb-paper) p-8 shadow-[10px_10px_0_0_var(--nb-shadow)] sm:p-10">
-
+            <div
+              class="not-found-card relative border-4 border-(--nb-border) bg-(--nb-paper) p-8 shadow-[10px_10px_0_0_var(--nb-shadow)] sm:p-10"
+            >
               <div class="grid gap-6 md:grid-cols-[1fr_auto] md:items-center">
                 <div>
                   <span
                     class="mb-4 inline-block border-3 border-(--nb-border) bg-(--nb-lavender) px-3 py-1 shadow-[3px_3px_0_0_var(--nb-shadow)]"
                     style="font-family:var(--font-mono);font-size:0.75rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase"
-                  >UH OH!</span>
+                    >UH OH!</span
+                  >
 
                   <div class="mb-4">
                     <p
                       class="m-0 leading-none uppercase"
                       style="font-family:var(--font-display);font-weight:900;font-size:clamp(5rem,13vw,8.5rem);line-height:0.9;letter-spacing:-0.025em"
-                    >404</p>
+                    >
+                      404
+                    </p>
                     <p
                       class="m-0 uppercase"
                       style="font-family:var(--font-display);font-weight:900;font-size:clamp(2.2rem,6vw,4rem);line-height:0.95;letter-spacing:-0.02em"
-                    >PAGE NOT<br>FOUND</p>
+                    >
+                      PAGE NOT<br />FOUND
+                    </p>
                   </div>
 
-                  <div class="mb-6 h-3 w-20 border-3 border-(--nb-border) bg-(--nb-yellow) shadow-[3px_3px_0_0_var(--nb-shadow)]"></div>
+                  <div
+                    class="mb-6 h-3 w-20 border-3 border-(--nb-border) bg-(--nb-yellow) shadow-[3px_3px_0_0_var(--nb-shadow)]"
+                  ></div>
 
-                  <p class="mb-6 text-base font-semibold leading-relaxed" style="font-family:var(--font-sans)">
-                    The page you're looking for<br>
-                    took a hard left.<br>
+                  <p
+                    class="mb-6 text-base font-semibold leading-relaxed"
+                    style="font-family:var(--font-sans)"
+                  >
+                    The page you're looking for<br />
+                    took a hard left.<br />
                     Let's get you back to the docs.
                   </p>
 
@@ -126,12 +156,14 @@ import { NbDocsNavbar } from '@ng-brutalism/docs-ui';
                       routerLink="/docs/introduction"
                       class="inline-flex items-center border-4 border-(--nb-border) bg-(--nb-yellow) px-5 py-3 font-black uppercase shadow-[5px_5px_0_0_var(--nb-shadow)] transition-transform hover:-translate-y-0.5"
                       style="font-family:var(--font-display);font-size:0.9rem"
-                    >Back to docs</a>
+                      >Back to docs</a
+                    >
                     <a
                       routerLink="/"
                       class="inline-flex items-center border-4 border-(--nb-border) bg-(--nb-paper) px-5 py-3 font-black uppercase shadow-[5px_5px_0_0_var(--nb-shadow)] transition-transform hover:-translate-y-0.5"
                       style="font-family:var(--font-display);font-size:0.9rem"
-                    >Go home</a>
+                      >Go home</a
+                    >
                   </div>
                 </div>
 
@@ -146,24 +178,45 @@ import { NbDocsNavbar } from '@ng-brutalism/docs-ui';
               </div>
 
               <div class="mt-8 grid grid-cols-2 gap-3 sm:grid-cols-4">
-                <div class="nb-stat-tile nb-stat-tile--yellow">
-                  <span class="nb-stat-tile__value">NG</span>
-                  <span class="nb-stat-tile__label">SHARP UI</span>
-                </div>
-                <div class="nb-stat-tile nb-stat-tile--mint">
-                  <span class="nb-stat-tile__value">A11Y</span>
-                  <span class="nb-stat-tile__label">ALWAYS READY</span>
+                <div
+                  nbSurface
+                  tone="yellow"
+                  border="strong"
+                  padding="sm"
+                  layout="stack"
+                  class="items-start"
+                >
+                  <nb-stat value="NG" label="SHARP UI" />
                 </div>
                 <div
-                  class="nb-stat-tile"
-                  style="background:var(--nb-hot)"
+                  nbSurface
+                  tone="mint"
+                  border="strong"
+                  padding="sm"
+                  layout="stack"
+                  class="items-start"
                 >
-                  <span class="nb-stat-tile__value" style="color:#fff">404</span>
-                  <span class="nb-stat-tile__label" style="color:rgba(255,255,255,0.8)">LINK MISSING</span>
+                  <nb-stat value="A11Y" label="ALWAYS READY" />
                 </div>
-                <div class="nb-stat-tile nb-stat-tile--lavender">
-                  <span class="nb-stat-tile__value">DOCS</span>
-                  <span class="nb-stat-tile__label">BACK ON TRACK</span>
+                <div
+                  nbSurface
+                  border="strong"
+                  padding="sm"
+                  layout="stack"
+                  class="items-start"
+                  style="background:var(--nb-hot); color:#fff; --nb-stat-label-fg:rgba(255,255,255,0.8)"
+                >
+                  <nb-stat value="404" label="LINK MISSING" />
+                </div>
+                <div
+                  nbSurface
+                  tone="lavender"
+                  border="strong"
+                  padding="sm"
+                  layout="stack"
+                  class="items-start"
+                >
+                  <nb-stat value="DOCS" label="BACK ON TRACK" />
                 </div>
               </div>
             </div>
@@ -178,21 +231,24 @@ import { NbDocsNavbar } from '@ng-brutalism/docs-ui';
             <span
               class="-rotate-1 inline-flex items-center border-3 border-(--nb-border) bg-(--nb-yellow) px-3 py-1 shadow-[3px_3px_0_0_var(--nb-shadow)]"
               style="font-family:var(--font-display);font-size:0.72rem;font-weight:900;letter-spacing:0.05em;text-transform:uppercase"
-            >ON THIS PAGE</span>
+              >ON THIS PAGE</span
+            >
           </div>
           <nav class="mt-3" aria-label="Page sections">
             <ul class="space-y-2">
               @for (item of tocItems; track item.label) {
-                <li>
-                  <a
-                    [href]="item.href"
-                    class="flex items-center gap-2 text-sm font-semibold leading-snug transition-colors hover:text-(--nb-blue)"
-                    style="font-family:var(--font-sans)"
-                  >
-                    <span class="mt-0.5 h-2 w-2 shrink-0 border-2 border-(--nb-border) bg-(--nb-border)"></span>
-                    {{ item.label }}
-                  </a>
-                </li>
+              <li>
+                <a
+                  [href]="item.href"
+                  class="flex items-center gap-2 text-sm font-semibold leading-snug transition-colors hover:text-(--nb-blue)"
+                  style="font-family:var(--font-sans)"
+                >
+                  <span
+                    class="mt-0.5 h-2 w-2 shrink-0 border-2 border-(--nb-border) bg-(--nb-border)"
+                  ></span>
+                  {{ item.label }}
+                </a>
+              </li>
               }
             </ul>
           </nav>
@@ -239,7 +295,5 @@ export default class NotFoundPage {
     { label: 'Showcase', path: '/showcase/portfolio' },
   ];
 
-  protected readonly tocItems = [
-    { label: '404 Overview', href: '#' },
-  ];
+  protected readonly tocItems = [{ label: '404 Overview', href: '#' }];
 }

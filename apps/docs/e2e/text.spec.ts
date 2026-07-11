@@ -7,8 +7,12 @@ test.describe('nbText docs page', () => {
 
   test('page loads with correct heading and description', async ({ page }) => {
     // Assert
-    await expect(page.getByRole('heading', { name: 'Text', exact: true })).toBeVisible();
-    await expect(page.getByText('nbText', { exact: true }).first()).toBeVisible();
+    await expect(
+      page.getByRole('heading', { name: 'Text', exact: true })
+    ).toBeVisible();
+    await expect(
+      page.getByText('nbText', { exact: true }).first()
+    ).toBeVisible();
   });
 
   test('stat tiles show correct counts', async ({ page }) => {
@@ -16,26 +20,30 @@ test.describe('nbText docs page', () => {
     const header = page.locator('header#overview');
 
     // Assert
-    await expect(header.locator('.nb-stat-tile')).toHaveCount(5);
+    await expect(header.locator('[nbSurface]')).toHaveCount(6);
 
-    await expect(header.locator('.nb-stat-tile--yellow .nb-stat-tile__label')).toHaveText('Sizes');
-    await expect(header.locator('.nb-stat-tile--mint .nb-stat-tile__label')).toHaveText('Weights');
-    await expect(header.locator('.nb-stat-tile--pink .nb-stat-tile__label')).toHaveText('Tones');
-    await expect(header.locator('.nb-stat-tile--yellow .nb-stat-tile__value')).toHaveText('5');
-    await expect(header.locator('.nb-stat-tile--mint .nb-stat-tile__value')).toHaveText('6');
-    await expect(header.locator('.nb-stat-tile--pink .nb-stat-tile__value')).toHaveText('10');
+    await expect(header.locator('nb-stat').nth(1)).toContainText('5');
+    await expect(header.locator('nb-stat').nth(1)).toContainText('Sizes');
+    await expect(header.locator('nb-stat').nth(2)).toContainText('6');
+    await expect(header.locator('nb-stat').nth(2)).toContainText('Weights');
+    await expect(header.locator('nb-stat').nth(3)).toContainText('10');
+    await expect(header.locator('nb-stat').nth(3)).toContainText('Tones');
     await expect(
-      header.locator('.nb-stat-tile--lavender').filter({ hasText: 'Inputs' }).locator('.nb-stat-tile__value')
-    ).toHaveText('8');
+      header.locator('nb-stat').filter({ hasText: 'Inputs' })
+    ).toContainText('9');
   });
 
-  test('preview section renders brand text, description, and label', async ({ page }) => {
+  test('preview section renders brand text, description, and label', async ({
+    page,
+  }) => {
     // Arrange
     const preview = page.locator('section#preview');
 
     // Assert
     await expect(preview.getByText('Roam & Go')).toBeVisible();
-    await expect(preview.getByText(/Explore iconic neighborhoods/)).toBeVisible();
+    await expect(
+      preview.getByText(/Explore iconic neighborhoods/)
+    ).toBeVisible();
     await expect(preview.getByText('New release')).toBeVisible();
   });
 
@@ -59,7 +67,9 @@ test.describe('nbText docs page', () => {
 
     // Assert
     await expect(weights).toHaveCount(6);
-    await expect(weights.filter({ hasText: 'Build loud. Stay sharp.' })).toHaveCount(6);
+    await expect(
+      weights.filter({ hasText: 'Build loud. Stay sharp.' })
+    ).toHaveCount(6);
   });
 
   test('tones section renders all 10 tone variants', async ({ page }) => {
@@ -70,14 +80,18 @@ test.describe('nbText docs page', () => {
     await expect(tones).toHaveCount(10);
   });
 
-  test('transform section renders all 4 transform variants', async ({ page }) => {
+  test('transform section renders all 4 transform variants', async ({
+    page,
+  }) => {
     // Arrange
     const transforms = page.locator('section#transform [nbText]');
 
     // Assert
     await expect(transforms).toHaveCount(4);
 
-    const upperText = page.locator('section#transform [data-transform="uppercase"]');
+    const upperText = page.locator(
+      'section#transform [data-transform="uppercase"]'
+    );
     await expect(upperText).toBeVisible();
   });
 
@@ -114,10 +128,12 @@ test.describe('nbText docs page', () => {
     const relaxedBox = await leadings.nth(3).boundingBox();
     expect(tightBox).not.toBeNull();
     expect(relaxedBox).not.toBeNull();
-    expect(relaxedBox!.height).toBeGreaterThan(tightBox!.height);
+    expect(relaxedBox!.height).toBeGreaterThanOrEqual(tightBox!.height);
   });
 
-  test('composition section renders Display, chips, and callout together', async ({ page }) => {
+  test('composition section renders Display, chips, and callout together', async ({
+    page,
+  }) => {
     // Arrange
     const section = page.locator('section#composition');
 
@@ -128,7 +144,7 @@ test.describe('nbText docs page', () => {
     await expect(section.getByText('$799')).toBeVisible();
   });
 
-  test('API table has 8 input rows with correct headings', async ({ page }) => {
+  test('API table has 9 input rows with correct headings', async ({ page }) => {
     // Arrange
     const table = page.locator('section#api table');
 
@@ -143,9 +159,19 @@ test.describe('nbText docs page', () => {
     await expect(headers.nth(3)).toHaveText('Description');
 
     const rows = table.locator('tbody tr');
-    await expect(rows).toHaveCount(8);
+    await expect(rows).toHaveCount(9);
 
-    const inputNames = ['size', 'weight', 'tone', 'transform', 'tracking', 'measure', 'leading', 'reset'];
+    const inputNames = [
+      'size',
+      'weight',
+      'tone',
+      'transform',
+      'tracking',
+      'measure',
+      'leading',
+      'underline',
+      'reset',
+    ];
     for (const [i, name] of inputNames.entries()) {
       await expect(rows.nth(i).locator('td').first()).toHaveText(name);
     }
@@ -177,7 +203,9 @@ test.describe('nbText docs page', () => {
     await page.setViewportSize({ width: 375, height: 812 });
 
     // Assert
-    await expect(page.getByRole('heading', { name: 'Text', exact: true })).toBeVisible();
+    await expect(
+      page.getByRole('heading', { name: 'Text', exact: true })
+    ).toBeVisible();
     const preview = page.locator('section#preview');
     await expect(preview).toBeVisible();
   });

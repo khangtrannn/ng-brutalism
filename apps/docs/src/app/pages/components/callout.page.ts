@@ -2,13 +2,21 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 import {
   NbCallout,
   NbSeparator,
+  NbStat,
+  NbSurface,
   type NbCalloutLayout,
   type NbCalloutShadow,
   type NbCalloutSize,
   type NbCalloutTone,
 } from '@ng-brutalism/ui';
 
-import { DocsCodeBlock, DocsExample, DocsSourceTile, DocsStatusBadge, DocsTokens } from '@ng-brutalism/docs-ui';
+import {
+  DocsCodeBlock,
+  DocsExample,
+  DocsSourceTile,
+  DocsStatusBadge,
+  DocsTokens,
+} from '@ng-brutalism/docs-ui';
 
 interface CalloutToneDemo {
   readonly value: NbCalloutTone;
@@ -34,6 +42,8 @@ interface CalloutShadowDemo {
 @Component({
   selector: 'docs-callout-page',
   imports: [
+    NbStat,
+    NbSurface,
     DocsCodeBlock,
     DocsExample,
     DocsSourceTile,
@@ -58,17 +68,35 @@ interface CalloutShadowDemo {
 
         <div class="mt-7 flex flex-wrap items-center gap-3">
           <docs-status-badge status="stable" />
-          <div class="nb-stat-tile nb-stat-tile--yellow">
-            <span class="nb-stat-tile__value">14</span>
-            <span class="nb-stat-tile__label">Tones</span>
+          <div
+            nbSurface
+            tone="yellow"
+            border="strong"
+            padding="sm"
+            layout="stack"
+            class="items-start"
+          >
+            <nb-stat value="14" label="Tones" />
           </div>
-          <div class="nb-stat-tile nb-stat-tile--mint">
-            <span class="nb-stat-tile__value">4</span>
-            <span class="nb-stat-tile__label">Sizes</span>
+          <div
+            nbSurface
+            tone="mint"
+            border="strong"
+            padding="sm"
+            layout="stack"
+            class="items-start"
+          >
+            <nb-stat value="4" label="Sizes" />
           </div>
-          <div class="nb-stat-tile nb-stat-tile--pink">
-            <span class="nb-stat-tile__value">3</span>
-            <span class="nb-stat-tile__label">Layouts</span>
+          <div
+            nbSurface
+            tone="pink"
+            border="strong"
+            padding="sm"
+            layout="stack"
+            class="items-start"
+          >
+            <nb-stat value="3" label="Layouts" />
           </div>
 
           <docs-source-tile
@@ -91,12 +119,18 @@ interface CalloutShadowDemo {
           the emphasized value. Compose icons, labels, dividers, and secondary
           text inside the host with normal template markup.
         </p>
-        <docs-code-block class="block mb-5" title="Import" [code]="importCode" />
+        <docs-code-block
+          class="block mb-5"
+          title="Import"
+          [code]="importCode"
+        />
         <docs-code-block title="Template" [code]="defaultExampleCode" />
       </section>
 
       <section id="examples">
-        <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">Examples</h2>
+        <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">
+          Examples
+        </h2>
         <docs-example [code]="examplesCode">
           <div class="grid w-full grid-cols-1 gap-4 p-4 sm:grid-cols-2">
             <div nbCallout tone="yellow" size="xl">$799</div>
@@ -122,12 +156,14 @@ interface CalloutShadowDemo {
       <section id="tones">
         <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">Tones</h2>
         <docs-example [code]="tonesExampleCode">
-          <div class="grid w-full grid-cols-1 gap-3 p-4 sm:grid-cols-2 lg:grid-cols-3">
+          <div
+            class="grid w-full grid-cols-1 gap-3 p-4 sm:grid-cols-2 lg:grid-cols-3"
+          >
             @for (tone of tones; track tone.value) {
-              <div nbCallout [tone]="tone.value" size="md" layout="between">
-                <span>{{ tone.label }}</span>
-                <span>{{ tone.sample }}</span>
-              </div>
+            <div nbCallout [tone]="tone.value" size="md" layout="between">
+              <span>{{ tone.label }}</span>
+              <span>{{ tone.sample }}</span>
+            </div>
             }
           </div>
         </docs-example>
@@ -138,9 +174,9 @@ interface CalloutShadowDemo {
         <docs-example [code]="sizesExampleCode">
           <div class="flex w-full flex-col items-start gap-4 p-4">
             @for (size of sizes; track size.value) {
-              <div nbCallout tone="yellow" [size]="size.value">
-                {{ size.sample }}
-              </div>
+            <div nbCallout tone="yellow" [size]="size.value">
+              {{ size.sample }}
+            </div>
             }
           </div>
         </docs-example>
@@ -151,10 +187,10 @@ interface CalloutShadowDemo {
         <docs-example [code]="layoutsExampleCode">
           <div class="grid w-full grid-cols-1 gap-4 p-4">
             @for (layout of layouts; track layout.value) {
-              <div nbCallout tone="cream" size="md" [layout]="layout.value">
-                <span>{{ layout.label }}</span>
-                <span>EP 42</span>
-              </div>
+            <div nbCallout tone="cream" size="md" [layout]="layout.value">
+              <span>{{ layout.label }}</span>
+              <span>EP 42</span>
+            </div>
             }
           </div>
         </docs-example>
@@ -165,15 +201,15 @@ interface CalloutShadowDemo {
         <docs-example [code]="shadowsExampleCode">
           <div class="grid w-full grid-cols-1 gap-5 p-4 sm:grid-cols-3">
             @for (shadow of shadows; track shadow.value) {
-              <div
-                nbCallout
-                tone="blue"
-                size="md"
-                layout="center"
-                [shadow]="shadow.value"
-              >
-                {{ shadow.label }}
-              </div>
+            <div
+              nbCallout
+              tone="blue"
+              size="md"
+              layout="center"
+              [shadow]="shadow.value"
+            >
+              {{ shadow.label }}
+            </div>
             }
           </div>
         </docs-example>
@@ -182,56 +218,142 @@ interface CalloutShadowDemo {
       <docs-tokens component="callout" />
 
       <section id="accessibility">
-        <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">Accessibility</h2>
+        <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">
+          Accessibility
+        </h2>
         <p class="font-medium">
-          <strong>APG pattern:</strong> N/A - Callout is a static, presentational directive for emphasizing a compact value, not an interactive widget. <strong>Status:</strong> Stable.
+          <strong>APG pattern:</strong> N/A - Callout is a static,
+          presentational directive for emphasizing a compact value, not an
+          interactive widget. <strong>Status:</strong> Stable.
         </p>
       </section>
 
       <section id="api">
         <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">API</h2>
         <div
+          tabindex="0"
           class="overflow-x-auto border-2 border-(--nb-border) bg-nb-surface shadow-[5px_5px_0_0_var(--nb-shadow)]"
         >
           <table class="w-full min-w-180 border-collapse text-left">
             <thead class="bg-nb-secondary text-nb-secondary-fg">
               <tr>
-                <th class="border-b-2 border-r-2 border-(--nb-border) px-4 py-3 font-bold">Input</th>
-                <th class="border-b-2 border-r-2 border-(--nb-border) px-4 py-3 font-bold">Type</th>
-                <th class="border-b-2 border-r-2 border-(--nb-border) px-4 py-3 font-bold">Default</th>
-                <th class="border-b-2 border-(--nb-border) px-4 py-3 font-bold">Description</th>
+                <th
+                  class="border-b-2 border-r-2 border-(--nb-border) px-4 py-3 font-bold"
+                >
+                  Input
+                </th>
+                <th
+                  class="border-b-2 border-r-2 border-(--nb-border) px-4 py-3 font-bold"
+                >
+                  Type
+                </th>
+                <th
+                  class="border-b-2 border-r-2 border-(--nb-border) px-4 py-3 font-bold"
+                >
+                  Default
+                </th>
+                <th class="border-b-2 border-(--nb-border) px-4 py-3 font-bold">
+                  Description
+                </th>
               </tr>
             </thead>
             <tbody class="font-medium">
               <tr class="border-b-2 border-(--nb-border)">
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">tone</td>
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">NbTone</td>
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">'yellow'</td>
+                <td
+                  class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
+                >
+                  tone
+                </td>
+                <td
+                  class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
+                >
+                  NbTone
+                </td>
+                <td
+                  class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
+                >
+                  'yellow'
+                </td>
                 <td class="px-4 py-3">Background and foreground color pair.</td>
               </tr>
               <tr class="border-b-2 border-(--nb-border)">
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">size</td>
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">'sm' | 'md' | 'lg' | 'xl'</td>
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">'md'</td>
-                <td class="px-4 py-3">Height, padding, type size, radius, and border weight preset.</td>
+                <td
+                  class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
+                >
+                  size
+                </td>
+                <td
+                  class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
+                >
+                  'sm' | 'md' | 'lg' | 'xl'
+                </td>
+                <td
+                  class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
+                >
+                  'md'
+                </td>
+                <td class="px-4 py-3">
+                  Height, padding, type size, radius, and border weight preset.
+                </td>
               </tr>
               <tr class="border-b-2 border-(--nb-border)">
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">layout</td>
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">'inline' | 'between' | 'center'</td>
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">'inline'</td>
-                <td class="px-4 py-3">Horizontal alignment for the callout content.</td>
+                <td
+                  class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
+                >
+                  layout
+                </td>
+                <td
+                  class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
+                >
+                  'inline' | 'between' | 'center'
+                </td>
+                <td
+                  class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
+                >
+                  'inline'
+                </td>
+                <td class="px-4 py-3">
+                  Horizontal alignment for the callout content.
+                </td>
               </tr>
               <tr class="border-b-2 border-(--nb-border)">
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">shadow</td>
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">'none' | 'md' | 'hard'</td>
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">'hard'</td>
+                <td
+                  class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
+                >
+                  shadow
+                </td>
+                <td
+                  class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
+                >
+                  'none' | 'md' | 'hard'
+                </td>
+                <td
+                  class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
+                >
+                  'hard'
+                </td>
                 <td class="px-4 py-3">Offset shadow preset.</td>
               </tr>
               <tr>
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">radius</td>
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">'none' | 'sm' | 'md' | 'lg' | 'xl' | 'full'</td>
-                <td class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm">-</td>
-                <td class="px-4 py-3">Corner radius override. Defaults to the <code class="font-mono">size</code>-derived radius when unset.</td>
+                <td
+                  class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
+                >
+                  radius
+                </td>
+                <td
+                  class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
+                >
+                  'none' | 'sm' | 'md' | 'lg' | 'xl' | 'full'
+                </td>
+                <td
+                  class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
+                >
+                  -
+                </td>
+                <td class="px-4 py-3">
+                  Corner radius override. Defaults to the
+                  <code class="font-mono">size</code>-derived radius when unset.
+                </td>
               </tr>
             </tbody>
           </table>

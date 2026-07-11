@@ -1,11 +1,19 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { NbSticker, NbStickerFace } from '@ng-brutalism/ui';
+import { NbSticker, NbStat, NbStickerFace, NbSurface } from '@ng-brutalism/ui';
 
-import { DocsCodeBlock, DocsExample, DocsSourceTile, DocsStatusBadge, DocsTokens } from '@ng-brutalism/docs-ui';
+import {
+  DocsCodeBlock,
+  DocsExample,
+  DocsSourceTile,
+  DocsStatusBadge,
+  DocsTokens,
+} from '@ng-brutalism/docs-ui';
 
 @Component({
   selector: 'docs-sticker-page',
   imports: [
+    NbStat,
+    NbSurface,
     DocsCodeBlock,
     DocsExample,
     DocsSourceTile,
@@ -30,13 +38,25 @@ import { DocsCodeBlock, DocsExample, DocsSourceTile, DocsStatusBadge, DocsTokens
 
         <div class="mt-7 flex flex-wrap items-center gap-3">
           <docs-status-badge status="stable" />
-          <div class="nb-stat-tile nb-stat-tile--yellow">
-            <span class="nb-stat-tile__value">4</span>
-            <span class="nb-stat-tile__label">Shapes</span>
+          <div
+            nbSurface
+            tone="yellow"
+            border="strong"
+            padding="sm"
+            layout="stack"
+            class="items-start"
+          >
+            <nb-stat value="4" label="Shapes" />
           </div>
-          <div class="nb-stat-tile nb-stat-tile--mint">
-            <span class="nb-stat-tile__value">10</span>
-            <span class="nb-stat-tile__label">Tones</span>
+          <div
+            nbSurface
+            tone="mint"
+            border="strong"
+            padding="sm"
+            layout="stack"
+            class="items-start"
+          >
+            <nb-stat value="10" label="Tones" />
           </div>
 
           <docs-source-tile
@@ -49,10 +69,15 @@ import { DocsCodeBlock, DocsExample, DocsSourceTile, DocsStatusBadge, DocsTokens
         <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">Preview</h2>
         <docs-example [code]="defaultExampleCode">
           <div class="flex flex-wrap items-center justify-center gap-9 p-8">
-            <nb-sticker shape="burst" tone="mint" [rotate]="-8">
-              GROW<br>YOUR<br>SELF
+            <nb-sticker shape="burst" tone="mint" [rotate]="-8" decorative>
+              GROW<br />YOUR<br />SELF
             </nb-sticker>
-            <nb-sticker shape="burst-wide" tone="yellow" [rotate]="5">
+            <nb-sticker
+              shape="burst-wide"
+              tone="yellow"
+              [rotate]="5"
+              decorative
+            >
               LIMITED<br />
               DROP
             </nb-sticker>
@@ -77,13 +102,19 @@ import { DocsCodeBlock, DocsExample, DocsSourceTile, DocsStatusBadge, DocsTokens
       <section id="shapes">
         <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">Shapes</h2>
         <docs-example [code]="shapesExampleCode">
-          <div class="flex flex-wrap items-center justify-center gap-x-14 gap-y-8 p-8">
+          <div
+            class="flex flex-wrap items-center justify-center gap-x-14 gap-y-8 p-8"
+          >
             <div class="flex flex-col items-center gap-4">
-              <nb-sticker shape="burst" tone="mint">BURST</nb-sticker>
+              <nb-sticker shape="burst" tone="mint" decorative
+                >BURST</nb-sticker
+              >
               <span class="font-mono text-xs font-bold">burst</span>
             </div>
             <div class="flex flex-col items-center gap-4">
-              <nb-sticker shape="burst-wide" tone="yellow">WIDE</nb-sticker>
+              <nb-sticker shape="burst-wide" tone="yellow" decorative
+                >WIDE</nb-sticker
+              >
               <span class="font-mono text-xs font-bold">burst-wide</span>
             </div>
             <div class="flex flex-col items-center gap-4">
@@ -223,9 +254,9 @@ import { DocsCodeBlock, DocsExample, DocsSourceTile, DocsStatusBadge, DocsTokens
         </h2>
         <docs-example [code]="rotateExampleCode">
           <div class="flex flex-wrap items-center gap-8 p-6">
-            <nb-sticker tone="yellow" [rotate]="-12">-12</nb-sticker>
-            <nb-sticker tone="pink" [rotate]="0">0</nb-sticker>
-            <nb-sticker tone="mint" [rotate]="12">+12</nb-sticker>
+            <nb-sticker tone="yellow" [rotate]="-12" decorative>-12</nb-sticker>
+            <nb-sticker tone="pink" [rotate]="0" decorative>0</nb-sticker>
+            <nb-sticker tone="mint" [rotate]="12" decorative>+12</nb-sticker>
           </div>
         </docs-example>
       </section>
@@ -233,15 +264,20 @@ import { DocsCodeBlock, DocsExample, DocsSourceTile, DocsStatusBadge, DocsTokens
       <docs-tokens component="sticker" />
 
       <section id="accessibility">
-        <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">Accessibility</h2>
+        <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">
+          Accessibility
+        </h2>
         <p class="font-medium">
-          <strong>APG pattern:</strong> N/A - Sticker is a decorative SVG callout graphic, not an interactive widget. <strong>Status:</strong> Stable.
+          <strong>APG pattern:</strong> N/A - Sticker is a decorative SVG
+          callout graphic, not an interactive widget.
+          <strong>Status:</strong> Stable.
         </p>
       </section>
 
       <section id="api">
         <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">API</h2>
         <div
+          tabindex="0"
           class="overflow-x-auto border-2 border-(--nb-border) bg-nb-surface shadow-[5px_5px_0_0_var(--nb-shadow)]"
         >
           <table class="w-full min-w-160 border-collapse text-left">
@@ -295,10 +331,9 @@ import { DocsCodeBlock, DocsExample, DocsSourceTile, DocsStatusBadge, DocsTokens
                 <td
                   class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
                 >
-                  'surface' | 'background' | 'ink' | 'cream' | 'white' |
-                  'black' | 'yellow' | 'pink' | 'mint' | 'lavender' | 'blue'
-                  | 'primary' | 'secondary' | 'accent' | 'success' |
-                  'warning' | 'danger'
+                  'surface' | 'background' | 'ink' | 'cream' | 'white' | 'black'
+                  | 'yellow' | 'pink' | 'mint' | 'lavender' | 'blue' | 'primary'
+                  | 'secondary' | 'accent' | 'success' | 'warning' | 'danger'
                 </td>
                 <td
                   class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
