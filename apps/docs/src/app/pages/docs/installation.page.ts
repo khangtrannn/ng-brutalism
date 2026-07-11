@@ -1,10 +1,11 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { RouterLink } from '@angular/router';
 
 import { DocsCodeBlock, DocsTokens } from '@ng-brutalism/docs-ui';
 
 @Component({
   selector: 'docs-installation-page',
-  imports: [DocsCodeBlock, DocsTokens],
+  imports: [DocsCodeBlock, DocsTokens, RouterLink],
   template: `
     <article>
       <header id="overview" class="relative mb-10 scroll-mt-32">
@@ -23,10 +24,16 @@ import { DocsCodeBlock, DocsTokens } from '@ng-brutalism/docs-ui';
           Prerequisites
         </h2>
         <p class="mb-2 text-base font-medium">
-          The library expects your app to have
-          <strong>Tailwind CSS v4</strong> configured and scanning your project
-          source. The <code class="font-mono text-sm">ng add</code> schematic
-          handles this automatically for Angular CLI apps.
+          The <code class="font-mono text-sm">ng add</code> schematic sets up
+          <strong>Tailwind CSS v4</strong> automatically for Angular CLI apps,
+          which is the fastest path if your app already uses Tailwind or you
+          don't mind adding it.
+          <code class="font-mono text-sm">tailwindcss</code> is an optional
+          peer dependency, though - see
+          <a routerLink="/docs/without-tailwind" class="underline"
+            >Without Tailwind</a
+          >
+          if you'd rather skip it entirely.
         </p>
       </section>
 
@@ -47,7 +54,12 @@ import { DocsCodeBlock, DocsTokens } from '@ng-brutalism/docs-ui';
         </h2>
         <p class="mb-5 text-base font-medium">
           Use manual setup when Tailwind is already managed by your app or when
-          you want to review each change yourself.
+          you want to review each change yourself. Skipping Tailwind
+          altogether? Follow
+          <a routerLink="/docs/without-tailwind" class="underline"
+            >Without Tailwind</a
+          >
+          instead.
         </p>
         <docs-code-block title="Install" [code]="manualInstallCode" />
       </section>
@@ -63,6 +75,14 @@ import { DocsCodeBlock, DocsTokens } from '@ng-brutalism/docs-ui';
           directly only when you need the token sheet by itself.
         </p>
         <docs-code-block title="src/styles.css" [code]="stylesCode" />
+        <p class="mt-5 text-base font-medium">
+          Each component also ships its own stylesheet (e.g.
+          <code class="font-mono text-sm">@ng-brutalism/ui/button.css</code>),
+          so you can import only the components you use instead of the full
+          bundle. The token vocabulary itself - tone, spacing, radius, shadow,
+          and the rest - is importable as TypeScript from
+          <code class="font-mono text-sm">@ng-brutalism/ui/tokens</code>.
+        </p>
       </section>
 
       <section id="theming">
@@ -73,7 +93,11 @@ import { DocsCodeBlock, DocsTokens } from '@ng-brutalism/docs-ui';
           custom properties in your own stylesheet, after the library's
           <code class="font-mono text-sm">theme.css</code> import.
           <code class="font-mono text-sm">provideNgBrutalism()</code> registers
-          library providers and takes no theme config.
+          library providers and takes no theme config. See
+          <a routerLink="/docs/theming" class="underline"
+            >Dark Mode & Theming</a
+          >
+          for the built-in presets and dark-mode status.
         </p>
         <docs-code-block title="app.config.ts" [code]="providerCode" />
         <docs-code-block title="src/styles.css" [code]="themeOverrideCode" />

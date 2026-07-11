@@ -114,7 +114,7 @@ import { DocsCodeBlock } from '@ng-brutalism/docs-ui';
 })
 export default class CustomizationPage {
   protected readonly cssRuleCode = `[data-nb-callout] {
-  border-radius: var(--nb-callout-radius, 0.75rem);
+  border-radius: var(--nb-callout-radius, var(--nb-radius));
 }`;
 
   protected readonly equivalentCode = `<div nbCallout radius="xl">...</div>

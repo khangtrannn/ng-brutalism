@@ -241,18 +241,20 @@ export default class StackAndClusterPage {
     color: string;
     use: string;
   }[] = [
+    { value: 'none', color: 'var(--nb-border)', use: 'No gap' },
     { value: 'xs', color: 'var(--nb-yellow)', use: 'Related items' },
     { value: 'sm', color: 'var(--nb-mint)', use: 'Tight groups' },
     { value: 'md', color: 'var(--nb-pink)', use: 'Card sections' },
     { value: 'lg', color: 'var(--nb-lavender)', use: 'Distinct regions' },
     { value: 'xl', color: 'var(--nb-cream)', use: 'Page sections' },
+    { value: '2xl', color: 'var(--nb-blue)', use: 'Major sections' },
   ];
 
   protected readonly keyInputs = [
     {
       name: 'gap',
       primitive: 'nbStack',
-      description: 'Vertical spacing - xs, sm, md, lg, xl',
+      description: 'Vertical spacing - none, xs, sm, md, lg, xl, 2xl',
     },
     {
       name: 'align',
@@ -272,7 +274,7 @@ export default class StackAndClusterPage {
     {
       name: 'gap',
       primitive: 'nbCluster',
-      description: 'Horizontal spacing - xs, sm, md, lg, xl',
+      description: 'Horizontal spacing - none, xs, sm, md, lg, xl, 2xl',
     },
     {
       name: 'align',
@@ -288,6 +290,16 @@ export default class StackAndClusterPage {
       name: 'wrap',
       primitive: 'nbCluster',
       description: 'Wrapping - wrap (default), nowrap',
+    },
+    {
+      name: 'separator',
+      primitive: 'nbCluster',
+      description: 'Divider between items - none, solid, dashed, thick',
+    },
+    {
+      name: 'padding',
+      primitive: 'nbCluster',
+      description: 'Internal space - none, xs, sm, md, lg, xl',
     },
   ];
 

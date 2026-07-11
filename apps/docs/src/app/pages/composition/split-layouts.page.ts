@@ -249,7 +249,7 @@ export default class SplitLayoutsPage {
     },
     {
       name: 'gap',
-      description: 'Space between the two columns - xs, sm, md, lg, xl',
+      description: 'Space between the two columns - none, xs, sm, md, lg, xl, 2xl',
     },
     {
       name: 'align',
@@ -261,7 +261,8 @@ export default class SplitLayoutsPage {
     },
     {
       name: 'padding',
-      description: 'Inner padding on the split container - xs, sm, md, lg, xl',
+      description:
+        'Inner padding on the split container - none, xs, sm, md, lg, xl',
     },
   ];
 

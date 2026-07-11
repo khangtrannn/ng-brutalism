@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { RouterLink } from '@angular/router';
 import {
   NbButton,
   NbCallout,
@@ -17,6 +18,7 @@ import { DocsExample } from '@ng-brutalism/docs-ui';
 @Component({
   selector: 'docs-composition-common-patterns-page',
   imports: [
+    RouterLink,
     DocsExample,
     NbSurface,
     NbSection,
@@ -46,8 +48,11 @@ import { DocsExample } from '@ng-brutalism/docs-ui';
           Brutalist card shell
         </h2>
         <p class="mb-6 text-base font-medium">
-          The fundamental pattern: Surface wraps, Sections divide, Stack and
-          Cluster handle layout within each region.
+          The header/body/footer shell from
+          <a class="underline" routerLink="/composition/surface-and-section"
+            >Surface & Section</a
+          >, ready to copy - Surface wraps, Sections divide, Stack and Cluster
+          handle layout within each region.
         </p>
 
         <docs-example [code]="cardShellCode">

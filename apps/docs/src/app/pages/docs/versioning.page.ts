@@ -69,7 +69,10 @@ import { NbCallout } from '@ng-brutalism/ui';
           identified against mature component libraries: release blockers and CI
           package-smoke coverage; optional-Tailwind packaging and a public
           <code class="font-mono">/tokens</code> entry point with an API guard;
-          the full 4-layer token model with zero remaining color literals; and
+          the full three-tier token model (raw palette →
+          <code class="font-mono">--nb-tone-*</code> slots → per-component
+          <code class="font-mono">--nb-&lt;component&gt;-*</code> hooks) with zero
+          remaining color literals; and
           <code class="font-mono">ControlValueAccessor</code> support, APG
           keyboard completion, and <code class="font-mono">vitest-axe</code>
           coverage across the select/accordion/dialog/field primitives. Rename

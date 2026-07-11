@@ -360,17 +360,17 @@ export default class SurfaceAndSectionPage {
     {
       name: 'radius',
       primitive: 'nbSurface',
-      description: 'Corner shape - none, xs, sm, md, lg, xl, full',
+      description: 'Corner shape - none, sm, md, lg, xl, full',
     },
     {
       name: 'shadow',
       primitive: 'nbSurface',
-      description: 'Brutalist offset depth - none, sm, default, hard, heavy',
+      description: 'Brutalist offset depth - none, sm, md, hard, heavy',
     },
     {
       name: 'border',
       primitive: 'nbSurface',
-      description: 'Outline strength - none, thin, default, strong, thick',
+      description: 'Outline strength - none, thin, md, strong, thick',
     },
     {
       name: 'clip',

@@ -59,11 +59,10 @@ import { DocsCodeBlock } from '@ng-brutalism/docs-ui';
             value into the selected option.
           </li>
           <li>
-            <code class="font-mono">onChange</code>/<code class="font-mono"
-              >onTouched</code
-            >
-            fire on close - including the outside-click close path, not just an
-            explicit selection.
+            <code class="font-mono">onTouched</code> fires on any open-to-closed
+            transition - including the outside-click close path, not just an
+            explicit selection. <code class="font-mono">onChange</code> fires
+            only when an option is actually selected.
           </li>
           <li>
             <code class="font-mono">setDisabledState</code> merges with the

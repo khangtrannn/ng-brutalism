@@ -324,21 +324,20 @@ import { DocsCodeBlock } from '@ng-brutalism/docs-ui';
           Composition system
         </h2>
         <p class="mb-5 text-base font-medium">
-          v0.2.0 introduces a stronger composition system for building loud,
-          token-driven, Angular-first brutalist UIs. Small primitives that lock
-          together like LEGO - each primitive owns one job.
-        </p>
-        <p class="mb-5 text-base font-medium">
-          <code class="font-mono">nbSurface</code> creates the panel.
-          <code class="font-mono">nbSection</code> creates regions inside the
-          panel. <code class="font-mono">nbStack</code> controls vertical
-          rhythm. <code class="font-mono">nbCluster</code> controls horizontal
-          wrapping groups. <code class="font-mono">nbSplit</code> creates
-          main/aside layouts. Layer in <code class="font-mono">nbButton</code>,
-          <code class="font-mono">nbChip</code>,
-          <code class="font-mono">nbText</code>, and
-          <code class="font-mono">nbDisplay</code> to build complete product
-          UIs.
+          ng-brutalism ships a composition system for building loud,
+          token-driven, Angular-first brutalist UIs: small primitives that
+          lock together like LEGO, each owning one job - see
+          <a routerLink="/composition/overview" class="underline"
+            >Composition Overview</a
+          >
+          for the full mental model. The example below layers
+          <code class="font-mono">nbSurface</code>,
+          <code class="font-mono">nbSection</code>,
+          <code class="font-mono">nbStack</code>, and
+          <code class="font-mono">nbCluster</code> with
+          <code class="font-mono">nbButton</code>,
+          <code class="font-mono">nbChip</code>, and
+          <code class="font-mono">nbText</code> to build a complete UI.
         </p>
         <docs-code-block title="Composition example" [code]="compositionCode" />
 
@@ -392,7 +391,7 @@ export class ShipButton {}`;
   <header nbSection padding="lg" divider="bottom">
     <div nbCluster gap="sm" align="center" justify="between">
       <h2 nbTitle>Launch checklist</h2>
-      <span nbChip tone="yellow">v0.2.0</span>
+      <span nbChip tone="yellow">On track</span>
     </div>
   </header>
 

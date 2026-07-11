@@ -1,11 +1,12 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { RouterLink } from '@angular/router';
 import { NbCallout } from '@ng-brutalism/ui';
 
 import { DocsCodeBlock } from '@ng-brutalism/docs-ui';
 
 @Component({
   selector: 'docs-without-tailwind-page',
-  imports: [DocsCodeBlock, NbCallout],
+  imports: [DocsCodeBlock, NbCallout, RouterLink],
   template: `
     <article>
       <header id="overview" class="relative mb-10 scroll-mt-32">
@@ -38,10 +39,10 @@ import { DocsCodeBlock } from '@ng-brutalism/docs-ui';
         </p>
         <div nbCallout tone="mint" size="sm">
           <p class="normal-case">
-            Verified in CI: a plain
-            <code class="font-mono">npm install</code> of the published tarball
-            with no <code class="font-mono">tailwindcss</code>
-            package present produces no unmet-peer-dependency warning.
+            <code class="font-mono">tailwindcss</code> is marked
+            <code class="font-mono">optional</code> in the package's
+            <code class="font-mono">peerDependenciesMeta</code>, so installing
+            without it produces no unmet-peer-dependency warning.
           </p>
         </div>
       </section>
@@ -51,19 +52,24 @@ import { DocsCodeBlock } from '@ng-brutalism/docs-ui';
         <p class="mb-4 font-medium">
           Skip the <code class="font-mono">ng add</code> schematic - it assumes
           Tailwind because most consumers want it for their <em>own</em> app
-          code, not because the library needs it. Install the package directly
-          and import the stylesheet:
+          code, not because the library needs it. Follow the
+          <a routerLink="/docs/installation" class="underline"
+            >manual install steps</a
+          >
+          from Installation, but import
+          <code class="font-mono">@ng-brutalism/ui/styles.css</code> on its
+          own - no
+          <code class="font-mono">@import "tailwindcss"</code> line needed:
         </p>
-        <docs-code-block title="Install" [code]="installCode" />
-        <docs-code-block
-          class="mt-5 block"
-          title="src/styles.css"
-          [code]="stylesCode"
-        />
+        <docs-code-block title="src/styles.css" [code]="stylesCode" />
         <p class="mt-4 font-medium">
           <code class="font-mono">provideNgBrutalism()</code> still needs to be
           registered - it's unrelated to styling, it wires up library providers
-          like <code class="font-mono">NbIdGenerator</code>.
+          like <code class="font-mono">NbIdGenerator</code>. If you only use a
+          handful of components, importing their individual stylesheets (e.g.
+          <code class="font-mono">@ng-brutalism/ui/button.css</code>) instead
+          of the full <code class="font-mono">styles.css</code> bundle keeps
+          the CSS payload smaller.
         </p>
       </section>
 
@@ -86,9 +92,5 @@ import { DocsCodeBlock } from '@ng-brutalism/docs-ui';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export default class WithoutTailwindPage {
-  protected readonly installCode = `npm install @ng-brutalism/ui
-# or
-pnpm add @ng-brutalism/ui`;
-
   protected readonly stylesCode = `@import '@ng-brutalism/ui/styles.css';`;
 }

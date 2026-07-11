@@ -68,10 +68,11 @@ import { NbButton, NbStat, NbSurface } from '@ng-brutalism/ui';
           Why build it for Angular?
         </h2>
         <p class="mb-4 text-base font-medium">
-          Angular has excellent application primitives, especially in modern
-          versions with standalone components, signals, and zoneless-friendly
-          patterns. Ng Brutalism is built to fit that world directly, with APIs
-          and interaction patterns that feel natural in Angular applications.
+          Angular has a strong component model, and Ng Brutalism is built to
+          fit it directly rather than being ported from another framework's
+          conventions - directive-first APIs and interaction patterns that
+          feel native to Angular applications. See the next question for the
+          specific modern-Angular features it targets.
         </p>
         <p class="text-base font-medium">
           Each component can be imported directly into the Angular component
@@ -112,8 +113,8 @@ import { NbButton, NbStat, NbSurface } from '@ng-brutalism/ui';
 
       <section id="library-comparison">
         <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">
-          How is it different from Angular Material, PrimeNG, Taiga UI, or
-          Spartan?
+          How is it different from Angular Material, PrimeNG, or other Angular
+          UI libraries?
         </h2>
         <div class="grid gap-4 md:grid-cols-2">
           <div
@@ -176,7 +177,7 @@ import { NbButton, NbStat, NbSurface } from '@ng-brutalism/ui';
           What components are included?
         </h2>
         <p class="mb-5 text-base font-medium">
-          v0.2.0 ships a full primitive composition system grouped by role.
+          Every shipped component, grouped by role.
         </p>
         <div class="space-y-5">
           @for (group of componentGroups; track group.label) {
@@ -266,6 +267,12 @@ export default class FaqPage {
           summary: 'Horizontal groups',
         },
         { label: 'Split', path: '/components/split', summary: 'Main + aside' },
+        { label: 'Card', path: '/components/card', summary: 'Ready-made shell' },
+        {
+          label: 'Separator',
+          path: '/components/separator',
+          summary: 'Visual dividers',
+        },
       ],
     },
     {
@@ -293,6 +300,11 @@ export default class FaqPage {
           summary: 'Section headings',
         },
         { label: 'Display', path: '/components/display', summary: 'Hero text' },
+        {
+          label: 'Stat',
+          path: '/components/stat',
+          summary: 'Value + label pairs',
+        },
       ],
     },
     {
@@ -315,6 +327,11 @@ export default class FaqPage {
           label: 'Input Group',
           path: '/components/input-group',
           summary: 'Prefix and suffix',
+        },
+        {
+          label: 'Field',
+          path: '/components/field',
+          summary: 'Label + control linking',
         },
       ],
     },
@@ -341,6 +358,11 @@ export default class FaqPage {
           label: 'Media Item',
           path: '/components/media-item',
           summary: 'Icon + label rows',
+        },
+        {
+          label: 'Image Card',
+          path: '/components/image-card',
+          summary: 'Image-first cards',
         },
       ],
     },
@@ -369,6 +391,11 @@ export default class FaqPage {
           label: 'Progress',
           path: '/components/progress',
           summary: 'Completion bars',
+        },
+        {
+          label: 'Halftone',
+          path: '/components/halftone',
+          summary: 'Decorative dot pattern',
         },
       ],
     },

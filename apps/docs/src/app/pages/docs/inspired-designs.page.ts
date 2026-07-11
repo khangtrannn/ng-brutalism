@@ -117,6 +117,13 @@ export default class InspiredDesignsPage {
       th: 450,
     },
     {
+      src: 'job-card-senior-angular-engineer.png',
+      thumb: 'job-card-senior-angular-engineer.webp',
+      alt: 'Job card – Senior Angular Engineer',
+      tw: 360,
+      th: 450,
+    },
+    {
       src: 'listing-card-sunlit-loft.png',
       thumb: 'listing-card-sunlit-loft.webp',
       alt: 'Listing card – Sunlit loft',
