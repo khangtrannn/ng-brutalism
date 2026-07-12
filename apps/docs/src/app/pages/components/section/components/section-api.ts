@@ -157,8 +157,8 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
                 false
               </td>
               <td class="px-4 py-3">
-                Pulls the section out to its parent's edges via negative
-                inline margins. Escape hatch for advanced card layouts.
+                Pulls the section out to its parent's edges via negative inline
+                margins. Escape hatch for advanced card layouts.
               </td>
             </tr>
           </tbody>

@@ -90,8 +90,8 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
                 'current'
               </td>
               <td class="px-4 py-3">
-                Color tone. <code class="font-mono">current</code> inherits
-                the parent CSS color. Only applies in mask mode.
+                Color tone. <code class="font-mono">current</code> inherits the
+                parent CSS color. Only applies in mask mode.
               </td>
             </tr>
             <tr class="border-b-2 border-(--nb-border)">
@@ -136,8 +136,7 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
               <td class="px-4 py-3">
                 Marks the icon as purely decorative (<code class="font-mono"
                   >aria-hidden="true"</code
-                >). Use when the icon adds no information beyond adjacent
-                text.
+                >). Use when the icon adds no information beyond adjacent text.
               </td>
             </tr>
             <tr>

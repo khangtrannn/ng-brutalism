@@ -18,9 +18,9 @@ import { DocsExample } from '@ng-brutalism/docs-ui';
         Composition
       </h2>
       <p class="mb-4 font-medium">
-        Because <code class="font-mono">nbText</code> is a directive it
-        composes with other directives on the same element and works naturally
-        inside any layout primitive.
+        Because <code class="font-mono">nbText</code> is a directive it composes
+        with other directives on the same element and works naturally inside any
+        layout primitive.
       </p>
       <docs-example [code]="compositionCode">
         <div class="p-6 w-full" nbStack gap="lg">
@@ -68,13 +68,7 @@ import { DocsExample } from '@ng-brutalism/docs-ui';
             </span>
           </div>
 
-          <div
-            nbCallout
-            tone="yellow"
-            size="lg"
-            layout="between"
-            shadow="hard"
-          >
+          <div nbCallout tone="yellow" size="lg" layout="between" shadow="hard">
             <div nbStack gap="none">
               <span
                 nbText

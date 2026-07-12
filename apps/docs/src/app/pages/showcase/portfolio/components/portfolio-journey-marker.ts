@@ -13,5 +13,5 @@ const MARKER_SVG = `
 `;
 
 export const PORTFOLIO_JOURNEY_MARKER_URL = `data:image/svg+xml;charset=utf-8,${encodeURIComponent(
-  MARKER_SVG
+  MARKER_SVG,
 )}`;

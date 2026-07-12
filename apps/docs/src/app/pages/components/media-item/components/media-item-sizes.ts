@@ -17,15 +17,15 @@ interface SizeDemo {
       <docs-example [code]="sizesExampleCode">
         <div class="flex flex-col gap-4 p-4">
           @for (size of sizes; track size.value) {
-          <nb-media-item
-            variant="boxed"
-            [size]="size.value"
-            tone="cream"
-            icon="/icons/baggage.png"
-            iconAlt="Baggage"
-            [title]="size.label + ' - Checked Baggage'"
-            description="Up to 23kg included"
-          />
+            <nb-media-item
+              variant="boxed"
+              [size]="size.value"
+              tone="cream"
+              icon="/icons/baggage.png"
+              iconAlt="Baggage"
+              [title]="size.label + ' - Checked Baggage'"
+              description="Up to 23kg included"
+            />
           }
         </div>
       </docs-example>

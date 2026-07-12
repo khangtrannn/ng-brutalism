@@ -10,9 +10,9 @@ import { DocsExample } from '@ng-brutalism/docs-ui';
     <section id="clip">
       <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">Clip</h2>
       <p class="mb-4 font-medium">
-        Use the boolean <code class="font-mono">clip</code> input when a
-        surface has colored bands, media, or decorative children that should
-        respect the surface radius.
+        Use the boolean <code class="font-mono">clip</code> input when a surface
+        has colored bands, media, or decorative children that should respect the
+        surface radius.
       </p>
       <docs-example [code]="clipExampleCode">
         <article

@@ -9,18 +9,13 @@ import { DocsCodeBlock } from '@ng-brutalism/docs-ui';
     <section id="usage">
       <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">Usage</h2>
       <p class="mb-4 font-medium">
-        Add <code class="font-mono">nbCluster</code> to the parent that owns
-        the inline group. Use <code class="font-mono">gap</code> for spacing,
+        Add <code class="font-mono">nbCluster</code> to the parent that owns the
+        inline group. Use <code class="font-mono">gap</code> for spacing,
         <code class="font-mono">align</code> for cross-axis alignment,
         <code class="font-mono">justify</code> for distribution, and
-        <code class="font-mono">wrap</code> when a row should stay on one
-        line.
+        <code class="font-mono">wrap</code> when a row should stay on one line.
       </p>
-      <docs-code-block
-        class="block mb-5"
-        title="Import"
-        [code]="importCode"
-      />
+      <docs-code-block class="block mb-5" title="Import" [code]="importCode" />
       <docs-code-block title="Template" [code]="defaultExampleCode" />
     </section>
   `,

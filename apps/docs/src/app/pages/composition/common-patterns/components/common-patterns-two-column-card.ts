@@ -12,7 +12,15 @@ import { DocsExample } from '@ng-brutalism/docs-ui';
 
 @Component({
   selector: 'docs-composition-common-patterns-two-column-card',
-  imports: [DocsExample, NbSurface, NbSection, NbSplit, NbStack, NbDisplay, NbText],
+  imports: [
+    DocsExample,
+    NbSurface,
+    NbSection,
+    NbSplit,
+    NbStack,
+    NbDisplay,
+    NbText,
+  ],
   template: `
     <section id="two-column-card" class="scroll-mt-32">
       <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">

@@ -15,11 +15,7 @@ import { DocsCodeBlock } from '@ng-brutalism/docs-ui';
         <code class="font-mono">justify</code> when the stack has a fixed
         height.
       </p>
-      <docs-code-block
-        class="block mb-5"
-        title="Import"
-        [code]="importCode"
-      />
+      <docs-code-block class="block mb-5" title="Import" [code]="importCode" />
       <docs-code-block title="Template" [code]="defaultExampleCode" />
     </section>
   `,

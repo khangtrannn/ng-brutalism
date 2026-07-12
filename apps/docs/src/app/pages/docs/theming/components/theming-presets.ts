@@ -10,11 +10,11 @@ import { DocsCodeBlock } from '@ng-brutalism/docs-ui';
         Built-in presets
       </h2>
       <p class="mb-5 font-medium">
-        Two alternative theme sheets ship alongside the default palette.
-        Import one <strong>after</strong>
+        Two alternative theme sheets ship alongside the default palette. Import
+        one <strong>after</strong>
         <code class="font-mono">@ng-brutalism/ui/theme.css</code> (or after
-        <code class="font-mono">styles.css</code>, which already includes it)
-        so its overrides win the cascade.
+        <code class="font-mono">styles.css</code>, which already includes it) so
+        its overrides win the cascade.
       </p>
       <docs-code-block title="src/styles.css" [code]="presetImportCode" />
 

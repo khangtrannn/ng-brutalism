@@ -11,8 +11,8 @@ import { RouterLink } from '@angular/router';
       </h2>
       <p class="text-base font-medium">
         No - <code class="font-mono text-sm">tailwindcss</code> is an optional
-        peer dependency. Component styling ships as a static, self-contained
-        CSS file that needs no Tailwind processing to render correctly. The
+        peer dependency. Component styling ships as a static, self-contained CSS
+        file that needs no Tailwind processing to render correctly. The
         <code class="font-mono text-sm">ng add</code>
         schematic sets up Tailwind CSS v4 by default as a convenience for your
         own app code, but it isn't required by the library itself - see

@@ -22,7 +22,7 @@ describe('docs SEO metadata', () => {
   it('keeps docs introduction canonicalized to its own URL', () => {
     // Assert
     expect(getDocsPageSeo('/docs/introduction').canonicalUrl).toBe(
-      'https://ngbrutalism.khangtran.dev/docs/introduction/'
+      'https://ngbrutalism.khangtran.dev/docs/introduction/',
     );
   });
 
@@ -66,7 +66,7 @@ describe('docs SEO metadata', () => {
   it('marks unknown routes noindex so 404-style pages do not pollute search', () => {
     // Assert
     expect(
-      getDocsPageSeo('/missing/launch-page?utm_source=test')
+      getDocsPageSeo('/missing/launch-page?utm_source=test'),
     ).toMatchObject({
       title: 'Launch Page | Ng Brutalism',
       canonicalUrl: 'https://ngbrutalism.khangtran.dev/missing/launch-page/',

@@ -32,9 +32,9 @@ import { NbCallout, NbStack } from '@ng-brutalism/ui';
           matching <code class="font-mono">id</code> unless you supply one.
         </div>
         <div nbCallout tone="yellow" size="sm">
-          <strong>Description + error linking</strong> - the description's id
-          is in <code class="font-mono">aria-describedby</code> immediately;
-          the error's id is appended only once the control is both touched and
+          <strong>Description + error linking</strong> - the description's id is
+          in <code class="font-mono">aria-describedby</code> immediately; the
+          error's id is appended only once the control is both touched and
           invalid, and <code class="font-mono">aria-invalid</code>
           flips at the same moment.
         </div>
@@ -42,8 +42,8 @@ import { NbCallout, NbStack } from '@ng-brutalism/ui';
           <strong>Required</strong> -
           <code class="font-mono">aria-required</code> is derived from a
           <code class="font-mono">Validators.required</code>
-          (or equivalent) validator on the bound control, so it can't drift
-          from the real validation rules.
+          (or equivalent) validator on the bound control, so it can't drift from
+          the real validation rules.
         </div>
       </div>
       <p class="text-sm opacity-70">

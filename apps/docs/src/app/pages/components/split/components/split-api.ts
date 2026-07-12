@@ -70,9 +70,7 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
               >
                 'lg'
               </td>
-              <td class="px-4 py-3">
-                Spacing between the two split regions.
-              </td>
+              <td class="px-4 py-3">Spacing between the two split regions.</td>
             </tr>
             <tr class="border-b-2 border-(--nb-border)">
               <td
@@ -90,9 +88,7 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
               >
                 'none'
               </td>
-              <td class="px-4 py-3">
-                Inner padding for the split container.
-              </td>
+              <td class="px-4 py-3">Inner padding for the split container.</td>
             </tr>
             <tr class="border-b-2 border-(--nb-border)">
               <td

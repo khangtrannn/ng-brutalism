@@ -9,8 +9,7 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
       </h2>
       <p class="font-medium">
         <strong>APG pattern:</strong> N/A - Badge is a static, presentational
-        status chip, not an interactive widget.
-        <strong>Status:</strong> Stable.
+        status chip, not an interactive widget. <strong>Status:</strong> Stable.
       </p>
     </section>
   `,

@@ -17,18 +17,18 @@ interface IconSizeDemo {
       <docs-example [code]="sizesCode">
         <div class="flex flex-wrap items-end gap-6 p-6">
           @for (s of sizes; track s.value) {
-          <div class="flex flex-col items-center gap-2">
-            <span
-              nbIcon
-              src="/tokyo-city-escape/nb-plane-fill.svg"
-              [size]="s.value"
-              decorative
-            ></span>
-            <span class="font-mono text-xs font-bold opacity-50">{{
-              s.value
-            }}</span>
-            <span class="font-mono text-xs opacity-40">{{ s.px }}</span>
-          </div>
+            <div class="flex flex-col items-center gap-2">
+              <span
+                nbIcon
+                src="/tokyo-city-escape/nb-plane-fill.svg"
+                [size]="s.value"
+                decorative
+              ></span>
+              <span class="font-mono text-xs font-bold opacity-50">{{
+                s.value
+              }}</span>
+              <span class="font-mono text-xs opacity-40">{{ s.px }}</span>
+            </div>
           }
         </div>
       </docs-example>

@@ -21,8 +21,8 @@ import { DocsExample } from '@ng-brutalism/docs-ui';
       </h2>
       <p class="mb-4 font-medium">
         <code class="font-mono">nb-field-error</code> stays hidden until the
-        control is both touched and invalid - so validation errors never
-        appear before the user has had a chance to interact with the field.
+        control is both touched and invalid - so validation errors never appear
+        before the user has had a chance to interact with the field.
       </p>
       <docs-example [code]="invalidExampleCode">
         <nb-field class="flex max-w-sm flex-col gap-2">

@@ -30,9 +30,7 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
           </thead>
           <tbody class="font-medium">
             <tr>
-              <td
-                class="border-b-2 border-r-2 border-(--nb-border) px-4 py-3"
-              >
+              <td class="border-b-2 border-r-2 border-(--nb-border) px-4 py-3">
                 tone
               </td>
               <td
@@ -47,9 +45,7 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
               </td>
             </tr>
             <tr>
-              <td
-                class="border-b-2 border-r-2 border-(--nb-border) px-4 py-3"
-              >
+              <td class="border-b-2 border-r-2 border-(--nb-border) px-4 py-3">
                 shadow
               </td>
               <td
@@ -64,9 +60,7 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
               </td>
             </tr>
             <tr>
-              <td
-                class="border-b-2 border-r-2 border-(--nb-border) px-4 py-3"
-              >
+              <td class="border-b-2 border-r-2 border-(--nb-border) px-4 py-3">
                 press
               </td>
               <td
@@ -81,9 +75,7 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
               </td>
             </tr>
             <tr>
-              <td
-                class="border-b-2 border-r-2 border-(--nb-border) px-4 py-3"
-              >
+              <td class="border-b-2 border-r-2 border-(--nb-border) px-4 py-3">
                 size
               </td>
               <td
@@ -98,9 +90,7 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
               </td>
             </tr>
             <tr>
-              <td
-                class="border-b-2 border-r-2 border-(--nb-border) px-4 py-3"
-              >
+              <td class="border-b-2 border-r-2 border-(--nb-border) px-4 py-3">
                 border
               </td>
               <td
@@ -115,9 +105,7 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
               </td>
             </tr>
             <tr>
-              <td
-                class="border-b-2 border-r-2 border-(--nb-border) px-4 py-3"
-              >
+              <td class="border-b-2 border-r-2 border-(--nb-border) px-4 py-3">
                 radius
               </td>
               <td
@@ -171,9 +159,7 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
           </thead>
           <tbody class="font-medium">
             <tr>
-              <td
-                class="border-b-2 border-r-2 border-(--nb-border) px-4 py-3"
-              >
+              <td class="border-b-2 border-r-2 border-(--nb-border) px-4 py-3">
                 size
               </td>
               <td
@@ -188,9 +174,7 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
               </td>
             </tr>
             <tr>
-              <td
-                class="border-b-2 border-r-2 border-(--nb-border) px-4 py-3"
-              >
+              <td class="border-b-2 border-r-2 border-(--nb-border) px-4 py-3">
                 shape
               </td>
               <td
@@ -205,9 +189,7 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
               </td>
             </tr>
             <tr>
-              <td
-                class="border-b-2 border-r-2 border-(--nb-border) px-4 py-3"
-              >
+              <td class="border-b-2 border-r-2 border-(--nb-border) px-4 py-3">
                 tone
               </td>
               <td
@@ -222,9 +204,7 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
               </td>
             </tr>
             <tr>
-              <td
-                class="border-b-2 border-r-2 border-(--nb-border) px-4 py-3"
-              >
+              <td class="border-b-2 border-r-2 border-(--nb-border) px-4 py-3">
                 push
               </td>
               <td

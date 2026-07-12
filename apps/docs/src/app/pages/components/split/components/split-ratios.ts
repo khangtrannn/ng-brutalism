@@ -17,18 +17,18 @@ interface SplitRatioDemo {
       <docs-example [code]="ratiosExampleCode">
         <div class="grid w-full grid-cols-1 gap-4 p-4">
           @for (ratio of ratios; track ratio.value) {
-          <div nbSurface shadow="sm" class="p-3">
-            <div nbSplit [ratio]="ratio.value" gap="sm" collapse="none">
-              <span
-                class="border-2 border-(--nb-border) bg-(--nb-yellow) px-3 py-4 text-center font-mono text-xs font-black uppercase"
-                >{{ ratio.label }} main</span
-              >
-              <span
-                class="border-2 border-(--nb-border) bg-(--nb-mint) px-3 py-4 text-center font-mono text-xs font-black uppercase"
-                >Aside</span
-              >
+            <div nbSurface shadow="sm" class="p-3">
+              <div nbSplit [ratio]="ratio.value" gap="sm" collapse="none">
+                <span
+                  class="border-2 border-(--nb-border) bg-(--nb-yellow) px-3 py-4 text-center font-mono text-xs font-black uppercase"
+                  >{{ ratio.label }} main</span
+                >
+                <span
+                  class="border-2 border-(--nb-border) bg-(--nb-mint) px-3 py-4 text-center font-mono text-xs font-black uppercase"
+                  >Aside</span
+                >
+              </div>
             </div>
-          </div>
           }
         </div>
       </docs-example>

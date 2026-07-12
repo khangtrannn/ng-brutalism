@@ -54,10 +54,7 @@ function extractHeadings(contentEl: Element): readonly TocHeading[] {
       }
 
       @for (heading of headings(); track heading.id) {
-        <div
-          class="toc__item"
-          [class.toc__item--sub]="heading.level === 3"
-        >
+        <div class="toc__item" [class.toc__item--sub]="heading.level === 3">
           <span class="toc__marker" aria-hidden="true"></span>
           <span class="toc__text">{{ heading.text }}</span>
         </div>

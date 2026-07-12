@@ -10,8 +10,8 @@ import { DocsExample } from '@ng-brutalism/docs-ui';
     <section id="modes">
       <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">Modes</h2>
       <p class="mb-4 font-medium">
-        <code class="font-mono">mode="mask"</code> (default) applies the SVG
-        as a CSS mask and paints it with the active tone color - ideal for
+        <code class="font-mono">mode="mask"</code> (default) applies the SVG as
+        a CSS mask and paints it with the active tone color - ideal for
         monochrome SVG icons that should follow the theme.
         <code class="font-mono">mode="image"</code> renders the asset as a
         background image and preserves its original colors - use this for

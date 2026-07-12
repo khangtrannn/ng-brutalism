@@ -11,8 +11,8 @@ import { DocsCodeBlock } from '@ng-brutalism/docs-ui';
       <h2 data-docs-heading class="text-2xl font-bold">Customization</h2>
       <p class="text-base font-medium">
         Use public inputs first. Reach for CSS custom properties when presets
-        are not enough. Keep overrides local so they only affect the element
-        and its descendants.
+        are not enough. Keep overrides local so they only affect the element and
+        its descendants.
       </p>
       <docs-code-block
         title="CSS variable override"

@@ -22,28 +22,28 @@ interface StackSeparatorDemo {
         Separators
       </h2>
       <p class="mb-4 font-medium">
-        Use <code class="font-mono">separator</code> for simple separated
-        lists. The separator padding follows the stack gap.
+        Use <code class="font-mono">separator</code> for simple separated lists.
+        The separator padding follows the stack gap.
       </p>
       <docs-example [code]="separatorExampleCode">
         <div class="grid w-full grid-cols-1 gap-4 p-4 md:grid-cols-2">
           @for (separator of separators; track separator.value) {
-          <div nbSurface tone="yellow" radius="lg" shadow="hard" class="p-4">
-            <div nbStack gap="md" [separator]="separator.value">
-              <nb-media-item
-                icon="/tokyo-city-escape/central-locations.png"
-                title="Central Locations"
-              />
-              <nb-media-item
-                icon="/tokyo-city-escape/guided-experiences.png"
-                title="Guided Experiences"
-              />
-              <nb-media-item
-                icon="/tokyo-city-escape/24-7-support.png"
-                title="24/7 Support"
-              />
+            <div nbSurface tone="yellow" radius="lg" shadow="hard" class="p-4">
+              <div nbStack gap="md" [separator]="separator.value">
+                <nb-media-item
+                  icon="/tokyo-city-escape/central-locations.png"
+                  title="Central Locations"
+                />
+                <nb-media-item
+                  icon="/tokyo-city-escape/guided-experiences.png"
+                  title="Guided Experiences"
+                />
+                <nb-media-item
+                  icon="/tokyo-city-escape/24-7-support.png"
+                  title="24/7 Support"
+                />
+              </div>
             </div>
-          </div>
           }
         </div>
       </docs-example>

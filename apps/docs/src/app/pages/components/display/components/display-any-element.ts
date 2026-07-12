@@ -12,8 +12,8 @@ import { DocsExample } from '@ng-brutalism/docs-ui';
         Any Element
       </h2>
       <p class="mb-4 font-medium">
-        <code class="font-mono">nbDisplay</code> is presentational - apply it
-        to a <code class="font-mono">span</code>,
+        <code class="font-mono">nbDisplay</code> is presentational - apply it to
+        a <code class="font-mono">span</code>,
         <code class="font-mono">div</code>, or anything else when display type
         isn't a heading (stats, prices, badges). Pick the element for its
         semantics, not its size.

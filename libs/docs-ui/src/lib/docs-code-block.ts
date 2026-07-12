@@ -84,9 +84,15 @@ function inferLanguage(title: string, code: string): HighlightLanguage {
           class="flex h-11 items-center gap-2 border-b-2 border-white/20 bg-black px-4 text-xs font-black tracking-[0.12em] text-white/80 uppercase"
           style="font-family: var(--font-mono);"
         >
-          <span class="inline-block size-2.5 rounded-full bg-(--nb-pink) border border-white/40"></span>
-          <span class="inline-block size-2.5 rounded-full bg-(--nb-yellow) border border-white/40"></span>
-          <span class="inline-block size-2.5 rounded-full bg-(--nb-mint) border border-white/40"></span>
+          <span
+            class="inline-block size-2.5 rounded-full bg-(--nb-pink) border border-white/40"
+          ></span>
+          <span
+            class="inline-block size-2.5 rounded-full bg-(--nb-yellow) border border-white/40"
+          ></span>
+          <span
+            class="inline-block size-2.5 rounded-full bg-(--nb-mint) border border-white/40"
+          ></span>
           <span class="ml-2">{{ title() }}</span>
         </div>
 
@@ -103,7 +109,9 @@ function inferLanguage(title: string, code: string): HighlightLanguage {
         <div
           tabindex="0"
           class="docs-code-block-pre relative"
-          [style.max-height.rem]="isCollapsible() && !expanded() ? maxLines() * 1 + 3.25 : null"
+          [style.max-height.rem]="
+            isCollapsible() && !expanded() ? maxLines() * 1 + 3.25 : null
+          "
         >
           @if (highlightedHtml.value(); as html) {
             <div class="docs-code-block-shiki" [innerHTML]="html"></div>
@@ -119,14 +127,22 @@ function inferLanguage(title: string, code: string): HighlightLanguage {
           <div
             class="flex items-center justify-between gap-4 border-t-2 border-white/20 bg-black px-4 py-3"
           >
-            <div class="flex items-center gap-3 text-xs text-white/75" style="font-family: var(--font-mono);">
+            <div
+              class="flex items-center gap-3 text-xs text-white/75"
+              style="font-family: var(--font-mono);"
+            >
               <span
                 class="inline-flex size-8 shrink-0 items-center justify-center border-2 border-black bg-(--nb-lavender) text-black"
                 aria-hidden="true"
               >
                 <docs-code-info-icon class="size-4" />
               </span>
-              <span>Click '{{ expanded() ? 'Show less' : 'Show more' }}' to view {{ expanded() ? 'a condensed view' : 'additional details' }}.</span>
+              <span
+                >Click '{{ expanded() ? 'Show less' : 'Show more' }}' to view
+                {{
+                  expanded() ? 'a condensed view' : 'additional details'
+                }}.</span
+              >
             </div>
 
             <button

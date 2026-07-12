@@ -17,11 +17,7 @@ import { DocsCodeBlock } from '@ng-brutalism/docs-ui';
         <code class="font-mono">src</code> input is intended for trusted local
         icon/image assets; do not pass unsanitized user-generated URLs.
       </p>
-      <docs-code-block
-        class="block mb-5"
-        title="Import"
-        [code]="importCode"
-      />
+      <docs-code-block class="block mb-5" title="Import" [code]="importCode" />
       <docs-code-block title="Template" [code]="usageCode" />
     </section>
   `,

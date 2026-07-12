@@ -1,4 +1,9 @@
-import { ChangeDetectionStrategy, Component, input, signal } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  input,
+  signal,
+} from '@angular/core';
 import { NbSurface } from '@ng-brutalism/ui';
 
 import { DocsCodeBlock } from './docs-code-block';
@@ -7,13 +12,17 @@ type DocsExampleTab = 'preview' | 'code';
 type DocsExamplePreviewPadding = 'default' | 'compact';
 
 @Component({
-    selector: 'docs-example',
-    imports: [DocsCodeBlock, NbSurface],
-    template: `
-    <div nbSurface border="thick" shadow="heavy" padding="none" class="docs-example bg-white">
-      <div
-        class="flex items-center border-b-4 border-(--nb-border) bg-white"
-      >
+  selector: 'docs-example',
+  imports: [DocsCodeBlock, NbSurface],
+  template: `
+    <div
+      nbSurface
+      border="thick"
+      shadow="heavy"
+      padding="none"
+      class="docs-example bg-white"
+    >
+      <div class="flex items-center border-b-4 border-(--nb-border) bg-white">
         <button
           type="button"
           class="docs-example__tab"
@@ -48,8 +57,8 @@ type DocsExamplePreviewPadding = 'default' | 'compact';
       </div>
     </div>
   `,
-    styles: [
-        `
+  styles: [
+    `
       .docs-example__tab {
         display: inline-flex;
         flex: 1 1 0;
@@ -102,7 +111,9 @@ type DocsExamplePreviewPadding = 'default' | 'compact';
         background-image:
           linear-gradient(rgba(0, 0, 0, 0.08) 1px, transparent 1px),
           linear-gradient(90deg, rgba(0, 0, 0, 0.08) 1px, transparent 1px);
-        background-size: 24px 24px, 24px 24px;
+        background-size:
+          24px 24px,
+          24px 24px;
       }
 
       .docs-preview-grid--compact {
@@ -119,8 +130,8 @@ type DocsExamplePreviewPadding = 'default' | 'compact';
         }
       }
     `,
-    ],
-    changeDetection: ChangeDetectionStrategy.OnPush
+  ],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DocsExample {
   readonly code = input.required<string>();

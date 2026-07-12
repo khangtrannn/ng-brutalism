@@ -14,10 +14,10 @@ test.describe('podcast card recipe', () => {
 
     await expect(card.getByText('Build Loud FM')).toBeVisible();
     await expect(
-      card.getByRole('heading', { name: /DESIGN.*SYSTEMS.*THAT SCALE/s })
+      card.getByRole('heading', { name: /DESIGN.*SYSTEMS.*THAT SCALE/s }),
     ).toBeVisible();
     await expect(
-      card.getByRole('button', { name: /Listen Now/i })
+      card.getByRole('button', { name: /Listen Now/i }),
     ).toBeVisible();
   });
 

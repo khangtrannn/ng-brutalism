@@ -21,19 +21,19 @@ interface IconToneDemo {
       <docs-example [code]="tonesCode">
         <div class="p-6 w-full" nbStack gap="sm">
           @for (t of tones; track t.value) {
-          <div class="flex items-center gap-4">
-            <span
-              class="w-20 font-mono text-xs font-bold text-right opacity-50 shrink-0"
-              >{{ t.value }}</span
-            >
-            <span
-              nbIcon
-              src="/tokyo-city-escape/nb-star-fill.svg"
-              size="md"
-              [tone]="t.value"
-              decorative
-            ></span>
-          </div>
+            <div class="flex items-center gap-4">
+              <span
+                class="w-20 font-mono text-xs font-bold text-right opacity-50 shrink-0"
+                >{{ t.value }}</span
+              >
+              <span
+                nbIcon
+                src="/tokyo-city-escape/nb-star-fill.svg"
+                size="md"
+                [tone]="t.value"
+                decorative
+              ></span>
+            </div>
           }
         </div>
       </docs-example>

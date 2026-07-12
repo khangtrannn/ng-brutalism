@@ -18,12 +18,12 @@ interface SurfaceToneDemo {
       <docs-example [code]="tonesExampleCode">
         <div class="grid w-full grid-cols-1 gap-3 p-4 sm:grid-cols-2">
           @for (tone of tones; track tone.value) {
-          <div nbSurface [tone]="tone.value" shadow="sm" class="p-4">
-            <p class="font-mono text-xs font-black uppercase opacity-75">
-              {{ tone.label }}
-            </p>
-            <p class="mt-1 text-sm font-bold">{{ tone.description }}</p>
-          </div>
+            <div nbSurface [tone]="tone.value" shadow="sm" class="p-4">
+              <p class="font-mono text-xs font-black uppercase opacity-75">
+                {{ tone.label }}
+              </p>
+              <p class="mt-1 text-sm font-bold">{{ tone.description }}</p>
+            </div>
           }
         </div>
       </docs-example>

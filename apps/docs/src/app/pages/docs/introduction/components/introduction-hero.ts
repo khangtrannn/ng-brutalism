@@ -64,8 +64,8 @@ import { NbButton, NbStat, NbSurface } from '@ng-brutalism/ui';
       </div>
 
       <p class="mt-8 max-w-4xl text-base font-medium sm:text-lg">
-        &#64;ng-brutalism/ui gives modern Angular apps a token-driven
-        primitive composition system with directive-first APIs, keyboard-ready
+        &#64;ng-brutalism/ui gives modern Angular apps a token-driven primitive
+        composition system with directive-first APIs, keyboard-ready
         interactions, hard-edged visuals, and Tailwind v4 ergonomics from the
         first import.
       </p>

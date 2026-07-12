@@ -8,9 +8,8 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
         Accessibility
       </h2>
       <p class="font-medium">
-        <strong>APG pattern:</strong> N/A - Sticker is a decorative SVG
-        callout graphic, not an interactive widget.
-        <strong>Status:</strong> Stable.
+        <strong>APG pattern:</strong> N/A - Sticker is a decorative SVG callout
+        graphic, not an interactive widget. <strong>Status:</strong> Stable.
       </p>
     </section>
   `,

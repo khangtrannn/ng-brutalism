@@ -13,11 +13,13 @@
 
 .portfolio-grid-bg {
   background-size: 20px 20px;
-  background-image: linear-gradient(to right, #e4e4e7 1px, transparent 1px),
+  background-image:
+    linear-gradient(to right, #e4e4e7 1px, transparent 1px),
     linear-gradient(to bottom, #e4e4e7 1px, transparent 1px);
 
   .dark & {
-    background-image: linear-gradient(to right, #262626 1px, transparent 1px),
+    background-image:
+      linear-gradient(to right, #262626 1px, transparent 1px),
       linear-gradient(to bottom, #262626 1px, transparent 1px);
   }
 }
@@ -110,7 +112,9 @@
   background: white;
   padding: 1.25rem 1rem;
   box-shadow: 4px 4px 0 0 #000;
-  transition: transform 220ms ease, box-shadow 220ms ease;
+  transition:
+    transform 220ms ease,
+    box-shadow 220ms ease;
 
   &:hover {
     transform: scale(1.02);
@@ -142,7 +146,9 @@
   background: white;
   padding: 0.75rem;
   box-shadow: 4px 4px 0 0 #000;
-  transition: transform 220ms ease, box-shadow 220ms ease;
+  transition:
+    transform 220ms ease,
+    box-shadow 220ms ease;
 
   &:hover {
     transform: translateY(-0.25rem);
@@ -290,7 +296,9 @@
   font-size: 1.125rem;
   font-weight: 900;
   box-shadow: 2px 2px 0 0 #000;
-  transition: transform 150ms ease, box-shadow 150ms ease;
+  transition:
+    transform 150ms ease,
+    box-shadow 150ms ease;
 
   &:hover {
     transform: translate(2px, 2px);
@@ -347,7 +355,9 @@
   font-size: 0.875rem;
   font-weight: 700;
   box-shadow: 4px 4px 0 0 #000;
-  transition: transform 150ms ease, box-shadow 150ms ease;
+  transition:
+    transform 150ms ease,
+    box-shadow 150ms ease;
 
   &:hover {
     transform: translateY(-0.25rem);

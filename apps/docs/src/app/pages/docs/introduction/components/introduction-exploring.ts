@@ -11,8 +11,8 @@ import { NbStat, NbSurface } from '@ng-brutalism/ui';
         Start exploring
       </h2>
       <p class="mb-5 text-base font-medium">
-        Start with the composition grammar, then move into setup and
-        individual primitives.
+        Start with the composition grammar, then move into setup and individual
+        primitives.
       </p>
 
       <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">

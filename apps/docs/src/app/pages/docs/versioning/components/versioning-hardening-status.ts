@@ -19,9 +19,9 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
         remaining color literals; and
         <code class="font-mono">ControlValueAccessor</code> support, APG
         keyboard completion, and <code class="font-mono">vitest-axe</code>
-        coverage across the select/accordion/dialog/field primitives. Rename
-        and alias windows were taken pre-1.0, while the cost of a breaking
-        change is still low.
+        coverage across the select/accordion/dialog/field primitives. Rename and
+        alias windows were taken pre-1.0, while the cost of a breaking change is
+        still low.
       </p>
     </section>
   `,

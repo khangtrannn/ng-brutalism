@@ -14,8 +14,8 @@ import { DocsSourceTile, DocsStatusBadge } from '@ng-brutalism/docs-ui';
         <p class="mt-3 max-w-3xl text-base font-medium sm:text-lg">
           Use <code class="font-mono">nbStack</code> whenever children should
           flow vertically with consistent spacing. It turns raw
-          <code class="font-mono">flex flex-col gap-*</code> layout
-          boilerplate into a small declarative primitive for vertical rhythm.
+          <code class="font-mono">flex flex-col gap-*</code> layout boilerplate
+          into a small declarative primitive for vertical rhythm.
         </p>
       </div>
 

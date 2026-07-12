@@ -19,27 +19,27 @@ interface StackJustifyDemo {
       <docs-example [code]="justificationExampleCode">
         <div class="grid w-full grid-cols-1 gap-4 p-4 sm:grid-cols-2">
           @for (justify of justifications; track justify.value) {
-          <div nbSurface tone="white" shadow="sm" class="h-56 p-4">
-            <div
-              nbStack
-              gap="sm"
-              align="start"
-              [justify]="justify.value"
-              class="h-full"
-            >
-              <span class="font-mono text-xs font-black uppercase">{{
-                justify.label
-              }}</span>
-              <span
-                class="border-2 border-(--nb-border) bg-(--nb-lavender) px-3 py-2 font-black"
-                >One</span
+            <div nbSurface tone="white" shadow="sm" class="h-56 p-4">
+              <div
+                nbStack
+                gap="sm"
+                align="start"
+                [justify]="justify.value"
+                class="h-full"
               >
-              <span
-                class="border-2 border-(--nb-border) bg-(--nb-blue) px-3 py-2 font-black"
-                >Two</span
-              >
+                <span class="font-mono text-xs font-black uppercase">{{
+                  justify.label
+                }}</span>
+                <span
+                  class="border-2 border-(--nb-border) bg-(--nb-lavender) px-3 py-2 font-black"
+                  >One</span
+                >
+                <span
+                  class="border-2 border-(--nb-border) bg-(--nb-blue) px-3 py-2 font-black"
+                  >Two</span
+                >
+              </div>
             </div>
-          </div>
           }
         </div>
       </docs-example>

@@ -23,27 +23,27 @@ interface SectionDividerStyleDemo {
       <docs-example [code]="borderStylesExampleCode">
         <div class="grid w-full grid-cols-1 gap-4 p-4 sm:grid-cols-3">
           @for (style of borderStyles; track style.value) {
-          <div nbSurface tone="white" shadow="sm">
-            <div
-              class="border-b-2 border-(--nb-border) bg-(--nb-background) px-4 py-2 font-mono text-xs font-black uppercase"
-            >
-              {{ style.label }}
-            </div>
-            <div class="p-4">
+            <div nbSurface tone="white" shadow="sm">
               <div
-                nbSection
-                padding="md"
-                divider="all"
-                [dividerStyle]="style.value"
+                class="border-b-2 border-(--nb-border) bg-(--nb-background) px-4 py-2 font-mono text-xs font-black uppercase"
               >
+                {{ style.label }}
+              </div>
+              <div class="p-4">
                 <div
-                  class="grid h-12 place-items-center border-2 border-(--nb-border) bg-(--nb-lavender) px-3 font-mono text-xs font-black uppercase"
+                  nbSection
+                  padding="md"
+                  divider="all"
+                  [dividerStyle]="style.value"
                 >
-                  {{ style.label }} edge
+                  <div
+                    class="grid h-12 place-items-center border-2 border-(--nb-border) bg-(--nb-lavender) px-3 font-mono text-xs font-black uppercase"
+                  >
+                    {{ style.label }} edge
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
           }
         </div>
       </docs-example>

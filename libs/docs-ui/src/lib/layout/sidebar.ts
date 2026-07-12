@@ -2,15 +2,15 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { NbChip, NbSurface } from '@ng-brutalism/ui';
 
-import { DOC_NAV } from '../nav';
+import { DOC_NAV, PRIMITIVE_MENU_GROUPS } from '../nav';
 import { docsComponentStatus } from '../docs-component-status';
 
 const GROUP_COLORS = ['yellow', 'pink', 'mint', 'lavender'] as const;
 
 @Component({
-    selector: 'nb-docs-sidebar',
-    imports: [NbChip, NbSurface, RouterLink, RouterLinkActive],
-    template: `
+  selector: 'nb-docs-sidebar',
+  imports: [NbChip, NbSurface, RouterLink, RouterLinkActive],
+  template: `
     <aside
       nbSurface
       border="thick"
@@ -19,14 +19,25 @@ const GROUP_COLORS = ['yellow', 'pink', 'mint', 'lavender'] as const;
       class="docs-sidebar fixed top-32 left-8 hidden h-[calc(100vh-9rem)] w-72 overflow-y-auto bg-(--nb-paper) lg:block"
       aria-label="Documentation navigation"
     >
-      @for (group of nav; track group.label; let first = $first; let idx = $index) {
+      @for (
+        group of nav;
+        track group.label;
+        let first = $first;
+        let idx = $index
+      ) {
         <section
           class="sidebar-group"
           [class.pt-0]="first"
           [attr.data-color]="groupColor(idx)"
         >
           <div class="sidebar-group__header">
-            <span nbChip class="sidebar-group__chip" size="lg" border="strong" shadow="sm">
+            <span
+              nbChip
+              class="sidebar-group__chip"
+              size="lg"
+              border="strong"
+              shadow="sm"
+            >
               {{ group.label }}
             </span>
 
@@ -57,7 +68,7 @@ const GROUP_COLORS = ['yellow', 'pink', 'mint', 'lavender'] as const;
       }
     </aside>
   `,
-    styles: `
+  styles: `
     .sidebar-group {
       padding-block: 1.1rem;
     }
@@ -89,24 +100,24 @@ const GROUP_COLORS = ['yellow', 'pink', 'mint', 'lavender'] as const;
       transform: rotate(-2deg);
     }
 
-    .sidebar-group[data-color="yellow"] .sidebar-group__chip {
+    .sidebar-group[data-color='yellow'] .sidebar-group__chip {
       background: var(--nb-yellow);
       color: var(--nb-black);
       transform: rotate(-2deg);
     }
 
-    .sidebar-group[data-color="pink"] .sidebar-group__chip {
+    .sidebar-group[data-color='pink'] .sidebar-group__chip {
       background: var(--nb-pink);
       color: var(--nb-black);
       transform: rotate(1.5deg);
     }
 
-    .sidebar-group[data-color="mint"] .sidebar-group__chip {
+    .sidebar-group[data-color='mint'] .sidebar-group__chip {
       background: var(--nb-mint);
       transform: rotate(-1deg);
     }
 
-    .sidebar-group[data-color="lavender"] .sidebar-group__chip {
+    .sidebar-group[data-color='lavender'] .sidebar-group__chip {
       background: var(--nb-lavender);
       color: var(--nb-black);
       transform: rotate(2deg);
@@ -141,7 +152,9 @@ const GROUP_COLORS = ['yellow', 'pink', 'mint', 'lavender'] as const;
       font-size: 0.95rem;
       font-weight: 600;
       line-height: 1.4;
-      transition: background-color 120ms, transform 120ms;
+      transition:
+        background-color 120ms,
+        transform 120ms;
     }
 
     .sidebar-link__bullet {
@@ -164,10 +177,26 @@ const GROUP_COLORS = ['yellow', 'pink', 'mint', 'lavender'] as const;
       text-transform: uppercase;
     }
 
-    .sidebar-group[data-color="yellow"] .sidebar-link:hover .sidebar-link__bullet { background: var(--nb-yellow); }
-    .sidebar-group[data-color="pink"] .sidebar-link:hover .sidebar-link__bullet { background: var(--nb-pink); }
-    .sidebar-group[data-color="mint"] .sidebar-link:hover .sidebar-link__bullet { background: var(--nb-mint); }
-    .sidebar-group[data-color="lavender"] .sidebar-link:hover .sidebar-link__bullet { background: var(--nb-lavender); }
+    .sidebar-group[data-color='yellow']
+      .sidebar-link:hover
+      .sidebar-link__bullet {
+      background: var(--nb-yellow);
+    }
+    .sidebar-group[data-color='pink']
+      .sidebar-link:hover
+      .sidebar-link__bullet {
+      background: var(--nb-pink);
+    }
+    .sidebar-group[data-color='mint']
+      .sidebar-link:hover
+      .sidebar-link__bullet {
+      background: var(--nb-mint);
+    }
+    .sidebar-group[data-color='lavender']
+      .sidebar-link:hover
+      .sidebar-link__bullet {
+      background: var(--nb-lavender);
+    }
 
     .sidebar-link:hover {
       background: var(--nb-secondary-background);
@@ -182,16 +211,16 @@ const GROUP_COLORS = ['yellow', 'pink', 'mint', 'lavender'] as const;
       font-weight: 800;
     }
 
-    .sidebar-group[data-color="pink"] .is-active {
+    .sidebar-group[data-color='pink'] .is-active {
       background-color: var(--nb-pink);
       color: #000;
     }
 
-    .sidebar-group[data-color="mint"] .is-active {
+    .sidebar-group[data-color='mint'] .is-active {
       background-color: var(--nb-mint);
     }
 
-    .sidebar-group[data-color="lavender"] .is-active {
+    .sidebar-group[data-color='lavender'] .is-active {
       background-color: var(--nb-lavender);
     }
 
@@ -224,10 +253,12 @@ const GROUP_COLORS = ['yellow', 'pink', 'mint', 'lavender'] as const;
       background: var(--nb-border);
     }
   `,
-    changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NbDocsSidebar {
-  protected readonly nav = DOC_NAV;
+  protected readonly nav = DOC_NAV.flatMap((group) =>
+    group.label === 'Primitives' ? PRIMITIVE_MENU_GROUPS : [group],
+  );
 
   protected groupColor(index: number): (typeof GROUP_COLORS)[number] {
     return GROUP_COLORS[index % GROUP_COLORS.length];

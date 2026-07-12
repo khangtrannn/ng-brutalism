@@ -18,15 +18,15 @@ interface TextSizeDemo {
       <docs-example [code]="sizesCode">
         <div class="p-6 w-full" nbStack gap="md">
           @for (s of sizes; track s.value) {
-          <div class="flex items-baseline gap-4">
-            <span
-              class="w-10 font-mono text-xs font-bold text-right opacity-50 shrink-0"
-              >{{ s.value }}</span
-            >
-            <span nbText [size]="s.value" weight="medium">
-              The quick brown fox - {{ s.px }}
-            </span>
-          </div>
+            <div class="flex items-baseline gap-4">
+              <span
+                class="w-10 font-mono text-xs font-bold text-right opacity-50 shrink-0"
+                >{{ s.value }}</span
+              >
+              <span nbText [size]="s.value" weight="medium">
+                The quick brown fox - {{ s.px }}
+              </span>
+            </div>
           }
         </div>
       </docs-example>

@@ -12,16 +12,16 @@ import { DocsExample } from '@ng-brutalism/docs-ui';
         Accessibility
       </h2>
       <p class="mb-4 font-medium">
-        Icons must be explicitly marked as decorative or meaningful. There is
-        no silent default - always provide either
+        Icons must be explicitly marked as decorative or meaningful. There is no
+        silent default - always provide either
         <code class="font-mono">decorative</code> or
-        <code class="font-mono">label</code>. Avoid rendering a bare visual
-        icon with neither.
+        <code class="font-mono">label</code>. Avoid rendering a bare visual icon
+        with neither.
       </p>
       <div nbStack gap="md" class="mb-6">
         <div nbCallout tone="mint" size="sm">
-          <strong>Decorative icon</strong> - adds no meaning; hidden from
-          screen readers. Use <code class="font-mono">decorative</code>.
+          <strong>Decorative icon</strong> - adds no meaning; hidden from screen
+          readers. Use <code class="font-mono">decorative</code>.
         </div>
         <div nbCallout tone="yellow" size="sm">
           <strong>Meaningful icon</strong> - communicates information; needs a
@@ -41,9 +41,7 @@ import { DocsExample } from '@ng-brutalism/docs-ui';
             <span class="font-mono text-xs font-bold opacity-50"
               >decorative</span
             >
-            <span class="font-mono text-xs opacity-40"
-              >aria-hidden="true"</span
-            >
+            <span class="font-mono text-xs opacity-40">aria-hidden="true"</span>
           </div>
           <div class="flex flex-col items-center gap-2">
             <span

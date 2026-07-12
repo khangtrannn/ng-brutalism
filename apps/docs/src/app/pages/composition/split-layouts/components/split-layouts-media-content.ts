@@ -31,8 +31,8 @@ import { DocsExample } from '@ng-brutalism/docs-ui';
         Media / content split
       </h2>
       <p class="mb-6 text-base font-medium">
-        Equal columns - a media placeholder on the left and rich content on
-        the right. Classic recipe card or feature block pattern.
+        Equal columns - a media placeholder on the left and rich content on the
+        right. Classic recipe card or feature block pattern.
       </p>
 
       <docs-example [code]="mediaContentCode">
@@ -64,9 +64,8 @@ import { DocsExample } from '@ng-brutalism/docs-ui';
               Recipe card
             </h2>
             <p nbText tone="muted">
-              Use split layouts for visual/content compositions. The left
-              side holds an image or media frame; the right holds structured
-              content.
+              Use split layouts for visual/content compositions. The left side
+              holds an image or media frame; the right holds structured content.
             </p>
             <div nbCluster gap="xs">
               <span nbChip tone="yellow">30 min</span>

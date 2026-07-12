@@ -13,11 +13,11 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
         keyboard-reachable-but-not-activatable, per APG - arrow/Home/End/
         typeahead can land on them, but they can't be selected.
         <code class="font-mono">nb-accordion</code> headers use real
-        <code class="font-mono">disabled</code> buttons instead and are
-        skipped entirely by header navigation, since a genuinely disabled
-        <code class="font-mono">&lt;button&gt;</code> can't receive focus at
-        all - the two components intentionally follow different disabled
-        semantics because their underlying elements do.
+        <code class="font-mono">disabled</code> buttons instead and are skipped
+        entirely by header navigation, since a genuinely disabled
+        <code class="font-mono">&lt;button&gt;</code> can't receive focus at all
+        - the two components intentionally follow different disabled semantics
+        because their underlying elements do.
       </p>
     </section>
   `,

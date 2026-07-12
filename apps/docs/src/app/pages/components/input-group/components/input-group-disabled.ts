@@ -8,9 +8,7 @@ import { DocsExample } from '@ng-brutalism/docs-ui';
   imports: [NbInput, NbInputGroup, NbInputPrefix, DocsExample],
   template: `
     <section id="disabled">
-      <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">
-        Disabled
-      </h2>
+      <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">Disabled</h2>
       <docs-example [code]="disabledExampleCode">
         <nb-input-group class="max-w-80">
           <span nbInputPrefix>@</span>

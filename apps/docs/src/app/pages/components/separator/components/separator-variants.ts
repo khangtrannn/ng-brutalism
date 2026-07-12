@@ -8,9 +8,7 @@ import { DocsExample } from '@ng-brutalism/docs-ui';
   imports: [NbSeparator, DocsExample],
   template: `
     <section id="variants">
-      <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">
-        Variants
-      </h2>
+      <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">Variants</h2>
       <docs-example [code]="variantsExampleCode">
         <div class="flex w-full flex-col gap-6 p-4">
           <div class="w-full">

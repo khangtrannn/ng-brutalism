@@ -1,9 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import {
-  NbSection,
-  NbSurface,
-  type NbSectionPadding,
-} from '@ng-brutalism/ui';
+import { NbSection, NbSurface, type NbSectionPadding } from '@ng-brutalism/ui';
 
 import { DocsExample } from '@ng-brutalism/docs-ui';
 
@@ -17,9 +13,7 @@ interface SectionPaddingDemo {
   imports: [NbSection, NbSurface, DocsExample],
   template: `
     <section id="paddings">
-      <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">
-        Paddings
-      </h2>
+      <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">Paddings</h2>
       <p class="mb-4 font-medium">
         Padding is the most common knob. Inline layouts (headers, footers,
         toolbars) usually take <code class="font-mono">md</code> to
@@ -29,20 +23,20 @@ interface SectionPaddingDemo {
       <docs-example [code]="paddingsExampleCode">
         <div class="grid w-full grid-cols-1 gap-4 p-4 sm:grid-cols-2">
           @for (padding of paddings; track padding.value) {
-          <div nbSurface tone="white" shadow="sm">
-            <div
-              class="border-b-2 border-(--nb-border) bg-(--nb-background) px-4 py-2 font-mono text-xs font-black uppercase"
-            >
-              padding {{ padding.label }}
-            </div>
-            <div nbSection [padding]="padding.value">
+            <div nbSurface tone="white" shadow="sm">
               <div
-                class="grid h-12 place-items-center border-2 border-(--nb-border) bg-(--nb-yellow) font-mono text-xs font-black uppercase"
+                class="border-b-2 border-(--nb-border) bg-(--nb-background) px-4 py-2 font-mono text-xs font-black uppercase"
               >
-                content
+                padding {{ padding.label }}
+              </div>
+              <div nbSection [padding]="padding.value">
+                <div
+                  class="grid h-12 place-items-center border-2 border-(--nb-border) bg-(--nb-yellow) font-mono text-xs font-black uppercase"
+                >
+                  content
+                </div>
               </div>
             </div>
-          </div>
           }
         </div>
       </docs-example>

@@ -16,22 +16,21 @@ interface TextMeasureDemo {
       <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">Measure</h2>
       <p class="mb-4 font-medium">
         <code class="font-mono">measure</code> caps
-        <code class="font-mono">max-width</code> for readable line lengths.
-        Use it on paragraph text so lines don't stretch too wide on large
-        screens.
+        <code class="font-mono">max-width</code> for readable line lengths. Use
+        it on paragraph text so lines don't stretch too wide on large screens.
       </p>
       <docs-example [code]="measureCode">
         <div class="p-6 w-full" nbStack gap="lg">
           @for (m of measures; track m.value) {
-          <div nbStack gap="xs">
-            <span class="font-mono text-xs font-bold opacity-50">
-              measure="{{ m.value }}" - {{ m.rem }}
-            </span>
-            <p nbText tone="muted" [measure]="m.value">
-              A token-driven neo-brutalist Angular UI library for expressive
-              product interfaces. Build loud. Stay sharp.
-            </p>
-          </div>
+            <div nbStack gap="xs">
+              <span class="font-mono text-xs font-bold opacity-50">
+                measure="{{ m.value }}" - {{ m.rem }}
+              </span>
+              <p nbText tone="muted" [measure]="m.value">
+                A token-driven neo-brutalist Angular UI library for expressive
+                product interfaces. Build loud. Stay sharp.
+              </p>
+            </div>
           }
         </div>
       </docs-example>

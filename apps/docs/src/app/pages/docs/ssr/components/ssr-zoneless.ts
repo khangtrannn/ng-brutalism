@@ -4,9 +4,7 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
   selector: 'docs-ssr-zoneless',
   template: `
     <section id="zoneless">
-      <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">
-        Zoneless
-      </h2>
+      <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">Zoneless</h2>
       <p class="font-medium">
         Every component is built on signals and
         <code class="font-mono">ChangeDetectionStrategy.OnPush</code>, with no

@@ -5,7 +5,7 @@ describe('docsComponentStatus', () => {
   it('has exactly one entry per component nav page, with no orphans', () => {
     // Arrange
     const primitives = docsNavGroups.find(
-      (group) => group.label === 'Primitives'
+      (group) => group.label === 'Primitives',
     );
     const slugs = (primitives?.items ?? [])
       .map((item) => item.path?.match(/^\/components\/(.+)$/)?.[1])
@@ -13,8 +13,6 @@ describe('docsComponentStatus', () => {
 
     // Assert
     expect(slugs.length).toBeGreaterThan(0);
-    expect(Object.keys(docsComponentStatus).sort()).toEqual(
-      [...slugs].sort()
-    );
+    expect(Object.keys(docsComponentStatus).sort()).toEqual([...slugs].sort());
   });
 });

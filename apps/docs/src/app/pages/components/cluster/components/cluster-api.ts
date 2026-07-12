@@ -151,8 +151,8 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
               </td>
               <td class="px-4 py-3">
                 Inline-start border between each child. When active,
-                <code class="font-mono">gap-x</code> is collapsed and spacing
-                is split across separator margin and padding.
+                <code class="font-mono">gap-x</code> is collapsed and spacing is
+                split across separator margin and padding.
               </td>
             </tr>
           </tbody>

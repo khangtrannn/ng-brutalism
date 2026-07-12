@@ -35,11 +35,11 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
       </p>
       <p class="font-medium">
         Initial focus follows native behavior - the browser focuses the first
-        <code class="font-mono">[autofocus]</code> or focusable element
-        inside, so make sure at least one exists. Verified with
+        <code class="font-mono">[autofocus]</code> or focusable element inside,
+        so make sure at least one exists. Verified with
         <code class="font-mono">vitest-axe</code> against a fixture with the
-        native <code class="font-mono">open</code> attribute set directly
-        (jsdom doesn't implement <code class="font-mono">showModal()</code>).
+        native <code class="font-mono">open</code> attribute set directly (jsdom
+        doesn't implement <code class="font-mono">showModal()</code>).
       </p>
     </section>
   `,

@@ -25,65 +25,65 @@ import type { Project } from '../portfolio.types';
           class="grid grid-cols-1 gap-4 sm:gap-6 md:grid-cols-2 md:gap-8 lg:grid-cols-3"
         >
           @for (project of projects(); track project.title) {
-          <article class="portfolio-project-card group">
-            <div
-              class="relative mb-3 h-36 w-full overflow-hidden rounded-lg sm:mb-4 sm:h-44 md:h-48"
-            >
-              <img
-                class="h-full w-full object-cover transition-transform group-hover:scale-110"
-                [src]="assetPath() + '/' + project.image"
-                [alt]="project.title"
-                loading="lazy"
-                decoding="async"
-              />
-            </div>
-
-            <h3 class="mb-2 text-xl font-bold sm:text-2xl">
-              {{ project.title }}
-            </h3>
-            <p
-              class="mb-3 text-sm text-black dark:text-[#eeefe9] sm:mb-4 sm:text-base"
-            >
-              {{ project.description }}
-            </p>
-
-            <div class="mb-3 flex flex-wrap gap-1.5 sm:mb-4 sm:gap-2">
-              @for (tech of project.tech; track tech) {
-              <span
-                class="border-2 border-black bg-yellow-300 px-2 py-0.5 text-xs font-semibold text-black sm:px-3 sm:py-1 sm:text-sm"
+            <article class="portfolio-project-card group">
+              <div
+                class="relative mb-3 h-36 w-full overflow-hidden rounded-lg sm:mb-4 sm:h-44 md:h-48"
               >
-                {{ tech }}
-              </span>
-              }
-            </div>
+                <img
+                  class="h-full w-full object-cover transition-transform group-hover:scale-110"
+                  [src]="assetPath() + '/' + project.image"
+                  [alt]="project.title"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
 
-            <div class="flex flex-wrap gap-2 sm:gap-4">
-              <a
-                class="portfolio-project-link bg-blue-400"
-                [href]="project.github"
-                [attr.target]="
-                  isPlaceholderLink(project.github) ? null : '_blank'
-                "
-                rel="noreferrer"
-                [attr.aria-disabled]="isPlaceholderLink(project.github)"
-                (click)="openProjectLink($event, project.github)"
+              <h3 class="mb-2 text-xl font-bold sm:text-2xl">
+                {{ project.title }}
+              </h3>
+              <p
+                class="mb-3 text-sm text-black dark:text-[#eeefe9] sm:mb-4 sm:text-base"
               >
-                <span aria-hidden="true">⌘</span> Code
-              </a>
-              <a
-                class="portfolio-project-link bg-green-400"
-                [href]="project.live"
-                [attr.target]="
-                  isPlaceholderLink(project.live) ? null : '_blank'
-                "
-                rel="noreferrer"
-                [attr.aria-disabled]="isPlaceholderLink(project.live)"
-                (click)="openProjectLink($event, project.live)"
-              >
-                <span aria-hidden="true">↗</span> Live Demo
-              </a>
-            </div>
-          </article>
+                {{ project.description }}
+              </p>
+
+              <div class="mb-3 flex flex-wrap gap-1.5 sm:mb-4 sm:gap-2">
+                @for (tech of project.tech; track tech) {
+                  <span
+                    class="border-2 border-black bg-yellow-300 px-2 py-0.5 text-xs font-semibold text-black sm:px-3 sm:py-1 sm:text-sm"
+                  >
+                    {{ tech }}
+                  </span>
+                }
+              </div>
+
+              <div class="flex flex-wrap gap-2 sm:gap-4">
+                <a
+                  class="portfolio-project-link bg-blue-400"
+                  [href]="project.github"
+                  [attr.target]="
+                    isPlaceholderLink(project.github) ? null : '_blank'
+                  "
+                  rel="noreferrer"
+                  [attr.aria-disabled]="isPlaceholderLink(project.github)"
+                  (click)="openProjectLink($event, project.github)"
+                >
+                  <span aria-hidden="true">⌘</span> Code
+                </a>
+                <a
+                  class="portfolio-project-link bg-green-400"
+                  [href]="project.live"
+                  [attr.target]="
+                    isPlaceholderLink(project.live) ? null : '_blank'
+                  "
+                  rel="noreferrer"
+                  [attr.aria-disabled]="isPlaceholderLink(project.live)"
+                  (click)="openProjectLink($event, project.live)"
+                >
+                  <span aria-hidden="true">↗</span> Live Demo
+                </a>
+              </div>
+            </article>
           }
         </div>
       </div>

@@ -14,9 +14,7 @@ import { DocsExample } from '@ng-brutalism/docs-ui';
           class="flex flex-wrap items-center justify-center gap-x-14 gap-y-8 p-8"
         >
           <div class="flex flex-col items-center gap-4">
-            <nb-sticker shape="burst" tone="mint" decorative
-              >BURST</nb-sticker
-            >
+            <nb-sticker shape="burst" tone="mint" decorative>BURST</nb-sticker>
             <span class="font-mono text-xs font-bold">burst</span>
           </div>
           <div class="flex flex-col items-center gap-4">

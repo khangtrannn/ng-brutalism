@@ -11,25 +11,25 @@ import { RouterLink } from '@angular/router';
       </h2>
       <div class="grid gap-3 sm:grid-cols-2">
         @for (input of keyInputs; track input.name) {
-        <div
-          class="border-3 border-(--nb-border) bg-white p-4 shadow-[3px_3px_0_0_var(--nb-shadow)]"
-        >
-          <div class="flex items-center gap-2">
-            <code class="font-mono text-sm font-black">{{ input.name }}</code>
-            <span
-              class="font-mono text-xs font-bold uppercase px-1.5 py-0.5 border border-(--nb-border)"
-              [style.background]="
-                input.primitive === 'nbSurface'
-                  ? 'var(--nb-yellow)'
-                  : 'var(--nb-mint)'
-              "
-              >{{ input.primitive }}</span
-            >
+          <div
+            class="border-3 border-(--nb-border) bg-white p-4 shadow-[3px_3px_0_0_var(--nb-shadow)]"
+          >
+            <div class="flex items-center gap-2">
+              <code class="font-mono text-sm font-black">{{ input.name }}</code>
+              <span
+                class="font-mono text-xs font-bold uppercase px-1.5 py-0.5 border border-(--nb-border)"
+                [style.background]="
+                  input.primitive === 'nbSurface'
+                    ? 'var(--nb-yellow)'
+                    : 'var(--nb-mint)'
+                "
+                >{{ input.primitive }}</span
+              >
+            </div>
+            <p class="mt-1.5 text-sm font-medium text-black/70">
+              {{ input.description }}
+            </p>
           </div>
-          <p class="mt-1.5 text-sm font-medium text-black/70">
-            {{ input.description }}
-          </p>
-        </div>
         }
       </div>
       <p class="mt-5 text-sm font-medium">

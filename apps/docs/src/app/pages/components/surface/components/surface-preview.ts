@@ -27,8 +27,8 @@ import { DocsExample } from '@ng-brutalism/docs-ui';
           <div class="p-5">
             <h3 class="text-2xl font-black">Ship the loud version</h3>
             <p class="mt-2 text-sm font-medium">
-              Surface gives custom layouts the same brutalist frame as the
-              core components.
+              Surface gives custom layouts the same brutalist frame as the core
+              components.
             </p>
           </div>
         </article>

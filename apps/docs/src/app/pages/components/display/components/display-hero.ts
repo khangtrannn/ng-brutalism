@@ -15,8 +15,8 @@ import { DocsSourceTile, DocsStatusBadge } from '@ng-brutalism/docs-ui';
           A directive for mega-sized display text. Apply it to
           <strong>any element</strong> - a heading, a
           <code class="font-mono">span</code>, a stat - to get ultra-bold,
-          tight-leading display typography. It's purely presentational, so
-          keep your semantics correct and let the directive handle the look.
+          tight-leading display typography. It's purely presentational, so keep
+          your semantics correct and let the directive handle the look.
         </p>
       </div>
 

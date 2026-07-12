@@ -14,5 +14,5 @@ class ZonelessTestModule {}
 
 getTestBed().initTestEnvironment(
   [BrowserDynamicTestingModule, ZonelessTestModule],
-  platformBrowserDynamicTesting()
+  platformBrowserDynamicTesting(),
 );

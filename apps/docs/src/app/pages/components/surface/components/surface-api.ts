@@ -169,10 +169,9 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
               </td>
               <td class="px-4 py-3">
                 Inner display mode.
-                <code class="font-mono">center</code> centers content both
-                axes, <code class="font-mono">row</code> aligns children in a
-                row, <code class="font-mono">stack</code> stacks them
-                vertically.
+                <code class="font-mono">center</code> centers content both axes,
+                <code class="font-mono">row</code> aligns children in a row,
+                <code class="font-mono">stack</code> stacks them vertically.
               </td>
             </tr>
             <tr class="border-b-2 border-(--nb-border)">
@@ -193,8 +192,7 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
               </td>
               <td class="px-4 py-3">
                 Adds a 2 px accent border on the top or bottom edge using the
-                tone's border color. Useful for callout or notification
-                panels.
+                tone's border color. Useful for callout or notification panels.
               </td>
             </tr>
             <tr class="border-b-2 border-(--nb-border)">
@@ -257,8 +255,8 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
                 false
               </td>
               <td class="px-4 py-3">
-                Lifts on hover, presses on click, and shows a focus ring. Use
-                on links and custom clickable surfaces instead of wiring up
+                Lifts on hover, presses on click, and shows a focus ring. Use on
+                links and custom clickable surfaces instead of wiring up
                 hover/active states by hand.
               </td>
             </tr>

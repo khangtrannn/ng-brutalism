@@ -18,21 +18,20 @@ interface TextLeadingDemo {
         Controls line-height. By default,
         <code class="font-mono">nbText</code> picks a sensible line-height for
         the active <code class="font-mono">size</code>. Use
-        <code class="font-mono">leading="relaxed"</code> for long-form
-        reading.
+        <code class="font-mono">leading="relaxed"</code> for long-form reading.
       </p>
       <docs-example [code]="leadingCode">
         <div class="p-6 w-full grid grid-cols-1 gap-6 sm:grid-cols-2">
           @for (l of leadings; track l.value) {
-          <div nbStack gap="xs">
-            <span class="font-mono text-xs font-bold opacity-50">
-              leading="{{ l.value }}" - {{ l.numeric }}
-            </span>
-            <p nbText size="md" measure="sm" [leading]="l.value">
-              Brutalist interfaces work best when layout, typography, and
-              contrast are intentional.
-            </p>
-          </div>
+            <div nbStack gap="xs">
+              <span class="font-mono text-xs font-bold opacity-50">
+                leading="{{ l.value }}" - {{ l.numeric }}
+              </span>
+              <p nbText size="md" measure="sm" [leading]="l.value">
+                Brutalist interfaces work best when layout, typography, and
+                contrast are intentional.
+              </p>
+            </div>
           }
         </div>
       </docs-example>

@@ -13,28 +13,26 @@ interface ClusterAlignDemo {
   imports: [DocsExample, NbCluster, NbSurface],
   template: `
     <section id="alignment">
-      <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">
-        Alignment
-      </h2>
+      <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">Alignment</h2>
       <docs-example [code]="alignmentExampleCode">
         <div class="grid w-full grid-cols-1 gap-4 p-4 sm:grid-cols-2">
           @for (align of alignments; track align.value) {
-          <div nbSurface tone="cream" shadow="sm" class="p-4">
-            <span class="font-mono text-xs font-bold uppercase mb-2">{{
-              align.label
-            }}</span>
+            <div nbSurface tone="cream" shadow="sm" class="p-4">
+              <span class="font-mono text-xs font-bold uppercase mb-2">{{
+                align.label
+              }}</span>
 
-            <div nbCluster gap="sm" [align]="align.value">
-              <span
-                class="border-2 border-(--nb-border) bg-(--nb-yellow) px-3 py-2 font-black"
-                >Small</span
-              >
-              <span
-                class="border-2 border-(--nb-border) bg-(--nb-mint) px-4 py-5 font-black"
-                >Tall</span
-              >
+              <div nbCluster gap="sm" [align]="align.value">
+                <span
+                  class="border-2 border-(--nb-border) bg-(--nb-yellow) px-3 py-2 font-black"
+                  >Small</span
+                >
+                <span
+                  class="border-2 border-(--nb-border) bg-(--nb-mint) px-4 py-5 font-black"
+                  >Tall</span
+                >
+              </div>
             </div>
-          </div>
           }
         </div>
       </docs-example>

@@ -14,8 +14,8 @@ import { DocsSourceTile, DocsStatusBadge } from '@ng-brutalism/docs-ui';
         <p class="mt-3 max-w-3xl text-base font-medium sm:text-lg">
           A high-emphasis directive for important values. Use
           <code class="font-mono">nbCallout</code> for prices, stats, dates,
-          awards, ratings, totals, and other compact pieces of information
-          that need the loud brutalist treatment without domain-specific API.
+          awards, ratings, totals, and other compact pieces of information that
+          need the loud brutalist treatment without domain-specific API.
         </p>
       </div>
 

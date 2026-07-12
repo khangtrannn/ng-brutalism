@@ -30,9 +30,7 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
           </thead>
           <tbody class="font-medium">
             <tr>
-              <td
-                class="border-b-2 border-r-2 border-(--nb-border) px-4 py-3"
-              >
+              <td class="border-b-2 border-r-2 border-(--nb-border) px-4 py-3">
                 type
               </td>
               <td
@@ -47,9 +45,7 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
               </td>
             </tr>
             <tr>
-              <td
-                class="border-b-2 border-r-2 border-(--nb-border) px-4 py-3"
-              >
+              <td class="border-b-2 border-r-2 border-(--nb-border) px-4 py-3">
                 collapsible
               </td>
               <td
@@ -101,9 +97,7 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
           </thead>
           <tbody class="font-medium">
             <tr>
-              <td
-                class="border-b-2 border-r-2 border-(--nb-border) px-4 py-3"
-              >
+              <td class="border-b-2 border-r-2 border-(--nb-border) px-4 py-3">
                 value
               </td>
               <td

@@ -8,10 +8,10 @@ test.describe('nbText docs page', () => {
   test('page loads with correct heading and description', async ({ page }) => {
     // Assert
     await expect(
-      page.getByRole('heading', { name: 'Text', exact: true })
+      page.getByRole('heading', { name: 'Text', exact: true }),
     ).toBeVisible();
     await expect(
-      page.getByText('nbText', { exact: true }).first()
+      page.getByText('nbText', { exact: true }).first(),
     ).toBeVisible();
   });
 
@@ -29,7 +29,7 @@ test.describe('nbText docs page', () => {
     await expect(header.locator('nb-stat').nth(3)).toContainText('10');
     await expect(header.locator('nb-stat').nth(3)).toContainText('Tones');
     await expect(
-      header.locator('nb-stat').filter({ hasText: 'Inputs' })
+      header.locator('nb-stat').filter({ hasText: 'Inputs' }),
     ).toContainText('9');
   });
 
@@ -42,7 +42,7 @@ test.describe('nbText docs page', () => {
     // Assert
     await expect(preview.getByText('Roam & Go')).toBeVisible();
     await expect(
-      preview.getByText(/Explore iconic neighborhoods/)
+      preview.getByText(/Explore iconic neighborhoods/),
     ).toBeVisible();
     await expect(preview.getByText('New release')).toBeVisible();
   });
@@ -68,7 +68,7 @@ test.describe('nbText docs page', () => {
     // Assert
     await expect(weights).toHaveCount(6);
     await expect(
-      weights.filter({ hasText: 'Build loud. Stay sharp.' })
+      weights.filter({ hasText: 'Build loud. Stay sharp.' }),
     ).toHaveCount(6);
   });
 
@@ -90,7 +90,7 @@ test.describe('nbText docs page', () => {
     await expect(transforms).toHaveCount(4);
 
     const upperText = page.locator(
-      'section#transform [data-transform="uppercase"]'
+      'section#transform [data-transform="uppercase"]',
     );
     await expect(upperText).toBeVisible();
   });
@@ -204,7 +204,7 @@ test.describe('nbText docs page', () => {
 
     // Assert
     await expect(
-      page.getByRole('heading', { name: 'Text', exact: true })
+      page.getByRole('heading', { name: 'Text', exact: true }),
     ).toBeVisible();
     const preview = page.locator('section#preview');
     await expect(preview).toBeVisible();

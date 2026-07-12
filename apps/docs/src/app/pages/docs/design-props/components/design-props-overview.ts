@@ -9,8 +9,8 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
         <h1>Design Props</h1>
         <p class="mt-3 max-w-3xl text-base font-medium sm:text-lg">
           Every ng-brutalism primitive draws its visual inputs from the same
-          small vocabulary. Learn the 7 categories once and you can predict
-          what every component's API looks like before you open its docs page.
+          small vocabulary. Learn the 7 categories once and you can predict what
+          every component's API looks like before you open its docs page.
         </p>
       </div>
     </header>

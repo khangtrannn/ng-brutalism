@@ -8,9 +8,7 @@ import { DocsExample } from '@ng-brutalism/docs-ui';
   imports: [NbSelect, NbSelectOption, DocsExample],
   template: `
     <section id="disabled">
-      <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">
-        Disabled
-      </h2>
+      <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">Disabled</h2>
       <docs-example [code]="disabledExampleCode">
         <div class="w-80">
           <nb-select placeholder="Select an option" disabled>

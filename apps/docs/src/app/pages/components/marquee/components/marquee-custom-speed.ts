@@ -20,21 +20,21 @@ interface MarqueeSkill {
       <docs-example [code]="customSpeedExampleCode">
         <nb-marquee class="w-full" duration="20s">
           @for (skill of skills; track skill.text) {
-          <nb-marquee-item>
-            <span class="mx-4 flex items-center sm:mx-6 lg:mx-8">
-              <img
-                class="mr-2 h-7 w-7 object-contain sm:mr-3 sm:h-9 sm:w-9"
-                [src]="
-                  'https://cdn.simpleicons.org/' + skill.iconSlug + '/000000'
-                "
-                [alt]="skill.iconLabel + ' logo'"
-                loading="lazy"
-              />
-              <span class="font-heading text-lg sm:text-xl lg:text-2xl">
-                {{ skill.text }}
+            <nb-marquee-item>
+              <span class="mx-4 flex items-center sm:mx-6 lg:mx-8">
+                <img
+                  class="mr-2 h-7 w-7 object-contain sm:mr-3 sm:h-9 sm:w-9"
+                  [src]="
+                    'https://cdn.simpleicons.org/' + skill.iconSlug + '/000000'
+                  "
+                  [alt]="skill.iconLabel + ' logo'"
+                  loading="lazy"
+                />
+                <span class="font-heading text-lg sm:text-xl lg:text-2xl">
+                  {{ skill.text }}
+                </span>
               </span>
-            </span>
-          </nb-marquee-item>
+            </nb-marquee-item>
           }
         </nb-marquee>
       </docs-example>

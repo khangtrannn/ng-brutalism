@@ -10,35 +10,35 @@ import {
   template: `
     <div class="columns-2 gap-4 lg:columns-3">
       @for (image of images; track image.src; let i = $index) {
-      <picture class="mb-4 block">
-        <source [srcset]="'/design/thumb/' + image.thumb" type="image/webp" />
-        <img
-          [src]="'/design/' + image.src"
-          [alt]="image.alt"
-          [width]="image.tw"
-          [height]="image.th"
-          class="w-full cursor-pointer border-3 border-black"
-          [loading]="i < 4 ? 'eager' : 'lazy'"
-          [attr.fetchpriority]="i === 0 ? 'high' : null"
-          decoding="async"
-          (click)="selected.set(image.src)"
-        />
-      </picture>
+        <picture class="mb-4 block">
+          <source [srcset]="'/design/thumb/' + image.thumb" type="image/webp" />
+          <img
+            [src]="'/design/' + image.src"
+            [alt]="image.alt"
+            [width]="image.tw"
+            [height]="image.th"
+            class="w-full cursor-pointer border-3 border-black"
+            [loading]="i < 4 ? 'eager' : 'lazy'"
+            [attr.fetchpriority]="i === 0 ? 'high' : null"
+            decoding="async"
+            (click)="selected.set(image.src)"
+          />
+        </picture>
       }
     </div>
 
     @if (selected()) {
-    <div
-      class="fixed inset-0 z-50 flex items-center justify-center bg-black/80"
-      (click)="selected.set(null)"
-    >
-      <img
-        [src]="'/design/' + selected()"
-        [alt]="selected()!"
-        class="max-h-[90vh] max-w-[90vw] border-4 border-white"
-        (click)="$event.stopPropagation()"
-      />
-    </div>
+      <div
+        class="fixed inset-0 z-50 flex items-center justify-center bg-black/80"
+        (click)="selected.set(null)"
+      >
+        <img
+          [src]="'/design/' + selected()"
+          [alt]="selected()!"
+          class="max-h-[90vh] max-w-[90vw] border-4 border-white"
+          (click)="$event.stopPropagation()"
+        />
+      </div>
     }
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,

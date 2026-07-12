@@ -43,9 +43,9 @@ export default class PortfolioShowcasePage {
   private readonly greetings = ['Hello!', 'Hola!', 'Bonjour!', 'Xin chào!'];
   protected readonly greeting = toSignal(
     interval(1500).pipe(
-      map((tick) => this.greetings[(tick + 1) % this.greetings.length])
+      map((tick) => this.greetings[(tick + 1) % this.greetings.length]),
     ),
-    { initialValue: this.greetings[0] }
+    { initialValue: this.greetings[0] },
   );
 
   protected readonly navLinks = NAV_LINKS;

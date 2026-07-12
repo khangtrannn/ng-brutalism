@@ -44,7 +44,7 @@ export const appConfig: ApplicationConfig = {
           redirectTo: '/composition/overview',
           pathMatch: 'full',
         },
-      ])
+      ]),
     ),
     { provide: ErrorHandler, useClass: DocsErrorHandler },
     { provide: TitleStrategy, useClass: DocsTitleStrategy },
@@ -52,7 +52,7 @@ export const appConfig: ApplicationConfig = {
     provideClientHydration(),
     provideHttpClient(
       withFetch(),
-      withInterceptors([requestContextInterceptor])
+      withInterceptors([requestContextInterceptor]),
     ),
   ],
 };

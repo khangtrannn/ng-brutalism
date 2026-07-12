@@ -17,8 +17,8 @@ import { NbCallout } from '@ng-brutalism/ui';
       <ol class="mb-5 list-decimal space-y-2 pl-6 font-medium">
         <li>
           An input on the element writes the variable
-          <strong>inline</strong> - inline styles win over any stylesheet
-          rule, including your own, short of
+          <strong>inline</strong> - inline styles win over any stylesheet rule,
+          including your own, short of
           <code class="font-mono">!important</code>.
         </li>
         <li>
@@ -29,18 +29,18 @@ import { NbCallout } from '@ng-brutalism/ui';
         </li>
         <li>
           <code class="font-mono">!important</code> on a stylesheet rule beats
-          an inline input value - the one documented escape hatch, useful when
-          a consumer needs to force an override for an accessibility fix
+          an inline input value - the one documented escape hatch, useful when a
+          consumer needs to force an override for an accessibility fix
           regardless of what inputs are set upstream.
         </li>
       </ol>
       <div nbCallout tone="cream" size="sm" class="mb-2">
         <p class="normal-case">
-          <strong>Don't set both</strong> an input and a same-name CSS
-          variable override on the <em>same element</em> - the input's inline
-          value always wins there, so the CSS rule silently does nothing. Use
-          the input for one-off, per-instance overrides; use a CSS rule when
-          you want to restyle every instance under a selector.
+          <strong>Don't set both</strong> an input and a same-name CSS variable
+          override on the <em>same element</em> - the input's inline value
+          always wins there, so the CSS rule silently does nothing. Use the
+          input for one-off, per-instance overrides; use a CSS rule when you
+          want to restyle every instance under a selector.
         </p>
       </div>
     </section>

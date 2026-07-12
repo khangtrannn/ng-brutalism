@@ -69,8 +69,8 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
                 'solid'
               </td>
               <td class="px-4 py-3">
-                Line style. <code class="font-mono">thick</code> renders a 4
-                px border.
+                Line style. <code class="font-mono">thick</code> renders a 4 px
+                border.
               </td>
             </tr>
           </tbody>

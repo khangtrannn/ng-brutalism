@@ -15,8 +15,8 @@ function isStaleBuildError(error: unknown): boolean {
     error instanceof Error
       ? error.message
       : typeof error === 'string'
-      ? error
-      : String(error);
+        ? error
+        : String(error);
 
   return staleBuildErrorPatterns.some((pattern) => pattern.test(message));
 }
@@ -28,7 +28,7 @@ function reloadOnceForStaleBuild(): boolean {
 
   const now = Date.now();
   const lastReloadAt = Number(
-    window.sessionStorage.getItem(reloadStorageKey) ?? 0
+    window.sessionStorage.getItem(reloadStorageKey) ?? 0,
   );
 
   if (Number.isFinite(lastReloadAt) && now - lastReloadAt < reloadCooldownMs) {

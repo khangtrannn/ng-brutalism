@@ -23,11 +23,11 @@ export default defineConfig(({ mode }) => {
       alias: {
         '@ng-brutalism/ui/styles.css': resolve(
           __dirname,
-          '../../libs/ui/src/lib/styles/styles.css'
+          '../../libs/ui/src/lib/styles/styles.css',
         ),
         '@ng-brutalism/ui/theme.css': resolve(
           __dirname,
-          '../../libs/ui/src/lib/styles/theme.css'
+          '../../libs/ui/src/lib/styles/theme.css',
         ),
       },
     },

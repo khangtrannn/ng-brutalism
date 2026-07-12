@@ -8,21 +8,17 @@ import { DocsCodeBlock } from '@ng-brutalism/docs-ui';
   template: `
     <section id="usage">
       <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">Usage</h2>
-      <docs-code-block
-        class="block mb-5"
-        title="Import"
-        [code]="importCode"
-      />
+      <docs-code-block class="block mb-5" title="Import" [code]="importCode" />
       <docs-code-block title="Template" [code]="contactUsExampleCode" />
       <p class="mt-5 font-medium">
         Initial focus follows the native
-        <code class="font-mono">showModal()</code> behavior: the browser
-        focuses the first <code class="font-mono">[autofocus]</code> or
-        focusable element inside the dialog. Add
+        <code class="font-mono">showModal()</code> behavior: the browser focuses
+        the first <code class="font-mono">[autofocus]</code> or focusable
+        element inside the dialog. Add
         <code class="font-mono">autofocus</code> to whichever control should
-        receive focus first (usually the primary action or the first form
-        field) - <code class="font-mono">NbDialog</code> does not manage a
-        focus trap beyond what the native element already provides.
+        receive focus first (usually the primary action or the first form field)
+        - <code class="font-mono">NbDialog</code> does not manage a focus trap
+        beyond what the native element already provides.
       </p>
     </section>
   `,

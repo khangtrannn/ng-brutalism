@@ -8,16 +8,15 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
         Why build it for Angular?
       </h2>
       <p class="mb-4 text-base font-medium">
-        Angular has a strong component model, and Ng Brutalism is built to
-        fit it directly rather than being ported from another framework's
-        conventions - directive-first APIs and interaction patterns that
-        feel native to Angular applications. See the next question for the
-        specific modern-Angular features it targets.
+        Angular has a strong component model, and Ng Brutalism is built to fit
+        it directly rather than being ported from another framework's
+        conventions - directive-first APIs and interaction patterns that feel
+        native to Angular applications. See the next question for the specific
+        modern-Angular features it targets.
       </p>
       <p class="text-base font-medium">
-        Each component can be imported directly into the Angular component
-        that uses it, which keeps examples small and makes the API easy to
-        scan.
+        Each component can be imported directly into the Angular component that
+        uses it, which keeps examples small and makes the API easy to scan.
       </p>
     </section>
   `,

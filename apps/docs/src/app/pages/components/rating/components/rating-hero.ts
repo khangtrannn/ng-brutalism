@@ -12,8 +12,8 @@ import { DocsSourceTile, DocsStatusBadge } from '@ng-brutalism/docs-ui';
         <p>Neo-Brutalist Angular Rating</p>
         <h1>Rating</h1>
         <p class="mt-3 max-w-3xl text-base font-medium sm:text-lg">
-          A read-only star rating display. Accepts a decimal value and rounds
-          to the nearest whole star. Optionally shows a review count. Fully
+          A read-only star rating display. Accepts a decimal value and rounds to
+          the nearest whole star. Optionally shows a review count. Fully
           accessible via
           <code class="font-mono">role="img"</code> with an auto-generated
           <code class="font-mono">aria-label</code>.

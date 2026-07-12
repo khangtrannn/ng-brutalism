@@ -4,9 +4,7 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
   selector: 'docs-card-parts',
   template: `
     <section id="parts">
-      <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">
-        Sub-parts
-      </h2>
+      <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">Sub-parts</h2>
       <p class="mb-4 text-sm font-medium">
         The card component is composed of 7 sub-parts that can be used
         independently.

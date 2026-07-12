@@ -11,14 +11,14 @@ import { RouterLink } from '@angular/router';
       </h2>
       <div class="grid gap-3 sm:grid-cols-2">
         @for (input of keyInputs; track input.name + input.description) {
-        <div
-          class="border-3 border-(--nb-border) bg-white p-4 shadow-[3px_3px_0_0_var(--nb-shadow)]"
-        >
-          <code class="font-mono text-sm font-black">{{ input.name }}</code>
-          <p class="mt-1.5 text-sm font-medium text-black/70">
-            {{ input.description }}
-          </p>
-        </div>
+          <div
+            class="border-3 border-(--nb-border) bg-white p-4 shadow-[3px_3px_0_0_var(--nb-shadow)]"
+          >
+            <code class="font-mono text-sm font-black">{{ input.name }}</code>
+            <p class="mt-1.5 text-sm font-medium text-black/70">
+              {{ input.description }}
+            </p>
+          </div>
         }
       </div>
       <p class="mt-5 text-sm font-medium">

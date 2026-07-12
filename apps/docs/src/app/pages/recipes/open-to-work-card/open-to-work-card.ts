@@ -144,9 +144,9 @@ interface OtwLink {
               tracking="wide"
             >
               @for (skill of profile.skills; track skill.label) {
-              <span nbChip nbTypography font="display" [tone]="skill.tone">{{
-                skill.label
-              }}</span>
+                <span nbChip nbTypography font="display" [tone]="skill.tone">{{
+                  skill.label
+                }}</span>
               }
             </div>
 
@@ -160,15 +160,15 @@ interface OtwLink {
           <div nbSplit ratio="1:1" gap="lg" collapse="sm" align="center">
             <div nbCluster gap="sm" align="center" padding="none">
               @for (link of profile.links; track link.label) {
-              <button
-                nbIconButton
-                shape="circle"
-                size="lg"
-                shadow="none"
-                [tone]="link.tone"
-                [icon]="link.icon"
-                [attr.aria-label]="link.label"
-              ></button>
+                <button
+                  nbIconButton
+                  shape="circle"
+                  size="lg"
+                  shadow="none"
+                  [tone]="link.tone"
+                  [icon]="link.icon"
+                  [attr.aria-label]="link.label"
+                ></button>
               }
             </div>
 

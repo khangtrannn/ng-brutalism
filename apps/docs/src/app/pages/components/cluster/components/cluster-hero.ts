@@ -12,9 +12,9 @@ import { DocsSourceTile, DocsStatusBadge } from '@ng-brutalism/docs-ui';
         <p>Neo-Brutalist Angular Cluster</p>
         <h1>Cluster</h1>
         <p class="mt-3 max-w-3xl text-base font-medium sm:text-lg">
-          Use <code class="font-mono">nbCluster</code> whenever children
-          should flow horizontally, align together, and wrap cleanly on
-          smaller screens. It is the inline composition pair to
+          Use <code class="font-mono">nbCluster</code> whenever children should
+          flow horizontally, align together, and wrap cleanly on smaller
+          screens. It is the inline composition pair to
           <code class="font-mono">nbStack</code>.
         </p>
       </div>

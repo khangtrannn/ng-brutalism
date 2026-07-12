@@ -52,9 +52,7 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
               >
                 'Select an option'
               </td>
-              <td class="px-4 py-3">
-                Text shown when no option is selected.
-              </td>
+              <td class="px-4 py-3">Text shown when no option is selected.</td>
             </tr>
             <tr class="border-b-2 border-(--nb-border)">
               <td class="border-r-2 border-(--nb-border) px-4 py-3">value</td>
@@ -128,8 +126,8 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
       </h3>
       <p class="text-sm font-medium">
         Directive applied to a native
-        <code class="font-mono text-sm">&lt;select&gt;</code> element to give
-        it the brutal look without the custom listbox behaviour. Detects when
+        <code class="font-mono text-sm">&lt;select&gt;</code> element to give it
+        the brutal look without the custom listbox behaviour. Detects when
         nested inside an
         <code class="font-mono text-sm">&lt;nb-input-group&gt;</code>
         and adjusts its border and shadow accordingly. Has no inputs.

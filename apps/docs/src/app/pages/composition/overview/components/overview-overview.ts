@@ -15,10 +15,9 @@ import { NbStack } from '@ng-brutalism/ui';
       <p class="eyebrow">Composition</p>
       <h1>Build loud. Compose smart.</h1>
       <p class="max-w-3xl text-base font-medium sm:text-lg">
-        v0.2.0 introduces a composition system for building loud,
-        token-driven, Angular-first brutalist UIs. Small primitives that lock
-        together like LEGO - each primitive owns one job, and they compose to
-        build anything.
+        v0.2.0 introduces a composition system for building loud, token-driven,
+        Angular-first brutalist UIs. Small primitives that lock together like
+        LEGO - each primitive owns one job, and they compose to build anything.
       </p>
     </header>
   `,

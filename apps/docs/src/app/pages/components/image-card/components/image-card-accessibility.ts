@@ -9,8 +9,8 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
       </h2>
       <p class="font-medium">
         <strong>APG pattern:</strong> N/A - Image Card is a static,
-        presentational media block that pairs an image with an optional
-        caption, not an interactive widget. <strong>Status:</strong> Stable.
+        presentational media block that pairs an image with an optional caption,
+        not an interactive widget. <strong>Status:</strong> Stable.
       </p>
     </section>
   `,

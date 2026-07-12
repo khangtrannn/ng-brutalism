@@ -43,8 +43,8 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
               <td
                 class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"
               >
-                'surface' | 'background' | 'ink' | 'yellow' | 'pink' | 'mint'
-                | 'lavender' | 'accent' | 'success' | 'warning' | 'danger'
+                'surface' | 'background' | 'ink' | 'yellow' | 'pink' | 'mint' |
+                'lavender' | 'accent' | 'success' | 'warning' | 'danger'
               </td>
               <td
                 class="border-r-2 border-(--nb-border) px-4 py-3 font-mono text-sm"

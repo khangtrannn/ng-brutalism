@@ -15,10 +15,10 @@ import { NbCallout } from '@ng-brutalism/ui';
         fixtures for dialog, select, accordion, and
         <a routerLink="/components/field" class="underline">field</a> - both
         closed/valid and open/invalid states, since an invalid, error-linked
-        control is a distinct accessibility surface from a clean one. The
-        dialog fixture sets the native
-        <code class="font-mono">open</code> attribute directly, since jsdom
-        doesn't implement <code class="font-mono">showModal()</code>.
+        control is a distinct accessibility surface from a clean one. The dialog
+        fixture sets the native <code class="font-mono">open</code> attribute
+        directly, since jsdom doesn't implement
+        <code class="font-mono">showModal()</code>.
       </p>
       <div nbCallout tone="cream" size="sm">
         <p class="normal-case">
@@ -26,8 +26,8 @@ import { NbCallout } from '@ng-brutalism/ui';
           <code class="font-mono">overflow:hidden</code> ancestor and the
           <code class="font-mono">formControlName</code>
           round-trip are the two things the unit-test suite can't prove on its
-          own - both were confirmed in a real Chromium session (Playwright)
-          with zero console errors.
+          own - both were confirmed in a real Chromium session (Playwright) with
+          zero console errors.
         </p>
       </div>
     </section>

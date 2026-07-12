@@ -199,8 +199,7 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
                 undefined
               </td>
               <td class="px-4 py-3">
-                Wraps the input icon in a framed surface with the provided
-                fill.
+                Wraps the input icon in a framed surface with the provided fill.
               </td>
             </tr>
             <tr class="border-t-2 border-(--nb-border)">
@@ -221,8 +220,8 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
               </td>
               <td class="px-4 py-3">
                 Primary label. Use
-                <code class="font-mono">nbMediaItemTitle</code> for custom
-                title markup.
+                <code class="font-mono">nbMediaItemTitle</code> for custom title
+                markup.
               </td>
             </tr>
             <tr class="border-t-2 border-(--nb-border)">
@@ -243,8 +242,8 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
               </td>
               <td class="px-4 py-3">
                 Secondary label. Use
-                <code class="font-mono">nbMediaItemDescription</code> for
-                custom description markup.
+                <code class="font-mono">nbMediaItemDescription</code> for custom
+                description markup.
               </td>
             </tr>
           </tbody>
@@ -278,9 +277,9 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
               </td>
               <td class="px-4 py-3">
                 Media slot for an icon or image. Add
-                <code class="font-mono">surface</code> to use the built-in
-                icon frame and <code class="font-mono">background</code> to
-                adjust its fill.
+                <code class="font-mono">surface</code> to use the built-in icon
+                frame and <code class="font-mono">background</code> to adjust
+                its fill.
               </td>
             </tr>
             <tr class="border-b-2 border-(--nb-border)">
@@ -290,8 +289,7 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
                 nbMediaItemTitle
               </td>
               <td class="px-4 py-3">
-                Primary label. Rendered in black font weight with tight
-                leading.
+                Primary label. Rendered in black font weight with tight leading.
               </td>
             </tr>
             <tr>

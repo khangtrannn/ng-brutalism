@@ -17,15 +17,15 @@ interface TextWeightDemo {
       <docs-example [code]="weightsCode">
         <div class="p-6 w-full" nbStack gap="md">
           @for (w of weights; track w.value) {
-          <div class="flex items-baseline gap-4">
-            <span
-              class="w-20 font-mono text-xs font-bold text-right opacity-50 shrink-0"
-              >{{ w.value }}</span
-            >
-            <span nbText size="lg" [weight]="w.value">
-              Build loud. Stay sharp.
-            </span>
-          </div>
+            <div class="flex items-baseline gap-4">
+              <span
+                class="w-20 font-mono text-xs font-bold text-right opacity-50 shrink-0"
+                >{{ w.value }}</span
+              >
+              <span nbText size="lg" [weight]="w.value">
+                Build loud. Stay sharp.
+              </span>
+            </div>
           }
         </div>
       </docs-example>

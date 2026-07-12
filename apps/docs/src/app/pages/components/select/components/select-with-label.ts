@@ -18,9 +18,7 @@ import { DocsExample } from '@ng-brutalism/docs-ui';
             <nb-select-option value="starter" label="Starter"
               >Starter</nb-select-option
             >
-            <nb-select-option value="team" label="Team"
-              >Team</nb-select-option
-            >
+            <nb-select-option value="team" label="Team">Team</nb-select-option>
             <nb-select-option value="enterprise" label="Enterprise">
               Enterprise
             </nb-select-option>

@@ -16,11 +16,7 @@ import { DocsCodeBlock } from '@ng-brutalism/docs-ui';
         <code class="font-mono">separator</code> with
         <code class="font-mono">gap="none"</code>.
       </p>
-      <docs-code-block
-        class="block mb-5"
-        title="Import"
-        [code]="importCode"
-      />
+      <docs-code-block class="block mb-5" title="Import" [code]="importCode" />
       <docs-code-block title="Template" [code]="defaultExampleCode" />
     </section>
   `,

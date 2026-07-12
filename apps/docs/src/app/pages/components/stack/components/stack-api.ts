@@ -109,7 +109,9 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
               >
                 'none'
               </td>
-              <td class="px-4 py-3">Optional border between adjacent children.</td>
+              <td class="px-4 py-3">
+                Optional border between adjacent children.
+              </td>
             </tr>
           </tbody>
         </table>

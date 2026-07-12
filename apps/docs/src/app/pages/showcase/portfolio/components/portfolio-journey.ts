@@ -85,47 +85,49 @@ const INITIAL_ZOOM = 2;
               class="portfolio-journey-timeline-scroll relative flex-1 overflow-y-auto p-3 sm:p-4 md:p-6"
             >
               @for (entry of timeline(); track entry.id; let index = $index) {
-              <button
-                class="relative w-full cursor-pointer rounded-md border-l-4 border-transparent py-3 pl-10 pr-2 text-left transition-colors duration-200 hover:bg-gray-100 sm:py-4 sm:pl-14 sm:pr-4 md:pl-16"
-                type="button"
-                [class.bg-yellow-100]="activeJourney() === index"
-                (click)="focusTimelineEntry(index)"
-              >
-                <span
-                  class="absolute left-4 top-1/2 z-10 h-2 w-2 -translate-y-1/2 rounded-full bg-black sm:left-6"
-                ></span>
-                <span class="block text-base font-black sm:text-lg md:text-xl">
-                  {{ entry.title }}
-                </span>
-                <span
-                  class="block font-mono text-xs font-bold text-gray-600 sm:text-sm"
+                <button
+                  class="relative w-full cursor-pointer rounded-md border-l-4 border-transparent py-3 pl-10 pr-2 text-left transition-colors duration-200 hover:bg-gray-100 sm:py-4 sm:pl-14 sm:pr-4 md:pl-16"
+                  type="button"
+                  [class.bg-yellow-100]="activeJourney() === index"
+                  (click)="focusTimelineEntry(index)"
                 >
-                  {{ entry.date }}
-                </span>
-                <span
-                  class="mt-1.5 block text-sm leading-relaxed sm:mt-2 sm:text-base"
-                >
-                  {{ entry.description }}
-                </span>
-                <span
-                  class="mt-2 flex items-center gap-2 text-xs font-medium text-gray-700 sm:mt-3 sm:text-sm"
-                >
-                  <span aria-hidden="true">📍</span>{{ entry.locationName }}
-                </span>
-              </button>
+                  <span
+                    class="absolute left-4 top-1/2 z-10 h-2 w-2 -translate-y-1/2 rounded-full bg-black sm:left-6"
+                  ></span>
+                  <span
+                    class="block text-base font-black sm:text-lg md:text-xl"
+                  >
+                    {{ entry.title }}
+                  </span>
+                  <span
+                    class="block font-mono text-xs font-bold text-gray-600 sm:text-sm"
+                  >
+                    {{ entry.date }}
+                  </span>
+                  <span
+                    class="mt-1.5 block text-sm leading-relaxed sm:mt-2 sm:text-base"
+                  >
+                    {{ entry.description }}
+                  </span>
+                  <span
+                    class="mt-2 flex items-center gap-2 text-xs font-medium text-gray-700 sm:mt-3 sm:text-sm"
+                  >
+                    <span aria-hidden="true">📍</span>{{ entry.locationName }}
+                  </span>
+                </button>
               }
             </div>
           </aside>
 
           @if (isMobile() && !timelineOpen()) {
-          <button
-            class="absolute left-4 top-4 z-30 rounded-lg border-4 border-black bg-white p-3 text-black shadow-[4px_4px_0px_0px_#000] transition-all duration-200 hover:translate-x-1 hover:translate-y-1 hover:shadow-none"
-            type="button"
-            aria-label="Open timeline"
-            (click)="toggleTimeline()"
-          >
-            <docs-portfolio-menu-icon class="size-6" />
-          </button>
+            <button
+              class="absolute left-4 top-4 z-30 rounded-lg border-4 border-black bg-white p-3 text-black shadow-[4px_4px_0px_0px_#000] transition-all duration-200 hover:translate-x-1 hover:translate-y-1 hover:shadow-none"
+              type="button"
+              aria-label="Open timeline"
+              (click)="toggleTimeline()"
+            >
+              <docs-portfolio-menu-icon class="size-6" />
+            </button>
           }
 
           <div
@@ -299,7 +301,7 @@ export class PortfolioJourney {
       if (event.dragging || !this.map) return;
       const feature = this.map.forEachFeatureAtPixel(
         event.pixel,
-        (f) => f as Feature
+        (f) => f as Feature,
       );
       const target = this.map.getTargetElement();
       if (target) {
@@ -323,7 +325,7 @@ export class PortfolioJourney {
       if (!this.map) return;
       const feature = this.map.forEachFeatureAtPixel(
         event.pixel,
-        (f) => f as Feature
+        (f) => f as Feature,
       );
       if (!feature) return;
       const entry = feature.get('entry') as TimelineEntry;

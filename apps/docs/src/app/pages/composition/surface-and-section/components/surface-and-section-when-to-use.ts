@@ -16,15 +16,15 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
           Reach for this pattern when…
         </div>
         @for (use of whenToUse; track use) {
-        <div
-          class="flex gap-3 border-b border-white/10 px-5 py-3 last:border-none"
-        >
-          <span
-            class="mt-1.5 inline-block h-2 w-2 shrink-0 border-2 border-(--nb-yellow) bg-(--nb-yellow)"
-            aria-hidden="true"
-          ></span>
-          <span class="text-sm font-medium">{{ use }}</span>
-        </div>
+          <div
+            class="flex gap-3 border-b border-white/10 px-5 py-3 last:border-none"
+          >
+            <span
+              class="mt-1.5 inline-block h-2 w-2 shrink-0 border-2 border-(--nb-yellow) bg-(--nb-yellow)"
+              aria-hidden="true"
+            ></span>
+            <span class="text-sm font-medium">{{ use }}</span>
+          </div>
         }
       </div>
     </section>

@@ -18,26 +18,26 @@ interface MediaFrameRatioDemo {
       <docs-example [code]="ratiosExampleCode">
         <div class="flex flex-col divide-y-2 divide-(--nb-border) p-4">
           @for (ratio of ratios; track ratio.value) {
-          <div class="py-5 first:pt-0 last:pb-0">
-            <div class="mb-3 flex items-baseline gap-3">
-              <span class="font-black uppercase">{{ ratio.label }}</span>
-              <span class="text-sm font-medium opacity-60">{{
-                ratio.description
-              }}</span>
+            <div class="py-5 first:pt-0 last:pb-0">
+              <div class="mb-3 flex items-baseline gap-3">
+                <span class="font-black uppercase">{{ ratio.label }}</span>
+                <span class="text-sm font-medium opacity-60">{{
+                  ratio.description
+                }}</span>
+              </div>
+              <div
+                nbMediaFrame
+                [ratio]="ratio.value"
+                tone="lavender"
+                shadow="hard"
+                [class]="ratio.value === 'auto' ? 'min-h-48' : ''"
+              >
+                <img
+                  src="/assets/images/media-frame-demo.png"
+                  [alt]="ratio.label + ' ratio demo'"
+                />
+              </div>
             </div>
-            <div
-              nbMediaFrame
-              [ratio]="ratio.value"
-              tone="lavender"
-              shadow="hard"
-              [class]="ratio.value === 'auto' ? 'min-h-48' : ''"
-            >
-              <img
-                src="/assets/images/media-frame-demo.png"
-                [alt]="ratio.label + ' ratio demo'"
-              />
-            </div>
-          </div>
           }
         </div>
       </docs-example>

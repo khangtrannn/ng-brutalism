@@ -32,19 +32,19 @@ interface SurfaceShapeDemo {
       <docs-example [code]="shapeExampleCode">
         <div class="grid w-full grid-cols-1 gap-4 p-4 sm:grid-cols-3">
           @for (shape of shapes; track shape.label) {
-          <div
-            nbSurface
-            [tone]="shape.tone"
-            [radius]="shape.radius"
-            [border]="shape.border"
-            [shadow]="shape.shadow"
-            class="min-h-32 p-4"
-          >
-            <p class="font-black">{{ shape.label }}</p>
-            <p class="mt-2 font-mono text-xs">
-              {{ shape.radius }} / {{ shape.border }} / {{ shape.shadow }}
-            </p>
-          </div>
+            <div
+              nbSurface
+              [tone]="shape.tone"
+              [radius]="shape.radius"
+              [border]="shape.border"
+              [shadow]="shape.shadow"
+              class="min-h-32 p-4"
+            >
+              <p class="font-black">{{ shape.label }}</p>
+              <p class="mt-2 font-mono text-xs">
+                {{ shape.radius }} / {{ shape.border }} / {{ shape.shadow }}
+              </p>
+            </div>
           }
         </div>
       </docs-example>

@@ -44,9 +44,7 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
         <div
           class="border-3 border-(--nb-border) bg-nb-surface p-5 shadow-[5px_5px_0_0_var(--nb-shadow)]"
         >
-          <h3 class="font-heading text-lg font-black uppercase">
-            Interactive
-          </h3>
+          <h3 class="font-heading text-lg font-black uppercase">Interactive</h3>
           <p class="mt-2 text-sm font-medium">
             tone + size + radius + shadow + border.
             <code class="font-mono">button</code>,
@@ -66,8 +64,8 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
             Typography only. <code class="font-mono">text</code>,
             <code class="font-mono">display</code>.
             <code class="font-mono">title</code> and
-            <code class="font-mono">label</code> are structural markers with
-            no visual props.
+            <code class="font-mono">label</code> are structural markers with no
+            visual props.
           </p>
         </div>
         <div nbCard tone="surface" class="p-5 sm:col-span-2">
@@ -81,8 +79,8 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
             <code class="font-mono">status-dot</code>,
             <code class="font-mono">progress</code>,
             <code class="font-mono">rating</code>,
-            <code class="font-mono">separator</code>. A small prop surface
-            here is deliberate, not a gap.
+            <code class="font-mono">separator</code>. A small prop surface here
+            is deliberate, not a gap.
           </p>
         </div>
       </div>

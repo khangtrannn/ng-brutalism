@@ -16,7 +16,7 @@ const libSrcRoot = path.resolve(workspaceRoot, 'libs/ui/src/lib');
 const themeCssPath = path.resolve(libSrcRoot, 'styles/theme.css');
 const outputPath = path.resolve(
   workspaceRoot,
-  'libs/docs-ui/src/lib/docs-tokens.generated.ts'
+  'libs/docs-ui/src/lib/docs-tokens.generated.ts',
 );
 
 const NON_COMPONENT_DIRS = new Set(['core', 'styles', 'tokens', 'typography']);
@@ -221,14 +221,14 @@ componentTokens.theme = themeTokens;
 const hookViolations = checkHookContract(componentTokens);
 if (hookViolations.length > 0) {
   console.error(
-    '\nMinimum CSS-var hook contract violated (design-props.md §4):'
+    '\nMinimum CSS-var hook contract violated (design-props.md §4):',
   );
   for (const { slug, missing } of hookViolations) {
     console.error(`  ${slug}: missing ${missing.join(', ')}`);
   }
   console.error(
     '\nExpose the missing public --nb-<component>-* hook(s), or record the ' +
-      'exemption in design-props.md §4 and the HOOK_CONTRACT map above.\n'
+      'exemption in design-props.md §4 and the HOOK_CONTRACT map above.\n',
   );
   process.exit(1);
 }
@@ -245,8 +245,8 @@ if (!existsSync(outputPath)) {
   console.error(
     `Missing ${path.relative(
       workspaceRoot,
-      outputPath
-    )}. Run "pnpm docs:tokens:update".`
+      outputPath,
+    )}. Run "pnpm docs:tokens:update".`,
   );
   process.exit(1);
 }
@@ -256,15 +256,15 @@ if (current !== output) {
   console.error(
     `${path.relative(
       workspaceRoot,
-      outputPath
+      outputPath,
     )} is stale (component CSS changed since last generation).\n` +
-      'Run "pnpm docs:tokens:update" and commit the result.'
+      'Run "pnpm docs:tokens:update" and commit the result.',
   );
   process.exit(1);
 }
 
 console.log(
-  `Token reference is up to date (${componentSlugs.length} components).`
+  `Token reference is up to date (${componentSlugs.length} components).`,
 );
 
 function stripComments(css) {
@@ -422,7 +422,7 @@ function slotFor(slug, name) {
 
 function phraseFor(slug, property, name) {
   const base = property
-    ? PROPERTY_PHRASES[property] ?? genericPropertyPhrase(property)
+    ? (PROPERTY_PHRASES[property] ?? genericPropertyPhrase(property))
     : 'Component token';
   const slot = slotFor(slug, name);
   const subject = slot
@@ -471,8 +471,8 @@ function themeHeuristic(name) {
       part === 'bg'
         ? 'background'
         : part === 'fg'
-        ? 'foreground / text'
-        : 'border';
+          ? 'foreground / text'
+          : 'border';
     return `"${tone}" tone ${partLabel} color`;
   }
 
@@ -524,7 +524,7 @@ function renderOutput(slugs, componentTokens, sharedTokens) {
     '// GENERATED FILE - do not hand-edit.',
     '// Source: apps/docs/scripts/generate-token-reference.mjs',
     '// Regenerate with `pnpm docs:tokens:update` after changing component CSS.',
-    ''
+    '',
   );
   lines.push('export interface DocsToken {');
   lines.push('  name: string;');
@@ -541,12 +541,12 @@ function renderOutput(slugs, componentTokens, sharedTokens) {
   lines.push(
     'export const sharedTokens: DocsToken[] = ' +
       renderTokenArray(sharedTokens) +
-      ';'
+      ';',
   );
   lines.push('');
 
   lines.push(
-    'export const componentTokens: Record<DocsTokenComponent, DocsToken[]> = {'
+    'export const componentTokens: Record<DocsTokenComponent, DocsToken[]> = {',
   );
   for (const slug of [...slugs, 'theme']) {
     lines.push(`  '${slug}': ${renderTokenArray(componentTokens[slug])},`);
@@ -563,8 +563,8 @@ function renderTokenArray(tokens) {
     .map(
       (t) =>
         `    { name: ${JSON.stringify(t.name)}, defaultValue: ${JSON.stringify(
-          t.defaultValue
-        )}, usage: ${JSON.stringify(t.usage)} }`
+          t.defaultValue,
+        )}, usage: ${JSON.stringify(t.usage)} }`,
     )
     .join(',\n');
   return `[\n${items},\n  ]`;

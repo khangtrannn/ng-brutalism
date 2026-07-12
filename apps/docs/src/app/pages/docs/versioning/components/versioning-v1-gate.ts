@@ -14,8 +14,8 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
           breaking changes in that window.
         </li>
         <li>
-          <strong>At least one external user</strong> has reported issues -
-          the signal that the API is actually being exercised outside this
+          <strong>At least one external user</strong> has reported issues - the
+          signal that the API is actually being exercised outside this
           repository, not just untouched because nobody's using it yet.
         </li>
       </ol>

@@ -9,8 +9,8 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
       </h2>
       <p class="font-medium">
         <strong>APG pattern:</strong> N/A - Rating is a static, presentational
-        display that visualizes a star rating value, not an interactive
-        widget. <strong>Status:</strong> Stable.
+        display that visualizes a star rating value, not an interactive widget.
+        <strong>Status:</strong> Stable.
       </p>
     </section>
   `,

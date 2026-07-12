@@ -18,8 +18,8 @@ import { RouterLink } from '@angular/router';
         <strong>Status:</strong> Stable. Pair it with
         <code class="font-mono">nbLabel</code> - or wrap both in
         <a routerLink="/components/field" class="underline">nb-field</a> for
-        generated id linking plus description/error wiring - so every input
-        has an accessible name.
+        generated id linking plus description/error wiring - so every input has
+        an accessible name.
       </p>
     </section>
   `,

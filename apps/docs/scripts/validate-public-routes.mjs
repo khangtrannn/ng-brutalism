@@ -14,7 +14,7 @@ const SITE_URL = 'https://ngbrutalism.khangtran.dev';
 
 const jiti = createJiti(import.meta.url, { interopDefault: true });
 const { DOCS_PUBLIC_ROUTES } = await jiti.import(
-  path.resolve(__dirname, '../src/app/docs/docs-public-routes.ts')
+  path.resolve(__dirname, '../src/app/docs/docs-public-routes.ts'),
 );
 
 const errors = [];
@@ -33,7 +33,7 @@ for (const route of DOCS_PUBLIC_ROUTES) {
     errors.push(
       `❌ Duplicate file mapping in DOCS_PUBLIC_ROUTES: ${
         route.file
-      } (used by ${seenFiles.get(route.file)} and ${route.path})`
+      } (used by ${seenFiles.get(route.file)} and ${route.path})`,
     );
   }
   seenFiles.set(route.file, route.path);
@@ -52,7 +52,7 @@ const registeredFiles = new Set(DOCS_PUBLIC_ROUTES.map((route) => route.file));
 for (const { file, expectedPath } of discoveredRoutes) {
   if (!registeredFiles.has(file)) {
     errors.push(
-      `❌ Discovered public page file ${file} (expected route ${expectedPath}) is missing from DOCS_PUBLIC_ROUTES`
+      `❌ Discovered public page file ${file} (expected route ${expectedPath}) is missing from DOCS_PUBLIC_ROUTES`,
     );
   }
 }
@@ -64,20 +64,20 @@ if (existsSync(sitemapPath)) {
     const loc = toCanonicalUrl(route.path);
     if (!sitemap.includes(`<loc>${loc}</loc>`)) {
       errors.push(
-        `❌ Route ${route.path}: missing <loc>${loc}</loc> in sitemap.xml`
+        `❌ Route ${route.path}: missing <loc>${loc}</loc> in sitemap.xml`,
       );
     }
   }
 
   const registeredUrls = new Set(
-    DOCS_PUBLIC_ROUTES.map((route) => toCanonicalUrl(route.path))
+    DOCS_PUBLIC_ROUTES.map((route) => toCanonicalUrl(route.path)),
   );
   const locMatches = sitemap.matchAll(/<loc>([^<]+)<\/loc>/g);
   for (const match of locMatches) {
     const loc = match[1];
     if (loc.startsWith(SITE_URL) && !registeredUrls.has(loc)) {
       errors.push(
-        `❌ sitemap.xml contains <loc>${loc}</loc> with no matching entry in DOCS_PUBLIC_ROUTES`
+        `❌ sitemap.xml contains <loc>${loc}</loc> with no matching entry in DOCS_PUBLIC_ROUTES`,
       );
     }
   }
@@ -92,7 +92,7 @@ if (existsSync(llmsTxtPath)) {
     const canonicalUrl = toCanonicalUrl(route.path);
     if (!llmsTxt.includes(canonicalUrl)) {
       errors.push(
-        `❌ Route ${route.path}: missing ${canonicalUrl} in llms.txt`
+        `❌ Route ${route.path}: missing ${canonicalUrl} in llms.txt`,
       );
     }
   }
@@ -106,7 +106,7 @@ if (errors.length > 0) {
   process.exit(1);
 } else {
   console.log(
-    `✅ All route validations passed (${DOCS_PUBLIC_ROUTES.length} registered, ${discoveredRoutes.length} discovered).`
+    `✅ All route validations passed (${DOCS_PUBLIC_ROUTES.length} registered, ${discoveredRoutes.length} discovered).`,
   );
 }
 

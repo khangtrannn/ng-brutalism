@@ -13,9 +13,9 @@ import { DocsSourceTile, DocsStatusBadge } from '@ng-brutalism/docs-ui';
         <h1>Text</h1>
         <p class="mt-3 max-w-3xl text-base font-medium sm:text-lg">
           <code class="font-mono">nbText</code> is an attribute directive for
-          general-purpose typography - body copy, labels, brand names,
-          metadata, and captions. It composes cleanly with semantic HTML
-          elements and other primitives without creating a wrapper element.
+          general-purpose typography - body copy, labels, brand names, metadata,
+          and captions. It composes cleanly with semantic HTML elements and
+          other primitives without creating a wrapper element.
         </p>
       </div>
 

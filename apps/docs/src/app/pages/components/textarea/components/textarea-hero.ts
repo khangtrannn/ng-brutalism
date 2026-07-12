@@ -12,9 +12,9 @@ import { DocsSourceTile, DocsStatusBadge } from '@ng-brutalism/docs-ui';
         <p>Neo-Brutalist Angular Textarea</p>
         <h1>Textarea</h1>
         <p class="mt-3 max-w-3xl text-base font-medium sm:text-lg">
-          The neo-brutalist Angular Textarea component. A multi-line text
-          input with hard borders, offset shadow, and strong focus states
-          matching the brutalist style.
+          The neo-brutalist Angular Textarea component. A multi-line text input
+          with hard borders, offset shadow, and strong focus states matching the
+          brutalist style.
         </p>
       </div>
 

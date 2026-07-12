@@ -20,10 +20,10 @@ interface CalloutToneDemo {
           class="grid w-full grid-cols-1 gap-3 p-4 sm:grid-cols-2 lg:grid-cols-3"
         >
           @for (tone of tones; track tone.value) {
-          <div nbCallout [tone]="tone.value" size="md" layout="between">
-            <span>{{ tone.label }}</span>
-            <span>{{ tone.sample }}</span>
-          </div>
+            <div nbCallout [tone]="tone.value" size="md" layout="between">
+              <span>{{ tone.label }}</span>
+              <span>{{ tone.sample }}</span>
+            </div>
           }
         </div>
       </docs-example>

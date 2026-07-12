@@ -12,8 +12,8 @@ import { DocsCodeBlock } from '@ng-brutalism/docs-ui';
       <p class="mb-4 font-medium">
         A preset is nothing more than a <code class="font-mono">:root</code>
         block redefining the base palette and semantic colors from
-        <code class="font-mono">theme.css</code> - the same mechanism covered
-        in <code class="font-mono">--nb-*</code> variables described in the
+        <code class="font-mono">theme.css</code> - the same mechanism covered in
+        <code class="font-mono">--nb-*</code> variables described in the
         <a href="/docs/customization" class="underline">Customization</a>
         guide, just applied at the whole-app scope instead of one component.
       </p>

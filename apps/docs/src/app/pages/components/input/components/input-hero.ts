@@ -13,8 +13,8 @@ import { DocsSourceTile, DocsStatusBadge } from '@ng-brutalism/docs-ui';
         <h1>Input</h1>
         <p class="mt-3 max-w-3xl text-base font-medium sm:text-lg">
           The neo-brutalist Angular Input component. A form input field with
-          hard borders, offset shadow, and strong focus states in the
-          brutalist style.
+          hard borders, offset shadow, and strong focus states in the brutalist
+          style.
         </p>
       </div>
 

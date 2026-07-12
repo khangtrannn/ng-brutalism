@@ -12,9 +12,8 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
         an interactive widget. <strong>Status:</strong> Preview. The animation
         freezes under
         <code class="font-mono">prefers-reduced-motion: reduce</code>
-        (WCAG 2.2.2, Pause/Stop/Hide) rather than just slowing down, and
-        pauses on hover by default so the content can be read without chasing
-        it.
+        (WCAG 2.2.2, Pause/Stop/Hide) rather than just slowing down, and pauses
+        on hover by default so the content can be read without chasing it.
       </p>
     </section>
   `,

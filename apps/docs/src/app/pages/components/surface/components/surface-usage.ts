@@ -12,14 +12,10 @@ import { DocsCodeBlock } from '@ng-brutalism/docs-ui';
         Add <code class="font-mono">nbSurface</code> to the element that owns
         the outer panel. Use <code class="font-mono">nbSection</code> for
         internal regions, <code class="font-mono">nbStack</code> for vertical
-        rhythm, <code class="font-mono">nbCluster</code> for inline groups,
-        and <code class="font-mono">nbSplit</code> for two-region layouts.
+        rhythm, <code class="font-mono">nbCluster</code> for inline groups, and
+        <code class="font-mono">nbSplit</code> for two-region layouts.
       </p>
-      <docs-code-block
-        class="block mb-5"
-        title="Import"
-        [code]="importCode"
-      />
+      <docs-code-block class="block mb-5" title="Import" [code]="importCode" />
       <docs-code-block title="Template" [code]="defaultExampleCode" />
     </section>
   `,

@@ -16,12 +16,12 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
           class="underline"
           >Listbox</a
         >
-        · <strong>Status:</strong> Preview - the popup positions itself via
-        the native Popover API rather than a CDK-style overlay, confirmed in a
-        real browser to escape an
+        · <strong>Status:</strong> Preview - the popup positions itself via the
+        native Popover API rather than a CDK-style overlay, confirmed in a real
+        browser to escape an
         <code class="font-mono">overflow:hidden</code>
-        ancestor with zero console errors, but the strategy hasn't logged
-        enough real-world usage yet to call it Stable.
+        ancestor with zero console errors, but the strategy hasn't logged enough
+        real-world usage yet to call it Stable.
       </p>
 
       <div
@@ -105,9 +105,9 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
       <p class="font-medium">
         Disabled options use
         <code class="font-mono">aria-disabled</code> rather than removing them
-        from the tab sequence - they stay reachable by
-        arrow/Home/End/typeahead per APG, just not selectable. Bound to an
-        Angular <code class="font-mono">NgControl</code>,
+        from the tab sequence - they stay reachable by arrow/Home/End/typeahead
+        per APG, just not selectable. Bound to an Angular
+        <code class="font-mono">NgControl</code>,
         <code class="font-mono">aria-invalid</code> and
         <code class="font-mono">aria-required</code> reflect the control's
         validation state automatically. Verified with

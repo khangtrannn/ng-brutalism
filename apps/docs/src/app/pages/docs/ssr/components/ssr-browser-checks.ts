@@ -20,8 +20,8 @@ import { NbCallout } from '@ng-brutalism/ui';
       </p>
       <div nbCallout tone="cream" size="sm">
         <p class="normal-case">
-          If you hit a hydration mismatch that isn't covered here, it's a bug
-          - please open an issue with a minimal repro.
+          If you hit a hydration mismatch that isn't covered here, it's a bug -
+          please open an issue with a minimal repro.
         </p>
       </div>
     </section>

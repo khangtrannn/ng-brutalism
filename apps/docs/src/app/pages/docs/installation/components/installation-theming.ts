@@ -15,9 +15,7 @@ import { DocsCodeBlock } from '@ng-brutalism/docs-ui';
         <code class="font-mono text-sm">theme.css</code> import.
         <code class="font-mono text-sm">provideNgBrutalism()</code> registers
         library providers and takes no theme config. See
-        <a routerLink="/docs/theming" class="underline"
-          >Dark Mode & Theming</a
-        >
+        <a routerLink="/docs/theming" class="underline">Dark Mode & Theming</a>
         for the built-in presets and dark-mode status.
       </p>
       <docs-code-block title="app.config.ts" [code]="providerCode" />

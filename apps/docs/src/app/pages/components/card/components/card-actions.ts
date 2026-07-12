@@ -47,9 +47,7 @@ import { DocsExample } from '@ng-brutalism/docs-ui';
             </p>
           </nb-card-content>
           <nb-card-actions align="end" class="gap-2! max-sm:px-3!">
-            <button nbButton size="sm" tone="background">
-              Mark all read
-            </button>
+            <button nbButton size="sm" tone="background">Mark all read</button>
             <button nbButton size="sm">Open inbox</button>
           </nb-card-actions>
         </nb-card>

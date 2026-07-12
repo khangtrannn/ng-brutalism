@@ -18,20 +18,20 @@ interface MediaFrameFitDemo {
       <docs-example [code]="fitExampleCode">
         <div class="flex flex-col divide-y-2 divide-(--nb-border) p-4">
           @for (fit of fits; track fit.value) {
-          <div class="py-5 first:pt-0 last:pb-0">
-            <div class="mb-3 flex items-baseline gap-3">
-              <span class="font-black uppercase">{{ fit.label }}</span>
-              <span class="text-sm font-medium opacity-60">{{
-                fit.description
-              }}</span>
+            <div class="py-5 first:pt-0 last:pb-0">
+              <div class="mb-3 flex items-baseline gap-3">
+                <span class="font-black uppercase">{{ fit.label }}</span>
+                <span class="text-sm font-medium opacity-60">{{
+                  fit.description
+                }}</span>
+              </div>
+              <div nbMediaFrame ratio="16/9" tone="mint" [fit]="fit.value">
+                <img
+                  src="/assets/images/media-frame-demo.png"
+                  [alt]="fit.label + ' fit demo'"
+                />
+              </div>
             </div>
-            <div nbMediaFrame ratio="16/9" tone="mint" [fit]="fit.value">
-              <img
-                src="/assets/images/media-frame-demo.png"
-                [alt]="fit.label + ' fit demo'"
-              />
-            </div>
-          </div>
           }
         </div>
       </docs-example>

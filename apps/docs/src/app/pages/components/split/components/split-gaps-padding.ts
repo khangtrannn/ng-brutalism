@@ -30,44 +30,44 @@ interface SplitPaddingDemo {
         <div class="grid w-full max-w-3xl shrink-0 gap-6">
           <div class="grid grid-cols-1 gap-4 p-4 sm:grid-cols-2">
             @for (gap of gaps; track gap.value) {
-            <div nbSurface tone="white" shadow="sm">
-              <div nbSplit gap="sm" padding="sm" collapse="none">
-                <span class="font-mono text-xs font-black uppercase"
-                  >gap {{ gap.label }}</span
-                >
-                <div nbSplit [gap]="gap.value" collapse="none">
-                  <span
-                    class="h-9 border-2 border-(--nb-border) bg-(--nb-pink)"
-                  ></span>
-                  <span
-                    class="h-9 border-2 border-(--nb-border) bg-(--nb-blue)"
-                  ></span>
+              <div nbSurface tone="white" shadow="sm">
+                <div nbSplit gap="sm" padding="sm" collapse="none">
+                  <span class="font-mono text-xs font-black uppercase"
+                    >gap {{ gap.label }}</span
+                  >
+                  <div nbSplit [gap]="gap.value" collapse="none">
+                    <span
+                      class="h-9 border-2 border-(--nb-border) bg-(--nb-pink)"
+                    ></span>
+                    <span
+                      class="h-9 border-2 border-(--nb-border) bg-(--nb-blue)"
+                    ></span>
+                  </div>
                 </div>
               </div>
-            </div>
             }
           </div>
 
           <div class="grid grid-cols-1 gap-4 p-4 sm:grid-cols-2">
             @for (padding of paddings; track padding.value) {
-            <div nbSurface tone="cream" shadow="sm" class="h-28">
-              <div
-                nbSplit
-                [padding]="padding.value"
-                gap="sm"
-                collapse="none"
-                class="h-full bg-(--nb-cream)"
-              >
-                <span
-                  class="border-2 border-(--nb-border) bg-(--nb-background) p-2 font-mono text-xs font-black uppercase"
-                  >{{ padding.label }}</span
+              <div nbSurface tone="cream" shadow="sm" class="h-28">
+                <div
+                  nbSplit
+                  [padding]="padding.value"
+                  gap="sm"
+                  collapse="none"
+                  class="h-full bg-(--nb-cream)"
                 >
-                <span
-                  class="border-2 border-(--nb-border) bg-(--nb-mint) p-2 font-black"
-                  >Pad</span
-                >
+                  <span
+                    class="border-2 border-(--nb-border) bg-(--nb-background) p-2 font-mono text-xs font-black uppercase"
+                    >{{ padding.label }}</span
+                  >
+                  <span
+                    class="border-2 border-(--nb-border) bg-(--nb-mint) p-2 font-black"
+                    >Pad</span
+                  >
+                </div>
               </div>
-            </div>
             }
           </div>
         </div>

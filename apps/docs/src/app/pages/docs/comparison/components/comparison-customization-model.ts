@@ -15,9 +15,7 @@ import { RouterLink } from '@angular/router';
         property to a single public
         <code class="font-mono">--nb-*</code> CSS variable - inputs and CSS
         overrides write the same slot. See
-        <a routerLink="/docs/customization" class="underline"
-          >Customization</a
-        >
+        <a routerLink="/docs/customization" class="underline">Customization</a>
         for the full model, or
         <a routerLink="/docs/without-tailwind" class="underline"
           >Without Tailwind</a

@@ -48,8 +48,7 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
                 [nbDialogTitle]
               </td>
               <td class="px-4 py-3">
-                Directive applied to a heading element. Styles the dialog
-                title.
+                Directive applied to a heading element. Styles the dialog title.
               </td>
             </tr>
             <tr class="border-b-2 border-(--nb-border)">

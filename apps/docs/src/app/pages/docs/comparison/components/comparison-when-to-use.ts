@@ -13,8 +13,8 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
           shadows, punchy tones - without hand-rolling it.
         </li>
         <li>
-          Portfolios, launch pages, side projects, prototypes, or products
-          where a bold visual identity is the point.
+          Portfolios, launch pages, side projects, prototypes, or products where
+          a bold visual identity is the point.
         </li>
         <li>
           You're comfortable tuning CSS variables and Tailwind utilities close

@@ -12,12 +12,11 @@ import { DocsSourceTile, DocsStatusBadge } from '@ng-brutalism/docs-ui';
         <p>Neo-Brutalist Angular IconButton</p>
         <h1>IconButton</h1>
         <p class="mt-3 max-w-3xl text-base font-medium sm:text-lg">
-          A <code class="font-mono">&lt;button&gt;</code> for icon-only
-          actions. Supports square and circle shapes, 4 sizes, tunable corner
-          radius, and the shared <code class="font-mono">tone</code> color
-          palette. Pass an <code class="font-mono">icon</code> URL to render
-          it internally, or project your own
-          <code class="font-mono">&lt;svg&gt;</code> via
+          A <code class="font-mono">&lt;button&gt;</code> for icon-only actions.
+          Supports square and circle shapes, 4 sizes, tunable corner radius, and
+          the shared <code class="font-mono">tone</code> color palette. Pass an
+          <code class="font-mono">icon</code> URL to render it internally, or
+          project your own <code class="font-mono">&lt;svg&gt;</code> via
           <code class="font-mono">ng-content</code>.
         </p>
       </div>

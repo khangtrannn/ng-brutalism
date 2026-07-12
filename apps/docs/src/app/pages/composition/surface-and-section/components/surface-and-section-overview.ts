@@ -9,8 +9,8 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
       <p class="mt-3 max-w-3xl text-base font-medium sm:text-lg">
         <code class="font-mono">nbSurface</code> creates the outer brutalist
         container. <code class="font-mono">nbSection</code> creates internal
-        regions. Together they replace repeated card shell markup with a
-        clear, intentional structure.
+        regions. Together they replace repeated card shell markup with a clear,
+        intentional structure.
       </p>
     </header>
   `,

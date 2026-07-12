@@ -228,8 +228,16 @@ import {
     .travel-stage {
       background-color: #fff8e8;
       background-image:
-        linear-gradient(to right, var(--travel-paper-grid) 1px, transparent 1px),
-        linear-gradient(to bottom, var(--travel-paper-grid) 1px, transparent 1px);
+        linear-gradient(
+          to right,
+          var(--travel-paper-grid) 1px,
+          transparent 1px
+        ),
+        linear-gradient(
+          to bottom,
+          var(--travel-paper-grid) 1px,
+          transparent 1px
+        );
       background-size: 28px 28px;
     }
   `,

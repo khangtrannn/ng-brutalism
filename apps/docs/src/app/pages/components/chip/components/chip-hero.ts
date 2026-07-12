@@ -12,8 +12,8 @@ import { DocsSourceTile, DocsStatusBadge } from '@ng-brutalism/docs-ui';
         <p>Neo-Brutalist Angular Chip</p>
         <h1>Chip</h1>
         <p class="mt-3 max-w-3xl text-base font-medium sm:text-lg">
-          A directive on <code class="font-mono">&lt;span&gt;</code> for
-          compact labels, tags, and categories. Pairs with
+          A directive on <code class="font-mono">&lt;span&gt;</code> for compact
+          labels, tags, and categories. Pairs with
           <code class="font-mono">nbChipGroup</code>
           for horizontal chip rows. Supports 10 tones and an optional leading
           icon via

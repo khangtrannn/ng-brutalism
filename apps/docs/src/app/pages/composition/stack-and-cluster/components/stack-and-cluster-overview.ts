@@ -8,9 +8,9 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
       <h1>Stack & Cluster</h1>
       <p class="mt-3 max-w-3xl text-base font-medium sm:text-lg">
         <code class="font-mono">nbStack</code> is the default primitive for
-        vertical rhythm. <code class="font-mono">nbCluster</code> is the
-        default primitive for inline groups that may wrap. Use them everywhere
-        instead of manually wiring up flex utilities.
+        vertical rhythm. <code class="font-mono">nbCluster</code> is the default
+        primitive for inline groups that may wrap. Use them everywhere instead
+        of manually wiring up flex utilities.
       </p>
     </header>
   `,

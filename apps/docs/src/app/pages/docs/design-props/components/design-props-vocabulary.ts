@@ -11,9 +11,8 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
         A component only exposes the categories that make sense for it - see
         <a href="#archetypes" class="underline">archetypes</a> below. The core
         rule that makes this vocabulary predictable: the Angular input and the
-        CSS customization variable write the
-        <strong>same public slot</strong>. There is no separate
-        <code class="font-mono">--*-input</code> vs
+        CSS customization variable write the <strong>same public slot</strong>.
+        There is no separate <code class="font-mono">--*-input</code> vs
         <code class="font-mono">--*-default</code> variable pair to keep in
         sync.
       </p>

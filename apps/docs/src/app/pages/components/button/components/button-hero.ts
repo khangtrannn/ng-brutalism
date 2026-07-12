@@ -12,9 +12,9 @@ import { DocsSourceTile, DocsStatusBadge } from '@ng-brutalism/docs-ui';
         <p>Neo-Brutalist Angular Button</p>
         <h1>Button</h1>
         <p class="mt-3 max-w-3xl text-base font-medium sm:text-lg">
-          The neo-brutalist Angular Button component. Displays a button or
-          link that looks like a button, with hard borders, shared tone and
-          shadow tokens, keyboard focus states, and native disabled behavior.
+          The neo-brutalist Angular Button component. Displays a button or link
+          that looks like a button, with hard borders, shared tone and shadow
+          tokens, keyboard focus states, and native disabled behavior.
         </p>
       </div>
 

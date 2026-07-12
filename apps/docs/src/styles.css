@@ -38,14 +38,14 @@
   --nb-sky: #9dd7ff;
   --nb-hot: #ff4f8a;
 
-  --font-sans: 'Space Grotesk', 'Coming Soon', ui-sans-serif, system-ui,
-    sans-serif;
-  --font-heading: 'Archivo Black', 'Coming Soon', ui-sans-serif, system-ui,
-    sans-serif;
-  --font-base: 'Space Grotesk', 'Coming Soon', ui-sans-serif, system-ui,
-    sans-serif;
-  --font-display: 'Archivo Black', 'Coming Soon', ui-sans-serif, system-ui,
-    sans-serif;
+  --font-sans:
+    'Space Grotesk', 'Coming Soon', ui-sans-serif, system-ui, sans-serif;
+  --font-heading:
+    'Archivo Black', 'Coming Soon', ui-sans-serif, system-ui, sans-serif;
+  --font-base:
+    'Space Grotesk', 'Coming Soon', ui-sans-serif, system-ui, sans-serif;
+  --font-display:
+    'Archivo Black', 'Coming Soon', ui-sans-serif, system-ui, sans-serif;
   --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
 
   --font-weight-heading: 900;
@@ -71,8 +71,8 @@
   --docs-main: #ffd24a;
   --nb-main: var(--docs-main);
   --nb-secondary-background: #fff4d6;
-  --nb-font-sans: 'Space Grotesk', 'Coming Soon', ui-sans-serif, system-ui,
-    sans-serif;
+  --nb-font-sans:
+    'Space Grotesk', 'Coming Soon', ui-sans-serif, system-ui, sans-serif;
   --nb-font-weight-normal: 500;
   --color-main: var(--docs-main);
   --color-secondary-background: #fff4d6;
@@ -81,9 +81,12 @@
 body,
 .docs-grid-bg {
   background-color: var(--nb-paper);
-  background-image: linear-gradient(rgba(0, 0, 0, 0.04) 1px, transparent 1px),
+  background-image:
+    linear-gradient(rgba(0, 0, 0, 0.04) 1px, transparent 1px),
     linear-gradient(90deg, rgba(0, 0, 0, 0.04) 1px, transparent 1px);
-  background-size: 32px 32px, 32px 32px;
+  background-size:
+    32px 32px,
+    32px 32px;
 }
 
 nb-docs-sidebar::-webkit-scrollbar {
@@ -353,7 +356,9 @@ body::-webkit-scrollbar-thumb {
 }
 
 .nb-hover-lift {
-  transition: transform 120ms ease, box-shadow 120ms ease;
+  transition:
+    transform 120ms ease,
+    box-shadow 120ms ease;
 }
 
 .nb-hover-lift:hover {

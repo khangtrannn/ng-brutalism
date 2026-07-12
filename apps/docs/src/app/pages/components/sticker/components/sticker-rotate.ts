@@ -8,9 +8,7 @@ import { DocsExample } from '@ng-brutalism/docs-ui';
   imports: [NbSticker, DocsExample],
   template: `
     <section id="rotate">
-      <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">
-        Rotation
-      </h2>
+      <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">Rotation</h2>
       <docs-example [code]="rotateExampleCode">
         <div class="flex flex-wrap items-center gap-8 p-6">
           <nb-sticker tone="yellow" [rotate]="-12" decorative>-12</nb-sticker>

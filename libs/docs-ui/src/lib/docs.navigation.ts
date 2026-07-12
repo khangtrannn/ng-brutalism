@@ -644,7 +644,7 @@ export const docsNavGroups: readonly DocsNavGroup[] = [
 ];
 
 export const docsNavItems: readonly DocsNavItem[] = docsNavGroups.flatMap(
-  (group) => group.items
+  (group) => group.items,
 );
 
 export function findDocsNavItem(path: string): DocsNavItem | undefined {

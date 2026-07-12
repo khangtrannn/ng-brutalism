@@ -99,16 +99,16 @@ import { PodcastCard } from './podcast-card';
         </h2>
         <ul class="space-y-2 text-base font-medium">
           @for (item of primitives; track item.path) {
-          <li class="flex items-center gap-2">
-            <span
-              class="inline-block size-2 border-2 border-(--nb-border) bg-(--nb-pink)"
-              aria-hidden="true"
-            ></span>
-            <a class="underline" [routerLink]="item.path">{{ item.name }}</a>
-            <span class="text-sm font-normal opacity-80"
-              >- {{ item.role }}</span
-            >
-          </li>
+            <li class="flex items-center gap-2">
+              <span
+                class="inline-block size-2 border-2 border-(--nb-border) bg-(--nb-pink)"
+                aria-hidden="true"
+              ></span>
+              <a class="underline" [routerLink]="item.path">{{ item.name }}</a>
+              <span class="text-sm font-normal opacity-80"
+                >- {{ item.role }}</span
+              >
+            </li>
           }
         </ul>
       </section>
@@ -126,16 +126,16 @@ import { PodcastCard } from './podcast-card';
             How it is composed
           </div>
           @for (step of layoutBreakdown; track step.primitive) {
-          <div
-            class="flex flex-wrap gap-x-6 gap-y-1 border-b border-white/10 px-5 py-3 last:border-none"
-          >
-            <code
-              class="shrink-0 font-mono text-sm font-black"
-              style="color: var(--nb-pink)"
-              >{{ step.primitive }}</code
+            <div
+              class="flex flex-wrap gap-x-6 gap-y-1 border-b border-white/10 px-5 py-3 last:border-none"
             >
-            <span class="text-sm font-medium">{{ step.description }}</span>
-          </div>
+              <code
+                class="shrink-0 font-mono text-sm font-black"
+                style="color: var(--nb-pink)"
+                >{{ step.primitive }}</code
+              >
+              <span class="text-sm font-medium">{{ step.description }}</span>
+            </div>
           }
         </div>
       </section>

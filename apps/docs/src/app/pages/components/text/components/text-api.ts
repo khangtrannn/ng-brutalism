@@ -203,8 +203,8 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
                 true
               </td>
               <td class="px-4 py-3">
-                Sets margin to 0, removing browser paragraph/heading margins
-                so layout primitives own all spacing.
+                Sets margin to 0, removing browser paragraph/heading margins so
+                layout primitives own all spacing.
               </td>
             </tr>
           </tbody>

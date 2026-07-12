@@ -14,12 +14,12 @@ import { NbCallout } from '@ng-brutalism/ui';
         properties, native
         <code class="font-mono">@layer</code>, ordinary selectors like
         <code class="font-mono">:where(span[nbBadge])</code>. There is no
-        <code class="font-mono">@apply</code>, no Tailwind utility class, and
-        no <code class="font-mono">@import "tailwindcss"</code> inside any
-        file the library ships.
+        <code class="font-mono">@apply</code>, no Tailwind utility class, and no
+        <code class="font-mono">@import "tailwindcss"</code> inside any file the
+        library ships.
         <code class="font-mono">@ng-brutalism/ui/styles.css</code>
-        is the fully bundled output - importing it is enough for every
-        component to render correctly, with zero build-time processing.
+        is the fully bundled output - importing it is enough for every component
+        to render correctly, with zero build-time processing.
       </p>
       <div nbCallout tone="cream" size="sm">
         <p class="normal-case">

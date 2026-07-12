@@ -12,10 +12,10 @@ import { DocsCodeBlock } from '@ng-brutalism/docs-ui';
       <p class="mb-4 font-medium">
         Every customizable scalar (radius, shadow, padding, a color slot...)
         gets exactly one public CSS variable. A design-prop input writes an
-        inline value onto that variable; a CSS rule targeting the same
-        variable resolves through the normal cascade. Both paths land on the
-        identical property - there's nothing input-specific about what an
-        input does under the hood.
+        inline value onto that variable; a CSS rule targeting the same variable
+        resolves through the normal cascade. Both paths land on the identical
+        property - there's nothing input-specific about what an input does under
+        the hood.
       </p>
       <docs-code-block title="Component CSS" [code]="cssRuleCode" />
       <p class="mt-5 mb-2 font-medium">

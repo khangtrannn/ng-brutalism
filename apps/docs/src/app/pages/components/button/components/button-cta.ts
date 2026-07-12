@@ -1,5 +1,10 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { NbButton, NbButtonTrailingIcon, NbIcon, NbText } from '@ng-brutalism/ui';
+import {
+  NbButton,
+  NbButtonTrailingIcon,
+  NbIcon,
+  NbText,
+} from '@ng-brutalism/ui';
 
 import { DocsExample } from '@ng-brutalism/docs-ui';
 

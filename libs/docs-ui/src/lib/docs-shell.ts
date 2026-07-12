@@ -14,9 +14,7 @@ import { docsNavGroups, findDocsNavItem } from './docs.navigation';
   selector: 'docs-shell',
   imports: [RouterLink],
   template: `
-    <div
-      class="min-h-screen bg-(--nb-background) text-(--nb-foreground)"
-    >
+    <div class="min-h-screen bg-(--nb-background) text-(--nb-foreground)">
       <header
         class="sticky top-0 z-30 border-b-4 border-(--nb-border) bg-nb-surface shadow-[0_5px_0_0_var(--nb-shadow)]"
       >
@@ -83,29 +81,34 @@ import { docsNavGroups, findDocsNavItem } from './docs.navigation';
         >
           <nav aria-label="Documentation navigation">
             @for (group of navGroups; track group.label) {
-            <div
-              class="border-b-4 border-(--nb-border) p-4 text-xl font-bold"
-            >
-              {{ group.label }}
-            </div>
+              <div
+                class="border-b-4 border-(--nb-border) p-4 text-xl font-bold"
+              >
+                {{ group.label }}
+              </div>
 
-            @for (item of group.items; track item.label) { @if (item.path) {
-            <a
-              [routerLink]="item.path"
-              class="block border-b-4 border-(--nb-border) p-4 pl-7 text-lg font-medium text-(--nb-foreground) transition-colors hover:bg-nb-secondary hover:text-nb-secondary-fg"
-              [class.bg-nb-secondary]="item.path === activeItem()?.path"
-              [class.text-nb-secondary-fg]="item.path === activeItem()?.path"
-            >
-              {{ item.label }}
-            </a>
-            } @else {
-            <span
-              class="block border-b-4 border-(--nb-border) p-4 pl-7 text-lg font-medium text-(--nb-foreground) opacity-[0.85]"
-              aria-disabled="true"
-            >
-              {{ item.label }}
-            </span>
-            } } }
+              @for (item of group.items; track item.label) {
+                @if (item.path) {
+                  <a
+                    [routerLink]="item.path"
+                    class="block border-b-4 border-(--nb-border) p-4 pl-7 text-lg font-medium text-(--nb-foreground) transition-colors hover:bg-nb-secondary hover:text-nb-secondary-fg"
+                    [class.bg-nb-secondary]="item.path === activeItem()?.path"
+                    [class.text-nb-secondary-fg]="
+                      item.path === activeItem()?.path
+                    "
+                  >
+                    {{ item.label }}
+                  </a>
+                } @else {
+                  <span
+                    class="block border-b-4 border-(--nb-border) p-4 pl-7 text-lg font-medium text-(--nb-foreground) opacity-[0.85]"
+                    aria-disabled="true"
+                  >
+                    {{ item.label }}
+                  </span>
+                }
+              }
+            }
           </nav>
         </aside>
 
@@ -137,6 +140,6 @@ export class DocsShell {
   );
 
   protected readonly activeItem = computed(() =>
-    findDocsNavItem(this.currentUrl())
+    findDocsNavItem(this.currentUrl()),
   );
 }

@@ -29,8 +29,8 @@ import { DocsExample } from '@ng-brutalism/docs-ui';
     <section id="example" nbStack gap="md" class="scroll-mt-32">
       <h2 data-docs-heading class="text-2xl font-bold">Rendered example</h2>
       <p class="text-base font-medium">
-        A complete panel built with composition primitives only - no class
-        soup required.
+        A complete panel built with composition primitives only - no class soup
+        required.
       </p>
 
       <docs-example [code]="launchPanelCode">
@@ -53,8 +53,8 @@ import { DocsExample } from '@ng-brutalism/docs-ui';
           <div nbSection padding="lg">
             <div nbStack gap="md">
               <p nbText>
-                Build a loud release panel using composition primitives
-                instead of class-heavy wrappers.
+                Build a loud release panel using composition primitives instead
+                of class-heavy wrappers.
               </p>
               <div nbCluster gap="xs">
                 <span nbChip tone="yellow">Surface</span>

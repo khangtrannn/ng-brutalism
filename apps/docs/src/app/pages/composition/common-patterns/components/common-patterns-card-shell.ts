@@ -69,8 +69,8 @@ import { DocsExample } from '@ng-brutalism/docs-ui';
           <div nbSection padding="lg">
             <div nbStack gap="md">
               <p nbText>
-                Card content goes here. Use Stack to control rhythm and
-                Cluster to group inline items.
+                Card content goes here. Use Stack to control rhythm and Cluster
+                to group inline items.
               </p>
               <div nbCluster gap="xs">
                 <span nbChip tone="yellow">Tag one</span>

@@ -69,8 +69,8 @@ import { RouterLink } from '@angular/router';
             Zero breaking-change tolerance
           </h3>
           <p class="mt-2 text-sm font-medium">
-            The library is pre-1.0 - minor versions can still carry breaking
-            API changes. See
+            The library is pre-1.0 - minor versions can still carry breaking API
+            changes. See
             <a routerLink="/docs/versioning" class="underline"
               >Versioning &amp; Roadmap</a
             >

@@ -17,22 +17,22 @@ interface StackGapDemo {
       <docs-example [code]="gapsExampleCode">
         <div class="grid w-full grid-cols-1 gap-4 p-4 sm:grid-cols-2">
           @for (gap of gaps; track gap.value) {
-          <div nbSurface shadow="sm" class="p-4">
-            <div nbStack [gap]="gap.value">
-              <span class="font-mono text-xs font-black uppercase">{{
-                gap.label
-              }}</span>
-              <span
-                class="h-8 border-2 border-(--nb-border) bg-(--nb-yellow)"
-              ></span>
-              <span
-                class="h-8 border-2 border-(--nb-border) bg-(--nb-mint)"
-              ></span>
-              <span
-                class="h-8 border-2 border-(--nb-border) bg-(--nb-pink)"
-              ></span>
+            <div nbSurface shadow="sm" class="p-4">
+              <div nbStack [gap]="gap.value">
+                <span class="font-mono text-xs font-black uppercase">{{
+                  gap.label
+                }}</span>
+                <span
+                  class="h-8 border-2 border-(--nb-border) bg-(--nb-yellow)"
+                ></span>
+                <span
+                  class="h-8 border-2 border-(--nb-border) bg-(--nb-mint)"
+                ></span>
+                <span
+                  class="h-8 border-2 border-(--nb-border) bg-(--nb-pink)"
+                ></span>
+              </div>
             </div>
-          </div>
           }
         </div>
       </docs-example>

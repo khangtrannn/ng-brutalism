@@ -34,8 +34,7 @@ import { DocsExample } from '@ng-brutalism/docs-ui';
               Lorem ipsum dolor sit amet consectetur.
             </nb-accordion-trigger>
             <nb-accordion-content>
-              Sed do eiusmod tempor incididunt ut labore et dolore magna
-              aliqua.
+              Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
             </nb-accordion-content>
           </nb-accordion-item>
         </nb-accordion>

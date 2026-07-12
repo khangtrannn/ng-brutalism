@@ -19,16 +19,16 @@ import { RouterLink } from '@angular/router';
           >Checkbox</a
         >
         · <strong>Status:</strong> Stable. Renders a real
-        <code class="font-mono">&lt;input type="checkbox"&gt;</code>, so
-        checked state, keyboard toggling with Space, and
+        <code class="font-mono">&lt;input type="checkbox"&gt;</code>, so checked
+        state, keyboard toggling with Space, and
         <code class="font-mono">formControlName</code>/
         <code class="font-mono">[(ngModel)]</code> binding all come from the
         browser and Angular's built-in
         <code class="font-mono">DefaultValueAccessor</code> - no custom ARIA
         state to keep in sync. Pair it with
         <code class="font-mono">nbLabel</code> (or wrap both in
-        <a routerLink="/components/field" class="underline">nb-field</a>) so
-        the checkbox has an accessible name.
+        <a routerLink="/components/field" class="underline">nb-field</a>) so the
+        checkbox has an accessible name.
       </p>
     </section>
   `,

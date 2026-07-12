@@ -16,18 +16,18 @@ import { NbStack } from '@ng-brutalism/ui';
           Which primitive do I need?
         </div>
         @for (entry of decisionGuide; track entry.need) {
-        <div
-          class="flex flex-wrap gap-x-6 gap-y-1 border-b border-white/10 px-5 py-3 last:border-none"
-        >
-          <span class="shrink-0 font-mono text-xs text-white/50">{{
-            entry.need
-          }}</span>
-          <span
-            class="font-mono text-sm font-bold"
-            [style.color]="entry.color"
-            >→ {{ entry.primitive }}</span
+          <div
+            class="flex flex-wrap gap-x-6 gap-y-1 border-b border-white/10 px-5 py-3 last:border-none"
           >
-        </div>
+            <span class="shrink-0 font-mono text-xs text-white/50">{{
+              entry.need
+            }}</span>
+            <span
+              class="font-mono text-sm font-bold"
+              [style.color]="entry.color"
+              >→ {{ entry.primitive }}</span
+            >
+          </div>
         }
       </div>
     </section>

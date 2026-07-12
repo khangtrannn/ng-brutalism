@@ -19,9 +19,7 @@ import { DocsExample } from '@ng-brutalism/docs-ui';
   ],
   template: `
     <section id="multiple">
-      <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">
-        Multiple
-      </h2>
+      <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">Multiple</h2>
       <docs-example [code]="multipleExampleCode">
         <nb-accordion
           class="block w-full max-w-xl"
@@ -38,9 +36,7 @@ import { DocsExample } from '@ng-brutalism/docs-ui';
           </nb-accordion-item>
 
           <nb-accordion-item value="item-2">
-            <nb-accordion-trigger
-              >Can panels start open?</nb-accordion-trigger
-            >
+            <nb-accordion-trigger>Can panels start open?</nb-accordion-trigger>
             <nb-accordion-content>
               Ut enim ad minim veniam, quis nostrud exercitation ullamco
               laboris.

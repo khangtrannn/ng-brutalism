@@ -149,12 +149,12 @@ import { DocsPortfolioContactZigzagIcon } from './portfolio-contact-dialog.icons
           </div>
 
           @if (sent()) {
-          <p
-            class="border-2 border-black bg-[#76fbd9] px-3 py-2 font-mono text-sm font-black text-black shadow-[3px_3px_0_0_#000]"
-            role="status"
-          >
-            Message staged. The demo flow is working.
-          </p>
+            <p
+              class="border-2 border-black bg-[#76fbd9] px-3 py-2 font-mono text-sm font-black text-black shadow-[3px_3px_0_0_#000]"
+              role="status"
+            >
+              Message staged. The demo flow is working.
+            </p>
           }
         </form>
       </nb-dialog-content>

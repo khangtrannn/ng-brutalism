@@ -14,29 +14,27 @@ interface VariantDemo {
   imports: [NbMediaItem, DocsExample],
   template: `
     <section id="variants">
-      <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">
-        Variants
-      </h2>
+      <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">Variants</h2>
       <docs-example [code]="variantsExampleCode">
         <div class="flex flex-col divide-y-2 divide-(--nb-border) p-4">
           @for (variant of variants; track variant.value) {
-          <div class="py-5 first:pt-0 last:pb-0">
-            <div class="mb-3 flex items-baseline gap-3">
-              <span class="font-black uppercase">{{ variant.label }}</span>
-              <span class="text-sm font-medium opacity-60">{{
-                variant.description
-              }}</span>
+            <div class="py-5 first:pt-0 last:pb-0">
+              <div class="mb-3 flex items-baseline gap-3">
+                <span class="font-black uppercase">{{ variant.label }}</span>
+                <span class="text-sm font-medium opacity-60">{{
+                  variant.description
+                }}</span>
+              </div>
+              <nb-media-item
+                [variant]="variant.value"
+                size="md"
+                tone="yellow"
+                icon="/icons/star.png"
+                iconAlt="Star"
+                title="Premium Access"
+                description="Unlimited features"
+              />
             </div>
-            <nb-media-item
-              [variant]="variant.value"
-              size="md"
-              tone="yellow"
-              icon="/icons/star.png"
-              iconAlt="Star"
-              title="Premium Access"
-              description="Unlimited features"
-            />
-          </div>
           }
         </div>
       </docs-example>

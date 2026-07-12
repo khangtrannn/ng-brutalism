@@ -162,9 +162,7 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
               >
                 28 rectangle
               </td>
-              <td class="px-4 py-3">
-                Horizontal rectangle dot rhythm in px.
-              </td>
+              <td class="px-4 py-3">Horizontal rectangle dot rhythm in px.</td>
             </tr>
             <tr>
               <td

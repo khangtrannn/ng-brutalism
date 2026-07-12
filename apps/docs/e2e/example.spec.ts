@@ -8,10 +8,10 @@ test('loads the docs home page', async ({ page }) => {
   await expect(
     page.getByRole('heading', {
       name: 'The neo-brutalist Angular UI library',
-    })
+    }),
   ).toBeVisible();
   await expect(
-    page.getByRole('link', { name: 'Install', exact: true })
+    page.getByRole('link', { name: 'Install', exact: true }),
   ).toBeVisible();
 });
 

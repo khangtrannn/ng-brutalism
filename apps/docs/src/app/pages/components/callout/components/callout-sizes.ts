@@ -17,9 +17,9 @@ interface CalloutSizeDemo {
       <docs-example [code]="sizesExampleCode">
         <div class="flex w-full flex-col items-start gap-4 p-4">
           @for (size of sizes; track size.value) {
-          <div nbCallout tone="yellow" [size]="size.value">
-            {{ size.sample }}
-          </div>
+            <div nbCallout tone="yellow" [size]="size.value">
+              {{ size.sample }}
+            </div>
           }
         </div>
       </docs-example>

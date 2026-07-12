@@ -8,13 +8,11 @@ import { DocsExample } from '@ng-brutalism/docs-ui';
   imports: [NbHalftone, DocsExample],
   template: `
     <section id="rectangle">
-      <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">
-        Rectangle
-      </h2>
+      <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">Rectangle</h2>
       <p class="mb-4 max-w-3xl font-medium">
         Use rectangle halftone as a decorative strip behind headings, badges,
-        image cards, recipe accents, and banner edges. Rows and columns give
-        you a predictable dot count, while size and gap inputs tune the visual
+        image cards, recipe accents, and banner edges. Rows and columns give you
+        a predictable dot count, while size and gap inputs tune the visual
         rhythm.
       </p>
 

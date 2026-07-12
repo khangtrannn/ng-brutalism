@@ -14,27 +14,25 @@ interface AlignDemo {
   imports: [NbMediaItem, DocsExample],
   template: `
     <section id="alignment">
-      <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">
-        Alignment
-      </h2>
+      <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">Alignment</h2>
       <docs-example [code]="alignmentExampleCode">
         <div class="flex flex-col gap-4 p-4">
           @for (align of alignments; track align.value) {
-          <div class="flex flex-col gap-2">
-            <span class="text-xs font-black uppercase opacity-60"
-              >{{ align.label }} - {{ align.description }}</span
-            >
-            <nb-media-item
-              variant="boxed"
-              size="md"
-              tone="yellow"
-              [align]="align.value"
-              icon="/icons/world.png"
-              iconAlt="World"
-              title="Global Network"
-              description="140+ destinations"
-            />
-          </div>
+            <div class="flex flex-col gap-2">
+              <span class="text-xs font-black uppercase opacity-60"
+                >{{ align.label }} - {{ align.description }}</span
+              >
+              <nb-media-item
+                variant="boxed"
+                size="md"
+                tone="yellow"
+                [align]="align.value"
+                icon="/icons/world.png"
+                iconAlt="World"
+                title="Global Network"
+                description="140+ destinations"
+              />
+            </div>
           }
         </div>
       </docs-example>

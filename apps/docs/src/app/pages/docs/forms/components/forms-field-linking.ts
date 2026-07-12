@@ -14,8 +14,8 @@ import { DocsCodeBlock } from '@ng-brutalism/docs-ui';
         Wrap a label, control, description, and error message in
         <code class="font-mono">nb-field</code> and every id/
         <code class="font-mono">aria-describedby</code>/
-        <code class="font-mono">aria-invalid</code> link is generated for you
-        - see the
+        <code class="font-mono">aria-invalid</code> link is generated for you -
+        see the
         <a routerLink="/components/field" class="underline">Field</a>
         component page for the full API.
       </p>

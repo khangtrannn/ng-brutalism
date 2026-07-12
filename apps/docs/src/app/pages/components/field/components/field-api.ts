@@ -49,8 +49,8 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
                 nbFieldDescription
               </td>
               <td class="px-4 py-3">
-                Directive for the hint/description element. Generates an id
-                and is always included in
+                Directive for the hint/description element. Generates an id and
+                is always included in
                 <code class="font-mono">aria-describedby</code>.
               </td>
             </tr>

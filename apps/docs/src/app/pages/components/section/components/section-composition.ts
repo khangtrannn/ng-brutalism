@@ -57,9 +57,7 @@ import { DocsExample } from '@ng-brutalism/docs-ui';
               <span class="font-mono text-xs font-black uppercase">
                 Pro plan
               </span>
-              <h2 nbDisplay class="[--nb-display-size:2rem]">
-                Design Sprint
-              </h2>
+              <h2 nbDisplay class="[--nb-display-size:2rem]">Design Sprint</h2>
             </div>
             <span nbChip tone="lavender">Annual</span>
           </div>

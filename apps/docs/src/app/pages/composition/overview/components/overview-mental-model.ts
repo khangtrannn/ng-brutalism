@@ -10,24 +10,24 @@ import type { NbTone } from '@ng-brutalism/ui/tokens';
     <section id="mental-model" nbStack gap="md" class="scroll-mt-32">
       <h2 data-docs-heading class="text-2xl font-bold">The mental model</h2>
       <p class="text-base font-medium">
-        Every ng-brutalism UI starts with a surface. Regions inside that
-        surface are sections. Content flows vertically in stacks and
-        horizontally in clusters. Two-column layouts use split. Actions and
-        metadata complete the picture.
+        Every ng-brutalism UI starts with a surface. Regions inside that surface
+        are sections. Content flows vertically in stacks and horizontally in
+        clusters. Two-column layouts use split. Actions and metadata complete
+        the picture.
       </p>
       <div class="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
         @for (item of primitiveMap; track item.name) {
-        <a
-          nbSurface
-          [tone]="item.tone"
-          border="strong"
-          interactive
-          [routerLink]="item.path"
-          class="block p-4"
-        >
-          <code class="font-mono text-sm font-black">{{ item.name }}</code>
-          <p class="mt-1 text-sm font-medium">{{ item.role }}</p>
-        </a>
+          <a
+            nbSurface
+            [tone]="item.tone"
+            border="strong"
+            interactive
+            [routerLink]="item.path"
+            class="block p-4"
+          >
+            <code class="font-mono text-sm font-black">{{ item.name }}</code>
+            <p class="mt-1 text-sm font-medium">{{ item.role }}</p>
+          </a>
         }
       </div>
     </section>

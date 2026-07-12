@@ -1,4 +1,9 @@
-import { ChangeDetectionStrategy, Component, computed, input } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  input,
+} from '@angular/core';
 import { NbStat, NbSurface } from '@ng-brutalism/ui';
 
 import type { NbComponentStatus } from './docs-component-status';
@@ -24,6 +29,6 @@ export class DocsStatusBadge {
   readonly status = input.required<NbComponentStatus>();
 
   protected readonly label = computed(() =>
-    this.status() === 'stable' ? 'Stable' : 'Preview'
+    this.status() === 'stable' ? 'Stable' : 'Preview',
   );
 }

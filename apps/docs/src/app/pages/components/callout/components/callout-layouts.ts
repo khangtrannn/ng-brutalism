@@ -17,10 +17,10 @@ interface CalloutLayoutDemo {
       <docs-example [code]="layoutsExampleCode">
         <div class="grid w-full grid-cols-1 gap-4 p-4">
           @for (layout of layouts; track layout.value) {
-          <div nbCallout tone="cream" size="md" [layout]="layout.value">
-            <span>{{ layout.label }}</span>
-            <span>EP 42</span>
-          </div>
+            <div nbCallout tone="cream" size="md" [layout]="layout.value">
+              <span>{{ layout.label }}</span>
+              <span>EP 42</span>
+            </div>
           }
         </div>
       </docs-example>

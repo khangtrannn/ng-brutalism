@@ -146,24 +146,24 @@ import type { Skill } from '../portfolio.types';
           duration="18s"
         >
           @for (skill of skills(); track skill.text) {
-          <nb-marquee-item>
-            <span class="mx-4 flex items-center sm:mx-6 lg:mx-8">
-              <img
-                class="portfolio-skill-icon mr-2 sm:mr-3"
-                [src]="
-                  'https://cdn.simpleicons.org/' +
-                  skill.iconSlug +
-                  '/' +
-                  (isDark() ? 'ffffff' : '000000')
-                "
-                [alt]="skill.iconLabel + ' logo'"
-                loading="lazy"
-              />
-              <span class="font-heading text-lg sm:text-xl lg:text-2xl">
-                {{ skill.text }}
+            <nb-marquee-item>
+              <span class="mx-4 flex items-center sm:mx-6 lg:mx-8">
+                <img
+                  class="portfolio-skill-icon mr-2 sm:mr-3"
+                  [src]="
+                    'https://cdn.simpleicons.org/' +
+                    skill.iconSlug +
+                    '/' +
+                    (isDark() ? 'ffffff' : '000000')
+                  "
+                  [alt]="skill.iconLabel + ' logo'"
+                  loading="lazy"
+                />
+                <span class="font-heading text-lg sm:text-xl lg:text-2xl">
+                  {{ skill.text }}
+                </span>
               </span>
-            </span>
-          </nb-marquee-item>
+            </nb-marquee-item>
           }
         </nb-marquee>
       </div>
@@ -181,14 +181,14 @@ export class PortfolioHero {
       switchMap((text) =>
         timer(0, 100).pipe(
           scan((i) => i + 1, 0),
-          takeWhile((i) => i <= text.length)
-        )
-      )
+          takeWhile((i) => i <= text.length),
+        ),
+      ),
     ),
-    { initialValue: 0 }
+    { initialValue: 0 },
   );
 
   protected readonly displayedGreeting = computed(() =>
-    this.greeting().slice(0, this.charIndex())
+    this.greeting().slice(0, this.charIndex()),
   );
 }

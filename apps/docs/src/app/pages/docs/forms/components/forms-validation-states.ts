@@ -12,8 +12,8 @@ import { NbCallout } from '@ng-brutalism/ui';
       <div nbCallout tone="cream" size="sm">
         <p class="normal-case">
           Invalid styling and
-          <code class="font-mono">nb-field-error</code> visibility both gate
-          on <strong>touched OR dirty</strong> - read via
+          <code class="font-mono">nb-field-error</code> visibility both gate on
+          <strong>touched OR dirty</strong> - read via
           <code class="font-mono">AbstractControl.events</code>, not just
           <code class="font-mono">statusChanges</code>, so a touched-only
           transition (e.g. blurring an empty required field) is caught

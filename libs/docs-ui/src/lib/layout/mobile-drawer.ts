@@ -37,7 +37,9 @@ const GROUP_COLORS = ['yellow', 'pink', 'mint', 'lavender'] as const;
         <div
           class="flex items-center justify-between gap-3 border-b-4 border-(--nb-border) bg-(--nb-yellow) px-4 py-3"
         >
-          <span class="font-display text-base font-black tracking-wide uppercase">
+          <span
+            class="font-display text-base font-black tracking-wide uppercase"
+          >
             Menu
           </span>
           <button
@@ -62,7 +64,9 @@ const GROUP_COLORS = ['yellow', 'pink', 'mint', 'lavender'] as const;
                 <a
                   class="section-chip"
                   [routerLink]="chip.path"
-                  [class.section-chip--active]="activeSection() === chip.section"
+                  [class.section-chip--active]="
+                    activeSection() === chip.section
+                  "
                   (click)="close()"
                 >
                   {{ chip.label }}
@@ -76,7 +80,9 @@ const GROUP_COLORS = ['yellow', 'pink', 'mint', 'lavender'] as const;
               <div class="drawer-group__header">
                 <span class="drawer-group__chip">{{ group.label }}</span>
                 @if (group.label !== 'Getting started') {
-                  <span class="drawer-group__count">{{ group.items.length }}</span>
+                  <span class="drawer-group__count">{{
+                    group.items.length
+                  }}</span>
                 }
               </div>
 
@@ -133,7 +139,9 @@ const GROUP_COLORS = ['yellow', 'pink', 'mint', 'lavender'] as const;
       letter-spacing: 0.04em;
       text-transform: uppercase;
       text-align: center;
-      transition: transform 120ms, background-color 120ms;
+      transition:
+        transform 120ms,
+        background-color 120ms;
     }
 
     .section-chip:hover {
@@ -178,18 +186,18 @@ const GROUP_COLORS = ['yellow', 'pink', 'mint', 'lavender'] as const;
       transform: rotate(-2deg);
     }
 
-    .drawer-group[data-color="pink"] .drawer-group__chip {
+    .drawer-group[data-color='pink'] .drawer-group__chip {
       background: var(--nb-pink);
       color: #fff;
       transform: rotate(1.5deg);
     }
 
-    .drawer-group[data-color="mint"] .drawer-group__chip {
+    .drawer-group[data-color='mint'] .drawer-group__chip {
       background: var(--nb-mint);
       transform: rotate(-1deg);
     }
 
-    .drawer-group[data-color="lavender"] .drawer-group__chip {
+    .drawer-group[data-color='lavender'] .drawer-group__chip {
       background: var(--nb-lavender);
       color: #fff;
       transform: rotate(2deg);
@@ -224,7 +232,9 @@ const GROUP_COLORS = ['yellow', 'pink', 'mint', 'lavender'] as const;
       font-size: 0.95rem;
       font-weight: 600;
       line-height: 1.4;
-      transition: background-color 120ms, transform 120ms;
+      transition:
+        background-color 120ms,
+        transform 120ms;
     }
 
     .drawer-link__bullet {
@@ -235,10 +245,20 @@ const GROUP_COLORS = ['yellow', 'pink', 'mint', 'lavender'] as const;
       background: transparent;
     }
 
-    .drawer-group[data-color="yellow"] .drawer-link:hover .drawer-link__bullet { background: var(--nb-yellow); }
-    .drawer-group[data-color="pink"] .drawer-link:hover .drawer-link__bullet { background: var(--nb-pink); }
-    .drawer-group[data-color="mint"] .drawer-link:hover .drawer-link__bullet { background: var(--nb-mint); }
-    .drawer-group[data-color="lavender"] .drawer-link:hover .drawer-link__bullet { background: var(--nb-lavender); }
+    .drawer-group[data-color='yellow'] .drawer-link:hover .drawer-link__bullet {
+      background: var(--nb-yellow);
+    }
+    .drawer-group[data-color='pink'] .drawer-link:hover .drawer-link__bullet {
+      background: var(--nb-pink);
+    }
+    .drawer-group[data-color='mint'] .drawer-link:hover .drawer-link__bullet {
+      background: var(--nb-mint);
+    }
+    .drawer-group[data-color='lavender']
+      .drawer-link:hover
+      .drawer-link__bullet {
+      background: var(--nb-lavender);
+    }
 
     .drawer-link:hover {
       background: var(--nb-secondary-background);
@@ -253,16 +273,16 @@ const GROUP_COLORS = ['yellow', 'pink', 'mint', 'lavender'] as const;
       font-weight: 800;
     }
 
-    .drawer-group[data-color="pink"] .is-active {
+    .drawer-group[data-color='pink'] .is-active {
       background-color: var(--nb-pink);
       color: #000;
     }
 
-    .drawer-group[data-color="mint"] .is-active {
+    .drawer-group[data-color='mint'] .is-active {
       background-color: var(--nb-mint);
     }
 
-    .drawer-group[data-color="lavender"] .is-active {
+    .drawer-group[data-color='lavender'] .is-active {
       background-color: var(--nb-lavender);
     }
 

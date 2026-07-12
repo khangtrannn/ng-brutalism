@@ -39,9 +39,7 @@ import { DocsExample } from '@ng-brutalism/docs-ui';
               </div>
 
               <div nbStack gap="sm">
-                <h3 class="mb-0 text-3xl font-black">
-                  Design Systems Sprint
-                </h3>
+                <h3 class="mb-0 text-3xl font-black">Design Systems Sprint</h3>
                 <p class="max-w-lg font-medium">
                   Stack and Cluster handle local rhythm. Split handles the
                   larger main-and-aside card structure.

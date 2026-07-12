@@ -8,9 +8,9 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
         Accessibility
       </h2>
       <p class="font-medium">
-        <strong>APG pattern:</strong> N/A - Callout is a static,
-        presentational directive for emphasizing a compact value, not an
-        interactive widget. <strong>Status:</strong> Stable.
+        <strong>APG pattern:</strong> N/A - Callout is a static, presentational
+        directive for emphasizing a compact value, not an interactive widget.
+        <strong>Status:</strong> Stable.
       </p>
     </section>
   `,

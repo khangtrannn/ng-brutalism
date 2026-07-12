@@ -14,7 +14,7 @@ const pagesRoot = path.resolve(__dirname, '../src/app/pages');
 const distClientDir = path.resolve(workspaceRoot, 'dist/apps/docs/client');
 const distAnalogPublicDir = path.resolve(
   workspaceRoot,
-  'dist/apps/docs/analog/public'
+  'dist/apps/docs/analog/public',
 );
 const publicDir = path.resolve(__dirname, '../public');
 
@@ -22,10 +22,10 @@ const SITE_URL = 'https://ngbrutalism.khangtran.dev';
 
 const jiti = createJiti(import.meta.url, { interopDefault: true });
 const { DOCS_PUBLIC_ROUTES } = await jiti.import(
-  path.resolve(__dirname, '../src/app/docs/docs-public-routes.ts')
+  path.resolve(__dirname, '../src/app/docs/docs-public-routes.ts'),
 );
 const seoData = await jiti.import(
-  path.resolve(__dirname, '../../../libs/docs-ui/src/lib/docs-seo-data.ts')
+  path.resolve(__dirname, '../../../libs/docs-ui/src/lib/docs-seo-data.ts'),
 );
 
 const ROUTES = DOCS_PUBLIC_ROUTES;
@@ -48,8 +48,8 @@ for (const dir of targets) {
 
 console.log(
   `Wrote sitemap.xml + llms.txt (${ROUTES.length} routes) to: ${targets.join(
-    ', '
-  )}`
+    ', ',
+  )}`,
 );
 
 function buildSitemap() {
@@ -102,7 +102,7 @@ function gitLastmod(relPath) {
     const out = execFileSync(
       'git',
       ['log', '-1', '--format=%cI', '--', fullPath],
-      { cwd: workspaceRoot, encoding: 'utf8' }
+      { cwd: workspaceRoot, encoding: 'utf8' },
     ).trim();
     return out || null;
   } catch {

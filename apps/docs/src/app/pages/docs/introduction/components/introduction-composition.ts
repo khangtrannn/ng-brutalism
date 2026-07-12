@@ -13,9 +13,9 @@ import { DocsCodeBlock } from '@ng-brutalism/docs-ui';
         Composition system
       </h2>
       <p class="mb-5 text-base font-medium">
-        ng-brutalism ships a composition system for building loud,
-        token-driven, Angular-first brutalist UIs: small primitives that
-        lock together like LEGO, each owning one job - see
+        ng-brutalism ships a composition system for building loud, token-driven,
+        Angular-first brutalist UIs: small primitives that lock together like
+        LEGO, each owning one job - see
         <a routerLink="/composition/overview" class="underline"
           >Composition Overview</a
         >

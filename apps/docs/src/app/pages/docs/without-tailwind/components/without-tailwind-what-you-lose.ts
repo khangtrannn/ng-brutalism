@@ -13,8 +13,8 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
         thing you give up is using Tailwind utility classes
         <em>in your own templates</em> - if you want those too, add
         <code class="font-mono">tailwindcss</code> back as a normal dependency
-        of your app; it composes fine alongside ng-brutalism's static CSS
-        either way.
+        of your app; it composes fine alongside ng-brutalism's static CSS either
+        way.
       </p>
     </section>
   `,

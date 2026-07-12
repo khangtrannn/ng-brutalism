@@ -13,9 +13,7 @@ interface TextTrackingDemo {
   imports: [NbStack, NbText, DocsExample],
   template: `
     <section id="tracking">
-      <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">
-        Tracking
-      </h2>
+      <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">Tracking</h2>
       <p class="mb-4 font-medium">
         Letter-spacing. Combine
         <code class="font-mono">tracking="wide"</code> with
@@ -25,21 +23,21 @@ interface TextTrackingDemo {
       <docs-example [code]="trackingCode">
         <div class="p-6 w-full" nbStack gap="md">
           @for (t of trackings; track t.value) {
-          <div class="flex items-baseline gap-4">
-            <span
-              class="w-16 font-mono text-xs font-bold text-right opacity-50 shrink-0"
-              >{{ t.value }}</span
-            >
-            <span
-              nbText
-              size="md"
-              weight="black"
-              transform="uppercase"
-              [tracking]="t.value"
-            >
-              New release
-            </span>
-          </div>
+            <div class="flex items-baseline gap-4">
+              <span
+                class="w-16 font-mono text-xs font-bold text-right opacity-50 shrink-0"
+                >{{ t.value }}</span
+              >
+              <span
+                nbText
+                size="md"
+                weight="black"
+                transform="uppercase"
+                [tracking]="t.value"
+              >
+                New release
+              </span>
+            </div>
           }
         </div>
       </docs-example>

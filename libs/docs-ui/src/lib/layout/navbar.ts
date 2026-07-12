@@ -33,11 +33,10 @@ import { Section, TOP_SECTIONS } from './sections';
       [class.docs-navbar--scrolled]="scrolled()"
       aria-label="Main navigation"
     >
-      <div class="flex min-h-20 items-center justify-between gap-3 px-3 py-3 sm:gap-5 sm:px-6">
-        <a
-          routerLink="/"
-          class="brand group flex items-center gap-3 font-bold"
-        >
+      <div
+        class="flex min-h-20 items-center justify-between gap-3 px-3 py-3 sm:gap-5 sm:px-6"
+      >
+        <a routerLink="/" class="brand group flex items-center gap-3 font-bold">
           <picture>
             <source
               srcset="/logo-56.webp 56w, /logo-112.webp 112w"
@@ -94,7 +93,9 @@ import { Section, TOP_SECTIONS } from './sections';
           <button
             type="button"
             class="menu-toggle inline-flex h-11 w-11 shrink-0 items-center justify-center border-4 border-(--nb-border) bg-(--nb-yellow) text-black shadow-[4px_4px_0_0_var(--nb-shadow)] transition-transform hover:-translate-y-0.5 sm:h-12 sm:w-12 lg:hidden"
-            [attr.aria-label]="menuOpen() ? 'Close navigation menu' : 'Open navigation menu'"
+            [attr.aria-label]="
+              menuOpen() ? 'Close navigation menu' : 'Open navigation menu'
+            "
             [attr.aria-expanded]="menuOpen()"
             aria-controls="docs-mobile-drawer"
             (click)="menuOpen.set(!menuOpen())"
@@ -150,7 +151,9 @@ import { Section, TOP_SECTIONS } from './sections';
       padding: 0 0.9rem;
       font-family: var(--font-display);
       line-height: 1;
-      transition: transform 120ms, background-color 120ms;
+      transition:
+        transform 120ms,
+        background-color 120ms;
     }
 
     .nav-link:hover:not(.nav-link-active) {

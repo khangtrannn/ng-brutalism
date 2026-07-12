@@ -8,9 +8,7 @@ import { DocsExample } from '@ng-brutalism/docs-ui';
   imports: [NbStat, DocsExample],
   template: `
     <section id="with-icon">
-      <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">
-        With icon
-      </h2>
+      <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">With icon</h2>
       <p class="mb-4 font-medium">
         Project any element into the
         <code class="font-mono">slot="icon"</code>

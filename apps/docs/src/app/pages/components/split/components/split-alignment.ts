@@ -13,24 +13,22 @@ interface SplitAlignDemo {
   imports: [NbSplit, NbSurface, DocsExample],
   template: `
     <section id="alignment">
-      <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">
-        Alignment
-      </h2>
+      <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">Alignment</h2>
       <docs-example [code]="alignmentExampleCode">
         <div class="grid w-full grid-cols-1 gap-4 p-4 sm:grid-cols-2">
           @for (align of alignments; track align.value) {
-          <div nbSurface tone="white" shadow="sm" class="p-4">
-            <div nbSplit gap="sm" [align]="align.value" collapse="none">
-              <span
-                class="min-h-24 border-2 border-(--nb-border) bg-(--nb-yellow) p-3 font-mono text-xs font-black uppercase"
-                >{{ align.label }}</span
-              >
-              <span
-                class="border-2 border-(--nb-border) bg-(--nb-mint) p-3 font-black"
-                >Aside</span
-              >
+            <div nbSurface tone="white" shadow="sm" class="p-4">
+              <div nbSplit gap="sm" [align]="align.value" collapse="none">
+                <span
+                  class="min-h-24 border-2 border-(--nb-border) bg-(--nb-yellow) p-3 font-mono text-xs font-black uppercase"
+                  >{{ align.label }}</span
+                >
+                <span
+                  class="border-2 border-(--nb-border) bg-(--nb-mint) p-3 font-black"
+                  >Aside</span
+                >
+              </div>
             </div>
-          </div>
           }
         </div>
       </docs-example>

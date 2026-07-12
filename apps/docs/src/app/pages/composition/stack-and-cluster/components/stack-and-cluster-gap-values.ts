@@ -18,24 +18,24 @@ import { NbSpacing, NbStack } from '@ng-brutalism/ui';
         class="grid gap-4 border-3 border-(--nb-border) bg-white p-5 shadow-[5px_5px_0_0_var(--nb-shadow)]"
       >
         @for (gap of gapValues; track gap.value) {
-        <div class="flex items-center gap-6">
-          <code class="w-16 shrink-0 font-mono text-sm font-bold">{{
-            gap.value
-          }}</code>
-          <div nbStack [gap]="gap.value" class="flex-1">
-            <div
-              class="h-3 border-3 border-(--nb-border)"
-              [style.background]="gap.color"
-            ></div>
-            <div
-              class="h-3 border-3 border-(--nb-border)"
-              [style.background]="gap.color"
-            ></div>
+          <div class="flex items-center gap-6">
+            <code class="w-16 shrink-0 font-mono text-sm font-bold">{{
+              gap.value
+            }}</code>
+            <div nbStack [gap]="gap.value" class="flex-1">
+              <div
+                class="h-3 border-3 border-(--nb-border)"
+                [style.background]="gap.color"
+              ></div>
+              <div
+                class="h-3 border-3 border-(--nb-border)"
+                [style.background]="gap.color"
+              ></div>
+            </div>
+            <span class="w-32 shrink-0 text-sm font-medium opacity-70">{{
+              gap.use
+            }}</span>
           </div>
-          <span class="w-32 shrink-0 text-sm font-medium opacity-70">{{
-            gap.use
-          }}</span>
-        </div>
         }
       </div>
     </section>

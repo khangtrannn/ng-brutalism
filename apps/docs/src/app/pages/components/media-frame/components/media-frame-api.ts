@@ -140,8 +140,8 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
               </td>
               <td class="px-4 py-3">
                 Offset shadow preset.
-                <code class="font-mono">'hard'</code> adds a bold 6 px
-                brutalist drop shadow.
+                <code class="font-mono">'hard'</code> adds a bold 6 px brutalist
+                drop shadow.
               </td>
             </tr>
           </tbody>

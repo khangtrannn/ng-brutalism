@@ -14,8 +14,8 @@ import { DocsSourceTile, DocsStatusBadge } from '@ng-brutalism/docs-ui';
         <p class="mt-3 max-w-3xl text-base font-medium sm:text-lg">
           Use <code class="font-mono">nb-media-item</code> to pair an icon or
           image with a title and optional description. Covers feature lists,
-          event details, product specs, flight info, contact rows, status
-          chips, and any layout that anchors text next to a visual.
+          event details, product specs, flight info, contact rows, status chips,
+          and any layout that anchors text next to a visual.
         </p>
       </div>
 

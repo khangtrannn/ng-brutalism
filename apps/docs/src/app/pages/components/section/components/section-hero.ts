@@ -12,11 +12,11 @@ import { DocsSourceTile, DocsStatusBadge } from '@ng-brutalism/docs-ui';
         <p>Neo-Brutalist Angular Section</p>
         <h1>Section</h1>
         <p class="mt-3 max-w-3xl text-base font-medium sm:text-lg">
-          Use <code class="font-mono">nbSection</code> for the internal
-          regions of a card - headers, body blocks, and footers. It replaces
-          ad-hoc <code class="font-mono">border-t-2 px-6 py-6</code> wrappers
-          with a small declarative primitive for padding, border side, and
-          inline layout.
+          Use <code class="font-mono">nbSection</code> for the internal regions
+          of a card - headers, body blocks, and footers. It replaces ad-hoc
+          <code class="font-mono">border-t-2 px-6 py-6</code> wrappers with a
+          small declarative primitive for padding, border side, and inline
+          layout.
         </p>
       </div>
 

@@ -12,9 +12,9 @@ import { DocsSourceTile, DocsStatusBadge } from '@ng-brutalism/docs-ui';
         <p>Neo-Brutalist Angular Stat</p>
         <h1>Stat</h1>
         <p class="mt-3 max-w-3xl text-base font-medium sm:text-lg">
-          A compact value + label display for surfacing metrics, prices,
-          counts, and scores. Used throughout brutalist card designs to anchor
-          key numbers with maximum visual weight.
+          A compact value + label display for surfacing metrics, prices, counts,
+          and scores. Used throughout brutalist card designs to anchor key
+          numbers with maximum visual weight.
         </p>
       </div>
 

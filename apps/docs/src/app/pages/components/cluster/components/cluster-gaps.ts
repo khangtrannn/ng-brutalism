@@ -17,23 +17,23 @@ interface ClusterGapDemo {
       <docs-example [code]="gapsExampleCode">
         <div class="grid w-full grid-cols-1 gap-4 p-4 sm:grid-cols-2">
           @for (gap of gaps; track gap.value) {
-          <div nbSurface shadow="sm" class="p-4">
-            <span class="font-mono text-xs font-bold uppercase mb-2">{{
-              gap.label
-            }}</span>
+            <div nbSurface shadow="sm" class="p-4">
+              <span class="font-mono text-xs font-bold uppercase mb-2">{{
+                gap.label
+              }}</span>
 
-            <div nbCluster [gap]="gap.value">
-              <span
-                class="size-10 border-2 border-(--nb-border) bg-(--nb-yellow)"
-              ></span>
-              <span
-                class="size-10 border-2 border-(--nb-border) bg-(--nb-mint)"
-              ></span>
-              <span
-                class="size-10 border-2 border-(--nb-border) bg-(--nb-pink)"
-              ></span>
+              <div nbCluster [gap]="gap.value">
+                <span
+                  class="size-10 border-2 border-(--nb-border) bg-(--nb-yellow)"
+                ></span>
+                <span
+                  class="size-10 border-2 border-(--nb-border) bg-(--nb-mint)"
+                ></span>
+                <span
+                  class="size-10 border-2 border-(--nb-border) bg-(--nb-pink)"
+                ></span>
+              </div>
             </div>
-          </div>
           }
         </div>
       </docs-example>

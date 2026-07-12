@@ -30,9 +30,7 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
           </thead>
           <tbody class="font-medium">
             <tr>
-              <td
-                class="border-b-2 border-r-2 border-(--nb-border) px-4 py-3"
-              >
+              <td class="border-b-2 border-r-2 border-(--nb-border) px-4 py-3">
                 duration
               </td>
               <td
@@ -47,9 +45,7 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
               </td>
             </tr>
             <tr>
-              <td
-                class="border-b-2 border-r-2 border-(--nb-border) px-4 py-3"
-              >
+              <td class="border-b-2 border-r-2 border-(--nb-border) px-4 py-3">
                 reverse
               </td>
               <td

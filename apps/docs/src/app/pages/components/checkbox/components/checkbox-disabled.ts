@@ -8,9 +8,7 @@ import { DocsExample } from '@ng-brutalism/docs-ui';
   imports: [DocsExample, NbCheckbox],
   template: `
     <section id="disabled">
-      <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">
-        Disabled
-      </h2>
+      <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">Disabled</h2>
       <docs-example [code]="disabledExampleCode">
         <div class="flex items-center gap-4">
           <input

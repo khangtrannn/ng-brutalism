@@ -12,8 +12,8 @@ import { DocsCodeBlock } from '@ng-brutalism/docs-ui';
       </h2>
       <p class="mb-5 text-base font-medium">
         Use manual setup when Tailwind is already managed by your app or when
-        you want to review each change yourself. Skipping Tailwind
-        altogether? Follow
+        you want to review each change yourself. Skipping Tailwind altogether?
+        Follow
         <a routerLink="/docs/without-tailwind" class="underline"
           >Without Tailwind</a
         >

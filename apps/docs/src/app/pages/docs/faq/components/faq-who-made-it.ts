@@ -10,8 +10,8 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
       <p class="text-base font-medium">
         Ng Brutalism was created by Khang Tran, is MIT licensed, and is
         published to npm as
-        <code class="font-mono text-sm">&#64;ng-brutalism/ui</code>. The
-        source code is available on GitHub.
+        <code class="font-mono text-sm">&#64;ng-brutalism/ui</code>. The source
+        code is available on GitHub.
       </p>
     </section>
   `,

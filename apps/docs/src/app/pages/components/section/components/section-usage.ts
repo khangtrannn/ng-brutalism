@@ -16,11 +16,7 @@ import { DocsCodeBlock } from '@ng-brutalism/docs-ui';
         <code class="font-mono">layout</code> to compose headers, content, and
         footers without ad-hoc utility classes.
       </p>
-      <docs-code-block
-        class="block mb-5"
-        title="Import"
-        [code]="importCode"
-      />
+      <docs-code-block class="block mb-5" title="Import" [code]="importCode" />
       <docs-code-block title="Template" [code]="defaultExampleCode" />
     </section>
   `,

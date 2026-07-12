@@ -13,27 +13,25 @@ interface StackAlignDemo {
   imports: [NbStack, NbSurface, DocsExample],
   template: `
     <section id="alignment">
-      <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">
-        Alignment
-      </h2>
+      <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">Alignment</h2>
       <docs-example [code]="alignmentExampleCode">
         <div class="grid w-full grid-cols-1 gap-4 p-4 sm:grid-cols-2">
           @for (align of alignments; track align.value) {
-          <div nbSurface tone="cream" shadow="sm" class="p-4">
-            <div nbStack gap="sm" [align]="align.value">
-              <span class="font-mono text-xs font-black uppercase">{{
-                align.label
-              }}</span>
-              <span
-                class="w-18 border-2 border-(--nb-border) bg-(--nb-yellow) px-3 py-2 text-center font-black"
-                >A</span
-              >
-              <span
-                class="w-28 border-2 border-(--nb-border) bg-(--nb-mint) px-3 py-2 text-center font-black"
-                >B</span
-              >
+            <div nbSurface tone="cream" shadow="sm" class="p-4">
+              <div nbStack gap="sm" [align]="align.value">
+                <span class="font-mono text-xs font-black uppercase">{{
+                  align.label
+                }}</span>
+                <span
+                  class="w-18 border-2 border-(--nb-border) bg-(--nb-yellow) px-3 py-2 text-center font-black"
+                  >A</span
+                >
+                <span
+                  class="w-28 border-2 border-(--nb-border) bg-(--nb-mint) px-3 py-2 text-center font-black"
+                  >B</span
+                >
+              </div>
             </div>
-          </div>
           }
         </div>
       </docs-example>

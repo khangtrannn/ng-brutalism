@@ -9,8 +9,8 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
       </h2>
       <p class="font-medium">
         <strong>APG pattern:</strong> N/A - AvatarGroup is static,
-        presentational layout that stacks avatar images with an overflow
-        count, not an interactive widget. <strong>Status:</strong> Stable.
+        presentational layout that stacks avatar images with an overflow count,
+        not an interactive widget. <strong>Status:</strong> Stable.
       </p>
     </section>
   `,

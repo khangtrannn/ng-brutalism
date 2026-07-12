@@ -11,9 +11,9 @@ import { NbCallout } from '@ng-brutalism/ui';
       </h2>
       <p class="mb-4 font-medium">
         Until the library publishes v1.0.0, the public API may change between
-        minor versions - a 0.1.x → 0.2.0 bump can carry a breaking change.
-        This is stated up front so consumers can set explicit expectations
-        rather than assume semver stability that doesn't exist yet.
+        minor versions - a 0.1.x → 0.2.0 bump can carry a breaking change. This
+        is stated up front so consumers can set explicit expectations rather
+        than assume semver stability that doesn't exist yet.
       </p>
       <div nbCallout tone="cream" size="sm">
         <p class="normal-case">

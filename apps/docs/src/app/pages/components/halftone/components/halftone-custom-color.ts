@@ -16,11 +16,7 @@ import { DocsExample } from '@ng-brutalism/docs-ui';
           class="relative overflow-hidden border-2 border-(--nb-border) bg-nb-paper p-8 shadow-[5px_5px_0_0_var(--nb-shadow)]"
           style="min-height: 140px;"
         >
-          <div
-            nbHalftone
-            color="#ff90e8"
-            class="absolute top-0 right-0"
-          ></div>
+          <div nbHalftone color="#ff90e8" class="absolute top-0 right-0"></div>
           <div
             nbHalftone
             color="#8ae9ff"

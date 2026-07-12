@@ -10,8 +10,8 @@ import JobListingCardExample from '../examples/job-listing-card';
     <section id="preview">
       <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">Preview</h2>
       <p class="mb-4 text-sm font-medium">
-        The live demo is a styled composition showcase. The Code tab below
-        shows the underlying card primitive usage; see the
+        The live demo is a styled composition showcase. The Code tab below shows
+        the underlying card primitive usage; see the
         <a
           class="underline"
           href="https://github.com/khangtrannn/ng-brutalism/blob/main/apps/docs/src/app/pages/components/card/examples/job-listing-card/job-listing-card.ts"

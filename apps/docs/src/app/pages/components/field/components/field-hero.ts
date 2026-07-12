@@ -17,14 +17,14 @@ import { DocsSourceTile, DocsStatusBadge } from '@ng-brutalism/docs-ui';
           <code class="font-mono">nb-select</code>,
           <code class="font-mono">nbTextarea</code>...), an optional
           description, and an optional error message in
-          <code class="font-mono">nb-field</code> and it generates ids and
-          links them all together - label
-          <code class="font-mono">for</code>/<code class="font-mono">id</code
+          <code class="font-mono">nb-field</code> and it generates ids and links
+          them all together - label <code class="font-mono">for</code>/<code
+            class="font-mono"
+            >id</code
           >, <code class="font-mono">aria-describedby</code>,
           <code class="font-mono">aria-invalid</code>, and
-          <code class="font-mono">aria-required</code> - automatically,
-          reading state straight off the bound
-          <code class="font-mono">NgControl</code>.
+          <code class="font-mono">aria-required</code> - automatically, reading
+          state straight off the bound <code class="font-mono">NgControl</code>.
         </p>
       </div>
 

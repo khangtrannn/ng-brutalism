@@ -12,8 +12,8 @@ import { DocsExample } from '@ng-brutalism/docs-ui';
         Custom Size
       </h2>
       <p class="mb-4 font-medium">
-        Override <code class="font-mono">--nb-display-size</code> inline for
-        any arbitrary value outside the 4 presets.
+        Override <code class="font-mono">--nb-display-size</code> inline for any
+        arbitrary value outside the 4 presets.
       </p>
       <docs-example [code]="customSizeExampleCode">
         <h2 nbDisplay class="uppercase" style="--nb-display-size: 2.25rem">

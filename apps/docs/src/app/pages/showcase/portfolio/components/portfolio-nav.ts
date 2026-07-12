@@ -47,15 +47,17 @@ import type { NavLink } from '../portfolio.types';
 
         <div class="hidden items-center space-x-6 text-base lg:text-lg md:flex">
           @for (link of navLinks(); track link.label) {
-          <a
-            class="transform px-3 py-1 font-bold text-black transition-all duration-200 hover:-translate-y-1 hover:rotate-2"
-            [href]="link.href"
-            [attr.target]="link.external ? '_blank' : null"
-            [attr.rel]="link.external ? 'noreferrer' : null"
-          >
-            {{ link.label }} @if (link.external) {
-            <span aria-hidden="true">↗</span> }
-          </a>
+            <a
+              class="transform px-3 py-1 font-bold text-black transition-all duration-200 hover:-translate-y-1 hover:rotate-2"
+              [href]="link.href"
+              [attr.target]="link.external ? '_blank' : null"
+              [attr.rel]="link.external ? 'noreferrer' : null"
+            >
+              {{ link.label }}
+              @if (link.external) {
+                <span aria-hidden="true">↗</span>
+              }
+            </a>
           }
 
           <div class="flex items-center gap-4">
@@ -88,40 +90,42 @@ import type { NavLink } from '../portfolio.types';
       </nav>
 
       @if (menuOpen()) {
-      <div
-        class="fixed left-0 top-[90px] z-50 w-full px-2 sm:top-[110px] sm:px-4 md:hidden"
-      >
         <div
-          class="w-full border-[3px] border-black bg-white p-4 shadow-[8px_8px_0px_0px_#000]"
+          class="fixed left-0 top-[90px] z-50 w-full px-2 sm:top-[110px] sm:px-4 md:hidden"
         >
-          <div class="flex flex-col space-y-3">
-            @for (link of navLinks(); track link.label) {
-            <a
-              class="border-2 border-black bg-yellow-300 p-2 text-center text-lg font-bold text-black shadow-[4px_4px_0px_0px_#000] transition-transform hover:rotate-2"
-              [href]="link.href"
-              [attr.target]="link.external ? '_blank' : null"
-              [attr.rel]="link.external ? 'noreferrer' : null"
-              (click)="menuClosed.emit()"
-            >
-              {{ link.label }} @if (link.external) {
-              <span aria-hidden="true">↗</span> }
-            </a>
-            }
-          </div>
-          <div class="mt-4 p-2">
-            <contact-us-dialog #mobileContact>
-              <button
-                nbButton
-                (click)="mobileContact.open()"
-                style="--nb-button-bg: #76fbd9;"
-                class="h-12 w-full font-heading text-base text-black transition-all hover:scale-[1.02] active:scale-[0.98]"
-              >
-                Get in Touch!
-              </button>
-            </contact-us-dialog>
+          <div
+            class="w-full border-[3px] border-black bg-white p-4 shadow-[8px_8px_0px_0px_#000]"
+          >
+            <div class="flex flex-col space-y-3">
+              @for (link of navLinks(); track link.label) {
+                <a
+                  class="border-2 border-black bg-yellow-300 p-2 text-center text-lg font-bold text-black shadow-[4px_4px_0px_0px_#000] transition-transform hover:rotate-2"
+                  [href]="link.href"
+                  [attr.target]="link.external ? '_blank' : null"
+                  [attr.rel]="link.external ? 'noreferrer' : null"
+                  (click)="menuClosed.emit()"
+                >
+                  {{ link.label }}
+                  @if (link.external) {
+                    <span aria-hidden="true">↗</span>
+                  }
+                </a>
+              }
+            </div>
+            <div class="mt-4 p-2">
+              <contact-us-dialog #mobileContact>
+                <button
+                  nbButton
+                  (click)="mobileContact.open()"
+                  style="--nb-button-bg: #76fbd9;"
+                  class="h-12 w-full font-heading text-base text-black transition-all hover:scale-[1.02] active:scale-[0.98]"
+                >
+                  Get in Touch!
+                </button>
+              </contact-us-dialog>
+            </div>
           </div>
         </div>
-      </div>
       }
     </header>
   `,

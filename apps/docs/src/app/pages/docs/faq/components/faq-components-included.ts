@@ -15,32 +15,32 @@ import { NbStat, NbSurface } from '@ng-brutalism/ui';
       </p>
       <div class="space-y-5">
         @for (group of componentGroups; track group.label) {
-        <div>
-          <p
-            class="mb-3 font-mono text-xs font-bold tracking-widest uppercase opacity-60"
-          >
-            {{ group.label }}
-          </p>
-          <div class="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-            @for (component of group.items; track component.path) {
-            <a
-              nbSurface
-              tone="white"
-              border="strong"
-              padding="sm"
-              layout="stack"
-              interactive
-              class="items-start"
-              [routerLink]="component.path"
+          <div>
+            <p
+              class="mb-3 font-mono text-xs font-bold tracking-widest uppercase opacity-60"
             >
-              <nb-stat
-                value="{{ component.label }}"
-                label="{{ component.summary }}"
-              />
-            </a>
-            }
+              {{ group.label }}
+            </p>
+            <div class="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+              @for (component of group.items; track component.path) {
+                <a
+                  nbSurface
+                  tone="white"
+                  border="strong"
+                  padding="sm"
+                  layout="stack"
+                  interactive
+                  class="items-start"
+                  [routerLink]="component.path"
+                >
+                  <nb-stat
+                    value="{{ component.label }}"
+                    label="{{ component.summary }}"
+                  />
+                </a>
+              }
+            </div>
           </div>
-        </div>
         }
       </div>
     </section>
@@ -73,7 +73,11 @@ export class FaqComponentsIncluded {
           summary: 'Horizontal groups',
         },
         { label: 'Split', path: '/components/split', summary: 'Main + aside' },
-        { label: 'Card', path: '/components/card', summary: 'Ready-made shell' },
+        {
+          label: 'Card',
+          path: '/components/card',
+          summary: 'Ready-made shell',
+        },
         {
           label: 'Separator',
           path: '/components/separator',

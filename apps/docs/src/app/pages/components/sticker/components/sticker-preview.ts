@@ -14,12 +14,7 @@ import { DocsExample } from '@ng-brutalism/docs-ui';
           <nb-sticker shape="burst" tone="mint" [rotate]="-8" decorative>
             GROW<br />YOUR<br />SELF
           </nb-sticker>
-          <nb-sticker
-            shape="burst-wide"
-            tone="yellow"
-            [rotate]="5"
-            decorative
-          >
+          <nb-sticker shape="burst-wide" tone="yellow" [rotate]="5" decorative>
             LIMITED<br />
             DROP
           </nb-sticker>

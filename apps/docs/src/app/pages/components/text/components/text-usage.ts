@@ -13,11 +13,7 @@ import { DocsCodeBlock } from '@ng-brutalism/docs-ui';
         element. It applies inline styles directly so it never conflicts with
         other attribute directives on the same element.
       </p>
-      <docs-code-block
-        class="block mb-5"
-        title="Import"
-        [code]="importCode"
-      />
+      <docs-code-block class="block mb-5" title="Import" [code]="importCode" />
       <docs-code-block title="Template" [code]="usageCode" />
     </section>
   `,

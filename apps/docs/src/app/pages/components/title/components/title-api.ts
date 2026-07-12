@@ -31,8 +31,8 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
                 [nbTitle]
               </td>
               <td class="px-4 py-3">
-                Applies <code class="font-mono">data-nb-title</code> and draws
-                a configurable wave underline with a CSS pseudo element.
+                Applies <code class="font-mono">data-nb-title</code> and draws a
+                configurable wave underline with a CSS pseudo element.
               </td>
             </tr>
           </tbody>

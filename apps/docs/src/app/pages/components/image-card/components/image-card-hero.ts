@@ -13,8 +13,8 @@ import { DocsSourceTile, DocsStatusBadge } from '@ng-brutalism/docs-ui';
         <h1>Image Card</h1>
         <p class="mt-3 max-w-3xl text-base font-medium sm:text-lg">
           The neo-brutalist Angular Image Card component. A media card with
-          thick borders and offset shadow, optimized for displaying images
-          with captions.
+          thick borders and offset shadow, optimized for displaying images with
+          captions.
         </p>
       </div>
 

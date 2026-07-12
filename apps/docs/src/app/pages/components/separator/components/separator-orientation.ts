@@ -8,9 +8,7 @@ import { DocsExample } from '@ng-brutalism/docs-ui';
   imports: [NbSeparator, DocsExample],
   template: `
     <section id="orientation">
-      <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">
-        Vertical
-      </h2>
+      <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">Vertical</h2>
       <p class="mb-4 font-medium">
         Set <code class="font-mono">orientation="vertical"</code> to render a
         column divider. The separator stretches to fill the height of its flex

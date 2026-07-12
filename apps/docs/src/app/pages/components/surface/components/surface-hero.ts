@@ -13,10 +13,9 @@ import { DocsSourceTile, DocsStatusBadge } from '@ng-brutalism/docs-ui';
         <h1>Surface</h1>
         <p class="mt-3 max-w-3xl text-base font-medium sm:text-lg">
           A directive for turning any host element into a brutalist panel. Use
-          <code class="font-mono">nbSurface</code> for layout shells,
-          callouts, recipe containers, and custom compositions that need the
-          same borders, tones, radius, and offset shadow system as the
-          packaged components.
+          <code class="font-mono">nbSurface</code> for layout shells, callouts,
+          recipe containers, and custom compositions that need the same borders,
+          tones, radius, and offset shadow system as the packaged components.
         </p>
       </div>
 

@@ -12,10 +12,9 @@ import { RouterLink } from '@angular/router';
       <p class="font-medium">
         Scalar props (radius, shadow, padding...) are single variables.
         <code class="font-mono">tone</code> is semantic instead - setting it
-        reflects <code class="font-mono">data-nb-tone="..."</code> on the
-        host, and a whole recipe of background/foreground/border variables
-        resolves from that attribute through
-        <code class="font-mono">tone.css</code>. See
+        reflects <code class="font-mono">data-nb-tone="..."</code> on the host,
+        and a whole recipe of background/foreground/border variables resolves
+        from that attribute through <code class="font-mono">tone.css</code>. See
         <a routerLink="/docs/design-props" class="underline">Design Props</a>
         for the full vocabulary this applies to.
       </p>

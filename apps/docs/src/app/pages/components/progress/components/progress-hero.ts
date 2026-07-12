@@ -14,8 +14,8 @@ import { DocsSourceTile, DocsStatusBadge } from '@ng-brutalism/docs-ui';
         <p class="mt-3 max-w-3xl text-base font-medium sm:text-lg">
           A progress bar component with ARIA progressbar semantics. Supports
           <code class="font-mono">value</code>,
-          <code class="font-mono">max</code>, and 5 tones for different
-          semantic contexts - from fundraising goals to media playback.
+          <code class="font-mono">max</code>, and 5 tones for different semantic
+          contexts - from fundraising goals to media playback.
         </p>
       </div>
 

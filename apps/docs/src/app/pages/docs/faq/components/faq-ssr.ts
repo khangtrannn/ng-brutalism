@@ -10,11 +10,10 @@ import { RouterLink } from '@angular/router';
         Does it work with SSR?
       </h2>
       <p class="text-base font-medium">
-        Yes. The docs site itself is prerendered with Analog and Angular. The
-        UI package avoids browser-only assumptions in core primitives,
-        generates ids through an injectable counter so hydration can't
-        mismatch, and keeps browser-dependent behavior behind Angular platform
-        checks. See
+        Yes. The docs site itself is prerendered with Analog and Angular. The UI
+        package avoids browser-only assumptions in core primitives, generates
+        ids through an injectable counter so hydration can't mismatch, and keeps
+        browser-dependent behavior behind Angular platform checks. See
         <a routerLink="/docs/ssr" class="underline">SSR &amp; Hydration</a>
         for details.
       </p>

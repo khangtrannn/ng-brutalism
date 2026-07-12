@@ -12,10 +12,9 @@ import { RouterLink } from '@angular/router';
       <p class="mb-2 text-base font-medium">
         The <code class="font-mono text-sm">ng add</code> schematic sets up
         <strong>Tailwind CSS v4</strong> automatically for Angular CLI apps,
-        which is the fastest path if your app already uses Tailwind or you
-        don't mind adding it.
-        <code class="font-mono text-sm">tailwindcss</code> is an optional
-        peer dependency, though - see
+        which is the fastest path if your app already uses Tailwind or you don't
+        mind adding it. <code class="font-mono text-sm">tailwindcss</code> is an
+        optional peer dependency, though - see
         <a routerLink="/docs/without-tailwind" class="underline"
           >Without Tailwind</a
         >

@@ -31,36 +31,36 @@ interface SectionLayoutDemo {
       <docs-example [code]="layoutsExampleCode">
         <div class="grid w-full grid-cols-1 gap-4 p-4">
           @for (layout of layouts; track layout.value) {
-          <div nbSurface tone="white" shadow="sm">
-            <div
-              class="flex flex-wrap items-center justify-between gap-2 border-b-2 border-(--nb-border) bg-(--nb-background) px-4 py-2"
-            >
-              <span class="font-mono text-xs font-black uppercase">
-                layout {{ layout.label }}
-              </span>
-              <span class="font-mono text-xs font-medium">
-                {{ layout.hint }}
-              </span>
-            </div>
-            <div
-              nbSection
-              padding="md"
-              [layout]="layout.value"
-              [align]="layout.align"
-              class="bg-(--nb-cream)"
-            >
-              <span
-                class="border-2 border-(--nb-border) bg-(--nb-yellow) px-3 py-2 font-mono text-xs font-black uppercase"
+            <div nbSurface tone="white" shadow="sm">
+              <div
+                class="flex flex-wrap items-center justify-between gap-2 border-b-2 border-(--nb-border) bg-(--nb-background) px-4 py-2"
               >
-                Lead
-              </span>
-              <span
-                class="border-2 border-(--nb-border) bg-(--nb-pink) px-3 py-2 font-mono text-xs font-black text-white uppercase"
+                <span class="font-mono text-xs font-black uppercase">
+                  layout {{ layout.label }}
+                </span>
+                <span class="font-mono text-xs font-medium">
+                  {{ layout.hint }}
+                </span>
+              </div>
+              <div
+                nbSection
+                padding="md"
+                [layout]="layout.value"
+                [align]="layout.align"
+                class="bg-(--nb-cream)"
               >
-                Trail
-              </span>
+                <span
+                  class="border-2 border-(--nb-border) bg-(--nb-yellow) px-3 py-2 font-mono text-xs font-black uppercase"
+                >
+                  Lead
+                </span>
+                <span
+                  class="border-2 border-(--nb-border) bg-(--nb-pink) px-3 py-2 font-mono text-xs font-black text-white uppercase"
+                >
+                  Trail
+                </span>
+              </div>
             </div>
-          </div>
           }
         </div>
       </docs-example>

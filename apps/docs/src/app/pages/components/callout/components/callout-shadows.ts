@@ -17,15 +17,15 @@ interface CalloutShadowDemo {
       <docs-example [code]="shadowsExampleCode">
         <div class="grid w-full grid-cols-1 gap-5 p-4 sm:grid-cols-3">
           @for (shadow of shadows; track shadow.value) {
-          <div
-            nbCallout
-            tone="blue"
-            size="md"
-            layout="center"
-            [shadow]="shadow.value"
-          >
-            {{ shadow.label }}
-          </div>
+            <div
+              nbCallout
+              tone="blue"
+              size="md"
+              layout="center"
+              [shadow]="shadow.value"
+            >
+              {{ shadow.label }}
+            </div>
           }
         </div>
       </docs-example>

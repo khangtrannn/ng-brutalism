@@ -8,9 +8,7 @@ import { DocsExample } from '@ng-brutalism/docs-ui';
   imports: [NbCallout, NbSeparator, DocsExample],
   template: `
     <section id="examples">
-      <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">
-        Examples
-      </h2>
+      <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">Examples</h2>
       <docs-example [code]="examplesCode">
         <div class="grid w-full grid-cols-1 gap-4 p-4 sm:grid-cols-2">
           <div nbCallout tone="yellow" size="xl">$799</div>

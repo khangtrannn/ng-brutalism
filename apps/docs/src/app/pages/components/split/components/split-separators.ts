@@ -1,9 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import {
-  NbSplit,
-  NbSurface,
-  type NbSplitSeparator,
-} from '@ng-brutalism/ui';
+import { NbSplit, NbSurface, type NbSplitSeparator } from '@ng-brutalism/ui';
 
 import { DocsExample } from '@ng-brutalism/docs-ui';
 
@@ -22,22 +18,23 @@ interface SplitSeparatorDemo {
       </h2>
       <docs-example [code]="separatorExampleCode">
         <div class="grid w-full grid-cols-1 gap-4 p-4">
-          @for (separator of separators; track separator.value) { @if
-          (separator.value !== 'none') {
-          <div nbSurface tone="cream" shadow="sm">
-            <div
-              nbSplit
-              ratio="2:1"
-              gap="lg"
-              padding="md"
-              collapse="none"
-              [separator]="separator.value"
-            >
-              <span class="font-black">{{ separator.label }} main</span>
-              <span class="font-medium">Aside</span>
-            </div>
-          </div>
-          } }
+          @for (separator of separators; track separator.value) {
+            @if (separator.value !== 'none') {
+              <div nbSurface tone="cream" shadow="sm">
+                <div
+                  nbSplit
+                  ratio="2:1"
+                  gap="lg"
+                  padding="md"
+                  collapse="none"
+                  [separator]="separator.value"
+                >
+                  <span class="font-black">{{ separator.label }} main</span>
+                  <span class="font-medium">Aside</span>
+                </div>
+              </div>
+            }
+          }
         </div>
       </docs-example>
     </section>

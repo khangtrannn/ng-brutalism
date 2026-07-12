@@ -70,16 +70,16 @@ import { NbDocsNavbar } from '@ng-brutalism/docs-ui';
             </div>
             <div class="space-y-1">
               @for (link of quickLinks; track link.path) {
-              <a
-                [routerLink]="link.path"
-                class="flex items-center gap-[0.55rem] border-2 border-transparent px-3 py-[0.4rem] transition-transform hover:translate-x-0.5 hover:bg-(--nb-secondary-background)"
-                style="font-family:var(--font-sans);font-size:0.95rem;font-weight:600;color:var(--nb-foreground)"
-              >
-                <span
-                  class="h-2 w-2 shrink-0 border-2 border-(--nb-border)"
-                ></span>
-                {{ link.label }}
-              </a>
+                <a
+                  [routerLink]="link.path"
+                  class="flex items-center gap-[0.55rem] border-2 border-transparent px-3 py-[0.4rem] transition-transform hover:translate-x-0.5 hover:bg-(--nb-secondary-background)"
+                  style="font-family:var(--font-sans);font-size:0.95rem;font-weight:600;color:var(--nb-foreground)"
+                >
+                  <span
+                    class="h-2 w-2 shrink-0 border-2 border-(--nb-border)"
+                  ></span>
+                  {{ link.label }}
+                </a>
               }
             </div>
           </section>
@@ -237,18 +237,18 @@ import { NbDocsNavbar } from '@ng-brutalism/docs-ui';
           <nav class="mt-3" aria-label="Page sections">
             <ul class="space-y-2">
               @for (item of tocItems; track item.label) {
-              <li>
-                <a
-                  [href]="item.href"
-                  class="flex items-center gap-2 text-sm font-semibold leading-snug transition-colors hover:text-(--nb-blue)"
-                  style="font-family:var(--font-sans)"
-                >
-                  <span
-                    class="mt-0.5 h-2 w-2 shrink-0 border-2 border-(--nb-border) bg-(--nb-border)"
-                  ></span>
-                  {{ item.label }}
-                </a>
-              </li>
+                <li>
+                  <a
+                    [href]="item.href"
+                    class="flex items-center gap-2 text-sm font-semibold leading-snug transition-colors hover:text-(--nb-blue)"
+                    style="font-family:var(--font-sans)"
+                  >
+                    <span
+                      class="mt-0.5 h-2 w-2 shrink-0 border-2 border-(--nb-border) bg-(--nb-border)"
+                    ></span>
+                    {{ item.label }}
+                  </a>
+                </li>
               }
             </ul>
           </nav>
@@ -258,7 +258,7 @@ import { NbDocsNavbar } from '@ng-brutalism/docs-ui';
   `,
   styles: `
     .not-found-card::before {
-      content: "";
+      content: '';
       position: absolute;
       top: -18px;
       right: 28px;
@@ -272,7 +272,7 @@ import { NbDocsNavbar } from '@ng-brutalism/docs-ui';
     }
 
     .not-found-card::after {
-      content: "";
+      content: '';
       position: absolute;
       top: -8px;
       right: 40px;

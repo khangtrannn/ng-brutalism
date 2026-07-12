@@ -23,13 +23,12 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
         >
           <h3 class="font-heading text-xl font-black uppercase">nbSection</h3>
           <p class="mt-2 text-sm font-medium">
-            An inner region. Owns its own padding and optional divider
-            borders. Use <code class="font-mono">divider="top"</code> or
+            An inner region. Owns its own padding and optional divider borders.
+            Use <code class="font-mono">divider="top"</code> or
             <code class="font-mono">divider="bottom"</code> to structure the
             panel into clear zones. Use
-            <code class="font-mono">divider="block"</code> for top + bottom
-            and <code class="font-mono">divider="inline"</code> for left +
-            right.
+            <code class="font-mono">divider="block"</code> for top + bottom and
+            <code class="font-mono">divider="inline"</code> for left + right.
           </p>
         </div>
       </div>

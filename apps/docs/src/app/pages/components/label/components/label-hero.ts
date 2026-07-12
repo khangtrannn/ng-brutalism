@@ -12,9 +12,9 @@ import { DocsSourceTile, DocsStatusBadge } from '@ng-brutalism/docs-ui';
         <p>Neo-Brutalist Angular Label</p>
         <h1>Label</h1>
         <p class="mt-3 max-w-3xl text-base font-medium sm:text-lg">
-          The neo-brutalist Angular Label component. Renders an accessible
-          form label with bold typography and brutalist styling, associated
-          with form controls.
+          The neo-brutalist Angular Label component. Renders an accessible form
+          label with bold typography and brutalist styling, associated with form
+          controls.
         </p>
       </div>
 

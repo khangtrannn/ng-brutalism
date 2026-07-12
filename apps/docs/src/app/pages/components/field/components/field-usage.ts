@@ -11,15 +11,11 @@ import { DocsCodeBlock } from '@ng-brutalism/docs-ui';
       <p class="mb-4 font-medium">
         Bind a <code class="font-mono">FormControl</code> (or
         <code class="font-mono">formControlName</code>) to any control inside
-        <code class="font-mono">nb-field</code> - the field reads the
-        control's touched/dirty/invalid/required status straight off it, no
-        separate error-state input to keep in sync.
+        <code class="font-mono">nb-field</code> - the field reads the control's
+        touched/dirty/invalid/required status straight off it, no separate
+        error-state input to keep in sync.
       </p>
-      <docs-code-block
-        class="block mb-5"
-        title="Import"
-        [code]="importCode"
-      />
+      <docs-code-block class="block mb-5" title="Import" [code]="importCode" />
       <docs-code-block title="Template" [code]="defaultExampleCode" />
     </section>
   `,

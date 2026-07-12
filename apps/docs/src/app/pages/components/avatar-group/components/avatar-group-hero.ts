@@ -13,9 +13,9 @@ import { DocsSourceTile, DocsStatusBadge } from '@ng-brutalism/docs-ui';
         <h1>AvatarGroup</h1>
         <p class="mt-3 max-w-3xl text-base font-medium sm:text-lg">
           A component that stacks
-          <code class="font-mono">NbAvatar</code> elements with negative
-          overlap and appends an overflow badge when the count exceeds what's
-          shown. Common in charity, event, and social card designs.
+          <code class="font-mono">NbAvatar</code> elements with negative overlap
+          and appends an overflow badge when the count exceeds what's shown.
+          Common in charity, event, and social card designs.
         </p>
       </div>
 

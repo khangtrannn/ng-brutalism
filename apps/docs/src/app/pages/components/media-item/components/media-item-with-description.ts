@@ -12,9 +12,9 @@ import { DocsExample } from '@ng-brutalism/docs-ui';
         With description
       </h2>
       <p class="mb-4 font-medium">
-        Add <code class="font-mono">description</code> for secondary context.
-        It renders below the title with reduced opacity and follows the
-        component size preset.
+        Add <code class="font-mono">description</code> for secondary context. It
+        renders below the title with reduced opacity and follows the component
+        size preset.
       </p>
       <docs-example [code]="withDescriptionCode">
         <div class="flex flex-wrap gap-4 p-4">

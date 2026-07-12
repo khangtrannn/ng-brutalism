@@ -7,8 +7,8 @@ import { RouterLink } from '@angular/router';
   template: `
     <section id="library-comparison">
       <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">
-        How is it different from Angular Material, PrimeNG, or other Angular
-        UI libraries?
+        How is it different from Angular Material, PrimeNG, or other Angular UI
+        libraries?
       </h2>
       <div class="grid gap-4 md:grid-cols-2">
         <div
@@ -19,9 +19,8 @@ import { RouterLink } from '@angular/router';
           </h3>
           <p class="mt-2 text-sm font-medium">
             Many Angular UI libraries are designed to support a wide range of
-            product styles. Ng Brutalism starts from a narrower design
-            promise: neo-brutalist components that look opinionated on day
-            one.
+            product styles. Ng Brutalism starts from a narrower design promise:
+            neo-brutalist components that look opinionated on day one.
           </p>
         </div>
         <div
@@ -31,8 +30,8 @@ import { RouterLink } from '@angular/router';
             Different customization model
           </h3>
           <p class="mt-2 text-sm font-medium">
-            The library leans on CSS tokens and Tailwind utilities rather than
-            a large theme abstraction. You tune borders, shadows, colors, and
+            The library leans on CSS tokens and Tailwind utilities rather than a
+            large theme abstraction. You tune borders, shadows, colors, and
             local component accents close to the markup.
           </p>
         </div>

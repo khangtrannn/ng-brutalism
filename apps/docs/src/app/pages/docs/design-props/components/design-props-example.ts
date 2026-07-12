@@ -12,9 +12,7 @@ import { DocsCodeBlock } from '@ng-brutalism/docs-ui';
         An input and a CSS override targeting the same category resolve to the
         same visual result - pick whichever fits the scope of the change. See
         the
-        <a routerLink="/docs/customization" class="underline"
-          >Customization</a
-        >
+        <a routerLink="/docs/customization" class="underline">Customization</a>
         guide for how the two interact when both are present.
       </p>
       <docs-code-block title="Input" [code]="inputCode" />

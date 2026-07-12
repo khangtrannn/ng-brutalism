@@ -14,8 +14,8 @@ import { DocsExample } from '@ng-brutalism/docs-ui';
           <h2 nbDisplay>Build loud.</h2>
 
           <p class="text-base font-medium">
-            Stack gives you brutalist vertical rhythm without repeating flex
-            and gap classes everywhere.
+            Stack gives you brutalist vertical rhythm without repeating flex and
+            gap classes everywhere.
           </p>
 
           <button nbButton>Stay sharp</button>

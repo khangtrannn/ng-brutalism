@@ -1,5 +1,11 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { NbChip, NbCluster, NbDisplay, NbStack, NbSurface } from '@ng-brutalism/ui';
+import {
+  NbChip,
+  NbCluster,
+  NbDisplay,
+  NbStack,
+  NbSurface,
+} from '@ng-brutalism/ui';
 
 import { DocsExample } from '@ng-brutalism/docs-ui';
 
@@ -12,8 +18,8 @@ import { DocsExample } from '@ng-brutalism/docs-ui';
         Primitives used panel
       </h2>
       <p class="mb-6 text-base font-medium">
-        A reusable panel for documenting which primitives a recipe or
-        component relies on.
+        A reusable panel for documenting which primitives a recipe or component
+        relies on.
       </p>
 
       <docs-example [code]="primitivesUsedCode">

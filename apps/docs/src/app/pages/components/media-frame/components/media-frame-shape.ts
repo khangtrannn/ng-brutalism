@@ -25,27 +25,27 @@ interface MediaFrameShapeDemo {
       <docs-example [code]="shapeExampleCode">
         <div class="flex flex-col divide-y-2 divide-(--nb-border) p-4">
           @for (shape of shapes; track shape.label) {
-          <div class="py-5 first:pt-0 last:pb-0">
-            <div class="mb-3 flex items-baseline gap-3">
-              <span class="font-black uppercase">{{ shape.label }}</span>
-              <span class="text-sm font-medium opacity-60">{{
-                shape.description
-              }}</span>
+            <div class="py-5 first:pt-0 last:pb-0">
+              <div class="mb-3 flex items-baseline gap-3">
+                <span class="font-black uppercase">{{ shape.label }}</span>
+                <span class="text-sm font-medium opacity-60">{{
+                  shape.description
+                }}</span>
+              </div>
+              <div
+                nbMediaFrame
+                ratio="1/1"
+                [tone]="shape.tone"
+                [radius]="shape.radius"
+                [shadow]="shape.shadow"
+                class="w-48"
+              >
+                <img
+                  src="/assets/images/media-frame-demo.png"
+                  [alt]="shape.label + ' shape demo'"
+                />
+              </div>
             </div>
-            <div
-              nbMediaFrame
-              ratio="1/1"
-              [tone]="shape.tone"
-              [radius]="shape.radius"
-              [shadow]="shape.shadow"
-              class="w-48"
-            >
-              <img
-                src="/assets/images/media-frame-demo.png"
-                [alt]="shape.label + ' shape demo'"
-              />
-            </div>
-          </div>
           }
         </div>
       </docs-example>

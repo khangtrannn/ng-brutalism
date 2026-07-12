@@ -123,15 +123,15 @@ import {
                 transform="uppercase"
               >
                 @for (stat of stats; track stat.label) {
-                <span
-                  nbChip
-                  [tone]="stat.tone"
-                  padding="lg"
-                  [icon]="stat.icon"
-                  class="text-sm font-black"
-                >
-                  {{ stat.label }}
-                </span>
+                  <span
+                    nbChip
+                    [tone]="stat.tone"
+                    padding="lg"
+                    [icon]="stat.icon"
+                    class="text-sm font-black"
+                  >
+                    {{ stat.label }}
+                  </span>
                 }
               </div>
 
@@ -279,8 +279,16 @@ import {
     .podcast-stage {
       background-color: #fff8e8;
       background-image:
-        linear-gradient(to right, var(--podcast-paper-grid) 1px, transparent 1px),
-        linear-gradient(to bottom, var(--podcast-paper-grid) 1px, transparent 1px);
+        linear-gradient(
+          to right,
+          var(--podcast-paper-grid) 1px,
+          transparent 1px
+        ),
+        linear-gradient(
+          to bottom,
+          var(--podcast-paper-grid) 1px,
+          transparent 1px
+        );
       background-size: 28px 28px;
     }
   `,

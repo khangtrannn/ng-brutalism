@@ -33,8 +33,8 @@ import { DocsExample } from '@ng-brutalism/docs-ui';
         Callout panel
       </h2>
       <p class="mb-6 text-base font-medium">
-        Combine <code class="font-mono">nbCallout</code> inside a Surface for
-        an eye-catching notice or price highlight.
+        Combine <code class="font-mono">nbCallout</code> inside a Surface for an
+        eye-catching notice or price highlight.
       </p>
 
       <docs-example [code]="calloutPanelCode">
@@ -65,15 +65,11 @@ import { DocsExample } from '@ng-brutalism/docs-ui';
 
           <div nbSection padding="lg">
             <div nbStack gap="lg">
-              <div nbCallout tone="yellow" size="xl" shadow="hard">
-                $49/mo
-              </div>
+              <div nbCallout tone="yellow" size="xl" shadow="hard">$49/mo</div>
               <p nbText>
                 Everything included. No usage limits. Cancel any time.
               </p>
-              <button nbButton tone="black" size="lg">
-                Start free trial
-              </button>
+              <button nbButton tone="black" size="lg">Start free trial</button>
             </div>
           </div>
         </article>

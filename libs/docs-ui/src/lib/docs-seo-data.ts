@@ -156,7 +156,7 @@ export const PAGE_DESCRIPTIONS: Record<string, string> = {
     'Portfolio showcase built with Ng Brutalism - see the neo-brutalist Angular primitive library and composition system in action.',
 
   '/docs/comparison':
-    'When Ng Brutalism fits and when it doesn\'t, compared with Angular Material, PrimeNG, Taiga UI, and headless-first libraries.',
+    "When Ng Brutalism fits and when it doesn't, compared with Angular Material, PrimeNG, Taiga UI, and headless-first libraries.",
   '/docs/versioning':
     'Ng Brutalism versioning: the pre-1.0 API-stability contract and the two conditions required before v1.0.0 ships.',
 };

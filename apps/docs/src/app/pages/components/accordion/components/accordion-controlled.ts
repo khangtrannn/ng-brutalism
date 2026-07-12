@@ -82,7 +82,7 @@ import { DocsExample } from '@ng-brutalism/docs-ui';
 })
 export class AccordionControlled {
   protected readonly controlledValue = signal<string | string[] | null>(
-    'overview'
+    'overview',
   );
 
   protected readonly controlledExampleComponentCode = `import { signal } from '@angular/core';

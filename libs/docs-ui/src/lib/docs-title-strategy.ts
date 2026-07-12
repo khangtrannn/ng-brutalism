@@ -25,7 +25,11 @@ import {
   getDocsPageSeo,
 } from './docs-seo-data';
 
-export { getDocsPageSeo, getDocsPageTitle, type DocsPageSeo } from './docs-seo-data';
+export {
+  getDocsPageSeo,
+  getDocsPageTitle,
+  type DocsPageSeo,
+} from './docs-seo-data';
 
 @Injectable()
 export class DocsTitleStrategy extends TitleStrategy {
@@ -71,7 +75,8 @@ export class DocsTitleStrategy extends TitleStrategy {
 
   private updateGoogleVerification(present: boolean): void {
     const selector = 'meta[name="google-site-verification"]';
-    const existing = this.document.head.querySelector<HTMLMetaElement>(selector);
+    const existing =
+      this.document.head.querySelector<HTMLMetaElement>(selector);
 
     if (!present) {
       existing?.remove();

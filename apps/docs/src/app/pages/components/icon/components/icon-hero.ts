@@ -13,10 +13,10 @@ import { DocsSourceTile, DocsStatusBadge } from '@ng-brutalism/docs-ui';
         <h1>Icon</h1>
         <p class="mt-3 max-w-3xl text-base font-medium sm:text-lg">
           <code class="font-mono">nbIcon</code> is an attribute directive that
-          renders any SVG asset as a sized, colored, accessible icon. Mask
-          mode (default) paints monochrome SVGs with the current color. Image
-          mode preserves original colors for illustrated assets. Composable
-          with chips, buttons, and any other primitive.
+          renders any SVG asset as a sized, colored, accessible icon. Mask mode
+          (default) paints monochrome SVGs with the current color. Image mode
+          preserves original colors for illustrated assets. Composable with
+          chips, buttons, and any other primitive.
         </p>
       </div>
 

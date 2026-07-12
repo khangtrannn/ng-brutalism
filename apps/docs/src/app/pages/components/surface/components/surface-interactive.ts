@@ -12,11 +12,11 @@ import { DocsExample } from '@ng-brutalism/docs-ui';
         Interactive
       </h2>
       <p class="mb-4 font-medium">
-        Add the boolean <code class="font-mono">interactive</code> input when
-        a surface is clickable (a link or a custom button). It adds a pointer
-        cursor, lifts the surface with a bigger shadow on hover, presses it
-        into a smaller shadow on click, and resets anchor underline/color so
-        the surface owns the look instead of the browser default.
+        Add the boolean <code class="font-mono">interactive</code> input when a
+        surface is clickable (a link or a custom button). It adds a pointer
+        cursor, lifts the surface with a bigger shadow on hover, presses it into
+        a smaller shadow on click, and resets anchor underline/color so the
+        surface owns the look instead of the browser default.
       </p>
       <docs-example [code]="interactiveExampleCode">
         <a

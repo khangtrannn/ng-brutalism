@@ -34,13 +34,9 @@ import { RouterLink } from '@angular/router';
           <tbody class="font-medium">
             <tr class="border-b-2 border-(--nb-border)">
               <td class="border-r-2 border-(--nb-border) px-4 py-3">
-                <a routerLink="/components/select" class="underline"
-                  >Select</a
-                >
+                <a routerLink="/components/select" class="underline">Select</a>
               </td>
-              <td class="border-r-2 border-(--nb-border) px-4 py-3">
-                Listbox
-              </td>
+              <td class="border-r-2 border-(--nb-border) px-4 py-3">Listbox</td>
               <td class="px-4 py-3">
                 Home/End, typeahead, Tab-closes, Escape-on-trigger,
                 disabled-but-reachable
@@ -61,9 +57,7 @@ import { RouterLink } from '@angular/router';
             </tr>
             <tr class="border-b-2 border-(--nb-border)">
               <td class="border-r-2 border-(--nb-border) px-4 py-3">
-                <a routerLink="/components/dialog" class="underline"
-                  >Dialog</a
-                >
+                <a routerLink="/components/dialog" class="underline">Dialog</a>
               </td>
               <td class="border-r-2 border-(--nb-border) px-4 py-3">
                 Dialog (modal)
@@ -92,8 +86,7 @@ import { RouterLink } from '@angular/router';
       </div>
       <p class="mt-4 text-sm opacity-70">
         Every other component page states its pattern (or "static content" for
-        non-interactive primitives) and status in its own Accessibility
-        section.
+        non-interactive primitives) and status in its own Accessibility section.
       </p>
     </section>
   `,
