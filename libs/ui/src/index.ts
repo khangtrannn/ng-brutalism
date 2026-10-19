@@ -87,7 +87,7 @@ export type {
 export { NbMarquee, NbMarqueeItem } from './lib/marquee';
 export { NbInput } from './lib/input';
 export { NbLabel } from './lib/label';
-export { NbField, NbFieldDescription, NbFieldError } from './lib/field';
+export { NbField, NbFieldDescription, NbFieldError, NB_FIELD } from './lib/field';
 export type { NbFieldContext } from './lib/field';
 export { NbTitle } from './lib/title';
 export { NbDisplay } from './lib/display';

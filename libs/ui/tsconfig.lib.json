@@ -12,7 +12,21 @@
     "jest.config.ts",
     "src/**/*.test.ts",
     "tokens/src/**/*.spec.ts",
-    "tokens/src/**/*.test.ts"
+    "tokens/src/**/*.test.ts",
+    "forms-compat/src/**/*.spec.ts",
+    "forms-compat/src/**/*.test.ts"
   ],
-  "include": ["src/**/*.ts", "tokens/src/**/*.ts"]
+  "include": [
+    "src/**/*.ts",
+    "tokens/src/**/*.ts",
+    "forms-compat/src/**/*.ts"
+  ],
+  "angularCompilerOptions": {
+    "extendedDiagnostics": {
+      "checks": {
+        "nullishCoalescingNotNullable": "suppress",
+        "optionalChainNotNullable": "suppress"
+      }
+    }
+  }
 }

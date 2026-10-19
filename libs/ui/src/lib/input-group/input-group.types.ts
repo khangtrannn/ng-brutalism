@@ -1,16 +1,7 @@
-import { InjectionToken, type Signal } from '@angular/core';
+import { InjectionToken } from '@angular/core';
 
-export interface NbInputGroupContext {
-  readonly hasPrefix: Signal<boolean>;
-  readonly hasSuffix: Signal<boolean>;
-}
+import type { NbInputGroup } from './nb-input-group';
 
-export const NB_INPUT_GROUP = new InjectionToken<NbInputGroupContext>(
-  'NB_INPUT_GROUP'
-);
-
-export const NB_INPUT_PREFIX = new InjectionToken<unknown>('NB_INPUT_PREFIX');
-
-export const NB_INPUT_SUFFIX = new InjectionToken<unknown>('NB_INPUT_SUFFIX');
+export const NB_INPUT_GROUP = new InjectionToken<NbInputGroup>('NB_INPUT_GROUP');
 
 export type NbInputAffixAlign = 'center' | 'stretch';

@@ -1,6 +1,6 @@
 import { Directive, input } from '@angular/core';
 
-import { NB_INPUT_SUFFIX, type NbInputAffixAlign } from './input-group.types';
+import type { NbInputAffixAlign } from './input-group.types';
 
 export type NbInputSuffixAlign = NbInputAffixAlign;
 
@@ -10,7 +10,6 @@ export type NbInputSuffixAlign = NbInputAffixAlign;
   host: {
     '[attr.data-align]': 'align()',
   },
-  providers: [{ provide: NB_INPUT_SUFFIX, useExisting: NbInputSuffix }],
 })
 export class NbInputSuffix {
   readonly align = input<NbInputSuffixAlign>('center');

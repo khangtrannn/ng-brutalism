@@ -20,12 +20,21 @@ import { DocsExample } from '@ng-brutalism/docs-ui';
         Invalid state
       </h2>
       <p class="mb-4 font-medium">
-        <code class="font-mono">nb-field-error</code> stays hidden until the
-        control is both touched and invalid - so validation errors never appear
-        before the user has had a chance to interact with the field.
+        <code class="font-mono">nb-field</code> no longer detects a bound
+        <code class="font-mono">NgControl</code> automatically - pass
+        <code class="font-mono">[invalid]</code> and
+        <code class="font-mono">[required]</code> explicitly, and
+        <code class="font-mono">nb-field-error</code> stays hidden until
+        <code class="font-mono">invalid</code> is true. Gating that on "touched"
+        (as below) keeps errors from appearing before the user has had a chance
+        to interact with the field.
       </p>
       <docs-example [code]="invalidExampleCode">
-        <nb-field class="flex max-w-sm flex-col gap-2">
+        <nb-field
+          class="flex max-w-sm flex-col gap-2"
+          [invalid]="invalidControl.invalid && invalidControl.touched"
+          [required]="true"
+        >
           <label nbLabel>Username</label>
           <input nbInput [formControl]="invalidControl" />
           <p nbFieldError class="text-sm font-bold text-(--nb-danger)">
@@ -43,7 +52,11 @@ export class FieldInvalidState {
     validators: Validators.required,
   });
 
-  protected readonly invalidExampleCode = `<nb-field class="flex flex-col gap-2">
+  protected readonly invalidExampleCode = `<nb-field
+  class="flex flex-col gap-2"
+  [invalid]="invalidControl.invalid && invalidControl.touched"
+  [required]="true"
+>
   <label nbLabel>Username</label>
   <input nbInput [formControl]="invalidControl" />
   <p nbFieldError>Username is required.</p>

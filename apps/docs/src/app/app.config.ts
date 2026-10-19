@@ -5,10 +5,9 @@ import {
 } from '@angular/core';
 import {
   provideHttpClient,
-  withFetch,
   withInterceptors,
 } from '@angular/common/http';
-import { provideClientHydration } from '@angular/platform-browser';
+import { provideClientHydration, withNoIncrementalHydration } from '@angular/platform-browser';
 import { TitleStrategy, withInMemoryScrolling } from '@angular/router';
 import {
   provideFileRouter,
@@ -49,9 +48,8 @@ export const appConfig: ApplicationConfig = {
     { provide: ErrorHandler, useClass: DocsErrorHandler },
     { provide: TitleStrategy, useClass: DocsTitleStrategy },
     provideNgBrutalism(),
-    provideClientHydration(),
+    provideClientHydration(withNoIncrementalHydration()),
     provideHttpClient(
-      withFetch(),
       withInterceptors([requestContextInterceptor]),
     ),
   ],

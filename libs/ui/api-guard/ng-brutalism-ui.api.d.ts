@@ -1,9 +1,8 @@
 import { NbTone, NbUnderlineVariant, NbUnderlineGap, NbUnderlineWidth, NbControlSize, NbSizeXs, NbIconShape, NbRadius, NbShadow, NbSize, NbBorderStrength, NbLayoutAlign, NbFontWeight, NbTypographyFont, NbOrientation, NbLayoutSeparator, NbTextTracking, NbSpacing, NbPadding, NbLayoutJustify, NbDivider } from '@ng-brutalism/ui/tokens';
 export { NbBorderStrength, NbControlSize, NbDivider, NbFontWeight, NbIconShape, NbLayoutAlign, NbLayoutJustify, NbLayoutSeparator, NbOrientation, NbPadding, NbPaletteTone, NbRadius, NbSemanticTone, NbShadow, NbSize, NbSizeXs, NbSpacing, NbTextTracking, NbTone, NbTypographyFont, NbUnderlineGap, NbUnderlineVariant, NbUnderlineWidth, nbBorderWidthValue, nbPaddingValue, nbRadiusValue, nbShadowValue, nbSpacingValue, nbTypographyFontValue, nbUnderlineGapValue, nbUnderlineWidthValue, provideNgBrutalism } from '@ng-brutalism/ui/tokens';
 import * as _angular_core from '@angular/core';
-import { Signal } from '@angular/core';
+import { InjectionToken, Signal } from '@angular/core';
 import * as _ng_brutalism_ui from '@ng-brutalism/ui';
-import { ControlValueAccessor } from '@angular/forms';
 
 declare class NbToneCapability {
     readonly tone: _angular_core.InputSignal<NbTone | undefined>;
@@ -31,8 +30,11 @@ declare class NbResetMarginCapability {
 declare class NbCheckbox {
     readonly size: _angular_core.InputSignal<_ng_brutalism_ui.NbControlSize>;
     readonly radius: _angular_core.InputSignalWithTransform<string | null, _ng_brutalism_ui.NbRadius | null | undefined>;
+    readonly id: _angular_core.InputSignal<string | undefined>;
+    protected readonly field: _ng_brutalism_ui.NbFieldContext | null;
+    protected readonly resolvedId: _angular_core.Signal<string | undefined>;
     static ɵfac: _angular_core.ɵɵFactoryDeclaration<NbCheckbox, never>;
-    static ɵdir: _angular_core.ɵɵDirectiveDeclaration<NbCheckbox, "input[nbCheckbox]", ["nbCheckbox"], { "size": { "alias": "size"; "required": false; "isSignal": true; }; "radius": { "alias": "radius"; "required": false; "isSignal": true; }; }, {}, never, never, true, [{ directive: typeof NbToneCapability; inputs: { "tone": "tone"; }; outputs: {}; }]>;
+    static ɵdir: _angular_core.ɵɵDirectiveDeclaration<NbCheckbox, "input[nbCheckbox]", ["nbCheckbox"], { "size": { "alias": "size"; "required": false; "isSignal": true; }; "radius": { "alias": "radius"; "required": false; "isSignal": true; }; "id": { "alias": "id"; "required": false; "isSignal": true; }; }, {}, never, never, true, [{ directive: typeof NbToneCapability; inputs: { "tone": "tone"; }; outputs: {}; }]>;
 }
 
 type NbCheckboxSize = NbControlSize;
@@ -269,18 +271,24 @@ interface NbFieldContext {
     readonly invalid: Signal<boolean>;
     readonly required: Signal<boolean>;
 }
+declare const NB_FIELD: InjectionToken<NbFieldContext>;
 
 declare class NbField implements NbFieldContext {
     #private;
     readonly controlId: string;
-    private readonly ngControl;
     private readonly description;
     private readonly error;
+    readonly invalidInput: _angular_core.InputSignal<boolean>;
+    readonly requiredInput: _angular_core.InputSignal<boolean>;
     readonly invalid: _angular_core.Signal<boolean>;
     readonly required: _angular_core.Signal<boolean>;
     readonly describedBy: _angular_core.Signal<string | null>;
+    /** @internal Set by `NbFieldControlBridge` (forms-compat) — not for template use. */
+    ɵsetCompatInvalid(invalid: boolean): void;
+    /** @internal Set by `NbFieldControlBridge` (forms-compat) — not for template use. */
+    ɵsetCompatRequired(required: boolean): void;
     static ɵfac: _angular_core.ɵɵFactoryDeclaration<NbField, never>;
-    static ɵcmp: _angular_core.ɵɵComponentDeclaration<NbField, "nb-field", ["nbField"], {}, {}, ["ngControl", "description", "error"], ["*"], true, never>;
+    static ɵcmp: _angular_core.ɵɵComponentDeclaration<NbField, "nb-field", ["nbField"], { "invalidInput": { "alias": "invalid"; "required": false; "isSignal": true; }; "requiredInput": { "alias": "required"; "required": false; "isSignal": true; }; }, {}, ["description", "error"], ["*"], true, never>;
 }
 
 declare class NbFieldDescription {
@@ -340,7 +348,6 @@ declare class NbSeparator {
 declare class NbTextarea {
     #private;
     readonly size: _angular_core.InputSignal<_ng_brutalism_ui.NbControlSize>;
-    readonly tone: _angular_core.InputSignal<NbTone | undefined>;
     readonly border: _angular_core.InputSignalWithTransform<string | null, _ng_brutalism_ui.NbBorderStrength | null | undefined>;
     readonly radius: _angular_core.InputSignalWithTransform<string | null, _ng_brutalism_ui.NbRadius | null | undefined>;
     readonly shadow: _angular_core.InputSignalWithTransform<string | null, _ng_brutalism_ui.NbShadow | null | undefined>;
@@ -349,26 +356,18 @@ declare class NbTextarea {
     protected readonly field: _ng_brutalism_ui.NbFieldContext | null;
     protected readonly resolvedId: _angular_core.Signal<string | undefined>;
     static ɵfac: _angular_core.ɵɵFactoryDeclaration<NbTextarea, never>;
-    static ɵdir: _angular_core.ɵɵDirectiveDeclaration<NbTextarea, "textarea[nbTextarea]", ["nbTextarea"], { "size": { "alias": "size"; "required": false; "isSignal": true; }; "tone": { "alias": "tone"; "required": false; "isSignal": true; }; "border": { "alias": "border"; "required": false; "isSignal": true; }; "radius": { "alias": "radius"; "required": false; "isSignal": true; }; "shadow": { "alias": "shadow"; "required": false; "isSignal": true; }; "id": { "alias": "id"; "required": false; "isSignal": true; }; }, {}, never, never, true, never>;
+    static ɵdir: _angular_core.ɵɵDirectiveDeclaration<NbTextarea, "textarea[nbTextarea]", ["nbTextarea"], { "size": { "alias": "size"; "required": false; "isSignal": true; }; "border": { "alias": "border"; "required": false; "isSignal": true; }; "radius": { "alias": "radius"; "required": false; "isSignal": true; }; "shadow": { "alias": "shadow"; "required": false; "isSignal": true; }; "id": { "alias": "id"; "required": false; "isSignal": true; }; }, {}, never, never, true, [{ directive: typeof NbToneCapability; inputs: { "tone": "tone"; }; outputs: {}; }]>;
 }
 
 type NbTextareaSize = NbControlSize;
 
-interface NbInputGroupContext {
-    readonly hasPrefix: Signal<boolean>;
-    readonly hasSuffix: Signal<boolean>;
-}
-type NbInputAffixAlign = 'center' | 'stretch';
-
-declare class NbInputGroup implements NbInputGroupContext {
-    private readonly prefixes;
-    private readonly suffixes;
-    readonly hasPrefix: _angular_core.Signal<boolean>;
-    readonly hasSuffix: _angular_core.Signal<boolean>;
+declare class NbInputGroup {
     readonly radius: _angular_core.InputSignalWithTransform<string | null, _ng_brutalism_ui.NbRadius | null | undefined>;
     static ɵfac: _angular_core.ɵɵFactoryDeclaration<NbInputGroup, never>;
-    static ɵcmp: _angular_core.ɵɵComponentDeclaration<NbInputGroup, "nb-input-group", ["nbInputGroup"], { "radius": { "alias": "radius"; "required": false; "isSignal": true; }; }, {}, ["prefixes", "suffixes"], ["*"], true, never>;
+    static ɵcmp: _angular_core.ɵɵComponentDeclaration<NbInputGroup, "nb-input-group", ["nbInputGroup"], { "radius": { "alias": "radius"; "required": false; "isSignal": true; }; }, {}, never, ["*"], true, never>;
 }
+
+type NbInputAffixAlign = 'center' | 'stretch';
 
 type NbInputPrefixAlign = NbInputAffixAlign;
 declare class NbInputPrefix {
@@ -386,14 +385,17 @@ declare class NbInputSuffix {
 
 declare class NbNativeSelect {
     #private;
-    readonly tone: _angular_core.InputSignal<NbTone | undefined>;
+    readonly size: _angular_core.InputSignal<_ng_brutalism_ui.NbControlSize>;
     readonly border: _angular_core.InputSignalWithTransform<string | null, _ng_brutalism_ui.NbBorderStrength | null | undefined>;
+    readonly id: _angular_core.InputSignal<string | undefined>;
     protected readonly isInGroup: boolean;
+    protected readonly field: _ng_brutalism_ui.NbFieldContext | null;
+    protected readonly resolvedId: _angular_core.Signal<string | undefined>;
     static ɵfac: _angular_core.ɵɵFactoryDeclaration<NbNativeSelect, never>;
-    static ɵdir: _angular_core.ɵɵDirectiveDeclaration<NbNativeSelect, "select[nbSelect]", ["nbSelect"], { "tone": { "alias": "tone"; "required": false; "isSignal": true; }; "border": { "alias": "border"; "required": false; "isSignal": true; }; }, {}, never, never, true, never>;
+    static ɵdir: _angular_core.ɵɵDirectiveDeclaration<NbNativeSelect, "select[nbSelect]", ["nbSelect"], { "size": { "alias": "size"; "required": false; "isSignal": true; }; "border": { "alias": "border"; "required": false; "isSignal": true; }; "id": { "alias": "id"; "required": false; "isSignal": true; }; }, {}, never, never, true, [{ directive: typeof NbToneCapability; inputs: { "tone": "tone"; }; outputs: {}; }]>;
 }
 
-type NbSelectValue = string | number | object;
+type NbSelectValue = string | number | boolean | object;
 type NbSelectSize = NbControlSize;
 interface NbSelectController {
     readonly isDisabled: () => boolean;
@@ -425,47 +427,49 @@ declare class NbSelectOption {
     static ɵcmp: _angular_core.ɵɵComponentDeclaration<NbSelectOption, "nb-select-option", ["nbSelectOption"], { "value": { "alias": "value"; "required": false; "isSignal": true; }; "label": { "alias": "label"; "required": false; "isSignal": true; }; "disabled": { "alias": "disabled"; "required": false; "isSignal": true; }; }, {}, never, ["*"], true, never>;
 }
 
-declare class NbSelect implements NbSelectController, ControlValueAccessor {
+declare class NbSelect implements NbSelectController {
     #private;
     protected readonly field: _ng_brutalism_ui.NbFieldContext | null;
     protected readonly isInGroup: boolean;
     readonly border: _angular_core.InputSignalWithTransform<string | null, _ng_brutalism_ui.NbBorderStrength | null | undefined>;
     readonly radius: _angular_core.InputSignalWithTransform<string | null, _ng_brutalism_ui.NbRadius | null | undefined>;
     readonly shadow: _angular_core.InputSignalWithTransform<string | null, _ng_brutalism_ui.NbShadow | null | undefined>;
+    readonly id: _angular_core.InputSignal<string | undefined>;
     readonly size: _angular_core.InputSignal<_ng_brutalism_ui.NbControlSize>;
     readonly placeholder: _angular_core.InputSignal<string>;
     readonly value: _angular_core.ModelSignal<NbSelectValue | null>;
     readonly compareWith: _angular_core.InputSignal<(a: NbSelectValue | null, b: NbSelectValue | null) => boolean>;
     readonly disabled: _angular_core.InputSignalWithTransform<boolean, unknown>;
+    readonly invalid: _angular_core.InputSignal<boolean>;
+    readonly required: _angular_core.InputSignal<boolean>;
     readonly isDisabled: _angular_core.Signal<boolean>;
+    readonly touch: _angular_core.OutputEmitterRef<void>;
     readonly ariaLabel: _angular_core.InputSignal<string | null>;
     readonly ariaLabelledby: _angular_core.InputSignal<string | null>;
     readonly options: _angular_core.Signal<readonly NbSelectOption[]>;
     private readonly trigger;
     private readonly listboxEl;
     readonly open: _angular_core.ModelSignal<boolean>;
-    readonly id: number;
     readonly triggerId: string;
     readonly listboxId: string;
     protected readonly triggerElementId: _angular_core.Signal<string>;
     protected readonly selectedOption: _angular_core.Signal<NbSelectOption | undefined>;
     protected readonly selectedLabel: _angular_core.Signal<string>;
-    protected readonly invalid: _angular_core.Signal<boolean>;
-    protected readonly required: _angular_core.Signal<boolean>;
+    protected readonly mergedInvalid: _angular_core.Signal<boolean>;
+    protected readonly mergedRequired: _angular_core.Signal<boolean>;
     private typeaheadBuffer;
     private typeaheadTimeoutId;
     constructor();
-    private onChange;
-    private onTouched;
     private positionListbox;
-    writeValue(value: NbSelectValue | null): void;
-    registerOnChange(fn: (value: NbSelectValue | null) => void): void;
-    registerOnTouched(fn: () => void): void;
-    setDisabledState(isDisabled: boolean): void;
+    /** @internal Set by `NbSelectControlBridge` (forms-compat) — not for template use. */
+    ɵsetCompatDisabled(disabled: boolean): void;
+    /** @internal Set by `NbSelectControlBridge` (forms-compat) — not for template use. */
+    ɵsetCompatInvalid(invalid: boolean): void;
     isSelected(value: NbSelectValue | null): boolean;
+    onFocusOut(event: FocusEvent): void;
     selectOption(option: NbSelectOption): void;
     toggle(): void;
-    openAndFocusOption(): void;
+    openAndFocusOption(fallback?: 'first' | 'last'): void;
     closeAndFocusTrigger(): void;
     focusPreviousOption(current: NbSelectOption): void;
     focusNextOption(current: NbSelectOption): void;
@@ -477,7 +481,7 @@ declare class NbSelect implements NbSelectController, ControlValueAccessor {
     closeOnOutsideClick(event: MouseEvent): void;
     private focusRelativeOption;
     static ɵfac: _angular_core.ɵɵFactoryDeclaration<NbSelect, never>;
-    static ɵcmp: _angular_core.ɵɵComponentDeclaration<NbSelect, "nb-select", ["nbSelect"], { "border": { "alias": "border"; "required": false; "isSignal": true; }; "radius": { "alias": "radius"; "required": false; "isSignal": true; }; "shadow": { "alias": "shadow"; "required": false; "isSignal": true; }; "size": { "alias": "size"; "required": false; "isSignal": true; }; "placeholder": { "alias": "placeholder"; "required": false; "isSignal": true; }; "value": { "alias": "value"; "required": false; "isSignal": true; }; "compareWith": { "alias": "compareWith"; "required": false; "isSignal": true; }; "disabled": { "alias": "disabled"; "required": false; "isSignal": true; }; "ariaLabel": { "alias": "aria-label"; "required": false; "isSignal": true; }; "ariaLabelledby": { "alias": "aria-labelledby"; "required": false; "isSignal": true; }; "open": { "alias": "open"; "required": false; "isSignal": true; }; }, { "value": "valueChange"; "open": "openChange"; }, ["options"], ["*"], true, [{ directive: typeof NbToneCapability; inputs: { "tone": "tone"; }; outputs: {}; }]>;
+    static ɵcmp: _angular_core.ɵɵComponentDeclaration<NbSelect, "nb-select", ["nbSelect"], { "border": { "alias": "border"; "required": false; "isSignal": true; }; "radius": { "alias": "radius"; "required": false; "isSignal": true; }; "shadow": { "alias": "shadow"; "required": false; "isSignal": true; }; "id": { "alias": "id"; "required": false; "isSignal": true; }; "size": { "alias": "size"; "required": false; "isSignal": true; }; "placeholder": { "alias": "placeholder"; "required": false; "isSignal": true; }; "value": { "alias": "value"; "required": false; "isSignal": true; }; "compareWith": { "alias": "compareWith"; "required": false; "isSignal": true; }; "disabled": { "alias": "disabled"; "required": false; "isSignal": true; }; "invalid": { "alias": "invalid"; "required": false; "isSignal": true; }; "required": { "alias": "required"; "required": false; "isSignal": true; }; "ariaLabel": { "alias": "aria-label"; "required": false; "isSignal": true; }; "ariaLabelledby": { "alias": "aria-labelledby"; "required": false; "isSignal": true; }; "open": { "alias": "open"; "required": false; "isSignal": true; }; }, { "value": "valueChange"; "touch": "touch"; "open": "openChange"; }, ["options"], ["*"], true, [{ directive: typeof NbToneCapability; inputs: { "tone": "tone"; }; outputs: {}; }]>;
 }
 
 type NbBadgeTone = NbTone;
@@ -757,12 +761,13 @@ declare class NbSurface {
     readonly layout: _angular_core.InputSignal<NbSurfaceLayout>;
     readonly edge: _angular_core.InputSignal<NbSurfaceEdge>;
     readonly clip: _angular_core.InputSignalWithTransform<boolean, unknown>;
+    readonly interactive: _angular_core.InputSignalWithTransform<boolean, unknown>;
     readonly radius: _angular_core.InputSignalWithTransform<string | null, NbRadius | null | undefined>;
     readonly shadow: _angular_core.InputSignalWithTransform<string | null, NbShadow | null | undefined>;
     readonly border: _angular_core.InputSignalWithTransform<string | null, NbBorderStrength | null | undefined>;
     readonly padding: _angular_core.InputSignalWithTransform<string | null, NbPadding | null | undefined>;
     static ɵfac: _angular_core.ɵɵFactoryDeclaration<NbSurface, never>;
-    static ɵdir: _angular_core.ɵɵDirectiveDeclaration<NbSurface, "[nbSurface]", ["nbSurface"], { "size": { "alias": "size"; "required": false; "isSignal": true; }; "layout": { "alias": "layout"; "required": false; "isSignal": true; }; "edge": { "alias": "edge"; "required": false; "isSignal": true; }; "clip": { "alias": "clip"; "required": false; "isSignal": true; }; "radius": { "alias": "radius"; "required": false; "isSignal": true; }; "shadow": { "alias": "shadow"; "required": false; "isSignal": true; }; "border": { "alias": "border"; "required": false; "isSignal": true; }; "padding": { "alias": "padding"; "required": false; "isSignal": true; }; }, {}, never, never, true, [{ directive: typeof NbToneCapability; inputs: { "tone": "tone"; }; outputs: {}; }, { directive: typeof NbTypography; inputs: { "font": "typography"; }; outputs: {}; }]>;
+    static ɵdir: _angular_core.ɵɵDirectiveDeclaration<NbSurface, "[nbSurface]", ["nbSurface"], { "size": { "alias": "size"; "required": false; "isSignal": true; }; "layout": { "alias": "layout"; "required": false; "isSignal": true; }; "edge": { "alias": "edge"; "required": false; "isSignal": true; }; "clip": { "alias": "clip"; "required": false; "isSignal": true; }; "interactive": { "alias": "interactive"; "required": false; "isSignal": true; }; "radius": { "alias": "radius"; "required": false; "isSignal": true; }; "shadow": { "alias": "shadow"; "required": false; "isSignal": true; }; "border": { "alias": "border"; "required": false; "isSignal": true; }; "padding": { "alias": "padding"; "required": false; "isSignal": true; }; }, {}, never, never, true, [{ directive: typeof NbToneCapability; inputs: { "tone": "tone"; }; outputs: {}; }, { directive: typeof NbTypography; inputs: { "font": "typography"; }; outputs: {}; }]>;
 }
 
 type NbStackGap = NbSpacing;
@@ -881,5 +886,5 @@ declare class NbMediaItemDescription {
     static ɵdir: _angular_core.ɵɵDirectiveDeclaration<NbMediaItemDescription, "nb-media-item-description, [nbMediaItemDescription]", ["nbMediaItemDescription"], {}, {}, never, never, true, never>;
 }
 
-export { NbAccordion, NbAccordionContent, NbAccordionItem, NbAccordionTrigger, NbAvatar, NbAvatarGroup, NbBadge, NbButton, NbButtonTrailingIcon, NbCallout, NbCard, NbCardActions, NbCardContent, NbCardDescription, NbCardFooter, NbCardHeader, NbCardTitle, NbCheckbox, NbChip, NbChipGroup, NbCluster, NbDialog, NbDialogActions, NbDialogClose, NbDialogContent, NbDialogDescription, NbDialogTitle, NbDisplay, NbField, NbFieldDescription, NbFieldError, NbHalftone, NbIcon, NbIconButton, NbImageCard, NbImageCardCaption, NbInput, NbInputGroup, NbInputPrefix, NbInputSuffix, NbLabel, NbMarquee, NbMarqueeItem, NbMediaFrame, NbMediaItem, NbMediaItemDescription, NbMediaItemIcon, NbMediaItemTitle, NbNativeSelect, NbProgress, NbRating, NbSection, NbSelect, NbSelectOption, NbSeparator, NbSplit, NbStack, NbStat, NbStatusDot, NbSticker, NbStickerFace, NbSurface, NbText, NbTextarea, NbTitle, NbTypography, NbResetMarginCapability as ɵNbResetMarginCapability, NbToneCapability as ɵNbToneCapability, NbUnderlineCapability as ɵNbUnderlineCapability };
+export { NB_FIELD, NbAccordion, NbAccordionContent, NbAccordionItem, NbAccordionTrigger, NbAvatar, NbAvatarGroup, NbBadge, NbButton, NbButtonTrailingIcon, NbCallout, NbCard, NbCardActions, NbCardContent, NbCardDescription, NbCardFooter, NbCardHeader, NbCardTitle, NbCheckbox, NbChip, NbChipGroup, NbCluster, NbDialog, NbDialogActions, NbDialogClose, NbDialogContent, NbDialogDescription, NbDialogTitle, NbDisplay, NbField, NbFieldDescription, NbFieldError, NbHalftone, NbIcon, NbIconButton, NbImageCard, NbImageCardCaption, NbInput, NbInputGroup, NbInputPrefix, NbInputSuffix, NbLabel, NbMarquee, NbMarqueeItem, NbMediaFrame, NbMediaItem, NbMediaItemDescription, NbMediaItemIcon, NbMediaItemTitle, NbNativeSelect, NbProgress, NbRating, NbSection, NbSelect, NbSelectOption, NbSeparator, NbSplit, NbStack, NbStat, NbStatusDot, NbSticker, NbStickerFace, NbSurface, NbText, NbTextarea, NbTitle, NbTypography, NbResetMarginCapability as ɵNbResetMarginCapability, NbToneCapability as ɵNbToneCapability, NbUnderlineCapability as ɵNbUnderlineCapability };
 export type { NbAccordionType, NbAccordionValue, NbAvatarBorder, NbAvatarRadius, NbAvatarShadow, NbAvatarTone, NbBadgeBorder, NbBadgeRadius, NbBadgeShadow, NbBadgeTone, NbButtonIconPush, NbButtonIconShape, NbButtonIconSize, NbButtonIconTone, NbButtonPress, NbButtonRadius, NbButtonShadow, NbButtonSize, NbButtonTone, NbCalloutBorder, NbCalloutLayout, NbCalloutRadius, NbCalloutShadow, NbCalloutSize, NbCalloutTone, NbCardActionsAlign, NbCardBorder, NbCardRadius, NbCardShadow, NbCardTone, NbCheckboxSize, NbChipGroupAlign, NbChipGroupDirection, NbChipGroupGap, NbChipRadius, NbChipShadow, NbChipSize, NbChipTone, NbClusterAlign, NbClusterGap, NbClusterJustify, NbClusterPadding, NbClusterSeparator, NbClusterWrap, NbDialogBorder, NbDialogRadius, NbDialogShadow, NbDialogTone, NbDisplayLeading, NbDisplaySize, NbDisplayTracking, NbDisplayUnderline, NbDisplayWeight, NbFieldContext, NbHalftoneShape, NbIconButtonShape, NbIconButtonSize, NbIconMode, NbIconSize, NbIconTone, NbImageCardBorder, NbImageCardRadius, NbImageCardShadow, NbImageCardTone, NbInputAffixAlign, NbInputBorder, NbInputPrefixAlign, NbInputRadius, NbInputShadow, NbInputSize, NbInputSuffixAlign, NbInputTone, NbMediaFrameBorder, NbMediaFrameFit, NbMediaFrameRadius, NbMediaFrameRatio, NbMediaFrameShadow, NbMediaFrameTone, NbMediaItemAlign, NbMediaItemOrientation, NbMediaItemSize, NbMediaItemTone, NbMediaItemVariant, NbProgressTone, NbRatingTone, NbSectionAlign, NbSectionDivider, NbSectionDividerStyle, NbSectionLayout, NbSectionPadding, NbSelectSize, NbSelectValue, NbSeparatorOrientation, NbSeparatorVariant, NbSplitAlign, NbSplitCollapse, NbSplitGap, NbSplitPadding, NbSplitRatio, NbSplitSeparator, NbStackAlign, NbStackGap, NbStackJustify, NbStackSeparator, NbStatusDotRadius, NbStatusDotSize, NbStatusDotState, NbStickerShape, NbStickerTone, NbSurfaceBorder, NbSurfaceEdge, NbSurfaceLayout, NbSurfacePadding, NbSurfaceRadius, NbSurfaceShadow, NbSurfaceSize, NbSurfaceTone, NbTextLeading, NbTextMeasure, NbTextSize, NbTextTone, NbTextTransform, NbTextUnderline, NbTextWeight, NbTextareaSize };

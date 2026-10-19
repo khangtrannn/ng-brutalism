@@ -271,6 +271,57 @@ describe('NbSelect', () => {
   });
 });
 
+@Component({
+  imports: [NbSelect, NbSelectOption],
+  template: `
+    <nb-select [value]="selectedId" [compareWith]="compareByOptionId">
+      <nb-select-option [value]="us" label="United States"
+        >United States</nb-select-option
+      >
+      <nb-select-option [value]="ca" label="Canada">Canada</nb-select-option>
+    </nb-select>
+  `,
+})
+class SelectAsymmetricCompareTest {
+  readonly us = { id: 'us' };
+  readonly ca = { id: 'ca' };
+  // The current value is a bare id, options carry {id} objects: the comparator is
+  // asymmetric, so the trigger label and the option state must call it in the same
+  // argument order (option value, current value) or they disagree.
+  readonly selectedId = 'ca';
+  readonly compareByOptionId = (
+    optionValue: NbSelectValue | null,
+    currentValue: NbSelectValue | null
+  ) => (optionValue as { id: string } | null)?.id === currentValue;
+}
+
+describe('NbSelect with an asymmetric compareWith', () => {
+  it('agrees between the trigger label and the selected option', async () => {
+    // Arrange
+    const fixture = await createFixture(SelectAsymmetricCompareTest);
+    const trigger = fixture.nativeElement.querySelector(
+      'button[aria-haspopup="listbox"]'
+    ) as HTMLButtonElement;
+
+    // Assert: trigger reflects the selection
+    expect(trigger.textContent?.replace(/\s+/g, ' ').trim()).toBe('Canada');
+
+    // Act
+    trigger.click();
+    fixture.detectChanges();
+
+    const options = Array.from(
+      fixture.nativeElement.querySelectorAll('[role="option"]')
+    ) as HTMLButtonElement[];
+    const canada = options.find((option) =>
+      option.textContent?.includes('Canada')
+    );
+
+    // Assert: the same option is marked selected
+    expect(canada?.getAttribute('aria-selected')).toBe('true');
+  });
+});
+
 describe('NbSelect with compareWith', () => {
   it('selects an object-valued option by structural equality', async () => {
     // Arrange

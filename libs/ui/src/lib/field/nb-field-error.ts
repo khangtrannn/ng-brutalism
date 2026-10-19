@@ -8,7 +8,7 @@ import { NB_FIELD } from './field.types';
   exportAs: 'nbFieldError',
   host: {
     '[attr.id]': 'id',
-    '[hidden]': '!field?.invalid()',
+    '[hidden]': 'field ? !field.invalid() : false',
   },
 })
 export class NbFieldError {

@@ -16,7 +16,6 @@ import { NB_SELECT, type NbSelectValue } from './select.types';
   exportAs: 'nbSelectOption',
   template: `
     <button
-      #button
       type="button"
       role="option"
       [id]="id"

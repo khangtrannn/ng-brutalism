@@ -23,6 +23,10 @@ const entryPoints = [
     dist: 'ng-brutalism-ui-tokens.d.ts',
     snapshot: 'ng-brutalism-ui-tokens.api.d.ts',
   },
+  {
+    dist: 'ng-brutalism-ui-forms-compat.d.ts',
+    snapshot: 'ng-brutalism-ui-forms-compat.api.d.ts',
+  },
 ];
 
 const shouldUpdate = process.argv.includes('--update');

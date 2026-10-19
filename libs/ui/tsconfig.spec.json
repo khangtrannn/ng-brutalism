@@ -6,5 +6,9 @@
     "module": "preserve",
     "moduleResolution": "bundler"
   },
-  "include": ["src/**/*.spec.ts", "src/test-setup.ts"]
+  "include": [
+    "src/**/*.spec.ts",
+    "src/test-setup.ts",
+    "forms-compat/src/**/*.ts"
+  ]
 }

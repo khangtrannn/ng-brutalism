@@ -63,8 +63,14 @@ jobs:
       - name: Public API guard
         run: pnpm api-guard
 
+      - name: minVersion check (nothing above the ng22.0 floor)
+        run: pnpm min-version-check
+
+      - name: Signal-forms contract typecheck (FormValueControl conformance)
+        run: pnpm forms-contract-check
+
       - name: Docs token reference check
         run: pnpm docs:tokens:check
 
-      - name: Build, pack, ng add, and ng build @ng-brutalism/ui
-        run: pnpm smoke:ui
+      - name: Build, pack, ng add, and ng build @ng-brutalism/ui (Angular 22 consumer)
+        run: pnpm smoke:ui:ng22

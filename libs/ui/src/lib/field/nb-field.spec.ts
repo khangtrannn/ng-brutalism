@@ -1,6 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 import { describe, expect, it } from 'vitest';
 import { axe } from 'vitest-axe';
 
@@ -11,25 +10,19 @@ import { NbFieldDescription } from './nb-field-description';
 import { NbFieldError } from './nb-field-error';
 
 @Component({
-  imports: [
-    NbField,
-    NbFieldDescription,
-    NbFieldError,
-    NbInput,
-    NbLabel,
-    ReactiveFormsModule,
-  ],
+  imports: [NbField, NbFieldDescription, NbFieldError, NbInput, NbLabel],
   template: `
-    <nb-field>
+    <nb-field [invalid]="invalid()" [required]="required()">
       <label nbLabel>Email</label>
-      <input nbInput type="email" [formControl]="control" />
+      <input nbInput type="email" />
       <p nbFieldDescription>We'll never share your email.</p>
       <p nbFieldError>Email is required.</p>
     </nb-field>
   `,
 })
 class FieldTest {
-  readonly control = new FormControl('', { validators: Validators.required });
+  readonly invalid = signal(false);
+  readonly required = signal(false);
 }
 
 describe('NbField', () => {
@@ -55,7 +48,7 @@ describe('NbField', () => {
     expect(input.getAttribute('aria-invalid')).toBeNull();
   });
 
-  it('adds the error id to aria-describedby and sets aria-invalid once touched+invalid', async () => {
+  it('adds the error id to aria-describedby and sets aria-invalid when marked invalid', async () => {
     // Arrange
     const fixture = await createFixture();
     const input = findInput(fixture);
@@ -65,9 +58,7 @@ describe('NbField', () => {
     expect(error.hidden).toBe(true);
 
     // Act
-    fixture.componentInstance.control.markAsTouched();
-    fixture.detectChanges();
-    await Promise.resolve();
+    fixture.componentInstance.invalid.set(true);
     fixture.detectChanges();
 
     // Assert
@@ -78,16 +69,20 @@ describe('NbField', () => {
     expect(error.hidden).toBe(false);
   });
 
-  it('reflects aria-required from the control validator', async () => {
+  it('reflects aria-required from the required input', async () => {
     // Arrange
     const fixture = await createFixture();
     const input = findInput(fixture);
+
+    // Act
+    fixture.componentInstance.required.set(true);
+    fixture.detectChanges();
 
     // Assert
     expect(input.getAttribute('aria-required')).toBe('true');
   });
 
-  it('has no axe violations, valid or touched+invalid', async () => {
+  it('has no axe violations, valid or invalid', async () => {
     // Arrange
     const fixture = await createFixture();
 
@@ -95,9 +90,7 @@ describe('NbField', () => {
     expect(await axe(fixture.nativeElement)).toHaveNoViolations();
 
     // Act
-    fixture.componentInstance.control.markAsTouched();
-    fixture.detectChanges();
-    await Promise.resolve();
+    fixture.componentInstance.invalid.set(true);
     fixture.detectChanges();
 
     // Assert

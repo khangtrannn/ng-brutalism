@@ -23,11 +23,10 @@ For history and details, read the domain's own `progress.md`.
 ---
 
 ## Components
-**Status:** Improvement-plan Phases 1–4 landed: type consolidation + public-API export drift closed, export-drift checker gating api-guard, CSS token discipline (border-width var + status-dot reduced-motion + chip text-transform slot), minimum hook-contract check, and JSDoc across the public component API.
-**Last action:** Phase 4 JSDoc on every configurable exported component (pure slot markers left uncommented per feedback); api-guard stays green since its normalizer strips comments. Gates green: lint/test/build/api-guard/docs:tokens:check.
-**Next:** Release 0.3.0 when ready (no publish this pass). Phase 5 roadmap (Playwright visual-regression → dark theme → Phase 6 primitives) not started.
-**Goal:** ✅ Improvement-plan Phases 1–4 complete. Active: Phase 5 roadmap (deferred).
-→ Plan: `docs/architecture/library-improvement-plan-2026-07-09.md` · Arch: `docs/architecture/token-customization.md` · Design props: `docs/components/design-props.md` · Frozen audit: `docs/_archive/library-audit-2026-07-08.md`
+**Status:** Improvement-plan Phases 1–4 landed. Forms architecture consolidated in ADR 0004 (2026-07-15): model-based forms-runtime-free core re-affirmed, plus a new `forms-compat` secondary entry point (CVA bridge for `formControlName`/`ngModel` + field bridge) landed 2026-07-15, closing v0.3.0 scope; Angular 22 only (`^22.0.0`). ADRs 0002/0003 archived.
+**Last action:** 2026-07-15 forms audit follow-up: `forms-compat` now uses a shared `NB_ERROR_STATE_MATCHER` with Material-style default timing (`invalid && (touched || submitted)`), covers parent `NgForm`/`FormGroupDirective` submission, tests real `formControlName`, `ngModel` submit, custom matcher override, and `requiredTrue`, and renamed compat hooks to `ɵsetCompat*` internals. `pnpm nx test ui --run` and `pnpm api-guard:update` are green.
+**Next:** Run `smoke:ui:ng22` in an environment with Node ≥22.22.3, then CHANGELOG date refresh + publish per `docs/release/RELEASE.md`. Phase 5 roadmap (Playwright visual-regression → dark theme → Phase 6 primitives) not started.
+→ Plan: `docs/release/v0.3-angular-22-plan.md` · ADR: `docs/adr/0004-forms-support.md` · Improvement plan: `docs/architecture/library-improvement-plan-2026-07-09.md` · Arch: `docs/architecture/token-customization.md`
 
 ---
 
@@ -56,6 +55,7 @@ For history and details, read the domain's own `progress.md`.
 ---
 
 ## Release
-**Status:** 0.3.0 finalized in-repo: CHANGELOG `[0.3.0]` complete (callout `lg`→`md` + expanded type surface), `libs/ui/package.json` at 0.3.0, api-guard baseline current. Improvement-plan Phases 1–4 landed. Not tagged/published.
-**Next:** Follow `docs/release/RELEASE.md` steps 3–7 (build → tag → GitHub release → npm publish) to ship 0.3.0 when ready.
-→ Runbook: `docs/release/RELEASE.md` · Historical scope: `docs/_archive/v0.2.0-plan.md`
+**Status:** 0.3.0 scope reopened by ADR 0004 (2026-07-15) is code-complete and gate-verified: the `forms-compat` entry point landed and every gate runnable in this sandbox is green. Peers: `@angular/core`/`@angular/common` `^22.0.0`, `@angular/forms` optional. Only blocker is `smoke:ui:ng22`, which needs Node ≥22.22.3 (this sandbox is 22.22.2).
+**Last action:** 2026-07-15 forms audit follow-up landed: matcher token + submitted-state timing, expanded bridge specs, docs/ADR wording, and API snapshots. `pnpm nx test ui --run` and `pnpm api-guard:update` are green.
+**Next:** Run `smoke:ui:ng22` on a Node ≥22.22.3 machine, refresh the CHANGELOG `[0.3.0]` date, then follow `docs/release/RELEASE.md` steps 2–8 (build → tag → GitHub release → npm publish).
+→ Runbook: `docs/release/RELEASE.md` · v0.3 plan: `docs/release/v0.3-angular-22-plan.md` · Historical scope: `docs/_archive/v0.2.0-plan.md`

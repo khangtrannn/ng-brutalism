@@ -13,7 +13,11 @@
       --nb-checkbox-fg,
       var(--_nb-tone-fg, var(--nb-primary-foreground))
     );
-    --tw-ring-offset-color: #ffffff;
+    --tw-ring-offset-color: var(--nb-surface, #ffffff);
+  }
+
+  :where(input[nbCheckbox][aria-invalid='true']) {
+    outline-color: var(--nb-checkbox-invalid-border-color, var(--nb-danger));
   }
 
   :where(input[nbCheckbox][data-size='sm']) {

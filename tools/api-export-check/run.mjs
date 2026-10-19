@@ -44,6 +44,11 @@ const entryPoints = [
     root: 'libs/ui/tokens/src/index.ts',
     srcDir: 'libs/ui/tokens/src/lib',
   },
+  {
+    name: '@ng-brutalism/ui/forms-compat',
+    root: 'libs/ui/forms-compat/src/index.ts',
+    srcDir: 'libs/ui/forms-compat/src/lib',
+  },
 ];
 
 let failed = false;

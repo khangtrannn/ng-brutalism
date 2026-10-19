@@ -61,6 +61,7 @@ Agent session protocol:
 | `docs/_archive/library-audit-2026-07-08.md` | Frozen library audit (2026-07-08) — baseline for the improvement plan | No |
 | `docs/components/contact-dialog/PLAN.md` | Contact dialog redesign — status + design decisions | Yes |
 | `docs/adr/0001-dialog-native-element.md` | ADR: why native `<dialog>` over overlay approach | No |
+| `docs/adr/0004-forms-support.md` | ADR: **single source of truth for forms support** — model-based core + `forms-compat` classic bridge, Angular 22 floor (consolidates archived ADRs 0002/0003) | No |
 | `CONTEXT.md` (root) | Project glossary — `Nb` prefix, v0.x contract, CSS transform patterns | Yes |
 
 ---
@@ -82,6 +83,7 @@ Agent session protocol:
 |---|---|---|
 | `CHANGELOG.md` (root) | Running changelog — update on every release | Yes |
 | `docs/release/RELEASE.md` | Step-by-step release runbook (build → tag → GitHub release → npm publish) | Yes |
+| `docs/release/v0.3-angular-22-plan.md` | **Active v0.3 plan** — Angular 22 migration decisions, forms audit, execution order, release gates | Yes |
 
 ---
 

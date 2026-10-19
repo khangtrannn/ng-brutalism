@@ -17,6 +17,7 @@ import { NbDocsNavbar } from '@ng-brutalism/docs-ui';
 
 @Component({
   selector: 'docs-home-page-decorator',
+  changeDetection: ChangeDetectionStrategy.Eager,
   template: `
     <span
       aria-hidden="true"

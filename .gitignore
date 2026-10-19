@@ -60,3 +60,7 @@ vitest.config.*.timestamp*
 .github/instructions/nx.instructions.md
 
 .nx/self-healing
+.nx/migrate-runs
+
+# Docs build output
+/libs/apps/docs/

@@ -12,10 +12,43 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 `v0.3.0` centers on token customization. A new `@ng-brutalism/ui/tokens`
 secondary entry point exposes the shared token vocabulary — type contracts and
 value resolvers — as importable TypeScript, and per-component CSS exports let
-consumers pull in only the styles they use.
+consumers pull in only the styles they use. A second new secondary entry
+point, `@ng-brutalism/ui/forms-compat`, restores classic `formControlName`/
+`ngModel` support for `nb-select` behind an optional `@angular/forms` peer.
 
 ### Added
 
+- **Angular 22 support** — the library now targets Angular 22 (`^22.0.0`).
+  ⚠️ Angular 21 is no longer supported (see ADR 0004): the signal-forms
+  integration and the `@angular/forms/signals/compat` mixing story are both
+  Angular 22 APIs, and pre-1.0 we keep a single supported major.
+- **Forms interop verified by tests** — `NbSelect` is driven end-to-end by
+  signal forms' `[formField]` (value, disabled, touched, `aria-invalid`/
+  `aria-required`), and joins a classic `FormGroup` via Angular's
+  `SignalFormControl` with value/touched/validity propagation. Signal forms
+  is stable (`@publicApi`) as of Angular 22; both recipes are pinned by specs
+  so an upstream 22.x change fails our CI first.
+- **`@ng-brutalism/ui/forms-compat` entry point** (ADR 0004) — a
+  `ControlValueAccessor` bridge (`NbSelectControlBridge`) lets `nb-select`
+  bind to `formControl`/`formControlName`/`ngModel` directly, mirroring
+  Angular Material's pattern (`ngControl.valueAccessor = this`, no
+  `NG_VALUE_ACCESSOR` provider). Status mirrors as `invalid && touched`, the
+  same timing signal forms uses. A companion `NbFieldControlBridge` content-
+  queries whichever classic control is nested in `nb-field` and drives
+  `nb-field-error` visibility automatically — no explicit `[invalid]`
+  binding needed, and it works for native controls (`nbInput`, `nbTextarea`,
+  ...) too, not just `nb-select`. `@angular/forms` is an **optional** peer;
+  only consumers that import `forms-compat` pay for it — the main entry point
+  stays forms-runtime-free.
+- **`NbSelect` model-based forms contract** — `touch` output (emits on
+  trigger blur / listbox close), `invalid` and `required` inputs reflected as
+  `aria-invalid`/`aria-required`. Structurally conforms to signal-forms'
+  `FormValueControl` (type-only; no `@angular/forms` runtime import).
+- **`NbField` explicit `invalid`/`required` inputs** replace the previous
+  `NgControl` auto-detection.
+- **`NbCheckbox` and `NbNativeSelect` field wiring** — both now adopt
+  `nb-field`'s `controlId`/`aria-describedby`/`aria-invalid`/`aria-required`
+  when nested in `nb-field`, fixing a label-association a11y gap.
 - **`@ng-brutalism/ui/tokens` entry point** — the shared token vocabulary as
   importable TypeScript: tone, spacing, padding, radius, border, shadow,
   typography, layout, divider, and underline contracts, their matching `nb*Value`
@@ -53,6 +86,18 @@ consumers pull in only the styles they use.
 - **`NbSelect` value type widened** from `string | number` to
   `string | number | object` so `compareWith` can drive object selection. Widening
   only; existing primitive values are unaffected.
+
+### Removed
+
+- **`@angular/forms` required peer dependency** — the library's form controls
+  are now model-based and forms-runtime-free by default (see ADR 0004).
+  `NbSelect`'s ad hoc `ControlValueAccessor` implementation and `NbField`'s
+  `NgControl` content-query auto-detection are both deleted; neither was
+  part of the published v0.2.0 API. `formControlName`/`[(ngModel)]` are no
+  longer supported directly on `nb-select` without an import — use
+  `[(value)]`, an explicit `[invalid]`/`[required]` binding, a signal-forms
+  field binding, or import `@ng-brutalism/ui/forms-compat` for a real CVA
+  bridge (`@angular/forms` is now an optional peer, not a required one).
 
 ## [0.2.0] — 2026-06-02
 

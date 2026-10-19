@@ -27,8 +27,24 @@
     background-size: 1.5rem 1.5rem;
   }
 
+  :where(select[nbSelect][data-size='sm']) {
+    height: 3rem;
+    padding: 0.75rem 1rem;
+    padding-inline-end: 2.5rem;
+  }
+
+  :where(select[nbSelect][data-size='lg']) {
+    height: 4rem;
+    padding: 1rem 1.5rem;
+    padding-inline-end: 2.5rem;
+  }
+
   :where(select[nbSelect]:has(option:disabled:checked)) {
-    color: #9ca3af;
+    color: var(--nb-muted-foreground, #9ca3af);
+  }
+
+  :where(select[nbSelect][aria-invalid='true']) {
+    border-color: var(--nb-select-invalid-border-color, var(--nb-danger));
   }
 
   :where(select[nbSelect]:disabled) {

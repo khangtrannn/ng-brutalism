@@ -11,14 +11,23 @@ import { NbCallout } from '@ng-brutalism/ui';
       </h2>
       <div nbCallout tone="cream" size="sm">
         <p class="normal-case">
-          Invalid styling and
-          <code class="font-mono">nb-field-error</code> visibility both gate on
-          <strong>touched OR dirty</strong> - read via
-          <code class="font-mono">AbstractControl.events</code>, not just
-          <code class="font-mono">statusChanges</code>, so a touched-only
-          transition (e.g. blurring an empty required field) is caught
-          immediately. Errors never appear before the user has interacted with
-          the control.
+          <code class="font-mono">nb-field</code>'s
+          <code class="font-mono">invalid</code>/<code class="font-mono"
+            >required</code
+          >
+          are explicit core inputs. When using
+          <code class="font-mono">&#64;ng-brutalism/ui/forms-compat</code>, the
+          field and custom select bridge use a Material-style default error
+          matcher:
+          <code class="font-mono">invalid && (touched || submitted)</code>. If
+          you stay in the core package, you decide when invalid styling and
+          <code class="font-mono">nb-field-error</code> visibility turn on. The
+          common pattern, shown throughout these examples, is
+          <code class="font-mono"
+            >[invalid]="ctrl.invalid && ctrl.touched"</code
+          >
+          so errors never appear before the user has interacted with the
+          control.
         </p>
       </div>
     </section>

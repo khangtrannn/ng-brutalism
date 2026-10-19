@@ -17,6 +17,10 @@
     outline-offset: 2px;
   }
 
+  :where(nb-input-group:has([aria-invalid='true'])) {
+    border-color: var(--nb-input-group-invalid-border-color, var(--nb-danger));
+  }
+
   :where([nbInputPrefix]),
   :where([nbInputSuffix]) {
     display: flex;
@@ -30,7 +34,7 @@
 
   :where([nbInputPrefix]) {
     border-right-width: var(--nb-border-width);
-    background: var(--nb-input-group-prefix-bg, var(--nb-input-group-addon-bg, #ffd24a));
+    background: var(--nb-input-group-prefix-bg, var(--nb-input-group-addon-bg, var(--nb-yellow)));
   }
 
   :where([nbInputPrefix][data-align='stretch']) {
@@ -41,7 +45,7 @@
 
   :where([nbInputSuffix]) {
     border-left-width: var(--nb-border-width);
-    background: var(--nb-input-group-suffix-bg, var(--nb-input-group-addon-bg, #ffd24a));
+    background: var(--nb-input-group-suffix-bg, var(--nb-input-group-addon-bg, var(--nb-yellow)));
   }
 
   :where([nbInputSuffix][data-align='stretch']) {

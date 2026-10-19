@@ -32,7 +32,11 @@
   }
 
   :where(textarea[nbTextarea])::placeholder {
-    color: #9ca3af;
+    color: var(--nb-muted-foreground, #9ca3af);
+  }
+
+  :where(textarea[nbTextarea][aria-invalid='true']) {
+    border-color: var(--nb-textarea-invalid-border-color, var(--nb-danger));
   }
 
   :where(textarea[nbTextarea]:disabled) {

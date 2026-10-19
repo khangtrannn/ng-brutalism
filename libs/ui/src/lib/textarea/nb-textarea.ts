@@ -1,11 +1,11 @@
 import { Directive, computed, inject, input } from '@angular/core';
 
+import { NbToneCapability } from '../core/capabilities';
 import {
   nbBorderWidthStyleTransform,
   nbRadiusStyleTransform,
   nbShadowStyleTransform,
 } from '../core/input-transforms';
-import type { NbTone } from '@ng-brutalism/ui/tokens';
 import { NB_FIELD } from '../field/field.types';
 import { NB_INPUT_GROUP } from '../input-group/input-group.types';
 import type { NbTextareaSize } from './textarea.types';
@@ -13,10 +13,10 @@ import type { NbTextareaSize } from './textarea.types';
 @Directive({
   selector: 'textarea[nbTextarea]',
   exportAs: 'nbTextarea',
+  hostDirectives: [{ directive: NbToneCapability, inputs: ['tone'] }],
   host: {
     '[attr.data-size]': 'size()',
     '[attr.data-in-group]': 'isInGroup ? "" : null',
-    '[attr.data-nb-tone]': 'tone() ?? null',
     '[attr.id]': 'resolvedId() ?? null',
     '[attr.aria-describedby]': 'field?.describedBy() ?? null',
     '[attr.aria-invalid]': 'field?.invalid() ? "true" : null',
@@ -30,7 +30,6 @@ export class NbTextarea {
   #group = inject(NB_INPUT_GROUP, { optional: true });
 
   readonly size = input<NbTextareaSize>('md');
-  readonly tone = input<NbTone | undefined>(undefined);
   readonly border = input(null, {
     transform: nbBorderWidthStyleTransform,
   });
@@ -47,6 +46,6 @@ export class NbTextarea {
   protected readonly field = inject(NB_FIELD, { optional: true });
 
   protected readonly resolvedId = computed(
-    () => this.id() ?? this.field?.controlId
+    () => this.field?.controlId ?? this.id()
   );
 }

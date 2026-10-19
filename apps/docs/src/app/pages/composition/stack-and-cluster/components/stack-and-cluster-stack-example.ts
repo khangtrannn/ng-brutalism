@@ -73,7 +73,7 @@ import { DocsExample } from '@ng-brutalism/docs-ui';
             </div>
 
             <div nbCluster gap="md" class="pt-2">
-              <button nbButton tone="inverse" size="lg">Apply</button>
+              <button nbButton tone="primary" size="lg">Apply</button>
               <button nbButton tone="surface" size="lg">Save</button>
             </div>
           </div>
@@ -96,7 +96,7 @@ export class CompositionStackClusterStackExample {
     </div>
 
     <div nbCluster gap="md">
-      <button nbButton tone="inverse" size="lg">Apply</button>
+      <button nbButton tone="primary" size="lg">Apply</button>
       <button nbButton tone="surface" size="lg">Save</button>
     </div>
   </div>

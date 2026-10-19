@@ -36,7 +36,11 @@
   }
 
   :where(input[nbInput])::placeholder {
-    color: #9ca3af;
+    color: var(--nb-muted-foreground, #9ca3af);
+  }
+
+  :where(input[nbInput][aria-invalid='true']) {
+    border-color: var(--nb-input-invalid-border-color, var(--nb-danger));
   }
 
   :where(input[nbInput])::file-selector-button {

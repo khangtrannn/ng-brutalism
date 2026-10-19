@@ -14,8 +14,21 @@ import { tmpdir } from 'node:os';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
+// The Angular major to scaffold the consumer app with (matches the library's
+// supported peer range, e.g. --ng=22). Always fetched via npx rather than the
+// workspace's own pinned CLI, so the consumer app stays independent of whatever
+// Angular major this workspace itself happens to be on.
+const ngMajorArg = process.argv.find((arg) => arg.startsWith('--ng='));
+const ngMajor = ngMajorArg?.slice('--ng='.length);
+
+if (!ngMajor) {
+  console.error(
+    'Usage: node tools/package-smoke/run.mjs --ng=<major> (e.g. --ng=21 or --ng=22)'
+  );
+  process.exit(1);
+}
+
 const repoRoot = fileURLToPath(new URL('../../', import.meta.url));
-const ngBin = join(repoRoot, 'node_modules/.bin/ng');
 const env = { ...process.env, NG_CLI_ANALYTICS: 'false' };
 
 let packOutDir;
@@ -39,8 +52,9 @@ try {
 
   appDir = mkdtempSync(join(tmpdir(), 'ngb-smoke-'));
   run(
-    ngBin,
+    'npx',
     [
+      '--yes', `@angular/cli@${ngMajor}`,
       'new',
       'smoke-app',
       '--directory', '.',
@@ -67,7 +81,7 @@ try {
   run('npx', ['--no-install', 'ng', 'build'], appDir, env);
 
   console.log(
-    '\nPackage smoke test passed: build, npm pack, ng add, and ng build all succeeded.'
+    `\nPackage smoke test passed for Angular ${ngMajor}: build, npm pack, ng add, and ng build all succeeded.`
   );
 } finally {
   if (appDir) rmSync(appDir, { recursive: true, force: true });

@@ -38,12 +38,15 @@
     "schematics"
   ],
   "peerDependencies": {
-    "@angular/common": "^21.0.0",
-    "@angular/core": "^21.0.0",
-    "@angular/forms": "^21.0.0",
+    "@angular/common": "^22.0.0",
+    "@angular/core": "^22.0.0",
+    "@angular/forms": "^22.0.0",
     "tailwindcss": "^4.0.0"
   },
   "peerDependenciesMeta": {
+    "@angular/forms": {
+      "optional": true
+    },
     "tailwindcss": {
       "optional": true
     }

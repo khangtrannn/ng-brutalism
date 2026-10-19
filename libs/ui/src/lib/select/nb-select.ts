@@ -4,7 +4,9 @@ import {
   Component,
   DOCUMENT,
   ElementRef,
+  Injector,
   PLATFORM_ID,
+  afterNextRender,
   booleanAttribute,
   computed,
   contentChildren,
@@ -12,13 +14,12 @@ import {
   inject,
   input,
   model,
+  output,
   signal,
   viewChild,
 } from '@angular/core';
-import { NgControl, type ControlValueAccessor } from '@angular/forms';
 
 import { NbToneCapability } from '../core/capabilities';
-import { trackControlStatus } from '../core/control-status';
 import {
   nbBorderWidthStyleTransform,
   nbRadiusStyleTransform,
@@ -53,8 +54,8 @@ const TYPEAHEAD_RESET_MS = 500;
       [attr.aria-label]="ariaLabel()"
       [attr.aria-labelledby]="ariaLabelledby()"
       [attr.aria-describedby]="field?.describedBy() ?? null"
-      [attr.aria-invalid]="invalid() ? 'true' : null"
-      [attr.aria-required]="required() ? 'true' : null"
+      [attr.aria-invalid]="mergedInvalid() ? 'true' : null"
+      [attr.aria-required]="mergedRequired() ? 'true' : null"
       (click)="toggle()"
       (keydown)="openListboxOnKey($event)"
     >
@@ -89,26 +90,30 @@ const TYPEAHEAD_RESET_MS = 500;
     'data-nb-select': '',
     '[attr.data-state]': 'open() ? "open" : "closed"',
     '[attr.data-disabled]': 'isDisabled() ? "" : null',
+    '[attr.data-invalid]': 'mergedInvalid() ? "" : null',
     '[attr.data-in-group]': 'isInGroup ? "" : null',
     '[attr.data-size]': 'size()',
     '[style.--nb-select-border-width]': 'border()',
     '[style.--nb-select-radius]': 'radius()',
     '[style.--nb-select-shadow]': 'shadow()',
+    '(focusout)': 'onFocusOut($event)',
   },
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class NbSelect implements NbSelectController, ControlValueAccessor {
+export class NbSelect implements NbSelectController {
   #element = inject<ElementRef<HTMLElement>>(ElementRef);
   #group = inject(NB_INPUT_GROUP, { optional: true });
   #idGenerator = inject(NbIdGenerator);
   #document = inject(DOCUMENT);
+  #injector = inject(Injector);
   #isBrowser = isPlatformBrowser(inject(PLATFORM_ID));
-  #ngControl = inject(NgControl, {
-    optional: true,
-    self: true,
-  });
-  #cvaDisabled = signal(false);
-  #controlStatus = trackControlStatus(() => this.#ngControl);
+  readonly #instanceId = this.#idGenerator.next();
+
+  // Set by `NbSelectControlBridge` (forms-compat) — a classic CVA has no way to
+  // write an `input()` from outside a template binding, so status mirroring goes
+  // through these instead. ORed into the public signals below, same as `field?.*`.
+  readonly #compatDisabled = signal(false);
+  readonly #compatInvalid = signal(false);
 
   protected readonly field = inject(NB_FIELD, { optional: true });
   protected readonly isInGroup = this.#group !== null;
@@ -123,6 +128,7 @@ export class NbSelect implements NbSelectController, ControlValueAccessor {
     transform: nbShadowStyleTransform,
   });
 
+  readonly id = input<string | undefined>(undefined);
   readonly size = input<NbSelectSize>('md');
   readonly placeholder = input<string>('Select an option');
   readonly value = model<NbSelectValue | null>(null);
@@ -132,7 +138,13 @@ export class NbSelect implements NbSelectController, ControlValueAccessor {
   readonly disabled = input(false, {
     transform: booleanAttribute,
   });
-  readonly isDisabled = computed(() => this.disabled() || this.#cvaDisabled());
+  readonly invalid = input(false);
+  readonly required = input(false);
+
+  readonly isDisabled = computed(
+    () => this.disabled() || this.#compatDisabled()
+  );
+  readonly touch = output<void>();
   readonly ariaLabel = input<string | null>(null, { alias: 'aria-label' });
   readonly ariaLabelledby = input<string | null>(null, {
     alias: 'aria-labelledby',
@@ -146,12 +158,11 @@ export class NbSelect implements NbSelectController, ControlValueAccessor {
 
   readonly open = model<boolean>(false);
 
-  readonly id = this.#idGenerator.next();
-  readonly triggerId = `nb-select-trigger-${this.id}`;
-  readonly listboxId = `nb-select-listbox-${this.id}`;
+  readonly triggerId = `nb-select-trigger-${this.#instanceId}`;
+  readonly listboxId = `nb-select-listbox-${this.#instanceId}`;
 
   protected readonly triggerElementId = computed(
-    () => this.field?.controlId ?? this.triggerId
+    () => this.field?.controlId ?? this.id() ?? this.triggerId
   );
 
   protected readonly selectedOption = computed(() => {
@@ -164,17 +175,20 @@ export class NbSelect implements NbSelectController, ControlValueAccessor {
     () => this.selectedOption()?.label() ?? ''
   );
 
-  protected readonly invalid = this.#controlStatus.invalid;
-  protected readonly required = this.#controlStatus.required;
+  protected readonly mergedInvalid = computed(
+    () =>
+      this.invalid() ||
+      this.#compatInvalid() ||
+      (this.field?.invalid() ?? false)
+  );
+  protected readonly mergedRequired = computed(
+    () => this.required() || (this.field?.required() ?? false)
+  );
 
   private typeaheadBuffer = '';
   private typeaheadTimeoutId: ReturnType<typeof setTimeout> | undefined;
 
   constructor() {
-    if (this.#ngControl) {
-      this.#ngControl.valueAccessor = this;
-    }
-
     effect((onCleanup) => {
       if (!this.#isBrowser || !this.open()) {
         return;
@@ -195,15 +209,15 @@ export class NbSelect implements NbSelectController, ControlValueAccessor {
       }
 
       const listbox = this.listboxEl()?.nativeElement;
-      const triggerEl = this.trigger()?.nativeElement;
+      const host = this.#element.nativeElement;
 
-      if (!listbox || !triggerEl || typeof listbox.showPopover !== 'function') {
+      if (!listbox || typeof listbox.showPopover !== 'function') {
         return;
       }
 
       listbox.showPopover();
 
-      const reposition = () => this.positionListbox(listbox, triggerEl);
+      const reposition = () => this.positionListbox(listbox, host);
       reposition();
 
       const view = this.#document.defaultView;
@@ -221,43 +235,66 @@ export class NbSelect implements NbSelectController, ControlValueAccessor {
       const isOpen = this.open();
 
       if (wasOpen && !isOpen) {
-        this.onTouched();
+        this.touch.emit();
       }
 
       wasOpen = isOpen;
     });
   }
 
-  private onChange: (value: NbSelectValue | null) => void = () => {};
-  private onTouched: () => void = () => {};
+  private positionListbox(listbox: HTMLElement, anchor: HTMLElement): void {
+    const rect = anchor.getBoundingClientRect();
+    const viewportHeight = this.#document.defaultView?.innerHeight ?? 0;
 
-  private positionListbox(listbox: HTMLElement, triggerEl: HTMLElement): void {
-    const rect = triggerEl.getBoundingClientRect();
+    // In the top layer the CSS `left: -6px; width: calc(100% + 12px)` overhang no
+    // longer resolves against the host, so reproduce it here against the host rect.
+    const overhang = 6;
+    const gap = 2;
+    const viewportPadding = 8;
+
+    const spaceBelow = viewportHeight - rect.bottom;
+    const spaceAbove = rect.top;
+    const openUp =
+      spaceBelow < listbox.offsetHeight && spaceAbove > spaceBelow;
 
     listbox.style.position = 'fixed';
-    listbox.style.top = `${rect.bottom}px`;
-    listbox.style.left = `${rect.left}px`;
-    listbox.style.width = `${rect.width}px`;
+    listbox.style.marginTop = '0';
+    listbox.style.left = `${rect.left - overhang}px`;
+    listbox.style.width = `${rect.width + overhang * 2}px`;
+
+    if (openUp) {
+      listbox.style.top = 'auto';
+      listbox.style.bottom = `${viewportHeight - rect.top + gap}px`;
+      listbox.style.maxHeight = `${spaceAbove - gap - viewportPadding}px`;
+    } else {
+      listbox.style.bottom = 'auto';
+      listbox.style.top = `${rect.bottom + gap}px`;
+      listbox.style.maxHeight = `${spaceBelow - gap - viewportPadding}px`;
+    }
   }
 
-  writeValue(value: NbSelectValue | null): void {
-    this.value.set(value);
+  /** @internal Set by `NbSelectControlBridge` (forms-compat) — not for template use. */
+  ɵsetCompatDisabled(disabled: boolean): void {
+    this.#compatDisabled.set(disabled);
   }
 
-  registerOnChange(fn: (value: NbSelectValue | null) => void): void {
-    this.onChange = fn;
-  }
-
-  registerOnTouched(fn: () => void): void {
-    this.onTouched = fn;
-  }
-
-  setDisabledState(isDisabled: boolean): void {
-    this.#cvaDisabled.set(isDisabled);
+  /** @internal Set by `NbSelectControlBridge` (forms-compat) — not for template use. */
+  ɵsetCompatInvalid(invalid: boolean): void {
+    this.#compatInvalid.set(invalid);
   }
 
   isSelected(value: NbSelectValue | null): boolean {
-    return this.compareWith()(this.value(), value);
+    // Argument order matches `selectedOption` — (candidate option, current value) —
+    // so an asymmetric `compareWith` agrees between trigger label and option state.
+    return this.compareWith()(value, this.value());
+  }
+
+  onFocusOut(event: FocusEvent): void {
+    const next = event.relatedTarget as Node | null;
+
+    if (!this.#element.nativeElement.contains(next)) {
+      this.touch.emit();
+    }
   }
 
   selectOption(option: NbSelectOption): void {
@@ -266,7 +303,6 @@ export class NbSelect implements NbSelectController, ControlValueAccessor {
     }
 
     this.value.set(option.value());
-    this.onChange(option.value());
     this.closeAndFocusTrigger();
   }
 
@@ -276,15 +312,23 @@ export class NbSelect implements NbSelectController, ControlValueAccessor {
     }
   }
 
-  openAndFocusOption(): void {
+  openAndFocusOption(fallback: 'first' | 'last' = 'first'): void {
     if (this.isDisabled()) {
       return;
     }
 
     this.open.set(true);
-    queueMicrotask(() => {
-      (this.selectedOption() ?? this.options()[0])?.focus();
-    });
+    // afterNextRender (not queueMicrotask) so focus lands after the @if renders
+    // and shows the listbox — a microtask fires before that under zoneless CD.
+    afterNextRender(
+      () => {
+        const options = this.options();
+        const fallbackOption =
+          fallback === 'last' ? options[options.length - 1] : options[0];
+        (this.selectedOption() ?? fallbackOption)?.focus();
+      },
+      { injector: this.#injector }
+    );
   }
 
   closeAndFocusTrigger(): void {
@@ -344,13 +388,19 @@ export class NbSelect implements NbSelectController, ControlValueAccessor {
       return;
     }
 
-    if (
-      event.key === 'ArrowDown' ||
-      event.key === 'Enter' ||
-      event.key === ' '
-    ) {
-      event.preventDefault();
-      this.openAndFocusOption();
+    switch (event.key) {
+      case 'ArrowDown':
+      case 'Enter':
+      case ' ':
+      case 'Home':
+        event.preventDefault();
+        this.openAndFocusOption('first');
+        return;
+      case 'ArrowUp':
+      case 'End':
+        event.preventDefault();
+        this.openAndFocusOption('last');
+        return;
     }
   }
 

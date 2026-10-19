@@ -216,7 +216,7 @@ Phased so each phase is independently verifiable and committable.
    types under **Added**.
 6. Commit; then release 0.3.0 per `docs/release/RELEASE.md` (F4).
 
-→ verify: `ui:lint`, `ui:test`, `ui:build`, `api-guard`, `smoke:ui` all green.
+→ verify: `ui:lint`, `ui:test`, `ui:build`, `api-guard`, `smoke:ui:ng21`, `smoke:ui:ng22` all green.
 
 ### Phase 2 — Automate API-surface consistency (S)
 

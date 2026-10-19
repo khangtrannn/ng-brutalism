@@ -5,7 +5,10 @@
     "moduleResolution": "bundler",
     "types": ["@cloudflare/workers-types"],
     "strict": true,
-    "noEmit": true
+    "noEmit": true,
+    "noUncheckedSideEffectImports": false,
+    "esModuleInterop": false,
+    "ignoreDeprecations": "6.0"
   },
   "include": ["src/**/*.ts"]
 }

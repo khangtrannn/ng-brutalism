@@ -9,13 +9,19 @@ import { DocsCodeBlock } from '@ng-brutalism/docs-ui';
     <section id="usage">
       <h2 data-docs-heading class="mt-10 mb-4 text-2xl font-bold">Usage</h2>
       <p class="mb-4 font-medium">
-        Bind a <code class="font-mono">FormControl</code> (or
-        <code class="font-mono">formControlName</code>) to any control inside
-        <code class="font-mono">nb-field</code> - the field reads the control's
-        touched/dirty/invalid/required status straight off it, no separate
-        error-state input to keep in sync.
+        Use explicit <code class="font-mono">invalid</code> and
+        <code class="font-mono">required</code> inputs in the core package. Add
+        <code class="font-mono">NbFieldControlBridge</code> from
+        <code class="font-mono">&#64;ng-brutalism/ui/forms-compat</code> when
+        you want <code class="font-mono">nb-field</code> to read classic Angular
+        form state automatically.
       </p>
       <docs-code-block class="block mb-5" title="Import" [code]="importCode" />
+      <docs-code-block
+        class="block mb-5"
+        title="Forms compat import"
+        [code]="formsCompatImportCode"
+      />
       <docs-code-block title="Template" [code]="defaultExampleCode" />
     </section>
   `,
@@ -23,6 +29,8 @@ import { DocsCodeBlock } from '@ng-brutalism/docs-ui';
 })
 export class FieldUsage {
   protected readonly importCode = `import { NbField, NbFieldDescription, NbFieldError } from '@ng-brutalism/ui';`;
+
+  protected readonly formsCompatImportCode = `import { NbFieldControlBridge } from '@ng-brutalism/ui/forms-compat';`;
 
   protected readonly defaultExampleCode = `<nb-field class="flex flex-col gap-2">
   <label nbLabel>Email</label>

@@ -57,6 +57,6 @@ export class NbInput {
   protected readonly field = inject(NB_FIELD, { optional: true });
 
   protected readonly resolvedId = computed(
-    () => this.id() ?? this.field?.controlId
+    () => this.field?.controlId ?? this.id()
   );
 }

@@ -30,7 +30,7 @@ See the [full changelog](https://github.com/khangtrannn/ng-brutalism/blob/main/C
 
 ## Install
 
-Requires Node 20.19+ or 22.12+, Angular 21, and Tailwind CSS v4.
+Requires Node 20.19+ or 22.12+, Angular 22, and Tailwind CSS v4.
 
 Automatic setup:
 
@@ -143,8 +143,8 @@ Full guides, component API tables, and live examples:
 
 ## FAQ
 
-**Does ng-brutalism support Angular 21?**
-Yes — it is built and tested against Angular 21. Earlier Angular versions are not supported.
+**Which Angular versions does ng-brutalism support?**
+Angular 22 (`^22.0.0`). It is built and tested against Angular 22; earlier Angular versions are not supported.
 
 **Do I need Tailwind CSS v4?**
 Yes. ng-brutalism is built around Tailwind CSS v4 and CSS custom properties. It ships with an Angular CLI schematic that helps you get the required styling setup ready out of the box.
