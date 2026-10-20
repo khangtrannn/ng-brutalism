@@ -69,6 +69,12 @@ jobs:
       - name: Signal-forms contract typecheck (FormValueControl conformance)
         run: pnpm forms-contract-check
 
+      - name: Install Chromium for CSS contract tests
+        run: pnpm exec playwright install --with-deps chromium
+
+      - name: CSS contract tests (Chromium)
+        run: pnpm nx run ui:test-css
+
       - name: Docs token reference check
         run: pnpm docs:tokens:check
 

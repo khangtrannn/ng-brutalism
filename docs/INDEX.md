@@ -57,7 +57,10 @@ Agent session protocol:
 | `docs/components/design-props.md` | **Canonical entry point** — design-prop vocabulary (7 categories), 5 archetypes, per-component prop matrix, standard-input vs CSS-only-hook tiers | Yes |
 | `docs/components/composition-philosophy.md` | ng-brutalism + `nbText` + Tailwind boundary — when to add an input vs. reach for Tailwind | Yes |
 | `docs/architecture/token-customization.md` | Current CSS-first token customization architecture — rationale, rules, and accepted direction | Yes |
-| `docs/architecture/library-improvement-plan-2026-07-09.md` | **Active improvement plan** — audit findings (API export drift, CSS token discipline, a11y, JSDoc) + phased action plan | Yes |
+| `docs/architecture/library-audit-2026-10-19.md` | **Active improvement plan** — full audit (Ousterhout + design-system lens): browser-verified CSS cascade bugs, a11y, vocabulary/API consistency, dark-mode prerequisites, phased plan + decisions needed | Yes |
+| `docs/architecture/architecture-comparison-2026-10-19.md` | Architecture vs. best practice and peer libraries (Material, PrimeNG, Spartan, shadcn, daisyUI, Radix Themes, Mantine, Spectrum, Angular Aria) — scorecard + what to adopt / not copy | Yes |
+| `docs/architecture/directive-vs-component-audit-2026-10-20.md` | Directive vs. component audit of all 69 classes — rule, 14 ng-content-only components to convert, icon-input judgment calls | Yes |
+| `docs/architecture/library-improvement-plan-2026-07-09.md` | Previous improvement plan — Phases 1–4 shipped; Phase 5 carried into the 2026-10-19 audit | Yes |
 | `docs/_archive/library-audit-2026-07-08.md` | Frozen library audit (2026-07-08) — baseline for the improvement plan | No |
 | `docs/components/contact-dialog/PLAN.md` | Contact dialog redesign — status + design decisions | Yes |
 | `docs/adr/0001-dialog-native-element.md` | ADR: why native `<dialog>` over overlay approach | No |

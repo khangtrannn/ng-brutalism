@@ -42,7 +42,7 @@ export type NbSurfaceEdge = 'none' | 'top' | 'bottom';
     '[attr.data-clip]': 'clip() ? "" : null',
     '[attr.data-interactive]': 'interactive() ? "" : null',
     '[style.--nb-surface-radius]': 'radius()',
-    '[style.--nb-surface-shadow-base]': 'shadow()',
+    '[style.--nb-surface-shadow]': 'shadow()',
     '[style.--nb-surface-border-width]': 'border()',
     '[style.--nb-surface-padding]': 'padding()',
   },

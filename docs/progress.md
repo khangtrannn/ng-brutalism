@@ -24,9 +24,9 @@ For history and details, read the domain's own `progress.md`.
 
 ## Components
 **Status:** Improvement-plan Phases 1–4 landed. Forms architecture consolidated in ADR 0004 (2026-07-15): model-based forms-runtime-free core re-affirmed, plus a new `forms-compat` secondary entry point (CVA bridge for `formControlName`/`ngModel` + field bridge) landed 2026-07-15, closing v0.3.0 scope; Angular 22 only (`^22.0.0`). ADRs 0002/0003 archived.
-**Last action:** 2026-07-15 forms audit follow-up: `forms-compat` now uses a shared `NB_ERROR_STATE_MATCHER` with Material-style default timing (`invalid && (touched || submitted)`), covers parent `NgForm`/`FormGroupDirective` submission, tests real `formControlName`, `ngModel` submit, custom matcher override, and `requiredTrue`, and renamed compat hooks to `ɵsetCompat*` internals. `pnpm nx test ui --run` and `pnpm api-guard:update` are green.
-**Next:** Run `smoke:ui:ng22` in an environment with Node ≥22.22.3, then CHANGELOG date refresh + publish per `docs/release/RELEASE.md`. Phase 5 roadmap (Playwright visual-regression → dark theme → Phase 6 primitives) not started.
-→ Plan: `docs/release/v0.3-angular-22-plan.md` · ADR: `docs/adr/0004-forms-support.md` · Improvement plan: `docs/architecture/library-improvement-plan-2026-07-09.md` · Arch: `docs/architecture/token-customization.md`
+**Last action:** 2026-10-19 full library audit: CSS cascade bugs verified in Chromium (input-written vars leak into nested surface/stack, cluster ignores scoped vars, surface shadow precedence inverted, icon-button circle ignores radius), field/label id mismatch, dialog has no accessible name, contrast failures on text tones. Lint + 317 tests green — jsdom specs can't see these.
+**Next:** Ship 0.3.0 (`smoke:ui:ng22` on Node ≥22.22.3), then audit Phase 1 (Vitest browser-mode CSS contract suite) → Phase 2 P0 fixes. 5 decisions pending in the audit.
+→ Plan: `docs/release/v0.3-angular-22-plan.md` · ADR: `docs/adr/0004-forms-support.md` · Audit/plan: `docs/architecture/library-audit-2026-10-19.md` · Peer comparison: `docs/architecture/architecture-comparison-2026-10-19.md` · Arch: `docs/architecture/token-customization.md`
 
 ---
 

@@ -107,7 +107,6 @@ describe('NbSurface', () => {
     expect(style.getPropertyValue('padding')).toBe('');
     expect(style.getPropertyValue('--nb-surface-radius')).toBe('');
     expect(style.getPropertyValue('--nb-surface-shadow')).toBe('');
-    expect(style.getPropertyValue('--nb-surface-shadow-base')).toBe('');
     expect(style.getPropertyValue('--nb-surface-border-width')).toBe('');
     expect(style.getPropertyValue('--nb-surface-padding')).toBe('');
     expect(style.cssText).not.toContain('--nb-resolved');
@@ -135,8 +134,7 @@ describe('NbSurface', () => {
     expect(surface.style.getPropertyValue('--nb-surface-border-width')).toBe(
       'var(--nb-border-width-thick)'
     );
-    expect(surface.style.getPropertyValue('--nb-surface-shadow')).toBe('');
-    expect(surface.style.getPropertyValue('--nb-surface-shadow-base')).toBe(
+    expect(surface.style.getPropertyValue('--nb-surface-shadow')).toBe(
       'var(--nb-shadow-heavy)'
     );
     expect(surface.style.cssText).not.toContain('--nb-resolved');
@@ -201,8 +199,7 @@ describe('NbSurface', () => {
     expect(surface.style.getPropertyValue('--nb-surface-border-width')).toBe(
       'var(--nb-border-width-strong)'
     );
-    expect(surface.style.getPropertyValue('--nb-surface-shadow')).toBe('');
-    expect(surface.style.getPropertyValue('--nb-surface-shadow-base')).toBe(
+    expect(surface.style.getPropertyValue('--nb-surface-shadow')).toBe(
       'var(--nb-shadow-hard)'
     );
     expect(surface.style.getPropertyValue('--nb-surface-radius')).toBe(
@@ -230,10 +227,7 @@ describe('NbSurface', () => {
     expect(surface.style.getPropertyValue('--nb-surface-border-width')).toBe(
       '0px'
     );
-    expect(surface.style.getPropertyValue('--nb-surface-shadow')).toBe('');
-    expect(surface.style.getPropertyValue('--nb-surface-shadow-base')).toBe(
-      'none'
-    );
+    expect(surface.style.getPropertyValue('--nb-surface-shadow')).toBe('none');
     expect(surface.className).toBe('');
   });
 

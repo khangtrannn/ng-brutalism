@@ -56,6 +56,12 @@
         "configFile": "libs/ui/vitest.config.mts"
       }
     },
+    "test-css": {
+      "executor": "@nx/vitest:test",
+      "options": {
+        "configFile": "libs/ui/vitest.css-contract.config.mts"
+      }
+    },
     "lint": {
       "executor": "@nx/eslint:lint",
       "options": {
