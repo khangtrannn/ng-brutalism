@@ -12,7 +12,7 @@ import {
   nbBorderWidthStyleTransform,
   nbRadiusStyleTransform,
   nbShadowStyleTransform,
-} from '../core/input-transforms';
+} from '../core/style-transforms';
 import { NB_ACCORDION } from './accordion.types';
 
 let nextAccordionItemId = 0;

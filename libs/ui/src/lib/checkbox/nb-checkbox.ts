@@ -1,7 +1,7 @@
 import { Directive, computed, inject, input } from '@angular/core';
 
 import { NbToneCapability } from '../core/capabilities';
-import { nbRadiusStyleTransform } from '../core/input-transforms';
+import { nbRadiusStyleTransform } from '../core/style-transforms';
 import { NB_FIELD } from '../field/field.types';
 import type { NbCheckboxSize } from './checkbox.types';
 

@@ -13,7 +13,7 @@ import {
   nbRadiusStyleTransform,
   nbShadowStyleTransform,
   nbTokenStyleTransform,
-} from '../core/input-transforms';
+} from '../core/style-transforms';
 import { NbIcon, type NbIconSize } from '../icon';
 import type {
   NbLayoutAlign,

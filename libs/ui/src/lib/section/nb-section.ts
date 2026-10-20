@@ -1,6 +1,6 @@
 import { Directive, booleanAttribute, input } from '@angular/core';
 
-import { nbPaddingStyleTransform } from '../core/input-transforms';
+import { nbPaddingStyleTransform } from '../core/style-transforms';
 import type {
   NbDivider,
   NbLayoutAlign,

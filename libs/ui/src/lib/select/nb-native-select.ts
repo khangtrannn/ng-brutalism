@@ -1,7 +1,7 @@
 import { Directive, computed, inject, input } from '@angular/core';
 
 import { NbToneCapability } from '../core/capabilities';
-import { nbBorderWidthStyleTransform } from '../core/input-transforms';
+import { nbBorderWidthStyleTransform } from '../core/style-transforms';
 import { NB_FIELD } from '../field/field.types';
 import { NB_INPUT_GROUP } from '../input-group/input-group.types';
 import type { NbSelectSize } from './select.types';

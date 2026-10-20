@@ -1,6 +1,6 @@
 import { Directive, computed, input } from '@angular/core';
 
-import { nbGapStyleTransform } from '../core/input-transforms';
+import { nbGapStyleTransform } from '../core/style-transforms';
 import type {
   NbLayoutAlign,
   NbLayoutJustify,

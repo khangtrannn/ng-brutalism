@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 
-import { nbRadiusStyleTransform } from '../core/input-transforms';
+import { nbRadiusStyleTransform } from '../core/style-transforms';
 import { NB_INPUT_GROUP } from './input-group.types';
 
 @Component({

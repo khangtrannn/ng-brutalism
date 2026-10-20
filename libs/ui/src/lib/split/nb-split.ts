@@ -3,7 +3,7 @@ import { Directive, computed, input } from '@angular/core';
 import {
   nbGapStyleTransform,
   nbPaddingStyleTransform,
-} from '../core/input-transforms';
+} from '../core/style-transforms';
 import type {
   NbControlSize,
   NbLayoutAlign,

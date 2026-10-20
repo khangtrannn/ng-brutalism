@@ -243,10 +243,9 @@ but isn't re-exported at root is a bug, not a decision.
 
 This is enforced by `tools/api-export-check/run.mjs`, which runs as part of
 `pnpm api-guard` and fails CI if a declared `Nb*` type can't be imported from
-its root entry. Genuinely-internal types (e.g. the `NbTokenStyleTransform`
-transform-factory helper) are exempted through a small, reason-annotated
-`INTERNAL_ALLOWLIST` in that file — that allowlist is the single source of truth
-for "intentionally not public."
+its root entry. Genuinely-internal types are exempted through a small,
+reason-annotated `INTERNAL_ALLOWLIST` in that file (currently empty) — that
+allowlist is the single source of truth for "intentionally not public."
 
 Per-component size unions compose from the shared vocabulary where the scale
 matches (`NbChipSize = 'none' | NbSize`, `NbIconSize = NbSizeXs | 'xl'`, …). Two

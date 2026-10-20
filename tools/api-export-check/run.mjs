@@ -25,13 +25,7 @@ const repoRoot = fileURLToPath(new URL('../../', import.meta.url));
 
 // Types that are deliberately NOT part of the public API and so are exempt from
 // the reachable-from-root requirement. Keep this map small; document each entry.
-const INTERNAL_ALLOWLIST = new Map([
-  [
-    'NbTokenStyleTransform',
-    'internal generic helper in core/input-transforms; types the transform ' +
-      'factory, never a public input',
-  ],
-]);
+const INTERNAL_ALLOWLIST = new Map([]);
 
 const entryPoints = [
   {

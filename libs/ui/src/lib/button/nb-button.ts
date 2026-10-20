@@ -5,7 +5,7 @@ import {
   nbBorderWidthStyleTransform,
   nbRadiusStyleTransform,
   nbShadowStyleTransform,
-} from '../core/input-transforms';
+} from '../core/style-transforms';
 import type { NbButtonPress, NbButtonSize } from './button.types';
 
 @Directive({

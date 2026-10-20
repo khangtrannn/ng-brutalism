@@ -10,7 +10,7 @@ import {
   nbBorderWidthStyleTransform,
   nbRadiusStyleTransform,
   nbShadowStyleTransform,
-} from '../core/input-transforms';
+} from '../core/style-transforms';
 import { NbIcon, type NbIconSize } from '../icon';
 import type { NbIconShape, NbSize } from '@ng-brutalism/ui/tokens';
 

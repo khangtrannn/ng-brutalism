@@ -1,6 +1,6 @@
 import { Directive, computed, input } from '@angular/core';
 
-import { nbRadiusStyleTransform } from '../core/input-transforms';
+import { nbRadiusStyleTransform } from '../core/style-transforms';
 import type { NbRadius, NbSizeXs } from '@ng-brutalism/ui/tokens';
 
 export type NbStatusDotState = 'online' | 'offline' | 'live';

@@ -6,7 +6,7 @@ import {
   nbPaddingStyleTransform,
   nbRadiusStyleTransform,
   nbShadowStyleTransform,
-} from '../core/input-transforms';
+} from '../core/style-transforms';
 import type {
   NbBorderStrength,
   NbPadding,

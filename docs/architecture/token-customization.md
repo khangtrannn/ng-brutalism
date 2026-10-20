@@ -706,23 +706,17 @@ After enough components migrate, revisit whether a namespace-aware capability ab
 
 Do not wrap Angular `input()` inside helper functions. Instead, use named pure input transform functions that map an optional token value to a `string | null` CSS variable value. Call `input()` directly in the class member initializer and pass the named transform in the options object.
 
-Example transform utility (see `core/input-transforms`):
+The factory and every named transform live in one file, `core/style-transforms.ts`:
 
 ```ts
-export function nbTokenStyleValue<TToken>(
-  token: TToken | null | undefined,
-  resolve: (token: TToken) => string,
-): string | null {
-  return token == null ? null : resolve(token);
+export function nbTokenStyleTransform<TToken>(
+  toValue: (token: TToken) => string
+) {
+  return (token: TToken | null | undefined): string | null =>
+    token == null ? null : toValue(token);
 }
-```
 
-Example specialized named transform:
-
-```ts
-export function nbRadiusStyleTransform(radius: NbRadius | null | undefined) {
-  return nbTokenStyleValue(radius, nbRadiusValue);
-}
+export const nbRadiusStyleTransform = nbTokenStyleTransform(nbRadiusValue);
 ```
 
 Then call `input()` directly in the component:

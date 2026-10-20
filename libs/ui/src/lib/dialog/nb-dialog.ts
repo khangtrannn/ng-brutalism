@@ -15,7 +15,7 @@ import {
   nbBorderWidthStyleTransform,
   nbRadiusStyleTransform,
   nbShadowStyleTransform,
-} from '../core/input-transforms';
+} from '../core/style-transforms';
 import type {
   NbBorderStrength,
   NbRadius,

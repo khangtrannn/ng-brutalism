@@ -24,7 +24,7 @@ import {
   nbBorderWidthStyleTransform,
   nbRadiusStyleTransform,
   nbShadowStyleTransform,
-} from '../core/input-transforms';
+} from '../core/style-transforms';
 import { NbIdGenerator } from '../core/id-generator';
 import { NB_FIELD } from '../field/field.types';
 import { NB_INPUT_GROUP } from '../input-group/input-group.types';
