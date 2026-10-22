@@ -17,7 +17,7 @@ const html = `
     ${css}
     /* Stand-ins for a Tailwind utility and a consumer rule. */
     @layer utilities { .rounded-none { border-radius: 0; } }
-    .pricing [data-nb-surface] { --nb-surface-radius: 20px; }
+    .pricing [data-nb-surface] { --nb-surface-radius: 20px; --nb-surface-bg: rgb(1, 2, 3); }
     :root { --nb-motion-fast: 0s; }
   </style>
 
@@ -47,7 +47,15 @@ const html = `
     <div id="shadow-default" data-nb-surface></div>
   </section>
 
-  <a id="interactive" data-nb-surface data-interactive style="--nb-surface-shadow: none">tile</a>
+  <a id="interactive" data-nb-surface data-interactive style="--nb-surface-shadow: var(--nb-shadow-sm)">tile</a>
+  <a id="interactive-flat" data-nb-surface data-interactive data-shadow="none" style="--nb-surface-shadow: none">tile</a>
+  <a id="interactive-ink" data-nb-surface data-interactive data-nb-tone="ink">tile</a>
+  <section style="--nb-surface-bg: red; --nb-surface-fg: red; --nb-surface-border-color: red">
+    <div id="tone-under-parent-colors" data-nb-surface data-nb-tone="pink"></div>
+  </section>
+  <div id="clip" data-nb-surface data-clip style="height: 3000px">
+    <div id="sticky" style="position: sticky; top: 0; height: 10px"></div>
+  </div>
 `;
 
 const DEFAULT_SHADOW = 'rgb(0, 0, 0) 4px 4px 0px 0px';
@@ -93,6 +101,7 @@ describe('nb-surface CSS contract (Chromium)', () => {
 
   it('applies a component variable set by selecting the surface', async () => {
     expect(await computed('selected', 'border-top-left-radius')).toBe('20px');
+    expect(await computed('selected', 'background-color')).toBe('rgb(1, 2, 3)');
   });
 
   it('lets an input beat a rule that selects the surface', async () => {
@@ -116,5 +125,41 @@ describe('nb-surface CSS contract (Chromium)', () => {
     await page.hover('#interactive');
 
     expect(await computed('interactive', 'box-shadow')).toBe('rgb(0, 0, 0) 6px 6px 0px 0px');
+  });
+
+  it('keeps a tone over color variables set on a parent', async () => {
+    expect(await computed('tone-under-parent-colors', 'background-color')).toBe('rgb(255, 126, 182)');
+    expect(await computed('tone-under-parent-colors', 'color')).toBe('rgb(0, 0, 0)');
+    expect(await computed('tone-under-parent-colors', 'border-top-color')).toBe('rgb(0, 0, 0)');
+  });
+
+  it('keeps the tone text color on an interactive surface', async () => {
+    expect(await computed('interactive-ink', 'color')).toBe('rgb(255, 255, 255)');
+  });
+
+  it('keeps a shadowless interactive surface still on hover', async () => {
+    await page.hover('#interactive-flat');
+    expect(await computed('interactive-flat', 'box-shadow')).toBe('none');
+    expect(await computed('interactive-flat', 'translate')).toBe('none');
+  });
+
+  it('keeps sticky children working inside a clipped surface', async () => {
+    const stickyTop = await page.evaluate(() => {
+      const clip = document.getElementById('clip')!;
+      window.scrollTo(0, clip.offsetTop + 500);
+      return document.getElementById('sticky')!.getBoundingClientRect().top;
+    });
+    expect(stickyTop).toBe(0);
+  });
+
+  it('skips the hover lift on devices without hover', async () => {
+    const touchPage = await browser.newPage({ hasTouch: true, isMobile: true });
+    await touchPage.setContent(html);
+    await touchPage.hover('#interactive');
+    const shadow = await touchPage.evaluate(
+      () => getComputedStyle(document.getElementById('interactive')!).boxShadow
+    );
+    await touchPage.close();
+    expect(shadow).toBe('rgb(0, 0, 0) 2px 2px 0px 0px');
   });
 });

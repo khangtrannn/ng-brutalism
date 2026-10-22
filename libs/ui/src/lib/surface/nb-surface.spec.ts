@@ -137,6 +137,7 @@ describe('NbSurface', () => {
     expect(surface.style.getPropertyValue('--nb-surface-shadow')).toBe(
       'var(--nb-shadow-heavy)'
     );
+    expect(surface.getAttribute('data-shadow')).toBeNull();
     expect(surface.style.cssText).not.toContain('--nb-resolved');
     expect(surface.getAttribute('data-clip')).toBe('');
     expect(surface.className).toBe('');
@@ -228,6 +229,7 @@ describe('NbSurface', () => {
       '0px'
     );
     expect(surface.style.getPropertyValue('--nb-surface-shadow')).toBe('none');
+    expect(surface.getAttribute('data-shadow')).toBe('none');
     expect(surface.className).toBe('');
   });
 

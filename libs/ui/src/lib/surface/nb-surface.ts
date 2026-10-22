@@ -41,6 +41,7 @@ export type NbSurfaceEdge = 'none' | 'top' | 'bottom';
     '[attr.data-edge]': 'edge()',
     '[attr.data-clip]': 'clip() ? "" : null',
     '[attr.data-interactive]': 'interactive() ? "" : null',
+    '[attr.data-shadow]': 'shadow() === "none" ? "none" : null',
     '[style.--nb-surface-radius]': 'radius()',
     '[style.--nb-surface-shadow]': 'shadow()',
     '[style.--nb-surface-border-width]': 'border()',
