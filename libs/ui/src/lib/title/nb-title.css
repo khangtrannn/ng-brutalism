@@ -1,3 +1,32 @@
+@property --nb-title-font-size {
+  syntax: "*";
+  inherits: false;
+}
+@property --nb-title-font-weight {
+  syntax: "*";
+  inherits: false;
+}
+@property --nb-title-line-height {
+  syntax: "*";
+  inherits: false;
+}
+@property --nb-title-wave-width {
+  syntax: "*";
+  inherits: false;
+}
+@property --nb-title-wave-height {
+  syntax: "*";
+  inherits: false;
+}
+@property --nb-title-wave-gap {
+  syntax: "*";
+  inherits: false;
+}
+@property --nb-title-wave-color {
+  syntax: "*";
+  inherits: false;
+}
+
 @layer base {
   :where([data-nb-title][data-underline])::after {
     content: "";

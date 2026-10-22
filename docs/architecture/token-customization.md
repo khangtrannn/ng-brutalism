@@ -1330,10 +1330,34 @@ The architecture's central claim: explicit Angular inputs win over CSS customiza
 
 1. **Angular input set** → write inline public CSS variable.
 2. **Input not set** → CSS variable resolves from:
-   - Local inline CSS on element
-   - Inherited CSS from parent scopes
-   - Component CSS fallback
+   - Local inline CSS on element, or a rule that selects the element
+   - Component CSS fallback (theme tokens such as `--nb-radius` inherit from
+     ancestors, so they are the section-wide scope)
 3. **!important CSS** → wins over inline input variable.
+
+### Variable Registration (inheritance)
+
+Every public `--nb-<component>-*` variable a component stylesheet reads is
+registered with `@property` (syntax `"*"`) and states its inheritance
+explicitly. `nb-surface.css` is the reference. A registration guard spec
+(`core/component-variable-registration.css-contract.spec.ts`) fails when a
+variable is read but not registered.
+
+```txt
+inherits: false  Read only by the element that carries it. Design-prop
+                 variables (bg, fg, border-color, border-width, radius,
+                 shadow, padding, gap) and internal state. Input values
+                 written inline cannot leak into nested instances, and a
+                 value set on a wrapper does not reach the component; scope
+                 with a rule that selects the component, or with a theme
+                 token on the wrapper.
+inherits: true   Read by descendants (select listbox, accordion trigger,
+                 sticker shapes, trailing icon, stat labels) or designed to
+                 be set on a wrapper (icon size/color, media-item title size).
+```
+
+This supersedes the earlier acceptance criterion that a parent-scope
+component variable reaches children for design-prop slots.
 
 ### Key Principle
 
@@ -1445,7 +1469,7 @@ Acceptance criteria for `NbCallout`:
 ```txt
 1. No radius input means no inline --nb-callout-radius.
 2. radius="sm" writes inline --nb-callout-radius.
-3. Parent --nb-callout-radius customization works when no radius input exists.
+3. A rule selecting the callout that sets --nb-callout-radius works when no radius input exists (a value set on a parent does not, by design: see Variable Registration).
 4. Local --nb-callout-radius customization works when no radius input exists.
 5. Radius input wins over inherited customization.
 6. data-radius is removed.

@@ -1,3 +1,28 @@
+@property --nb-badge-bg {
+  syntax: "*";
+  inherits: false;
+}
+@property --nb-badge-fg {
+  syntax: "*";
+  inherits: false;
+}
+@property --nb-badge-border-color {
+  syntax: "*";
+  inherits: false;
+}
+@property --nb-badge-border-width {
+  syntax: "*";
+  inherits: false;
+}
+@property --nb-badge-radius {
+  syntax: "*";
+  inherits: false;
+}
+@property --nb-badge-shadow {
+  syntax: "*";
+  inherits: false;
+}
+
 @layer components {
   :where(span[nbBadge]) {
     display: inline-flex;
@@ -7,8 +32,8 @@
     font-size: 0.75rem;
     font-weight: 700;
     border-style: solid;
-    background: var(--nb-badge-bg, var(--_nb-tone-bg, #ffffff));
-    color: var(--nb-badge-fg, var(--_nb-tone-fg, #000000));
+    background: var(--nb-badge-bg, var(--_nb-tone-bg, var(--nb-surface)));
+    color: var(--nb-badge-fg, var(--_nb-tone-fg, var(--nb-surface-foreground)));
     border-color: var(
       --nb-badge-border-color,
       var(--_nb-tone-border-color, var(--nb-border))

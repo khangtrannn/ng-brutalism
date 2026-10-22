@@ -24,7 +24,7 @@ For history and details, read the domain's own `progress.md`.
 
 ## Components
 **Status:** Improvement-plan Phases 1–4 landed. Forms architecture consolidated in ADR 0004 (2026-07-15): model-based forms-runtime-free core re-affirmed, plus a new `forms-compat` secondary entry point (CVA bridge for `formControlName`/`ngModel` + field bridge) landed 2026-07-15, closing v0.3.0 scope; Angular 22 only (`^22.0.0`). ADRs 0002/0003 archived.
-**Last action:** 2026-10-19 full library audit: CSS cascade bugs verified in Chromium (input-written vars leak into nested surface/stack, cluster ignores scoped vars, surface shadow precedence inverted, icon-button circle ignores radius), field/label id mismatch, dialog has no accessible name, contrast failures on text tones. Lint + 317 tests green — jsdom specs can't see these.
+**Last action:** Every component now registers each public `--nb-<component>-*` var with `@property` (nb-surface pattern): `inherits: false` for host-read design props, `inherits: true` for vars read by descendants or set on wrappers. Registration guard spec + Chromium contract specs added (65 green). Docs customization pages updated: component vars no longer inherit from ancestors; theme tokens are the section-wide scope.
 **Next:** Ship 0.3.0 (`smoke:ui:ng22` on Node ≥22.22.3), then audit Phase 1 (Vitest browser-mode CSS contract suite) → Phase 2 P0 fixes. 5 decisions pending in the audit.
 → Plan: `docs/release/v0.3-angular-22-plan.md` · ADR: `docs/adr/0004-forms-support.md` · Audit/plan: `docs/architecture/library-audit-2026-10-19.md` · Peer comparison: `docs/architecture/architecture-comparison-2026-10-19.md` · Arch: `docs/architecture/token-customization.md`
 

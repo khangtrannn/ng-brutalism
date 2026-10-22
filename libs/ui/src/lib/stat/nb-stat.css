@@ -1,3 +1,16 @@
+@property --nb-stat-label-fg {
+  syntax: "*";
+  inherits: true;
+}
+@property --nb-stat-label-size {
+  syntax: "*";
+  inherits: true;
+}
+@property --nb-stat-value-size {
+  syntax: "*";
+  inherits: true;
+}
+
 @layer components {
   :where(nb-stat) {
     display: inline-flex;

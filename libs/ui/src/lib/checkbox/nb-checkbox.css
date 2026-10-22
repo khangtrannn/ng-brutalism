@@ -1,3 +1,20 @@
+@property --nb-checkbox-bg {
+  syntax: "*";
+  inherits: false;
+}
+@property --nb-checkbox-fg {
+  syntax: "*";
+  inherits: false;
+}
+@property --nb-checkbox-radius {
+  syntax: "*";
+  inherits: false;
+}
+@property --nb-checkbox-invalid-border-color {
+  syntax: "*";
+  inherits: false;
+}
+
 @layer components {
   :where(input[nbCheckbox]) {
     display: grid;

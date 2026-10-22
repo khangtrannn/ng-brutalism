@@ -1,3 +1,8 @@
+@property --nb-status-dot-radius {
+  syntax: "*";
+  inherits: false;
+}
+
 @layer components {
   :where(span[nbStatusDot]) {
     display: inline-block;

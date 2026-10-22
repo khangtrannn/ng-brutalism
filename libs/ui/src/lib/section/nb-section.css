@@ -1,3 +1,8 @@
+@property --nb-section-padding {
+  syntax: "*";
+  inherits: false;
+}
+
 @layer components {
   :where([nbSection]) {
     box-sizing: border-box;

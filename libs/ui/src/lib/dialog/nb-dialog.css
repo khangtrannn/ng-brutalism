@@ -1,3 +1,16 @@
+@property --nb-dialog-description-fg {
+  syntax: "*";
+  inherits: true;
+}
+@property --nb-dialog-content-bg {
+  syntax: "*";
+  inherits: true;
+}
+@property --nb-dialog-actions-bg {
+  syntax: "*";
+  inherits: true;
+}
+
 @layer base {
   :where([data-slot='dialog-title']) {
     display: block;
@@ -33,6 +46,30 @@
     background-color: var(--nb-dialog-actions-bg, transparent);
   }
 }
+@property --nb-dialog-bg {
+  syntax: "*";
+  inherits: false;
+}
+@property --nb-dialog-fg {
+  syntax: "*";
+  inherits: false;
+}
+@property --nb-dialog-border-color {
+  syntax: "*";
+  inherits: false;
+}
+@property --nb-dialog-border-width {
+  syntax: "*";
+  inherits: false;
+}
+@property --nb-dialog-radius {
+  syntax: "*";
+  inherits: false;
+}
+@property --nb-dialog-shadow {
+  syntax: "*";
+  inherits: false;
+}
 
 @layer components {
   :where(dialog[data-nb-dialog]) {
@@ -43,8 +80,8 @@
     padding: 0;
     overflow-x: hidden;
     border-style: solid;
-    background: var(--nb-dialog-bg, var(--_nb-tone-bg, #ffffff));
-    color: var(--nb-dialog-fg, var(--_nb-tone-fg, #000000));
+    background: var(--nb-dialog-bg, var(--_nb-tone-bg, var(--nb-surface)));
+    color: var(--nb-dialog-fg, var(--_nb-tone-fg, var(--nb-surface-foreground)));
     border-color: var(
       --nb-dialog-border-color,
       var(--_nb-tone-border-color, var(--nb-border))

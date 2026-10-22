@@ -1,3 +1,60 @@
+@property --nb-media-item-radius {
+  syntax: "*";
+  inherits: true;
+}
+@property --nb-media-item-icon-bg {
+  syntax: "*";
+  inherits: true;
+}
+@property --nb-media-item-icon-size {
+  syntax: "*";
+  inherits: true;
+}
+@property --nb-media-item-surface-size {
+  syntax: "*";
+  inherits: true;
+}
+@property --nb-media-item-title-size {
+  syntax: "*";
+  inherits: true;
+}
+@property --nb-media-item-title-font-family {
+  syntax: "*";
+  inherits: true;
+}
+@property --nb-media-item-title-default-size {
+  syntax: "*";
+  inherits: true;
+}
+@property --nb-media-item-description-size {
+  syntax: "*";
+  inherits: true;
+}
+@property --nb-media-item-description-default-size {
+  syntax: "*";
+  inherits: true;
+}
+@property --nb-media-item-description-opacity {
+  syntax: "*";
+  inherits: true;
+}
+@property --nb-media-item-bg {
+  syntax: "*";
+  inherits: false;
+}
+@property --nb-media-item-fg {
+  syntax: "*";
+  inherits: false;
+}
+@property --nb-media-item-border-color {
+  syntax: "*";
+  inherits: false;
+}
+@property --nb-media-item-gap {
+  syntax: "*";
+  inherits: false;
+}
+
 @layer components {
   :where([data-nb-media-item]) {
     --nb-media-item-description-opacity: 0.7;

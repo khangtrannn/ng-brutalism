@@ -1,3 +1,8 @@
+@property --nb-marquee-duration {
+  syntax: "*";
+  inherits: true;
+}
+
 @layer components {
   :where(nb-marquee) {
     display: block;

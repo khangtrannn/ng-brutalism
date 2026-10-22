@@ -1,3 +1,56 @@
+@property --nb-select-bg {
+  syntax: "*";
+  inherits: true;
+}
+@property --nb-select-fg {
+  syntax: "*";
+  inherits: true;
+}
+@property --nb-select-border-color {
+  syntax: "*";
+  inherits: true;
+}
+@property --nb-select-radius {
+  syntax: "*";
+  inherits: true;
+}
+@property --nb-select-listbox-bg {
+  syntax: "*";
+  inherits: true;
+}
+@property --nb-select-option-active-bg {
+  syntax: "*";
+  inherits: true;
+}
+@property --nb-select-option-selected-bg {
+  syntax: "*";
+  inherits: true;
+}
+@property --nb-select-tone-bg {
+  syntax: "*";
+  inherits: true;
+}
+@property --nb-select-tone-fg {
+  syntax: "*";
+  inherits: true;
+}
+@property --nb-select-tone-border-color {
+  syntax: "*";
+  inherits: true;
+}
+@property --nb-select-border-width {
+  syntax: "*";
+  inherits: false;
+}
+@property --nb-select-shadow {
+  syntax: "*";
+  inherits: false;
+}
+@property --nb-select-invalid-border-color {
+  syntax: "*";
+  inherits: false;
+}
+
 @layer components {
   :where(nb-select) {
     position: relative;

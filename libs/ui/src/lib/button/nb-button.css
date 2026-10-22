@@ -1,3 +1,44 @@
+@property --nb-button-trailing-icon-bg {
+  syntax: "*";
+  inherits: true;
+}
+@property --nb-button-trailing-icon-color {
+  syntax: "*";
+  inherits: true;
+}
+@property --nb-button-trailing-icon-radius {
+  syntax: "*";
+  inherits: true;
+}
+@property --nb-button-trailing-icon-size {
+  syntax: "*";
+  inherits: true;
+}
+@property --nb-button-bg {
+  syntax: "*";
+  inherits: false;
+}
+@property --nb-button-fg {
+  syntax: "*";
+  inherits: false;
+}
+@property --nb-button-border-color {
+  syntax: "*";
+  inherits: false;
+}
+@property --nb-button-border-width {
+  syntax: "*";
+  inherits: false;
+}
+@property --nb-button-radius {
+  syntax: "*";
+  inherits: false;
+}
+@property --nb-button-shadow {
+  syntax: "*";
+  inherits: false;
+}
+
 @layer components {
   :where(button[nbButton], a[nbButton]) {
     display: inline-flex;
@@ -49,14 +90,16 @@
     pointer-events: none;
   }
 
-  :where(button[nbButton][data-press='push'], a[nbButton][data-press='push']):hover {
-    translate: var(--nb-shadow-offset-x) var(--nb-shadow-offset-y);
-    box-shadow: none;
-  }
+  @media (hover: hover) {
+    :where(button[nbButton][data-press='push'], a[nbButton][data-press='push']):hover {
+      translate: var(--nb-shadow-offset-x) var(--nb-shadow-offset-y);
+      box-shadow: none;
+    }
 
-  :where(button[nbButton][data-press='reverse'], a[nbButton][data-press='reverse']):hover {
-    translate: calc(-1 * var(--nb-reverse-shadow-offset-x))
-      calc(-1 * var(--nb-reverse-shadow-offset-y));
+    :where(button[nbButton][data-press='reverse'], a[nbButton][data-press='reverse']):hover {
+      translate: calc(-1 * var(--nb-reverse-shadow-offset-x))
+        calc(-1 * var(--nb-reverse-shadow-offset-y));
+    }
   }
 
   :where(button[nbButton][data-size='sm'], a[nbButton][data-size='sm']) {

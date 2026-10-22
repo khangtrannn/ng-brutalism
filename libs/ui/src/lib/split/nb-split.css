@@ -1,3 +1,20 @@
+@property --nb-split-separator-gap {
+  syntax: "*";
+  inherits: true;
+}
+@property --nb-split-gap {
+  syntax: "*";
+  inherits: false;
+}
+@property --nb-split-padding {
+  syntax: "*";
+  inherits: false;
+}
+@property --nb-split-columns {
+  syntax: "*";
+  inherits: false;
+}
+
 @layer components {
   :where([data-nb-split]) {
     display: grid;

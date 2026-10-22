@@ -1,3 +1,60 @@
+@property --nb-accordion-item-radius {
+  syntax: "*";
+  inherits: false;
+}
+@property --nb-accordion-item-shadow {
+  syntax: "*";
+  inherits: false;
+}
+@property --nb-accordion-item-bg {
+  syntax: "*";
+  inherits: true;
+}
+@property --nb-accordion-item-fg {
+  syntax: "*";
+  inherits: true;
+}
+@property --nb-accordion-item-border-color {
+  syntax: "*";
+  inherits: true;
+}
+@property --nb-accordion-item-border-width {
+  syntax: "*";
+  inherits: true;
+}
+@property --nb-accordion-trigger-bg {
+  syntax: "*";
+  inherits: true;
+}
+@property --nb-accordion-trigger-fg {
+  syntax: "*";
+  inherits: true;
+}
+@property --nb-accordion-trigger-border-color {
+  syntax: "*";
+  inherits: true;
+}
+@property --nb-accordion-trigger-min-height {
+  syntax: "*";
+  inherits: true;
+}
+@property --nb-accordion-trigger-icon-size {
+  syntax: "*";
+  inherits: true;
+}
+@property --nb-accordion-trigger-icon-stroke {
+  syntax: "*";
+  inherits: true;
+}
+@property --nb-accordion-content-bg {
+  syntax: "*";
+  inherits: true;
+}
+@property --nb-accordion-content-fg {
+  syntax: "*";
+  inherits: true;
+}
+
 @layer components {
   :where(nb-accordion) {
     display: block;

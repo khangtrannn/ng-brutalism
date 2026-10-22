@@ -1,3 +1,32 @@
+@property --nb-textarea-bg {
+  syntax: "*";
+  inherits: false;
+}
+@property --nb-textarea-fg {
+  syntax: "*";
+  inherits: false;
+}
+@property --nb-textarea-border-color {
+  syntax: "*";
+  inherits: false;
+}
+@property --nb-textarea-border-width {
+  syntax: "*";
+  inherits: false;
+}
+@property --nb-textarea-radius {
+  syntax: "*";
+  inherits: false;
+}
+@property --nb-textarea-shadow {
+  syntax: "*";
+  inherits: false;
+}
+@property --nb-textarea-invalid-border-color {
+  syntax: "*";
+  inherits: false;
+}
+
 @layer components {
   :where(textarea[nbTextarea]) {
     display: flex;

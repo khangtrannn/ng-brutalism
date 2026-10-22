@@ -1,3 +1,20 @@
+@property --nb-rating-empty {
+  syntax: "*";
+  inherits: true;
+}
+@property --nb-rating-fill {
+  syntax: "*";
+  inherits: true;
+}
+@property --nb-rating-size {
+  syntax: "*";
+  inherits: true;
+}
+@property --nb-rating-tone-bg {
+  syntax: "*";
+  inherits: true;
+}
+
 @layer components {
   :where(nb-rating) {
     display: inline-flex;

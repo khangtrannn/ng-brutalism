@@ -1,3 +1,16 @@
+@property --nb-progress-fill-bg {
+  syntax: "*";
+  inherits: true;
+}
+@property --nb-progress-tone-bg {
+  syntax: "*";
+  inherits: true;
+}
+@property --nb-progress-track-bg {
+  syntax: "*";
+  inherits: false;
+}
+
 @layer components {
   :where(nb-progress) {
     display: block;

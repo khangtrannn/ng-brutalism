@@ -1,3 +1,28 @@
+@property --nb-media-frame-bg {
+  syntax: "*";
+  inherits: false;
+}
+@property --nb-media-frame-fg {
+  syntax: "*";
+  inherits: false;
+}
+@property --nb-media-frame-border-color {
+  syntax: "*";
+  inherits: false;
+}
+@property --nb-media-frame-border-width {
+  syntax: "*";
+  inherits: false;
+}
+@property --nb-media-frame-radius {
+  syntax: "*";
+  inherits: false;
+}
+@property --nb-media-frame-shadow {
+  syntax: "*";
+  inherits: false;
+}
+
 @layer components {
   :where([nbMediaFrame]) {
     position: relative;

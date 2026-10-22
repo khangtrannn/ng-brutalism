@@ -1,3 +1,32 @@
+@property --nb-input-group-bg {
+  syntax: "*";
+  inherits: false;
+}
+@property --nb-input-group-radius {
+  syntax: "*";
+  inherits: false;
+}
+@property --nb-input-group-invalid-border-color {
+  syntax: "*";
+  inherits: false;
+}
+@property --nb-input-group-border {
+  syntax: "*";
+  inherits: true;
+}
+@property --nb-input-group-prefix-bg {
+  syntax: "*";
+  inherits: true;
+}
+@property --nb-input-group-suffix-bg {
+  syntax: "*";
+  inherits: true;
+}
+@property --nb-input-group-addon-bg {
+  syntax: "*";
+  inherits: true;
+}
+
 @layer components {
   :where(nb-input-group) {
     position: relative;

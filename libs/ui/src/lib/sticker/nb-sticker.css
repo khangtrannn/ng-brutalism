@@ -1,3 +1,68 @@
+@property --nb-sticker-fill {
+  syntax: "*";
+  inherits: true;
+}
+@property --nb-sticker-ink {
+  syntax: "*";
+  inherits: true;
+}
+@property --nb-sticker-font-size {
+  syntax: "*";
+  inherits: true;
+}
+@property --nb-sticker-min-block-size {
+  syntax: "*";
+  inherits: true;
+}
+@property --nb-sticker-padding-block {
+  syntax: "*";
+  inherits: true;
+}
+@property --nb-sticker-padding-inline {
+  syntax: "*";
+  inherits: true;
+}
+@property --nb-sticker-rotate {
+  syntax: "*";
+  inherits: true;
+}
+@property --nb-sticker-scale {
+  syntax: "*";
+  inherits: true;
+}
+@property --nb-sticker-shadow {
+  syntax: "*";
+  inherits: true;
+}
+@property --nb-sticker-shadow-x {
+  syntax: "*";
+  inherits: true;
+}
+@property --nb-sticker-shadow-y {
+  syntax: "*";
+  inherits: true;
+}
+@property --nb-sticker-size {
+  syntax: "*";
+  inherits: true;
+}
+@property --nb-sticker-stroke-width {
+  syntax: "*";
+  inherits: true;
+}
+@property --nb-sticker-tone-bg {
+  syntax: "*";
+  inherits: true;
+}
+@property --nb-sticker-tone-fg {
+  syntax: "*";
+  inherits: true;
+}
+@property --nb-sticker-face-size {
+  syntax: "*";
+  inherits: true;
+}
+
 @layer components {
   :where([data-nb-sticker]) {
     --nb-sticker-min-block-size: 8.75rem;

@@ -1,8 +1,11 @@
+@property --nb-cluster-separator-gap {
+  syntax: "*";
+  inherits: true;
+}
 @property --nb-cluster-gap {
   syntax: "*";
   inherits: false;
 }
-
 @property --nb-cluster-padding {
   syntax: "*";
   inherits: false;

@@ -1,3 +1,12 @@
+@property --nb-sticker-face-ink {
+  syntax: "*";
+  inherits: true;
+}
+@property --nb-sticker-face-size {
+  syntax: "*";
+  inherits: true;
+}
+
 @layer components {
   :where([data-nb-sticker-face]) {
     --nb-sticker-face-ink: var(--nb-sticker-ink, #050505);

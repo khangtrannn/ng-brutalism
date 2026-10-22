@@ -1,3 +1,48 @@
+@property --nb-chip-icon-size {
+  syntax: "*";
+  inherits: true;
+}
+@property --nb-chip-bg {
+  syntax: "*";
+  inherits: false;
+}
+@property --nb-chip-fg {
+  syntax: "*";
+  inherits: false;
+}
+@property --nb-chip-border-color {
+  syntax: "*";
+  inherits: false;
+}
+@property --nb-chip-border-width {
+  syntax: "*";
+  inherits: false;
+}
+@property --nb-chip-radius {
+  syntax: "*";
+  inherits: false;
+}
+@property --nb-chip-shadow {
+  syntax: "*";
+  inherits: false;
+}
+@property --nb-chip-padding {
+  syntax: "*";
+  inherits: false;
+}
+@property --nb-chip-group-gap {
+  syntax: "*";
+  inherits: false;
+}
+@property --nb-chip-group-tracking {
+  syntax: "*";
+  inherits: false;
+}
+@property --nb-chip-group-text-transform {
+  syntax: "*";
+  inherits: false;
+}
+
 @layer components {
   :where(span[nbChip]) {
     display: inline-flex;

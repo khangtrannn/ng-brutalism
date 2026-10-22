@@ -1,3 +1,12 @@
+@property --nb-stack-separator-gap {
+  syntax: "*";
+  inherits: true;
+}
+@property --nb-stack-gap {
+  syntax: "*";
+  inherits: false;
+}
+
 @layer components {
   :where([data-nb-stack]) {
     display: flex;

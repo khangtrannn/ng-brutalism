@@ -1,3 +1,52 @@
+@property --nb-text-color {
+  syntax: "*";
+  inherits: false;
+}
+@property --nb-text-size {
+  syntax: "*";
+  inherits: false;
+}
+@property --nb-text-weight {
+  syntax: "*";
+  inherits: false;
+}
+@property --nb-text-tracking {
+  syntax: "*";
+  inherits: false;
+}
+@property --nb-text-transform {
+  syntax: "*";
+  inherits: false;
+}
+@property --nb-text-measure {
+  syntax: "*";
+  inherits: false;
+}
+@property --nb-text-line-height {
+  syntax: "*";
+  inherits: false;
+}
+@property --nb-underline-width {
+  syntax: "*";
+  inherits: false;
+}
+@property --nb-underline-height {
+  syntax: "*";
+  inherits: false;
+}
+@property --nb-underline-gap {
+  syntax: "*";
+  inherits: false;
+}
+@property --nb-underline-radius {
+  syntax: "*";
+  inherits: false;
+}
+@property --nb-underline-color {
+  syntax: "*";
+  inherits: false;
+}
+
 @layer base {
   :where([data-nb-text]) {
     color: var(--nb-text-color, var(--nb-foreground));

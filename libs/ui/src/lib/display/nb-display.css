@@ -1,3 +1,44 @@
+@property --nb-display-color {
+  syntax: "*";
+  inherits: false;
+}
+@property --nb-display-size {
+  syntax: "*";
+  inherits: false;
+}
+@property --nb-display-weight {
+  syntax: "*";
+  inherits: false;
+}
+@property --nb-display-tracking {
+  syntax: "*";
+  inherits: false;
+}
+@property --nb-display-leading {
+  syntax: "*";
+  inherits: false;
+}
+@property --nb-underline-width {
+  syntax: "*";
+  inherits: false;
+}
+@property --nb-underline-height {
+  syntax: "*";
+  inherits: false;
+}
+@property --nb-underline-gap {
+  syntax: "*";
+  inherits: false;
+}
+@property --nb-underline-radius {
+  syntax: "*";
+  inherits: false;
+}
+@property --nb-underline-color {
+  syntax: "*";
+  inherits: false;
+}
+
 @layer components {
   :where([data-nb-display]) {
     color: var(--nb-display-color, currentColor);

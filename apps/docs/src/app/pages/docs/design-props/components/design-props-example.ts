@@ -24,7 +24,7 @@ import { DocsCodeBlock } from '@ng-brutalism/docs-ui';
 export class DesignPropsExample {
   protected readonly inputCode = `<nb-card radius="xl">...</nb-card>`;
 
-  protected readonly cssCode = `.pricing-cards {
+  protected readonly cssCode = `.pricing-cards nb-card {
   --nb-card-radius: var(--nb-radius-xl);
 }`;
 }

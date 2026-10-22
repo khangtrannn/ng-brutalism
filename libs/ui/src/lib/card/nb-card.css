@@ -1,3 +1,28 @@
+@property --nb-card-bg {
+  syntax: "*";
+  inherits: false;
+}
+@property --nb-card-fg {
+  syntax: "*";
+  inherits: false;
+}
+@property --nb-card-border-color {
+  syntax: "*";
+  inherits: false;
+}
+@property --nb-card-border-width {
+  syntax: "*";
+  inherits: false;
+}
+@property --nb-card-radius {
+  syntax: "*";
+  inherits: false;
+}
+@property --nb-card-shadow {
+  syntax: "*";
+  inherits: false;
+}
+
 @layer components {
   :where(nb-card) {
     display: flex;

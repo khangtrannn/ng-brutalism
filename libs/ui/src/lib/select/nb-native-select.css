@@ -1,3 +1,16 @@
+@property --nb-select-border-width {
+  syntax: "*";
+  inherits: false;
+}
+@property --nb-select-shadow {
+  syntax: "*";
+  inherits: false;
+}
+@property --nb-select-invalid-border-color {
+  syntax: "*";
+  inherits: false;
+}
+
 @layer components {
   :where(select[nbSelect]) {
     display: flex;

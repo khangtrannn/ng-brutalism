@@ -1,3 +1,28 @@
+@property --nb-icon-button-bg {
+  syntax: "*";
+  inherits: false;
+}
+@property --nb-icon-button-fg {
+  syntax: "*";
+  inherits: false;
+}
+@property --nb-icon-button-border-color {
+  syntax: "*";
+  inherits: false;
+}
+@property --nb-icon-button-border-width {
+  syntax: "*";
+  inherits: false;
+}
+@property --nb-icon-button-radius {
+  syntax: "*";
+  inherits: false;
+}
+@property --nb-icon-button-shadow {
+  syntax: "*";
+  inherits: false;
+}
+
 @layer components {
   :where(button[nbIconButton]) {
     display: inline-flex;
@@ -29,9 +54,11 @@
     flex-shrink: 0;
   }
 
-  :where(button[nbIconButton]):hover {
-    translate: var(--nb-shadow-offset-x) var(--nb-shadow-offset-y);
-    box-shadow: none;
+  @media (hover: hover) {
+    :where(button[nbIconButton]):hover {
+      translate: var(--nb-shadow-offset-x) var(--nb-shadow-offset-y);
+      box-shadow: none;
+    }
   }
 
   :where(button[nbIconButton]):focus-visible {
@@ -46,7 +73,7 @@
   }
 
   :where(button[nbIconButton][data-shape='circle']) {
-    border-radius: 9999px;
+    border-radius: var(--nb-icon-button-radius, 9999px);
   }
 
   :where(button[nbIconButton][data-size='sm']) {

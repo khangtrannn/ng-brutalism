@@ -1,3 +1,28 @@
+@property --nb-image-card-bg {
+  syntax: "*";
+  inherits: false;
+}
+@property --nb-image-card-fg {
+  syntax: "*";
+  inherits: false;
+}
+@property --nb-image-card-radius {
+  syntax: "*";
+  inherits: false;
+}
+@property --nb-image-card-shadow {
+  syntax: "*";
+  inherits: false;
+}
+@property --nb-image-card-border-color {
+  syntax: "*";
+  inherits: true;
+}
+@property --nb-image-card-border-width {
+  syntax: "*";
+  inherits: true;
+}
+
 @layer components {
   :where(nb-image-card) {
     display: flex;

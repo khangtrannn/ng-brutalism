@@ -10,7 +10,11 @@ import { DocsCodeBlock } from '@ng-brutalism/docs-ui';
         Choosing a scope
       </h2>
       <p class="mb-4 font-medium">
-        Pick the narrowest rule that gets the job done:
+        Pick the narrowest rule that gets the job done. Component variables
+        such as <code class="font-mono">--nb-card-radius</code> apply to the
+        element they are set on, so select the component itself; to restyle a
+        whole section or the whole app, set the theme token
+        (<code class="font-mono">--nb-radius</code>) instead:
       </p>
       <docs-code-block title="Scopes" [code]="scopesCode" />
     </section>
@@ -25,6 +29,6 @@ export class CustomizationScope {
 }
 
 :root {
-  --nb-card-radius: var(--nb-radius-xl);
+  --nb-radius: var(--nb-radius-xl);
 }`;
 }

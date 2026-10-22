@@ -1,3 +1,28 @@
+@property --nb-callout-bg {
+  syntax: "*";
+  inherits: false;
+}
+@property --nb-callout-fg {
+  syntax: "*";
+  inherits: false;
+}
+@property --nb-callout-border-color {
+  syntax: "*";
+  inherits: false;
+}
+@property --nb-callout-border-width {
+  syntax: "*";
+  inherits: false;
+}
+@property --nb-callout-radius {
+  syntax: "*";
+  inherits: false;
+}
+@property --nb-callout-shadow {
+  syntax: "*";
+  inherits: false;
+}
+
 @layer components {
   :where([data-nb-callout]) {
     position: relative;
