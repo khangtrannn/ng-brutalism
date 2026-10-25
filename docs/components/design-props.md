@@ -31,8 +31,8 @@ numbered, and there's no separate layout runtime (see §6).
 Each scalar category (radius/shadow/border/gap/padding) follows one rule
 end‑to‑end: **the Angular input and CSS customization write the same public
 variable**. There's no `--*-input`/`--*-default` split — see
-[token-customization.md §9–11](../architecture/token-customization.md) for why
-that was rejected.
+[token-customization.md §9](../architecture/token-customization.md#9-why-this-design)
+for the options that were rejected.
 
 ```html
 <nb-card radius="xl" shadow="hard" border="strong" tone="mint">…</nb-card>
@@ -138,74 +138,11 @@ scope for this pass — CSS customization still works today via `style="--nb-sel
 
 ---
 
-## 4. Two tiers of customization
+## 4–5. Customizing with CSS
 
-**Tier 1 — standard inputs.** The ergonomic path: an Angular `input()` writes
-a public CSS variable. Use this for one-off, per-element overrides. Everything
-in §3 is Tier 1.
-
-**Tier 2 — CSS-only hooks.** Advanced, variable-only knobs with no matching
-input, by design — usually because the value is too fine-grained for an
-ergonomic scale, or because it's internal anatomy rather than a public slot.
-Reach for these with a `style` attribute or a scoped stylesheet rule.
-
-| Hook | Why it's Tier 2 |
-|---|---|
-| `--nb-underline-gap`, `--nb-title-wave-gap` | Fine-grained decorative tuning — an enum wouldn't add clarity over a raw value. |
-| `--nb-sticker-shadow` | It's a **fill color**, not elevation — despite the name, it doesn't fit the `shadow` category. |
-| Checkbox focus-visible ring | It's a focus ring, not customizable elevation; no `shadow` input is exposed. |
-| Media-item internal anatomy (`--nb-media-item-radius`, `-gap`) | No fallback comma — internal to a `variant`/`size` combination, not a public slot. |
-| `--nb-select-radius` / `-shadow` on `NbNativeSelect` | Public slot, ergonomic input intentionally deferred — see §3.1. |
-
-The rule that tells a real gap from an intentional Tier 2 hook (the audit
-methodology behind §3) lives in
-[design-props-plan.md §4](../_archive/design-props-plan.md#4-audit-methodology-so-its-reproducible--and-why-no-auto-test):
-a public slot only becomes a Tier 1 candidate when it's a **standard
-category**, written with a **fallback comma**, on a **non-leaf** primitive.
-
-### Minimum CSS-var hook contract
-
-Tier-1 inputs are optional ergonomics; the **hooks** beneath them are a
-contract. Every **Surface/box** and **Interactive** component exposes the same
-color-surface hook set, so it can be re-themed from CSS even where no ergonomic
-input exists:
-
-`--nb-<component>-bg` · `-fg` · `-border-color` · `-border-width` · `-radius` ·
-`-shadow`  (`accordion` exposes the set on its `accordion-item` sub-part.)
-
-**Anatomy hooks — size-preset `height`/`width`/`min-height`, `padding` — are
-deliberately _not_ in the contract.** They stay hardcoded per size preset (this
-is why `button { height: 2.75rem }` and `status-dot { width: 12px }` expose no
-hook) and graduate to a public `--nb-<component>-*` slot only on a real use
-case. That keeps hook coverage principled rather than arbitrary.
-
-Two documented partials expose less than the full set on purpose:
-
-| Component | Exposes | Why less than the full set |
-|---|---|---|
-| `checkbox` | `bg`, `fg`, `radius` | small control — its border/shadow are a focus ring, not customizable elevation |
-| `input-group` | `bg`, `radius`, `border` (color) | wrapper — `shadow`/`border-width` stay CSS-only; border is a single color hook |
-
-The contract is enforced by `docs:tokens:check` (the `HOOK_CONTRACT` map in
-`apps/docs/scripts/generate-token-reference.mjs`): drop a required hook and
-generation fails until the hook returns or the exemption is recorded both here
-and in the map.
-
----
-
-## 5. Inputs vs CSS variables vs Tailwind
-
-Three layers, three jobs — this is the short version; the full rationale and
-recipes are in
-[composition-philosophy.md](composition-philosophy.md#the-three-layers):
-
-- **Inputs** (this doc) — the shared design vocabulary. Use for one-off,
-  per-element decisions.
-- **CSS variables** — the same vocabulary, scoped instead of per-element. Use
-  for theme/recipe customization without adding a one-off input.
-- **Tailwind** — page-specific layout and art direction (`w-full`,
-  `mx-auto`, `absolute`, arbitrary geometry). ng-brutalism never competes with
-  this layer — see §6.
+How inputs, CSS variables, roles, tone and Tailwind fit together, including
+every use case and the precedence order, is defined in one place:
+[token-customization.md](../architecture/token-customization.md).
 
 ---
 

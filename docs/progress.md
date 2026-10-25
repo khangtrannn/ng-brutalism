@@ -24,9 +24,10 @@ For history and details, read the domain's own `progress.md`.
 
 ## Components
 **Status:** Improvement-plan Phases 1–4 landed. Forms architecture consolidated in ADR 0004 (2026-07-15): model-based forms-runtime-free core re-affirmed, plus a new `forms-compat` secondary entry point (CVA bridge for `formControlName`/`ngModel` + field bridge) landed 2026-07-15, closing v0.3.0 scope; Angular 22 only (`^22.0.0`). ADRs 0002/0003 archived.
-**Last action:** Every component now registers each public `--nb-<component>-*` var with `@property` (nb-surface pattern): `inherits: false` for host-read design props, `inherits: true` for vars read by descendants or set on wrappers. Registration guard spec + Chromium contract specs added (65 green). Docs customization pages updated: component vars no longer inherit from ancestors; theme tokens are the section-wide scope.
-**Next:** Ship 0.3.0 (`smoke:ui:ng22` on Node ≥22.22.3), then audit Phase 1 (Vitest browser-mode CSS contract suite) → Phase 2 P0 fixes. 5 decisions pending in the audit.
-→ Plan: `docs/release/v0.3-angular-22-plan.md` · ADR: `docs/adr/0004-forms-support.md` · Audit/plan: `docs/architecture/library-audit-2026-10-19.md` · Peer comparison: `docs/architecture/architecture-comparison-2026-10-19.md` · Arch: `docs/architecture/token-customization.md`
+**Last action:** Token customization v2.1 designed and proposed in `docs/architecture/token-customization.md`: roles + root-declared component tokens + inputs + local tone, four-block stylesheet contract; prototype verified in Chromium/Firefox/WebKit. Interim `@property`/forwarder work discarded; all older token docs deleted. Shipped CSS is still v1 (`fd5371f`).
+Theming goals (community themes, validator, playground) added in `docs/architecture/theming.md`, scoped to roles only; token doc gained §4.3 theme contract and decisions §14.6–8.
+**Next:** Decide the open decisions (§14) → pilot v2.1 on Button, Input, Accordion with contract specs → roll out by archetype. Ship 0.3.0 (`smoke:ui:ng22` on Node ≥22.22.3), then audit Phase 2 P0 fixes. 5 decisions pending in the audit.
+→ Plan: `docs/release/v0.3-angular-22-plan.md` · ADR: `docs/adr/0004-forms-support.md` · Audit/plan: `docs/architecture/library-audit-2026-10-19.md` · Token customization (single source): `docs/architecture/token-customization.md`
 
 ---
 

@@ -149,7 +149,7 @@ const SUFFIX_PSEUDO_PROPERTY = [
   ['-height', 'width'],
 ];
 
-// Minimum public CSS-var hook contract (design-props.md §4). Surface/box and
+// Minimum public CSS-var hook contract (docs/architecture/token-customization.md). Surface/box and
 // interactive archetypes must expose the color-surface hook set so a consumer
 // can retheme them from CSS without an ergonomic input. Anatomy hooks (size
 // presets, min-height, padding) are deliberately Tier 2 and NOT part of this
@@ -180,7 +180,7 @@ const HOOK_CONTRACT = {
   chip: contractHooks('chip', SURFACE_HOOKS),
   // accordion exposes the surface set on its item sub-part, not the root.
   accordion: contractHooks('accordion-item', SURFACE_HOOKS),
-  // Documented partials - see design-props.md §4:
+  // Documented partials - see docs/architecture/token-customization.md:
   //   checkbox: a small control; border/shadow would be a focus ring, not
   //             elevation, so only bg/fg/radius are public hooks.
   //   input-group: a wrapper; shadow/border-width stay CSS-only, border is a
@@ -221,14 +221,14 @@ componentTokens.theme = themeTokens;
 const hookViolations = checkHookContract(componentTokens);
 if (hookViolations.length > 0) {
   console.error(
-    '\nMinimum CSS-var hook contract violated (design-props.md §4):',
+    '\nMinimum CSS-var hook contract violated (docs/architecture/token-customization.md):',
   );
   for (const { slug, missing } of hookViolations) {
     console.error(`  ${slug}: missing ${missing.join(', ')}`);
   }
   console.error(
     '\nExpose the missing public --nb-<component>-* hook(s), or record the ' +
-      'exemption in design-props.md §4 and the HOOK_CONTRACT map above.\n',
+      'exemption in docs/architecture/token-customization.md and the HOOK_CONTRACT map above.\n',
   );
   process.exit(1);
 }

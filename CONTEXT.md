@@ -26,14 +26,10 @@ The build approach for the Showcase phase: rough versions of all four new compon
 ### Nb prefix
 The library-wide TypeScript export prefix (`NbButton`, `NbCard`, etc.) and CSS variable prefix (`--nb-border`, `--nb-main`). Originally derived from "Neo-Brutalism"; now treated as an opaque brand token. With the package renamed to `@ng-brutalism/ui`, `Nb` reads as the initials of "ng-brutalism." Component selectors also use `nb-*` (e.g., `nb-card`) — formerly `neo-*`, renamed pre-v0.1.0 for cross-surface consistency.
 
-### NbButton CSS variable override
-`NbButton` composes `NbToneCapability`, which reflects `tone` as
-`data-nb-tone`. Shared tone CSS maps that attribute to internal `--_nb-tone-*`
-slots, and `nb-button.css` consumes those slots behind public hooks such as
-`--nb-button-bg`, `--nb-button-fg`, and `--nb-button-border-color`. Scalar
-inputs such as `radius`, `shadow`, and `border` write public component
-variables (`--nb-button-radius`, `--nb-button-shadow`,
-`--nb-button-border-width`) rather than final inline properties.
+### Component CSS variables (`--nb-<component>-*`)
+How components expose and consume CSS variables, including tone, roles,
+inputs and precedence, is defined only in
+`docs/architecture/token-customization.md`.
 
 ### CSS individual transform properties for animation
 When replicating a Framer Motion `whileHover` that combines a persistent `scale` with a one-shot keyframe `rotate` array, use CSS individual transform properties — **not** the `transform` shorthand — so they stay independent:

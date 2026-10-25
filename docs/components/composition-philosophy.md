@@ -87,42 +87,15 @@ For the default action style, omit `tone` (it resolves to `primary`):
 <button nbButton>Save</button>
 ```
 
-## Inputs, CSS Variables, And Classes
+## Inputs, CSS variables and classes
 
-Inputs are the shared vocabulary. Reach for them when the decision should read
-the same everywhere:
+- **Inputs** are the shared vocabulary for per-element design decisions.
+- **CSS variables** cover component- and section-level customization.
+- **Classes** handle layout escape hatches and recipe composition.
 
-```html
-<div nbSurface tone="cream" radius="xl" shadow="hard"></div>
-```
-
-CSS variables are the local art-direction layer. Use them when a recipe needs a
-specific color, spacing, or mark treatment without adding a one-off public API:
-
-```html
-<div nbSurface style="--nb-surface-bg: #faf6f0"></div>
-<h1 nbDisplay underline="bar" class="[--nb-underline-gap:1.25rem]"></h1>
-```
-
-Classes are for layout escape hatches and recipe composition:
-
-```html
-<img src="/podcast-card/avatar.png" alt="Kai Nguyen" class="size-30 shrink-0" />
-<div nbMediaFrame ratio="1/1" radius="lg"><img src="/trip.jpg" alt="" /></div>
-<nb-media-item icon="/icons/clock.svg">45 MIN</nb-media-item>
-```
-
-## Component-specific CSS variables
-
-Every primitive reads a namespaced public variable set
-(`--nb-surface-bg`, `--nb-button-radius`, `--nb-media-frame-shadow`, …) from its
-CSS. These are the customization/debug contract: inspect them in devtools,
-document them, and override per token. The vocabulary (`tone`, `radius`,
-`shadow`, `border`, `gap`, `padding`) is defined once in
-`libs/ui/src/lib/tokens/` so a token means the same thing across every primitive.
-See [token-customization.md](../architecture/token-customization.md) for the
-current CSS-first token architecture. The completed hardening rollout lives in
-[token-customization-hardening.md](../_archive/token-customization-hardening.md).
+The rules and examples for the first two are in
+[token-customization.md](../architecture/token-customization.md). This doc
+only covers the Tailwind boundary.
 
 > Note: `border` means **outline strength** library-wide. Line placement between
 > layout regions is `divider` (e.g. `nbSection divider="top"`); the line style
