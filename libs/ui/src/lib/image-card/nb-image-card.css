@@ -1,62 +1,51 @@
-@property --nb-image-card-bg {
-  syntax: "*";
-  inherits: false;
-}
-@property --nb-image-card-fg {
-  syntax: "*";
-  inherits: false;
-}
-@property --nb-image-card-radius {
-  syntax: "*";
-  inherits: false;
-}
-@property --nb-image-card-shadow {
-  syntax: "*";
-  inherits: false;
-}
-@property --nb-image-card-border-color {
-  syntax: "*";
-  inherits: true;
-}
-@property --nb-image-card-border-width {
-  syntax: "*";
-  inherits: true;
-}
-
 @layer components {
-  :where(nb-image-card) {
+  /* Tokens */
+  :where([data-nb-image-card]) {
+    --nb-image-card-bg: var(--nb-background);
+    --nb-image-card-fg: var(--nb-foreground);
+    --nb-image-card-border-color: var(--nb-border);
+    --nb-image-card-border-width: var(--nb-border-width);
+    --nb-image-card-radius: var(--nb-radius-box);
+    --nb-image-card-shadow: var(
+      --nb-shadow-box,
+      var(--nb-shadow-box-offset) var(--nb-shadow-box-offset) 0 0
+        var(--nb-shadow)
+    );
+    --nb-image-card-font-weight: var(--nb-font-weight-normal);
+
+    --nb-image-card-caption-padding-x: 1.5rem;
+    --nb-image-card-caption-padding-y: 1rem;
+    --nb-image-card-caption-font-size: 1rem;
+    --nb-image-card-caption-font-weight: var(--nb-font-weight-bold);
+  }
+
+  /* Anatomy */
+  :where([data-nb-image-card]) {
     display: flex;
     flex-direction: column;
     overflow: hidden;
-    font-weight: 500;
-    border-style: solid;
-    background: var(--nb-image-card-bg, var(--nb-tone-bg, var(--nb-background)));
-    color: var(--nb-image-card-fg, var(--nb-tone-fg, var(--nb-foreground)));
-    border-color: var(
-      --nb-image-card-border-color,
-      var(--nb-tone-border, var(--nb-border))
-    );
-    border-width: var(--nb-image-card-border-width, var(--nb-border-width));
-    border-radius: var(--nb-image-card-radius, var(--nb-radius));
-    box-shadow: var(
-      --nb-image-card-shadow,
-      var(--nb-shadow-offset-x) var(--nb-shadow-offset-y) 0 0 var(--nb-shadow)
-    );
+    font-weight: var(--nb-image-card-font-weight);
+    background: var(--nb-tone-bg, var(--nb-image-card-bg));
+    color: var(--nb-tone-fg, var(--nb-image-card-fg));
+    border: var(--nb-image-card-border-width) solid
+      var(--nb-tone-border, var(--nb-image-card-border-color));
+    border-radius: var(--nb-image-card-radius);
+    box-shadow: var(--nb-image-card-shadow);
   }
 
-  :where(nb-image-card > [data-slot='image-card-image']) {
+  :where([data-nb-image-card] > [data-slot='image-card-image']) {
     display: block;
     width: 100%;
     height: auto;
   }
 
-  :where(nb-image-card-caption) {
-    padding: 1rem 1.5rem;
-    border-top-style: solid;
-    border-top-width: var(--nb-image-card-border-width, var(--nb-border-width));
-    border-top-color: var(--nb-image-card-border-color, var(--nb-border));
+  :where([data-nb-image-card] [data-slot='image-card-caption']) {
+    padding: var(--nb-image-card-caption-padding-y)
+      var(--nb-image-card-caption-padding-x);
+    border-top: var(--nb-image-card-border-width) solid
+      var(--nb-image-card-border-color);
     text-align: center;
-    font-size: 1rem;
-    font-weight: 700;
+    font-size: var(--nb-image-card-caption-font-size);
+    font-weight: var(--nb-image-card-caption-font-weight);
   }
 }

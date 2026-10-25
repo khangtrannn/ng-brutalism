@@ -1,105 +1,69 @@
-@property --nb-media-frame-bg {
-  syntax: "*";
-  inherits: false;
-}
-@property --nb-media-frame-fg {
-  syntax: "*";
-  inherits: false;
-}
-@property --nb-media-frame-border-color {
-  syntax: "*";
-  inherits: false;
-}
-@property --nb-media-frame-border-width {
-  syntax: "*";
-  inherits: false;
-}
-@property --nb-media-frame-radius {
-  syntax: "*";
-  inherits: false;
-}
-@property --nb-media-frame-shadow {
-  syntax: "*";
-  inherits: false;
-}
-
 @layer components {
-  :where([nbMediaFrame]) {
+  /* Tokens */
+  :where([data-nb-media-frame]) {
+    --nb-media-frame-bg: var(--nb-surface);
+    --nb-media-frame-fg: var(--nb-surface-foreground);
+    --nb-media-frame-border-color: var(--nb-border);
+    --nb-media-frame-border-width: var(--nb-border-width);
+    --nb-media-frame-radius: var(--nb-radius-box);
+    --nb-media-frame-shadow: none;
+    --nb-media-frame-aspect-ratio: auto;
+    --nb-media-frame-object-fit: cover;
+  }
+
+  /* Variants */
+  :where([data-nb-media-frame][data-ratio='1/1']) {
+    --nb-media-frame-aspect-ratio: 1 / 1;
+  }
+  :where([data-nb-media-frame][data-ratio='3/4']) {
+    --nb-media-frame-aspect-ratio: 3 / 4;
+  }
+  :where([data-nb-media-frame][data-ratio='4/3']) {
+    --nb-media-frame-aspect-ratio: 4 / 3;
+  }
+  :where([data-nb-media-frame][data-ratio='3/2']) {
+    --nb-media-frame-aspect-ratio: 3 / 2;
+  }
+  :where([data-nb-media-frame][data-ratio='16/9']) {
+    --nb-media-frame-aspect-ratio: 16 / 9;
+  }
+  :where([data-nb-media-frame][data-ratio='21/9']) {
+    --nb-media-frame-aspect-ratio: 21 / 9;
+  }
+
+  :where([data-nb-media-frame][data-fit='contain']) {
+    --nb-media-frame-object-fit: contain;
+  }
+  :where([data-nb-media-frame][data-fit='fill']) {
+    --nb-media-frame-object-fit: fill;
+  }
+
+  /* Anatomy */
+  :where([data-nb-media-frame]) {
     position: relative;
     isolation: isolate;
     display: block;
     overflow: hidden;
-    border-style: solid;
-    background: var(--nb-media-frame-bg, var(--nb-tone-bg, var(--nb-surface)));
-    color: var(
-      --nb-media-frame-fg,
-      var(--nb-tone-fg, var(--nb-surface-foreground))
-    );
-    border-color: var(
-      --nb-media-frame-border-color,
-      var(--nb-tone-border, var(--nb-border))
-    );
-    border-width: var(--nb-media-frame-border-width, var(--nb-border-width));
-    border-radius: var(--nb-media-frame-radius, var(--nb-radius));
-    box-shadow: var(--nb-media-frame-shadow, none);
+    aspect-ratio: var(--nb-media-frame-aspect-ratio);
+    background: var(--nb-tone-bg, var(--nb-media-frame-bg));
+    color: var(--nb-tone-fg, var(--nb-media-frame-fg));
+    border: var(--nb-media-frame-border-width) solid
+      var(--nb-tone-border, var(--nb-media-frame-border-color));
+    border-radius: var(--nb-media-frame-radius);
+    box-shadow: var(--nb-media-frame-shadow);
   }
 
-  :where([nbMediaFrame] > img),
-  :where([nbMediaFrame] > video) {
-    width: 100%;
-    height: 100%;
-  }
-
-  :where([nbMediaFrame] > picture) {
+  :where([data-nb-media-frame] > picture) {
     display: block;
     width: 100%;
     height: 100%;
   }
 
-  :where([nbMediaFrame] > picture > img) {
+  :where([data-nb-media-frame] > img),
+  :where([data-nb-media-frame] > video),
+  :where([data-nb-media-frame] > picture > img) {
     width: 100%;
     height: 100%;
-  }
-
-  :where([nbMediaFrame][data-ratio='1/1']) {
-    aspect-ratio: 1 / 1;
-  }
-
-  :where([nbMediaFrame][data-ratio='3/4']) {
-    aspect-ratio: 3 / 4;
-  }
-
-  :where([nbMediaFrame][data-ratio='4/3']) {
-    aspect-ratio: 4 / 3;
-  }
-
-  :where([nbMediaFrame][data-ratio='3/2']) {
-    aspect-ratio: 3 / 2;
-  }
-
-  :where([nbMediaFrame][data-ratio='16/9']) {
-    aspect-ratio: 16 / 9;
-  }
-
-  :where([nbMediaFrame][data-ratio='21/9']) {
-    aspect-ratio: 21 / 9;
-  }
-
-  :where([nbMediaFrame][data-fit='cover'] > img),
-  :where([nbMediaFrame][data-fit='cover'] > video),
-  :where([nbMediaFrame][data-fit='cover'] > picture > img) {
-    object-fit: cover;
-  }
-
-  :where([nbMediaFrame][data-fit='contain'] > img),
-  :where([nbMediaFrame][data-fit='contain'] > video),
-  :where([nbMediaFrame][data-fit='contain'] > picture > img) {
-    object-fit: contain;
-  }
-
-  :where([nbMediaFrame][data-fit='fill'] > img),
-  :where([nbMediaFrame][data-fit='fill'] > video),
-  :where([nbMediaFrame][data-fit='fill'] > picture > img) {
-    object-fit: fill;
+    object-fit: var(--nb-media-frame-object-fit);
   }
 }

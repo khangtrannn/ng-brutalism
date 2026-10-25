@@ -556,6 +556,10 @@ across all three:
    **Step 3 complete.**
 4. The rest by archetype: surfaces → controls and fields → compound →
    layout and type.
+   **Surfaces done 2026-10-25:** surface, card, callout, media-frame,
+   image-card, each with a 3-engine contract spec and no rendered change.
+   Card spacing is one token, `--nb-card-padding`. Dialog moves with the
+   compound group.
 5. Docs generator, docs-site pages and CHANGELOG renames.
 6. Themes: move the shipped theme files from `:root` to
    `[data-nb-theme]` (§4.3). The rest of the theming roadmap is in

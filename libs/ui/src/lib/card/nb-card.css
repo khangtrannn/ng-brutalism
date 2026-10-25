@@ -1,107 +1,102 @@
-@property --nb-card-bg {
-  syntax: "*";
-  inherits: false;
-}
-@property --nb-card-fg {
-  syntax: "*";
-  inherits: false;
-}
-@property --nb-card-border-color {
-  syntax: "*";
-  inherits: false;
-}
-@property --nb-card-border-width {
-  syntax: "*";
-  inherits: false;
-}
-@property --nb-card-radius {
-  syntax: "*";
-  inherits: false;
-}
-@property --nb-card-shadow {
-  syntax: "*";
-  inherits: false;
-}
-
 @layer components {
-  :where(nb-card) {
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-    padding-block: 1.5rem;
-    font-weight: 500;
-    border-style: solid;
-    background: var(--nb-card-bg, var(--nb-tone-bg, var(--nb-background)));
-    color: var(--nb-card-fg, var(--nb-tone-fg, var(--nb-foreground)));
-    border-color: var(
-      --nb-card-border-color,
-      var(--nb-tone-border, var(--nb-border))
+  /* Tokens */
+  :where([data-nb-card]) {
+    --nb-card-bg: var(--nb-background);
+    --nb-card-fg: var(--nb-foreground);
+    --nb-card-border-color: var(--nb-border);
+    --nb-card-border-width: var(--nb-border-width);
+    --nb-card-radius: var(--nb-radius-box);
+    --nb-card-shadow: var(
+      --nb-shadow-box,
+      var(--nb-shadow-box-offset) var(--nb-shadow-box-offset) 0 0
+        var(--nb-shadow)
     );
-    border-width: var(--nb-card-border-width, var(--nb-border-width));
-    border-radius: var(--nb-card-radius, var(--nb-radius));
-    box-shadow: var(
-      --nb-card-shadow,
-      var(--nb-shadow-offset-x) var(--nb-shadow-offset-y) 0 0 var(--nb-shadow)
-    );
+    /* Spacing between sections, and inside each one. */
+    --nb-card-padding: 1.5rem;
+    --nb-card-gap: 1.5rem;
+    --nb-card-font-weight: var(--nb-font-weight-normal);
+
+    --nb-card-header-gap: 0.375rem;
+    --nb-card-title-font-weight: var(--nb-font-weight-bold);
+    --nb-card-title-line-height: 1;
+    --nb-card-description-font-size: 0.875rem;
+    --nb-card-description-font-weight: var(--nb-font-weight-normal);
+    --nb-card-actions-gap: 0.75rem;
+    --nb-card-footer-gap: 1rem;
   }
 
-  :where(nb-card-header) {
+  /* Anatomy */
+  :where([data-nb-card]) {
+    display: flex;
+    flex-direction: column;
+    gap: var(--nb-card-gap);
+    padding-block: var(--nb-card-padding);
+    font-weight: var(--nb-card-font-weight);
+    background: var(--nb-tone-bg, var(--nb-card-bg));
+    color: var(--nb-tone-fg, var(--nb-card-fg));
+    border: var(--nb-card-border-width) solid
+      var(--nb-tone-border, var(--nb-card-border-color));
+    border-radius: var(--nb-card-radius);
+    box-shadow: var(--nb-card-shadow);
+  }
+
+  :where([data-nb-card] [data-slot='card-header']) {
     display: grid;
     grid-template-rows: auto auto;
     grid-auto-rows: min-content;
     align-items: flex-start;
-    gap: 0.375rem;
-    padding-inline: 1.5rem;
+    gap: var(--nb-card-header-gap);
+    padding-inline: var(--nb-card-padding);
   }
 
-  :where(nb-card-header.border-b) {
-    padding-bottom: 1.5rem;
+  :where([data-nb-card] [data-slot='card-header'].border-b) {
+    padding-bottom: var(--nb-card-padding);
   }
 
-  :where(nb-card-title) {
-    font-weight: 700;
-    line-height: 1;
+  :where([data-nb-card] [data-slot='card-title']) {
+    font-weight: var(--nb-card-title-font-weight);
+    line-height: var(--nb-card-title-line-height);
   }
 
-  :where(nb-card-description) {
-    font-size: 0.875rem;
-    font-weight: 500;
+  :where([data-nb-card] [data-slot='card-description']) {
+    font-size: var(--nb-card-description-font-size);
+    font-weight: var(--nb-card-description-font-weight);
   }
 
-  :where(nb-card-actions) {
+  :where([data-nb-card] [data-slot='card-actions']) {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    gap: 0.75rem;
-    padding-inline: 1.5rem;
+    gap: var(--nb-card-actions-gap);
+    padding-inline: var(--nb-card-padding);
     justify-content: flex-start;
   }
 
-  :where(nb-card-actions[data-align='end']) {
+  :where([data-nb-card] [data-slot='card-actions'][data-align='end']) {
     justify-content: flex-end;
   }
 
-  :where(nb-card-footer nb-card-actions) {
+  :where([data-nb-card] [data-slot='card-footer'] [data-slot='card-actions']) {
     padding-inline: 0;
   }
 
-  :where(nb-card-content) {
-    padding-inline: 1.5rem;
+  :where([data-nb-card] [data-slot='card-content']) {
+    padding-inline: var(--nb-card-padding);
   }
 
-  :where(nb-card-footer) {
+  :where([data-nb-card] [data-slot='card-footer']) {
     display: flex;
     align-items: center;
-    padding-inline: 1.5rem;
+    padding-inline: var(--nb-card-padding);
   }
 
-  :where(nb-card-footer:has(nb-card-actions)) {
+  :where([data-nb-card] [data-slot='card-footer']:has([data-slot='card-actions'])) {
     flex-wrap: wrap;
     justify-content: space-between;
-    gap: 1rem;
+    gap: var(--nb-card-footer-gap);
   }
 
-  :where(nb-card-footer.border-t) {
-    padding-top: 1.5rem;
+  :where([data-nb-card] [data-slot='card-footer'].border-t) {
+    padding-top: var(--nb-card-padding);
   }
 }

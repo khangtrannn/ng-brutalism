@@ -32,6 +32,7 @@ export type NbImageCardBorder = NbBorderStrength;
   `,
   hostDirectives: [{ directive: NbToneCapability, inputs: ['tone'] }],
   host: {
+    'data-nb-image-card': '',
     'data-slot': 'image-card',
     '[style.--nb-image-card-radius]': 'radius()',
     '[style.--nb-image-card-shadow]': 'shadow()',

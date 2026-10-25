@@ -1,81 +1,69 @@
-@property --nb-callout-bg {
-  syntax: "*";
-  inherits: false;
-}
-@property --nb-callout-fg {
-  syntax: "*";
-  inherits: false;
-}
-@property --nb-callout-border-color {
-  syntax: "*";
-  inherits: false;
-}
-@property --nb-callout-border-width {
-  syntax: "*";
-  inherits: false;
-}
-@property --nb-callout-radius {
-  syntax: "*";
-  inherits: false;
-}
-@property --nb-callout-shadow {
-  syntax: "*";
-  inherits: false;
-}
-
 @layer components {
+  /* Tokens */
+  :where([data-nb-callout]) {
+    --nb-callout-bg: var(--nb-tone-neutral-bg);
+    --nb-callout-fg: var(--nb-tone-neutral-fg);
+    --nb-callout-border-color: var(--nb-tone-neutral-border);
+    --nb-callout-border-width: 2px;
+    --nb-callout-radius: var(--nb-radius-box);
+    --nb-callout-shadow: var(
+      --nb-shadow-box,
+      var(--nb-shadow-box-offset) var(--nb-shadow-box-offset) 0 0
+        var(--nb-shadow)
+    );
+    --nb-callout-min-height: 2.75rem;
+    --nb-callout-padding-x: 1.25rem;
+    --nb-callout-padding-y: 0.75rem;
+    --nb-callout-gap: 0.75rem;
+    --nb-callout-font-size: 1rem;
+    --nb-callout-font-weight: 900;
+    --nb-callout-line-height: 1.4;
+  }
+
+  /* Variants */
+  :where([data-nb-callout][data-size='sm']) {
+    --nb-callout-min-height: 2.25rem;
+    --nb-callout-padding-x: 1rem;
+    --nb-callout-font-size: 0.875rem;
+  }
+
+  :where([data-nb-callout][data-size='lg']) {
+    --nb-callout-border-width: 3px;
+    --nb-callout-min-height: 3.5rem;
+    --nb-callout-padding-x: 1.5rem;
+    --nb-callout-padding-y: 1rem;
+    --nb-callout-font-size: 1.5rem;
+  }
+
+  :where([data-nb-callout][data-size='xl']) {
+    --nb-callout-border-width: 4px;
+    --nb-callout-min-height: 5rem;
+    --nb-callout-padding-x: 1.75rem;
+    --nb-callout-padding-y: 1.25rem;
+    --nb-callout-font-size: 3rem;
+  }
+
+  /* Anatomy */
   :where([data-nb-callout]) {
     position: relative;
     display: inline-flex;
     align-items: center;
-    gap: 0.75rem;
+    gap: var(--nb-callout-gap);
     justify-content: flex-start;
-    font-weight: 900;
-    line-height: 1.4;
+    min-height: var(--nb-callout-min-height);
+    padding: var(--nb-callout-padding-y) var(--nb-callout-padding-x);
+    font-size: var(--nb-callout-font-size);
+    font-weight: var(--nb-callout-font-weight);
+    line-height: var(--nb-callout-line-height);
     text-transform: uppercase;
     word-wrap: break-word;
     overflow-wrap: break-word;
-    border-style: solid;
-    background: var(--nb-callout-bg, var(--nb-tone-bg, var(--nb-tone-neutral-bg)));
-    color: var(--nb-callout-fg, var(--nb-tone-fg, var(--nb-tone-neutral-fg)));
-    border-color: var(
-      --nb-callout-border-color,
-      var(--nb-tone-border, var(--nb-tone-neutral-border))
-    );
-    border-width: var(--nb-callout-border-width, 3px);
-    border-radius: var(--nb-callout-radius, var(--nb-radius));
-    box-shadow: var(
-      --nb-callout-shadow,
-      var(--nb-shadow-offset-x) var(--nb-shadow-offset-y) 0 0 var(--nb-shadow)
-    );
-  }
-
-  :where([data-nb-callout][data-size='sm']) {
-    min-height: 2.25rem;
-    padding: 0.75rem 1rem;
-    font-size: 0.875rem;
-    border-width: var(--nb-callout-border-width, 2px);
-  }
-
-  :where([data-nb-callout][data-size='md']) {
-    min-height: 2.75rem;
-    padding: 0.75rem 1.25rem;
-    font-size: 1rem;
-    border-width: var(--nb-callout-border-width, 2px);
-  }
-
-  :where([data-nb-callout][data-size='lg']) {
-    min-height: 3.5rem;
-    padding: 1rem 1.5rem;
-    font-size: 1.5rem;
-    border-width: var(--nb-callout-border-width, 3px);
-  }
-
-  :where([data-nb-callout][data-size='xl']) {
-    min-height: 5rem;
-    padding: 1.25rem 1.75rem;
-    font-size: 3rem;
-    border-width: var(--nb-callout-border-width, 4px);
+    background: var(--nb-tone-bg, var(--nb-callout-bg));
+    color: var(--nb-tone-fg, var(--nb-callout-fg));
+    border: var(--nb-callout-border-width) solid
+      var(--nb-tone-border, var(--nb-callout-border-color));
+    border-radius: var(--nb-callout-radius);
+    box-shadow: var(--nb-callout-shadow);
   }
 
   :where([data-nb-callout][data-layout='between']) {

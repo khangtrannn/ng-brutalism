@@ -421,7 +421,7 @@ describe('style capabilities', () => {
       'margin-inline: calc(0px - var(--nb-section-padding, 1rem));'
     );
     expect(stylesCss).toContain(
-      'border-top-width: var(--nb-image-card-border-width, var(--nb-border-width));'
+      'border-top: var(--nb-image-card-border-width) solid'
     );
   });
 

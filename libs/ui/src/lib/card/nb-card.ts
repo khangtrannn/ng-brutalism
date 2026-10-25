@@ -25,6 +25,7 @@ export type NbCardBorder = NbBorderStrength;
   template: `<ng-content />`,
   hostDirectives: [{ directive: NbToneCapability, inputs: ['tone'] }],
   host: {
+    'data-nb-card': '',
     'data-slot': 'card',
     '[style.--nb-card-radius]': 'radius()',
     '[style.--nb-card-shadow]': 'shadow()',

@@ -30,7 +30,7 @@ const html = `
     @layer base, components, utilities;
     ${css}
     :root { --nb-motion-fast: 0s; }
-    .scoped nb-card { --nb-card-radius: 20px; }
+    .scoped [data-nb-card] { --nb-card-radius: 20px; }
   </style>
 
   <div style="--nb-input-bg: rgb(1, 2, 3)">
@@ -58,14 +58,14 @@ const html = `
   <button nbIconButton data-shape="circle" data-size="md" id="circle" style="--nb-icon-button-radius: 4px"></button>
 
   <section style="--nb-card-radius: 30px">
-    <nb-card id="card-in-scope"></nb-card>
+    <nb-card data-nb-card id="card-in-scope"></nb-card>
   </section>
-  <section class="scoped"><nb-card id="card-selected"></nb-card></section>
+  <section class="scoped"><nb-card data-nb-card id="card-selected"></nb-card></section>
 
   <div style="--nb-icon-size: 40px"><span data-nb-icon data-size="md" id="icon"></span></div>
 
-  <nb-image-card style="--nb-image-card-border-width: 7px">
-    <nb-image-card-caption id="caption"></nb-image-card-caption>
+  <nb-image-card data-nb-image-card style="--nb-image-card-border-width: 7px">
+    <nb-image-card-caption data-slot="image-card-caption" id="caption"></nb-image-card-caption>
   </nb-image-card>
 
   <nb-input-group style="--nb-input-group-border: rgb(1, 1, 1)">

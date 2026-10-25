@@ -1,7 +1,5 @@
 import { Component, signal } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { existsSync, readFileSync } from 'node:fs';
-import { join } from 'node:path';
 import { describe, expect, it } from 'vitest';
 
 import {
@@ -233,35 +231,7 @@ describe('NbCallout', () => {
     );
   });
 
-  it('keeps the public border-width variable in every size rule', () => {
-    // Arrange
-    const css = readCalloutCss();
-    const sizeBlocks = css.match(/\[data-size='[a-z]+'\]\)\s*\{[^}]*\}/g) ?? [];
-    const borderBlocks = sizeBlocks.filter((block) =>
-      block.includes('border-width:')
-    );
-
-    // Assert
-    expect(borderBlocks.length).toBeGreaterThan(0);
-    for (const block of borderBlocks) {
-      expect(block).toMatch(/border-width:\s*var\(--nb-callout-border-width,/);
-    }
-  });
 });
-
-function readCalloutCss(): string {
-  const candidates = [
-    join(process.cwd(), 'src/lib/callout/nb-callout.css'),
-    join(process.cwd(), 'libs/ui/src/lib/callout/nb-callout.css'),
-  ];
-  const path = candidates.find((candidate) => existsSync(candidate));
-
-  if (!path) {
-    throw new Error('Unable to locate nb-callout.css for the cascade guard.');
-  }
-
-  return readFileSync(path, 'utf8');
-}
 
 async function createFixture<T>(
   component: new () => T,

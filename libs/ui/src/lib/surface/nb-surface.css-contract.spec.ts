@@ -1,11 +1,18 @@
 import { readFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 
-import { chromium, type Browser, type Page } from '@playwright/test';
+import {
+  chromium,
+  firefox,
+  webkit,
+  type Browser,
+  type BrowserType,
+  type Page,
+} from '@playwright/test';
 import { afterAll, beforeAll, describe, expect, it } from 'vitest';
 
 // jsdom can't run the cascade, so these specs render the real stylesheets in
-// Chromium. Elements mirror what NbSurface renders: `data-nb-surface` plus the
+// each engine. Elements mirror what NbSurface renders: `data-nb-surface` plus the
 // inline variables its inputs write (e.g. radius="lg" → var(--nb-radius-lg)).
 const css = ['../styles/theme.css', '../styles/tone.css', './nb-surface.css']
   .map((path) => readFileSync(fileURLToPath(new URL(path, import.meta.url)), 'utf8'))
@@ -13,7 +20,7 @@ const css = ['../styles/theme.css', '../styles/tone.css', './nb-surface.css']
 
 const html = `
   <style>
-    @layer base, components, utilities;
+    @layer theme, base, components, utilities;
     ${css}
     /* Stand-ins for a Tailwind utility and a consumer rule. */
     @layer utilities { .rounded-none { border-radius: 0; } }
@@ -36,7 +43,7 @@ const html = `
     <div id="selected-with-input" data-nb-surface style="--nb-surface-radius: var(--nb-radius-lg)"></div>
   </section>
 
-  <section style="--nb-radius: 8px">
+  <section style="--nb-radius-box: 8px">
     <div id="theme-token" data-nb-surface></div>
   </section>
 
@@ -60,12 +67,18 @@ const html = `
 
 const DEFAULT_SHADOW = 'rgb(0, 0, 0) 4px 4px 0px 0px';
 
-describe('nb-surface CSS contract (Chromium)', () => {
+const engines: Array<[string, BrowserType]> = [
+  ['Chromium', chromium],
+  ['Firefox', firefox],
+  ['WebKit', webkit],
+];
+
+describe.each(engines)('nb-surface CSS contract (%s)', (name, engine) => {
   let browser: Browser;
   let page: Page;
 
   beforeAll(async () => {
-    browser = await chromium.launch();
+    browser = await engine.launch();
     page = await browser.newPage();
     await page.setContent(html);
   });
@@ -108,7 +121,7 @@ describe('nb-surface CSS contract (Chromium)', () => {
     expect(await computed('selected-with-input', 'border-top-left-radius')).toBe('12px');
   });
 
-  it('follows theme tokens set on a section', async () => {
+  it('follows the box role set on a section', async () => {
     expect(await computed('theme-token', 'border-top-left-radius')).toBe('8px');
   });
 
@@ -152,7 +165,8 @@ describe('nb-surface CSS contract (Chromium)', () => {
     expect(stickyTop).toBe(0);
   });
 
-  it('skips the hover lift on devices without hover', async () => {
+  // Firefox can't emulate a mobile device, which this check needs.
+  it.skipIf(name === 'Firefox')('skips the hover lift on devices without hover', async () => {
     const touchPage = await browser.newPage({ hasTouch: true, isMobile: true });
     await touchPage.setContent(html);
     await touchPage.hover('#interactive');
