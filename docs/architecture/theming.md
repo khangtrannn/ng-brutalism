@@ -96,6 +96,7 @@ fine for a scoped theme but not for an official one (§6).
   /* Depth */
   --nb-shadow: #292524;
   --nb-shadow-box-offset: 6px;
+  --nb-shadow-field-offset: 0px;
   --nb-shadow-control-offset: 3px;
   --nb-shadow-pill-offset: 2px;
 }
@@ -116,7 +117,7 @@ The default theme (`theme.css`) is the only one that also matches `:root`:
 ([token-customization §14.7](token-customization.md#14-decisions)).
 
 A theme may set the optional full-value depth roles (`--nb-shadow-box`,
-`-control`, `-pill`) to replace the offset shadow, for example with a glow
+`-field`, `-control`, `-pill`) to replace the offset shadow, for example with a glow
 ([token-customization §14.6](token-customization.md#14-decisions)).
 
 ---
@@ -274,7 +275,7 @@ to fit the existing contract:
 |---|---|---|
 | `var(--nb-button-bg, var(--nb-primary))`, undeclared component tokens | Component tokens declared on each root | Undeclared tokens leak into nested instances (token-customization §9) |
 | `--nb-background`, `--nb-border-color`, `--nb-radius` | `--nb-surface`, `--nb-border`, `--nb-radius-box/-field/-control/-pill` | Existing role names; one radius can't say "round cards, square buttons", and `--nb-radius` is removed (§14.3) |
-| `--nb-shadow-sm/-md/-lg` as full values on the theme block | Atomic offset roles, plus optional full-value `--nb-shadow-box/-control/-pill` (§14.6) | Full values derived from other tokens ignore section overrides |
+| `--nb-shadow-sm/-md/-lg` as full values on the theme block | Atomic offset roles, plus optional full-value `--nb-shadow-box/-field/-control/-pill` (§14.6) | Full values derived from other tokens ignore section overrides |
 | Global `--nb-hover-translate-x/-y` | Per-component state tokens derived from the shadow offset | States use their own tokens (token-customization §5) |
 | `.nb-button` selectors | `[data-nb-button]` | The documented hook (token-customization §6) |
 | Cascade layers "to evaluate" | Already decided | token-customization §3 |

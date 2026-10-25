@@ -38,7 +38,7 @@ const THEME_TOKENS = new Set(
     ])
     .map(([, name]) => name)
     // Optional depth roles, unset by default (§14.6).
-    .concat(['--nb-shadow-box', '--nb-shadow-control', '--nb-shadow-pill']),
+    .concat(['--nb-shadow-box', '--nb-shadow-field', '--nb-shadow-control', '--nb-shadow-pill']),
 );
 
 const BLOCKS = ['Tokens', 'Variants', 'Anatomy', 'States'] as const;

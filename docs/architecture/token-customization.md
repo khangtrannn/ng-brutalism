@@ -246,8 +246,8 @@ Tone            data-nb-tone → --nb-tone-bg/-fg/-border       on that element 
 | | `--nb-radius-field` | input, textarea, select, input-group, checkbox |
 | | `--nb-radius-control` | button, icon-button |
 | | `--nb-radius-pill` | badge, chip, avatar, status-dot |
-| Depth | `--nb-shadow` (color), `--nb-shadow-box-offset`, `--nb-shadow-control-offset`, `--nb-shadow-pill-offset` | the groups above |
-| | Optional, unset by default: `--nb-shadow-box`, `--nb-shadow-control`, `--nb-shadow-pill` (a full `box-shadow`, §14.6) | the groups above |
+| Depth | `--nb-shadow` (color), `--nb-shadow-box-offset`, `--nb-shadow-field-offset`, `--nb-shadow-control-offset`, `--nb-shadow-pill-offset` | the groups above (§14.9) |
+| | Optional, unset by default: `--nb-shadow-box`, `--nb-shadow-field`, `--nb-shadow-control`, `--nb-shadow-pill` (a full `box-shadow`, §14.6) | the groups above |
 | Tone presets | `--nb-tone-<name>-bg/-fg/-border` | tone layer |
 
 **Roles are atomic values.** A custom property resolves `var()` on the
@@ -550,7 +550,7 @@ Numbers stay stable so other docs can link to them.
    colors named `-color` (for example `--nb-display-color` →
    `--nb-display-fg`). `-border-color` stays.
 6. **Optional full-value depth roles:** `--nb-shadow-box`,
-   `--nb-shadow-control`, `--nb-shadow-pill`. They're unset by default, and
+   `--nb-shadow-field`, `--nb-shadow-control`, `--nb-shadow-pill`. They're unset by default, and
    each component falls back to the offset recipe:
    ```css
    --nb-card-shadow: var(--nb-shadow-box,
@@ -562,6 +562,9 @@ Numbers stay stable so other docs can link to them.
    Every other theme matches only its own attribute. Importing the library
    works with no attribute set. Apps that import only `theme-soft.css` or
    `theme-mono.css` today add `data-nb-theme` to `<html>`.
+9. **Fields get their own depth role:** `--nb-shadow-field-offset`
+   (default 4px, soft 3px), matching `--nb-radius-field`. A theme can then
+   flatten inputs without flattening cards.
 
 **Open:**
 
