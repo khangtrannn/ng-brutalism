@@ -1,201 +1,174 @@
-@property --nb-accordion-item-radius {
-  syntax: "*";
-  inherits: false;
-}
-@property --nb-accordion-item-shadow {
-  syntax: "*";
-  inherits: false;
-}
-@property --nb-accordion-item-bg {
-  syntax: "*";
-  inherits: true;
-}
-@property --nb-accordion-item-fg {
-  syntax: "*";
-  inherits: true;
-}
-@property --nb-accordion-item-border-color {
-  syntax: "*";
-  inherits: true;
-}
-@property --nb-accordion-item-border-width {
-  syntax: "*";
-  inherits: true;
-}
-@property --nb-accordion-trigger-bg {
-  syntax: "*";
-  inherits: true;
-}
-@property --nb-accordion-trigger-fg {
-  syntax: "*";
-  inherits: true;
-}
-@property --nb-accordion-trigger-border-color {
-  syntax: "*";
-  inherits: true;
-}
-@property --nb-accordion-trigger-min-height {
-  syntax: "*";
-  inherits: true;
-}
-@property --nb-accordion-trigger-icon-size {
-  syntax: "*";
-  inherits: true;
-}
-@property --nb-accordion-trigger-icon-stroke {
-  syntax: "*";
-  inherits: true;
-}
-@property --nb-accordion-content-bg {
-  syntax: "*";
-  inherits: true;
-}
-@property --nb-accordion-content-fg {
-  syntax: "*";
-  inherits: true;
-}
-
 @layer components {
-  :where(nb-accordion) {
+  /* Tokens */
+  :where([data-nb-accordion]) {
+    --nb-accordion-gap: 0.75rem;
+
+    --nb-accordion-item-bg: var(--nb-surface);
+    --nb-accordion-item-fg: var(--nb-surface-foreground);
+    --nb-accordion-item-border-color: var(--nb-border);
+    --nb-accordion-item-border-width: var(--nb-border-width);
+    --nb-accordion-item-radius: var(--nb-radius-box);
+    --nb-accordion-item-shadow: var(
+      --nb-shadow-box,
+      var(--nb-shadow-box-offset) var(--nb-shadow-box-offset) 0 0
+        var(--nb-shadow)
+    );
+    --nb-accordion-item-disabled-opacity: 0.5;
+
+    /* Transparent so the item surface, and its tone, show through. */
+    --nb-accordion-trigger-bg: transparent;
+    --nb-accordion-trigger-fg: currentColor;
+    /* Unset: the divider and focus ring fall back to the item border, which
+       an item can override for itself. */
+    --nb-accordion-trigger-border-color: initial;
+    --nb-accordion-trigger-min-height: 3.5rem;
+    --nb-accordion-trigger-padding: 1rem;
+    --nb-accordion-trigger-gap: 1rem;
+    --nb-accordion-trigger-font-size: 1rem;
+    --nb-accordion-trigger-font-weight: var(--nb-font-weight-bold);
+    --nb-accordion-trigger-icon-size: 1.5rem;
+    --nb-accordion-trigger-icon-border-width: 3;
+    --nb-accordion-trigger-duration: var(--nb-motion-base);
+    --nb-accordion-trigger-focus-ring-width: 2px;
+    --nb-accordion-trigger-focus-ring-color: initial;
+    --nb-accordion-trigger-focus-ring-offset: 2px;
+    --nb-accordion-trigger-disabled-opacity: 0.5;
+
+    --nb-accordion-content-bg: transparent;
+    --nb-accordion-content-fg: currentColor;
+    --nb-accordion-content-padding-x: 1rem;
+    --nb-accordion-content-padding-y: 1rem;
+    --nb-accordion-content-font-size: 0.875rem;
+    --nb-accordion-content-font-weight: var(--nb-font-weight-normal);
+    --nb-accordion-content-duration: var(--nb-motion-base);
+    --nb-accordion-content-easing: var(--nb-ease);
+  }
+
+  /* Anatomy */
+  :where([data-nb-accordion]) {
     display: block;
     width: 100%;
   }
 
-  :where(nb-accordion [data-slot='accordion-items']) {
+  :where([data-nb-accordion] [data-slot='accordion-items']) {
     display: flex;
     width: 100%;
     flex-direction: column;
-    gap: 0.75rem;
+    gap: var(--nb-accordion-gap);
   }
 
-  :where(nb-accordion-item) {
+  :where([data-nb-accordion-item]) {
     display: block;
-  }
-
-  :where(nb-accordion-item[data-disabled]) {
-    opacity: 0.5;
-  }
-
-  :where([data-nb-accordion-item][data-slot='accordion-item-surface']) {
     overflow: hidden;
-    border-style: solid;
-    border-radius: var(--nb-accordion-item-radius, var(--nb-radius));
-    border-width: var(--nb-accordion-item-border-width, var(--nb-border-width));
-    border-color: var(
-      --nb-accordion-item-border-color,
-      var(--nb-tone-border, var(--nb-border))
-    );
-    background-color: var(
-      --nb-accordion-item-bg,
-      var(--nb-tone-bg, var(--nb-surface))
-    );
-    color: var(
-      --nb-accordion-item-fg,
-      var(--nb-tone-fg, var(--nb-surface-foreground))
-    );
-    box-shadow: var(
-      --nb-accordion-item-shadow,
-      var(--nb-shadow-offset-x) var(--nb-shadow-offset-y) 0 0 var(--nb-shadow)
-    );
+    border: var(--nb-accordion-item-border-width) solid
+      var(--nb-tone-border, var(--nb-accordion-item-border-color));
+    border-radius: var(--nb-accordion-item-radius);
+    background-color: var(--nb-tone-bg, var(--nb-accordion-item-bg));
+    color: var(--nb-tone-fg, var(--nb-accordion-item-fg));
+    box-shadow: var(--nb-accordion-item-shadow);
   }
 
-  :where(nb-accordion-trigger[data-nb-tone]) {
-    --nb-accordion-trigger-bg: var(--nb-tone-bg);
-    --nb-accordion-trigger-fg: var(--nb-tone-fg);
-    --nb-accordion-trigger-border-color: var(--nb-tone-border);
-  }
-
-  :where(nb-accordion-trigger [data-slot='accordion-trigger-heading']) {
+  :where([data-nb-accordion-trigger] [data-slot='accordion-trigger-heading']) {
     display: flex;
     margin: 0;
   }
 
-  :where(nb-accordion-trigger [data-slot='accordion-trigger-button']) {
+  /* The trigger's tone is mirrored onto this button, which paints it. */
+  :where([data-nb-accordion-trigger] [data-slot='accordion-trigger-button']) {
     display: flex;
     width: 100%;
-    min-height: var(--nb-accordion-trigger-min-height, 3.5rem);
+    min-height: var(--nb-accordion-trigger-min-height);
     flex: 1 1 0%;
     align-items: center;
     justify-content: space-between;
-    gap: 1rem;
-    padding: 1rem;
+    gap: var(--nb-accordion-trigger-gap);
+    padding: var(--nb-accordion-trigger-padding);
     border: 0;
-    background-color: var(
-      --nb-accordion-trigger-bg,
-      var(--nb-accordion-item-bg, transparent)
-    );
-    color: var(
-      --nb-accordion-trigger-fg,
-      var(--nb-accordion-item-fg, inherit)
-    );
+    background-color: var(--nb-tone-bg, var(--nb-accordion-trigger-bg));
+    color: var(--nb-tone-fg, var(--nb-accordion-trigger-fg));
     text-align: left;
-    font-size: 1rem;
-    font-weight: 700;
-    transition: all var(--nb-motion-base);
+    font-size: var(--nb-accordion-trigger-font-size);
+    font-weight: var(--nb-accordion-trigger-font-weight);
+    transition: all var(--nb-accordion-trigger-duration);
   }
 
-  :where(nb-accordion-trigger [data-slot='accordion-trigger-button']:focus-visible) {
-    outline: 2px solid var(--nb-accordion-trigger-border-color, var(--nb-accordion-item-border-color, var(--nb-border)));
-    outline-offset: 2px;
-  }
-
-  :where(nb-accordion-trigger [data-slot='accordion-trigger-button']:disabled) {
-    pointer-events: none;
-    opacity: 0.5;
-  }
-
-  :where(nb-accordion-trigger [data-slot='accordion-trigger-button'][data-state='open']) {
-    border-bottom-style: solid;
-    border-bottom-width: var(--nb-accordion-item-border-width, var(--nb-border-width));
-    border-bottom-color: var(--nb-accordion-trigger-border-color, var(--nb-accordion-item-border-color, var(--nb-border)));
-  }
-
-  :where(nb-accordion-trigger [data-slot='accordion-trigger-icon']) {
-    width: var(--nb-accordion-trigger-icon-size, 1.5rem);
-    height: var(--nb-accordion-trigger-icon-size, 1.5rem);
+  :where([data-nb-accordion-trigger] [data-slot='accordion-trigger-icon']) {
+    width: var(--nb-accordion-trigger-icon-size);
+    height: var(--nb-accordion-trigger-icon-size);
     flex-shrink: 0;
     fill: none;
     stroke: currentColor;
-    stroke-width: var(--nb-accordion-trigger-icon-stroke, 3);
+    stroke-width: var(--nb-accordion-trigger-icon-border-width);
     stroke-linecap: round;
     stroke-linejoin: round;
   }
 
-  :where(nb-accordion-content) {
+  :where([data-nb-accordion-content]) {
     display: block;
   }
 
-  :where(nb-accordion-content div[role='region']) {
+  :where([data-nb-accordion-content] div[role='region']) {
     display: grid;
     overflow: hidden;
-    background-color: var(
-      --nb-accordion-content-bg,
-      var(--nb-accordion-item-bg, transparent)
-    );
-    color: var(
-      --nb-accordion-content-fg,
-      var(--nb-accordion-item-fg, inherit)
-    );
-    font-size: 0.875rem;
-    font-weight: 500;
+    background-color: var(--nb-accordion-content-bg);
+    color: var(--nb-accordion-content-fg);
+    font-size: var(--nb-accordion-content-font-size);
+    font-weight: var(--nb-accordion-content-font-weight);
     grid-template-rows: 0fr;
-    transition: grid-template-rows var(--nb-motion-base) var(--nb-ease);
+    transition: grid-template-rows var(--nb-accordion-content-duration)
+      var(--nb-accordion-content-easing);
   }
 
-  :where(nb-accordion-content div[role='region'][data-state='open']) {
-    grid-template-rows: 1fr;
-  }
-
-  :where(nb-accordion-content [data-slot='accordion-content-inner']) {
+  :where([data-nb-accordion-content] [data-slot='accordion-content-inner']) {
     min-height: 0;
     overflow: hidden;
-    padding-inline: 1rem;
+    padding-inline: var(--nb-accordion-content-padding-x);
   }
 
-  :where(nb-accordion-content [data-slot='accordion-content-inner'])::before,
-  :where(nb-accordion-content [data-slot='accordion-content-inner'])::after {
+  :where([data-nb-accordion-content] [data-slot='accordion-content-inner'])::before,
+  :where([data-nb-accordion-content] [data-slot='accordion-content-inner'])::after {
     content: '';
     display: block;
-    height: 1rem;
+    height: var(--nb-accordion-content-padding-y);
+  }
+
+  /* States */
+  :where([data-nb-accordion-item][data-disabled]) {
+    opacity: var(--nb-accordion-item-disabled-opacity);
+  }
+
+  :where([data-nb-accordion-trigger] [data-slot='accordion-trigger-button'][data-state='open']) {
+    border-bottom: var(--nb-accordion-item-border-width) solid
+      var(
+        --nb-tone-border,
+        var(
+          --nb-accordion-trigger-border-color,
+          var(--nb-accordion-item-border-color)
+        )
+      );
+  }
+
+  :where([data-nb-accordion-trigger] [data-slot='accordion-trigger-button']:focus-visible) {
+    outline: var(--nb-accordion-trigger-focus-ring-width) solid
+      var(
+        --nb-tone-border,
+        var(
+          --nb-accordion-trigger-focus-ring-color,
+          var(
+            --nb-accordion-trigger-border-color,
+            var(--nb-accordion-item-border-color)
+          )
+        )
+      );
+    outline-offset: var(--nb-accordion-trigger-focus-ring-offset);
+  }
+
+  :where([data-nb-accordion-trigger] [data-slot='accordion-trigger-button']:disabled) {
+    pointer-events: none;
+    opacity: var(--nb-accordion-trigger-disabled-opacity);
+  }
+
+  :where([data-nb-accordion-content] div[role='region'][data-state='open']) {
+    grid-template-rows: 1fr;
   }
 }

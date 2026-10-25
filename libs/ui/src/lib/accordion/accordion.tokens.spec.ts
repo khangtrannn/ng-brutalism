@@ -146,6 +146,7 @@ describe('NbAccordion token surface', () => {
 
     // Assert
     expect(triggerHost.getAttribute('data-nb-tone')).toBe('yellow');
+    expect(trigger.getAttribute('data-nb-tone')).toBe('yellow');
     expect(trigger.style.getPropertyValue('background-color')).toBe('');
     expect(trigger.style.getPropertyValue('--nb-accordion-trigger-bg')).toBe('');
     expect(itemHost.style.getPropertyValue('background')).toBe('');

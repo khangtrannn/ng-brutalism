@@ -23,6 +23,7 @@ import { NB_ACCORDION } from './accordion.types';
         [attr.aria-expanded]="item.open()"
         [attr.aria-controls]="item.contentId"
         [attr.data-state]="item.open() ? 'open' : 'closed'"
+        [attr.data-nb-tone]="toneCapability.tone() ?? null"
         [disabled]="item.disabled()"
         (click)="item.toggle()"
         (keydown)="onKeydown($event)"
@@ -48,6 +49,8 @@ export class NbAccordionTrigger {
   #accordion = inject(NB_ACCORDION);
 
   readonly item = inject(NbAccordionItem);
+  // Tone slots don't inherit, so the button that paints the trigger carries the tone too.
+  protected readonly toneCapability = inject(NbToneCapability);
   private readonly button =
     viewChild.required<ElementRef<HTMLButtonElement>>('button');
 

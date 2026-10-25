@@ -8,7 +8,7 @@ import { describe, expect, it } from 'vitest';
 // docs/architecture/token-customization.md §5. Components move into MIGRATED
 // as they adopt it (§13 steps 3–4); the rest keep the legacy registration rule
 // until the list covers every component, then the legacy branch is deleted.
-const MIGRATED = new Set<string>(['button', 'input']);
+const MIGRATED = new Set<string>(['accordion', 'button', 'input']);
 
 const lib = [
   join(process.cwd(), 'libs/ui/src/lib'),
@@ -45,7 +45,7 @@ const BLOCKS = ['Tokens', 'Variants', 'Anatomy', 'States'] as const;
 type Block = (typeof BLOCKS)[number];
 
 const STATE_MARKER =
-  /:(hover|focus|focus-visible|focus-within|active|disabled|enabled|checked|indeterminate|invalid|valid|user-invalid|placeholder-shown|read-only|open|popover-open|target)\b|\[(aria-|data-state|open\]|disabled\])/;
+  /:(hover|focus|focus-visible|focus-within|active|disabled|enabled|checked|indeterminate|invalid|valid|user-invalid|placeholder-shown|read-only|open|popover-open|target)\b|\[(aria-|data-state|data-disabled|open\]|disabled\])/;
 const COLOR_LITERAL =
   /#[0-9a-f]{3,8}\b|\b(rgba?|hsla?|oklch|oklab|lab|lch|color)\(/i;
 const DIMENSION_LITERAL =

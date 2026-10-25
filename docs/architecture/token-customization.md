@@ -323,6 +323,15 @@ These rules follow from that contract:
    in-place positioning, so their parts stay inside the root. That was
    verified: a part moved elsewhere in the DOM loses the root's tokens.
 5. **Hover styles are gated** behind `@media (hover: hover)`.
+6. **A token that defaults to another token resolves on the root.** When a
+   part should follow a token that a child can override (an accordion
+   item's own border), declare the part token as `initial` (unset) and
+   chain the fallback where it's used:
+   `var(--nb-accordion-trigger-border-color, var(--nb-accordion-item-border-color))`.
+   `initial` still blocks values set on a wrapper.
+7. **Tone goes on the element that paints.** Tone slots don't inherit, so
+   a part with a `tone` input mirrors `data-nb-tone` onto the inner element
+   it colors (the accordion trigger's button).
 
 Example (Button):
 
@@ -495,6 +504,7 @@ across all three:
   `-border-width`, `-leading` → `-line-height`.
 - An explicit `tone` now beats a component-wide color such as
   `--nb-input-bg`. Before, the component token won.
+- `--nb-accordion-trigger-icon-stroke` → `--nb-accordion-trigger-icon-border-width`.
 - `press="reverse"` on Button now does what its name says: flat at rest,
   lifting up-left into its shadow on hover. Before, a double negation made
   it slide down-right with the shadow attached.
@@ -539,6 +549,11 @@ across all three:
    it can follow the tone; the in-group look has its own `-in-group-*`
    tokens, so a component-wide border or shadow can't leak into a group.
    `nb-input-group` still reads `--nb-input-bg`; drop that when it migrates.
+   **Accordion done 2026-10-25** (`accordion/nb-accordion.css-contract.spec.ts`).
+   Tokens live on `nb-accordion`; item inputs override them inline on the
+   item. Trigger and content backgrounds default to `transparent`, so the
+   item surface shows through. Rules 6 and 7 in §5 came from this pilot.
+   **Step 3 complete.**
 4. The rest by archetype: surfaces → controls and fields → compound →
    layout and type.
 5. Docs generator, docs-site pages and CHANGELOG renames.
