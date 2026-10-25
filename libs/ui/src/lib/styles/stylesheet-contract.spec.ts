@@ -8,7 +8,7 @@ import { describe, expect, it } from 'vitest';
 // docs/architecture/token-customization.md §5. Components move into MIGRATED
 // as they adopt it (§13 steps 3–4); the rest keep the legacy registration rule
 // until the list covers every component, then the legacy branch is deleted.
-const MIGRATED = new Set<string>(['button']);
+const MIGRATED = new Set<string>(['button', 'input']);
 
 const lib = [
   join(process.cwd(), 'libs/ui/src/lib'),

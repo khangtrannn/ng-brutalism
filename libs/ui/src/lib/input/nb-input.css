@@ -1,119 +1,124 @@
-@property --nb-input-bg {
-  syntax: "*";
-  inherits: false;
-}
-@property --nb-input-fg {
-  syntax: "*";
-  inherits: false;
-}
-@property --nb-input-border-color {
-  syntax: "*";
-  inherits: false;
-}
-@property --nb-input-border-width {
-  syntax: "*";
-  inherits: false;
-}
-@property --nb-input-radius {
-  syntax: "*";
-  inherits: false;
-}
-@property --nb-input-shadow {
-  syntax: "*";
-  inherits: false;
-}
-@property --nb-input-invalid-border-color {
-  syntax: "*";
-  inherits: false;
-}
-@property --nb-input-focus-ring-color {
-  syntax: "*";
-  inherits: false;
-}
-
 @layer components {
-  :where(input[nbInput]) {
-    display: flex;
-    height: 2.5rem;
-    padding: 0.5rem 0.75rem;
-    font-size: 0.875rem;
-    font-weight: 500;
-    background-color: var(--nb-input-bg, var(--nb-tone-bg, var(--nb-surface)));
-    color: var(--nb-input-fg, var(--nb-tone-fg, var(--nb-surface-foreground)));
-    border-color: var(
-      --nb-input-border-color,
-      var(--nb-tone-border, var(--nb-border))
+  /* Tokens */
+  :where([data-nb-input]) {
+    --nb-input-bg: var(--nb-surface);
+    --nb-input-fg: var(--nb-surface-foreground);
+    --nb-input-border-color: var(--nb-border);
+    --nb-input-border-width: var(--nb-border-width);
+    --nb-input-radius: var(--nb-radius-field);
+    --nb-input-shadow: var(
+      --nb-shadow-field,
+      var(--nb-shadow-field-offset) var(--nb-shadow-field-offset) 0 0
+        var(--nb-shadow)
     );
-    border-width: var(--nb-input-border-width, var(--nb-border-width));
-    border-style: solid;
-    border-radius: var(--nb-input-radius, var(--nb-radius));
-    box-shadow: var(
-      --nb-input-shadow,
-      var(--nb-shadow-offset-x) var(--nb-shadow-offset-y) 0 var(--nb-shadow)
-    );
-  }
-  :where(input[nbInput][data-size="sm"]) {
-    height: 2.25rem;
-    padding: 0 0.75rem;
-  }
-  :where(input[nbInput][data-size="lg"]) {
-    height: 2.75rem;
-    padding: 0 1rem;
-    font-size: 1rem;
+    --nb-input-height: 2.5rem;
+    --nb-input-padding-x: 0.75rem;
+    --nb-input-padding-y: 0.5rem;
+    --nb-input-font-size: 0.875rem;
+    --nb-input-font-weight: var(--nb-font-weight-normal);
+    --nb-input-placeholder-fg: var(--nb-muted-foreground, #9ca3af);
+
+    --nb-input-file-bg: var(--nb-main);
+    --nb-input-file-fg: var(--nb-main-foreground);
+    --nb-input-file-padding-x: 0.75rem;
+    --nb-input-file-gap: 0.75rem;
+    --nb-input-file-font-size: 0.875rem;
+    --nb-input-file-font-weight: var(--nb-font-weight-bold);
+
+    /* Inside nb-input-group the group draws the field; the input only holds text. */
+    --nb-input-in-group-bg: transparent;
+    --nb-input-in-group-border-width: 0;
+    --nb-input-in-group-shadow: none;
+
+    --nb-input-invalid-border-color: var(--nb-danger);
+    --nb-input-focus-shadow: none;
+    --nb-input-focus-ring-width: 2px;
+    --nb-input-focus-ring-color: var(--nb-input-border-color);
+    --nb-input-focus-ring-offset: 2px;
+    --nb-input-disabled-opacity: 0.5;
   }
 
-  :where(input[nbInput][type="file"]) {
+  /* Variants */
+  :where([data-nb-input][data-size='sm']) {
+    --nb-input-height: 2.25rem;
+    --nb-input-padding-y: 0;
+  }
+
+  :where([data-nb-input][data-size='lg']) {
+    --nb-input-height: 2.75rem;
+    --nb-input-padding-x: 1rem;
+    --nb-input-padding-y: 0;
+    --nb-input-font-size: 1rem;
+  }
+
+  /* Anatomy */
+  :where([data-nb-input]) {
+    display: flex;
+    height: var(--nb-input-height);
+    padding: var(--nb-input-padding-y) var(--nb-input-padding-x);
+    font-size: var(--nb-input-font-size);
+    font-weight: var(--nb-input-font-weight);
+    background-color: var(--nb-tone-bg, var(--nb-input-bg));
+    color: var(--nb-tone-fg, var(--nb-input-fg));
+    border: var(--nb-input-border-width) solid
+      var(--nb-tone-border, var(--nb-input-border-color));
+    border-radius: var(--nb-input-radius);
+    box-shadow: var(--nb-input-shadow);
+  }
+
+  :where([data-nb-input][type='file']) {
     padding-block: 0;
     padding-inline-start: 0;
     align-items: center;
   }
 
-  :where(input[nbInput])::placeholder {
-    color: var(--nb-muted-foreground, #9ca3af);
+  :where([data-nb-input])::placeholder {
+    color: var(--nb-input-placeholder-fg);
   }
 
-  :where(input[nbInput][aria-invalid='true']) {
-    border-color: var(--nb-input-invalid-border-color, var(--nb-danger));
-  }
-
-  :where(input[nbInput])::file-selector-button {
+  :where([data-nb-input])::file-selector-button {
     height: 100%;
-    padding-block: 0;
     margin: 0;
-    margin-inline-end: 0.75rem;
-    padding-inline: 0.75rem;
+    margin-inline-end: var(--nb-input-file-gap);
+    padding-block: 0;
+    padding-inline: var(--nb-input-file-padding-x);
     cursor: pointer;
     font-family: inherit;
-    font-size: 0.875rem;
-    font-weight: 700;
-    background-color: var(--nb-main);
-    color: var(--nb-main-foreground);
+    font-size: var(--nb-input-file-font-size);
+    font-weight: var(--nb-input-file-font-weight);
+    background-color: var(--nb-input-file-bg);
+    color: var(--nb-input-file-fg);
     border: 0;
-    border-inline-end: var(--nb-border-width) solid var(--nb-border);
+    border-inline-end: var(--nb-input-border-width) solid
+      var(--nb-tone-border, var(--nb-input-border-color));
   }
 
-  :where(input[nbInput]:disabled) {
-    opacity: 0.5;
-    cursor: not-allowed;
-  }
-
-  :where(input[nbInput][data-in-group]) {
+  :where([data-nb-input][data-in-group]) {
     flex: 1 1 0%;
     min-width: 0;
-    background-color: transparent;
-    border-width: 0;
+    background-color: var(--nb-input-in-group-bg);
+    border-width: var(--nb-input-in-group-border-width);
+    box-shadow: var(--nb-input-in-group-shadow);
   }
-  :where(input[nbInput][data-in-group]):focus-visible {
+
+  /* States */
+  :where([data-nb-input][aria-invalid='true']) {
+    border-color: var(--nb-input-invalid-border-color);
+  }
+
+  :where([data-nb-input]:not([data-in-group])):focus-visible {
+    box-shadow: var(--nb-input-focus-shadow);
+    outline: var(--nb-input-focus-ring-width) solid
+      var(--nb-tone-border, var(--nb-input-focus-ring-color));
+    outline-offset: var(--nb-input-focus-ring-offset);
+  }
+
+  :where([data-nb-input][data-in-group]):focus-visible {
     outline: none;
   }
 
-  :where(input[nbInput]:not([data-in-group])):focus-visible {
-    box-shadow: none;
-    outline: 2px solid
-      var(
-        --nb-input-focus-ring-color,
-        var(--nb-input-border-color, var(--nb-tone-border, var(--nb-border)))
-      );
-    outline-offset: 2px;
+  :where([data-nb-input]:disabled) {
+    opacity: var(--nb-input-disabled-opacity);
+    cursor: not-allowed;
   }
 }

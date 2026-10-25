@@ -26,6 +26,7 @@ export type NbInputShadow = NbShadow;
   exportAs: 'nbInput',
   hostDirectives: [{ directive: NbToneCapability, inputs: ['tone'] }],
   host: {
+    'data-nb-input': '',
     '[attr.data-size]': 'size()',
     '[attr.data-in-group]': 'isInGroup ? "" : null',
     '[attr.id]': 'resolvedId() ?? null',

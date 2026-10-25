@@ -34,9 +34,9 @@ const html = `
   </style>
 
   <div style="--nb-input-bg: rgb(1, 2, 3)">
-    <input nbInput id="input-nested" />
+    <input data-nb-input id="input-nested" />
   </div>
-  <input nbInput id="input-self" style="--nb-input-bg: rgb(4, 5, 6)" />
+  <input data-nb-input id="input-self" style="--nb-input-bg: rgb(4, 5, 6)" />
 
   <div data-nb-stack data-separator="solid" style="--nb-stack-separator-gap: 5px; --nb-stack-gap: 1px">
     <div id="stack-first"></div>
