@@ -1,168 +1,162 @@
-@property --nb-button-trailing-icon-bg {
-  syntax: "*";
-  inherits: true;
-}
-@property --nb-button-trailing-icon-color {
-  syntax: "*";
-  inherits: true;
-}
-@property --nb-button-trailing-icon-radius {
-  syntax: "*";
-  inherits: true;
-}
-@property --nb-button-trailing-icon-size {
-  syntax: "*";
-  inherits: true;
-}
-@property --nb-button-bg {
-  syntax: "*";
-  inherits: false;
-}
-@property --nb-button-fg {
-  syntax: "*";
-  inherits: false;
-}
-@property --nb-button-border-color {
-  syntax: "*";
-  inherits: false;
-}
-@property --nb-button-border-width {
-  syntax: "*";
-  inherits: false;
-}
-@property --nb-button-radius {
-  syntax: "*";
-  inherits: false;
-}
-@property --nb-button-shadow {
-  syntax: "*";
-  inherits: false;
-}
-
 @layer components {
-  :where(button[nbButton], a[nbButton]) {
+  /* Tokens */
+  :where([data-nb-button]) {
+    --nb-button-bg: var(--nb-primary);
+    --nb-button-fg: var(--nb-primary-foreground);
+    --nb-button-border-color: var(--nb-border);
+    --nb-button-border-width: var(--nb-border-width);
+    --nb-button-radius: var(--nb-radius-control);
+    --nb-button-shadow: var(
+      --nb-shadow-control,
+      var(--nb-shadow-control-offset) var(--nb-shadow-control-offset) 0 0
+        var(--nb-shadow)
+    );
+    --nb-button-height: 2.75rem;
+    --nb-button-padding-x: 1rem;
+    --nb-button-gap: 0.5rem;
+    --nb-button-font-size: 1rem;
+    --nb-button-font-weight: var(--nb-font-weight-bold);
+    --nb-button-icon-size: 1rem;
+    --nb-button-duration: var(--nb-motion-fast);
+    --nb-button-easing: var(--nb-ease);
+
+    --nb-button-trailing-icon-bg: transparent;
+    --nb-button-trailing-icon-fg: currentColor;
+    --nb-button-trailing-icon-radius: var(--nb-button-radius);
+    --nb-button-trailing-icon-size: 2rem;
+    --nb-button-trailing-icon-inverse-bg: var(--nb-foreground);
+    --nb-button-trailing-icon-inverse-fg: var(--nb-background);
+    --nb-button-trailing-icon-current-bg: currentColor;
+    --nb-button-trailing-icon-current-fg: var(--nb-background);
+
+    --nb-button-hover-translate: var(--nb-shadow-control-offset)
+      var(--nb-shadow-control-offset);
+    --nb-button-hover-shadow: none;
+    /* press="reverse": flat at rest, lifts into its shadow on hover. */
+    --nb-button-reverse-shadow: none;
+    --nb-button-reverse-hover-translate: calc(
+        -1 * var(--nb-shadow-control-offset)
+      )
+      calc(-1 * var(--nb-shadow-control-offset));
+    --nb-button-reverse-hover-shadow: var(--nb-button-shadow);
+    --nb-button-focus-ring: var(--nb-focus-ring);
+    --nb-button-focus-ring-offset: var(--nb-focus-ring-offset);
+    --nb-button-disabled-opacity: 0.5;
+  }
+
+  /* Variants */
+  :where([data-nb-button][data-size='sm']) {
+    --nb-button-height: 2.25rem;
+    --nb-button-padding-x: 0.75rem;
+    --nb-button-gap: 0.375rem;
+    --nb-button-font-size: 0.875rem;
+  }
+
+  :where([data-nb-button][data-size='lg']) {
+    --nb-button-height: 3.25rem;
+    --nb-button-padding-x: 1.25rem;
+    --nb-button-gap: 0.625rem;
+    --nb-button-font-size: 1.125rem;
+  }
+
+  :where([data-nb-button][data-size='xl']) {
+    --nb-button-height: 3.5rem;
+    --nb-button-padding-x: 1rem;
+    --nb-button-gap: 0.75rem;
+    --nb-button-font-size: 1.25rem;
+  }
+
+  /* Anatomy */
+  :where([data-nb-button]) {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    gap: 0.5rem;
-    height: 2.75rem;
-    padding-inline: 1rem;
-    font-size: 1rem;
+    gap: var(--nb-button-gap);
+    height: var(--nb-button-height);
+    padding-inline: var(--nb-button-padding-x);
+    font-size: var(--nb-button-font-size);
+    font-weight: var(--nb-button-font-weight);
     white-space: nowrap;
     user-select: none;
-    font-weight: 700;
-    border-style: solid;
-    background: var(--nb-button-bg, var(--nb-tone-bg, var(--nb-primary)));
-    color: var(--nb-button-fg, var(--nb-tone-fg, var(--nb-primary-foreground)));
-    border-color: var(
-      --nb-button-border-color,
-      var(--nb-tone-border, var(--nb-border))
-    );
-    border-width: var(--nb-button-border-width, var(--nb-border-width));
-    border-radius: var(--nb-button-radius, var(--nb-radius));
-    box-shadow: var(
-      --nb-button-shadow,
-      var(--nb-shadow-offset-x) var(--nb-shadow-offset-y) 0 0 var(--nb-shadow)
-    );
-    transition: all var(--nb-motion-fast) var(--nb-ease);
+    background: var(--nb-tone-bg, var(--nb-button-bg));
+    color: var(--nb-tone-fg, var(--nb-button-fg));
+    border: var(--nb-button-border-width) solid
+      var(--nb-tone-border, var(--nb-button-border-color));
+    border-radius: var(--nb-button-radius);
+    box-shadow: var(--nb-button-shadow);
+    transition: all var(--nb-button-duration) var(--nb-button-easing);
   }
 
-  :where(button[nbButton], a[nbButton]) svg {
-    pointer-events: none;
-    width: 1rem;
-    height: 1rem;
-    flex-shrink: 0;
+  :where([data-nb-button][data-press='reverse']) {
+    box-shadow: var(--nb-button-reverse-shadow);
   }
 
-  :where(button[nbButton], a[nbButton]):focus-visible {
-    outline: var(--nb-focus-ring);
-    outline-offset: var(--nb-focus-ring-offset);
-  }
-
-  :where(
-    button[nbButton]:disabled,
-    a[nbButton]:disabled,
-    button[nbButton][aria-disabled='true'],
-    a[nbButton][aria-disabled='true']
-  ) {
-    opacity: 0.5;
-    cursor: not-allowed;
-    pointer-events: none;
-  }
-
-  @media (hover: hover) {
-    :where(button[nbButton][data-press='push'], a[nbButton][data-press='push']):hover {
-      translate: var(--nb-shadow-offset-x) var(--nb-shadow-offset-y);
-      box-shadow: none;
-    }
-
-    :where(button[nbButton][data-press='reverse'], a[nbButton][data-press='reverse']):hover {
-      translate: calc(-1 * var(--nb-reverse-shadow-offset-x))
-        calc(-1 * var(--nb-reverse-shadow-offset-y));
-    }
-  }
-
-  :where(button[nbButton][data-size='sm'], a[nbButton][data-size='sm']) {
-    height: 2.25rem;
-    padding-inline: 0.75rem;
-    font-size: 0.875rem;
-    gap: 0.375rem;
-  }
-
-  :where(button[nbButton][data-size='lg'], a[nbButton][data-size='lg']) {
-    height: 3.25rem;
-    padding-inline: 1.25rem;
-    font-size: 1.125rem;
-    gap: 0.625rem;
-  }
-
-  :where(button[nbButton][data-size='xl'], a[nbButton][data-size='xl']) {
-    height: 3.5rem;
-    padding-inline: 1rem;
-    font-size: 1.25rem;
-    gap: 0.75rem;
-  }
-
-  :where(button[nbButton][data-full-width], a[nbButton][data-full-width]) {
+  :where([data-nb-button][data-full-width]) {
     width: 100%;
   }
 
-  :where([nbButtonTrailingIcon]) {
-    background: var(--nb-button-trailing-icon-bg, transparent);
-    color: var(--nb-button-trailing-icon-color, currentColor);
-    border-radius: var(--nb-button-trailing-icon-radius, inherit);
+  :where([data-nb-button]) svg {
+    pointer-events: none;
+    width: var(--nb-button-icon-size);
+    height: var(--nb-button-icon-size);
+    flex-shrink: 0;
   }
 
-  :where([nbButtonTrailingIcon][data-tone='default']) {
-    --nb-button-trailing-icon-bg: transparent;
-    --nb-button-trailing-icon-color: currentColor;
+  :where([data-nb-button-trailing-icon]) {
+    background: var(--nb-button-trailing-icon-bg);
+    color: var(--nb-button-trailing-icon-fg);
+    border-radius: var(--nb-button-trailing-icon-radius);
   }
 
-  :where([nbButtonTrailingIcon][data-tone='inverse']) {
-    --nb-button-trailing-icon-bg: var(--nb-foreground);
-    --nb-button-trailing-icon-color: var(--nb-background);
+  :where([data-nb-button-trailing-icon][data-tone='inverse']) {
+    background: var(--nb-button-trailing-icon-inverse-bg);
+    color: var(--nb-button-trailing-icon-inverse-fg);
   }
 
-  :where([nbButtonTrailingIcon][data-tone='current']) {
-    --nb-button-trailing-icon-bg: currentColor;
-    --nb-button-trailing-icon-color: var(--nb-background);
+  :where([data-nb-button-trailing-icon][data-tone='current']) {
+    background: var(--nb-button-trailing-icon-current-bg);
+    color: var(--nb-button-trailing-icon-current-fg);
   }
 
-  :where([nbButtonTrailingIcon]) svg {
+  :where([data-nb-button-trailing-icon]) svg {
     pointer-events: none;
     flex-shrink: 0;
   }
 
-  :where([nbButtonTrailingIcon][data-push='end']) {
+  :where([data-nb-button-trailing-icon][data-push='end']) {
     margin-left: auto;
   }
 
-  :where([nbButtonTrailingIcon][data-size]) {
+  :where([data-nb-button-trailing-icon][data-size]) {
     display: inline-flex;
     align-items: center;
     justify-content: center;
     flex-shrink: 0;
     width: var(--nb-button-trailing-icon-size);
     height: var(--nb-button-trailing-icon-size);
+  }
+
+  /* States */
+  :where([data-nb-button]):focus-visible {
+    outline: var(--nb-button-focus-ring);
+    outline-offset: var(--nb-button-focus-ring-offset);
+  }
+
+  @media (hover: hover) {
+    :where([data-nb-button][data-press='push']):hover {
+      translate: var(--nb-button-hover-translate);
+      box-shadow: var(--nb-button-hover-shadow);
+    }
+
+    :where([data-nb-button][data-press='reverse']):hover {
+      translate: var(--nb-button-reverse-hover-translate);
+      box-shadow: var(--nb-button-reverse-hover-shadow);
+    }
+  }
+
+  :where([data-nb-button]:disabled, [data-nb-button][aria-disabled='true']) {
+    opacity: var(--nb-button-disabled-opacity);
+    cursor: not-allowed;
+    pointer-events: none;
   }
 }

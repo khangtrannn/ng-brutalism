@@ -13,6 +13,7 @@ import type { NbButtonPress, NbButtonSize } from './button.types';
   exportAs: 'nbButton',
   hostDirectives: [{ directive: NbToneCapability, inputs: ['tone'] }],
   host: {
+    'data-nb-button': '',
     '[attr.data-press]': 'press()',
     '[attr.data-size]': 'size()',
     '[attr.data-full-width]': 'fullWidth() ? "" : null',

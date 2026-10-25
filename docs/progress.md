@@ -25,8 +25,8 @@ For history and details, read the domain's own `progress.md`.
 ## Components
 **Status:** Improvement-plan Phases 1–4 landed. Forms architecture consolidated in ADR 0004 (2026-07-15): model-based forms-runtime-free core re-affirmed, plus a new `forms-compat` secondary entry point (CVA bridge for `formControlName`/`ngModel` + field bridge) landed 2026-07-15, closing v0.3.0 scope; Angular 22 only (`^22.0.0`). ADRs 0002/0003 archived.
 **Last action:** Token customization v2.1 designed and proposed in `docs/architecture/token-customization.md`: roles + root-declared component tokens + inputs + local tone, four-block stylesheet contract; prototype verified in Chromium/Firefox/WebKit. Interim `@property`/forwarder work discarded; all older token docs deleted. Shipped CSS is still v1 (`fd5371f`).
-2026-10-25: v2.1 accepted for 0.3.0 (§14 decided; theming goals in `docs/architecture/theming.md`). §13 steps 1–2 done: role tokens in theme files, tone slots public (`--nb-tone-bg/-fg/-border`), `styles/stylesheet-contract.spec.ts` guard (MIGRATED list empty). `docs-tokens.generated.ts` was already stale at HEAD; regenerate in step 5.
-**Next:** Pilot Button, Input, Accordion (add each to MIGRATED) → roll out by archetype → ship 0.3.0. §14.5 and §14.8 still open; 5 decisions pending in the audit.
+2026-10-25: v2.1 accepted for 0.3.0 (§14 decided; theming goals in `docs/architecture/theming.md`). §13 steps 1–2 done (role tokens, public tone slots, `styles/stylesheet-contract.spec.ts` guard). Button pilot done: four-block CSS, `data-nb-button`, `press="reverse"` fixed to lift, 3-engine contract spec; layers now `theme, base, components, utilities`. `docs-tokens.generated.ts` was already stale at HEAD; regenerate in step 5.
+**Next:** Pilot Input, then Accordion (add each to MIGRATED) → roll out by archetype → ship 0.3.0. §14.5 and §14.8 still open; 5 decisions pending in the audit.
 → Plan: `docs/release/v0.3-angular-22-plan.md` · ADR: `docs/adr/0004-forms-support.md` · Audit/plan: `docs/architecture/library-audit-2026-10-19.md` · Token customization (single source): `docs/architecture/token-customization.md`
 
 ---

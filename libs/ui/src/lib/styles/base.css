@@ -1,7 +1,7 @@
 @import './theme.css';
 @import './tone.css';
 
-@layer base, components;
+@layer theme, base, components, utilities;
 
 @layer base {
   *,

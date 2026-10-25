@@ -47,8 +47,8 @@ const html = `
     <span nbChip><svg id="chip-svg"></svg></span>
   </div>
 
-  <button nbButton style="--nb-button-trailing-icon-size: 2rem">
-    <span nbButtonTrailingIcon data-size="sm" id="trailing"></span>
+  <button data-nb-button style="--nb-button-trailing-icon-size: 2rem">
+    <span data-nb-button-trailing-icon data-size="sm" id="trailing"></span>
   </button>
 
   <div style="--nb-dialog-description-fg: rgb(7, 8, 9)">

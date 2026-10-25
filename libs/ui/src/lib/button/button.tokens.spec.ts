@@ -182,7 +182,7 @@ describe('NbButton token surface', () => {
     expect(sibling.style.cssText).not.toContain('--nb-resolved');
   });
 
-  it('lets parent-scoped button tokens apply to all descendant buttons', async () => {
+  it('does not copy parent-scoped button tokens onto descendant buttons', async () => {
     // Arrange
     await TestBed.configureTestingModule({
       imports: [ParentScopedButtonTokenTest],

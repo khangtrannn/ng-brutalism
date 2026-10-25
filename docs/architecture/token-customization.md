@@ -220,8 +220,9 @@ From strongest to weakest:
 6. Roles, inherited from any ancestor
 7. Primitives
 
-The library declares `@layer theme, components, utilities`, the same names
-as Tailwind v4's layers. Consumer CSS loads after that declaration.
+The library declares `@layer theme, base, components, utilities`, the same
+names and order as Tailwind v4's layers. Consumer CSS loads after that
+declaration.
 
 ---
 
@@ -400,6 +401,7 @@ One suffix set for every component:
 -bg  -fg  -border-color  -border-width  -radius  -shadow
 -padding / -padding-x / -padding-y  -gap  -height  -size
 -font-size  -font-weight  -line-height  -tracking
+-translate  -opacity  -ring  -ring-offset  -duration  -easing
 ```
 
 State tokens add the state name before the slot:
@@ -490,6 +492,9 @@ across all three:
 - Vocabulary renames (§7). For example, `-ink` and `-text` → `-fg`,
   text colors named `-color` → `-fg`, `-thickness`/`-stroke-width` →
   `-border-width`, `-leading` → `-line-height`.
+- `press="reverse"` on Button now does what its name says: flat at rest,
+  lifting up-left into its shadow on hover. Before, a double negation made
+  it slide down-right with the shadow attached.
 - `--nb-radius` is removed. Set `--nb-radius-box`, `-field`, `-control` and
   `-pill` instead.
 - `theme-soft.css` and `theme-mono.css` no longer apply to the whole page
@@ -524,6 +529,8 @@ across all three:
 3. Pilot: **Button** (states, variants, tone), **Input** (field role,
    invalid/focus), **Accordion** (compound). Each ships with Chromium,
    Firefox and WebKit contract specs.
+   **Button done 2026-10-25** (`button/nb-button.css-contract.spec.ts`). The
+   trailing icon is a part: its tokens live on the button root.
 4. The rest by archetype: surfaces → controls and fields → compound →
    layout and type.
 5. Docs generator, docs-site pages and CHANGELOG renames.

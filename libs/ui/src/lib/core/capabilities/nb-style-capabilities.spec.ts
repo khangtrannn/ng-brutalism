@@ -352,11 +352,11 @@ describe('style capabilities', () => {
     expect(button.style.getPropertyValue('--nb-button-bg')).toBe('#00e5ff');
     expect(button.style.getPropertyValue('background')).toBe('');
     expect(stylesCss).toContain(
-      'background: var(--nb-button-bg, var(--nb-tone-bg, var(--nb-primary)));'
+      'background: var(--nb-tone-bg, var(--nb-button-bg));'
     );
   });
 
-  it('inherited token beats the library fallback when button tone is unset', () => {
+  it('does not copy a wrapper button token onto the button', () => {
     // Arrange
     const el = mount(ButtonBackgroundPriorityTest);
     const scope = el.querySelector<HTMLElement>('#scope')!;
@@ -367,7 +367,7 @@ describe('style capabilities', () => {
     expect(button.style.getPropertyValue('--nb-button-bg')).toBe('');
     expect(button.style.getPropertyValue('background')).toBe('');
     expect(stylesCss).toContain(
-      'background: var(--nb-button-bg, var(--nb-tone-bg, var(--nb-primary)));'
+      'background: var(--nb-tone-bg, var(--nb-button-bg));'
     );
   });
 
@@ -380,7 +380,7 @@ describe('style capabilities', () => {
     expect(button.style.getPropertyValue('--nb-button-bg')).toBe('');
     expect(button.style.getPropertyValue('background')).toBe('');
     expect(stylesCss).toContain(
-      'background: var(--nb-button-bg, var(--nb-tone-bg, var(--nb-primary)));'
+      'background: var(--nb-tone-bg, var(--nb-button-bg));'
     );
   });
 
