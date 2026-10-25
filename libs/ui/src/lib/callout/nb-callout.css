@@ -36,11 +36,11 @@
     word-wrap: break-word;
     overflow-wrap: break-word;
     border-style: solid;
-    background: var(--nb-callout-bg, var(--_nb-tone-bg, var(--nb-tone-neutral-bg)));
-    color: var(--nb-callout-fg, var(--_nb-tone-fg, var(--nb-tone-neutral-fg)));
+    background: var(--nb-callout-bg, var(--nb-tone-bg, var(--nb-tone-neutral-bg)));
+    color: var(--nb-callout-fg, var(--nb-tone-fg, var(--nb-tone-neutral-fg)));
     border-color: var(
       --nb-callout-border-color,
-      var(--_nb-tone-border-color, var(--nb-tone-neutral-border))
+      var(--nb-tone-border, var(--nb-tone-neutral-border))
     );
     border-width: var(--nb-callout-border-width, 3px);
     border-radius: var(--nb-callout-radius, var(--nb-radius));

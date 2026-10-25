@@ -25,8 +25,8 @@ For history and details, read the domain's own `progress.md`.
 ## Components
 **Status:** Improvement-plan Phases 1–4 landed. Forms architecture consolidated in ADR 0004 (2026-07-15): model-based forms-runtime-free core re-affirmed, plus a new `forms-compat` secondary entry point (CVA bridge for `formControlName`/`ngModel` + field bridge) landed 2026-07-15, closing v0.3.0 scope; Angular 22 only (`^22.0.0`). ADRs 0002/0003 archived.
 **Last action:** Token customization v2.1 designed and proposed in `docs/architecture/token-customization.md`: roles + root-declared component tokens + inputs + local tone, four-block stylesheet contract; prototype verified in Chromium/Firefox/WebKit. Interim `@property`/forwarder work discarded; all older token docs deleted. Shipped CSS is still v1 (`fd5371f`).
-Theming goals (community themes, validator, playground) added in `docs/architecture/theming.md`, scoped to roles only; token doc gained §4.3 theme contract and decisions §14.6–8.
-**Next:** Decide the open decisions (§14) → pilot v2.1 on Button, Input, Accordion with contract specs → roll out by archetype. Ship 0.3.0 (`smoke:ui:ng22` on Node ≥22.22.3), then audit Phase 2 P0 fixes. 5 decisions pending in the audit.
+2026-10-25: v2.1 accepted for 0.3.0 (§14 decided; theming goals in `docs/architecture/theming.md`). §13 steps 1–2 done: role tokens in theme files, tone slots public (`--nb-tone-bg/-fg/-border`), `styles/stylesheet-contract.spec.ts` guard (MIGRATED list empty). `docs-tokens.generated.ts` was already stale at HEAD; regenerate in step 5.
+**Next:** Pilot Button, Input, Accordion (add each to MIGRATED) → roll out by archetype → ship 0.3.0. §14.5 and §14.8 still open; 5 decisions pending in the audit.
 → Plan: `docs/release/v0.3-angular-22-plan.md` · ADR: `docs/adr/0004-forms-support.md` · Audit/plan: `docs/architecture/library-audit-2026-10-19.md` · Token customization (single source): `docs/architecture/token-customization.md`
 
 ---
@@ -56,7 +56,7 @@ Theming goals (community themes, validator, playground) added in `docs/architect
 ---
 
 ## Release
-**Status:** 0.3.0 scope reopened by ADR 0004 (2026-07-15) is code-complete and gate-verified: the `forms-compat` entry point landed and every gate runnable in this sandbox is green. Peers: `@angular/core`/`@angular/common` `^22.0.0`, `@angular/forms` optional. Only blocker is `smoke:ui:ng22`, which needs Node ≥22.22.3 (this sandbox is 22.22.2).
+**Status:** 0.3.0 now also includes the token-customization v2.1 refactor (decided 2026-10-25), not started. Forms scope from ADR 0004 is code-complete and gate-verified: the `forms-compat` entry point landed and every gate runnable in this sandbox is green. Peers: `@angular/core`/`@angular/common` `^22.0.0`, `@angular/forms` optional. Only blocker is `smoke:ui:ng22`, which needs Node ≥22.22.3 (this sandbox is 22.22.2).
 **Last action:** 2026-07-15 forms audit follow-up landed: matcher token + submitted-state timing, expanded bridge specs, docs/ADR wording, and API snapshots. `pnpm nx test ui --run` and `pnpm api-guard:update` are green.
 **Next:** Run `smoke:ui:ng22` on a Node ≥22.22.3 machine, refresh the CHANGELOG `[0.3.0]` date, then follow `docs/release/RELEASE.md` steps 2–8 (build → tag → GitHub release → npm publish).
 → Runbook: `docs/release/RELEASE.md` · v0.3 plan: `docs/release/v0.3-angular-22-plan.md` · Historical scope: `docs/_archive/v0.2.0-plan.md`

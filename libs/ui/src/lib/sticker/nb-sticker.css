@@ -78,8 +78,8 @@
   }
 
   :where([data-nb-sticker][data-nb-tone]) {
-    --nb-sticker-tone-bg: var(--_nb-tone-bg);
-    --nb-sticker-tone-fg: var(--_nb-tone-fg);
+    --nb-sticker-tone-bg: var(--nb-tone-bg);
+    --nb-sticker-tone-fg: var(--nb-tone-fg);
   }
 
   :where([data-nb-sticker][data-shape='burst-wide']) {
@@ -142,8 +142,8 @@
   }
 
   :where([data-nb-sticker] [data-slot='sticker-shape']) {
-    fill: var(--nb-sticker-fill, var(--nb-sticker-tone-bg, var(--_nb-tone-bg, var(--nb-mint, #9af7b5))));
-    stroke: var(--nb-sticker-ink, var(--nb-sticker-tone-fg, var(--_nb-tone-fg, var(--nb-black, #050505))));
+    fill: var(--nb-sticker-fill, var(--nb-sticker-tone-bg, var(--nb-tone-bg, var(--nb-mint, #9af7b5))));
+    stroke: var(--nb-sticker-ink, var(--nb-sticker-tone-fg, var(--nb-tone-fg, var(--nb-black, #050505))));
     stroke-width: var(--nb-sticker-stroke-width);
     stroke-linejoin: round;
     stroke-linecap: round;
@@ -156,7 +156,7 @@
     padding-inline: var(--nb-sticker-padding-inline);
     padding-block: var(--nb-sticker-padding-block);
     overflow-wrap: break-word;
-    color: var(--nb-sticker-ink, var(--nb-sticker-tone-fg, var(--_nb-tone-fg, var(--nb-black, #050505))));
+    color: var(--nb-sticker-ink, var(--nb-sticker-tone-fg, var(--nb-tone-fg, var(--nb-black, #050505))));
     font-family: var(--nb-font-display);
     font-size: var(--nb-sticker-font-size);
     font-weight: 950;

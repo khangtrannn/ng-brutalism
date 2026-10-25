@@ -30,14 +30,14 @@
     display: block;
     overflow: hidden;
     border-style: solid;
-    background: var(--nb-media-frame-bg, var(--_nb-tone-bg, var(--nb-surface)));
+    background: var(--nb-media-frame-bg, var(--nb-tone-bg, var(--nb-surface)));
     color: var(
       --nb-media-frame-fg,
-      var(--_nb-tone-fg, var(--nb-surface-foreground))
+      var(--nb-tone-fg, var(--nb-surface-foreground))
     );
     border-color: var(
       --nb-media-frame-border-color,
-      var(--_nb-tone-border-color, var(--nb-border))
+      var(--nb-tone-border, var(--nb-border))
     );
     border-width: var(--nb-media-frame-border-width, var(--nb-border-width));
     border-radius: var(--nb-media-frame-radius, var(--nb-radius));

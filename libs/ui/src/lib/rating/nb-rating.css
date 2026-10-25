@@ -24,7 +24,7 @@
   }
 
   :where(nb-rating[data-nb-tone]) {
-    --nb-rating-tone-bg: var(--_nb-tone-bg);
+    --nb-rating-tone-bg: var(--nb-tone-bg);
   }
 
   :where(nb-rating [data-slot='rating-star']) {
@@ -34,7 +34,7 @@
   }
 
   :where(nb-rating [data-slot='rating-star'][data-filled]) {
-    color: var(--nb-rating-fill, var(--nb-rating-tone-bg, var(--_nb-tone-bg, var(--nb-warning))));
+    color: var(--nb-rating-fill, var(--nb-rating-tone-bg, var(--nb-tone-bg, var(--nb-warning))));
   }
 
   :where(nb-rating [data-slot='rating-count']) {

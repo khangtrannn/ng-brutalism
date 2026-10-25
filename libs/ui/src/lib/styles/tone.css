@@ -1,102 +1,102 @@
-@property --_nb-tone-bg {
+@property --nb-tone-bg {
   syntax: "*";
   inherits: false;
 }
 
-@property --_nb-tone-fg {
+@property --nb-tone-fg {
   syntax: "*";
   inherits: false;
 }
 
-@property --_nb-tone-border-color {
+@property --nb-tone-border {
   syntax: "*";
   inherits: false;
 }
 
 @layer base {
   :where([data-nb-tone='surface']) {
-    --_nb-tone-bg: var(--nb-tone-surface-bg);
-    --_nb-tone-fg: var(--nb-tone-surface-fg);
-    --_nb-tone-border-color: var(--nb-tone-surface-border);
+    --nb-tone-bg: var(--nb-tone-surface-bg);
+    --nb-tone-fg: var(--nb-tone-surface-fg);
+    --nb-tone-border: var(--nb-tone-surface-border);
   }
   :where([data-nb-tone='background']) {
-    --_nb-tone-bg: var(--nb-tone-background-bg);
-    --_nb-tone-fg: var(--nb-tone-background-fg);
-    --_nb-tone-border-color: var(--nb-tone-background-border);
+    --nb-tone-bg: var(--nb-tone-background-bg);
+    --nb-tone-fg: var(--nb-tone-background-fg);
+    --nb-tone-border: var(--nb-tone-background-border);
   }
   :where([data-nb-tone='ink']) {
-    --_nb-tone-bg: var(--nb-tone-ink-bg);
-    --_nb-tone-fg: var(--nb-tone-ink-fg);
-    --_nb-tone-border-color: var(--nb-tone-ink-border);
+    --nb-tone-bg: var(--nb-tone-ink-bg);
+    --nb-tone-fg: var(--nb-tone-ink-fg);
+    --nb-tone-border: var(--nb-tone-ink-border);
   }
   :where([data-nb-tone='cream']) {
-    --_nb-tone-bg: var(--nb-tone-cream-bg);
-    --_nb-tone-fg: var(--nb-tone-cream-fg);
-    --_nb-tone-border-color: var(--nb-tone-cream-border);
+    --nb-tone-bg: var(--nb-tone-cream-bg);
+    --nb-tone-fg: var(--nb-tone-cream-fg);
+    --nb-tone-border: var(--nb-tone-cream-border);
   }
   :where([data-nb-tone='white']) {
-    --_nb-tone-bg: var(--nb-tone-white-bg);
-    --_nb-tone-fg: var(--nb-tone-white-fg);
-    --_nb-tone-border-color: var(--nb-tone-white-border);
+    --nb-tone-bg: var(--nb-tone-white-bg);
+    --nb-tone-fg: var(--nb-tone-white-fg);
+    --nb-tone-border: var(--nb-tone-white-border);
   }
   :where([data-nb-tone='black']) {
-    --_nb-tone-bg: var(--nb-tone-black-bg);
-    --_nb-tone-fg: var(--nb-tone-black-fg);
-    --_nb-tone-border-color: var(--nb-tone-black-border);
+    --nb-tone-bg: var(--nb-tone-black-bg);
+    --nb-tone-fg: var(--nb-tone-black-fg);
+    --nb-tone-border: var(--nb-tone-black-border);
   }
   :where([data-nb-tone='yellow']) {
-    --_nb-tone-bg: var(--nb-tone-yellow-bg);
-    --_nb-tone-fg: var(--nb-tone-yellow-fg);
-    --_nb-tone-border-color: var(--nb-tone-yellow-border);
+    --nb-tone-bg: var(--nb-tone-yellow-bg);
+    --nb-tone-fg: var(--nb-tone-yellow-fg);
+    --nb-tone-border: var(--nb-tone-yellow-border);
   }
   :where([data-nb-tone='pink']) {
-    --_nb-tone-bg: var(--nb-tone-pink-bg);
-    --_nb-tone-fg: var(--nb-tone-pink-fg);
-    --_nb-tone-border-color: var(--nb-tone-pink-border);
+    --nb-tone-bg: var(--nb-tone-pink-bg);
+    --nb-tone-fg: var(--nb-tone-pink-fg);
+    --nb-tone-border: var(--nb-tone-pink-border);
   }
   :where([data-nb-tone='mint']) {
-    --_nb-tone-bg: var(--nb-tone-mint-bg);
-    --_nb-tone-fg: var(--nb-tone-mint-fg);
-    --_nb-tone-border-color: var(--nb-tone-mint-border);
+    --nb-tone-bg: var(--nb-tone-mint-bg);
+    --nb-tone-fg: var(--nb-tone-mint-fg);
+    --nb-tone-border: var(--nb-tone-mint-border);
   }
   :where([data-nb-tone='lavender']) {
-    --_nb-tone-bg: var(--nb-tone-lavender-bg);
-    --_nb-tone-fg: var(--nb-tone-lavender-fg);
-    --_nb-tone-border-color: var(--nb-tone-lavender-border);
+    --nb-tone-bg: var(--nb-tone-lavender-bg);
+    --nb-tone-fg: var(--nb-tone-lavender-fg);
+    --nb-tone-border: var(--nb-tone-lavender-border);
   }
   :where([data-nb-tone='blue']) {
-    --_nb-tone-bg: var(--nb-tone-blue-bg);
-    --_nb-tone-fg: var(--nb-tone-blue-fg);
-    --_nb-tone-border-color: var(--nb-tone-blue-border);
+    --nb-tone-bg: var(--nb-tone-blue-bg);
+    --nb-tone-fg: var(--nb-tone-blue-fg);
+    --nb-tone-border: var(--nb-tone-blue-border);
   }
   :where([data-nb-tone='primary']) {
-    --_nb-tone-bg: var(--nb-tone-primary-bg);
-    --_nb-tone-fg: var(--nb-tone-primary-fg);
-    --_nb-tone-border-color: var(--nb-tone-primary-border);
+    --nb-tone-bg: var(--nb-tone-primary-bg);
+    --nb-tone-fg: var(--nb-tone-primary-fg);
+    --nb-tone-border: var(--nb-tone-primary-border);
   }
   :where([data-nb-tone='secondary']) {
-    --_nb-tone-bg: var(--nb-tone-secondary-bg);
-    --_nb-tone-fg: var(--nb-tone-secondary-fg);
-    --_nb-tone-border-color: var(--nb-tone-secondary-border);
+    --nb-tone-bg: var(--nb-tone-secondary-bg);
+    --nb-tone-fg: var(--nb-tone-secondary-fg);
+    --nb-tone-border: var(--nb-tone-secondary-border);
   }
   :where([data-nb-tone='accent']) {
-    --_nb-tone-bg: var(--nb-tone-accent-bg);
-    --_nb-tone-fg: var(--nb-tone-accent-fg);
-    --_nb-tone-border-color: var(--nb-tone-accent-border);
+    --nb-tone-bg: var(--nb-tone-accent-bg);
+    --nb-tone-fg: var(--nb-tone-accent-fg);
+    --nb-tone-border: var(--nb-tone-accent-border);
   }
   :where([data-nb-tone='success']) {
-    --_nb-tone-bg: var(--nb-tone-success-bg);
-    --_nb-tone-fg: var(--nb-tone-success-fg);
-    --_nb-tone-border-color: var(--nb-tone-success-border);
+    --nb-tone-bg: var(--nb-tone-success-bg);
+    --nb-tone-fg: var(--nb-tone-success-fg);
+    --nb-tone-border: var(--nb-tone-success-border);
   }
   :where([data-nb-tone='warning']) {
-    --_nb-tone-bg: var(--nb-tone-warning-bg);
-    --_nb-tone-fg: var(--nb-tone-warning-fg);
-    --_nb-tone-border-color: var(--nb-tone-warning-border);
+    --nb-tone-bg: var(--nb-tone-warning-bg);
+    --nb-tone-fg: var(--nb-tone-warning-fg);
+    --nb-tone-border: var(--nb-tone-warning-border);
   }
   :where([data-nb-tone='danger']) {
-    --_nb-tone-bg: var(--nb-tone-danger-bg);
-    --_nb-tone-fg: var(--nb-tone-danger-fg);
-    --_nb-tone-border-color: var(--nb-tone-danger-border);
+    --nb-tone-bg: var(--nb-tone-danger-bg);
+    --nb-tone-fg: var(--nb-tone-danger-fg);
+    --nb-tone-border: var(--nb-tone-danger-border);
   }
 }

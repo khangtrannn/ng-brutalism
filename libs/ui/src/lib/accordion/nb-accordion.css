@@ -83,15 +83,15 @@
     border-width: var(--nb-accordion-item-border-width, var(--nb-border-width));
     border-color: var(
       --nb-accordion-item-border-color,
-      var(--_nb-tone-border-color, var(--nb-border))
+      var(--nb-tone-border, var(--nb-border))
     );
     background-color: var(
       --nb-accordion-item-bg,
-      var(--_nb-tone-bg, var(--nb-surface))
+      var(--nb-tone-bg, var(--nb-surface))
     );
     color: var(
       --nb-accordion-item-fg,
-      var(--_nb-tone-fg, var(--nb-surface-foreground))
+      var(--nb-tone-fg, var(--nb-surface-foreground))
     );
     box-shadow: var(
       --nb-accordion-item-shadow,
@@ -100,9 +100,9 @@
   }
 
   :where(nb-accordion-trigger[data-nb-tone]) {
-    --nb-accordion-trigger-bg: var(--_nb-tone-bg);
-    --nb-accordion-trigger-fg: var(--_nb-tone-fg);
-    --nb-accordion-trigger-border-color: var(--_nb-tone-border-color);
+    --nb-accordion-trigger-bg: var(--nb-tone-bg);
+    --nb-accordion-trigger-fg: var(--nb-tone-fg);
+    --nb-accordion-trigger-border-color: var(--nb-tone-border);
   }
 
   :where(nb-accordion-trigger [data-slot='accordion-trigger-heading']) {

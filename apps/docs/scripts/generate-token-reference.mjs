@@ -360,7 +360,7 @@ function collectComponentTokens(slug, cssFiles) {
 }
 
 function collapseToneVars(value) {
-  const marker = 'var(--_nb-tone-';
+  const marker = 'var(--nb-tone-';
   let result = value;
   let sawTone = false;
   let usedPlaceholder = false;

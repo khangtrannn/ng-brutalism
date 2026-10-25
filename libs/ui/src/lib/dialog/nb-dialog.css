@@ -80,11 +80,11 @@
     padding: 0;
     overflow-x: hidden;
     border-style: solid;
-    background: var(--nb-dialog-bg, var(--_nb-tone-bg, var(--nb-surface)));
-    color: var(--nb-dialog-fg, var(--_nb-tone-fg, var(--nb-surface-foreground)));
+    background: var(--nb-dialog-bg, var(--nb-tone-bg, var(--nb-surface)));
+    color: var(--nb-dialog-fg, var(--nb-tone-fg, var(--nb-surface-foreground)));
     border-color: var(
       --nb-dialog-border-color,
-      var(--_nb-tone-border-color, var(--nb-border))
+      var(--nb-tone-border, var(--nb-border))
     );
     border-width: var(--nb-dialog-border-width, var(--nb-border-width));
     border-radius: var(--nb-dialog-radius, var(--nb-radius));

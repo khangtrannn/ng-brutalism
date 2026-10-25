@@ -40,4 +40,10 @@
   --nb-shadow-offset-y: 3px;
   --nb-reverse-shadow-offset-x: -3px;
   --nb-reverse-shadow-offset-y: -3px;
+
+  --nb-radius-box: 0.5rem;
+  --nb-radius-field: 0.5rem;
+  --nb-radius-control: 0.5rem;
+  --nb-shadow-box-offset: 3px;
+  --nb-shadow-control-offset: 3px;
 }

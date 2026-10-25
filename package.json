@@ -82,6 +82,7 @@
     "jsdom": "^29.1.1",
     "ng-packagr": "22.0.1",
     "nx": "23.1.0",
+    "postcss": "^8.5.17",
     "prettier": "^3.9.5",
     "tailwindcss": "^4.3.0",
     "tsx": "^4.22.3",

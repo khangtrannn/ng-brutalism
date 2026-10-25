@@ -352,7 +352,7 @@ describe('style capabilities', () => {
     expect(button.style.getPropertyValue('--nb-button-bg')).toBe('#00e5ff');
     expect(button.style.getPropertyValue('background')).toBe('');
     expect(stylesCss).toContain(
-      'background: var(--nb-button-bg, var(--_nb-tone-bg, var(--nb-primary)));'
+      'background: var(--nb-button-bg, var(--nb-tone-bg, var(--nb-primary)));'
     );
   });
 
@@ -367,7 +367,7 @@ describe('style capabilities', () => {
     expect(button.style.getPropertyValue('--nb-button-bg')).toBe('');
     expect(button.style.getPropertyValue('background')).toBe('');
     expect(stylesCss).toContain(
-      'background: var(--nb-button-bg, var(--_nb-tone-bg, var(--nb-primary)));'
+      'background: var(--nb-button-bg, var(--nb-tone-bg, var(--nb-primary)));'
     );
   });
 
@@ -380,7 +380,7 @@ describe('style capabilities', () => {
     expect(button.style.getPropertyValue('--nb-button-bg')).toBe('');
     expect(button.style.getPropertyValue('background')).toBe('');
     expect(stylesCss).toContain(
-      'background: var(--nb-button-bg, var(--_nb-tone-bg, var(--nb-primary)));'
+      'background: var(--nb-button-bg, var(--nb-tone-bg, var(--nb-primary)));'
     );
   });
 

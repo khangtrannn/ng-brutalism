@@ -35,11 +35,11 @@
     font-size: 0.875rem;
     font-weight: 500;
     resize: none;
-    background-color: var(--nb-textarea-bg, var(--_nb-tone-bg, var(--nb-surface)));
-    color: var(--nb-textarea-fg, var(--_nb-tone-fg, var(--nb-surface-foreground)));
+    background-color: var(--nb-textarea-bg, var(--nb-tone-bg, var(--nb-surface)));
+    color: var(--nb-textarea-fg, var(--nb-tone-fg, var(--nb-surface-foreground)));
     border-color: var(
       --nb-textarea-border-color,
-      var(--_nb-tone-border-color, var(--nb-border))
+      var(--nb-tone-border, var(--nb-border))
     );
     border-width: var(--nb-textarea-border-width, var(--nb-border-width));
     border-style: solid;
@@ -86,7 +86,7 @@
   :where(textarea[nbTextarea]:not([data-in-group])):focus-visible {
     box-shadow: none;
     outline: 2px solid
-      var(--nb-textarea-border-color, var(--_nb-tone-border-color, var(--nb-border)));
+      var(--nb-textarea-border-color, var(--nb-tone-border, var(--nb-border)));
     outline-offset: 2px;
   }
 }

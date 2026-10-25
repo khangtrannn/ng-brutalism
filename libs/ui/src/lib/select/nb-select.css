@@ -58,11 +58,11 @@
     width: 100%;
     border-style: solid;
     border-radius: var(--nb-select-radius, var(--nb-radius));
-    background-color: var(--nb-select-bg, var(--_nb-tone-bg, var(--nb-surface)));
-    color: var(--nb-select-fg, var(--_nb-tone-fg, var(--nb-surface-foreground)));
+    background-color: var(--nb-select-bg, var(--nb-tone-bg, var(--nb-surface)));
+    color: var(--nb-select-fg, var(--nb-tone-fg, var(--nb-surface-foreground)));
     border-color: var(
       --nb-select-border-color,
-      var(--_nb-tone-border-color, var(--nb-border))
+      var(--nb-tone-border, var(--nb-border))
     );
     border-width: var(--nb-select-border-width, var(--nb-border-width));
     box-shadow: var(
@@ -72,9 +72,9 @@
   }
 
   :where(nb-select[data-nb-tone]) {
-    --nb-select-tone-bg: var(--_nb-tone-bg);
-    --nb-select-tone-fg: var(--_nb-tone-fg);
-    --nb-select-tone-border-color: var(--_nb-tone-border-color);
+    --nb-select-tone-bg: var(--nb-tone-bg);
+    --nb-select-tone-fg: var(--nb-tone-fg);
+    --nb-select-tone-border-color: var(--nb-tone-border);
   }
 
   :where(nb-select[data-in-group]) {
@@ -87,7 +87,7 @@
 
   :where(nb-select:focus-within:not([data-in-group])) {
     outline: 2px solid
-      var(--nb-select-border-color, var(--_nb-tone-border-color, var(--nb-border)));
+      var(--nb-select-border-color, var(--nb-tone-border, var(--nb-border)));
     outline-offset: 2px;
     box-shadow: none;
   }
@@ -174,10 +174,10 @@
     width: calc(100% + 12px);
     margin-top: 0.125rem;
     border: var(--nb-border-width) solid
-      var(--nb-select-border-color, var(--nb-select-tone-border-color, var(--_nb-tone-border-color, var(--nb-border))));
+      var(--nb-select-border-color, var(--nb-select-tone-border-color, var(--nb-tone-border, var(--nb-border))));
     border-radius: 0 0 var(--nb-select-radius, var(--nb-radius))
       var(--nb-select-radius, var(--nb-radius));
-    background: var(--nb-select-listbox-bg, var(--nb-select-bg, var(--nb-select-tone-bg, var(--_nb-tone-bg, var(--nb-surface)))));
+    background: var(--nb-select-listbox-bg, var(--nb-select-bg, var(--nb-select-tone-bg, var(--nb-tone-bg, var(--nb-surface)))));
     box-shadow: var(--nb-shadow-offset-x) var(--nb-shadow-offset-y) 0 0 var(--nb-shadow);
     overflow-y: auto;
   }
@@ -195,7 +195,7 @@
     padding-inline: 0.5rem;
     border: 0;
     background: transparent;
-    color: var(--nb-select-fg, var(--nb-select-tone-fg, var(--_nb-tone-fg, var(--nb-surface-foreground))));
+    color: var(--nb-select-fg, var(--nb-select-tone-fg, var(--nb-tone-fg, var(--nb-surface-foreground))));
     font-family: var(--nb-font-mono);
     font-size: 1rem;
     font-weight: 700;
@@ -213,7 +213,7 @@
 
   :where(nb-select-option [data-slot='select-option-button']:focus-visible) {
     outline: 2px solid
-      var(--nb-select-border-color, var(--nb-select-tone-border-color, var(--_nb-tone-border-color, var(--nb-border))));
+      var(--nb-select-border-color, var(--nb-select-tone-border-color, var(--nb-tone-border, var(--nb-border))));
     outline-offset: 0;
   }
 

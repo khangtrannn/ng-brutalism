@@ -111,8 +111,13 @@ Rules:
   `prefers-color-scheme` block inside the file. The consumer decides when
   to switch.
 
-Whether the default theme also matches `:root` is open decision
-[token-customization §14.7](token-customization.md#14-open-decisions).
+The default theme (`theme.css`) is the only one that also matches `:root`:
+`:root, [data-nb-theme='default']`. Every other theme needs its attribute
+([token-customization §14.7](token-customization.md#14-decisions)).
+
+A theme may set the optional full-value depth roles (`--nb-shadow-box`,
+`-control`, `-pill`) to replace the offset shadow, for example with a glow
+([token-customization §14.6](token-customization.md#14-decisions)).
 
 ---
 
@@ -249,9 +254,9 @@ Each phase waits on the one before it. Phase 1 is the v2.1 migration.
 
 | Phase | Work | Depends on |
 |---|---|---|
-| 1. Contract | Token-customization migration, §13 steps 1–5 | open decisions §14 |
-| 2. Rescope | Move `theme.css`, `theme-mono.css`, `theme-soft.css` from `:root` to `[data-nb-theme]`, keeping a default (§14.7) | roles in place |
-| 3. New themes | `theme-template.css`, then a dark theme, then one theme with a different aesthetic (glow, §14.6) | phase 2 |
+| 1. Contract | Token-customization migration, §13 steps 1–5 | decided 2026-10-25 (§14) |
+| 2. Rescope | Move `theme-mono.css` and `theme-soft.css` from `:root` to `[data-nb-theme]`; `theme.css` keeps `:root` as the default (§14.7) | roles in place |
+| 3. New themes | `theme-template.css`, then a dark theme, then a glow theme using the full-value depth roles (§14.6) | phase 2 |
 | 4. Validator | `pnpm validate:themes` in CI | the role list being generated |
 | 5. Consumer docs | Docs-site theming page: import, scope, switch | phase 2 |
 | 6. Community | Contribution guide, attribution, review criteria | phases 3–4 |
@@ -268,8 +273,8 @@ to fit the existing contract:
 | RFC | Here | Why |
 |---|---|---|
 | `var(--nb-button-bg, var(--nb-primary))`, undeclared component tokens | Component tokens declared on each root | Undeclared tokens leak into nested instances (token-customization §9) |
-| `--nb-background`, `--nb-border-color`, `--nb-radius` | `--nb-surface`, `--nb-border`, `--nb-radius-box/-field/-control/-pill` | Existing role names; one radius can't say "round cards, square buttons" |
-| `--nb-shadow-sm/-md/-lg` as full values on the theme block | Atomic offset roles, plus an optional full-value role (§14.6) | Full values derived from other tokens ignore section overrides |
+| `--nb-background`, `--nb-border-color`, `--nb-radius` | `--nb-surface`, `--nb-border`, `--nb-radius-box/-field/-control/-pill` | Existing role names; one radius can't say "round cards, square buttons", and `--nb-radius` is removed (§14.3) |
+| `--nb-shadow-sm/-md/-lg` as full values on the theme block | Atomic offset roles, plus optional full-value `--nb-shadow-box/-control/-pill` (§14.6) | Full values derived from other tokens ignore section overrides |
 | Global `--nb-hover-translate-x/-y` | Per-component state tokens derived from the shadow offset | States use their own tokens (token-customization §5) |
 | `.nb-button` selectors | `[data-nb-button]` | The documented hook (token-customization §6) |
 | Cascade layers "to evaluate" | Already decided | token-customization §3 |
@@ -284,8 +289,8 @@ to fit the existing contract:
    separate package once there are many?
 2. How to version the theme contract: does adding a required role break
    community themes?
-3. Should themes control spacing or density? Follows token-customization
-   §14.2.
+3. Should themes control spacing or density? Not for now: no size role
+   (token-customization §14.2).
 4. When to add documented part hooks for advanced themes (decorative
    backgrounds, pseudo-elements)? Not before the `data-slot` part API
    (token-customization §10).

@@ -93,6 +93,14 @@
   --nb-reverse-shadow-offset-x: -4px;
   --nb-reverse-shadow-offset-y: -4px;
 
+  --nb-radius-box: 0rem;
+  --nb-radius-field: 0rem;
+  --nb-radius-control: 0rem;
+  --nb-radius-pill: 9999px;
+  --nb-shadow-box-offset: 4px;
+  --nb-shadow-control-offset: 4px;
+  --nb-shadow-pill-offset: 2px;
+
   --nb-motion-fast: 150ms;
   --nb-motion-base: 200ms;
   --nb-motion-pulse: 2s;

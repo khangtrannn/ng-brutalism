@@ -4,7 +4,7 @@
 > and customized through CSS variables. Other docs link here instead of
 > restating it.
 >
-> **Status: v2.1, proposed (2026-10-22). Not implemented yet.** The shipped
+> **Status: v2.1, accepted (2026-10-25). Not implemented yet.** The shipped
 > CSS (`fd5371f`) still uses the older model: one public variable per scalar,
 > registered with `@property`. Migration is in §13, decisions still needed in
 > §14.
@@ -38,7 +38,7 @@ What the library ships, for reference (Card):
 :where([data-nb-card]) {
   --nb-card-bg: var(--nb-surface);
   --nb-card-radius: var(--nb-radius-box);
-  --nb-card-shadow: var(--nb-shadow-box-offset) var(--nb-shadow-box-offset) 0 0 var(--nb-shadow);
+  --nb-card-shadow: var(--nb-shadow-box, var(--nb-shadow-box-offset) var(--nb-shadow-box-offset) 0 0 var(--nb-shadow));
   --nb-card-padding: 1.5rem;
 
   background: var(--nb-tone-bg, var(--nb-card-bg));
@@ -247,6 +247,7 @@ Tone            data-nb-tone → --nb-tone-bg/-fg/-border       on that element 
 | | `--nb-radius-control` | button, icon-button |
 | | `--nb-radius-pill` | badge, chip, avatar, status-dot |
 | Depth | `--nb-shadow` (color), `--nb-shadow-box-offset`, `--nb-shadow-control-offset`, `--nb-shadow-pill-offset` | the groups above |
+| | Optional, unset by default: `--nb-shadow-box`, `--nb-shadow-control`, `--nb-shadow-pill` (a full `box-shadow`, §14.6) | the groups above |
 | Tone presets | `--nb-tone-<name>-bg/-fg/-border` | tone layer |
 
 **Roles are atomic values.** A custom property resolves `var()` on the
@@ -333,7 +334,7 @@ Example (Button):
     --nb-button-border-color: var(--nb-border);
     --nb-button-border-width: var(--nb-border-width);
     --nb-button-radius: var(--nb-radius-control);
-    --nb-button-shadow: var(--nb-shadow-control-offset) var(--nb-shadow-control-offset) 0 0 var(--nb-shadow);
+    --nb-button-shadow: var(--nb-shadow-control, var(--nb-shadow-control-offset) var(--nb-shadow-control-offset) 0 0 var(--nb-shadow));
     --nb-button-height: 2.75rem;
     --nb-button-padding-x: 1rem;
     --nb-button-font-size: 1rem;
@@ -486,9 +487,14 @@ across all three:
 - Component tokens set on a wrapper are ignored. Use a role, or a selector
   that targets the component.
 - The tone slots become public: `--_nb-tone-*` → `--nb-tone-*`.
-- Vocabulary renames (§7). For example, `-ink` → `-fg`,
-  `-thickness`/`-stroke-width` → `-border-width`, `-leading` →
-  `-line-height`.
+- Vocabulary renames (§7). For example, `-ink` and `-text` → `-fg`,
+  text colors named `-color` → `-fg`, `-thickness`/`-stroke-width` →
+  `-border-width`, `-leading` → `-line-height`.
+- `--nb-radius` is removed. Set `--nb-radius-box`, `-field`, `-control` and
+  `-pill` instead.
+- `theme-soft.css` and `theme-mono.css` no longer apply to the whole page
+  on import. Add `data-nb-theme="soft"` or `"mono"` to `<html>` or to a
+  section.
 - The Angular input API is **unchanged**.
 
 ---
@@ -507,8 +513,14 @@ across all three:
 ## 13. Migration plan
 
 1. Theme: add the role tokens, make the tone slots public and registered.
+   **Done 2026-10-25.** Defaults match today's look. `--nb-radius` and
+   `--nb-shadow-offset-x/-y` stay until the last component stops reading
+   them.
 2. Guard: a spec that parses each stylesheet and enforces the four-block
    contract (§5). It replaces the current registration guard.
+   **Done 2026-10-25:** `libs/ui/src/lib/styles/stylesheet-contract.spec.ts`.
+   A component is checked once its folder is in `MIGRATED`; the rest keep
+   the old registration rule until then.
 3. Pilot: **Button** (states, variants, tone), **Input** (field role,
    invalid/focus), **Accordion** (compound). Each ships with Chromium,
    Firefox and WebKit contract specs.
@@ -521,26 +533,39 @@ across all three:
 
 ---
 
-## 14. Open decisions
+## 14. Decisions
 
-1. Accept v2.1?
-2. A density or size role (`--nb-density` or `--nb-size-field/-control`), or
-   selector-only?
-3. Keep `--nb-radius` as an app-level alias for the shape roles, or drop it?
-4. Apply the vocabulary renames in this migration, or separately?
-5. Include `provideNbDefaults` and extensible tones and sizes in scope?
-6. Add an optional full-value depth role per group, unset by default, so a
-   theme can replace the offset shadow (for example a glow)?
+Numbers stay stable so other docs can link to them.
+
+**Decided (2026-10-25):**
+
+1. **v2.1 accepted.** It ships in 0.3.0 together with the rest of the
+   release. There's no release on the old CSS model first.
+2. **No size or density role.** Sizes stay per component: the `size` input
+   or a component token. A role can be added later without breaking
+   anything, because component tokens would read it as their default.
+3. **`--nb-radius` is dropped.** Use the four shape roles (§4.1). Breaking;
+   listed in §11.
+4. **Vocabulary renames happen in this migration** (§7), including text
+   colors named `-color` (for example `--nb-display-color` →
+   `--nb-display-fg`). `-border-color` stays.
+6. **Optional full-value depth roles:** `--nb-shadow-box`,
+   `--nb-shadow-control`, `--nb-shadow-pill`. They're unset by default, and
+   each component falls back to the offset recipe:
    ```css
    --nb-card-shadow: var(--nb-shadow-box,
      var(--nb-shadow-box-offset) var(--nb-shadow-box-offset) 0 0 var(--nb-shadow));
    ```
-   Themes that set `--nb-shadow-box` to a literal lose section overrides of
-   `--nb-shadow` for that group. Every other theme keeps them.
-7. Does the default theme file match `:root, [data-nb-theme='default']`, or
-   only the attribute? Matching `:root` keeps today's import-and-go
-   behavior. Importing a second theme file that also matches `:root` would
-   then override the default.
+   A theme that sets one to a literal (a glow, say) loses section overrides
+   of `--nb-shadow` for that group. Every other theme keeps them.
+7. **The default theme matches `:root` and `[data-nb-theme='default']`.**
+   Every other theme matches only its own attribute. Importing the library
+   works with no attribute set. Apps that import only `theme-soft.css` or
+   `theme-mono.css` today add `data-nb-theme` to `<html>`.
+
+**Open:**
+
+5. Include `provideNbDefaults` and extensible tones and sizes in scope?
 8. Promote the shipped `--nb-font-body/-display/-accent` and
    `--nb-font-weight-*` to a Type role family in §4.1, so themes can change
    typography?
