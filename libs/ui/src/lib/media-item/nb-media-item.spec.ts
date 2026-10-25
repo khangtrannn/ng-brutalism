@@ -65,7 +65,7 @@ class InputSurfaceIconMediaItemTest {}
       size="md"
       icon="/icons/plane.png"
       iconAlt="Flight"
-      style="--nb-media-item-title-size: 3rem; --nb-media-item-title-font-family: var(--font-heading)"
+      style="--nb-media-item-title-font-size: 3rem; --nb-media-item-title-font-family: var(--font-heading)"
       description="Jun 14 · 22:15 → 12:45+1"
     >
       <span nbMediaItemTitle>NYC → CDG</span>
@@ -148,7 +148,7 @@ describe('NbMediaItem', () => {
     expect(description.textContent?.trim()).toBe('Economy window');
     expect(item.className).toBe('');
     expect(item.className).not.toContain(
-      '[--nb-media-item-title-size:0.875rem]'
+      '[--nb-media-item-title-font-size:0.875rem]'
     );
     expect(item.getAttribute('data-size')).toBe('md');
   });
@@ -186,7 +186,7 @@ describe('NbMediaItem', () => {
     // Assert
     expect(image.getAttribute('src')).toBe('/icons/plane.png');
     expect(image.getAttribute('alt')).toBe('Flight');
-    expect(item.style.getPropertyValue('--nb-media-item-title-size')).toBe(
+    expect(item.style.getPropertyValue('--nb-media-item-title-font-size')).toBe(
       '3rem'
     );
     expect(

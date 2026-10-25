@@ -15,6 +15,7 @@ import { ChangeDetectionStrategy, Component, input } from '@angular/core';
     </span>
   `,
   host: {
+    'data-nb-stat': '',
     'data-slot': 'stat',
     '[attr.data-direction]': 'direction()',
   },

@@ -54,7 +54,7 @@ interface ClusterSeparatorDemo {
                   gap="xl"
                   align="center"
                   [separator]="d.value"
-                  class="[--nb-media-item-title-size:12px]"
+                  class="[&_[data-nb-media-item]]:[--nb-media-item-title-font-size:12px]"
                 >
                   <nb-media-item
                     icon="/tokyo-city-escape/central-locations.png"

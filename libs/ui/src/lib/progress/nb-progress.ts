@@ -2,6 +2,7 @@ import {
   ChangeDetectionStrategy,
   Component,
   computed,
+  inject,
   input,
 } from '@angular/core';
 
@@ -22,7 +23,11 @@ export type NbProgressTone = NbTone;
       [attr.aria-label]="label() || 'Progress'"
       data-slot="progress-track"
     >
-      <div data-slot="progress-fill" [style.width.%]="percentage()"></div>
+      <div
+        data-slot="progress-fill"
+        [attr.data-nb-tone]="toneCapability.tone() ?? null"
+        [style.width.%]="percentage()"
+      ></div>
     </div>
   `,
   hostDirectives: [{ directive: NbToneCapability, inputs: ['tone'] }],
@@ -35,6 +40,8 @@ export class NbProgress {
   readonly value = input<number>(0);
   readonly max = input<number>(100);
   readonly label = input<string>('');
+
+  protected readonly toneCapability = inject(NbToneCapability);
 
   protected readonly clampedValue = computed(() =>
     Math.min(Math.max(this.value(), 0), this.max())

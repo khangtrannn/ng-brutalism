@@ -1,59 +1,64 @@
-@property --nb-status-dot-radius {
-  syntax: "*";
-  inherits: false;
-}
-
 @layer components {
-  :where(span[nbStatusDot]) {
+  /* Tokens */
+  :where([data-nb-status-dot]) {
+    --nb-status-dot-border-color: var(--nb-border);
+    --nb-status-dot-border-width: var(--nb-border-width);
+    --nb-status-dot-radius: var(--nb-radius-pill);
+    --nb-status-dot-size: 12px;
+
+    --nb-status-dot-online-bg: var(--nb-success);
+    --nb-status-dot-offline-bg: var(--nb-secondary-background);
+    --nb-status-dot-live-bg: var(--nb-danger);
+    --nb-status-dot-live-duration: var(--nb-motion-pulse);
+    --nb-status-dot-live-easing: cubic-bezier(0.4, 0, 0.6, 1);
+  }
+
+  /* Variants */
+  :where([data-nb-status-dot][data-size='xs']) {
+    --nb-status-dot-size: 8px;
+  }
+  :where([data-nb-status-dot][data-size='sm']) {
+    --nb-status-dot-size: 10px;
+  }
+  :where([data-nb-status-dot][data-size='lg']) {
+    --nb-status-dot-size: 16px;
+  }
+
+  /* Anatomy */
+  :where([data-nb-status-dot]) {
     display: inline-block;
     flex-shrink: 0;
-    border: var(--nb-border-width) solid var(--nb-border);
-    border-radius: var(--nb-status-dot-radius, 9999px);
+    width: var(--nb-status-dot-size);
+    height: var(--nb-status-dot-size);
+    border: var(--nb-status-dot-border-width) solid
+      var(--nb-status-dot-border-color);
+    border-radius: var(--nb-status-dot-radius);
   }
 
-  :where(span[nbStatusDot][data-size='xs']) {
-    width: 8px;
-    height: 8px;
+  /* States */
+  :where([data-nb-status-dot][data-state='online']) {
+    background: var(--nb-status-dot-online-bg);
   }
 
-  :where(span[nbStatusDot][data-size='sm']) {
-    width: 10px;
-    height: 10px;
+  :where([data-nb-status-dot][data-state='offline']) {
+    background: var(--nb-status-dot-offline-bg);
   }
 
-  :where(span[nbStatusDot][data-size='md']) {
-    width: 12px;
-    height: 12px;
+  :where([data-nb-status-dot][data-state='live']) {
+    background: var(--nb-status-dot-live-bg);
+    animation: nb-status-dot-pulse var(--nb-status-dot-live-duration)
+      var(--nb-status-dot-live-easing) infinite;
   }
 
-  :where(span[nbStatusDot][data-size='lg']) {
-    width: 16px;
-    height: 16px;
-  }
-
-  :where(span[nbStatusDot][data-state='online']) {
-    background: var(--nb-success);
-  }
-
-  :where(span[nbStatusDot][data-state='offline']) {
-    background: var(--nb-secondary-background);
-  }
-
-  :where(span[nbStatusDot][data-state='live']) {
-    background: var(--nb-danger);
-    animation: nb-status-dot-pulse var(--nb-motion-pulse, 2s)
-      cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  @media (prefers-reduced-motion: reduce) {
+    :where([data-nb-status-dot][data-state='live']) {
+      animation: none;
+    }
   }
 }
 
 @keyframes nb-status-dot-pulse {
   50% {
     opacity: 0.5;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  :where(span[nbStatusDot][data-state='live']) {
-    animation: none;
   }
 }

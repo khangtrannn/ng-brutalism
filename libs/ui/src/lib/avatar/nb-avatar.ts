@@ -29,6 +29,7 @@ export type NbAvatarBorder = NbBorderStrength;
   `,
   hostDirectives: [{ directive: NbToneCapability, inputs: ['tone'] }],
   host: {
+    'data-nb-avatar': '',
     'data-slot': 'avatar',
     '[attr.role]': '"img"',
     '[attr.aria-label]': 'alt()',

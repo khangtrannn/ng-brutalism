@@ -49,9 +49,9 @@ const html = `
     <span data-nb-button-trailing-icon data-size="sm" id="trailing"></span>
   </button>
 
-  <div style="--nb-dialog-description-fg: rgb(7, 8, 9)">
+  <dialog data-nb-dialog open style="--nb-dialog-description-fg: rgb(7, 8, 9)">
     <p data-slot="dialog-description" id="description"></p>
-  </div>
+  </dialog>
 
   <button data-nb-icon-button data-shape="circle" data-size="md" id="circle" style="--nb-icon-button-radius: 4px"></button>
 
@@ -116,7 +116,7 @@ describe('component public variables CSS contract (Chromium)', () => {
     expect(await computed('trailing', 'width')).toBe('32px');
   });
 
-  it('lets dialog descriptions read the foreground set on an ancestor', async () => {
+  it('lets dialog descriptions read the foreground set on the dialog', async () => {
     expect(await computed('description', 'color')).toBe('rgb(7, 8, 9)');
   });
 

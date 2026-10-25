@@ -34,7 +34,7 @@ export class MediaItemUsage {
     <nb-media-item
       variant="plain"
       class="pb-3"
-      style="--nb-media-item-icon-size: 2.5rem; --nb-media-item-title-size: 3rem; --nb-media-item-title-font-family: var(--font-heading)"
+      style="--nb-media-item-icon-size: 2.5rem; --nb-media-item-title-font-size: 3rem; --nb-media-item-title-font-family: var(--font-heading)"
       icon="/icons/plane.png"
       iconAlt="Flight"
       description="Jun 14 · 22:15 → 12:45+1"

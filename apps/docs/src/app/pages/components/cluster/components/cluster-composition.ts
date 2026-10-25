@@ -17,7 +17,7 @@ import { DocsExample } from '@ng-brutalism/docs-ui';
           gap="xl"
           align="center"
           separator="dashed"
-          class="p-4 [--nb-media-item-title-size:12px]"
+          class="p-4 [&_[data-nb-media-item]]:[--nb-media-item-title-font-size:12px]"
         >
           <nb-media-item icon="/tokyo-city-escape/central-locations.png">
             <span nbMediaItemTitle>Central<br />Locations</span>

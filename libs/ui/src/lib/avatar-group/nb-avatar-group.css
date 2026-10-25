@@ -1,30 +1,51 @@
 @layer components {
-  :where(nb-avatar-group) {
+  /* Tokens */
+  :where([data-nb-avatar-group]) {
+    /* How far each avatar slides under the one before it. */
+    --nb-avatar-group-overlap: 0.75rem;
+
+    --nb-avatar-group-overflow-bg: var(--nb-surface);
+    --nb-avatar-group-overflow-border-color: var(--nb-border);
+    --nb-avatar-group-overflow-border-width: var(--nb-border-width);
+    --nb-avatar-group-overflow-radius: var(--nb-radius-pill);
+    --nb-avatar-group-overflow-shadow: var(
+      --nb-shadow-pill,
+      var(--nb-shadow-pill-offset) var(--nb-shadow-pill-offset) 0 0
+        var(--nb-shadow)
+    );
+    --nb-avatar-group-overflow-size: 2.5rem;
+    --nb-avatar-group-overflow-font-size: 0.75rem;
+    --nb-avatar-group-overflow-font-weight: var(--nb-font-weight-bold);
+  }
+
+  /* Anatomy */
+  :where([data-nb-avatar-group]) {
     display: flex;
     align-items: center;
   }
 
-  :where(nb-avatar-group > *) {
-    margin-left: -0.75rem;
+  :where([data-nb-avatar-group] > *) {
+    margin-left: calc(-1 * var(--nb-avatar-group-overlap));
   }
 
-  :where(nb-avatar-group > *:first-child) {
+  :where([data-nb-avatar-group] > *:first-child) {
     margin-left: 0;
   }
 
-  :where(nb-avatar-group [data-slot='avatar-group-overflow']) {
+  :where([data-nb-avatar-group] [data-slot='avatar-group-overflow']) {
     position: relative;
     display: inline-flex;
-    width: 2.5rem;
-    height: 2.5rem;
+    width: var(--nb-avatar-group-overflow-size);
+    height: var(--nb-avatar-group-overflow-size);
     flex-shrink: 0;
     align-items: center;
     justify-content: center;
-    border: var(--nb-border-width) solid var(--nb-border);
-    border-radius: 9999px;
-    background: var(--nb-surface);
-    font-size: 0.75rem;
-    font-weight: 700;
-    box-shadow: 2px 2px 0 0 var(--nb-shadow);
+    border: var(--nb-avatar-group-overflow-border-width) solid
+      var(--nb-avatar-group-overflow-border-color);
+    border-radius: var(--nb-avatar-group-overflow-radius);
+    background: var(--nb-avatar-group-overflow-bg);
+    font-size: var(--nb-avatar-group-overflow-font-size);
+    font-weight: var(--nb-avatar-group-overflow-font-weight);
+    box-shadow: var(--nb-avatar-group-overflow-shadow);
   }
 }

@@ -27,6 +27,7 @@ describe('NbProgress token surface', () => {
 
     // Assert
     expect(progress.getAttribute('data-nb-tone')).toBeNull();
+    expect(fill.getAttribute('data-nb-tone')).toBeNull();
     expect(fill.style.getPropertyValue('background-color')).toBe('');
   });
 
@@ -38,6 +39,7 @@ describe('NbProgress token surface', () => {
 
     // Assert
     expect(progress.getAttribute('data-nb-tone')).toBe('danger');
+    expect(fill.getAttribute('data-nb-tone')).toBe('danger');
     expect(fill.style.getPropertyValue('background-color')).toBe('');
   });
 

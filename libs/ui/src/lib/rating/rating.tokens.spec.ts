@@ -23,6 +23,7 @@ describe('NbRating token surface', () => {
 
     // Assert
     expect(rating.getAttribute('data-nb-tone')).toBeNull();
+    expect(filledStar.getAttribute('data-nb-tone')).toBeNull();
     expect(filledStar.style.getPropertyValue('color')).toBe('');
     expect(filledStar.getAttribute('data-filled')).toBe('');
   });
@@ -35,6 +36,7 @@ describe('NbRating token surface', () => {
 
     // Assert
     expect(rating.getAttribute('data-nb-tone')).toBe('success');
+    expect(filledStar.getAttribute('data-nb-tone')).toBe('success');
     expect(filledStar.style.getPropertyValue('color')).toBe('');
   });
 

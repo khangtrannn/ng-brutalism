@@ -514,6 +514,14 @@ across all three:
   `nb-select`.
 - `nb-select` drops `--nb-select-tone-bg/-fg/-border-color`. The open
   listbox repeats the select's `data-nb-tone`, and its text follows the tone.
+- Size names that meant font size follow §7: `--nb-media-item-title-size`
+  → `-title-font-size`, `-description-size` → `-description-font-size`,
+  `--nb-stat-value-size` → `-value-font-size`, `--nb-stat-label-size` →
+  `-label-font-size`. `--nb-rating-empty` → `-empty-fg`, `--nb-rating-fill`
+  → `-filled-fg`.
+- `--nb-progress-tone-bg` and `--nb-rating-tone-bg` are gone. The fill and
+  each star repeat the component's `data-nb-tone`.
+- Avatar now applies its `tone` input. Before, the stylesheet ignored it.
 - The chip group's styles moved to their own file. If you import
   `@ng-brutalism/ui/chip.css` on its own, also import `chip-group.css`.
 - `press="reverse"` on Button now does what its name says: flat at rest,
@@ -583,6 +591,13 @@ across all three:
    trigger now uses the tone's text color (it was black on black). The
    guard counts `data-invalid` and `data-selected` as states.
    **Step 4 controls and fields complete.**
+   **Compound done 2026-10-25:** dialog, media-item, avatar, avatar-group,
+   status-dot, stat, progress, rating; no rendered change except avatar
+   tone (above). Dialog parts move from `@layer base` to `components`; the
+   backdrop reads `--nb-dialog-backdrop-bg` (it inherits from the dialog in
+   all three engines). The dialog shadow is 1.5× the box depth (6px by
+   default, 4.5px in the soft theme). Docs examples that set media-item and
+   stat tokens on a wrapper now target the component.
 5. Docs generator, docs-site pages and CHANGELOG renames.
 6. Themes: move the shipped theme files from `:root` to
    `[data-nb-theme]` (§4.3). The rest of the theming roadmap is in

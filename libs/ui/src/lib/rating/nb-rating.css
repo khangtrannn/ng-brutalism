@@ -1,46 +1,40 @@
-@property --nb-rating-empty {
-  syntax: "*";
-  inherits: true;
-}
-@property --nb-rating-fill {
-  syntax: "*";
-  inherits: true;
-}
-@property --nb-rating-size {
-  syntax: "*";
-  inherits: true;
-}
-@property --nb-rating-tone-bg {
-  syntax: "*";
-  inherits: true;
-}
-
 @layer components {
-  :where(nb-rating) {
+  /* Tokens */
+  :where([data-nb-rating]) {
+    --nb-rating-gap: 0.125rem;
+    --nb-rating-size: 1.25rem;
+    --nb-rating-line-height: 1;
+    --nb-rating-empty-fg: var(--nb-border);
+    --nb-rating-filled-fg: var(--nb-warning);
+    --nb-rating-count-fg: var(--nb-rating-empty-fg);
+    --nb-rating-count-gap: 0.125rem;
+    --nb-rating-count-font-size: 0.75rem;
+    --nb-rating-count-font-weight: var(--nb-font-weight-bold);
+  }
+
+  /* Anatomy */
+  /* The tone colors the filled stars only; NbRating repeats it on each star. */
+  :where([data-nb-rating]) {
     display: inline-flex;
     align-items: center;
-    gap: 0.125rem;
+    gap: var(--nb-rating-gap);
     background-color: transparent;
   }
 
-  :where(nb-rating[data-nb-tone]) {
-    --nb-rating-tone-bg: var(--nb-tone-bg);
+  :where([data-nb-rating] [data-slot='rating-star']) {
+    color: var(--nb-rating-empty-fg);
+    font-size: var(--nb-rating-size);
+    line-height: var(--nb-rating-line-height);
   }
 
-  :where(nb-rating [data-slot='rating-star']) {
-    color: var(--nb-rating-empty, var(--nb-border));
-    font-size: var(--nb-rating-size, 1.25rem);
-    line-height: 1;
+  :where([data-nb-rating] [data-slot='rating-star'][data-filled]) {
+    color: var(--nb-tone-bg, var(--nb-rating-filled-fg));
   }
 
-  :where(nb-rating [data-slot='rating-star'][data-filled]) {
-    color: var(--nb-rating-fill, var(--nb-rating-tone-bg, var(--nb-tone-bg, var(--nb-warning))));
-  }
-
-  :where(nb-rating [data-slot='rating-count']) {
-    margin-left: 0.125rem;
-    color: var(--nb-rating-empty, var(--nb-border));
-    font-size: 0.75rem;
-    font-weight: 700;
+  :where([data-nb-rating] [data-slot='rating-count']) {
+    margin-left: var(--nb-rating-count-gap);
+    color: var(--nb-rating-count-fg);
+    font-size: var(--nb-rating-count-font-size);
+    font-weight: var(--nb-rating-count-font-weight);
   }
 }

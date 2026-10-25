@@ -1,50 +1,42 @@
-@property --nb-avatar-bg {
-  syntax: "*";
-  inherits: false;
-}
-@property --nb-avatar-fg {
-  syntax: "*";
-  inherits: false;
-}
-@property --nb-avatar-border-color {
-  syntax: "*";
-  inherits: false;
-}
-@property --nb-avatar-border-width {
-  syntax: "*";
-  inherits: false;
-}
-@property --nb-avatar-radius {
-  syntax: "*";
-  inherits: false;
-}
-@property --nb-avatar-shadow {
-  syntax: "*";
-  inherits: false;
-}
-
 @layer components {
-  :where(nb-avatar) {
+  /* Tokens */
+  :where([data-nb-avatar]) {
+    --nb-avatar-bg: var(--nb-surface);
+    --nb-avatar-fg: var(--nb-surface-foreground);
+    --nb-avatar-border-color: var(--nb-border);
+    --nb-avatar-border-width: var(--nb-border-width);
+    --nb-avatar-radius: var(--nb-radius-pill);
+    --nb-avatar-shadow: var(
+      --nb-shadow-pill,
+      var(--nb-shadow-pill-offset) var(--nb-shadow-pill-offset) 0 0
+        var(--nb-shadow)
+    );
+    --nb-avatar-size: 2.5rem;
+    --nb-avatar-font-size: 0.875rem;
+    --nb-avatar-font-weight: var(--nb-font-weight-bold);
+  }
+
+  /* Anatomy */
+  :where([data-nb-avatar]) {
     position: relative;
     display: inline-flex;
-    width: 2.5rem;
-    height: 2.5rem;
+    width: var(--nb-avatar-size);
+    height: var(--nb-avatar-size);
     flex-shrink: 0;
     align-items: center;
     justify-content: center;
     overflow: hidden;
-    font-size: 0.875rem;
-    font-weight: 700;
-    border-style: solid;
-    background: var(--nb-avatar-bg, var(--nb-surface));
-    color: var(--nb-avatar-fg, var(--nb-surface-foreground));
-    border-color: var(--nb-avatar-border-color, var(--nb-border));
-    border-width: var(--nb-avatar-border-width, var(--nb-border-width));
-    border-radius: var(--nb-avatar-radius, 9999px);
-    box-shadow: var(--nb-avatar-shadow, 2px 2px 0 0 var(--nb-shadow));
+    font-size: var(--nb-avatar-font-size);
+    font-weight: var(--nb-avatar-font-weight);
+    background: var(--nb-tone-bg, var(--nb-avatar-bg));
+    color: var(--nb-tone-fg, var(--nb-avatar-fg));
+    border: var(--nb-avatar-border-width) solid
+      var(--nb-tone-border, var(--nb-avatar-border-color));
+    border-radius: var(--nb-avatar-radius);
+    box-shadow: var(--nb-avatar-shadow);
   }
 
-  :where(nb-avatar > [data-slot='avatar-image']) {
+  :where([data-nb-avatar] > [data-slot='avatar-image']) {
     width: 100%;
     height: 100%;
     object-fit: cover;

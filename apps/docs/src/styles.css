@@ -291,6 +291,10 @@ body::-webkit-scrollbar-thumb {
   letter-spacing: -0.02em;
 }
 
+[nbSurface] > nb-stat {
+  --nb-stat-label-fg: rgba(0, 0, 0, 0.7);
+}
+
 [nbSurface] > nb-stat [data-slot='stat-label'] {
   margin-top: 0.25rem;
   font-family: var(--font-mono);
@@ -298,7 +302,6 @@ body::-webkit-scrollbar-thumb {
   font-weight: 600;
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  color: var(--nb-stat-label-fg, rgba(0, 0, 0, 0.7));
 }
 
 .nb-sticker {

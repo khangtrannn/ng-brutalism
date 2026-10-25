@@ -1,106 +1,99 @@
-@property --nb-dialog-description-fg {
-  syntax: "*";
-  inherits: true;
-}
-@property --nb-dialog-content-bg {
-  syntax: "*";
-  inherits: true;
-}
-@property --nb-dialog-actions-bg {
-  syntax: "*";
-  inherits: true;
-}
-
-@layer base {
-  :where([data-slot='dialog-title']) {
-    display: block;
-    padding: 1.5rem 1.5rem 0.5rem;
-    font-size: 1.125rem;
-    font-weight: 700;
-    line-height: 1;
-  }
-
-  :where([data-slot='dialog-description']) {
-    display: block;
-    padding: 0 1.5rem 1rem;
-    color: var(--nb-dialog-description-fg, #4b5563);
-    font-size: 0.875rem;
-    font-weight: 500;
-  }
-
-  :where([data-slot='dialog-content']) {
-    flex: 1 1 0%;
-    overflow-y: auto;
-    padding: 1rem 1.5rem;
-    border-top: var(--nb-border-width) solid var(--nb-border);
-    border-bottom: var(--nb-border-width) solid var(--nb-border);
-    background-color: var(--nb-dialog-content-bg, transparent);
-  }
-
-  :where([data-slot='dialog-actions']) {
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-    gap: 0.75rem;
-    padding: 1rem 1.5rem;
-    background-color: var(--nb-dialog-actions-bg, transparent);
-  }
-}
-@property --nb-dialog-bg {
-  syntax: "*";
-  inherits: false;
-}
-@property --nb-dialog-fg {
-  syntax: "*";
-  inherits: false;
-}
-@property --nb-dialog-border-color {
-  syntax: "*";
-  inherits: false;
-}
-@property --nb-dialog-border-width {
-  syntax: "*";
-  inherits: false;
-}
-@property --nb-dialog-radius {
-  syntax: "*";
-  inherits: false;
-}
-@property --nb-dialog-shadow {
-  syntax: "*";
-  inherits: false;
-}
-
 @layer components {
-  :where(dialog[data-nb-dialog]) {
-    width: calc(100vw - 2rem);
-    max-width: 42rem;
-    max-height: 90vh;
+  /* Tokens */
+  :where([data-nb-dialog]) {
+    --nb-dialog-bg: var(--nb-surface);
+    --nb-dialog-fg: var(--nb-surface-foreground);
+    --nb-dialog-border-color: var(--nb-border);
+    --nb-dialog-border-width: var(--nb-border-width);
+    --nb-dialog-radius: var(--nb-radius-box);
+    --nb-dialog-shadow: calc(1.5 * var(--nb-shadow-box-offset))
+      calc(1.5 * var(--nb-shadow-box-offset)) 0 0 var(--nb-shadow);
+    /* Leaves a 1rem gap to each viewport edge on small screens. */
+    --nb-dialog-width: calc(100vw - 2rem);
+    --nb-dialog-max-width: 42rem;
+    --nb-dialog-max-height: 90vh;
+    --nb-dialog-backdrop-bg: rgba(0, 0, 0, 0.45);
+    /* Horizontal padding of every section, and vertical padding of content and actions. */
+    --nb-dialog-padding-x: 1.5rem;
+    --nb-dialog-padding-y: 1rem;
+
+    --nb-dialog-title-padding-top: 1.5rem;
+    --nb-dialog-title-padding-bottom: 0.5rem;
+    --nb-dialog-title-font-size: 1.125rem;
+    --nb-dialog-title-font-weight: var(--nb-font-weight-bold);
+    --nb-dialog-title-line-height: 1;
+    --nb-dialog-description-fg: #4b5563;
+    --nb-dialog-description-font-size: 0.875rem;
+    --nb-dialog-description-font-weight: var(--nb-font-weight-normal);
+    --nb-dialog-content-bg: transparent;
+    --nb-dialog-content-border-color: var(--nb-border);
+    --nb-dialog-content-border-width: var(--nb-border-width);
+    --nb-dialog-actions-bg: transparent;
+    --nb-dialog-actions-gap: 0.75rem;
+  }
+
+  /* Anatomy */
+  :where([data-nb-dialog]) {
+    width: var(--nb-dialog-width);
+    max-width: var(--nb-dialog-max-width);
+    max-height: var(--nb-dialog-max-height);
     margin: auto;
     padding: 0;
     overflow-x: hidden;
-    border-style: solid;
-    background: var(--nb-dialog-bg, var(--nb-tone-bg, var(--nb-surface)));
-    color: var(--nb-dialog-fg, var(--nb-tone-fg, var(--nb-surface-foreground)));
-    border-color: var(
-      --nb-dialog-border-color,
-      var(--nb-tone-border, var(--nb-border))
-    );
-    border-width: var(--nb-dialog-border-width, var(--nb-border-width));
-    border-radius: var(--nb-dialog-radius, var(--nb-radius));
-    box-shadow: var(--nb-dialog-shadow, 6px 6px 0 0 var(--nb-shadow));
+    background: var(--nb-tone-bg, var(--nb-dialog-bg));
+    color: var(--nb-tone-fg, var(--nb-dialog-fg));
+    border: var(--nb-dialog-border-width) solid
+      var(--nb-tone-border, var(--nb-dialog-border-color));
+    border-radius: var(--nb-dialog-radius);
+    box-shadow: var(--nb-dialog-shadow);
   }
 
-  :where(dialog[data-nb-dialog][open]) {
+  :where([data-nb-dialog])::backdrop {
+    background: var(--nb-dialog-backdrop-bg);
+  }
+
+  :where([data-nb-dialog] [data-slot='dialog-title']) {
+    display: block;
+    padding: var(--nb-dialog-title-padding-top) var(--nb-dialog-padding-x)
+      var(--nb-dialog-title-padding-bottom);
+    font-size: var(--nb-dialog-title-font-size);
+    font-weight: var(--nb-dialog-title-font-weight);
+    line-height: var(--nb-dialog-title-line-height);
+  }
+
+  :where([data-nb-dialog] [data-slot='dialog-description']) {
+    display: block;
+    padding: 0 var(--nb-dialog-padding-x) var(--nb-dialog-padding-y);
+    color: var(--nb-dialog-description-fg);
+    font-size: var(--nb-dialog-description-font-size);
+    font-weight: var(--nb-dialog-description-font-weight);
+  }
+
+  :where([data-nb-dialog] [data-slot='dialog-content']) {
+    flex: 1 1 0%;
+    overflow-y: auto;
+    padding: var(--nb-dialog-padding-y) var(--nb-dialog-padding-x);
+    border-block: var(--nb-dialog-content-border-width) solid
+      var(--nb-dialog-content-border-color);
+    background-color: var(--nb-dialog-content-bg);
+  }
+
+  :where([data-nb-dialog] [data-slot='dialog-actions']) {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: var(--nb-dialog-actions-gap);
+    padding: var(--nb-dialog-padding-y) var(--nb-dialog-padding-x);
+    background-color: var(--nb-dialog-actions-bg);
+  }
+
+  /* States */
+  :where([data-nb-dialog][open]) {
     display: flex;
     flex-direction: column;
   }
-}
 
-dialog[data-nb-dialog]::backdrop {
-  background: rgba(0, 0, 0, 0.45);
-}
-
-body:has(dialog[data-nb-dialog][open]) {
-  overflow: hidden;
+  :where(body:has([data-nb-dialog][open])) {
+    overflow: hidden;
+  }
 }

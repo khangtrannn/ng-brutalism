@@ -1,41 +1,44 @@
-@property --nb-progress-fill-bg {
-  syntax: "*";
-  inherits: true;
-}
-@property --nb-progress-tone-bg {
-  syntax: "*";
-  inherits: true;
-}
-@property --nb-progress-track-bg {
-  syntax: "*";
-  inherits: false;
-}
-
 @layer components {
-  :where(nb-progress) {
+  /* Tokens */
+  :where([data-nb-progress]) {
+    --nb-progress-track-bg: var(--nb-secondary-background);
+    --nb-progress-border-color: var(--nb-border);
+    --nb-progress-border-width: var(--nb-border-width);
+    --nb-progress-shadow: var(
+      --nb-shadow-box,
+      var(--nb-shadow-box-offset) var(--nb-shadow-box-offset) 0 0
+        var(--nb-shadow)
+    );
+    --nb-progress-height: 0.75rem;
+    --nb-progress-fill-bg: var(--nb-primary);
+    --nb-progress-fill-duration: 300ms;
+    --nb-progress-fill-easing: ease-out;
+  }
+
+  /* Anatomy */
+  /* The tone colors the fill only; NbProgress repeats it there. */
+  :where([data-nb-progress]) {
     display: block;
     width: 100%;
-    height: 0.75rem;
+    height: var(--nb-progress-height);
     overflow: hidden;
-    border: var(--nb-border-width) solid var(--nb-border);
-    box-shadow: var(--nb-shadow-offset-x) var(--nb-shadow-offset-y) 0 var(--nb-shadow);
-    background-color: var(--nb-progress-track-bg, var(--nb-secondary-background));
+    border: var(--nb-progress-border-width) solid
+      var(--nb-progress-border-color);
+    box-shadow: var(--nb-progress-shadow);
+    background-color: var(--nb-progress-track-bg);
   }
 
-  :where(nb-progress[data-nb-tone]) {
-    --nb-progress-tone-bg: var(--nb-tone-bg);
-  }
-
-  :where(nb-progress [data-slot='progress-track']) {
+  :where([data-nb-progress] [data-slot='progress-track']) {
     position: relative;
     width: 100%;
     height: 100%;
     overflow: hidden;
   }
 
-  :where(nb-progress [data-slot='progress-fill']) {
+  :where([data-nb-progress] [data-slot='progress-fill']) {
     height: 100%;
-    transition: width 300ms ease-out;
-    background-color: var(--nb-progress-fill-bg, var(--nb-progress-tone-bg, var(--nb-tone-bg, var(--nb-primary))));
+    transition: width var(--nb-progress-fill-duration)
+      var(--nb-progress-fill-easing);
+    background-color: var(--nb-tone-bg, var(--nb-progress-fill-bg));
   }
 }

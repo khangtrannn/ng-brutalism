@@ -204,9 +204,13 @@ import { NbDocsNavbar } from '@ng-brutalism/docs-ui';
                   padding="sm"
                   layout="stack"
                   class="items-start"
-                  style="background:var(--nb-hot); color:#fff; --nb-stat-label-fg:rgba(255,255,255,0.8)"
+                  style="background:var(--nb-hot); color:#fff"
                 >
-                  <nb-stat value="404" label="LINK MISSING" />
+                  <nb-stat
+                    value="404"
+                    label="LINK MISSING"
+                    style="--nb-stat-label-fg: rgba(255, 255, 255, 0.8)"
+                  />
                 </div>
                 <div
                   nbSurface

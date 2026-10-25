@@ -302,11 +302,8 @@ import {
             <div
               nbStack
               gap="sm"
-              class="job-card-meta"
-              style="
-                --nb-icon-size: 1rem;
-                --nb-media-item-title-size: 1rem;
-              "
+              class="job-card-meta [&_[data-nb-media-item]]:[--nb-media-item-title-font-size:1rem]"
+              style="--nb-icon-size: 1rem"
             >
               <nb-media-item size="sm">
                 <span nbMediaItemIcon>

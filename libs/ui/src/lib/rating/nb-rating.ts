@@ -2,6 +2,7 @@ import {
   ChangeDetectionStrategy,
   Component,
   computed,
+  inject,
   input,
 } from '@angular/core';
 
@@ -17,6 +18,7 @@ export type NbRatingTone = NbTone;
     @for (i of stars(); track i) {
     <span
       data-slot="rating-star"
+      [attr.data-nb-tone]="toneCapability.tone() ?? null"
       [attr.data-filled]="i <= filled() ? '' : null"
       >{{ i <= filled() ? '★' : '☆' }}</span
     >
@@ -36,6 +38,8 @@ export class NbRating {
   readonly value = input<number>(0);
   readonly max = input<number>(5);
   readonly count = input<number | undefined>(undefined);
+
+  protected readonly toneCapability = inject(NbToneCapability);
 
   protected readonly stars = computed(() =>
     Array.from({ length: this.max() }, (_, i) => i + 1)

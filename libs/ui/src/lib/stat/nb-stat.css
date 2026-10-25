@@ -1,46 +1,48 @@
-@property --nb-stat-label-fg {
-  syntax: "*";
-  inherits: true;
-}
-@property --nb-stat-label-size {
-  syntax: "*";
-  inherits: true;
-}
-@property --nb-stat-value-size {
-  syntax: "*";
-  inherits: true;
-}
-
 @layer components {
-  :where(nb-stat) {
+  /* Tokens */
+  :where([data-nb-stat]) {
+    --nb-stat-gap: 0.5rem;
+    --nb-stat-body-gap: 0.125rem;
+    --nb-stat-value-font-size: 1.5rem;
+    --nb-stat-value-font-weight: 900;
+    --nb-stat-value-line-height: 1;
+    --nb-stat-value-tracking: -0.025em;
+    --nb-stat-label-fg: var(--nb-foreground);
+    --nb-stat-label-font-size: 0.625rem;
+    --nb-stat-label-font-weight: var(--nb-font-weight-bold);
+    --nb-stat-label-tracking: 0.025em;
+  }
+
+  /* Anatomy */
+  :where([data-nb-stat]) {
     display: inline-flex;
     flex-direction: column;
     align-items: center;
-    gap: 0.5rem;
+    gap: var(--nb-stat-gap);
   }
 
-  :where(nb-stat[data-direction='row']) {
+  :where([data-nb-stat][data-direction='row']) {
     flex-direction: row;
   }
 
-  :where(nb-stat [data-slot='stat-body']) {
+  :where([data-nb-stat] [data-slot='stat-body']) {
     display: flex;
     flex-direction: column;
-    gap: 0.125rem;
+    gap: var(--nb-stat-body-gap);
   }
 
-  :where(nb-stat [data-slot='stat-value']) {
-    font-size: var(--nb-stat-value-size, 1.5rem);
-    font-weight: 900;
-    line-height: 1;
-    letter-spacing: -0.025em;
+  :where([data-nb-stat] [data-slot='stat-value']) {
+    font-size: var(--nb-stat-value-font-size);
+    font-weight: var(--nb-stat-value-font-weight);
+    line-height: var(--nb-stat-value-line-height);
+    letter-spacing: var(--nb-stat-value-tracking);
   }
 
-  :where(nb-stat [data-slot='stat-label']) {
-    color: var(--nb-stat-label-fg, var(--nb-foreground));
-    font-size: var(--nb-stat-label-size, 0.625rem);
-    font-weight: 700;
-    letter-spacing: 0.025em;
+  :where([data-nb-stat] [data-slot='stat-label']) {
+    color: var(--nb-stat-label-fg);
+    font-size: var(--nb-stat-label-font-size);
+    font-weight: var(--nb-stat-label-font-weight);
+    letter-spacing: var(--nb-stat-label-tracking);
     text-transform: uppercase;
   }
 }
