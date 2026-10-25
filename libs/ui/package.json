@@ -129,6 +129,10 @@
       "style": "./chip/nb-chip.css",
       "default": "./chip/nb-chip.css"
     },
+    "./chip-group.css": {
+      "style": "./chip/nb-chip-group.css",
+      "default": "./chip/nb-chip-group.css"
+    },
     "./cluster.css": {
       "style": "./cluster/nb-cluster.css",
       "default": "./cluster/nb-cluster.css"

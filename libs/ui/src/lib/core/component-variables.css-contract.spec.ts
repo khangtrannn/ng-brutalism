@@ -43,9 +43,7 @@ const html = `
     <div id="stack-second"></div>
   </div>
 
-  <div style="--nb-chip-icon-size: 2rem">
-    <span nbChip><svg id="chip-svg"></svg></span>
-  </div>
+  <span data-nb-chip style="--nb-chip-icon-size: 2rem"><svg id="chip-svg"></svg></span>
 
   <button data-nb-button style="--nb-button-trailing-icon-size: 2rem">
     <span data-nb-button-trailing-icon data-size="sm" id="trailing"></span>
@@ -110,7 +108,7 @@ describe('component public variables CSS contract (Chromium)', () => {
     expect(await computed('stack-second', 'padding-top')).toBe('5px');
   });
 
-  it('lets chip icons read the icon size set on an ancestor', async () => {
+  it('lets chip icons read the icon size set on the chip', async () => {
     expect(await computed('chip-svg', 'width')).toBe('32px');
   });
 

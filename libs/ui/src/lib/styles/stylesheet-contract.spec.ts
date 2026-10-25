@@ -10,9 +10,11 @@ import { describe, expect, it } from 'vitest';
 // until the list covers every component, then the legacy branch is deleted.
 const MIGRATED = new Set<string>([
   'accordion',
+  'badge',
   'button',
   'callout',
   'card',
+  'chip',
   'image-card',
   'input',
   'media-frame',

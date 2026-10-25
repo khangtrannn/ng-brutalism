@@ -27,6 +27,17 @@ class IconChipTest {}
 })
 class ChipGroupTest {}
 
+@Component({
+  imports: [NbChipGroup, NbChip],
+  template: `
+    <div nbChipGroup radius="sm" shadow="none">
+      <span nbChip>Group</span>
+      <span nbChip radius="xl" shadow="hard">Own</span>
+    </div>
+  `,
+})
+class ChipGroupTokensTest {}
+
 describe('NbChip', () => {
   it('renders projected content without an icon slot by default', async () => {
     // Arrange
@@ -77,6 +88,30 @@ describe('NbChipGroup', () => {
     // Assert
     expect(group.getAttribute('data-direction')).toBe('vertical');
     expect(group.getAttribute('data-align')).toBe('center');
+  });
+
+  it('writes its radius and shadow onto chips that set neither', async () => {
+    // Arrange
+    const fixture = await createFixture(ChipGroupTokensTest);
+    const group = fixture.nativeElement.querySelector(
+      '[nbChipGroup]'
+    ) as HTMLElement;
+    const [inherited, own] = fixture.nativeElement.querySelectorAll(
+      'span[nbChip]'
+    ) as NodeListOf<HTMLElement>;
+
+    // Assert
+    expect(group.style.getPropertyValue('--nb-chip-radius')).toBe('');
+    expect(inherited.style.getPropertyValue('--nb-chip-radius')).toBe(
+      'var(--nb-radius-sm)'
+    );
+    expect(inherited.style.getPropertyValue('--nb-chip-shadow')).toBe('none');
+    expect(own.style.getPropertyValue('--nb-chip-radius')).toBe(
+      'var(--nb-radius-xl)'
+    );
+    expect(own.style.getPropertyValue('--nb-chip-shadow')).toBe(
+      'var(--nb-shadow-hard)'
+    );
   });
 });
 

@@ -3,6 +3,7 @@ import {
   Component,
   Directive,
   computed,
+  inject,
   input,
 } from '@angular/core';
 
@@ -59,8 +60,8 @@ const nbChipSizeStyleTransform = nbTokenStyleTransform<NbChipSize>(
   host: {
     'data-nb-chip': '',
     '[style.--nb-chip-padding]': 'size()',
-    '[style.--nb-chip-radius]': 'radius()',
-    '[style.--nb-chip-shadow]': 'shadow()',
+    '[style.--nb-chip-radius]': 'radiusValue()',
+    '[style.--nb-chip-shadow]': 'shadowValue()',
     '[style.--nb-chip-border-width]': 'border()',
   },
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -81,6 +82,18 @@ export class NbChip {
 
   readonly icon = input<string>();
   readonly iconSize = input<NbIconSize>('sm');
+
+  // Chip tokens are declared on each chip, so the group's radius and shadow
+  // reach its chips here instead of through the cascade.
+  private readonly group = inject(NbChipGroup, { optional: true });
+
+  protected readonly radiusValue = computed(
+    () => this.radius() ?? this.group?.radius() ?? null
+  );
+
+  protected readonly shadowValue = computed(
+    () => this.shadow() ?? this.group?.shadow() ?? null
+  );
 }
 
 export type NbChipGroupDirection = NbOrientation;
@@ -92,8 +105,6 @@ export type NbChipGroupGap = NbSpacing;
   exportAs: 'nbChipGroup',
   host: {
     '[style.--nb-chip-group-gap]': 'gap()',
-    '[style.--nb-chip-radius]': 'chipRadiusValue()',
-    '[style.--nb-chip-shadow]': 'chipShadowValue()',
     '[style.--nb-chip-group-text-transform]': 'transformValue()',
     'data-nb-chip-group': '',
     '[attr.data-direction]': 'direction()',
@@ -115,10 +126,6 @@ export class NbChipGroup {
   });
   readonly transform = input<NbTextTransform>('none');
   readonly tracking = input<NbTextTracking>('normal');
-
-  protected readonly chipRadiusValue = this.radius;
-
-  protected readonly chipShadowValue = this.shadow;
 
   protected readonly transformValue = computed(() => {
     const transform = this.transform();

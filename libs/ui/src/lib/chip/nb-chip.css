@@ -1,119 +1,43 @@
-@property --nb-chip-icon-size {
-  syntax: "*";
-  inherits: true;
-}
-@property --nb-chip-bg {
-  syntax: "*";
-  inherits: false;
-}
-@property --nb-chip-fg {
-  syntax: "*";
-  inherits: false;
-}
-@property --nb-chip-border-color {
-  syntax: "*";
-  inherits: false;
-}
-@property --nb-chip-border-width {
-  syntax: "*";
-  inherits: false;
-}
-@property --nb-chip-radius {
-  syntax: "*";
-  inherits: false;
-}
-@property --nb-chip-shadow {
-  syntax: "*";
-  inherits: false;
-}
-@property --nb-chip-padding {
-  syntax: "*";
-  inherits: false;
-}
-@property --nb-chip-group-gap {
-  syntax: "*";
-  inherits: false;
-}
-@property --nb-chip-group-tracking {
-  syntax: "*";
-  inherits: false;
-}
-@property --nb-chip-group-text-transform {
-  syntax: "*";
-  inherits: false;
-}
-
 @layer components {
-  :where(span[nbChip]) {
+  /* Tokens */
+  :where([data-nb-chip]) {
+    --nb-chip-bg: var(--nb-surface);
+    --nb-chip-fg: var(--nb-surface-foreground);
+    --nb-chip-border-color: var(--nb-border);
+    --nb-chip-border-width: var(--nb-border-width);
+    --nb-chip-radius: var(--nb-radius-control);
+    --nb-chip-shadow: var(
+      --nb-shadow-pill,
+      var(--nb-shadow-pill-offset) var(--nb-shadow-pill-offset) 0 0
+        var(--nb-shadow)
+    );
+    --nb-chip-padding: 0.125rem 0.625rem;
+    --nb-chip-gap: 0.375rem;
+    --nb-chip-font-size: 0.75rem;
+    --nb-chip-font-weight: var(--nb-font-weight-bold);
+    --nb-chip-icon-size: 0.75rem;
+  }
+
+  /* Anatomy */
+  :where([data-nb-chip]) {
     display: inline-flex;
     align-items: center;
-    gap: 0.375rem;
-    font-size: 0.75rem;
-    font-weight: 700;
-    border-style: solid;
-    background: var(--nb-chip-bg, var(--nb-tone-bg, var(--nb-surface)));
-    color: var(--nb-chip-fg, var(--nb-tone-fg, var(--nb-surface-foreground)));
-    border-color: var(
-      --nb-chip-border-color,
-      var(--nb-tone-border, var(--nb-border))
-    );
-    border-width: var(--nb-chip-border-width, var(--nb-border-width));
-    border-radius: var(--nb-chip-radius, var(--nb-radius));
-    box-shadow: var(--nb-chip-shadow, 2px 2px 0 0 var(--nb-shadow));
-    padding: var(--nb-chip-padding, 0.125rem 0.625rem);
+    gap: var(--nb-chip-gap);
+    padding: var(--nb-chip-padding);
+    font-size: var(--nb-chip-font-size);
+    font-weight: var(--nb-chip-font-weight);
+    background: var(--nb-tone-bg, var(--nb-chip-bg));
+    color: var(--nb-tone-fg, var(--nb-chip-fg));
+    border: var(--nb-chip-border-width) solid
+      var(--nb-tone-border, var(--nb-chip-border-color));
+    border-radius: var(--nb-chip-radius);
+    box-shadow: var(--nb-chip-shadow);
   }
 
-  :where(span[nbChip] svg),
-  :where(span[nbChip] [data-nb-icon]) {
-    width: var(--nb-chip-icon-size, 0.75rem);
-    height: var(--nb-chip-icon-size, 0.75rem);
+  :where([data-nb-chip] svg),
+  :where([data-nb-chip] [data-nb-icon]) {
+    width: var(--nb-chip-icon-size);
+    height: var(--nb-chip-icon-size);
     flex-shrink: 0;
-  }
-
-  :where([nbChipGroup]) {
-    display: flex;
-    min-width: 0;
-    flex-wrap: wrap;
-    align-items: stretch;
-    gap: var(--nb-chip-group-gap, 0.5rem);
-    letter-spacing: var(--nb-chip-group-tracking, normal);
-    text-transform: var(--nb-chip-group-text-transform, none);
-  }
-
-  :where([nbChipGroup][data-tracking='tight']) {
-    --nb-chip-group-tracking: -0.025em;
-  }
-
-  :where([nbChipGroup][data-tracking='normal']) {
-    --nb-chip-group-tracking: normal;
-  }
-
-  :where([nbChipGroup][data-tracking='wide']) {
-    --nb-chip-group-tracking: 0.025em;
-  }
-
-  :where([nbChipGroup][data-tracking='wider']) {
-    --nb-chip-group-tracking: 0.05em;
-  }
-
-  :where([nbChipGroup][data-direction='vertical']) {
-    flex-direction: column;
-    flex-wrap: nowrap;
-  }
-
-  :where([nbChipGroup][data-align='start']) {
-    align-items: flex-start;
-  }
-
-  :where([nbChipGroup][data-align='center']) {
-    align-items: center;
-  }
-
-  :where([nbChipGroup][data-align='end']) {
-    align-items: flex-end;
-  }
-
-  :where([nbChipGroup][data-align='stretch']) {
-    align-items: stretch;
   }
 }

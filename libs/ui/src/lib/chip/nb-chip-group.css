@@ -1,0 +1,45 @@
+@layer components {
+  /* Tokens */
+  :where([data-nb-chip-group]) {
+    --nb-chip-group-gap: 0.5rem;
+    --nb-chip-group-tracking: normal;
+    --nb-chip-group-text-transform: none;
+  }
+
+  /* Variants */
+  :where([data-nb-chip-group][data-tracking='tight']) {
+    --nb-chip-group-tracking: -0.025em;
+  }
+  :where([data-nb-chip-group][data-tracking='wide']) {
+    --nb-chip-group-tracking: 0.025em;
+  }
+  :where([data-nb-chip-group][data-tracking='wider']) {
+    --nb-chip-group-tracking: 0.05em;
+  }
+
+  /* Anatomy */
+  :where([data-nb-chip-group]) {
+    display: flex;
+    min-width: 0;
+    flex-wrap: wrap;
+    align-items: stretch;
+    gap: var(--nb-chip-group-gap);
+    letter-spacing: var(--nb-chip-group-tracking);
+    text-transform: var(--nb-chip-group-text-transform);
+  }
+
+  :where([data-nb-chip-group][data-direction='vertical']) {
+    flex-direction: column;
+    flex-wrap: nowrap;
+  }
+
+  :where([data-nb-chip-group][data-align='start']) {
+    align-items: flex-start;
+  }
+  :where([data-nb-chip-group][data-align='center']) {
+    align-items: center;
+  }
+  :where([data-nb-chip-group][data-align='end']) {
+    align-items: flex-end;
+  }
+}

@@ -245,9 +245,9 @@ Tone            data-nb-tone → --nb-tone-bg/-fg/-border       on that element 
 | Border | `--nb-border`, `--nb-border-width` | all |
 | Shape | `--nb-radius-box` | card, surface, callout, dialog, image-card, media-frame, accordion item |
 | | `--nb-radius-field` | input, textarea, select, input-group, checkbox |
-| | `--nb-radius-control` | button, icon-button |
-| | `--nb-radius-pill` | badge, chip, avatar, status-dot |
-| Depth | `--nb-shadow` (color), `--nb-shadow-box-offset`, `--nb-shadow-field-offset`, `--nb-shadow-control-offset`, `--nb-shadow-pill-offset` | the groups above (§14.9) |
+| | `--nb-radius-control` | button, icon-button, chip |
+| | `--nb-radius-pill` | badge, avatar, status-dot |
+| Depth | `--nb-shadow` (color), `--nb-shadow-box-offset`, `--nb-shadow-field-offset`, `--nb-shadow-control-offset`, `--nb-shadow-pill-offset` | the groups above (§14.9); chip takes the pill depth, the small 2px shadow it always had |
 | | Optional, unset by default: `--nb-shadow-box`, `--nb-shadow-field`, `--nb-shadow-control`, `--nb-shadow-pill` (a full `box-shadow`, §14.6) | the groups above |
 | Tone presets | `--nb-tone-<name>-bg/-fg/-border` | tone layer |
 
@@ -505,6 +505,8 @@ across all three:
 - An explicit `tone` now beats a component-wide color such as
   `--nb-input-bg`. Before, the component token won.
 - `--nb-accordion-trigger-icon-stroke` → `--nb-accordion-trigger-icon-border-width`.
+- The chip group's styles moved to their own file. If you import
+  `@ng-brutalism/ui/chip.css` on its own, also import `chip-group.css`.
 - `press="reverse"` on Button now does what its name says: flat at rest,
   lifting up-left into its shadow on hover. Before, a double negation made
   it slide down-right with the shadow attached.
@@ -560,6 +562,11 @@ across all three:
    image-card, each with a 3-engine contract spec and no rendered change.
    Card spacing is one token, `--nb-card-padding`. Dialog moves with the
    compound group.
+   **Badge and chip done 2026-10-25**, no rendered change. Chip keeps the
+   control rounding (square by default) and the pill depth. The group is
+   its own root in `chip/nb-chip-group.css`. Its `radius` and `shadow`
+   inputs never reached the chips (chip tokens don't inherit), so each chip
+   now reads them from the group it sits in.
 5. Docs generator, docs-site pages and CHANGELOG renames.
 6. Themes: move the shipped theme files from `:root` to
    `[data-nb-theme]` (§4.3). The rest of the theming roadmap is in

@@ -1,45 +1,36 @@
-@property --nb-badge-bg {
-  syntax: "*";
-  inherits: false;
-}
-@property --nb-badge-fg {
-  syntax: "*";
-  inherits: false;
-}
-@property --nb-badge-border-color {
-  syntax: "*";
-  inherits: false;
-}
-@property --nb-badge-border-width {
-  syntax: "*";
-  inherits: false;
-}
-@property --nb-badge-radius {
-  syntax: "*";
-  inherits: false;
-}
-@property --nb-badge-shadow {
-  syntax: "*";
-  inherits: false;
-}
-
 @layer components {
-  :where(span[nbBadge]) {
+  /* Tokens */
+  :where([data-nb-badge]) {
+    --nb-badge-bg: var(--nb-surface);
+    --nb-badge-fg: var(--nb-surface-foreground);
+    --nb-badge-border-color: var(--nb-border);
+    --nb-badge-border-width: var(--nb-border-width);
+    --nb-badge-radius: var(--nb-radius-pill);
+    --nb-badge-shadow: var(
+      --nb-shadow-pill,
+      var(--nb-shadow-pill-offset) var(--nb-shadow-pill-offset) 0 0
+        var(--nb-shadow)
+    );
+    --nb-badge-padding-x: 0.625rem;
+    --nb-badge-padding-y: 0.125rem;
+    --nb-badge-gap: 0.375rem;
+    --nb-badge-font-size: 0.75rem;
+    --nb-badge-font-weight: var(--nb-font-weight-bold);
+  }
+
+  /* Anatomy */
+  :where([data-nb-badge]) {
     display: inline-flex;
     align-items: center;
-    gap: 0.375rem;
-    padding: 0.125rem 0.625rem;
-    font-size: 0.75rem;
-    font-weight: 700;
-    border-style: solid;
-    background: var(--nb-badge-bg, var(--nb-tone-bg, var(--nb-surface)));
-    color: var(--nb-badge-fg, var(--nb-tone-fg, var(--nb-surface-foreground)));
-    border-color: var(
-      --nb-badge-border-color,
-      var(--nb-tone-border, var(--nb-border))
-    );
-    border-width: var(--nb-badge-border-width, var(--nb-border-width));
-    border-radius: var(--nb-badge-radius, 9999px);
-    box-shadow: var(--nb-badge-shadow, 2px 2px 0 0 var(--nb-shadow));
+    gap: var(--nb-badge-gap);
+    padding: var(--nb-badge-padding-y) var(--nb-badge-padding-x);
+    font-size: var(--nb-badge-font-size);
+    font-weight: var(--nb-badge-font-weight);
+    background: var(--nb-tone-bg, var(--nb-badge-bg));
+    color: var(--nb-tone-fg, var(--nb-badge-fg));
+    border: var(--nb-badge-border-width) solid
+      var(--nb-tone-border, var(--nb-badge-border-color));
+    border-radius: var(--nb-badge-radius);
+    box-shadow: var(--nb-badge-shadow);
   }
 }
