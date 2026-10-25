@@ -185,7 +185,7 @@ describe('NbNativeSelect directive token surface', () => {
     const select = findNativeSelect(fixture);
 
     // Assert
-    expect(select.style.getPropertyValue('--nb-select-radius')).toBe('');
+    expect(select.style.getPropertyValue('--nb-native-select-radius')).toBe('');
     expect(select.style.getPropertyValue('border-radius')).toBe('');
     expect(select.style.getPropertyValue('box-shadow')).toBe('');
     expect(select.style.cssText).not.toContain('--nb-resolved');
@@ -197,7 +197,7 @@ describe('NbNativeSelect directive token surface', () => {
     const select = findNativeSelect(fixture);
 
     // Assert
-    expect(select.style.getPropertyValue('--nb-select-focus-ring-color')).toBe('');
+    expect(select.style.getPropertyValue('--nb-native-select-focus-ring-color')).toBe('');
   });
 });
 

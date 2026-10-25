@@ -15,6 +15,7 @@ import type { NbTextareaSize } from './textarea.types';
   exportAs: 'nbTextarea',
   hostDirectives: [{ directive: NbToneCapability, inputs: ['tone'] }],
   host: {
+    'data-nb-textarea': '',
     '[attr.data-size]': 'size()',
     '[attr.data-in-group]': 'isInGroup ? "" : null',
     '[attr.id]': 'resolvedId() ?? null',

@@ -1,84 +1,108 @@
-@property --nb-select-border-width {
-  syntax: "*";
-  inherits: false;
-}
-@property --nb-select-shadow {
-  syntax: "*";
-  inherits: false;
-}
-@property --nb-select-invalid-border-color {
-  syntax: "*";
-  inherits: false;
-}
-
 @layer components {
-  :where(select[nbSelect]) {
+  /* Tokens */
+  :where([data-nb-native-select]) {
+    --nb-native-select-bg: var(--nb-surface);
+    --nb-native-select-fg: var(--nb-surface-foreground);
+    --nb-native-select-border-color: var(--nb-border);
+    --nb-native-select-border-width: var(--nb-border-width);
+    --nb-native-select-radius: var(--nb-radius-field);
+    --nb-native-select-shadow: var(
+      --nb-shadow-field,
+      var(--nb-shadow-field-offset) var(--nb-shadow-field-offset) 0 0
+        var(--nb-shadow)
+    );
+    --nb-native-select-height: 3.5rem;
+    --nb-native-select-padding-x: 1.25rem;
+    --nb-native-select-padding-y: 0.875rem;
+    /* Room on the right for the chevron. */
+    --nb-native-select-padding-end: 2.5rem;
+    --nb-native-select-font-family: var(--nb-font-mono);
+    --nb-native-select-font-size: 1rem;
+    --nb-native-select-font-weight: var(--nb-font-weight-normal);
+    --nb-native-select-placeholder-fg: var(--nb-muted-foreground, #9ca3af);
+    --nb-native-select-icon-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000000' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+    --nb-native-select-icon-size: 1.5rem;
+    --nb-native-select-icon-inset: 1rem;
+
+    /* Inside nb-input-group the group draws the field; the select only holds the value. */
+    --nb-native-select-in-group-bg: transparent;
+    --nb-native-select-in-group-border-width: 0;
+    --nb-native-select-in-group-shadow: none;
+
+    --nb-native-select-invalid-border-color: var(--nb-danger);
+    --nb-native-select-focus-shadow: none;
+    --nb-native-select-focus-ring-width: 2px;
+    --nb-native-select-focus-ring-color: var(--nb-native-select-border-color);
+    --nb-native-select-focus-ring-offset: 2px;
+    --nb-native-select-disabled-opacity: 0.5;
+  }
+
+  /* Variants */
+  :where([data-nb-native-select][data-size='sm']) {
+    --nb-native-select-height: 3rem;
+    --nb-native-select-padding-x: 1rem;
+    --nb-native-select-padding-y: 0.75rem;
+  }
+
+  :where([data-nb-native-select][data-size='lg']) {
+    --nb-native-select-height: 4rem;
+    --nb-native-select-padding-x: 1.5rem;
+    --nb-native-select-padding-y: 1rem;
+  }
+
+  /* Anatomy */
+  :where([data-nb-native-select]) {
     display: flex;
-    height: 3.5rem;
-    padding: 0.875rem 1.25rem;
-    padding-inline-end: 2.5rem;
+    height: var(--nb-native-select-height);
+    padding: var(--nb-native-select-padding-y) var(--nb-native-select-padding-x);
+    padding-inline-end: var(--nb-native-select-padding-end);
     appearance: none;
-    font-family: var(--nb-font-mono);
-    font-size: 1rem;
-    font-weight: 500;
-    background-color: var(--nb-select-bg, var(--nb-tone-bg, var(--nb-surface)));
-    color: var(--nb-select-fg, var(--nb-tone-fg, var(--nb-surface-foreground)));
-    border-color: var(
-      --nb-select-border-color,
-      var(--nb-tone-border, var(--nb-border))
-    );
-    border-width: var(--nb-select-border-width, var(--nb-border-width));
-    border-style: solid;
-    border-radius: var(--nb-select-radius, var(--nb-radius));
-    box-shadow: var(
-      --nb-select-shadow,
-      var(--nb-shadow-offset-x) var(--nb-shadow-offset-y) 0 0 var(--nb-shadow)
-    );
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000000' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+    font-family: var(--nb-native-select-font-family);
+    font-size: var(--nb-native-select-font-size);
+    font-weight: var(--nb-native-select-font-weight);
+    background-color: var(--nb-tone-bg, var(--nb-native-select-bg));
+    color: var(--nb-tone-fg, var(--nb-native-select-fg));
+    border: var(--nb-native-select-border-width) solid
+      var(--nb-tone-border, var(--nb-native-select-border-color));
+    border-radius: var(--nb-native-select-radius);
+    box-shadow: var(--nb-native-select-shadow);
+    background-image: var(--nb-native-select-icon-image);
     background-repeat: no-repeat;
-    background-position: right 1rem center;
-    background-size: 1.5rem 1.5rem;
+    background-position: right var(--nb-native-select-icon-inset) center;
+    background-size: var(--nb-native-select-icon-size)
+      var(--nb-native-select-icon-size);
   }
 
-  :where(select[nbSelect][data-size='sm']) {
-    height: 3rem;
-    padding: 0.75rem 1rem;
-    padding-inline-end: 2.5rem;
-  }
-
-  :where(select[nbSelect][data-size='lg']) {
-    height: 4rem;
-    padding: 1rem 1.5rem;
-    padding-inline-end: 2.5rem;
-  }
-
-  :where(select[nbSelect]:has(option:disabled:checked)) {
-    color: var(--nb-muted-foreground, #9ca3af);
-  }
-
-  :where(select[nbSelect][aria-invalid='true']) {
-    border-color: var(--nb-select-invalid-border-color, var(--nb-danger));
-  }
-
-  :where(select[nbSelect]:disabled) {
-    opacity: 0.5;
-    cursor: not-allowed;
-  }
-
-  :where(select[nbSelect][data-in-group]) {
+  :where([data-nb-native-select][data-in-group]) {
     flex: 1 1 0%;
     min-width: 0;
-    background-color: transparent;
-    border-width: 0;
+    background-color: var(--nb-native-select-in-group-bg);
+    border-width: var(--nb-native-select-in-group-border-width);
+    box-shadow: var(--nb-native-select-in-group-shadow);
   }
-  :where(select[nbSelect][data-in-group]):focus-visible {
+
+  /* States */
+  :where([data-nb-native-select]:has(option:disabled:checked)) {
+    color: var(--nb-native-select-placeholder-fg);
+  }
+
+  :where([data-nb-native-select][aria-invalid='true']) {
+    border-color: var(--nb-native-select-invalid-border-color);
+  }
+
+  :where([data-nb-native-select]:not([data-in-group])):focus-visible {
+    box-shadow: var(--nb-native-select-focus-shadow);
+    outline: var(--nb-native-select-focus-ring-width) solid
+      var(--nb-tone-border, var(--nb-native-select-focus-ring-color));
+    outline-offset: var(--nb-native-select-focus-ring-offset);
+  }
+
+  :where([data-nb-native-select][data-in-group]):focus-visible {
     outline: none;
   }
 
-  :where(select[nbSelect]:not([data-in-group])):focus-visible {
-    box-shadow: none;
-    outline: 2px solid
-      var(--nb-select-border-color, var(--nb-tone-border, var(--nb-border)));
-    outline-offset: 2px;
+  :where([data-nb-native-select]:disabled) {
+    opacity: var(--nb-native-select-disabled-opacity);
+    cursor: not-allowed;
   }
 }

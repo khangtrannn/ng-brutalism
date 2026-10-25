@@ -10,6 +10,7 @@ import type { NbCheckboxSize } from './checkbox.types';
   exportAs: 'nbCheckbox',
   hostDirectives: [{ directive: NbToneCapability, inputs: ['tone'] }],
   host: {
+    'data-nb-checkbox': '',
     '[attr.data-size]': 'size()',
     '[attr.id]': 'resolvedId() ?? null',
     '[attr.aria-describedby]': 'field?.describedBy() ?? null',

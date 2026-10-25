@@ -505,6 +505,15 @@ across all three:
 - An explicit `tone` now beats a component-wide color such as
   `--nb-input-bg`. Before, the component token won.
 - `--nb-accordion-trigger-icon-stroke` → `--nb-accordion-trigger-icon-border-width`.
+- `--nb-checkbox-bg/-fg` → `--nb-checkbox-checked-bg/-fg` (the checked
+  fill). `--nb-checkbox-bg` now sets the unchecked fill, `transparent` by
+  default.
+- `--nb-input-group-border` → `--nb-input-group-border-color`.
+- The native select (`select[nbSelect]`) has its own tokens:
+  `--nb-select-*` → `--nb-native-select-*`. `--nb-select-*` now styles only
+  `nb-select`.
+- `nb-select` drops `--nb-select-tone-bg/-fg/-border-color`. The open
+  listbox repeats the select's `data-nb-tone`, and its text follows the tone.
 - The chip group's styles moved to their own file. If you import
   `@ng-brutalism/ui/chip.css` on its own, also import `chip-group.css`.
 - `press="reverse"` on Button now does what its name says: flat at rest,
@@ -567,6 +576,13 @@ across all three:
    its own root in `chip/nb-chip-group.css`. Its `radius` and `shadow`
    inputs never reached the chips (chip tokens don't inherit), so each chip
    now reads them from the group it sits in.
+   **Fields and controls done 2026-10-25:** icon-button, checkbox, textarea,
+   input-group, native select and `nb-select`, each with a 3-engine
+   contract spec. The only rendered changes: fields inside `nb-input-group`
+   drop a shadow the group already covered, and a dark-toned `nb-select`
+   trigger now uses the tone's text color (it was black on black). The
+   guard counts `data-invalid` and `data-selected` as states.
+   **Step 4 controls and fields complete.**
 5. Docs generator, docs-site pages and CHANGELOG renames.
 6. Themes: move the shipped theme files from `:root` to
    `[data-nb-theme]` (§4.3). The rest of the theming roadmap is in

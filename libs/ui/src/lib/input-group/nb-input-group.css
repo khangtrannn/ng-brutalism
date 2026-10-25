@@ -1,83 +1,81 @@
-@property --nb-input-group-bg {
-  syntax: "*";
-  inherits: false;
-}
-@property --nb-input-group-radius {
-  syntax: "*";
-  inherits: false;
-}
-@property --nb-input-group-invalid-border-color {
-  syntax: "*";
-  inherits: false;
-}
-@property --nb-input-group-border {
-  syntax: "*";
-  inherits: true;
-}
-@property --nb-input-group-prefix-bg {
-  syntax: "*";
-  inherits: true;
-}
-@property --nb-input-group-suffix-bg {
-  syntax: "*";
-  inherits: true;
-}
-@property --nb-input-group-addon-bg {
-  syntax: "*";
-  inherits: true;
-}
-
 @layer components {
-  :where(nb-input-group) {
+  /* Tokens */
+  :where([data-nb-input-group]) {
+    --nb-input-group-bg: var(--nb-field-bg);
+    --nb-input-group-border-color: var(--nb-border);
+    --nb-input-group-border-width: var(--nb-border-width);
+    --nb-input-group-radius: var(--nb-radius-field);
+    --nb-input-group-shadow: var(
+      --nb-shadow-field,
+      var(--nb-shadow-field-offset) var(--nb-shadow-field-offset) 0 0
+        var(--nb-shadow)
+    );
+
+    --nb-input-group-addon-bg: var(--nb-yellow);
+    --nb-input-group-addon-width: 3rem;
+    /* Top padding of a prefix with align="stretch". */
+    --nb-input-group-addon-padding-y: 0.5rem;
+    --nb-input-group-prefix-bg: var(--nb-input-group-addon-bg);
+    --nb-input-group-suffix-bg: var(--nb-input-group-addon-bg);
+
+    --nb-input-group-invalid-border-color: var(--nb-danger);
+    --nb-input-group-focus-shadow: none;
+    --nb-input-group-focus-ring-width: 2px;
+    --nb-input-group-focus-ring-color: var(--nb-input-group-border-color);
+    --nb-input-group-focus-ring-offset: 2px;
+  }
+
+  /* Anatomy */
+  :where([data-nb-input-group]) {
     position: relative;
     display: inline-flex;
     width: 100%;
-    border-width: var(--nb-border-width);
-    border-style: solid;
-    border-radius: var(--nb-input-group-radius, var(--nb-radius));
-    border-color: var(--nb-input-group-border, var(--nb-border));
-    background: var(--nb-input-group-bg, var(--nb-input-bg, var(--nb-field-bg)));
-    box-shadow: var(--nb-shadow-offset-x) var(--nb-shadow-offset-y) 0 0 var(--nb-shadow);
+    background: var(--nb-input-group-bg);
+    border: var(--nb-input-group-border-width) solid
+      var(--nb-input-group-border-color);
+    border-radius: var(--nb-input-group-radius);
+    box-shadow: var(--nb-input-group-shadow);
   }
 
-  :where(nb-input-group):focus-within {
-    box-shadow: none;
-    outline: 2px solid var(--nb-input-group-border, var(--nb-border));
-    outline-offset: 2px;
-  }
-
-  :where(nb-input-group:has([aria-invalid='true'])) {
-    border-color: var(--nb-input-group-invalid-border-color, var(--nb-danger));
-  }
-
-  :where([nbInputPrefix]),
-  :where([nbInputSuffix]) {
+  :where([data-nb-input-group] [nbInputPrefix]),
+  :where([data-nb-input-group] [nbInputSuffix]) {
     display: flex;
-    width: 3rem;
+    width: var(--nb-input-group-addon-width);
     flex-shrink: 0;
     align-items: center;
     justify-content: center;
-    border-style: solid;
-    border-color: var(--nb-input-group-border, var(--nb-border));
+    border: 0 solid var(--nb-input-group-border-color);
   }
 
-  :where([nbInputPrefix]) {
-    border-right-width: var(--nb-border-width);
-    background: var(--nb-input-group-prefix-bg, var(--nb-input-group-addon-bg, var(--nb-yellow)));
+  :where([data-nb-input-group] [nbInputPrefix]) {
+    border-right-width: var(--nb-input-group-border-width);
+    background: var(--nb-input-group-prefix-bg);
   }
 
-  :where([nbInputPrefix][data-align='stretch']) {
+  :where([data-nb-input-group] [nbInputPrefix][data-align='stretch']) {
     align-self: stretch;
     align-items: flex-start;
-    padding-top: 0.5rem;
+    padding-top: var(--nb-input-group-addon-padding-y);
   }
 
-  :where([nbInputSuffix]) {
-    border-left-width: var(--nb-border-width);
-    background: var(--nb-input-group-suffix-bg, var(--nb-input-group-addon-bg, var(--nb-yellow)));
+  :where([data-nb-input-group] [nbInputSuffix]) {
+    border-left-width: var(--nb-input-group-border-width);
+    background: var(--nb-input-group-suffix-bg);
   }
 
-  :where([nbInputSuffix][data-align='stretch']) {
+  :where([data-nb-input-group] [nbInputSuffix][data-align='stretch']) {
     align-self: stretch;
+  }
+
+  /* States */
+  :where([data-nb-input-group]):focus-within {
+    box-shadow: var(--nb-input-group-focus-shadow);
+    outline: var(--nb-input-group-focus-ring-width) solid
+      var(--nb-input-group-focus-ring-color);
+    outline-offset: var(--nb-input-group-focus-ring-offset);
+  }
+
+  :where([data-nb-input-group]:has([aria-invalid='true'])) {
+    border-color: var(--nb-input-group-invalid-border-color);
   }
 }

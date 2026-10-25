@@ -131,10 +131,10 @@ design props (pure structural marker, e.g. `title`, `label`).
 
 ### 3.1 Known asymmetry (documented, not fixed this cycle)
 
-`NbNativeSelect` (`select[nbSelect]`) reads the identical `--nb-select-radius`
-/ `--nb-select-shadow` slots as the custom `NbSelect`, and already mirrors its
-`border` input. Adding `radius`/`shadow` to it was out of the frozen 9-input
-scope for this pass — CSS customization still works today via `style="--nb-select-radius: …"`. Tracked as a follow-up, not a broken contract.
+`NbNativeSelect` (`select[nbSelect]`) has its own `--nb-native-select-*`
+tokens, separate from the custom `NbSelect`, and mirrors its `border` input.
+Adding `radius`/`shadow` to it was out of the frozen 9-input scope for this
+pass — CSS customization still works today via `style="--nb-native-select-radius: …"`. Tracked as a follow-up, not a broken contract.
 
 ---
 

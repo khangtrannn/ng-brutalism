@@ -31,6 +31,16 @@ class SelectTest {}
 @Component({
   imports: [NbSelect, NbSelectOption],
   template: `
+    <nb-select placeholder="Pick one" tone="ink">
+      <nb-select-option value="remote" label="Remote">Remote</nb-select-option>
+    </nb-select>
+  `,
+})
+class TonedSelectTest {}
+
+@Component({
+  imports: [NbSelect, NbSelectOption],
+  template: `
     <nb-select placeholder="Select location" [value]="'worldwide'">
       <nb-select-option label="Select location"
         >Select location</nb-select-option
@@ -121,6 +131,25 @@ describe('NbSelect', () => {
     expect(listbox.getAttribute('data-slot')).toBe('select-listbox');
     expect(select.className).not.toContain('--nb-select-active-border');
     expect(listbox.className).not.toContain('--nb-select-active-border');
+  });
+
+  it('repeats its tone on the open listbox, which paints its own surface', async () => {
+    // Arrange
+    const fixture = await createFixture(TonedSelectTest);
+    const trigger = fixture.nativeElement.querySelector(
+      'button[aria-haspopup="listbox"]'
+    ) as HTMLButtonElement;
+
+    // Act
+    trigger.click();
+    fixture.detectChanges();
+
+    const listbox = fixture.nativeElement.querySelector(
+      '[role="listbox"]'
+    ) as HTMLElement;
+
+    // Assert
+    expect(listbox.getAttribute('data-nb-tone')).toBe('ink');
   });
 
   it('opens on trigger click and selects an option', async () => {

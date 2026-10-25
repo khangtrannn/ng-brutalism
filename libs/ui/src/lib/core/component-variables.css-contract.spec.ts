@@ -53,7 +53,7 @@ const html = `
     <p data-slot="dialog-description" id="description"></p>
   </div>
 
-  <button nbIconButton data-shape="circle" data-size="md" id="circle" style="--nb-icon-button-radius: 4px"></button>
+  <button data-nb-icon-button data-shape="circle" data-size="md" id="circle" style="--nb-icon-button-radius: 4px"></button>
 
   <section style="--nb-card-radius: 30px">
     <nb-card data-nb-card id="card-in-scope"></nb-card>
@@ -66,11 +66,11 @@ const html = `
     <nb-image-card-caption data-slot="image-card-caption" id="caption"></nb-image-card-caption>
   </nb-image-card>
 
-  <nb-input-group style="--nb-input-group-border: rgb(1, 1, 1)">
+  <nb-input-group data-nb-input-group style="--nb-input-group-border-color: rgb(1, 1, 1)">
     <span nbInputPrefix id="prefix"></span>
   </nb-input-group>
 
-  <nb-select style="--nb-select-radius: 3px">
+  <nb-select data-nb-select style="--nb-select-radius: 3px">
     <div data-slot="select-listbox" id="listbox"></div>
   </nb-select>
 `;

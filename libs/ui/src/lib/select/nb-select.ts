@@ -78,6 +78,7 @@ const TYPEAHEAD_RESET_MS = 500;
       role="listbox"
       popover="manual"
       [attr.aria-labelledby]="triggerElementId()"
+      [attr.data-nb-tone]="toneCapability.tone() ?? null"
       data-slot="select-listbox"
     >
       <ng-content />
@@ -116,6 +117,7 @@ export class NbSelect implements NbSelectController {
   readonly #compatInvalid = signal(false);
 
   protected readonly field = inject(NB_FIELD, { optional: true });
+  protected readonly toneCapability = inject(NbToneCapability);
   protected readonly isInGroup = this.#group !== null;
 
   readonly border = input(null, {

@@ -14,11 +14,16 @@ const MIGRATED = new Set<string>([
   'button',
   'callout',
   'card',
+  'checkbox',
   'chip',
+  'icon-button',
   'image-card',
   'input',
+  'input-group',
   'media-frame',
+  'select',
   'surface',
+  'textarea',
 ]);
 
 const lib = [
@@ -56,7 +61,7 @@ const BLOCKS = ['Tokens', 'Variants', 'Anatomy', 'States'] as const;
 type Block = (typeof BLOCKS)[number];
 
 const STATE_MARKER =
-  /:(hover|focus|focus-visible|focus-within|active|disabled|enabled|checked|indeterminate|invalid|valid|user-invalid|placeholder-shown|read-only|open|popover-open|target)\b|\[(aria-|data-state|data-disabled|open\]|disabled\])/;
+  /:(hover|focus|focus-visible|focus-within|active|disabled|enabled|checked|indeterminate|invalid|valid|user-invalid|placeholder-shown|read-only|open|popover-open|target)\b|\[(aria-|data-state|data-disabled|data-invalid|data-selected|open\]|disabled\])/;
 const COLOR_LITERAL =
   /#[0-9a-f]{3,8}\b|\b(rgba?|hsla?|oklch|oklab|lab|lch|color)\(/i;
 const DIMENSION_LITERAL =

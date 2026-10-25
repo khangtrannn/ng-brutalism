@@ -11,13 +11,14 @@ import type { NbSelectSize } from './select.types';
   exportAs: 'nbSelect',
   hostDirectives: [{ directive: NbToneCapability, inputs: ['tone'] }],
   host: {
+    'data-nb-native-select': '',
     '[attr.data-size]': 'size()',
     '[attr.data-in-group]': 'isInGroup ? "" : null',
     '[attr.id]': 'resolvedId() ?? null',
     '[attr.aria-describedby]': 'field?.describedBy() ?? null',
     '[attr.aria-invalid]': 'field?.invalid() ? "true" : null',
     '[attr.aria-required]': 'field?.required() ? "true" : null',
-    '[style.--nb-select-border-width]': 'border()',
+    '[style.--nb-native-select-border-width]': 'border()',
   },
 })
 export class NbNativeSelect {

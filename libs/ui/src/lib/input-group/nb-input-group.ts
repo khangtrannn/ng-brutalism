@@ -9,6 +9,7 @@ import { NB_INPUT_GROUP } from './input-group.types';
   template: `<ng-content />`,
   providers: [{ provide: NB_INPUT_GROUP, useExisting: NbInputGroup }],
   host: {
+    'data-nb-input-group': '',
     '[style.--nb-input-group-radius]': 'radius()',
   },
   changeDetection: ChangeDetectionStrategy.OnPush,
