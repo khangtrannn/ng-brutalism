@@ -5,37 +5,7 @@ import postcss, { type AtRule, type Node, type Rule } from 'postcss';
 import { describe, expect, it } from 'vitest';
 
 // Enforces the four-block stylesheet contract from
-// docs/architecture/token-customization.md §5. Components move into MIGRATED
-// as they adopt it (§13 steps 3–4); the rest keep the legacy registration rule
-// until the list covers every component, then the legacy branch is deleted.
-const MIGRATED = new Set<string>([
-  'accordion',
-  'avatar',
-  'avatar-group',
-  'badge',
-  'button',
-  'callout',
-  'card',
-  'checkbox',
-  'chip',
-  'dialog',
-  'halftone',
-  'icon-button',
-  'image-card',
-  'input',
-  'input-group',
-  'marquee',
-  'media-frame',
-  'media-item',
-  'progress',
-  'rating',
-  'select',
-  'stat',
-  'status-dot',
-  'sticker',
-  'surface',
-  'textarea',
-]);
+// docs/architecture/token-customization.md §5 on every component stylesheet.
 
 const lib = [
   join(process.cwd(), 'libs/ui/src/lib'),
@@ -67,6 +37,10 @@ const THEME_TOKENS = new Set(
     // Optional depth roles, unset by default (§14.6).
     .concat(['--nb-shadow-box', '--nb-shadow-field', '--nb-shadow-control', '--nb-shadow-pill']),
 );
+
+// Deliberately inherited so a wrapper can size and color every icon inside it
+// (§5). Never declared on a root; read only with a fallback.
+const CONTEXT_TOKENS = new Set(['--nb-icon-size', '--nb-icon-color']);
 
 const BLOCKS = ['Tokens', 'Variants', 'Anatomy', 'States'] as const;
 type Block = (typeof BLOCKS)[number];
@@ -180,6 +154,8 @@ function checkStylesheet(css: string, name: string): string[] {
       if (block === 'Tokens' || block === 'Variants') {
         if (!isOwn(decl.prop))
           errors.push(`${where}: declares a token outside ${prefix}*`);
+        if (CONTEXT_TOKENS.has(decl.prop))
+          errors.push(`${where}: context tokens inherit; don't declare them`);
         if (block === 'Tokens') declared.add(decl.prop);
         else if (!declared.has(decl.prop))
           errors.push(`${where}: variant reassigns an undeclared token`);
@@ -195,6 +171,11 @@ function checkStylesheet(css: string, name: string): string[] {
 
       for (const token of reads) {
         if (TONE_SLOTS.has(token)) continue;
+        if (CONTEXT_TOKENS.has(token)) {
+          if (new RegExp(`var\\(\\s*${token}\\s*\\)`).test(decl.value))
+            errors.push(`${where}: ${token} needs a fallback`);
+          continue;
+        }
         if (!isOwn(token))
           errors.push(
             `${where}: reads ${token}; read own tokens or tone slots only`,
@@ -233,7 +214,6 @@ const components = readdirSync(lib, { withFileTypes: true })
   .filter((entry) => entry.isDirectory())
   .map((entry) => entry.name)
   .map((dir) => ({
-    dir,
     sheets: readdirSync(join(lib, dir))
       .filter((file) => file.startsWith('nb-') && file.endsWith('.css'))
       .map((file) => ({
@@ -243,54 +223,14 @@ const components = readdirSync(lib, { withFileTypes: true })
   }))
   .filter(({ sheets }) => sheets.length > 0);
 
-const unknown = [...MIGRATED].filter(
-  (dir) => !components.some((c) => c.dir === dir),
-);
-
 describe('stylesheet contract', () => {
-  it('lists only existing component folders as migrated', () => {
-    expect(unknown).toEqual([]);
-  });
-
-  const migrated = components.filter(({ dir }) => MIGRATED.has(dir));
-  if (migrated.length > 0) {
-    it.each(
-      migrated.flatMap(({ sheets }) =>
-        sheets.map(({ name, css }) => [name, css] as const),
-      ),
-    )('nb-%s.css follows the four-block contract', (name, css) => {
-      expect(checkStylesheet(css, name)).toEqual([]);
-    });
-  }
-
-  // Legacy rule: every public `--nb-<component>-*` variable a stylesheet reads
-  // is registered with `@property`. Removed once MIGRATED covers every component.
-  const legacy = components.filter(({ dir }) => !MIGRATED.has(dir));
   it.each(
-    legacy.map(
-      ({ dir, sheets }) =>
-        [dir, sheets.map(({ css }) => css).join('\n')] as const,
+    components.flatMap(({ sheets }) =>
+      sheets.map(({ name, css }) => [name, css] as const),
     ),
-  )(
-    '%s (not migrated) registers every public variable it reads',
-    (dir, css) => {
-      const prefix = `--nb-${dir}-`;
-      const read = varsIn(css).filter(
-        (token) => token.startsWith(prefix) && !THEME_TOKENS.has(token),
-      );
-      const registered = new Set(
-        [
-          ...css.matchAll(
-            /@property (--nb-[a-z0-9-]+) \{[^}]*inherits: (true|false);/g,
-          ),
-        ].map(([, token]) => token),
-      );
-
-      expect(
-        [...new Set(read)].filter((token) => !registered.has(token)),
-      ).toEqual([]);
-    },
-  );
+  )('nb-%s.css follows the four-block contract', (name, css) => {
+    expect(checkStylesheet(css, name)).toEqual([]);
+  });
 });
 
 describe('checkStylesheet', () => {

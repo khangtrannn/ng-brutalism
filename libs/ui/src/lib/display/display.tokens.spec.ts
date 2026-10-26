@@ -43,16 +43,16 @@ describe('NbDisplay token surface', () => {
     expect(display.style.getPropertyValue('font-size')).toBe('');
   });
 
-  it('allows local --nb-display-size customization since no inline style is written', async () => {
+  it('allows local --nb-display-font-size customization since no inline style is written', async () => {
     // Arrange
     const fixture = await createFixture();
     const display = findDisplay(fixture);
 
     // Act
-    display.style.setProperty('--nb-display-size', '6rem');
+    display.style.setProperty('--nb-display-font-size', '6rem');
 
     // Assert
-    expect(display.style.getPropertyValue('--nb-display-size')).toBe('6rem');
+    expect(display.style.getPropertyValue('--nb-display-font-size')).toBe('6rem');
   });
 });
 

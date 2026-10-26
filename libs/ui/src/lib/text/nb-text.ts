@@ -68,9 +68,9 @@ const toneMap: Record<NbTextTone, string> = {
     '[attr.data-measure]': 'measure()',
     '[attr.data-leading]': 'leading()',
 
-    '[style.--nb-text-color]': 'colorValue()',
-    '[style.--nb-underline-gap]': 'underlineGapStyle()',
-    '[style.--nb-underline-width]': 'underlineWidthStyle()',
+    '[style.--nb-text-fg]': 'colorValue()',
+    '[style.--nb-text-underline-gap]': 'underlineGapStyle()',
+    '[style.--nb-text-underline-width]': 'underlineWidthStyle()',
   },
 })
 export class NbText {

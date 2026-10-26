@@ -35,7 +35,7 @@ import { DocsExample } from '@ng-brutalism/docs-ui';
                 leading="tight"
                 underline="bar"
                 underlineGap="xs"
-                style="--nb-underline-width: 45%"
+                style="--nb-text-underline-width: 45%"
               >
                 Angular native
               </h3>
@@ -60,7 +60,7 @@ import { DocsExample } from '@ng-brutalism/docs-ui';
                 leading="tight"
                 underline="bar"
                 underlineGap="xs"
-                style="--nb-underline-width: 45%"
+                style="--nb-text-underline-width: 45%"
               >
                 Loud by default
               </h3>
@@ -85,7 +85,7 @@ import { DocsExample } from '@ng-brutalism/docs-ui';
                 leading="tight"
                 underline="bar"
                 underlineGap="xs"
-                style="--nb-underline-width: 45%"
+                style="--nb-text-underline-width: 45%"
               >
                 Token driven
               </h3>
@@ -103,7 +103,7 @@ export class CompositionCommonPatternsFeatureStack {
   <article nbSurface tone="yellow" padding="lg" radius="lg"
            shadow="hard" border="strong" class="flex-1 min-w-[160px]">
     <div nbStack gap="xs">
-      <h3 nbText size="2xl" weight="black" leading="tight" underline="bar" underlineGap="xs" style="--nb-underline-width: 45%">Angular native</h3>
+      <h3 nbText size="2xl" weight="black" leading="tight" underline="bar" underlineGap="xs" style="--nb-text-underline-width: 45%">Angular native</h3>
       <p nbText size="sm">Directive APIs, signal inputs.</p>
     </div>
   </article>
@@ -111,7 +111,7 @@ export class CompositionCommonPatternsFeatureStack {
   <article nbSurface tone="mint" padding="lg" radius="lg"
            shadow="hard" border="strong" class="flex-1 min-w-[160px]">
     <div nbStack gap="xs">
-      <h3 nbText size="2xl" weight="black" leading="tight" underline="bar" underlineGap="xs" style="--nb-underline-width: 45%">Loud by default</h3>
+      <h3 nbText size="2xl" weight="black" leading="tight" underline="bar" underlineGap="xs" style="--nb-text-underline-width: 45%">Loud by default</h3>
       <p nbText size="sm">Chunky borders, punchy color.</p>
     </div>
   </article>
@@ -119,7 +119,7 @@ export class CompositionCommonPatternsFeatureStack {
   <article nbSurface tone="pink" padding="lg" radius="lg"
            shadow="hard" border="strong" class="flex-1 min-w-[160px]">
     <div nbStack gap="xs">
-      <h3 nbText size="2xl" weight="black" leading="tight" underline="bar" underlineGap="xs" style="--nb-underline-width: 45%">Token driven</h3>
+      <h3 nbText size="2xl" weight="black" leading="tight" underline="bar" underlineGap="xs" style="--nb-text-underline-width: 45%">Token driven</h3>
       <p nbText size="sm">CSS variables keep overrides local.</p>
     </div>
   </article>

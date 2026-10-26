@@ -33,7 +33,7 @@ import { DocsExample } from '@ng-brutalism/docs-ui';
               underline="bar"
               underlineGap="xs"
               class="inline-flex flex-col items-start"
-              style="--nb-underline-width: 75%"
+              style="--nb-display-underline-width: 75%"
             >
               Profile
             </h2>
@@ -50,7 +50,7 @@ import { DocsExample } from '@ng-brutalism/docs-ui';
 export class CompositionSurfaceSectionBasicPanel {
   protected readonly basicPanelCode = `<article nbSurface tone="cream" radius="xl" shadow="hard" border="strong" clip>
   <header nbSection padding="lg" divider="bottom">
-    <h2 nbDisplay size="sm" underline="bar" underlineGap="xs" class="inline-flex flex-col items-start" style="--nb-underline-width: 45%">Profile</h2>
+    <h2 nbDisplay size="sm" underline="bar" underlineGap="xs" class="inline-flex flex-col items-start" style="--nb-display-underline-width: 45%">Profile</h2>
   </header>
 
   <div nbSection padding="lg">

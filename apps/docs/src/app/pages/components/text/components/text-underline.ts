@@ -14,11 +14,11 @@ import { DocsExample } from '@ng-brutalism/docs-ui';
         bar beneath the text - handy for brand names and section labels with no
         extra markup. Use <code class="font-mono">"wave"</code> for the squiggly
         variant. Recolor and resize it with the
-        <code class="font-mono">--nb-underline-color</code>,
-        <code class="font-mono">--nb-underline-width</code>,
-        <code class="font-mono">--nb-underline-height</code>,
-        <code class="font-mono">--nb-underline-gap</code> and
-        <code class="font-mono">--nb-underline-radius</code> tokens.
+        <code class="font-mono">--nb-text-underline-color</code>,
+        <code class="font-mono">--nb-text-underline-width</code>,
+        <code class="font-mono">--nb-text-underline-height</code>,
+        <code class="font-mono">--nb-text-underline-gap</code> and
+        <code class="font-mono">--nb-text-underline-radius</code> tokens.
       </p>
       <docs-example [code]="underlineCode">
         <div class="p-6 w-full" nbStack gap="lg">
@@ -33,7 +33,7 @@ import { DocsExample } from '@ng-brutalism/docs-ui';
             size="2xl"
             weight="extrabold"
             underline="bar"
-            style="--nb-underline-color: var(--nb-mint)"
+            style="--nb-text-underline-color: var(--nb-mint)"
           >
             Mint Accent
           </span>
@@ -57,7 +57,7 @@ export class TextUnderline {
   size="2xl"
   weight="extrabold"
   underline="bar"
-  style="--nb-underline-color: var(--nb-mint)"
+  style="--nb-text-underline-color: var(--nb-mint)"
 >
   Mint Accent
 </span>`;

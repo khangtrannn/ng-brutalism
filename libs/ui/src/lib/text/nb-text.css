@@ -1,155 +1,126 @@
-@property --nb-text-color {
-  syntax: "*";
-  inherits: false;
-}
-@property --nb-text-size {
-  syntax: "*";
-  inherits: false;
-}
-@property --nb-text-weight {
-  syntax: "*";
-  inherits: false;
-}
-@property --nb-text-tracking {
-  syntax: "*";
-  inherits: false;
-}
-@property --nb-text-transform {
-  syntax: "*";
-  inherits: false;
-}
-@property --nb-text-measure {
-  syntax: "*";
-  inherits: false;
-}
-@property --nb-text-line-height {
-  syntax: "*";
-  inherits: false;
-}
-@property --nb-underline-width {
-  syntax: "*";
-  inherits: false;
-}
-@property --nb-underline-height {
-  syntax: "*";
-  inherits: false;
-}
-@property --nb-underline-gap {
-  syntax: "*";
-  inherits: false;
-}
-@property --nb-underline-radius {
-  syntax: "*";
-  inherits: false;
-}
-@property --nb-underline-color {
-  syntax: "*";
-  inherits: false;
-}
-
-@layer base {
+@layer components {
+  /* Tokens */
+  /* The tone input writes --nb-text-fg from its own color map, so the text
+     never reads the tone slots. */
   :where([data-nb-text]) {
-    color: var(--nb-text-color, var(--nb-foreground));
+    --nb-text-fg: var(--nb-foreground);
+    --nb-text-font-size: 1rem;
+    --nb-text-line-height: 1.5rem;
+    --nb-text-font-weight: 400;
+    --nb-text-transform: none;
+    --nb-text-tracking: normal;
+    --nb-text-measure: none;
+
+    /* underline="bar"; the wave variant below reshapes it. */
+    --nb-text-underline-width: 7rem;
+    --nb-text-underline-height: 0.375rem;
+    --nb-text-underline-gap: 0.75rem;
+    --nb-text-underline-radius: 9999px;
+    --nb-text-underline-color: var(--nb-pink);
+    --nb-text-underline-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 220 12' preserveAspectRatio='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0,6 Q10,0 20,6 T40,6 T60,6 T80,6 T100,6 T120,6 T140,6 T160,6 T180,6 T200,6 T220,6' fill='none' stroke='black' stroke-width='6' stroke-linecap='round'/%3E%3C/svg%3E");
   }
 
+  /* Variants */
   :where([data-nb-text][data-size='xs']) {
-    font-size: var(--nb-text-size, 0.75rem);
-    line-height: var(--nb-text-line-height, 1rem);
+    --nb-text-font-size: 0.75rem;
+    --nb-text-line-height: 1rem;
   }
   :where([data-nb-text][data-size='sm']) {
-    font-size: var(--nb-text-size, 0.875rem);
-    line-height: var(--nb-text-line-height, 1.25rem);
-  }
-  :where([data-nb-text][data-size='md']) {
-    font-size: var(--nb-text-size, 1rem);
-    line-height: var(--nb-text-line-height, 1.5rem);
+    --nb-text-font-size: 0.875rem;
+    --nb-text-line-height: 1.25rem;
   }
   :where([data-nb-text][data-size='lg']) {
-    font-size: var(--nb-text-size, 1.125rem);
-    line-height: var(--nb-text-line-height, 1.75rem);
+    --nb-text-font-size: 1.125rem;
+    --nb-text-line-height: 1.75rem;
   }
   :where([data-nb-text][data-size='xl']) {
-    font-size: var(--nb-text-size, 1.25rem);
-    line-height: var(--nb-text-line-height, 1.875rem);
+    --nb-text-font-size: 1.25rem;
+    --nb-text-line-height: 1.875rem;
   }
   :where([data-nb-text][data-size='2xl']) {
-    font-size: var(--nb-text-size, 1.5rem);
-    line-height: var(--nb-text-line-height, 2rem);
+    --nb-text-font-size: 1.5rem;
+    --nb-text-line-height: 2rem;
   }
   :where([data-nb-text][data-size='3xl']) {
-    font-size: var(--nb-text-size, 1.875rem);
-    line-height: var(--nb-text-line-height, 2.25rem);
+    --nb-text-font-size: 1.875rem;
+    --nb-text-line-height: 2.25rem;
   }
 
   :where([data-nb-text][data-leading='none']) {
-    line-height: var(--nb-text-line-height, 1);
+    --nb-text-line-height: 1;
   }
   :where([data-nb-text][data-leading='tight']) {
-    line-height: var(--nb-text-line-height, 1.15);
+    --nb-text-line-height: 1.15;
   }
   :where([data-nb-text][data-leading='relaxed']) {
-    line-height: var(--nb-text-line-height, 1.65);
+    --nb-text-line-height: 1.65;
   }
 
-  :where([data-nb-text][data-weight='normal']) {
-    font-weight: var(--nb-text-weight, 400);
-  }
   :where([data-nb-text][data-weight='medium']) {
-    font-weight: var(--nb-text-weight, 500);
+    --nb-text-font-weight: 500;
   }
   :where([data-nb-text][data-weight='semibold']) {
-    font-weight: var(--nb-text-weight, 600);
+    --nb-text-font-weight: 600;
   }
   :where([data-nb-text][data-weight='bold']) {
-    font-weight: var(--nb-text-weight, 700);
+    --nb-text-font-weight: 700;
   }
   :where([data-nb-text][data-weight='extrabold']) {
-    font-weight: var(--nb-text-weight, 800);
+    --nb-text-font-weight: 800;
   }
   :where([data-nb-text][data-weight='black']) {
-    font-weight: var(--nb-text-weight, 900);
+    --nb-text-font-weight: 900;
   }
 
-  :where([data-nb-text][data-transform='none']) {
-    text-transform: var(--nb-text-transform, none);
-  }
   :where([data-nb-text][data-transform='uppercase']) {
-    text-transform: var(--nb-text-transform, uppercase);
+    --nb-text-transform: uppercase;
   }
   :where([data-nb-text][data-transform='lowercase']) {
-    text-transform: var(--nb-text-transform, lowercase);
+    --nb-text-transform: lowercase;
   }
   :where([data-nb-text][data-transform='capitalize']) {
-    text-transform: var(--nb-text-transform, capitalize);
+    --nb-text-transform: capitalize;
   }
 
   :where([data-nb-text][data-tracking='tight']) {
-    letter-spacing: var(--nb-text-tracking, -0.025em);
-  }
-  :where([data-nb-text][data-tracking='normal']) {
-    letter-spacing: var(--nb-text-tracking, normal);
+    --nb-text-tracking: -0.025em;
   }
   :where([data-nb-text][data-tracking='wide']) {
-    letter-spacing: var(--nb-text-tracking, 0.025em);
+    --nb-text-tracking: 0.025em;
   }
   :where([data-nb-text][data-tracking='wider']) {
-    letter-spacing: var(--nb-text-tracking, 0.05em);
+    --nb-text-tracking: 0.05em;
   }
 
-  :where([data-nb-text][data-measure='none']) {
-    max-width: var(--nb-text-measure, none);
-  }
   :where([data-nb-text][data-measure='xs']) {
-    max-width: var(--nb-text-measure, 20rem);
+    --nb-text-measure: 20rem;
   }
   :where([data-nb-text][data-measure='sm']) {
-    max-width: var(--nb-text-measure, 28rem);
+    --nb-text-measure: 28rem;
   }
   :where([data-nb-text][data-measure='md']) {
-    max-width: var(--nb-text-measure, 36rem);
+    --nb-text-measure: 36rem;
   }
   :where([data-nb-text][data-measure='lg']) {
-    max-width: var(--nb-text-measure, 44rem);
+    --nb-text-measure: 44rem;
+  }
+
+  :where([data-nb-text][data-underline='wave']) {
+    --nb-text-underline-width: min(18rem, 100%);
+    --nb-text-underline-height: 0.625rem;
+    --nb-text-underline-gap: 0.5rem;
+    --nb-text-underline-radius: 0;
+  }
+
+  /* Anatomy */
+  :where([data-nb-text]) {
+    color: var(--nb-text-fg);
+    font-size: var(--nb-text-font-size);
+    line-height: var(--nb-text-line-height);
+    font-weight: var(--nb-text-font-weight);
+    text-transform: var(--nb-text-transform);
+    letter-spacing: var(--nb-text-tracking);
+    max-width: var(--nb-text-measure);
   }
 
   :where([data-nb-text][data-underline]) {
@@ -159,26 +130,18 @@
     align-self: flex-start;
   }
 
-  :where([data-nb-text][data-underline='bar'])::after {
-    content: "";
+  :where([data-nb-text][data-underline])::after {
+    content: '';
     display: block;
-    width: var(--nb-underline-width, 7rem);
-    height: var(--nb-underline-height, 0.375rem);
-    margin-top: var(--nb-underline-gap, 0.75rem);
-    border-radius: var(--nb-underline-radius, 9999px);
-    background-color: var(--nb-underline-color, var(--nb-pink));
+    width: var(--nb-text-underline-width);
+    height: var(--nb-text-underline-height);
+    margin-top: var(--nb-text-underline-gap);
+    border-radius: var(--nb-text-underline-radius);
+    background-color: var(--nb-text-underline-color);
   }
 
   :where([data-nb-text][data-underline='wave'])::after {
-    content: "";
-    display: block;
-    width: var(--nb-underline-width, min(18rem, 100%));
-    height: var(--nb-underline-height, 0.625rem);
-    margin-top: var(--nb-underline-gap, 0.5rem);
-    background-color: var(--nb-underline-color, var(--nb-pink));
-    -webkit-mask: url("data:image/svg+xml,%3Csvg viewBox='0 0 220 12' preserveAspectRatio='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0,6 Q10,0 20,6 T40,6 T60,6 T80,6 T100,6 T120,6 T140,6 T160,6 T180,6 T200,6 T220,6' fill='none' stroke='black' stroke-width='6' stroke-linecap='round'/%3E%3C/svg%3E")
-      center / 100% 100% no-repeat;
-    mask: url("data:image/svg+xml,%3Csvg viewBox='0 0 220 12' preserveAspectRatio='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0,6 Q10,0 20,6 T40,6 T60,6 T80,6 T100,6 T120,6 T140,6 T160,6 T180,6 T200,6 T220,6' fill='none' stroke='black' stroke-width='6' stroke-linecap='round'/%3E%3C/svg%3E")
-      center / 100% 100% no-repeat;
+    -webkit-mask: var(--nb-text-underline-image) center / 100% 100% no-repeat;
+    mask: var(--nb-text-underline-image) center / 100% 100% no-repeat;
   }
 }

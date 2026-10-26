@@ -55,7 +55,7 @@ import { DocsExample } from '@ng-brutalism/docs-ui';
                   underline="bar"
                   underlineGap="xs"
                   class="inline-flex flex-col items-start"
-                  style="--nb-underline-width: 45%"
+                  style="--nb-display-underline-width: 45%"
                 >
                   Components shipped
                 </h2>
@@ -79,7 +79,7 @@ export class CompositionCommonPatternsTwoColumnCard {
       <div>42</div>
 
       <div nbStack gap="xs">
-        <h2 nbDisplay size="sm" underline="bar" underlineGap="xs" class="inline-flex flex-col items-start" style="--nb-underline-width: 45%">Components shipped</h2>
+        <h2 nbDisplay size="sm" underline="bar" underlineGap="xs" class="inline-flex flex-col items-start" style="--nb-display-underline-width: 45%">Components shipped</h2>
         <p nbText tone="muted" size="sm">
           Fully composed, keyboard-ready, token-driven.
         </p>

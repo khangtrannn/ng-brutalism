@@ -55,7 +55,7 @@ import { DocsExample } from '@ng-brutalism/docs-ui';
                 underline="bar"
                 underlineGap="xs"
                 class="inline-flex flex-col items-start"
-                style="--nb-underline-width: 45%"
+                style="--nb-display-underline-width: 45%"
               >
                 Campaign draft
               </h2>
@@ -96,7 +96,7 @@ export class CompositionSurfaceSectionHeaderBodyFooter {
   protected readonly headerBodyFooterCode = `<article nbSurface tone="yellow" radius="xl" border="thick" shadow="hard" clip>
   <header nbSection padding="lg" divider="bottom">
     <div nbCluster gap="sm" align="center" justify="between">
-      <h2 nbDisplay size="sm" underline="bar" underlineGap="xs" class="inline-flex flex-col items-start" style="--nb-underline-width: 45%">Campaign draft</h2>
+      <h2 nbDisplay size="sm" underline="bar" underlineGap="xs" class="inline-flex flex-col items-start" style="--nb-display-underline-width: 45%">Campaign draft</h2>
       <span nbChip tone="pink">Draft</span>
     </div>
   </header>

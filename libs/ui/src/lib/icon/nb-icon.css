@@ -1,13 +1,26 @@
-@property --nb-icon-color {
-  syntax: "*";
-  inherits: true;
-}
-@property --nb-icon-size {
-  syntax: "*";
-  inherits: true;
-}
+@layer components {
+  /* Tokens */
+  /* --nb-icon-size and --nb-icon-color are context tokens: never declared
+     here, so a wrapper can size and color every icon inside it (§5). */
+  :where([data-nb-icon]) {
+    --nb-icon-default-size: 1.25rem;
+  }
 
-@layer base {
+  /* Variants */
+  :where([data-nb-icon][data-size='xs']) {
+    --nb-icon-default-size: 0.75rem;
+  }
+  :where([data-nb-icon][data-size='sm']) {
+    --nb-icon-default-size: 1rem;
+  }
+  :where([data-nb-icon][data-size='lg']) {
+    --nb-icon-default-size: 1.5rem;
+  }
+  :where([data-nb-icon][data-size='xl']) {
+    --nb-icon-default-size: 2rem;
+  }
+
+  /* Anatomy */
   :where([data-nb-icon]) {
     display: inline-block;
     flex-shrink: 0;
@@ -15,25 +28,9 @@
     color: var(--nb-icon-color, currentColor);
   }
 
-  :where([data-nb-icon][data-size='xs']) {
-    width: var(--nb-icon-size, 0.75rem);
-    height: var(--nb-icon-size, 0.75rem);
-  }
-  :where([data-nb-icon][data-size='sm']) {
-    width: var(--nb-icon-size, 1rem);
-    height: var(--nb-icon-size, 1rem);
-  }
-  :where([data-nb-icon][data-size='md']) {
-    width: var(--nb-icon-size, 1.25rem);
-    height: var(--nb-icon-size, 1.25rem);
-  }
-  :where([data-nb-icon][data-size='lg']) {
-    width: var(--nb-icon-size, 1.5rem);
-    height: var(--nb-icon-size, 1.5rem);
-  }
-  :where([data-nb-icon][data-size='xl']) {
-    width: var(--nb-icon-size, 2rem);
-    height: var(--nb-icon-size, 2rem);
+  :where([data-nb-icon][data-size]) {
+    width: var(--nb-icon-size, var(--nb-icon-default-size));
+    height: var(--nb-icon-size, var(--nb-icon-default-size));
   }
 
   :where([data-nb-icon][data-mode='mask']) {

@@ -1,22 +1,21 @@
-@property --nb-cluster-separator-gap {
-  syntax: "*";
-  inherits: true;
-}
-@property --nb-cluster-gap {
-  syntax: "*";
-  inherits: false;
-}
-@property --nb-cluster-padding {
-  syntax: "*";
-  inherits: false;
-}
-
 @layer components {
+  /* Tokens */
+  :where([data-nb-cluster]) {
+    --nb-cluster-gap: 0.75rem;
+    --nb-cluster-padding: 0px;
+    /* Space on each side of a separator line. */
+    --nb-cluster-separator-gap: calc(var(--nb-cluster-gap) * 0.5);
+    --nb-cluster-separator-color: var(--nb-border);
+    --nb-cluster-separator-width: var(--nb-border-width);
+    --nb-cluster-separator-thick-width: 4px;
+  }
+
+  /* Anatomy */
   :where([data-nb-cluster]) {
     display: flex;
     min-width: 0;
-    gap: var(--nb-cluster-gap, 0.75rem);
-    padding: var(--nb-cluster-padding, 0px);
+    gap: var(--nb-cluster-gap);
+    padding: var(--nb-cluster-padding);
   }
 
   :where([data-nb-cluster][data-align='start']) { align-items: flex-start; }
@@ -36,27 +35,21 @@
   :where([data-nb-cluster][data-separator='solid'] > * + *),
   :where([data-nb-cluster][data-separator='dashed'] > * + *),
   :where([data-nb-cluster][data-separator='thick'] > * + *) {
-    margin-inline-start: var(
-      --nb-cluster-separator-gap,
-      calc(var(--nb-cluster-gap, 0.75rem) * 0.5)
-    );
-    padding-inline-start: var(
-      --nb-cluster-separator-gap,
-      calc(var(--nb-cluster-gap, 0.75rem) * 0.5)
-    );
-    border-inline-start-color: var(--nb-border);
+    margin-inline-start: var(--nb-cluster-separator-gap);
+    padding-inline-start: var(--nb-cluster-separator-gap);
+    border-inline-start-color: var(--nb-cluster-separator-color);
   }
 
   :where([data-nb-cluster][data-separator='solid'] > * + *) {
-    border-inline-start-width: 2px;
+    border-inline-start-width: var(--nb-cluster-separator-width);
     border-inline-start-style: solid;
   }
   :where([data-nb-cluster][data-separator='dashed'] > * + *) {
-    border-inline-start-width: 2px;
+    border-inline-start-width: var(--nb-cluster-separator-width);
     border-inline-start-style: dashed;
   }
   :where([data-nb-cluster][data-separator='thick'] > * + *) {
-    border-inline-start-width: 4px;
+    border-inline-start-width: var(--nb-cluster-separator-thick-width);
     border-inline-start-style: solid;
   }
 }

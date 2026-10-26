@@ -324,7 +324,7 @@ export default class OpenToWorkCardRecipePage {
       <div nbStack gap="xs" align="start">
         <span nbText size="2xl" weight="bold" underline="bar"
               underlineGap="xs" underlineWidth="md"
-              style="--nb-underline-color: var(--otw-pink)">
+              style="--nb-text-underline-color: var(--otw-pink)">
           Product Designer
         </span>
       </div>

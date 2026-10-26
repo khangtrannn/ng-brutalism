@@ -59,7 +59,7 @@ import { DocsExample } from '@ng-brutalism/docs-ui';
               underline="bar"
               underlineGap="xs"
               class="inline-flex flex-col items-start"
-              style="--nb-underline-width: 62%"
+              style="--nb-display-underline-width: 62%"
             >
               Senior Angular Engineer
             </h2>
@@ -86,7 +86,7 @@ import { DocsExample } from '@ng-brutalism/docs-ui';
 export class CompositionStackClusterStackExample {
   protected readonly stackExampleCode = `<article nbSurface tone="cream" border="strong" shadow="heavy" radius="xl" padding="xl" aria-label="Senior Angular Engineer job card">
   <div nbStack gap="lg" align="start">
-    <h2 nbDisplay size="sm" underline="bar" underlineGap="xs" class="inline-flex flex-col items-start" style="--nb-underline-width: 62%">Senior Angular Engineer</h2>
+    <h2 nbDisplay size="sm" underline="bar" underlineGap="xs" class="inline-flex flex-col items-start" style="--nb-display-underline-width: 62%">Senior Angular Engineer</h2>
     <p nbText size="2xl" tone="muted">Build loud UI primitives.</p>
 
     <div nbChipGroup gap="sm" radius="none" shadow="md">

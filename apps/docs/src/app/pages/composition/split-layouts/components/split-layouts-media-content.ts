@@ -59,7 +59,7 @@ import { DocsExample } from '@ng-brutalism/docs-ui';
               underline="bar"
               underlineGap="xs"
               class="inline-flex flex-col items-start"
-              style="--nb-underline-width: 45%"
+              style="--nb-display-underline-width: 45%"
             >
               Recipe card
             </h2>
@@ -89,7 +89,7 @@ export class CompositionSplitLayoutsMediaContent {
   </div>
 
   <div nbStack gap="md">
-    <h2 nbDisplay size="sm" underline="bar" underlineGap="xs" class="inline-flex flex-col items-start" style="--nb-underline-width: 45%">Recipe card</h2>
+    <h2 nbDisplay size="sm" underline="bar" underlineGap="xs" class="inline-flex flex-col items-start" style="--nb-display-underline-width: 45%">Recipe card</h2>
     <p nbText tone="muted">
       Use split layouts for visual/content compositions.
     </p>

@@ -15,7 +15,7 @@ import { DocsExample } from '@ng-brutalism/docs-ui';
         <code class="font-mono">"wave"</code> for the squiggly variant. The bar
         is decorative (rendered as a pseudo-element, kept out of the
         accessibility tree). Tune it with the
-        <code class="font-mono">--nb-underline-*</code> tokens below.
+        <code class="font-mono">--nb-display-underline-*</code> tokens below.
       </p>
       <docs-example [code]="underlineExampleCode">
         <div class="flex flex-col gap-8">
@@ -28,7 +28,7 @@ import { DocsExample } from '@ng-brutalism/docs-ui';
             size="lg"
             underline="bar"
             class="uppercase"
-            style="--nb-underline-color: var(--nb-mint); --nb-underline-width: 100%"
+            style="--nb-display-underline-color: var(--nb-mint); --nb-display-underline-width: 100%"
           >
             FULL WIDTH
           </h2>
@@ -47,7 +47,7 @@ export class DisplayUnderline {
   size="lg"
   underline="bar"
   class="uppercase"
-  style="--nb-underline-color: var(--nb-mint); --nb-underline-width: 100%"
+  style="--nb-display-underline-color: var(--nb-mint); --nb-display-underline-width: 100%"
 >
   FULL WIDTH
 </h2>`;

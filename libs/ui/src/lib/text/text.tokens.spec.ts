@@ -43,14 +43,14 @@ describe('NbText token surface', () => {
     expect(text.getAttribute('data-weight')).toBe('normal');
   });
 
-  it('does not write --nb-text-color or data-nb-tone when tone is unset', async () => {
+  it('does not write --nb-text-fg or data-nb-tone when tone is unset', async () => {
     // Arrange
     const fixture = await createFixture();
     const text = findText(fixture);
 
     // Assert
     expect(text.getAttribute('data-nb-tone')).toBeNull();
-    expect(text.style.getPropertyValue('--nb-text-color')).toBe('');
+    expect(text.style.getPropertyValue('--nb-text-fg')).toBe('');
   });
 
   it('reflects semantic tone members through data-nb-tone and writes the resolved color', async () => {
@@ -60,7 +60,7 @@ describe('NbText token surface', () => {
 
     // Assert
     expect(text.getAttribute('data-nb-tone')).toBe('danger');
-    expect(text.style.getPropertyValue('--nb-text-color')).toBe(
+    expect(text.style.getPropertyValue('--nb-text-fg')).toBe(
       'var(--nb-danger)'
     );
   });
@@ -72,7 +72,7 @@ describe('NbText token surface', () => {
 
     // Assert
     expect(text.getAttribute('data-nb-tone')).toBe('muted');
-    expect(text.style.getPropertyValue('--nb-text-color')).toContain(
+    expect(text.style.getPropertyValue('--nb-text-fg')).toContain(
       'color-mix'
     );
   });

@@ -39,7 +39,7 @@ import { DocsExample } from '@ng-brutalism/docs-ui';
               underline="bar"
               underlineGap="xs"
               class="inline-flex flex-col items-start"
-              style="--nb-underline-width: 45%"
+              style="--nb-display-underline-width: 45%"
             >
               Primitives used
             </h2>
@@ -61,7 +61,7 @@ export class CompositionCommonPatternsPrimitivesUsedPanel {
   protected readonly primitivesUsedCode = `<section nbSurface tone="cream" padding="lg"
          radius="xl" shadow="hard" border="strong">
   <div nbStack gap="md">
-    <h2 nbDisplay size="sm" underline="bar" underlineGap="xs" class="inline-flex flex-col items-start" style="--nb-underline-width: 45%">Primitives used</h2>
+    <h2 nbDisplay size="sm" underline="bar" underlineGap="xs" class="inline-flex flex-col items-start" style="--nb-display-underline-width: 45%">Primitives used</h2>
 
     <div nbCluster gap="xs">
       <span nbChip tone="yellow">nbSurface</span>

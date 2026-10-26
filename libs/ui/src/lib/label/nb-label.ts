@@ -6,6 +6,7 @@ import { NB_FIELD } from '../field/field.types';
   selector: 'label[nbLabel]',
   exportAs: 'nbLabel',
   host: {
+    'data-nb-label': '',
     '[attr.for]': 'forId()',
   },
 })

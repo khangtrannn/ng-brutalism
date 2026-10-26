@@ -332,6 +332,12 @@ These rules follow from that contract:
 7. **Tone goes on the element that paints.** Tone slots don't inherit, so
    a part with a `tone` input mirrors `data-nb-tone` onto the inner element
    it colors (the accordion trigger's button).
+8. **Context tokens are the one exception to root declaration.**
+   `--nb-icon-size` and `--nb-icon-color` are never declared on the icon,
+   so a wrapper can size and color every icon inside it. The icon reads
+   them with a fallback: `var(--nb-icon-size, var(--nb-icon-default-size))`.
+   The guard keeps the list in `CONTEXT_TOKENS`; add to it only for the
+   same reason.
 
 Example (Button):
 
@@ -527,6 +533,14 @@ across all three:
   size and color come from `--nb-sticker-face-*` on the sticker, and its eyes
   follow the sticker's text color, tone included.
 - `--nb-halftone-color` → `--nb-halftone-fg`.
+- Text and display: `--nb-text-color` → `-fg`, `--nb-text-size` →
+  `-font-size`, `--nb-text-weight` → `-font-weight`; `--nb-display-color` →
+  `-fg`, `-size` → `-font-size`, `-weight` → `-font-weight`, `-leading` →
+  `-line-height`. The shared `--nb-underline-*` tokens split into
+  `--nb-text-underline-*` and `--nb-display-underline-*`; they now reach the
+  underline (before, an inline value never got to the `::after`).
+- `--nb-separator-color` → `-border-color`, `--nb-separator-thickness` →
+  `-border-width`. `--nb-typography-font` → `-font-family`.
 - Avatar now applies its `tone` input. Before, the stylesheet ignored it.
 - The chip group's styles moved to their own file. If you import
   `@ng-brutalism/ui/chip.css` on its own, also import `chip-group.css`.
@@ -562,8 +576,8 @@ across all three:
 2. Guard: a spec that parses each stylesheet and enforces the four-block
    contract (§5). It replaces the current registration guard.
    **Done 2026-10-25:** `libs/ui/src/lib/styles/stylesheet-contract.spec.ts`.
-   A component is checked once its folder is in `MIGRATED`; the rest keep
-   the old registration rule until then.
+   It checks every component stylesheet since 2026-10-26; the old
+   registration rule and the `MIGRATED` list are gone.
 3. Pilot: **Button** (states, variants, tone), **Input** (field role,
    invalid/focus), **Accordion** (compound). Each ships with Chromium,
    Firefox and WebKit contract specs.
@@ -607,6 +621,13 @@ across all three:
    **Decorative done 2026-10-26:** sticker (+ face), marquee, halftone. No
    rendered change, except the face's eyes now take the tone's text color.
    Marquee pause-on-hover is gated behind `(hover: hover)`.
+   **Layout and type done 2026-10-26:** stack, cluster, split, section,
+   separator, field, label, icon, typography, title, text, display. No
+   rendered change; inline title wave colors and text/display underline
+   widths now apply (they never reached the `::after`), and a split's
+   separator stays centered in a gap set from CSS. Icon size and color stay
+   context tokens (rule 8).
+   **Step 4 complete:** every component follows §5.
 5. Docs generator, docs-site pages and CHANGELOG renames.
 6. Themes: move the shipped theme files from `:root` to
    `[data-nb-theme]` (§4.3). The rest of the theming roadmap is in

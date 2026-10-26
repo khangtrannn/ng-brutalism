@@ -128,7 +128,7 @@ import {
                       weight="normal"
                       underline="wave"
                       class="inline-block"
-                      style="--nb-underline-color: #0e47df"
+                      style="--nb-display-underline-color: #0e47df"
                     >
                       Engineer
                     </span>

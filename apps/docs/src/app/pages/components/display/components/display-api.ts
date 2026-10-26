@@ -74,7 +74,7 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
               <td class="px-4 py-3">
                 Draws a built-in accent underline beneath the text. Style it
                 with the
-                <code class="font-mono">--nb-underline-*</code> tokens.
+                <code class="font-mono">--nb-display-underline-*</code> tokens.
               </td>
             </tr>
           </tbody>

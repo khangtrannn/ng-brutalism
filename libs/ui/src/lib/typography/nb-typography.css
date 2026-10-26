@@ -1,10 +1,12 @@
-@property --nb-typography-font {
-  syntax: "*";
-  inherits: false;
-}
-
-@layer base {
+@layer components {
+  /* Tokens */
+  /* Unset: the text keeps the font around it. NbTypography writes it inline. */
   :where([data-nb-typography]) {
-    font-family: var(--nb-typography-font, inherit);
+    --nb-typography-font-family: initial;
+  }
+
+  /* Anatomy */
+  :where([data-nb-typography]) {
+    font-family: var(--nb-typography-font-family, inherit);
   }
 }

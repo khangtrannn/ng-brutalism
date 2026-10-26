@@ -27,7 +27,7 @@ import { DocsExample } from '@ng-brutalism/docs-ui';
               underline="bar"
               underlineGap="xs"
               class="inline-flex flex-col items-start"
-              style="--nb-underline-width: 45%"
+              style="--nb-display-underline-width: 45%"
             >
               Components
             </h2>
@@ -44,7 +44,7 @@ import { DocsExample } from '@ng-brutalism/docs-ui';
 })
 export class CompositionCommonPatternsToolbarRow {
   protected readonly toolbarCode = `<div nbCluster gap="sm" align="center" justify="between">
-  <h2 nbDisplay size="sm" underline="bar" underlineGap="xs" class="inline-flex flex-col items-start" style="--nb-underline-width: 45%">Components</h2>
+  <h2 nbDisplay size="sm" underline="bar" underlineGap="xs" class="inline-flex flex-col items-start" style="--nb-display-underline-width: 45%">Components</h2>
 
   <div nbCluster gap="xs">
     <button nbButton size="sm" tone="white">Copy</button>

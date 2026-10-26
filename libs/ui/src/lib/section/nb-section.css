@@ -1,91 +1,95 @@
-@property --nb-section-padding {
-  syntax: "*";
-  inherits: false;
-}
-
 @layer components {
-  :where([nbSection]) {
+  /* Tokens */
+  :where([data-nb-section]) {
+    --nb-section-padding: 1rem;
+    --nb-section-gap: 1rem;
+    --nb-section-divider-color: var(--nb-border);
+    --nb-section-divider-width: var(--nb-border-width);
+  }
+
+  /* Anatomy */
+  :where([data-nb-section]) {
     box-sizing: border-box;
     min-width: 0;
     display: block;
-    padding: var(--nb-section-padding, 1rem);
+    padding: var(--nb-section-padding);
   }
 
-  :where([nbSection][data-flush]) {
-    margin-inline: calc(0px - var(--nb-section-padding, 1rem));
+  :where([data-nb-section][data-flush]) {
+    margin-inline: calc(0px - var(--nb-section-padding));
   }
 
-  :where([nbSection][data-layout='center']),
-  :where([nbSection][data-layout='between']) {
+  :where([data-nb-section][data-layout='center']),
+  :where([data-nb-section][data-layout='between']) {
     display: flex;
-    gap: var(--nb-spacing-md, 1rem);
+    gap: var(--nb-section-gap);
   }
 
-  :where([nbSection][data-layout='center']) {
+  :where([data-nb-section][data-layout='center']) {
     justify-content: center;
   }
 
-  :where([nbSection][data-layout='between']) {
+  :where([data-nb-section][data-layout='between']) {
     justify-content: space-between;
   }
 
-  :where([nbSection][data-layout='center'], [nbSection][data-layout='between'])[data-align='stretch'] {
+  :where([data-nb-section]:is([data-layout='center'], [data-layout='between'])[data-align='stretch']) {
     align-items: stretch;
   }
 
-  :where([nbSection][data-layout='center'], [nbSection][data-layout='between'])[data-align='start'] {
+  :where([data-nb-section]:is([data-layout='center'], [data-layout='between'])[data-align='start']) {
     align-items: flex-start;
   }
 
-  :where([nbSection][data-layout='center'], [nbSection][data-layout='between'])[data-align='center'] {
+  :where([data-nb-section]:is([data-layout='center'], [data-layout='between'])[data-align='center']) {
     align-items: center;
   }
 
-  :where([nbSection][data-layout='center'], [nbSection][data-layout='between'])[data-align='end'] {
+  :where([data-nb-section]:is([data-layout='center'], [data-layout='between'])[data-align='end']) {
     align-items: flex-end;
   }
 
-  :where([nbSection][data-divider]:not([data-divider='none'])) {
-    border-color: var(--nb-border);
+  :where([data-nb-section][data-divider]:not([data-divider='none'])) {
+    border-color: var(--nb-section-divider-color);
   }
 
-  :where([nbSection][data-divider-style='solid']) {
+  :where([data-nb-section][data-divider-style='solid']) {
     border-style: solid;
   }
 
-  :where([nbSection][data-divider-style='dashed']) {
+  :where([data-nb-section][data-divider-style='dashed']) {
     border-style: dashed;
   }
 
-  :where([nbSection][data-divider-style='dotted']) {
+  :where([data-nb-section][data-divider-style='dotted']) {
     border-style: dotted;
   }
 
-  :where([nbSection][data-divider='top']) {
-    border-top-width: var(--nb-border-width);
+  :where([data-nb-section][data-divider='top']) {
+    border-top-width: var(--nb-section-divider-width);
   }
 
-  :where([nbSection][data-divider='right']) {
-    border-right-width: var(--nb-border-width);
+  :where([data-nb-section][data-divider='right']) {
+    border-right-width: var(--nb-section-divider-width);
   }
 
-  :where([nbSection][data-divider='bottom']) {
-    border-bottom-width: var(--nb-border-width);
+  :where([data-nb-section][data-divider='bottom']) {
+    border-bottom-width: var(--nb-section-divider-width);
   }
 
-  :where([nbSection][data-divider='left']) {
-    border-left-width: var(--nb-border-width);
+  :where([data-nb-section][data-divider='left']) {
+    border-left-width: var(--nb-section-divider-width);
   }
 
-  :where([nbSection][data-divider='block']) {
-    border-block-width: var(--nb-border-width);
+  :where([data-nb-section][data-divider='block']) {
+    border-block-width: var(--nb-section-divider-width);
   }
 
-  :where([nbSection][data-divider='inline']) {
-    border-inline-width: var(--nb-border-width);
+  :where([data-nb-section][data-divider='inline']) {
+    border-inline-width: var(--nb-section-divider-width);
   }
 
-  :where([nbSection][data-divider='all']) {
-    border-width: var(--nb-border-width);
+  :where([data-nb-section][data-divider='all']) {
+    border-width: var(--nb-section-divider-width);
   }
 }

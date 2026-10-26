@@ -1,5 +1,6 @@
 @layer components {
-  :where(nb-field) {
+  /* Anatomy */
+  :where([data-nb-field]) {
     display: block;
   }
 }

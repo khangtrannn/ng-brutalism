@@ -20,7 +20,7 @@ describe('NbTypography token surface', () => {
 
     // Assert
     expect(host.getAttribute('data-nb-typography')).toBe('inherit');
-    expect(host.style.getPropertyValue('--nb-typography-font')).toBe('');
+    expect(host.style.getPropertyValue('--nb-typography-font-family')).toBe('');
     expect(host.style.getPropertyValue('font-family')).toBe('');
   });
 
@@ -30,7 +30,7 @@ describe('NbTypography token surface', () => {
     ['accent', 'var(--nb-font-accent)'],
     ['mono', 'var(--nb-font-mono)'],
   ] satisfies Array<[NbTypographyFont, string]>)(
-    'font="%s" writes the resolved stack to --nb-typography-font',
+    'font="%s" writes the resolved stack to --nb-typography-font-family',
     async (font, expected) => {
       // Arrange
       const fixture = await createFixture({ font });
@@ -38,7 +38,7 @@ describe('NbTypography token surface', () => {
 
       // Assert
       expect(host.getAttribute('data-nb-typography')).toBe(font);
-      expect(host.style.getPropertyValue('--nb-typography-font')).toBe(
+      expect(host.style.getPropertyValue('--nb-typography-font-family')).toBe(
         expected
       );
       expect(host.style.getPropertyValue('font-family')).toBe('');

@@ -114,7 +114,7 @@ interface OtwLink {
                 underline="bar"
                 underlineGap="xs"
                 underlineWidth="md"
-                style="--nb-underline-color: var(--otw-pink)"
+                style="--nb-text-underline-color: var(--otw-pink)"
               >
                 {{ profile.role }}
               </span>

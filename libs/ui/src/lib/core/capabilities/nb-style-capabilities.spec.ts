@@ -411,14 +411,16 @@ describe('style capabilities', () => {
   it('derived anatomy fallbacks live in CSS', () => {
     // Assert
     expect(stylesCss).toContain(
-      'padding-top: var(--nb-stack-separator-gap, var(--nb-stack-gap, 0.75rem));'
-    );
-    expect(stylesCss).toContain('calc(var(--nb-cluster-gap, 0.75rem) * 0.5)');
-    expect(stylesCss).toContain(
-      'var(--nb-split-separator-gap, var(--nb-split-gap, 1rem)) / -2'
+      '--nb-stack-separator-gap: var(--nb-stack-gap);'
     );
     expect(stylesCss).toContain(
-      'margin-inline: calc(0px - var(--nb-section-padding, 1rem));'
+      '--nb-cluster-separator-gap: calc(var(--nb-cluster-gap) * 0.5);'
+    );
+    expect(stylesCss).toContain(
+      'inset-inline-end: calc(var(--nb-split-separator-gap) / -2);'
+    );
+    expect(stylesCss).toContain(
+      'margin-inline: calc(0px - var(--nb-section-padding));'
     );
     expect(stylesCss).toContain(
       'border-top: var(--nb-image-card-border-width) solid'
@@ -768,7 +770,7 @@ describe('NbText + NbDisplay capability composition', () => {
     expect(p.getAttribute('data-measure')).toBe('md');
     expect(p.getAttribute('data-nb-tone')).toBe('muted');
     expect(p.getAttribute('data-tone')).toBeNull();
-    expect(p.style.getPropertyValue('--nb-text-color')).toContain(
+    expect(p.style.getPropertyValue('--nb-text-fg')).toContain(
       'var(--nb-foreground)'
     );
   });
@@ -780,8 +782,8 @@ describe('NbText + NbDisplay capability composition', () => {
 
     // Assert
     expect(p.getAttribute('data-underline')).toBe('bar');
-    expect(p.style.getPropertyValue('--nb-underline-gap')).toBe('0.75rem');
-    expect(p.style.getPropertyValue('--nb-underline-width')).toBe('12rem');
+    expect(p.style.getPropertyValue('--nb-text-underline-gap')).toBe('0.75rem');
+    expect(p.style.getPropertyValue('--nb-text-underline-width')).toBe('12rem');
   });
 
   it('nbText reset=false leaves margin unset', () => {
@@ -852,7 +854,7 @@ class DisplayNoResetTest {}
 
 @Component({
   imports: [NbDisplay],
-  template: `<h1 nbDisplay style="--nb-display-size: 6rem">Override</h1>`,
+  template: `<h1 nbDisplay style="--nb-display-font-size: 6rem">Override</h1>`,
 })
 class DisplayCssVarOverrideTest {}
 
@@ -861,7 +863,7 @@ class DisplayCssVarOverrideTest {}
   template: `<h1
     nbDisplay
     underline="bar"
-    style="--nb-underline-width: 45%; --nb-underline-gap: 0.125rem"
+    style="--nb-display-underline-width: 45%; --nb-display-underline-gap: 0.125rem"
   >
     Override
   </h1>`,
@@ -914,8 +916,8 @@ describe('NbDisplay capability composition', () => {
 
     // Assert
     expect(h.getAttribute('data-underline')).toBe('wave');
-    expect(h.style.getPropertyValue('--nb-underline-gap')).toBe('0.5rem');
-    expect(h.style.getPropertyValue('--nb-underline-width')).toBe('7rem');
+    expect(h.style.getPropertyValue('--nb-display-underline-gap')).toBe('0.5rem');
+    expect(h.style.getPropertyValue('--nb-display-underline-width')).toBe('7rem');
   });
 
   it('nbDisplay reset=false leaves margin unset', () => {
@@ -928,13 +930,13 @@ describe('NbDisplay capability composition', () => {
     expect(h.style.getPropertyValue('margin')).toBe('');
   });
 
-  it('nbDisplay --nb-display-size CSS var override is respected', () => {
+  it('nbDisplay --nb-display-font-size CSS var override is respected', () => {
     // Arrange
     const el = mount(DisplayCssVarOverrideTest);
     const h = el.querySelector<HTMLElement>('[nbDisplay]')!;
 
     // Assert
-    expect(h.style.getPropertyValue('--nb-display-size')).toBe('6rem');
+    expect(h.style.getPropertyValue('--nb-display-font-size')).toBe('6rem');
   });
 
   it('nbDisplay underline CSS var overrides are respected when inputs are omitted', () => {
@@ -944,7 +946,7 @@ describe('NbDisplay capability composition', () => {
 
     // Assert
     expect(h.getAttribute('data-underline')).toBe('bar');
-    expect(h.style.getPropertyValue('--nb-underline-width')).toBe('45%');
-    expect(h.style.getPropertyValue('--nb-underline-gap')).toBe('0.125rem');
+    expect(h.style.getPropertyValue('--nb-display-underline-width')).toBe('45%');
+    expect(h.style.getPropertyValue('--nb-display-underline-gap')).toBe('0.125rem');
   });
 });

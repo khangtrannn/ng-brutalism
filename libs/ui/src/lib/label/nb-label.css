@@ -1,13 +1,23 @@
 @layer components {
-  :where(label[nbLabel]) {
-    font-size: 0.875rem;
-    font-weight: 700;
-    line-height: 1;
+  /* Tokens */
+  :where([data-nb-label]) {
+    --nb-label-font-size: 0.875rem;
+    --nb-label-font-weight: var(--nb-font-weight-bold);
+    --nb-label-line-height: 1;
+    --nb-label-disabled-opacity: 0.5;
   }
 
-  :where(input[nbCheckbox]:disabled ~ label[nbLabel]),
-  :where(.peer:disabled ~ label[nbLabel]) {
+  /* Anatomy */
+  :where([data-nb-label]) {
+    font-size: var(--nb-label-font-size);
+    font-weight: var(--nb-label-font-weight);
+    line-height: var(--nb-label-line-height);
+  }
+
+  /* States */
+  :where([data-nb-checkbox]:disabled ~ [data-nb-label]),
+  :where(.peer:disabled ~ [data-nb-label]) {
     cursor: not-allowed;
-    opacity: 0.5;
+    opacity: var(--nb-label-disabled-opacity);
   }
 }

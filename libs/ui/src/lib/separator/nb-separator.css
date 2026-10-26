@@ -1,13 +1,20 @@
-@property --nb-separator-color {
-  syntax: "*";
-  inherits: false;
-}
-@property --nb-separator-thickness {
-  syntax: "*";
-  inherits: false;
-}
+@layer components {
+  /* Tokens */
+  :where([data-nb-separator]) {
+    --nb-separator-border-color: var(--nb-border);
+    --nb-separator-border-width: 2px;
+    --nb-separator-border-style: solid;
+  }
 
-@layer base {
+  /* Variants */
+  :where([data-nb-separator][data-variant='thick']) {
+    --nb-separator-border-width: 4px;
+  }
+  :where([data-nb-separator][data-variant='dashed']) {
+    --nb-separator-border-style: dashed;
+  }
+
+  /* Anatomy */
   :where([data-nb-separator]) {
     margin: 0;
     border: none;
@@ -17,31 +24,15 @@
     width: 100%;
     height: 0;
     align-self: auto;
-    border-top-width: var(--nb-separator-thickness, 2px);
-    border-top-color: var(--nb-separator-color, var(--nb-border));
-    border-top-style: solid;
+    border-top: var(--nb-separator-border-width)
+      var(--nb-separator-border-style) var(--nb-separator-border-color);
   }
 
   :where([data-nb-separator][data-orientation='vertical']) {
     width: 0;
     height: auto;
     align-self: stretch;
-    border-left-width: var(--nb-separator-thickness, 2px);
-    border-left-color: var(--nb-separator-color, var(--nb-border));
-    border-left-style: solid;
-  }
-
-  :where([data-nb-separator][data-orientation='horizontal'][data-variant='thick']) {
-    border-top-width: var(--nb-separator-thickness, 4px);
-  }
-  :where([data-nb-separator][data-orientation='vertical'][data-variant='thick']) {
-    border-left-width: var(--nb-separator-thickness, 4px);
-  }
-
-  :where([data-nb-separator][data-orientation='horizontal'][data-variant='dashed']) {
-    border-top-style: dashed;
-  }
-  :where([data-nb-separator][data-orientation='vertical'][data-variant='dashed']) {
-    border-left-style: dashed;
+    border-left: var(--nb-separator-border-width)
+      var(--nb-separator-border-style) var(--nb-separator-border-color);
   }
 }

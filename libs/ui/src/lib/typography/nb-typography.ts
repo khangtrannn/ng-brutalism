@@ -10,7 +10,7 @@ import {
   exportAs: 'nbTypography',
   host: {
     '[attr.data-nb-typography]': 'font()',
-    '[style.--nb-typography-font]': 'fontValue()',
+    '[style.--nb-typography-font-family]': 'fontValue()',
   },
 })
 export class NbTypography {

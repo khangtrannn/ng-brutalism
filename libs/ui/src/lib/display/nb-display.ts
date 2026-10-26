@@ -41,8 +41,8 @@ export type NbDisplayUnderline = NbUnderlineVariant;
     '[attr.data-leading]': 'leading()',
     '[attr.data-fluid]': 'fluid() ? "" : null',
 
-    '[style.--nb-underline-gap]': 'underlineGapStyle()',
-    '[style.--nb-underline-width]': 'underlineWidthStyle()',
+    '[style.--nb-display-underline-gap]': 'underlineGapStyle()',
+    '[style.--nb-display-underline-width]': 'underlineWidthStyle()',
   },
 })
 export class NbDisplay {

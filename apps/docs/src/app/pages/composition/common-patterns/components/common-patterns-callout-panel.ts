@@ -55,7 +55,7 @@ import { DocsExample } from '@ng-brutalism/docs-ui';
                 underline="bar"
                 underlineGap="xs"
                 class="inline-flex flex-col items-start"
-                style="--nb-underline-width: 45%"
+                style="--nb-display-underline-width: 45%"
               >
                 Pricing
               </h2>
@@ -82,7 +82,7 @@ export class CompositionCommonPatternsCalloutPanel {
   protected readonly calloutPanelCode = `<article nbSurface tone="cream" radius="xl" shadow="hard" border="strong" clip>
   <header nbSection padding="lg" divider="bottom">
     <div nbCluster gap="sm" align="center" justify="between">
-      <h2 nbDisplay size="sm" underline="bar" underlineGap="xs" class="inline-flex flex-col items-start" style="--nb-underline-width: 45%">Pricing</h2>
+      <h2 nbDisplay size="sm" underline="bar" underlineGap="xs" class="inline-flex flex-col items-start" style="--nb-display-underline-width: 45%">Pricing</h2>
       <span nbChip tone="yellow">Early access</span>
     </div>
   </header>

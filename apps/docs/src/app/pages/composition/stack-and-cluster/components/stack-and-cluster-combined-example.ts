@@ -51,7 +51,7 @@ import { DocsExample } from '@ng-brutalism/docs-ui';
                 underline="bar"
                 underlineGap="xs"
                 class="inline-flex flex-col items-start"
-                style="--nb-underline-width: 45%"
+                style="--nb-display-underline-width: 45%"
               >
                 Senior Angular Engineer
               </h2>
@@ -79,7 +79,7 @@ export class CompositionStackClusterCombinedExample {
   protected readonly combinedCode = `<article nbSurface tone="cream" padding="lg" radius="xl" shadow="hard" border="strong">
   <div nbStack gap="lg">
     <div nbStack gap="xs">
-      <h2 nbDisplay size="sm" underline="bar" underlineGap="xs" class="inline-flex flex-col items-start" style="--nb-underline-width: 45%">Senior Angular Engineer</h2>
+      <h2 nbDisplay size="sm" underline="bar" underlineGap="xs" class="inline-flex flex-col items-start" style="--nb-display-underline-width: 45%">Senior Angular Engineer</h2>
       <p nbText tone="muted">Build loud UI primitives.</p>
     </div>
 
