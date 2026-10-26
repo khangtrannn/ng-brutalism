@@ -1,54 +1,50 @@
-@property --nb-halftone-color {
-  syntax: "*";
-  inherits: true;
-}
-@property --nb-halftone-columns {
-  syntax: "*";
-  inherits: false;
-}
-@property --nb-halftone-rows {
-  syntax: "*";
-  inherits: false;
-}
-@property --nb-halftone-dot-size {
-  syntax: "*";
-  inherits: false;
-}
-@property --nb-halftone-gap-x {
-  syntax: "*";
-  inherits: false;
-}
-@property --nb-halftone-gap-y {
-  syntax: "*";
-  inherits: false;
-}
-
 @layer components {
+  /* Tokens */
+  :where([data-nb-halftone]) {
+    --nb-halftone-fg: var(--nb-border);
+    --nb-halftone-dot-size: 8px;
+    /* Soft edge of each dot in the rectangle shape. */
+    --nb-halftone-dot-blur: 1px;
+    --nb-halftone-gap-x: 28px;
+    --nb-halftone-gap-y: 27px;
+    /* Set by NbHalftone from its inputs. */
+    --nb-halftone-columns: initial;
+    --nb-halftone-rows: initial;
+    --nb-halftone-radius: 0;
+  }
+
+  /* Variants */
+  :where([data-nb-halftone][data-shape='circle']) {
+    --nb-halftone-radius: 9999px;
+  }
+
+  /* Anatomy */
   :where([data-nb-halftone]) {
     pointer-events: none;
   }
 
   :where([data-nb-halftone] circle) {
-    fill: var(--nb-halftone-color, var(--nb-border));
+    fill: var(--nb-halftone-fg);
   }
 
   :where([data-nb-halftone][data-shape='rectangle']) {
     display: block;
     overflow: hidden;
-    width: calc(var(--nb-halftone-columns) * var(--nb-halftone-gap-x, 28px));
-    height: calc(var(--nb-halftone-rows) * var(--nb-halftone-gap-y, 27px));
+    width: calc(var(--nb-halftone-columns) * var(--nb-halftone-gap-x));
+    height: calc(var(--nb-halftone-rows) * var(--nb-halftone-gap-y));
     background-image: radial-gradient(
       circle at center,
-      var(--nb-halftone-color, var(--nb-border)) 0 calc(var(--nb-halftone-dot-size, 8px) / 2),
-      transparent calc((var(--nb-halftone-dot-size, 8px) / 2) + 1px)
+      var(--nb-halftone-fg) 0 calc(var(--nb-halftone-dot-size) / 2),
+      transparent
+        calc((var(--nb-halftone-dot-size) / 2) + var(--nb-halftone-dot-blur))
     );
-    background-size: var(--nb-halftone-gap-x, 28px) var(--nb-halftone-gap-y, 27px);
+    background-size: var(--nb-halftone-gap-x) var(--nb-halftone-gap-y);
     background-repeat: repeat;
     background-position: 0 0;
   }
 
   :where([data-nb-halftone][data-shape='circle']) {
     overflow: hidden;
-    border-radius: 9999px;
+    border-radius: var(--nb-halftone-radius);
   }
 }

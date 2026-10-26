@@ -3,6 +3,7 @@ import {
   Component,
   booleanAttribute,
   computed,
+  inject,
   input,
   numberAttribute,
 } from '@angular/core';
@@ -44,10 +45,17 @@ function nbStickerScaleTransform(value: unknown): string | null {
           [attr.d]="config().path"
           [attr.transform]="config().shadowTransform"
         />
-        <path data-slot="sticker-shape" [attr.d]="config().path" />
+        <path
+          data-slot="sticker-shape"
+          [attr.data-nb-tone]="toneCapability.tone() ?? null"
+          [attr.d]="config().path"
+        />
       </svg>
 
-      <span data-slot="sticker-content">
+      <span
+        data-slot="sticker-content"
+        [attr.data-nb-tone]="toneCapability.tone() ?? null"
+      >
         <ng-content />
       </span>
     </span>
@@ -72,6 +80,8 @@ export class NbSticker {
   readonly ariaLabel = input<string | null>(null, { alias: 'aria-label' });
   readonly rotate = input(null, { transform: nbStickerRotateTransform });
   readonly size = input(null, { transform: nbStickerScaleTransform });
+
+  protected readonly toneCapability = inject(NbToneCapability);
 
   protected readonly config = computed(() => NB_STICKER_PATHS[this.shape()]);
 }

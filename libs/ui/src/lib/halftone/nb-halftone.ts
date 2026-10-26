@@ -32,7 +32,7 @@ const RECTANGLE_DEFAULT_COLUMNS = 13;
     '[attr.aria-hidden]': '"true"',
     '[attr.data-shape]': 'shape()',
     'data-nb-halftone': '',
-    '[style.--nb-halftone-color]': 'color()',
+    '[style.--nb-halftone-fg]': 'color()',
     '[style.--nb-halftone-dot-size.px]': 'size()',
     '[style.--nb-halftone-gap-x.px]': 'resolvedGapXInput()',
     '[style.--nb-halftone-gap-y.px]': 'resolvedGapYInput()',

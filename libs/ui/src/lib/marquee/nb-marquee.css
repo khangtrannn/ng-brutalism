@@ -1,68 +1,88 @@
-@property --nb-marquee-duration {
-  syntax: "*";
-  inherits: true;
-}
-
 @layer components {
-  :where(nb-marquee) {
+  /* Tokens */
+  :where([data-nb-marquee]) {
+    --nb-marquee-bg: #ffffff;
+    --nb-marquee-fg: #000000;
+    --nb-marquee-border-color: var(--nb-border);
+    --nb-marquee-border-width: var(--nb-border-width);
+    --nb-marquee-font-weight: var(--nb-font-weight-normal);
+    --nb-marquee-padding-y: 1rem;
+    /* NbMarquee writes the measured duration inline on the wrapper. */
+    --nb-marquee-duration: 5s;
+    --nb-marquee-easing: linear;
+    --nb-marquee-item-gap: 1rem;
+    --nb-marquee-item-font-size: 2.25rem;
+  }
+
+  /* Anatomy */
+  :where([data-nb-marquee]) {
     display: block;
   }
 
-  :where(nb-marquee [data-slot='marquee-wrapper']) {
+  :where([data-nb-marquee] [data-slot='marquee-wrapper']) {
     position: relative;
     display: flex;
     width: 100%;
     overflow: hidden;
-    border-top: var(--nb-border-width) solid var(--nb-border);
-    border-bottom: var(--nb-border-width) solid var(--nb-border);
-    background: #ffffff;
-    color: #000000;
-    font-weight: var(--nb-font-weight-normal);
+    border-block: var(--nb-marquee-border-width) solid
+      var(--nb-marquee-border-color);
+    background: var(--nb-marquee-bg);
+    color: var(--nb-marquee-fg);
+    font-weight: var(--nb-marquee-font-weight);
   }
 
-  :where(nb-marquee [data-slot='marquee-strip']) {
+  :where([data-nb-marquee] [data-slot='marquee-strip']) {
     display: flex;
     width: max-content;
     min-width: 100%;
     flex-shrink: 0;
     align-items: center;
-    padding-block: 1rem;
+    padding-block: var(--nb-marquee-padding-y);
     white-space: nowrap;
-    animation-duration: var(--nb-marquee-duration, 5s);
-    animation-timing-function: linear;
+    animation-duration: var(--nb-marquee-duration);
+    animation-timing-function: var(--nb-marquee-easing);
     animation-iteration-count: infinite;
   }
 
-  :where(nb-marquee [data-strip='1']) {
+  :where([data-nb-marquee] [data-strip='1']) {
     animation-name: nb-marquee-1;
   }
 
-  :where(nb-marquee [data-strip='1'][data-reverse]) {
+  :where([data-nb-marquee] [data-strip='1'][data-reverse]) {
     animation-name: nb-marquee-reverse-1;
   }
 
-  :where(nb-marquee [data-strip='2']) {
+  :where([data-nb-marquee] [data-strip='2']) {
     position: absolute;
     top: 0;
     left: 0;
     animation-name: nb-marquee-2;
   }
 
-  :where(nb-marquee [data-strip='2'][data-reverse]) {
+  :where([data-nb-marquee] [data-strip='2'][data-reverse]) {
     animation-name: nb-marquee-reverse-2;
   }
 
-  :where(nb-marquee [data-slot='marquee-wrapper'][data-pause-on-hover]:hover [data-slot='marquee-strip']) {
-    animation-play-state: paused;
-  }
-
-  :where(nb-marquee-item) {
+  :where([data-nb-marquee] [data-nb-marquee-item]) {
     display: inline-flex;
     flex-shrink: 0;
     align-items: center;
-    margin-inline: 1rem;
-    font-size: 2.25rem;
+    margin-inline: var(--nb-marquee-item-gap);
+    font-size: var(--nb-marquee-item-font-size);
     white-space: nowrap;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    :where([data-nb-marquee] [data-slot='marquee-strip']) {
+      animation-play-state: paused;
+    }
+  }
+
+  /* States */
+  @media (hover: hover) {
+    :where([data-nb-marquee] [data-slot='marquee-wrapper'][data-pause-on-hover]:hover [data-slot='marquee-strip']) {
+      animation-play-state: paused;
+    }
   }
 }
 
@@ -99,11 +119,5 @@
   }
   to {
     transform: translateX(0%);
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  :where(nb-marquee [data-slot='marquee-strip']) {
-    animation-play-state: paused;
   }
 }

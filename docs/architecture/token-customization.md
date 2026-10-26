@@ -521,6 +521,12 @@ across all three:
   → `-filled-fg`.
 - `--nb-progress-tone-bg` and `--nb-rating-tone-bg` are gone. The fill and
   each star repeat the component's `data-nb-tone`.
+- Sticker: `--nb-sticker-fill` → `-bg`, `-ink` → `-fg`, `-stroke-width` →
+  `-border-width`; `--nb-sticker-tone-bg/-fg` are gone (the shape and text
+  repeat `data-nb-tone`). `nb-sticker-face` is styled as a sticker part: its
+  size and color come from `--nb-sticker-face-*` on the sticker, and its eyes
+  follow the sticker's text color, tone included.
+- `--nb-halftone-color` → `--nb-halftone-fg`.
 - Avatar now applies its `tone` input. Before, the stylesheet ignored it.
 - The chip group's styles moved to their own file. If you import
   `@ng-brutalism/ui/chip.css` on its own, also import `chip-group.css`.
@@ -598,6 +604,9 @@ across all three:
    all three engines). The dialog shadow is 1.5× the box depth (6px by
    default, 4.5px in the soft theme). Docs examples that set media-item and
    stat tokens on a wrapper now target the component.
+   **Decorative done 2026-10-26:** sticker (+ face), marquee, halftone. No
+   rendered change, except the face's eyes now take the tone's text color.
+   Marquee pause-on-hover is gated behind `(hover: hover)`.
 5. Docs generator, docs-site pages and CHANGELOG renames.
 6. Themes: move the shipped theme files from `:root` to
    `[data-nb-theme]` (§4.3). The rest of the theming roadmap is in

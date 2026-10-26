@@ -1,91 +1,35 @@
-@property --nb-sticker-fill {
-  syntax: "*";
-  inherits: true;
-}
-@property --nb-sticker-ink {
-  syntax: "*";
-  inherits: true;
-}
-@property --nb-sticker-font-size {
-  syntax: "*";
-  inherits: true;
-}
-@property --nb-sticker-min-block-size {
-  syntax: "*";
-  inherits: true;
-}
-@property --nb-sticker-padding-block {
-  syntax: "*";
-  inherits: true;
-}
-@property --nb-sticker-padding-inline {
-  syntax: "*";
-  inherits: true;
-}
-@property --nb-sticker-rotate {
-  syntax: "*";
-  inherits: true;
-}
-@property --nb-sticker-scale {
-  syntax: "*";
-  inherits: true;
-}
-@property --nb-sticker-shadow {
-  syntax: "*";
-  inherits: true;
-}
-@property --nb-sticker-shadow-x {
-  syntax: "*";
-  inherits: true;
-}
-@property --nb-sticker-shadow-y {
-  syntax: "*";
-  inherits: true;
-}
-@property --nb-sticker-size {
-  syntax: "*";
-  inherits: true;
-}
-@property --nb-sticker-stroke-width {
-  syntax: "*";
-  inherits: true;
-}
-@property --nb-sticker-tone-bg {
-  syntax: "*";
-  inherits: true;
-}
-@property --nb-sticker-tone-fg {
-  syntax: "*";
-  inherits: true;
-}
-@property --nb-sticker-face-size {
-  syntax: "*";
-  inherits: true;
-}
-
 @layer components {
+  /* Tokens */
   :where([data-nb-sticker]) {
+    --nb-sticker-bg: var(--nb-mint);
+    --nb-sticker-fg: #050505;
+    --nb-sticker-border-width: 5px;
+    --nb-sticker-shadow: var(--nb-shadow);
+    --nb-sticker-rotate: -6deg;
+    --nb-sticker-scale: 1;
     --nb-sticker-min-block-size: 8.75rem;
     --nb-sticker-padding-inline: 3.5rem;
     --nb-sticker-padding-block: 3rem;
-    --nb-sticker-stroke-width: 5px;
-    --nb-sticker-rotate: -6deg;
+    --nb-sticker-font-family: var(--nb-font-display);
     --nb-sticker-font-size: 1.5rem;
+    --nb-sticker-font-weight: 950;
+    --nb-sticker-line-height: 0.9;
+    --nb-sticker-tracking: 0;
+    --nb-sticker-content-max-width: 300px;
+    /* Splat only: a fixed square, and a shadow offset drawn in CSS. */
+    --nb-sticker-size: 6rem;
+    --nb-sticker-shadow-x: 6px;
+    --nb-sticker-shadow-y: 6px;
 
-    display: inline-block;
-    vertical-align: middle;
-    background-color: transparent;
+    /* nb-sticker-face, inside the sticker's content. */
+    --nb-sticker-face-fg: currentColor;
+    --nb-sticker-face-size: 5.55rem;
+    --nb-sticker-face-border-width: 36;
   }
 
-  :where([data-nb-sticker][data-nb-tone]) {
-    --nb-sticker-tone-bg: var(--nb-tone-bg);
-    --nb-sticker-tone-fg: var(--nb-tone-fg);
-  }
-
+  /* Variants */
   :where([data-nb-sticker][data-shape='burst-wide']) {
     --nb-sticker-padding-inline: 4rem;
-    --nb-sticker-padding-block: 3rem;
-    --nb-sticker-font-size: 1.5rem;
   }
 
   :where([data-nb-sticker][data-shape='star']) {
@@ -94,15 +38,19 @@
     --nb-sticker-padding-block: 2.5rem;
     --nb-sticker-face-size: 3.5rem;
     --nb-sticker-rotate: 0deg;
-    --nb-sticker-stroke-width: 5px;
   }
 
   :where([data-nb-sticker][data-shape='splat']) {
-    --nb-sticker-size: 6rem;
-    --nb-sticker-shadow-x: 6px;
-    --nb-sticker-shadow-y: 6px;
-    --nb-sticker-stroke-width: 4px;
+    --nb-sticker-border-width: 4px;
     --nb-sticker-rotate: -10deg;
+  }
+
+  /* Anatomy */
+  /* The tone paints the shape and the text; NbSticker repeats it on both. */
+  :where([data-nb-sticker]) {
+    display: inline-block;
+    vertical-align: middle;
+    background-color: transparent;
   }
 
   :where([data-nb-sticker] [data-slot='sticker-root']) {
@@ -114,7 +62,7 @@
     inline-size: max-content;
     block-size: max-content;
     place-items: center;
-    transform: rotate(var(--nb-sticker-rotate)) scale(var(--nb-sticker-scale, 1));
+    transform: rotate(var(--nb-sticker-rotate)) scale(var(--nb-sticker-scale));
     transform-origin: center;
   }
 
@@ -134,7 +82,7 @@
   }
 
   :where([data-nb-sticker] [data-slot='sticker-shadow']) {
-    fill: var(--nb-sticker-shadow, var(--nb-shadow, var(--nb-black, #050505)));
+    fill: var(--nb-sticker-shadow);
   }
 
   :where([data-nb-sticker][data-shape='splat'] [data-slot='sticker-shadow']) {
@@ -142,9 +90,9 @@
   }
 
   :where([data-nb-sticker] [data-slot='sticker-shape']) {
-    fill: var(--nb-sticker-fill, var(--nb-sticker-tone-bg, var(--nb-tone-bg, var(--nb-mint, #9af7b5))));
-    stroke: var(--nb-sticker-ink, var(--nb-sticker-tone-fg, var(--nb-tone-fg, var(--nb-black, #050505))));
-    stroke-width: var(--nb-sticker-stroke-width);
+    fill: var(--nb-tone-bg, var(--nb-sticker-bg));
+    stroke: var(--nb-tone-fg, var(--nb-sticker-fg));
+    stroke-width: var(--nb-sticker-border-width);
     stroke-linejoin: round;
     stroke-linecap: round;
     vector-effect: non-scaling-stroke;
@@ -152,16 +100,16 @@
 
   :where([data-nb-sticker] [data-slot='sticker-content']) {
     display: block;
-    max-width: 300px;
+    max-width: var(--nb-sticker-content-max-width);
     padding-inline: var(--nb-sticker-padding-inline);
     padding-block: var(--nb-sticker-padding-block);
     overflow-wrap: break-word;
-    color: var(--nb-sticker-ink, var(--nb-sticker-tone-fg, var(--nb-tone-fg, var(--nb-black, #050505))));
-    font-family: var(--nb-font-display);
+    color: var(--nb-tone-fg, var(--nb-sticker-fg));
+    font-family: var(--nb-sticker-font-family);
     font-size: var(--nb-sticker-font-size);
-    font-weight: 950;
-    line-height: 0.9;
-    letter-spacing: 0;
+    font-weight: var(--nb-sticker-font-weight);
+    line-height: var(--nb-sticker-line-height);
+    letter-spacing: var(--nb-sticker-tracking);
     text-align: center;
     text-transform: uppercase;
     pointer-events: none;
@@ -170,5 +118,21 @@
 
   :where([data-nb-sticker][data-shape='splat'] [data-slot='sticker-content']) {
     display: none;
+  }
+
+  :where([data-nb-sticker] [data-nb-sticker-face]) {
+    width: var(--nb-sticker-face-size);
+    height: calc(var(--nb-sticker-face-size) * 0.64);
+  }
+
+  :where([data-nb-sticker] [data-slot='sticker-face-eye']) {
+    fill: var(--nb-sticker-face-fg);
+  }
+
+  :where([data-nb-sticker] [data-slot='sticker-face-smile']) {
+    fill: none;
+    stroke: var(--nb-sticker-face-fg);
+    stroke-width: var(--nb-sticker-face-border-width);
+    stroke-linecap: round;
   }
 }
